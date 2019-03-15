@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Mar 2019 10:57:09 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 22:05:11 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>日书-很对味的收获</title>
+      <link>https://www.smslit.top/2019/03/15/daily-amazing-ui-component/</link>
+      <pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/15/daily-amazing-ui-component/</guid>
+      <description>今天看 Jason 博客文章，收获挺多。 首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择</description>
+    </item>
     
     <item>
       <title>日书-君子爱财，取之有道</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/08/daily-cared-by-friends/</guid>
       <description>今天下午连续有好久不见的三位朋友都找我聊天，我甚至都在怀疑他们是不是商量好的，您可能觉得这有什么呀，但对于我来说意义非凡！从裸辞到现在马上快</description>
-    </item>
-    
-    <item>
-      <title>快快拿走，Xcode 常用快捷键</title>
-      <link>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</link>
-      <pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
-      <description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
     </item>
     
   </channel>

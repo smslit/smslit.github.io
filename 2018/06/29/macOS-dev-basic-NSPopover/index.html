@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="macOS应用开发基础之Popover">
+<meta itemprop="description" content="mac中安装了一个叫pap.er的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 Popover 中实现。看视频感受一下，叫Popover的弹窗，这是本文要讲的东西。
+
+pap.er
+
+昨天研究了Popover的使用，所以今天以一个实例与大家分享一下！">
+
+
+<meta itemprop="datePublished" content="2018-06-29T15:20:04&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-05T11:40:04&#43;08:00" />
+<meta itemprop="wordCount" content="3449">
+
+
+
+<meta itemprop="keywords" content="macOS 开发,develop," />
+<meta property="og:title" content="macOS应用开发基础之Popover" />
+<meta property="og:description" content="mac中安装了一个叫pap.er的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 Popover 中实现。看视频感受一下，叫Popover的弹窗，这是本文要讲的东西。
+
+pap.er
+
+昨天研究了Popover的使用，所以今天以一个实例与大家分享一下！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.smslit.top/2018/06/29/macOS-dev-basic-NSPopover/" /><meta property="article:published_time" content="2018-06-29T15:20:04&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-05T11:40:04&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="macOS应用开发基础之Popover"/>
+<meta name="twitter:description" content="mac中安装了一个叫pap.er的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 Popover 中实现。看视频感受一下，叫Popover的弹窗，这是本文要讲的东西。
+
+pap.er
+
+昨天研究了Popover的使用，所以今天以一个实例与大家分享一下！"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>macOS应用开发基础之Popover</title>
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	
+	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.smslit.top">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://www.smslit.top/post/">Posts</a>
+					<a href="https://www.smslit.top/about/">Me</a>
+					<a href="https://smslit.coding.me/ownwiki/">wiki</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.smslit.top/post/">Posts</a></li>
+			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://smslit.coding.me/ownwiki/">wiki</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 29, 2018</span></div>
+				<h1>macOS应用开发基础之Popover</h1>
+			</header>
+			<div class="content">
+				<p>mac中安装了一个叫<a href="http://paper.meiyuan.in" target="_blank">pap.er</a>的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 <code>Popover</code> 中实现。看视频感受一下，叫<code>Popover</code>的弹窗，这是本文要讲的东西。</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/pap.er.mp4" controls="controls" width="100%" poster="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153023532585285.jpg">pap.er</video>
+
+<p>昨天研究了<code>Popover</code>的使用，所以今天以一个实例与大家分享一下！</p>
+
+<h2 id="平台">平台</h2>
+
+<ul>
+<li>macOS 10.13.5</li>
+<li>Xcode 9.4.1</li>
+<li>swift 4.1.2</li>
+</ul>
+
+<p>本文基于上述平台实现，下面的代码中可能随着<code>Swift</code>语言的版本的不同会需要调整（不过应该不多），<code>xcode</code>会比较智能的提出修改建议，视情况调整即可，不过实现思路是一致的。</p>
+
+<h2 id="新建及配置工程">新建及配置工程</h2>
+
+<ul>
+<li>打开xcode新建工程， <strong>macOS</strong> -&gt; <strong>Cocoa App</strong> -&gt; <strong>Next</strong>:
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024028025921.png" alt="20180629153024028025921.png" /></li>
+<li>输入工程名称：<code>PopoverDemo</code>，语言选择<code>Swift</code>，勾掉<code>Storyboard</code>:
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024043769527.png" alt="20180629153024043769527.png" /></li>
+<li><strong>Next</strong>，点击 <strong>create</strong> 即可打开创建的新工程；</li>
+<li>点击运行按钮，可以看到程序运行，出现一个空的窗口，同时dock上出现了应用图标，这不是我们想要的，设置一下不显示它们：
+
+<ul>
+<li>工程导航栏选中工程<code>PopoverDemo</code>，打开<code>Info</code>标签页;</li>
+<li>可以看到<code>Custom macOS application Target Properties</code>组，添加新的配置<code>Application is agent(UI Element)</code>，布尔属性，值为 <strong>YES</strong>:
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024095465288.png" alt="20180629153024095465288.png" /></li>
+</ul></li>
+
+<li><p>重新运行程序，可以看到已经不显示Dock图标；</p></li>
+
+<li><p>打开文件<code>MainMenu.xib</code>，可以看到界面设计中有<strong>Window</strong> 和 <strong>MainMenu</strong>，两个选中删掉；</p></li>
+
+<li><p>打开文件<code>AppDelegate.swift</code>，删掉以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"> <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">window</span><span class="p">:</span> <span class="n">NSWindow</span><span class="o">!</span></code></pre></div></li>
+
+<li><p>再次运行程序，主窗口也不显示了，连菜单栏也木有了，不要着急，咱继续。</p></li>
+</ul>
+
+<h2 id="添加状态栏按钮">添加状态栏按钮</h2>
+
+<p>打开文件<code>AppDelegate.swift</code>，在类中添加属性，这一步是创建一个状态栏按钮，设置宽度属性<code>NSStatusItem.squareLength</code>，代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">statusItem</span> <span class="p">=</span> <span class="n">NSStatusBar</span><span class="p">.</span><span class="n">system</span><span class="p">.</span><span class="n">statusItem</span><span class="p">(</span><span class="n">withLength</span><span class="p">:</span> <span class="n">NSStatusItem</span><span class="p">.</span><span class="n">squareLength</span><span class="p">)</span></code></pre></div>
+<p>状态栏按钮总该需要一个图标吧！打开<code>Assets.xcassets</code>，右击显示<code>AppIcon</code>下方的空白区，选择<code>New Image Set</code>，重命名为<code>statusIcon</code>，当然这个名字随便定，选中这个图集，会看到右侧有配置区，配置图集按照<code>Template Image</code>渲染：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024293742991.png" alt="20180629153024293742991.png" /></p>
+
+<p>看到有三个虚线框空白区，这就是图片区，状态栏按钮的图片基本大小为 $18px\times18px$ ，还需2倍和3倍的适用于视网膜屏幕的mac，像素分别是 $36px\times36px$ 和 $54px\times54px$ ，可以使用以下我提供的图标：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024309821129.png" width="18px"><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018062915302434352614.png" width="36px"><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024344990828.png" width="54px"></p>
+
+<p>分别将图拖到对应位置：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024408859417.png" alt="20180629153024408859417.png" /></p>
+
+<p>切换到文件<code>AppDelegate.swift</code>，定义一个测试状态栏按钮点击行为的函数，这里以关闭应用程序为例吧，实现的函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">quitApp</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">terminate</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>然后找到<code>applicationDidFinishLaunching</code>在其中添加以下代码，为状态栏按钮配置图标和行为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
+	<span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;statusIcon&#34;</span><span class="p">))</span>
+	<span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">quitApp</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>此时运行程序会看到状态栏中出现了我们定义的按钮，点击一下，应用程序就退出了。</p>
+
+<blockquote>
+<p>前面设置图片集渲染方式为<code>Template Image</code>，是为了适配不同的状态栏主题，因为macOS还有个暗黑主题不是？</p>
+</blockquote>
+
+<p>两种主题下的效果如下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018062915302450436095.png" alt="2018062915302450436095.png" /></p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024505287040.png" alt="20180629153024505287040.png" /></p>
+
+<h2 id="添加popover">添加Popover</h2>
+
+<h3 id="添加popover控件">添加Popover控件</h3>
+
+<p>打开文件<code>MainMenu.xib</code>，右下脚搜索控件<code>Popover</code>就会看到：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024689568360.png" alt="20180629153024689568360.png" /></p>
+
+<p>点击控件将其拖入界面，添加后其并没有可视化的元素，可以在<code>Objects</code>管理器中看到已经添加成功：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024707619315.png" alt="20180629153024707619315.png" /></p>
+
+<p>启动<code>Assitant Editor</code>，按住<code>Contorl</code>键点击<code>Popover</code>拖入<code>AppDelegate.swift</code>文件，创建<code>popover</code>属性：</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/link.mp4" controls="controls" width="100%">popover_link</video>
+
+<h3 id="添加popover-view-controller">添加Popover View Controller</h3>
+
+<p>此时<code>popover</code>是没有界面的，因为此时还没有为其指定<code>view controller</code>。</p>
+
+<ul>
+<li><p><code>Command</code>+<code>n</code>或者菜单栏依次选择<strong>File</strong>-&gt;<strong>New</strong>-&gt;<strong>File…，就会调出新建文件窗口，</strong>选择 <strong>macOS</strong> -&gt; <strong>Cocoa Class</strong> -&gt; <strong>Next</strong>;</p></li>
+
+<li><p>名称最好是跟目的统一，这里我设置成<code>PopoverDemoViewController</code>，继承自<code>NSViewController</code>，勾选☑️<code>also create XIB file for user interface</code>，语言依旧是<code>Swift</code>，然后 <strong>Next</strong> -&gt; <strong>Create</strong>会创建两个文件。</p></li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024886162075.png" alt="20180629153024886162075.png" /></p>
+
+<ul>
+<li>PopoverDemoViewController.swift</li>
+
+<li><p>PopoverDemoViewController.xib</p></li>
+
+<li><p>打开文件<code>MainMenu.xib</code>，选择界面设计中的<code>Popover View Controller</code>，然后设置其对应的类为刚才创建的<code>PopoverDemoViewController</code>，此时<code>popover</code>的界面就可以在<code>PopoverDemoViewController.xib</code>中设计了:</p></li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024927617269.png" alt="20180629153024927617269.png" /></p>
+
+<ul>
+<li><p>此时虽指定了具体的 <strong>view controller</strong>，但还没有触发<code>popover</code>显示的地方，一开始我们添加了 <code>statusItem</code>，就是为了利用状态栏按钮点击来显示的，只需要定义开关<code>popover</code>的接口指定给<code>statusItem</code>的<code>action</code>即可，定义以下三个函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">showPopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
+        <span class="n">popover</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="n">relativeTo</span><span class="p">:</span> <span class="n">button</span><span class="p">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">of</span><span class="p">:</span> <span class="n">button</span><span class="p">,</span> <span class="n">preferredEdge</span><span class="p">:</span> <span class="n">NSRectEdge</span><span class="p">.</span><span class="n">minY</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+    
+<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">closePopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">popover</span><span class="p">.</span><span class="n">performClose</span><span class="p">(</span><span class="n">sender</span><span class="p">)</span>
+<span class="p">}</span>
+    
+<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">togglePopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">popover</span><span class="p">.</span><span class="n">isShown</span> <span class="p">{</span>
+        <span class="n">closePopover</span><span class="p">(</span><span class="n">sender</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">showPopover</span><span class="p">(</span><span class="n">sender</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>重新更改一下<code>applicationDidFinishLaunching</code>中实现的<code>statusItem</code>的<code>action</code>为上面的<code>togglePopover</code>，删掉之前定义的<code>quitApp</code>就可以了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;statusIcon&#34;</span><span class="p">))</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">togglePopover</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>此时运行程序，就会看到正常出现的状态栏按钮，点击按钮就会弹出<code>Popover</code>，再次点击就会关闭。</p></li>
+</ul>
+
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/popover-click.mp4" width="100%" controls="controls">popover-click</video></p>
+
+<h3 id="设计popover界面">设计Popover界面</h3>
+
+<p>上面提到，我们可以在<code>PopoverDemoViewController.xib</code>中设计<code>popover</code>的界面。</p>
+
+<h4 id="添加应用退出按钮">添加应用退出按钮</h4>
+
+<ul>
+<li><p>打开<code>PopoverDemoViewController.xib</code>文件，会看到一个<code>view</code>控件，我们拖动一个<code>Push Button</code>控件到<code>view</code>中，放置到右上角。</p></li>
+
+<li><p>选中添加的按钮，在控件属性窗口中， 取消勾选 <strong>Boarded</strong>，选择<strong>Image</strong> 为 <code>NSStopProcessFrestandingTemplate</code>：</p></li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153025204615191.png" alt="20180629153025204615191.png" /></p>
+
+<ul>
+<li><p>调出<code>Assitant Editor</code>，按住<code>Control</code>键，点击按钮拖入<code>PopoverDemoViewContoller.swift</code>，创建action为点击事件<code>quitApp</code>，实现代码与之前的测试函数<code>quiApp</code>一样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">quitApp</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">terminate</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>运行程序，点击弹出popover，此时可以看到刚才添加的按钮，点击一下按钮，程序就会退出。</p></li>
+</ul>
+
+<h4 id="添加无用的标签">添加无用的标签</h4>
+
+<p>总要在程序中显示点东西吧，就像添加按钮一样拖动一个<code>Label</code>控件到<code>view</code>中，内容改为经典的<code>Hello, World!</code>，啊，不行太俗了，还是改为<code>Hello, Popover!</code>吧，然后调整标签大小，并调整位置在水平和垂直居中的位置，调整内容居中：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153025294914532.png" alt="20180629153025294914532.png" /></p>
+
+<p>运行程序，看到想要的效果！</p>
+
+<h2 id="优化popover">优化Popover</h2>
+
+<p>此时运行，你会发现有一个问题：点击弹窗外面，弹窗不会自动收起。这并不是我们想要的，查看apple官方的<code>NSPopover</code>文档，我们知道他有一个<code>behavior</code>属性，其值为<code>NSPopover.Behavior.transient</code>的时候好像可以实现，尝试一下。</p>
+
+<p>打开<code>MainMenu.xib</code>，选中<code>Popover</code>，在其属性设置区就会看到<code>Behavior</code>，我们选择<code>Transient</code>，运行程序会发现：确实可以实现，点击弹窗外面，弹窗会自动收起，但是前提是必须在弹窗内有一次点击事件后才能做到这个效果。</p>
+
+<blockquote>
+<p>后来发现若弹窗内有 <strong>firs responder</strong> 就可以实现理想结果，不用操作弹窗中的内容，在弹窗外点击就会收起弹窗!</p>
+</blockquote>
+
+<p>显然上面的配置也不是我们想要的，网上看到一种神奇的方式：添加系统事件监视器来实现对交互事件的监测，从而做到弹窗显示后，无论什么时候点击弹窗外面都能收起弹窗的效果。</p>
+
+<ul>
+<li><p>新建名为<code>EventMonitor</code>的<code>swift</code>文件：<code>Command</code>+<code>n</code>组合拳，选择<strong>macOS</strong>-&gt; <strong>Swift File</strong> -&gt; <strong>Next</strong>，输入文件名<code>EventMonitor</code>创建；</p></li>
+
+<li><p>文件代码为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="nc">Cocoa</span>
+    
+<span class="kd">class</span> <span class="nc">EventMonitor</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">mask</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">EventTypeMask</span>
+    <span class="kd">var</span> <span class="nv">handler</span> <span class="p">:</span> <span class="p">(</span><span class="n">NSEvent</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="p">()</span>
+    <span class="kd">var</span> <span class="nv">monitor</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span>
+        
+    <span class="kd">init</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">EventTypeMask</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">NSEvent</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="p">()){</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">mask</span> <span class="p">=</span> <span class="n">mask</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">handler</span> <span class="p">=</span> <span class="n">handler</span>
+    <span class="p">}</span>
+        
+    <span class="kd">deinit</span> <span class="p">{</span>
+        <span class="n">stop</span><span class="p">()</span>
+    <span class="p">}</span>
+        
+    <span class="kd">func</span> <span class="nf">start</span><span class="p">(){</span>
+        <span class="n">monitor</span> <span class="p">=</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">addGlobalMonitorForEvents</span><span class="p">(</span><span class="n">matching</span><span class="p">:</span> <span class="n">mask</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">handler</span><span class="p">)</span>
+    <span class="p">}</span>
+        
+    <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">monitor</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="n">NSEvent</span><span class="p">.</span><span class="n">removeMonitor</span><span class="p">(</span><span class="n">monitor</span><span class="o">!</span><span class="p">)</span>
+            <span class="n">monitor</span> <span class="p">=</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+        
+<span class="p">}</span></code></pre></div></li>
+</ul>
+
+<p>文件中定义了<code>EventMonitor</code>类，添加了构造函数和两个接口用于，创建用户操作事件监视器、启动和关闭监视器。</p>
+
+<ul>
+<li><p>打开文件<code>AppDelegate.swift</code>，添加监视器属性：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">var</span> <span class="nv">eventMonitor</span><span class="p">:</span> <span class="n">EventMonitor</span><span class="p">?</span></code></pre></div></li>
+
+<li><p>在<code>applicationDidFinishLaunching</code>中添加监视器的初始化操作：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">eventMonitor</span> <span class="p">=</span> <span class="n">EventMonitor</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="p">[.</span><span class="n">leftMouseDown</span><span class="p">,</span> <span class="p">.</span><span class="n">rightMouseDown</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">strongSelf</span> <span class="p">=</span> <span class="kc">self</span><span class="p">,</span> <span class="n">strongSelf</span><span class="p">.</span><span class="n">popover</span><span class="p">.</span><span class="n">isShown</span> <span class="p">{</span>
+        <span class="n">strongSelf</span><span class="p">.</span><span class="n">closePopover</span><span class="p">(</span><span class="n">event</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>还需要完善<code>popover</code>显示和关闭的接口：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">closePopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">popover</span><span class="p">.</span><span class="n">performClose</span><span class="p">(</span><span class="n">sender</span><span class="p">)</span>
+    <span class="n">eventMonitor</span><span class="p">?.</span><span class="n">stop</span><span class="p">()</span>
+<span class="p">}</span>
+    
+<span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">showPopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
+        <span class="n">popover</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="n">relativeTo</span><span class="p">:</span> <span class="n">button</span><span class="p">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">of</span><span class="p">:</span> <span class="n">button</span><span class="p">,</span> <span class="n">preferredEdge</span><span class="p">:</span> <span class="n">NSRectEdge</span><span class="p">.</span><span class="n">minY</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">eventMonitor</span><span class="p">?.</span><span class="n">start</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>最后，最好是打开<code>MainMenu.xib</code>文件将<code>Popover</code>的<code>Behavior</code>属性设置为<code>Applicationed Defined</code>。运行程序，当啷啷，符合预期！</p></li>
+</ul>
+
+<h2 id="运行效果">运行效果：</h2>
+
+<p>最终的这么简陋的程序的运行效果：</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/popover/popover_final.mp4" width="100%" controls="controls">popover_final</video>
+
+<p>完整的工程可以<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/popover/PopoverDemo.zip" target="_blank">点我</a>下载。</p>
+
+<h2 id="参考">参考：</h2>
+
+<ul>
+<li><p><a href="https://www.raywenderlich.com/165853/menus-popovers-menu-bar-apps-macos" target="_blank">Menus and Popovers in Menu Bar Apps for macOS</a></p></li>
+
+<li><p><a href="https://developer.apple.com/documentation/appkit/nspopover" target="_blank">NSPopover</a></p></li>
+
+<li><p><a href="https://developer.apple.com/documentation/appkit/nsstatusbar" target="_blank">NSStatusBar</a></p></li>
+</ul>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91">macOS 开发</a></span><span class="tag"><a href="https://www.smslit.top/tags/develop">develop</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					3449 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2018-06-29 15:20 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#平台">平台</a></li>
+<li><a href="#新建及配置工程">新建及配置工程</a></li>
+<li><a href="#添加状态栏按钮">添加状态栏按钮</a></li>
+<li><a href="#添加popover">添加Popover</a>
+<ul>
+<li><a href="#添加popover控件">添加Popover控件</a></li>
+<li><a href="#添加popover-view-controller">添加Popover View Controller</a></li>
+<li><a href="#设计popover界面">设计Popover界面</a>
+<ul>
+<li><a href="#添加应用退出按钮">添加应用退出按钮</a></li>
+<li><a href="#添加无用的标签">添加无用的标签</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#优化popover">优化Popover</a></li>
+<li><a href="#运行效果">运行效果：</a></li>
+<li><a href="#参考">参考：</a></li>
+</ul></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.smslit.top/2018/07/01/python-basic-joinstr-gerneratelist/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python用法之字符串拼接和列表生成</span>
+			</a>
+			<a class="prev-post" href="https://www.smslit.top/2018/06/27/spider-practice-page-screenshot/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>爬虫实践之网页长截图</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2018/06/29/macOS-dev-basic-NSPopover/" class="leancloud_visitors" data-flag-title="macOS应用开发基础之Popover">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true 
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://www.smslit.top/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+	
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {equationNumbers: {autoNumber: "AMS"}},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

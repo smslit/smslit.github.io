@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on SMSLIT</title>
+    <link>https://www.smslit.top/tags/</link>
+    <description>Recent content in Tags on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    
+	<atom:link href="https://www.smslit.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>adb</title>
+      <link>https://www.smslit.top/tags/adb/</link>
+      <pubDate>Sun, 13 Dec 2015 08:00:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/adb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>affinity photo</title>
+      <link>https://www.smslit.top/tags/affinity-photo/</link>
+      <pubDate>Tue, 03 Jul 2018 17:59:56 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/affinity-photo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ai</title>
+      <link>https://www.smslit.top/tags/ai/</link>
+      <pubDate>Mon, 17 Dec 2018 16:35:58 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm</title>
+      <link>https://www.smslit.top/tags/algorithm/</link>
+      <pubDate>Wed, 07 Nov 2018 15:37:05 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>anaconda</title>
+      <link>https://www.smslit.top/tags/anaconda/</link>
+      <pubDate>Thu, 02 Mar 2017 12:13:06 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/anaconda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>app</title>
+      <link>https://www.smslit.top/tags/app/</link>
+      <pubDate>Tue, 22 Jan 2019 16:32:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arduino</title>
+      <link>https://www.smslit.top/tags/arduino/</link>
+      <pubDate>Wed, 11 Jul 2018 23:28:08 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/arduino/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ble</title>
+      <link>https://www.smslit.top/tags/ble/</link>
+      <pubDate>Thu, 05 May 2016 08:44:59 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/ble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://www.smslit.top/tags/blog/</link>
+      <pubDate>Sat, 17 Nov 2018 13:56:21 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>c</title>
+      <link>https://www.smslit.top/tags/c/</link>
+      <pubDate>Tue, 31 Oct 2017 06:35:29 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/c/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

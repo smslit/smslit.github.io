@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tar on SMSLIT</title>
+    <link>https://www.smslit.top/tags/tar/</link>
+    <description>Recent content in tar on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 12 Sep 2015 14:00:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/tar/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux下文件打包及解压缩</title>
+      <link>https://www.smslit.top/2015/09/12/linux-zipUnzip/</link>
+      <pubDate>Sat, 12 Sep 2015 14:00:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/09/12/linux-zipUnzip/</guid>
+      <description>&lt;p&gt;本文是关于linux下文件打包和解压缩的学习记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macOS 开发 on SMSLIT</title>
+    <link>https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91/</link>
+    <description>Recent content in macOS 开发 on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 10 Mar 2019 15:26:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>macOS 开发之 NSTextField 文本的垂直居中</title>
+      <link>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
+      <pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
+      <description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
+    </item>
+    
+    <item>
+      <title>快快拿走，Xcode 常用快捷键</title>
+      <link>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</link>
+      <pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
+      <description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
+    </item>
+    
+    <item>
+      <title>MacOS 开发之定时器的使用</title>
+      <link>https://www.smslit.top/2019/03/05/macOS-dev-timer/</link>
+      <pubDate>Tue, 05 Mar 2019 15:43:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/05/macOS-dev-timer/</guid>
+      <description>前段时间开发了一款状态栏小工具 时光(Time Go) ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关</description>
+    </item>
+    
+    <item>
+      <title>已开源 app 实现检查更新的简单方式</title>
+      <link>https://www.smslit.top/2019/03/03/macOS-dev-simple-check-update/</link>
+      <pubDate>Sun, 03 Mar 2019 09:38:27 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/03/macOS-dev-simple-check-update/</guid>
+      <description>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种</description>
+    </item>
+    
+    <item>
+      <title>MacOS 开发之本地化工具 bartycrouch 4 使用教程</title>
+      <link>https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/</link>
+      <pubDate>Fri, 01 Mar 2019 08:59:33 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
+      <description>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</title>
+      <link>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</link>
+      <pubDate>Wed, 27 Feb 2019 10:23:39 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
+      <description>在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</title>
+      <link>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</link>
+      <pubDate>Mon, 25 Feb 2019 10:00:05 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</guid>
+      <description>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之代码字符串的本地化</title>
+      <link>https://www.smslit.top/2019/02/21/mac_app_international_3/</link>
+      <pubDate>Thu, 21 Feb 2019 18:02:47 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/02/21/mac_app_international_3/</guid>
+      <description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之 storyboard 或 xib 本地化</title>
+      <link>https://www.smslit.top/2019/02/19/mac_app_international_2/</link>
+      <pubDate>Tue, 19 Feb 2019 08:53:54 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/02/19/mac_app_international_2/</guid>
+      <description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之 APP 名称本地化</title>
+      <link>https://www.smslit.top/2019/02/18/mac_app_international_1/</link>
+      <pubDate>Mon, 18 Feb 2019 09:10:02 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/02/18/mac_app_international_1/</guid>
+      <description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a</description>
+    </item>
+    
+  </channel>
+</rss>

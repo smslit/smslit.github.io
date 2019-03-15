@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gitbash on SMSLIT</title>
+    <link>https://www.smslit.top/tags/gitbash/</link>
+    <description>Recent content in gitbash on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 09 Oct 2015 12:14:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/gitbash/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>解决windows下git bash中文乱码问题</title>
+      <link>https://www.smslit.top/2015/10/09/GitBashChineseCodeGarbled-Git/</link>
+      <pubDate>Fri, 09 Oct 2015 12:14:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/10/09/GitBashChineseCodeGarbled-Git/</guid>
+      <description>&lt;p&gt;因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

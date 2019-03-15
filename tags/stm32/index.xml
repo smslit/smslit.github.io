@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stm32 on SMSLIT</title>
+    <link>https://www.smslit.top/tags/stm32/</link>
+    <description>Recent content in stm32 on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 10 Oct 2018 16:25:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/stm32/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>stm32开发新方式-platformio的IDE</title>
+      <link>https://www.smslit.top/2018/10/10/vscode-pio-ide/</link>
+      <pubDate>Wed, 10 Oct 2018 16:25:37 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/10/vscode-pio-ide/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34; target=&#34;_blank&#34;&gt;platformio&lt;/a&gt;是一款跨平台的物联网开发的生态环境，&lt;a href=&#34;https://code.visualstudio.com&#34; target=&#34;_blank&#34;&gt;VS Code&lt;/a&gt; 这款强大的文本编辑器辅以 &lt;strong&gt;PlatformIO IDE&lt;/strong&gt; 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018101015391609436627.png&#34; alt=&#34;2018101015391609436627.png&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>逼疯我的AFIO，STM32的JTAG调试接口作为GPIO用</title>
+      <link>https://www.smslit.top/2018/02/10/stm32-AFIO/</link>
+      <pubDate>Sat, 10 Feb 2018 16:34:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/02/10/stm32-AFIO/</guid>
+      <description>&lt;p&gt;不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>stm32开发新方式-platformio</title>
+      <link>https://www.smslit.top/2017/11/08/stm32InPIO-start/</link>
+      <pubDate>Wed, 08 Nov 2017 09:10:51 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/11/08/stm32InPIO-start/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34; target=&#34;_blank&#34;&gt;platformio&lt;/a&gt;，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mac/Fedora22下STM32的Eclipse开发环境搭建</title>
+      <link>https://www.smslit.top/2015/07/25/stm32eclipse/</link>
+      <pubDate>Sat, 25 Jul 2015 17:55:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/07/25/stm32eclipse/</guid>
+      <description>&lt;p&gt;本文将介绍如何在MacOSX平台下STM32的Eclipse开发环境的搭建。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

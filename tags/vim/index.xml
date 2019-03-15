@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on SMSLIT</title>
+    <link>https://www.smslit.top/tags/vim/</link>
+    <description>Recent content in vim on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 25 Jun 2018 17:23:57 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vim插件管理工具pack</title>
+      <link>https://www.smslit.top/2018/06/25/vim-pack/</link>
+      <pubDate>Mon, 25 Jun 2018 17:23:57 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/06/25/vim-pack/</guid>
+      <description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&amp;rsquo;壮举&amp;rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为嵌入式MCU工程建立完整的cscope和ctags索引</title>
+      <link>https://www.smslit.top/2017/06/18/embeddedVim/</link>
+      <pubDate>Sun, 18 Jun 2017 13:54:31 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/06/18/embeddedVim/</guid>
+      <description>&lt;p&gt;这几天深入了解了一下vim的神级插件&lt;a href=&#34;https://github.com/Valloric/YouCompleteMe&#34; target=&#34;_blank&#34;&gt;YouCompleteMe&lt;/a&gt;，果然厉害，但是在MCU工程中函数跳转和语义补全就歇菜了，研究了几天也没找到很好的使用方法，最终还是无法在MCU嵌入式工程中跳转函数定义，这是无法忍受的，在PC或mac上的c/c++/clang工程可以完美使用。所以我还是老实的使用cscope和ctags吧，本篇文章就简单说一下，如何为MCU工程建立完整的索引，完成完美跳转！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ubuntu 16.04下编译全功能vim8.0</title>
+      <link>https://www.smslit.top/2017/06/15/vim-full-version/</link>
+      <pubDate>Thu, 15 Jun 2017 08:24:08 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/06/15/vim-full-version/</guid>
+      <description>&lt;p&gt;十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持&lt;code&gt;clipboard&lt;/code&gt;的vim，毅然决然的决定自己编译一个全功能的vim！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim中恢复ctrl&#43;z</title>
+      <link>https://www.smslit.top/2017/01/13/vim-Ctrl-z/</link>
+      <pubDate>Fri, 13 Jan 2017 09:37:56 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/01/13/vim-Ctrl-z/</guid>
+      <description>&lt;p&gt;就在刚才vim下编辑一个文本本来想按下&lt;code&gt;shift+zz&lt;/code&gt;来保存文本并退出vim，没想到又按成了&lt;code&gt;ctrl+z&lt;/code&gt;，之前不了解状况的我，以为保存了，但是再次用vim打开这个文本的时候，发现vim保存了一个对应的swp文件，总会出现下面的提示，我这次忍无可忍了，就搜索了解了一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim中delete（backspace）键不能向左删除</title>
+      <link>https://www.smslit.top/2016/11/27/vim-backspace-invalid/</link>
+      <pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2016/11/27/vim-backspace-invalid/</guid>
+      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;rdquo;duang duang duang&amp;rdquo;，竟然无效！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决macOS下vim不能访问系统剪切板的问题</title>
+      <link>https://www.smslit.top/2016/11/17/vim-clipboard-macos/</link>
+      <pubDate>Thu, 17 Nov 2016 22:25:42 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2016/11/17/vim-clipboard-macos/</guid>
+      <description>&lt;p&gt;又好久没写博文了，最近忙工作的事情，焦头烂额，最近总算有些时间来干点自己的事情了，本文就说一下一直困扰我很久的问题，macOS下系统自带的vim不支持访问系统剪切板的问题，即不支持寄存器 &lt;strong&gt;+&lt;/strong&gt; 和 * 的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在MacOS终端下使用Ino进行Arduino开发</title>
+      <link>https://www.smslit.top/2016/06/15/ino-vim-arduino/</link>
+      <pubDate>Wed, 15 Jun 2016 09:10:38 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2016/06/15/ino-vim-arduino/</guid>
+      <description>&lt;p&gt;虽然我算不上真正的Vimer，但我还是惊叹与vim的强大，也正慢慢学习vim的使用，经朋友介绍可以用命令行工具&lt;strong&gt;Ino&lt;/strong&gt;进行Arduino开发，那么就可以在终端中使用vim进行Arduino的coding了。其实我使用了好长时间了，觉得不错，适合喜欢用终端敲命令的朋友，所以在此写一下安装和使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim的使用入门</title>
+      <link>https://www.smslit.top/2015/07/16/vimtution/</link>
+      <pubDate>Thu, 16 Jul 2015 02:44:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/07/16/vimtution/</guid>
+      <description>&lt;p&gt;Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="开发的 macOS app 打包为精美的 dmg">
+<meta itemprop="description" content="最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。
+
+">
+
+
+<meta itemprop="datePublished" content="2019-01-06T21:06:56&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-06T21:06:56&#43;08:00" />
+<meta itemprop="wordCount" content="1329">
+
+
+
+<meta itemprop="keywords" content="develop,macOS 开发," />
+<meta property="og:title" content="开发的 macOS app 打包为精美的 dmg" />
+<meta property="og:description" content="最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.smslit.top/2019/01/06/mac_app_to_dmg/" /><meta property="article:published_time" content="2019-01-06T21:06:56&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-06T21:06:56&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="开发的 macOS app 打包为精美的 dmg"/>
+<meta name="twitter:description" content="最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。
+
+"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>开发的 macOS app 打包为精美的 dmg</title>
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	
+	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.smslit.top">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://www.smslit.top/post/">Posts</a>
+					<a href="https://www.smslit.top/about/">Me</a>
+					<a href="https://smslit.coding.me/ownwiki/">wiki</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.smslit.top/post/">Posts</a></li>
+			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://smslit.coding.me/ownwiki/">wiki</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 6, 2019</span></div>
+				<h1>开发的 macOS app 打包为精美的 dmg</h1>
+			</header>
+			<div class="content">
+				<p>最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png" alt="" /></p>
+
+<h1 id="发布-app">发布 app</h1>
+
+<p>十里使用 xcode 开发 timeGO 这款应用，因为要精美所以本身应用也得精美对吧！所以十里为应用开发专门设计了精美的 appIcon (图标)，这样导出的 app 会有精美的图标。发布 app 的方式有很多种，这里说一个比较常用的发布到本地的方式。</p>
+
+<ol>
+<li>xcode 打开应用工程</li>
+
+<li><p>菜单栏选择 <strong>product</strong> -&gt; <strong>Archive</strong>，此时 xcode 就会打包应用，完成后会跳到类似如下的包管理窗口:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106212650.png" alt="" /></p></li>
+
+<li><p>点击 <code>Distribute App</code> 按钮，选择 <code>Copy App</code>：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106212928.png" alt="" /></p></li>
+
+<li><p>点击 <code>Next</code>，选择导出名称和目录，这里名称使用默认，目录选择 <code>Desktop</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106213101.png" alt="" /></p></li>
+
+<li><p>点击 <code>Export</code> 之后，就会在 <code>Desktop</code> 中看到一个步骤4中的名称相同的目录，里面就是导出的 app:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106213609.png" alt="" /></p></li>
+</ol>
+
+<p>以上就完成了 app 的发布。</p>
+
+<h1 id="准备素材">准备素材</h1>
+
+<p>制作 dmg 前需要准备 app 的图标文件 icns 和背景图。</p>
+
+<h2 id="app-的图标文件">app 的图标文件</h2>
+
+<p>这里需要的图标文件为 icns 格式，十里在开发 timeGO 的时候只准备了 png 格式的文件，难道还得进行转换不成，其实不需要，macOS 的应用图标都是 icns 格式，所以可以从刚刚导出的 app 中获取这个图标文件。</p>
+
+<ol>
+<li>在刚才导出的 app 上右键，选择 <code>显示包内容</code></li>
+<li>此时会打开显示 app 内的文件，依次进入 <code>Contents</code> - <code>Resources</code></li>
+
+<li><p>不出意外就会看到一个格式为 icns 的图片文件，其样子与 app 的图标一样，这就是我们想要的 icns，将其拷贝到桌面：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106215254.png" alt="" /></p></li>
+</ol>
+
+<h2 id="背景图片">背景图片</h2>
+
+<p>相信读者在安装一下 dmg 文件的应用时，都会知道，打开 dmg 文件后，目录中有个背景图片提示将 app 拖放到 applications 文件夹中，像 qq for mac的也是如此：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106215921.png" alt="" /></p>
+
+<p>所以我们也需要一个这样的背景图，自己设计就好了，说明意思就 OK，十里使用 sketch 设计了一个简陋的背景图( png 格式)，也放在了桌面，名为 dmg.png:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106221232.png" alt="" /></p>
+
+<h1 id="制作-dmg">制作 dmg</h1>
+
+<p>查看 app 、准备的 icns 图标和背景图共占空间的大小，十里这里是：</p>
+
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>空间大小</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>timeGO.app</td>
+<td>约13.1MB</td>
+</tr>
+
+<tr>
+<td>AppIcon.icns</td>
+<td>65KB</td>
+</tr>
+
+<tr>
+<td>dmg.png</td>
+<td>33KB</td>
+</tr>
+
+<tr>
+<td>共计</td>
+<td>约13.2MB(肯定小于13.3MB)</td>
+</tr>
+</tbody>
+</table>
+
+<p>这里统计三个文件的大小是因为一会儿要使用。</p>
+
+<h2 id="新建空的-dmg-文件">新建空的 dmg 文件</h2>
+
+<ol>
+<li>打开 <code>磁盘工具.app</code></li>
+<li>菜单栏中：<code>文件</code> - <code>新建映像</code> - <code>空白映像</code></li>
+
+<li><p>在出来的对话框中按您的需求修改橙色框圈起来的地方，其中空间大小设置略大于上面提到的 13.2MB 即可，这里设置为 14.5MB：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106222645.png" alt="" /></p></li>
+
+<li><p>创建完成后就可以在桌面看到空白的映像</p></li>
+</ol>
+
+<h2 id="放置-dmg-中的文件">放置 dmg 中的文件</h2>
+
+<ol>
+<li><p>将第一节中导出的 app 文件、桌面上的 icns 文件和背景图全部拖进新建的映像文件中:</p>
+
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2019-01-06%20_10.42.31.mp4" controls="controls" width="640px"></p></li>
+
+<li><p>在映像中创建 <code>/Applications</code> 的软链接(在终端下执行命令，cd 的目录改为您对应映像挂载的目录)</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> /Volumes/timeGO
+ln -s /Applications Applications</code></pre></div></li>
+</ol>
+
+<h2 id="配置映像文件的显示选项">配置映像文件的显示选项</h2>
+
+<ol>
+<li>打开映像挂载目录，目录中会看到四个文件：timeGO.app, dmg.png, AppIcon.icns 和 Applications</li>
+
+<li><p>目录中右键点击 <code>查看显示选项</code>，按照下图更改选项：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106230655.png" alt="" /></p></li>
+
+<li><p>把 dmg.png 拖入显示选项下面的框中，为目录设置背景，调整 <code>timeGO.app</code> 和 <code>Applications</code> 到合适位置</p></li>
+
+<li><p>调整窗口大小刚好覆盖背景图</p></li>
+
+<li><p>在桌面映像挂载目录上右击选择 <code>显示简介</code>，会跳出目录的简介对话框，拖动目录中的图标文件到简介窗口左上角的 logo 位置，就把挂载目录的图标修改为应用图标了</p></li>
+
+<li><p>最后隐藏图标文件和背景图：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> /Volumes/timeGO
+chflags hidden AppIcon.icns
+chflags hidden dmg.png</code></pre></div></li>
+</ol>
+
+<p>最终打开映像的挂载目录会是类似下面的样子：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png" alt="" /></p>
+
+<h2 id="转换-dmg">转换 dmg</h2>
+
+<p>最后一步转换 dmg 文件，这一步主要起到的作用是压缩文件，减小 dmg 文件的占用空间。</p>
+
+<ol>
+<li>弹出挂载的映像目录</li>
+<li>打开 <code>磁盘工具.app</code></li>
+
+<li><p>菜单栏 - <code>映像</code> - <code>转换</code>，在弹出的对话框中选择刚刚创建的 dmg 文件：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106232643.png" alt="" /></p></li>
+
+<li><p>点击 <code>选取</code> 后，在弹窗中配置名称和导出目录：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106232835.png" alt="" /></p></li>
+
+<li><p>点击 <code>转换</code>，完成后就看到了最终的 dmg 文件了</p></li>
+</ol>
+
+<p>最后可以打开这个 dmg 验证一下，是不是骚气了！</p>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/develop">develop</a></span><span class="tag"><a href="https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91">macOS 开发</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					1329 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2019-01-06 21:06 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li><a href="#发布-app">发布 app</a></li>
+<li><a href="#准备素材">准备素材</a>
+<ul>
+<li><a href="#app-的图标文件">app 的图标文件</a></li>
+<li><a href="#背景图片">背景图片</a></li>
+</ul></li>
+<li><a href="#制作-dmg">制作 dmg</a>
+<ul>
+<li><a href="#新建空的-dmg-文件">新建空的 dmg 文件</a></li>
+<li><a href="#放置-dmg-中的文件">放置 dmg 中的文件</a></li>
+<li><a href="#配置映像文件的显示选项">配置映像文件的显示选项</a></li>
+<li><a href="#转换-dmg">转换 dmg</a></li>
+</ul></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.smslit.top/2019/01/08/timeGO/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>TimeGO 一款轻量简洁的计时提醒 app</span>
+			</a>
+			<a class="prev-post" href="https://www.smslit.top/2019/01/02/mac_hidpi/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>为 mac 连接的 2k 显示器开启 HiDPI</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2019/01/06/mac_app_to_dmg/" class="leancloud_visitors" data-flag-title="开发的 macOS app 打包为精美的 dmg">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true 
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://www.smslit.top/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+	
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {equationNumbers: {autoNumber: "AMS"}},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

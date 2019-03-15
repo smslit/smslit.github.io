@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>affinity photo on SMSLIT</title>
+    <link>https://www.smslit.top/tags/affinity-photo/</link>
+    <description>Recent content in affinity photo on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 03 Jul 2018 17:59:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/affinity-photo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Affinity Photo 绘制抖音音符</title>
+      <link>https://www.smslit.top/2018/07/03/affinity-photo-douyin/</link>
+      <pubDate>Tue, 03 Jul 2018 17:59:56 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/07/03/affinity-photo-douyin/</guid>
+      <description>&lt;p&gt;上一篇文章 &lt;a href=&#34;https://www.smslit.top/2018/07/03/sketch-practice-douyin/&#34; target=&#34;_blank&#34;&gt;sketch练习稿之抖音音符&lt;/a&gt; 中介绍了绘制抖音效果的原理，根据原理其实也可以用其它工具绘制抖音音符，比如PS、Affinity Photo。本文展示如何使用&lt;a href=&#34;https://affinity.serif.com/zh-cn/photo/&#34; target=&#34;_blank&#34;&gt;Affinity Photo&lt;/a&gt;绘制上一篇博文中大的抖音音符。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

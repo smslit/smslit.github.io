@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on SMSLIT</title>
+    <link>https://www.smslit.top/tags/docker/</link>
+    <description>Recent content in docker on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 20 Dec 2018 14:49:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mac 下使用 Docker 搭建 ubuntu 环境</title>
+      <link>https://www.smslit.top/2018/12/20/docker_ubuntu_learn/</link>
+      <pubDate>Thu, 20 Dec 2018 14:49:08 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/12/20/docker_ubuntu_learn/</guid>
+      <description>&lt;p&gt;学习网络开发过程中不想“污染”macOS，考虑到之后部署网络应用主要是与linux打交道，所以安装了 ubuntu 虚拟机以满足短期的知识学习需求。十里安装了 ubuntu 虚拟机，一般就是在 mac 中 ssh 连接 ubuntu 虚拟机在终端下进行操作学习，可见安装一个包含完整GUI的 ubuntu 有点多余，还占用很多资源！所以想到了使用 docker 来创建 ubuntu 容器用来开发学习，本文就分享一下这个过程！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181220150817.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

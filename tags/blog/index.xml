@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on SMSLIT</title>
+    <link>https://www.smslit.top/tags/blog/</link>
+    <description>Recent content in blog on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 17 Nov 2018 13:56:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>图床的选择从七牛云到腾讯云</title>
+      <link>https://www.smslit.top/2018/11/17/qiniu-to-tencent-bucket/</link>
+      <pubDate>Sat, 17 Nov 2018 13:56:21 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/11/17/qiniu-to-tencent-bucket/</guid>
+      <description>&lt;p&gt;昨天收到七牛云的邮件提醒说要回收我的 CDN 测试域名，博客一直使用七牛云的 bucket 作为图床，也就是说收了域名后，图片以及其它文件无法访问，最糟糕的是七牛云后台管理也无法访问文件，这才有了本文的内容，我要将七牛云对象存储转移到腾讯云的对象存储。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从简开始</title>
+      <link>https://www.smslit.top/2017/03/19/simpleStart/</link>
+      <pubDate>Sun, 19 Mar 2017 13:07:48 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/03/19/simpleStart/</guid>
+      <description>&lt;p&gt;从今天开始博客更换面貌，使用了hexo的apollo主题，真的像主题作者说的，博客应该以内容为主，所以SMSLIT要从简开始了！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jekyll博客添加分享功能</title>
+      <link>https://www.smslit.top/2015/07/19/jekyllShare/</link>
+      <pubDate>Sun, 19 Jul 2015 23:55:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/07/19/jekyllShare/</guid>
+      <description>&lt;p&gt;本文将介绍如何为用jekyll生成的博客添加网页及图片分享的功能。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jekyll博客添加多说评论</title>
+      <link>https://www.smslit.top/2015/07/16/jekyllCommit/</link>
+      <pubDate>Thu, 16 Jul 2015 23:07:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/07/16/jekyllCommit/</guid>
+      <description>&lt;p&gt;jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

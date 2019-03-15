@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on SMSLIT</title>
+		<link>https://www.smslit.top/post/</link>
+		<description>Recent content in Posts on SMSLIT</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Fri, 15 Mar 2019 10:57:09 +0800</lastBuildDate>
+		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>日书-君子爱财，取之有道</title>
+			<link>https://www.smslit.top/2019/03/15/daily-money-money-lie/</link>
+			<pubDate>Fri, 15 Mar 2019 10:57:09 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/15/daily-money-money-lie/</guid>
+			<description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
+			<content type="html"><![CDATA[<p>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例子就是一群高市场和营销的非技术人员拿一款语音产品（bug 满满）通过融资的方式敛财十几亿人民币，由此米奇沃克斯阐述了一些自己的思考。赚钱的方式有很多种，而很多人通过快速敛财的方式，来投资洗白，尤其是在国外融资的，往往就是在搞臭中国人的口碑，这其实是对一个正常融资环境的污染，这让那些想做好产品又只能靠融资发展的个体或公司身处一个并不公平的竞争条件下，也扼杀了一些好的创意和产品！</p>
+
+<p>米奇沃克斯在视频最后说到，真的希望会出现一些并不是以赚钱为目的的人出现&hellip;十里觉得君子爱财取之有道，他这种期待应该补充一下：真的希望多出现一些愿意做好产品并且能对消费者负责人的人或公司出现，赚钱要让消费者觉得值得，最起码要等价交换，让消费者有超值回报感最好！</p>
+
+<p>想起了农村里村干部的事情，从小就觉得村干部贪得无厌，很多人削尖了脑袋要往里钻！这些人蝇营狗苟，看到的只是钱途，却没有觉得当上村干部身上多了一个重担，缺少对村民负责的意识！个人觉得没有绝对大公无私的好村官，也不会抱以期待这种人的出现。但一定存在很智慧得民心的干部，他们为人民办实事，给村民挣福利，同时合理利用自己身份优势经营自己的事业！</p>
+
+<p>PS: 理想还是要有的，但需要让现实来调剂！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书-别致的音乐盒</title>
+			<link>https://www.smslit.top/2019/03/13/daily-music-box-share-to-you/</link>
+			<pubDate>Wed, 13 Mar 2019 22:17:49 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/13/daily-music-box-share-to-you/</guid>
+			<description>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-VSC Netease Music!不过今天十里真正要分享的是一个命</description>
+			<content type="html"><![CDATA[<p>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-<a href="https://github.com/nondanee/vsc-netease-music" target="_blank">VSC Netease Music</a>!不过今天十里真正要分享的是一个命令行下的网易云音乐客户端，喜欢在终端搬砖又要听音乐的同胞的开心与喜悦呀！其实十里已经用了两年多了，感觉挺不错的，有必要分享出来，感谢作者！它就是 <a href="https://github.com/darknessomi/musicbox" target="_blank">darknessomi/musicbox</a> ，因为作者使用 python 实现并且托到了 pip，所以安装很简单。</p>
+
+<blockquote>
+<p>高品质网易云音乐命令行版本，简洁优雅，丝般顺滑，基于Python编写</p>
+</blockquote>
+
+<p>在 macOS 下安装只需要安装一个依赖，然后安装 musicbox ，开箱即用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># 安装依赖</span>
+brew install mpg123
+<span class="c1"># 安装 musicbox</span>
+pip3 install NetEase-MusicBox
+<span class="c1"># 运行 musicbox</span>
+musicbox</code></pre></div>
+<p>音乐盒的操作倾向 vim 使用者的操作习惯：</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190314103710.png" width="70%"/> 
+</figure>
+
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书-多走弯路就是捷径</title>
+			<link>https://www.smslit.top/2019/03/12/daily-study-style-not-bad/</link>
+			<pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/12/daily-study-style-not-bad/</guid>
+			<description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
+			<content type="html"><![CDATA[<p>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线后，再根据需求完成程序。其实完全可以像其它同事一样直接硬着头皮改动现有程序，但还是没这么做，在几个星期内加班熬夜拼了老命，把整个开发流程和蓝牙 4.2 协议栈的基础都好好学了一遍，然后拖了 deadline 几天按照 TI 官方推荐的方式完成了从 0 到 1 的程序，万幸！问题是还让我发现了个蓝牙芯片的硬件 bug，真的受不了各种连环坑！</p>
+
+<p>有些人可能就觉得我这是何必呢！直接在别人写了一半的程序上修改不就好了！不好，那个时候我一无所知，等了解一点所以然之后，发现之前同事写的程序有很多不太合理的地方，所以就成了上面所说的结果了！是的，短时间内学一个新的平台真的挺耗神的，但是这会夯实一定基础，后面再有什么新的需求，可以轻易应付了，正所谓长痛不如短痛！</p>
+
+<p>好处的直接表现就是：几天后另外一个部门的蓝牙程序委托给我，我不到一天就帮他们写好了！</p>
+
+<p>总结下来就是：</p>
+
+<blockquote>
+<p>多走弯路就是捷径！</p>
+</blockquote>
+
+<p>为什么会突然想起之前这个蓝牙程序开发的事情呢！是因为前段时间花了些精力学习了 falsk 框架下的 web 后端开发，当时却是花了不少时间了解了大部分的内容，以至于昨天花了不到一个小时就为一位留学的朋友方便查班车用的极小的 web 应用，方便其在 iphone 上借助<strong>快捷指令</strong> app 查班车！再一次证明了上面这一点！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书-又‘无脑’订阅了一个课程</title>
+			<link>https://www.smslit.top/2019/03/11/daily-new-discovery-power-man/</link>
+			<pubDate>Mon, 11 Mar 2019 22:31:33 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/11/daily-new-discovery-power-man/</guid>
+			<description>今天在看卖桃君的极客时间时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前</description>
+			<content type="html"><![CDATA[<figure class="right">
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311224911.PNG"/> 
+</figure>
+
+
+<p>今天在看卖桃君的<a href="https://time.geekbang.org" target="_blank">极客时间</a>时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前滴滴出行技术专家——戴铭，其实十里并没有太 care 他的头衔，订阅的原因有三点吧。</p>
+
+<ul>
+<li>从原理出发，那就是除了讲其然，还会说其所以然，喜欢这种打破砂锅的出发点！渔优于鱼，不是吗？iOS 与 macOS 本是同宗，有助于理解 macOS 开发！</li>
+<li>iOS 方面的开发自己有涉足过，虽然现在还没啥像样的作品（多年前只做过两个蓝牙通信控制外设的小 app），但是还是有计划要继续的，既然现在有一个会结合实际讲开发的菜，何不尝尝！</li>
+<li>作者精心准备了很多插图，可以说是很用心了，很喜欢其画风，去作者博客<a href="https://ming1016.github.io" target="_blank">星光社 - 戴铭的博客</a>看了看，有幸看到其在去年 swift 大会准备的 PPT，通过插图讲述技术是个很好的思路呢，佩服会画插图的程序猿(目标)，右边插图感受一下！</li>
+</ul>
+
+<p>我是不会告诉你，最重要的是第三点的！</p>
+
+<p>真的很佩服能够全面发展自己的人，兴趣还算广泛的十里，会以这些牛人为榜样，加油追赶！PS: 今天与水木一起做了好吃的不得了的麻辣香锅，很开心！</p>
+
+<p>如果您也想订阅课程，请看：</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311230011.jpg" width="300px"/> 
+</figure>
+
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书- vim 仍然是我的利器</title>
+			<link>https://www.smslit.top/2019/03/10/daily-vim-renormal/</link>
+			<pubDate>Sun, 10 Mar 2019 22:49:00 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/10/daily-vim-renormal/</guid>
+			<description>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写</description>
+			<content type="html"><![CDATA[<p>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写文章太让人抓狂了！今天提起性子决定要查一下到底是怎么回事儿，之前发现的是只有编辑 markdown 的时候才会出现这个情况，其它文件类型都正常显示，说明这不是 vim 的锅，一定是插件或配置搞的鬼！我只好用笨办法，插件一个一个的卸载，最终查到原来是 <code>Yggdroot/indentLine</code> 这个插件导致，想到这个插件也就是在编辑代码的时候有点用处，就添加了一个屏蔽配置，当打开文件是 markdown 的时候就禁用这个插件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; 解决 indentline 导致 markdown 文件无法正常显示 `` 的问题</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">markdown</span><span class="p">,</span><span class="nx">md</span> <span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">indentLine_enabled</span> <span class="p">=</span> <span class="m">0</span></code></pre></div>
+<p>另外，在查找上述问题的过程中，还发现了一个小问题，vim 会把我的 markdown 文件当 liquid 类型，到是对编辑文章的时候的语法高亮影响不大，但就是被我发现了在代码块的高亮上有影响，这也是不能忍的，继续屏蔽：</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; 解决插件将 md 或 markdown 误以为 liquid 的问题</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">polyglot_disabled</span> <span class="p">=</span> [<span class="s1">&#39;liquid&#39;</span>]</code></pre></div>
+<p>现在舒服多了，vim 依旧棒棒哒！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>macOS 开发之 NSTextField 文本的垂直居中</title>
+			<link>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
+			<pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
+			<description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
+			<content type="html"><![CDATA[
+
+<p>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可以满足我们的需求！</p>
+
+<h2 id="开发平台">开发平台</h2>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h2 id="准备-demo">准备 Demo</h2>
+
+<p>还是老规矩，以实例出发，理解实现！新建一个 macOS app 的工程，使用 storyboard，这里工程就命名为 TextFieldDemo 吧。创建成功后，打开 <code>Main.storyboard</code> ，往 <code>View Controller</code> 中添加一个 <code>Text Field</code> ，调整其大小贴齐窗口四边，添加必要的布局限制，并将以下内容作为 Text Field 的内容：</p>
+
+<blockquote>
+<p>漫威电影宇宙（英语：Marvel Cinematic Universe，简称MCU）是由漫威漫画工作室基于漫威漫画出版物中的角色独立制作的一系列电影所构成的架空世界和共同世界（Earth-199999）。</p>
+</blockquote>
+
+<p>就像下面这样(十里这里将窗口调小了一点):</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310154814.png" alt="" /></p>
+
+<p>运行程序可以看到显示文本是默认向上对齐的:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310155150.png" alt="" /></p>
+
+<h2 id="实现思路">实现思路</h2>
+
+<p>最终我们要实现 Demo 窗口中的文本垂直居中显示，要想做到这一点，我们得了解一下文本框显示文本的过程。NSTextField 类通过 NSTextFieldCell 类实现用户界面的显示，所以关注点应该放在 NSTextFieldCell 类上，文本是在 text field cell 上的，而 TextField 又是 text field cell 的一个容器，所以只需要调整 text field cell 在 Text Field 中的坐标，如果 y 轴坐标值合适就能实现居中，在 Cocoa 中，控件使用如下坐标系(flipped coordinate)：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310171441.png" alt="" /></p>
+
+<p>NSTextFieldCell 类继承于 NSCell 类，所以可以通过调整绘制过程中 text field cell 的 frame 坐标数据实现其位置调整，对应这个绘制过程的方法就是 <code>drawingRect(forBounds:)</code>，新坐标的计算公式为：</p>
+
+<p>$$
+y_{new} = y_{old} + (Height_{frame} - Height_{text}) \times 0.5
+$$</p>
+
+<p>其中：</p>
+
+<ul>
+<li>$Height_{frame}$ 是指默认生成的 cell 的 frame</li>
+<li>$Height_{text}$ 是文本实际占用的 frame</li>
+</ul>
+
+<p>为了更彻底一点，我们也可以调整 frame 的高度与文本实际占用的高度一致：</p>
+
+<p>$$
+Height_{frame} = Height_{text}
+$$</p>
+
+<p>也许您看了下面的图就明白上面公式的含义了：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310182541.png" alt="" /></p>
+
+<h2 id="具体实现">具体实现</h2>
+
+<p>根据上面的思路可以有两种实现方式，一种是定义一个 <code>NSTextFielCell</code> 的子类，在子类中重写方法，另一种是扩展的方式重写 <code>NSTextFieldCell</code> 的方法。第二种会影响 app 中所有的 TextField，所以这里采用第一种方式。</p>
+
+<p>在 <code>AppDelegate.swift</code> 文件中定义子类 <code>VerticallyCenteredTextFieldCell</code> 如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">VerticallyCenteredTextFieldCell</span><span class="p">:</span> <span class="n">NSTextFieldCell</span> <span class="p">{</span>
+    
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">drawingRect</span><span class="p">(</span><span class="n">forBounds</span> <span class="n">theRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">NSRect</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">newRect</span><span class="p">:</span><span class="n">NSRect</span> <span class="p">=</span> <span class="kc">super</span><span class="p">.</span><span class="n">drawingRect</span><span class="p">(</span><span class="n">forBounds</span><span class="p">:</span> <span class="n">theRect</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">textSize</span><span class="p">:</span><span class="n">NSSize</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">cellSize</span><span class="p">(</span><span class="n">forBounds</span><span class="p">:</span> <span class="n">theRect</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">heightDelta</span><span class="p">:</span><span class="n">CGFloat</span> <span class="p">=</span> <span class="n">newRect</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">textSize</span><span class="p">.</span><span class="n">height</span>
+        <span class="k">if</span> <span class="n">heightDelta</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="n">newRect</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="p">=</span> <span class="n">textSize</span><span class="p">.</span><span class="n">height</span>
+            <span class="n">newRect</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">heightDelta</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">newRect</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>然后打开 <code>Main.storyboard</code> 文件，选中之前添加的 Text Field 的 cell ，按快捷键 <code>Option</code> + <code>Command</code> + <code>3</code> 打开 Identity 检查器，在 <code>Custom Class</code> 中为 cell 指定刚定义的子类 <code>VerticallyCenteredTextFieldCell</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310183739.png" alt="" /></p>
+
+<p>运行程序就能看到文本实现了居中显示：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310184822.png" alt="" /></p>
+
+<p>Demo下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/VerticallyCenteredTextFieldDemo.zip" target="_blank">VerticallyCenteredTextFieldDemo.zip</a></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书-不能被压力左右</title>
+			<link>https://www.smslit.top/2019/03/09/daily-pressure/</link>
+			<pubDate>Sat, 09 Mar 2019 22:27:20 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/09/daily-pressure/</guid>
+			<description>作为一个入门的独立开发者，确实得有强大的心理素质！心理难免会有薄弱的时刻，会让早已潜伏很久的压力趁虚而入，这就有点糟糕了，心情容易被压力左右</description>
+			<content type="html"><![CDATA[<p>作为一个入门的独立开发者，确实得有强大的心理素质！心理难免会有薄弱的时刻，会让早已潜伏很久的压力趁虚而入，这就有点糟糕了，心情容易被压力左右而影响自己的工作效率！而当这种薄弱的时刻是亲近的人慢慢将我已有的心理防线慢慢剥离的时候，那种说不出的压抑与落魄，难以言喻！个人认为压力是客观存在的，人们当察觉到的时候才会知道这个东西的存在，这时它就是一种真切的主观心理反馈！</p>
+
+<p>生活的压力乃至生存的压力都无时无刻对我虎视眈眈，一不小心便会被啃一口，诸多压力不益多说！被送压力的情况也不在少数，十里也是真真切切的感受到了它们的存在，只好心里设下一种虚无缥缈的防线，假装看不见，才可安定心神，醉心于自己的目标！心里提醒自己，万不能被这些左右，否则便辜负那些支持我的人了。另外身边的人跟着自己一起受罪，十里真的是歉意层叠万丈，已成可怕的负罪深渊！</p>
+
+<p>依旧觉得唯有继续坚持下去，绝不能被压力左右，要让自己有能力去回馈和关切身边的有心人！能养的活家人和自己的独立开发者才是成功的开始，压力请走开，别挡路！</p>
+
+<p>友情提示：看到博客中《日书》系列文章的朋友，大家可自觉忽略，目前阶段可能会多一些“无病呻吟”！以后尽量多放干货！对不住看文章的您了！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书-《惊奇队长》</title>
+			<link>https://www.smslit.top/2019/03/08/daily-absolute-power/</link>
+			<pubDate>Fri, 08 Mar 2019 23:21:16 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/08/daily-absolute-power/</guid>
+			<description>今天是全世界的女神节，与水木一起看了漫威的最新电影《惊奇队长》，实力超强的女英雄！惊奇队长的英文名叫Captain Marvel，直接是漫威同</description>
+			<content type="html"><![CDATA[<p>今天是全世界的女神节，与水木一起看了漫威的最新电影《惊奇队长》，实力超强的女英雄！惊奇队长的英文名叫<strong>Captain Marvel</strong>，直接是漫威同名，足以看出这个人物的重要性，算是给女神们的节日礼物了吗？另外这部影片的导演还是一名女导演，水准依旧是漫威系列电影的高水准，足以看出漫威影业的“献媚”之心，哈哈！谁说女儿不如男！</p>
+
+<p>话说回来，电影里惊奇队长的实力可真是绝对压制呀！因为一直追漫威电影，对于整个故事发展的过程还是很了解的，第一个彩蛋中也看到惊奇队长因为收到弗瑞的传呼机呼叫回到了地球。可以知晓其将会在《复仇者联盟4》中对拯救灭霸毁灭后的世界起到关键性作用，期待。。。绝对实力 VS 绝对实力，五月见！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>日书-您的支持是我前进的动力</title>
+			<link>https://www.smslit.top/2019/03/08/daily-cared-by-friends/</link>
+			<pubDate>Fri, 08 Mar 2019 00:08:34 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/08/daily-cared-by-friends/</guid>
+			<description>今天下午连续有好久不见的三位朋友都找我聊天，我甚至都在怀疑他们是不是商量好的，您可能觉得这有什么呀，但对于我来说意义非凡！从裸辞到现在马上快</description>
+			<content type="html"><![CDATA[<p>今天下午连续有好久不见的三位朋友都找我聊天，我甚至都在怀疑他们是不是商量好的，您可能觉得这有什么呀，但对于我来说意义非凡！从裸辞到现在马上快一年了，在这十一个月里大多是把自己封闭起来的，毕竟要“修炼”嘛！所以很惭愧的说，没有分出心力放在跟朋友的交流上，跟朋友聊天的机会和次数也是很少的，今天一下子三场聊天，有点让我措手不及，哈哈，内心是很温暖的！</p>
+
+<p>包括水木和家人，他们虽然不知道我在做什么，我也没说清楚我在做什么，但我知道他们都是默默支持我的，除了我自身目标的驱动力外，这些支持和关心同样是重要助力。当然，网友们的关注和支持也带给我了无限的慰藉与力量。所有所有的这些，让我觉得继续坚持下去准错不了！</p>
+
+<p>前途无限美好，待我奋力寻找！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>快快拿走，Xcode 常用快捷键</title>
+			<link>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</link>
+			<pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
+			<description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
+			<content type="html"><![CDATA[
+
+<p>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！</p>
+
+<h1 id="说明">说明</h1>
+
+<ul>
+<li>Xocde 的快捷键不会随着版本更迭而变化太多，但还是要说明一下本文的快捷键均能在 Xcode 10.2 中正常使用</li>
+<li>正文中均使用快捷键修饰键的符号表示修饰符：
+
+<ul>
+<li>Control ⌃</li>
+<li>Option ⌥</li>
+<li>Shift ⇧</li>
+<li>Command ⌘</li>
+<li>Return ↩</li>
+</ul></li>
+</ul>
+
+<h1 id="窗口操作">窗口操作</h1>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190307154213.jpg" alt="" /></p>
+
+<h1 id="常规">常规</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘,</td>
+<td>打开偏好设置</td>
+</tr>
+
+<tr>
+<td>⇧⌘0</td>
+<td>打开帮助窗口</td>
+</tr>
+
+<tr>
+<td>⇧⌘c</td>
+<td>打开调试区域的终端栏</td>
+</tr>
+
+<tr>
+<td>⌘?</td>
+<td>打开帮助搜索</td>
+</tr>
+
+<tr>
+<td>⌘n</td>
+<td>新建文件</td>
+</tr>
+
+<tr>
+<td>⌘o</td>
+<td>打开文件</td>
+</tr>
+
+<tr>
+<td>⇧⌘a</td>
+<td>向工程中添加文件</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="编译及运行">编译及运行</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘b</td>
+<td>编译工程</td>
+</tr>
+
+<tr>
+<td>⇧⌘b</td>
+<td>分析工程</td>
+</tr>
+
+<tr>
+<td>⌘r</td>
+<td>运行工程</td>
+</tr>
+
+<tr>
+<td>⌘i</td>
+<td>打开 Profile</td>
+</tr>
+
+<tr>
+<td>⌘u</td>
+<td>测试工程</td>
+</tr>
+
+<tr>
+<td>⇧⌘k</td>
+<td>清理工程编译中间文件</td>
+</tr>
+
+<tr>
+<td>⌘k</td>
+<td>清空终端打印的信息</td>
+</tr>
+
+<tr>
+<td>⌘.</td>
+<td>停止运行</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="代码编辑">代码编辑</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌃Space</td>
+<td>显示补全提示项</td>
+</tr>
+
+<tr>
+<td>⌃.</td>
+<td>下一个补全提示项</td>
+</tr>
+
+<tr>
+<td>Tab</td>
+<td>选中补全提示项</td>
+</tr>
+
+<tr>
+<td>⌃/</td>
+<td>下一个代码 placeholder 项</td>
+</tr>
+
+<tr>
+<td>⇧⌃/</td>
+<td>上一个代码 placeholder 项</td>
+</tr>
+
+<tr>
+<td>⌘/</td>
+<td>注释或取消注释代码</td>
+</tr>
+
+<tr>
+<td>⌥⌘←</td>
+<td>折叠代码（方法或类）</td>
+</tr>
+
+<tr>
+<td>⌥⌘→</td>
+<td>展开折叠代码</td>
+</tr>
+
+<tr>
+<td>⌃⌘e</td>
+<td>编辑修改当前文件中所有出现光标处单词的地方</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="代码导航">代码导航</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘→</td>
+<td>跳转到行尾</td>
+</tr>
+
+<tr>
+<td>⌘←</td>
+<td>跳转到行首</td>
+</tr>
+
+<tr>
+<td>⌘↑</td>
+<td>跳转到文件顶部</td>
+</tr>
+
+<tr>
+<td>⌘↓</td>
+<td>跳转到文件底部</td>
+</tr>
+
+<tr>
+<td>⌥→</td>
+<td>向后跳过一个单词</td>
+</tr>
+
+<tr>
+<td>⌥←</td>
+<td>向前跳过一个单词</td>
+</tr>
+
+<tr>
+<td>⌘l</td>
+<td>跳转到指定行</td>
+</tr>
+
+<tr>
+<td>⌘f</td>
+<td>在文件中查找</td>
+</tr>
+
+<tr>
+<td>⇧⌘f</td>
+<td>在工程中查找</td>
+</tr>
+
+<tr>
+<td>⌘g</td>
+<td>查找下一个</td>
+</tr>
+
+<tr>
+<td>⇧⌘g</td>
+<td>查找上一个</td>
+</tr>
+
+<tr>
+<td>⌃⌘ + 鼠标左键单击</td>
+<td>跳转到定义</td>
+</tr>
+
+<tr>
+<td>⌥ + 鼠标左键单击</td>
+<td>快速帮助</td>
+</tr>
+
+<tr>
+<td>⌃⌘d</td>
+<td>显示光标处关键字的快速帮助</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="文件导航">文件导航</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌃⌘←</td>
+<td>前一个打开的文件</td>
+</tr>
+
+<tr>
+<td>⌃⌘→</td>
+<td>后一个打开的文件</td>
+</tr>
+
+<tr>
+<td>⇧⌘o</td>
+<td>快速打开文件</td>
+</tr>
+
+<tr>
+<td>⌃1</td>
+<td>显示与指定代码相关的文件</td>
+</tr>
+
+<tr>
+<td>⌘n</td>
+<td>新建文件</td>
+</tr>
+
+<tr>
+<td>⌘o</td>
+<td>打开文件</td>
+</tr>
+
+<tr>
+<td>⇧⌘a</td>
+<td>向工程中添加文件</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="调试">调试</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘ \</td>
+<td>添加或删除断点</td>
+</tr>
+
+<tr>
+<td>⌘y</td>
+<td>禁用或激活断点</td>
+</tr>
+
+<tr>
+<td>⌃⌘y</td>
+<td>继续执行</td>
+</tr>
+
+<tr>
+<td>⌃⌘c</td>
+<td>继续执行到当前行</td>
+</tr>
+
+<tr>
+<td>F6</td>
+<td>单步跳过</td>
+</tr>
+
+<tr>
+<td>F7</td>
+<td>单步进入</td>
+</tr>
+
+<tr>
+<td>F8</td>
+<td>单步跳出</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="总结">总结</h1>
+
+<p>为了方便大家收藏，十里为此将上面的快捷键整理为一页 pdf ，方便大家及时查看：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/xcode_shortcuts.pdf" alt="" /></p>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>

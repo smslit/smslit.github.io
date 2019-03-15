@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>qt on SMSLIT</title>
+    <link>https://www.smslit.top/tags/qt/</link>
+    <description>Recent content in qt on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 23 Dec 2016 21:23:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/qt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Qt开发学习问题解决笔记</title>
+      <link>https://www.smslit.top/2016/12/23/Qt-Program-Notes-Develop/</link>
+      <pubDate>Fri, 23 Dec 2016 21:23:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2016/12/23/Qt-Program-Notes-Develop/</guid>
+      <description>&lt;p&gt;本文主要用来整理学习Qt开发过程中遇到的问题及解决办法，会持续更新。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

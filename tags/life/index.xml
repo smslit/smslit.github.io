@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>life on SMSLIT</title>
+    <link>https://www.smslit.top/tags/life/</link>
+    <description>Recent content in life on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 20 Oct 2018 10:09:31 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/life/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>图中藏(cáng)语</title>
+      <link>https://www.smslit.top/2018/10/20/codeimg-python/</link>
+      <pubDate>Sat, 20 Oct 2018 10:09:31 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/20/codeimg-python/</guid>
+      <description>&lt;p&gt;今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181020154000344643954.png&#34; alt=&#34;20181020154000344643954.png&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PUBG &amp; ROE, See you later</title>
+      <link>https://www.smslit.top/2018/10/02/pubg_roe_bye/</link>
+      <pubDate>Tue, 02 Oct 2018 23:24:41 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/02/pubg_roe_bye/</guid>
+      <description>&lt;p&gt;今年八月初，第一次真正的玩PC大型游戏，以前也就玩个 &lt;strong&gt;愤怒的小鸟&lt;/strong&gt; 这种小游戏，吃鸡（绝地求生：大逃杀&lt;PUBG&gt;）正🔥，咱也掺和掺和，所以既是PC端游戏菜鸟，又是PUBG专业快递员。9月底腾讯无限法则（ROE）在steam上上市了，作为一个合格的好奇宝宝，我当然要去里面滑滑❄️啦，所以也算玩过ROE了，技术依旧烂的一笔。嗯&amp;hellip;&amp;hellip;可是当初势必要练得“走位骚、刚强猛、爆头准”的决心随着心境的变化已经慢慢淡去，所以呀，开此文祭奠这即将逝去的 &lt;strong&gt;Game Pleasure&lt;/strong&gt;！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181002153849597149140.jpg&#34; alt=&#34;20181002153849597149140.jpg&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python3实现图片转换为字符画</title>
+      <link>https://www.smslit.top/2018/09/14/image2charspic/</link>
+      <pubDate>Fri, 14 Sep 2018 17:04:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/09/14/image2charspic/</guid>
+      <description>&lt;p&gt;记得之前看到过有人做了一个小工具，可以将图片用字符展示出来，就是所谓的 &lt;strong&gt;字符画&lt;/strong&gt; 了，今天咱也用python3实现这么一个有趣的小工具。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180914153691718315759.png&#34; alt=&#34;20180914153691718315759.png&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AZW3 格式电子书转换为 MOBI 格式保持原有排版格式</title>
+      <link>https://www.smslit.top/2018/09/12/convert-ebook/</link>
+      <pubDate>Wed, 12 Sep 2018 00:20:28 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/09/12/convert-ebook/</guid>
+      <description>&lt;p&gt;前些天写的文章 &lt;a href=&#34;https://www.smslit.top/2018/09/06/kindle-deDRM-to-mobi/&#34; target=&#34;_blank&#34;&gt;《让kindle电子书不受DRM禁锢》&lt;/a&gt; 中将kindle中的azw3格式电子书去除了DRM，并转换格式为mobi格式，这样就能导入我的 &lt;strong&gt;ireader plus&lt;/strong&gt; 阅读器了。但是这些天发现，用calibre转换的书籍把原有排版格式改变了挺多，所以网上搜索了解决方法，找到文章《将 AZW3 格式转换为 MOBI 格式并保持原有排版格式》&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:AZW3-MOBI-https&#34;&gt;&lt;a href=&#34;#fn:AZW3-MOBI-https&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，按照方法尝试，果然最大限度的保留了排版格式，现分享详细操作过程！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>让kindle电子书不受DRM禁锢</title>
+      <link>https://www.smslit.top/2018/09/06/kindle-deDRM-to-mobi/</link>
+      <pubDate>Thu, 06 Sep 2018 12:04:02 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/09/06/kindle-deDRM-to-mobi/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153620800099678.png&#34; alt=&#34;20180906153620800099678.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 &lt;strong&gt;kindle voyage&lt;/strong&gt; 进行阅读，屏幕略小呀，我有一个 &lt;strong&gt;ireader&lt;/strong&gt; 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 &lt;a href=&#34;https://en.wikipedia.org/wiki/Digital_rights_management&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;DRM&lt;/strong&gt;&lt;/a&gt; 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 &lt;strong&gt;DRM&lt;/strong&gt; 并转换导出&lt;a href=&#34;https://en.wikipedia.org/wiki/EPUB&#34; target=&#34;_blank&#34;&gt;epub&lt;/a&gt; 或 &lt;a href=&#34;https://en.wikipedia.org/wiki/Mobi&#34; target=&#34;_blank&#34;&gt;mobi&lt;/a&gt; 电子书的方法，本文分享一下这一成果！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>chrome网页长截图神技</title>
+      <link>https://www.smslit.top/2018/09/05/chrome-screenshot/</link>
+      <pubDate>Wed, 05 Sep 2018 16:48:03 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/09/05/chrome-screenshot/</guid>
+      <description>&lt;p&gt;相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 &lt;a href=&#34;https://www.smslit.top/2018/06/27/spider-practice-page-screenshot/&#34; target=&#34;_blank&#34;&gt;爬虫实践之网页长截图&lt;/a&gt;。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>糖豆广场舞视频下载</title>
+      <link>https://www.smslit.top/2018/07/15/tangdou-video/</link>
+      <pubDate>Sun, 15 Jul 2018 22:24:33 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/07/15/tangdou-video/</guid>
+      <description>&lt;p&gt;回到老家总会面临各种奇葩的需求，装系统、下歌、修电脑、修电器，我内心是崩溃的，家人和乡亲们也真是“热情”！最近几年，乡镇文化中又多了流行的广场舞，所以我又担负起给人下载广场舞视频的重任。今天就简单说一下如何下载糖豆广场舞中的视频。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>编程工具的选择引发的思考--至停滞不前的自己</title>
+      <link>https://www.smslit.top/2017/09/23/coding-editor/</link>
+      <pubDate>Sat, 23 Sep 2017 15:13:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/09/23/coding-editor/</guid>
+      <description>&lt;p&gt;最近有了一些感悟，十里惊恐的看到自己在很多不必要的事情上浪费了太多时间!比如编辑工具和开发平台的选择！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>巧合特别多</title>
+      <link>https://www.smslit.top/2017/05/12/coincidental/</link>
+      <pubDate>Fri, 12 May 2017 17:30:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/05/12/coincidental/</guid>
+      <description>&lt;p&gt;2017年注定是一个巧合非常多的一年。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从简开始</title>
+      <link>https://www.smslit.top/2017/03/19/simpleStart/</link>
+      <pubDate>Sun, 19 Mar 2017 13:07:48 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2017/03/19/simpleStart/</guid>
+      <description>&lt;p&gt;从今天开始博客更换面貌，使用了hexo的apollo主题，真的像主题作者说的，博客应该以内容为主，所以SMSLIT要从简开始了！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

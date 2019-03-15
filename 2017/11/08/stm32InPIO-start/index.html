@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="stm32开发新方式-platformio">
+<meta itemprop="description" content="platformio，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。">
+
+
+<meta itemprop="datePublished" content="2017-11-08T09:10:51&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-10T11:00:46&#43;08:00" />
+<meta itemprop="wordCount" content="2387">
+
+
+
+<meta itemprop="keywords" content="stm32,platformio," />
+<meta property="og:title" content="stm32开发新方式-platformio" />
+<meta property="og:description" content="platformio，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.smslit.top/2017/11/08/stm32InPIO-start/" /><meta property="article:published_time" content="2017-11-08T09:10:51&#43;08:00"/>
+<meta property="article:modified_time" content="2018-10-10T11:00:46&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="stm32开发新方式-platformio"/>
+<meta name="twitter:description" content="platformio，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>stm32开发新方式-platformio</title>
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	
+	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.smslit.top">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://www.smslit.top/post/">Posts</a>
+					<a href="https://www.smslit.top/about/">Me</a>
+					<a href="https://smslit.coding.me/ownwiki/">wiki</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.smslit.top/post/">Posts</a></li>
+			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://smslit.coding.me/ownwiki/">wiki</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Nov 8, 2017</span></div>
+				<h1>stm32开发新方式-platformio</h1>
+			</header>
+			<div class="content">
+				<p><a href="http://platformio.org/" target="_blank">platformio</a>，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。</p>
+
+<p>如果您不喜欢使用CLI(命令行)的stm32开发方式，可以阅读文章<a href="/2018/10/10/vscode-pio-ide/" target="_blank"><strong>stm32开发新方式——platformio的IDE</strong></a>，也许你会得到惊喜！</p>
+
+<p>测试环境：</p>
+
+<ol>
+<li>macOS</li>
+<li>stm32f103c8t6最小系统板</li>
+<li>st-link v2</li>
+</ol>
+
+<h2 id="新建pio工程">新建pio工程</h2>
+
+<ul>
+<li><p>创建工程文件夹并进入：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir <span class="nb">test</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> test</code></pre></div></li>
+
+<li><p>查找自己适合的板子</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio boards</code></pre></div>
+<p>会看到以下结果，十里这里选择<code>genericSTM32F103C8</code>，这里执行这个命令，主要是查找对应自己最小系统板的<code>board ID</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">...
+disco_l152rb          STM32L152RBT6  32Mhz     128kB   16kB   ST STM32LDISCOVERY
+disco_f100rb          STM32F100RBT6  24Mhz     128kB   8kB    ST STM32VLDISCOVERY
+genericSTM32F103C8    STM32F103C8    72Mhz     64kB    20kB   STM32F103C8 <span class="o">(</span>20k RAM. 64k Flash<span class="o">)</span>
+genericSTM32F103CB    STM32F103CB    72Mhz     128kB   20kB   STM32F103CB <span class="o">(</span>20k RAM. 128k Flash<span class="o">)</span>
+genericSTM32F103R8    STM32F103R8    72Mhz     64kB    20kB   STM32F103R8 <span class="o">(</span>20k RAM. 64k Flash<span class="o">)</span>
+genericSTM32F103RB    STM32F103RB    72Mhz     128kB   20kB   STM32F103RB <span class="o">(</span>20k RAM. 128k Flash<span class="o">)</span>
+genericSTM32F103RC    STM32F103RC    72Mhz     256kB   48kB   STM32F103RC <span class="o">(</span>48k RAM. 256k Flash<span class="o">)</span>
+genericSTM32F103RE    STM32F103RE    72Mhz     512kB   64kB   STM32F103RE <span class="o">(</span>64k RAM. 512k Flash<span class="o">)</span>
+...</code></pre></div></li>
+
+<li><p>初始化工程，以vim作为IDE：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio init --ide vim -b genericSTM32F103C8</code></pre></div></li>
+
+<li><p>新建Makefile，添加以下内容（这里注意缩进问题）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-mk" data-lang="mk"><span class="nf">all</span><span class="o">:</span>
+  platformio -f -c vim run
+<span class="nf">upload</span><span class="o">:</span>
+  platformio -f -c vim run --target upload
+<span class="nf">clean</span><span class="o">:</span>
+  platformio -f -c vim run --target clean
+<span class="nf">program</span><span class="o">:</span>
+  platformio -f -c vim run --target program
+<span class="nf">uploadfs</span><span class="o">:</span>
+  platformio -f -c vim run --target uploadfs
+<span class="nf">update</span><span class="o">:</span>
+  platformio -f -c vim update
+</code></pre></div></li>
+
+<li><p>配置<code>platformio.ini</code>文件
+因为我们这里使用stlink v2，所以需要将程序上传方式定为<code>stlink</code>，默认生成的工程使用<code>arduino</code>框架，这是玩过Arduino的网友的福音，不是吗？只需添加一行指定程序上传方式，最终内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
+<span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
+<span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
+<span class="na">framework</span> <span class="o">=</span> <span class="s">arduino</span>
+<span class="na">upload_protocol</span> <span class="o">=</span> <span class="s">stlink</span></code></pre></div></li>
+</ul>
+
+<p><code>upload_protocol = stlink</code> 可以省略。</p>
+
+<h2 id="添加代码">添加代码</h2>
+
+<p>添加点灯代码，十里的最小系统板上LED对应于管脚<code>PB0</code>，所以在<code>src</code>目录下添加<code>main.cpp</code>的内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>编译一下，编译的时候会下载stm32平台开发需要的编译工具和相关框架，你能做的就是waiting&hellip;：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ <span class="nb">test</span> make all
+platformio -f -c vim run
+<span class="o">[</span>Wed Nov  <span class="m">8</span> <span class="m">09</span>:42:57 <span class="m">2017</span><span class="o">]</span> Processing genericSTM32F103C8 
+<span class="o">(</span>upload_protocol: stlink<span class="p">;</span> platform: ststm32<span class="p">;</span> board: genericSTM32F103C8<span class="p">;</span> framework: arduino<span class="o">)</span>
+--------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via <span class="sb">`</span>-v, --verbose<span class="sb">`</span> option
+Collected <span class="m">27</span> compatible libraries
+Looking <span class="k">for</span> dependencies...
+No dependencies
+Linking .pioenvs/genericSTM32F103C8/firmware.elf
+Calculating size .pioenvs/genericSTM32F103C8/firmware.elf
+text	   data	    bss	    dec	    hex	filename
+<span class="m">6484</span>	   <span class="m">1936</span>	    <span class="m">312</span>	   <span class="m">8732</span>	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
+<span class="o">================================</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took <span class="m">1</span>.55 <span class="nv">seconds</span> <span class="o">=====================================</span></code></pre></div>
+<h2 id="上传程序">上传程序</h2>
+
+<p>因为前面已经配置了程序上传方式为<code>stlink</code>，所以将stlink连接最小系统板和mac就可以执行上传了，这里也会下载相应的下载工具，waiting &hellip; ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ make upload</code></pre></div>
+<p>正常的话就会看到命令行窗口打印上传过程的信息。但也可能会遇到下面类似的问题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ <span class="nb">test</span> make upload
+platformio -f -c vim run --target upload
+<span class="o">[</span>Wed Nov  <span class="m">8</span> <span class="m">09</span>:50:10 <span class="m">2017</span><span class="o">]</span> Processing genericSTM32F103C8 
+<span class="o">(</span>upload_protocol: stlink<span class="p">;</span> platform: ststm32<span class="p">;</span> board: genericSTM32F103C8<span class="p">;</span> framework: arduino<span class="o">)</span>
+------------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via <span class="sb">`</span>-v, --verbose<span class="sb">`</span> option
+Collected <span class="m">27</span> compatible libraries
+Looking <span class="k">for</span> dependencies...
+No dependencies
+Linking .pioenvs/genericSTM32F103C8/firmware.elf
+Checking program size
+text	   data	    bss	    dec	    hex	filename
+<span class="m">6484</span>	   <span class="m">1936</span>	    <span class="m">312</span>	   <span class="m">8732</span>	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
+Uploading .pioenvs/genericSTM32F103C8/firmware.bin
+<span class="m">2017</span>-11-08T09:50:11 INFO src/common.c: Loading device parameters....
+<span class="m">2017</span>-11-08T09:50:11 WARN src/common.c: unknown chip id! 0xe0042000
+st-flash <span class="m">1</span>.3.1
+*** <span class="o">[</span>upload<span class="o">]</span> Error <span class="nv">255</span>
+<span class="o">======================================</span> <span class="o">[</span>ERROR<span class="o">]</span> Took <span class="m">1</span>.53 <span class="nv">seconds</span> <span class="o">======================================</span>
+make: *** <span class="o">[</span>upload<span class="o">]</span> Error <span class="m">1</span></code></pre></div>
+<blockquote>
+<p>有一个临时的解决方法，将板上的<code>BOOT0</code>与<code>VDD</code>短接，复位一下最小系统板，会进入boot模式，此时执行<code>make upload</code>，程序会同时烧写在flash和内存上，一旦复位内存上的程序会消失，如果<code>BOOT0</code>还是接<code>VDD</code>的话还会进入boot模式，此时程序已经没了，但是flash 中仍然存在，所以只需将<code>BOOT0</code>短接<code>GND</code>再复位一下，板子就从flash启动了，所以最终程序调试方法为：</p>
+
+<p>调试程序：<code>BOOT0</code>短接<code>VDD</code>，每次上传程序先复位板子，然后执行<code>make upload</code>;不进行调试的话，先以调试程序的方式上传程序，然后短接<code>BOOT0</code>和<code>GND</code>，复位一下板子，板子会从flash启动运行固化的程序。</p>
+</blockquote>
+
+<p>上述问题本来不该出现，后来发现原来是我的usb hub有问题，我直接将stlink v2连接到macbook上是没有上述问题的。</p>
+
+<h2 id="调试程序">调试程序</h2>
+
+<p>MCU开发过程中有可能会遇到比较棘手的问题，所以硬件调试是少不了的。如果是第一次建立这个stm的PIO工程，在上面编译过程中就会下载stm32单片机开发需要的编译工具和调试工具。</p>
+
+<h3 id="调试配置">调试配置</h3>
+
+<p>免费版的PIO有所限制，不支持stm32硬件调试，但我们可以自己进行简单配置，搭建硬件调试的快捷方式：</p>
+
+<ol>
+<li><p>添加必要的编译选项</p>
+
+<p>向 <code>platformio.ini</code> 文件中添加以下内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">build_flags</span> <span class="o">=</span> <span class="s">
+</span><span class="s">    -g</span></code></pre></div>
+<p>添加这个参数项，是为了编译生成调试需要的符号项，比如变量名、函数名等。</p></li>
+
+<li><p>添加调试相关的Make快捷命令</p>
+
+<p>向 <code>Makefile</code> 中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">debug</span><span class="o">:</span>
+    arm-none-eabi-gdb .pioenvs/genericSTM32F103C8/firmware.elf
+
+<span class="nf">server</span><span class="o">:</span>
+    openocd -f interface/stlink.cfg -f target/stm32f1x.cfg &gt; .dblog
+</code></pre></div>
+<ul>
+<li><strong>server</strong> 命令：用于开启 <strong>openocd</strong> 调试服务，指明了使用 <strong>stlink</strong> 调试 stm32f1x 系列芯片<sup class="footnote-ref" id="fnref:openocd-export-P"><a href="#fn:openocd-export-P">1</a></sup>；</li>
+<li><strong>debug</strong> 命令：用于开启gdb进行调试，指明了 <code>.pioenvs/genericSTM32F103C8/firmware.elf</code> 为可执行调试文件<sup class="footnote-ref" id="fnref:arm-none-eabi-gd"><a href="#fn:arm-none-eabi-gd">2</a></sup>；</li>
+</ul></li>
+
+<li><p>添加gdb初始化文件</p>
+
+<p>工程根目录下添加文件 <code>.gdbinit</code>，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">target extended-remote localhost:3333</span>
+<span class="na">monitor reset halt</span>
+<span class="na">load</span>
+<span class="na">break main</span>
+<span class="na">continue</span></code></pre></div>
+<p>上述内容，会在开启调试命令后执行，首先连接本地已经开始的 <strong>openocd</strong> 调试服务，复位待调试硬件，加载可执行文件（这里是elf文件），然后在程序入口 <strong>main函数</strong> 处打断点，最后执行程序到 <strong>main</strong> 函数。</p></li>
+</ol>
+
+<h3 id="调试操作">调试操作</h3>
+
+<p>完成上述配置后就可以进行调试了。</p>
+
+<ol>
+<li><p>开启调试服务</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$  make server
+~/.platformio/packages/tool-openocd/bin/openocd -f ~/.platformio/packages/tool-openocd/scripts/interface/stlink.cfg -f ~/.platformio/packages/tool-openocd/scripts/target/stm32f1x.cfg &gt; .dblog
+GNU MCU Eclipse <span class="m">64</span>-bits Open On-Chip Debugger <span class="m">0</span>.10.0+dev-00392-gbe9ef0b0 <span class="o">(</span><span class="m">2018</span>-01-12-16:51<span class="o">)</span>
+Licensed under GNU GPL v2
+For bug reports, <span class="nb">read</span>
+        http://openocd.org/doc/doxygen/bugs.html
+Info : auto-selecting first available session transport <span class="s2">&#34;hla_swd&#34;</span>. To override use <span class="s1">&#39;transport select &lt;transport&gt;&#39;</span>.
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: <span class="m">1000</span> kHz
+adapter_nsrst_delay: <span class="m">100</span>
+none separate
+Info : Listening on port <span class="m">6666</span> <span class="k">for</span> tcl connections
+Info : Listening on port <span class="m">4444</span> <span class="k">for</span> telnet connections
+Info : Unable to match requested speed <span class="m">1000</span> kHz, using <span class="m">950</span> kHz
+Info : Unable to match requested speed <span class="m">1000</span> kHz, using <span class="m">950</span> kHz
+Info : clock speed <span class="m">950</span> kHz
+Info : STLINK v2 JTAG v18 API v2 SWIM v4 VID 0x0483 PID 0x3748
+Info : using stlink api v2
+Info : Target voltage: <span class="m">3</span>.241188
+Info : stm32f1x.cpu: hardware has <span class="m">6</span> breakpoints, <span class="m">4</span> watchpoints
+Info : Listening on port <span class="m">3333</span> <span class="k">for</span> gdb connections
+...</code></pre></div></li>
+
+<li><p>启动调试</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$  make debug
+arm-none-eabi-gdb .pioenvs/genericSTM32F103C8/firmware.elf
+GNU gdb <span class="o">(</span>GNU Tools <span class="k">for</span> Arm Embedded Processors <span class="m">7</span>-2017-q4-major<span class="o">)</span> <span class="m">8</span>.0.50.20171128-git
+Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2017</span> Free Software Foundation, Inc.
+...
+...
+...
+Reading symbols from .pioenvs/genericSTM32F103C8/firmware.elf...done.
+0x00000000 in ?? <span class="o">()</span>
+target halted due to debug-request, current mode: Thread
+xPSR: 0x01000000 pc: 0x08000fb8 msp: 0x20005000
+Loading section .text, size 0x39e4 lma 0x8000000
+Loading section .ARM.exidx, size 0x8 lma 0x80039e8
+Loading section .data, size 0x938 lma 0x80039f0
+Loading section .rodata, size 0x4fc lma 0x8004328
+Start address 0x8000fb8, load size <span class="m">18464</span>
+Transfer rate: <span class="m">16</span> KB/sec, <span class="m">4616</span> bytes/write.
+Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/packages/framework-arduinoststm32/STM32F1/cores/maple/main.cpp, line <span class="m">38</span>.
+---Type &lt;<span class="k">return</span>&gt; to <span class="k">continue</span>, or q &lt;<span class="k">return</span>&gt; to quit---
+<span class="o">(</span>gdb<span class="o">)</span> </code></pre></div></li>
+
+<li><p>进行gdb调试</p>
+
+<p>下面就可以使用 <strong>gdb</strong> 命令对程序进行调试了：打断点，单步，执行等等，相关gdb跳是命令这里就不讲解了，可以阅读 <a href="https://liuenyan.github.io/sphinx-wiki/gdb.html" target="_blank">GDB 命令速查</a> 了解。</p></li>
+</ol>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:openocd-export-P">系统环境变量中已添加openocd的路径(<code>export PATH=&quot;/Users/5km/.platformio/packages/tool-openocd/bin:$PATH&quot;</code>)，调用 <strong>openocd</strong> 的时候会先从其相对路径下查找指定的配置文件，所以这里可以使用配置文件的相对路径，比如<code>interface/stlink.cfg</code>。关于openocd的使用参考<a href="http://openocd.org/doc-release/html/index.html" target="_blank">OpenOCD User’s Guide</a>。 <a class="footnote-return" href="#fnref:openocd-export-P"><sup>[return]</sup></a></li>
+<li id="fn:arm-none-eabi-gd">这里调用了 <code>arm-none-eabi-gdb</code> 这个是 arm 芯片的交叉编译链工具集中的调试命令，这里直接调用，是因为工具集路径已经添加到环境变量中了 <a class="footnote-return" href="#fnref:arm-none-eabi-gd"><sup>[return]</sup></a></li>
+</ol>
+</div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/stm32">stm32</a></span><span class="tag"><a href="https://www.smslit.top/tags/platformio">platformio</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					2387 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2017-11-08 09:10 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#新建pio工程">新建pio工程</a></li>
+<li><a href="#添加代码">添加代码</a></li>
+<li><a href="#上传程序">上传程序</a></li>
+<li><a href="#调试程序">调试程序</a>
+<ul>
+<li><a href="#调试配置">调试配置</a></li>
+<li><a href="#调试操作">调试操作</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.smslit.top/2018/01/31/note-hackerAndPainter/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>《黑客与画家》阅读</span>
+			</a>
+			<a class="prev-post" href="https://www.smslit.top/2017/10/31/timetogo/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>时间都去哪儿了</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2017/11/08/stm32InPIO-start/" class="leancloud_visitors" data-flag-title="stm32开发新方式-platformio">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true 
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://www.smslit.top/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+	
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {equationNumbers: {autoNumber: "AMS"}},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

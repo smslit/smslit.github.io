@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sublime text on SMSLIT</title>
+    <link>https://www.smslit.top/tags/sublime-text/</link>
+    <description>Recent content in sublime text on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 26 Mar 2016 09:10:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/sublime-text/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux下Sublime Text支持中文输入</title>
+      <link>https://www.smslit.top/2016/03/26/subl-ChineseInput-Linux/</link>
+      <pubDate>Sat, 26 Mar 2016 09:10:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2016/03/26/subl-ChineseInput-Linux/</guid>
+      <description>&lt;p&gt;sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mac OSX下Sublime Text配置使用ctags实现代码跳转</title>
+      <link>https://www.smslit.top/2015/11/14/macSTctags-Develop/</link>
+      <pubDate>Sat, 14 Nov 2015 09:00:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/11/14/macSTctags-Develop/</guid>
+      <description>&lt;p&gt;ctags是一款实现代码跳转的插件，可以提高查看代码的效率，开发尽管可能有IDE，IDE中有代码跳转，但有的时候还是不想打开IDE的或者本身就没IDE，所以有必要安装ctags，本文就介绍如何在mac osx下的sublime text3中使用ctags。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text 3安装及简单配置</title>
+      <link>https://www.smslit.top/2015/08/19/sublimeText/</link>
+      <pubDate>Wed, 19 Aug 2015 14:14:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2015/08/19/sublimeText/</guid>
+      <description>&lt;p&gt;本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

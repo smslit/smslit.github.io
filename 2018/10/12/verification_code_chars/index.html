@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="python3 简单实现验证码识别器">
+<meta itemprop="description" content="编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！
+
+">
+
+
+<meta itemprop="datePublished" content="2018-10-12T14:59:37&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-12T14:59:37&#43;08:00" />
+<meta itemprop="wordCount" content="3155">
+
+
+
+<meta itemprop="keywords" content="python,spider," />
+<meta property="og:title" content="python3 简单实现验证码识别器" />
+<meta property="og:description" content="编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.smslit.top/2018/10/12/verification_code_chars/" /><meta property="article:published_time" content="2018-10-12T14:59:37&#43;08:00"/>
+<meta property="article:modified_time" content="2018-10-12T14:59:37&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="python3 简单实现验证码识别器"/>
+<meta name="twitter:description" content="编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！
+
+"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>python3 简单实现验证码识别器</title>
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	
+	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.smslit.top">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://www.smslit.top/post/">Posts</a>
+					<a href="https://www.smslit.top/about/">Me</a>
+					<a href="https://smslit.coding.me/ownwiki/">wiki</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.smslit.top/post/">Posts</a></li>
+			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://smslit.coding.me/ownwiki/">wiki</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 12, 2018</span></div>
+				<h1>python3 简单实现验证码识别器</h1>
+			</header>
+			<div class="content">
+				<p>编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181012153933272275283.png" alt="20181012153933272275283.png" /></p>
+
+<p>开始之前，提醒⏰，应该是中间有些处理不对，造成结果不理想，不过本文的思路是可行的，因为参考的<a href="https://www.shiyanlou.com/courses/364" target="_blank">实验楼 —— python 破解验证码</a>！</p>
+
+<h2 id="前言">前言</h2>
+
+<p>其实已经有很多现成的python库可以用于识别验证码了，比如：<strong>pytesseract</strong> 和 <strong>tesseract_ocr</strong>，本文也要自己实现一种方法，最终做一个可以使用三种方法的验证码识别器。</p>
+
+<h2 id="准备工作">准备工作</h2>
+
+<p>在开始之前需要做一些准备工作，安装必要的库和准备独立的开发环境。</p>
+
+<ul>
+<li>pipenv</li>
+<li>pytesseract</li>
+<li>tesseract_ocr</li>
+<li>pillow</li>
+</ul>
+
+<p>这里使用独立的python环境进行开发，用到了<strong>pipenv</strong></p>
+
+<ol>
+<li><p>首先安装 <strong>pipenv</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install pipenv</code></pre></div></li>
+
+<li><p>为当前工程激活独立的python环境：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pipenv install</code></pre></div></li>
+
+<li><p>进入pipenv的独立环境：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pipenv shell</code></pre></div>
+<p>进入后会看到命令行每条命令输入前多了一部分信息，形如<code>(pin2chars-E2eD5P-4)</code></p></li>
+
+<li><p>在安装和使用库 <strong>pytesseract</strong> 和 <strong>tesseract_ocr</strong> 之前需要安装 <strong>tesseract</strong>：</p>
+
+<ul>
+<li>macOS下：<code>brew install tesseract</code></li>
+<li>其它系统，根据自己系统的包安装方法安装；</li>
+</ul></li>
+
+<li><p>然后使用 <code>pip3</code> 安装库（库会安装在当前的激活环境中）：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install pipenv pytesseract tesseract_ocr pillow</code></pre></div></li>
+</ol>
+
+<h2 id="pytesseract-和-tesseract-ocr-库-python3-破解验证码-https-www-jianshu-com-p-ff2ce797cf70">pytesseract 和 tesseract_ocr 库<sup class="footnote-ref" id="fnref:python3-https-ww"><a href="#fn:python3-https-ww">1</a></sup></h2>
+
+<p><strong>pytesseract</strong> 和 <strong>tesseract_ocr</strong> 库都基于工具 <strong>tesseract</strong>，这两个库只需各自调用一个方法就能实现验证码的识别，非常简单。下面使用 ipython 看一下使用方法，这里准备一个验证码图片 <code>code.gif</code> 作为识别对象：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181013153938827799704.gif" alt="20181013153938827799704.gif" /></p>
+
+<h3 id="pytesseract-库识别验证码">pytesseract 库识别验证码</h3>
+
+<p>使用库中的 <code>image_to_string</code> 方法传入图片的路径，比如上面的图片 <code>code.gif</code> 为例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">(</span>pin2chars-E2eD5P-4<span class="o">)</span> ➜  pin2chars git:<span class="o">(</span>master<span class="o">)</span> ✗ ipython
+Python <span class="m">3</span>.7.0 <span class="o">(</span>default, Sep <span class="m">18</span> <span class="m">2018</span>, <span class="m">18</span>:47:08<span class="o">)</span>
+
+In <span class="o">[</span><span class="m">1</span><span class="o">]</span>: import pytesseract
+
+In <span class="o">[</span><span class="m">2</span><span class="o">]</span>: pytesseract.image_to_string<span class="o">(</span><span class="s1">&#39;code.gif&#39;</span><span class="o">)</span>
+Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>: <span class="s1">&#39;7S9T9J’&#39;</span></code></pre></div>
+<p>图像经过二值化处理的话可能效果更好一些。</p>
+
+<h3 id="tesseract-ocr-库识别验证码">tesseract_ocr 库识别验证码</h3>
+
+<p>使用库中的 <code>text_for_filename</code> 方法传入图片的路径，比如上面的图片 <code>code.gif</code> 为例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">(</span>pin2chars-E2eD5P-4<span class="o">)</span> ➜  pin2chars git:<span class="o">(</span>master<span class="o">)</span> ✗ ipython
+Python <span class="m">3</span>.7.0 <span class="o">(</span>default, Sep <span class="m">18</span> <span class="m">2018</span>, <span class="m">18</span>:47:08<span class="o">)</span>
+
+In <span class="o">[</span><span class="m">1</span><span class="o">]</span>: import tesseract_ocr
+
+In <span class="o">[</span><span class="m">2</span><span class="o">]</span>: tesseract_ocr.text_for_filename<span class="o">(</span><span class="s1">&#39;code.gif&#39;</span><span class="o">)</span>
+Warning. Invalid resolution <span class="m">0</span> dpi. Using <span class="m">70</span> instead.
+Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>: <span class="s1">&#39;7S9T9J’&#39;</span></code></pre></div>
+<p>图像经过二值化处理的话可能效果更好一些。</p>
+
+<h2 id="自实现库-pin-cracker">自实现库 pin_cracker</h2>
+
+<p>自实现方法的思路：先二值化图片，然后分割图片的单个字符图片数据，最后利用向量空间识别方法得到字符。</p>
+
+<p>导入必要库：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span></code></pre></div>
+<h3 id="二值化图片">二值化图片</h3>
+
+<p>新建文件 <code>pin_cracker.py</code>，自实现库的代码均存在此文件中。观察到验证码图片中，字符位置对应像素颜色是很明显的，可以先找到像素颜色最多的颜色，列出来，选择器其中正确的像素值作为阈值。</p>
+
+<p>先将图片灰度化，这样每个像素点的取值范围就是 <strong>[0, 255]</strong> 了，取得像素分布直方图数据:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_binary_image</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;得到二值化图片数据&#39;&#39;&#39;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">)</span>
+    <span class="n">his</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">histogram</span><span class="p">()</span>
+    <span class="n">his_10</span> <span class="o">=</span> <span class="p">[(</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">his</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">his_10</span><span class="p">)</span></code></pre></div>
+<p>得到结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>
+    <span class="o">(</span><span class="m">255</span>, <span class="m">625</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">212</span>, <span class="m">365</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">220</span>, <span class="m">186</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">219</span>, <span class="m">135</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">169</span>, <span class="m">132</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">227</span>, <span class="m">116</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">213</span>, <span class="m">115</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">234</span>, <span class="m">21</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">205</span>, <span class="m">18</span><span class="o">)</span>, 
+    <span class="o">(</span><span class="m">184</span>, <span class="m">15</span><span class="o">)</span>
+<span class="o">]</span></code></pre></div>
+<p>选择其中 <strong>220</strong> 和 <strong>227</strong> 值作为阈值。最终实现封装为函数如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_binary_image</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;得到二值化图片数据&#39;&#39;&#39;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">)</span>
+    <span class="c1"># his = img.histogram()</span>
+    <span class="c1"># his_10 = [(j, k) for j,k in sorted(enumerate(his), key=lambda x:x[1], reverse = True)[:10]]</span>
+    <span class="c1"># print(his_10)</span>
+    
+    <span class="n">threshold</span> <span class="o">=</span> <span class="p">[</span><span class="mi">213</span><span class="p">,</span> <span class="mi">219</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">227</span><span class="p">]</span>
+    <span class="n">binary_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">pix</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">pix</span> <span class="ow">in</span> <span class="n">threshold</span><span class="p">:</span>
+                <span class="c1"># these are the numbers to get</span>
+                <span class="n">binary_img</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">binary_img</span></code></pre></div>
+<p>试一下效果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">bimg</span> <span class="o">=</span> <span class="n">get_binary_image</span><span class="p">(</span><span class="s1">&#39;code.gif&#39;</span><span class="p">)</span>
+<span class="n">bimg</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/201810131539388080128.png" alt="201810131539388080128.png" /></p>
+
+<h3 id="分割图片">分割图片</h3>
+
+<p>图片比较简单，所以可以利用简单的纵向切割得到每个字符的像素范围，一列一列地判断像素值，全是1那就不是字符区，最终封装实现如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">slice_image</span><span class="p">(</span><span class="n">bimg</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;通过传入的二值化图片数据进行纵向切图，得到每个字符的分割图，并返回图片数量&#39;&#39;&#39;</span>
+    <span class="n">letters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">foundletter</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">letter_start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">letter_end</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bimg</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">pixelist</span> <span class="o">=</span> <span class="p">[</span><span class="n">bimg</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bimg</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+        <span class="n">has_p</span> <span class="o">=</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">pixelist</span>
+        <span class="k">if</span> <span class="n">foundletter</span> <span class="o">==</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">has_p</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">foundletter</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">letter_start</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">if</span> <span class="n">foundletter</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">has_p</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">foundletter</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">letter_end</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="n">letters</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">letter_start</span><span class="p">,</span> <span class="n">letter_end</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">letters</span><span class="p">):</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">bimg</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">letter</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">letter</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bimg</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{index}.gif&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span></code></pre></div>
+<h3 id="向量空间">向量空间</h3>
+
+<p>这里使用向量空间搜索引擎来做字符识别，它具也有优点也有缺点<sup class="footnote-ref" id="fnref:python-https-www"><a href="#fn:python-https-www">2</a></sup>:</p>
+
+<p>优点：</p>
+
+<ul>
+<li>不需要大量的训练迭代</li>
+<li>不会训练过度</li>
+<li>可以随时加入/移除错误的数据查看效果</li>
+<li>很容易理解和代码实现</li>
+<li>提供分级结果，可以查看最接近的多个匹配</li>
+<li>对于无法识别的东西只要加入到搜索引擎中，马上就能识别</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>分类速度慢于神经网络分类</li>
+<li>找不到自己的方法解决问题</li>
+</ul>
+
+<p>阅读<a href="http://ondoc.logand.com/d/2697/pdf" target="_blank">Basic Vector Space Search Engine Theory</a> 可以了解向量空间搜索引擎原理。拿文章里的例子通俗讲：要量化文档的相似度，可以比较2篇文档所使用的相同单词数量，越多的话两篇文章就越相似！单词太多了也不要紧，可以选择几个关键单词，选择的单词又被称作特征，每一个特征就好比空间中的一个维度（x,y,z等），一组特征就是一个矢量，每一个文档我们就能得到这么一个矢量，只要计算矢量之间的夹角就能得到文章的相似度了。</p>
+
+<p>先实现一个向量空间类：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">VectorCompare</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concordance</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;矢量大小&#34;&#34;&#34;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">concordance</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">count</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">relation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">concordance1</span><span class="p">,</span> <span class="n">concordance2</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;矢量之间的夹角的cos值&#34;&#34;&#34;</span>
+        <span class="n">topvalue</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">concordance1</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">concordance2</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+                <span class="n">topvalue</span> <span class="o">+=</span> <span class="n">count</span> <span class="o">*</span> <span class="n">concordance2</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">topvalue</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(</span><span class="n">concordance1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(</span><span class="n">concordance2</span><span class="p">))</span></code></pre></div>
+<p>定义一个将图片转换为向量的方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">build_vector</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;将图片转换为矢量&#39;&#39;&#39;</span>
+    <span class="n">vector</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">im</span><span class="o">.</span><span class="n">getdata</span><span class="p">():</span>
+        <span class="n">vector</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">vector</span></code></pre></div>
+<h3 id="建立样本库">建立样本库</h3>
+
+<p>需要取大量验证码图片提取单个字符图片作为训练集合，这一部分工作可以利用 <a href="#二值化图片" target="_blank">二值化图片</a> 和 <a href="#分割图片" target="_blank">分割图片</a> 描述的方法，对搜集到的验证码进行处理的得到单个字符的图片，最终得到以下字符集对应的训练集合：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">charset</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span></code></pre></div>
+<p>这里就不演示怎么见库了，可以使用<a href="https://www.shiyanlou.com/teacher/8834" target="_blank">实验楼老师ekCit </a>建立好的样本库：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/pin_cracker/iconset.zip" target="_blank">iconset</a></p>
+
+<p>从样本库中建立训练数据集：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">load_iconset</span><span class="p">(</span><span class="n">iconset</span><span class="p">,</span> <span class="n">dir_path</span><span class="o">=</span><span class="s1">&#39;./iconset&#39;</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;加载训练集数据&#39;&#39;&#39;</span>
+    <span class="n">imageset</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">iconset</span><span class="p">:</span>
+        <span class="n">letter_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="n">letter</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">letter_dir</span><span class="p">):</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="s1">&#39;.gif&#39;</span> <span class="ow">in</span> <span class="n">img</span><span class="p">:</span>
+                <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">letter_dir</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+                <span class="n">letter_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+                <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">build_vector</span><span class="p">(</span><span class="n">letter_image</span><span class="p">))</span>
+                <span class="n">imageset</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">letter</span><span class="p">:</span> <span class="n">temp</span><span class="p">})</span>
+    
+    <span class="k">return</span> <span class="n">imageset</span></code></pre></div>
+<h3 id="训练识别">训练识别</h3>
+
+<p>有了样本库就可以进行训练识别了，下面是实现代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">guess_image_by</span><span class="p">(</span><span class="n">imageset</span><span class="p">,</span> <span class="n">bimg</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;根据样本数据识别&#39;&#39;&#39;</span>
+    <span class="n">guess</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">VectorCompare</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">slice_image</span><span class="p">(</span><span class="n">bimg</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">imageset</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">image</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">guess</span><span class="o">.</span><span class="n">append</span><span class="p">((</span> <span class="n">v</span><span class="o">.</span><span class="n">relation</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">build_vector</span><span class="p">(</span><span class="n">img</span><span class="p">)),</span> <span class="n">x</span><span class="p">))</span>
+        <span class="n">guess</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">guess</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code></pre></div>
+<h3 id="识别函数">识别函数</h3>
+
+<p>综合上述，编写识别方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">image_to_string</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">bimg</span> <span class="o">=</span> <span class="n">get_binary_image</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">iconset</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span>
+    <span class="p">]</span>
+    <span class="n">imageset</span> <span class="o">=</span> <span class="n">load_iconset</span><span class="p">(</span><span class="n">iconset</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">guess_tuple</span> <span class="ow">in</span> <span class="n">guess_image_by</span><span class="p">(</span><span class="n">imageset</span><span class="p">,</span> <span class="n">bimg</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="n">guess_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">s</span></code></pre></div>
+<h3 id="测试">测试</h3>
+
+<p>编写主函数内容:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">image_to_string</span><span class="p">(</span><span class="s1">&#39;code.gif&#39;</span><span class="p">))</span></code></pre></div>
+<p>最终脚本内容参考：<a href="https://github.com/smslit/tools-with-script/blob/master/pin2chars/pin_cracker.py" target="_blank">tools-with-script/pin2chars/pin_cracker.py</a></p>
+
+<p>执行结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pin_cracker.py
+777ttt</code></pre></div>
+<p>恭喜我，以失败告终，崩溃。不过思路是对的，不知道哪里出了问题，先不研究了，主要目的还是练习python编程，有时间再说吧！</p>
+
+<h2 id="编写验证码识别器">编写验证码识别器</h2>
+
+<h3 id="实现">实现</h3>
+
+<p>综合上面第三方库和自己实现的库，python3 实现一个命令行小工具，新建名为 <code>pin2chars</code> 的文件，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">pin_cracker</span>
+<span class="kn">import</span> <span class="nn">pytesseract</span>
+<span class="kn">import</span> <span class="nn">tesseract_ocr</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
+    <span class="s1">&#39;&#39;&#39;得到命令参数
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s2">&#34;--method&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;选择方法进行验证码的识别:  0. 使用 pin_cracker 库方法识别验证码; 1. 使用 pytesseract 库方法识别验证码; 2. 使用 tesseract_ocr 库方法识别验证码;&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;imgfile&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定要识别的验证码图片&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">init_methods</span><span class="p">():</span>
+    <span class="s1">&#39;&#39;&#39;初始化方法列表
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">pin_cracker</span><span class="o">.</span><span class="n">image_to_string</span><span class="p">,</span>
+            <span class="s1">&#39;tip&#39;</span><span class="p">:</span> <span class="s1">&#39;pin_cracker 库的识别结果：&#39;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">pytesseract</span><span class="o">.</span><span class="n">image_to_string</span><span class="p">,</span>
+            <span class="s1">&#39;tip&#39;</span><span class="p">:</span> <span class="s1">&#39;pytesseract 库的识别结果：&#39;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">tesseract_ocr</span><span class="o">.</span><span class="n">text_for_filename</span><span class="p">,</span>
+            <span class="s1">&#39;tip&#39;</span><span class="p">:</span> <span class="s1">&#39;tesseract_ocr 库的识别结果：&#39;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">methods</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+    <span class="n">methods</span> <span class="o">=</span> <span class="n">init_methods</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;.gif&#39;</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">:</span> <span class="c1"># 避免 tesseract 读取 gif 图片出问题</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;b_code.png&#39;</span>
+            <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">imgfile</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">methods</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">method</span><span class="p">][</span><span class="s1">&#39;tip&#39;</span><span class="p">],</span> <span class="n">methods</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">method</span><span class="p">][</span><span class="s1">&#39;method&#39;</span><span class="p">](</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;请给定有效图片路径！&#39;</span><span class="p">)</span></code></pre></div>
+<h3 id="测试-1">测试</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">(</span>pin2chars-E2eD5P-4<span class="o">)</span> ➜  pin2chars git:<span class="o">(</span>master<span class="o">)</span> ✗ ./pin2chars -m<span class="o">=</span><span class="m">0</span> code.gif
+pin_cracker 库的识别结果： 777ttt
+<span class="o">(</span>pin2chars-E2eD5P-4<span class="o">)</span> ➜  pin2chars git:<span class="o">(</span>master<span class="o">)</span> ✗ ./pin2chars -m<span class="o">=</span><span class="m">1</span> code.gif
+pytesseract 库的识别结果： 7S9T9J’
+<span class="o">(</span>pin2chars-E2eD5P-4<span class="o">)</span> ➜  pin2chars git:<span class="o">(</span>master<span class="o">)</span> ✗ ./pin2chars -m<span class="o">=</span><span class="m">2</span> code.gif
+Info in pixReadStreamPng: converting <span class="o">(</span>cmap + alpha<span class="o">)</span> <span class="o">==</span>&gt; RGBA
+Info in pixReadStreamPng: converting <span class="m">8</span> bpp cmap with <span class="nv">alpha</span> <span class="o">==</span>&gt; RGBA
+Warning. Invalid resolution <span class="m">0</span> dpi. Using <span class="m">70</span> instead.
+tesseract_ocr 库的识别结果： 7S9T9J’</code></pre></div>
+<h2 id="总结">总结</h2>
+
+<p>本文实现了一个简单的验证码识别器，使用了三个方法，前两种使用现有库，后一种使用了分割图片 + 向量识别的方式简单实现了验证码的识别，通过本文熟悉了 <strong>argparse</strong>、<strong>pillow</strong> 等库的使用，通过实践练习了python的基本使用，Peace！这里的方法明显处理不了更加复杂的验证码，要想提升方法的适应性，还得增加新的判别方法，后续有时间的话再研究吧。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:python3-https-ww"><a href="https://www.jianshu.com/p/ff2ce797cf70" target="_blank">python3 破解验证码</a> <a class="footnote-return" href="#fnref:python3-https-ww"><sup>[return]</sup></a></li>
+<li id="fn:python-https-www"><a href="https://www.shiyanlou.com/courses/364" target="_blank">实验楼 —— python 破解验证码</a> <a class="footnote-return" href="#fnref:python-https-www"><sup>[return]</sup></a></li>
+</ol>
+</div>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.top/tags/spider">spider</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					3155 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2018-10-12 14:59 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#准备工作">准备工作</a></li>
+<li><a href="#pytesseract-和-tesseract-ocr-库-python3-破解验证码-https-www-jianshu-com-p-ff2ce797cf70">pytesseract 和 tesseract_ocr 库<sup class="footnote-ref" id="fnref:python3-https-ww"><a href="#fn:python3-https-ww">1</a></sup></a>
+<ul>
+<li><a href="#pytesseract-库识别验证码">pytesseract 库识别验证码</a></li>
+<li><a href="#tesseract-ocr-库识别验证码">tesseract_ocr 库识别验证码</a></li>
+</ul></li>
+<li><a href="#自实现库-pin-cracker">自实现库 pin_cracker</a>
+<ul>
+<li><a href="#二值化图片">二值化图片</a></li>
+<li><a href="#分割图片">分割图片</a></li>
+<li><a href="#向量空间">向量空间</a></li>
+<li><a href="#建立样本库">建立样本库</a></li>
+<li><a href="#训练识别">训练识别</a></li>
+<li><a href="#识别函数">识别函数</a></li>
+<li><a href="#测试">测试</a></li>
+</ul></li>
+<li><a href="#编写验证码识别器">编写验证码识别器</a>
+<ul>
+<li><a href="#实现">实现</a></li>
+<li><a href="#测试-1">测试</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.smslit.top/2018/10/16/md2html_python/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python3 实现Markdown转html小工具</span>
+			</a>
+			<a class="prev-post" href="https://www.smslit.top/2018/10/10/vscode-pio-ide/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>stm32开发新方式-platformio的IDE</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2018/10/12/verification_code_chars/" class="leancloud_visitors" data-flag-title="python3 简单实现验证码识别器">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true 
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://www.smslit.top/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+	
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {equationNumbers: {autoNumber: "AMS"}},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

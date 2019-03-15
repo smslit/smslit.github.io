@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on SMSLIT</title>
+    <link>https://www.smslit.top/tags/python/</link>
+    <description>Recent content in python on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 10 Jan 2019 15:10:32 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>python 利用百度 AI 实现 OCR</title>
+      <link>https://www.smslit.top/2019/01/10/textgo_python/</link>
+      <pubDate>Thu, 10 Jan 2019 15:10:32 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/01/10/textgo_python/</guid>
+      <description>&lt;p&gt;前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110210442.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>最简单的人工智能(皮一下)</title>
+      <link>https://www.smslit.top/2018/12/17/simple_ai_stupid/</link>
+      <pubDate>Mon, 17 Dec 2018 16:35:58 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/12/17/simple_ai_stupid/</guid>
+      <description>&lt;p&gt;有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:https-github-com&#34;&gt;&lt;a href=&#34;#fn:https-github-com&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>简陋的不能再简陋的 HTTP1.1 Server</title>
+      <link>https://www.smslit.top/2018/11/27/simple_server/</link>
+      <pubDate>Tue, 27 Nov 2018 10:48:29 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/11/27/simple_server/</guid>
+      <description>&lt;p&gt;今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 matplotlib 的 animation 让数据动起来</title>
+      <link>https://www.smslit.top/2018/11/12/matplotlib-animation/</link>
+      <pubDate>Mon, 12 Nov 2018 01:22:15 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/11/12/matplotlib-animation/</guid>
+      <description>&lt;p&gt;最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154195822047625.gif&#34; alt=&#34;20181112154195822047625.gif&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>排序算法知多少</title>
+      <link>https://www.smslit.top/2018/11/07/algorithm-sort/</link>
+      <pubDate>Wed, 07 Nov 2018 15:37:05 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/11/07/algorithm-sort/</guid>
+      <description>&lt;p&gt;大学里学的第一门编程语言是 c++，c++ 的课程中接触的第一种排序算法是&lt;strong&gt;冒泡排序&lt;/strong&gt;，这已经过去八年，很惭愧的是到目前只了解&lt;strong&gt;冒泡排序&lt;/strong&gt;和&lt;strong&gt;插入排序&lt;/strong&gt;两种，作为一名合格的程序猿也应该了解了解其它的排序算法吧！所以开本文记录整理网上所谓的&lt;strong&gt;十大排序算法&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018111115418975029904.gif&#34; alt=&#34;2018111115418975029904.gif&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>windows 下 python 开发利器 vscode 的锻造</title>
+      <link>https://www.smslit.top/2018/11/02/python-dev-in-windows/</link>
+      <pubDate>Fri, 02 Nov 2018 13:02:49 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/11/02/python-dev-in-windows/</guid>
+      <description>&lt;p&gt;之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python 实现文件校验</title>
+      <link>https://www.smslit.top/2018/10/26/hashcal-python/</link>
+      <pubDate>Fri, 26 Oct 2018 13:12:18 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/26/hashcal-python/</guid>
+      <description>&lt;p&gt;今天又学习了点 &lt;code&gt;argparse&lt;/code&gt; 库的东西——子命令实现的正确姿势(常规操作)，借着实现一个文件校验、比较的小工具来巩固一下刚学到的子命令实现。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python 实现文本文件的编码检测和转换</title>
+      <link>https://www.smslit.top/2018/10/25/encoding-python/</link>
+      <pubDate>Thu, 25 Oct 2018 22:05:59 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/25/encoding-python/</guid>
+      <description>&lt;p&gt;记得在前公司做嵌入式开发时，总是会遇到因代码文件编码不对导致的注释乱码问题。因为部门里很多人喜欢使用 GB2312，而我比较倾向于用 utf-8 编码，所以每次合并他们代码的时候，通常我会使用一个 &lt;code&gt;find&lt;/code&gt; 和 &lt;code&gt;enca&lt;/code&gt; 的组合命令，对工程检索将 GB2312 的 &lt;code&gt;.c&lt;/code&gt; 和 &lt;code&gt;.h&lt;/code&gt; 文件转码为 &lt;code&gt;utf-8&lt;/code&gt;，那么我们是不是可以自己编写一个 python 工具实现文件编码的检测和转换呢？当然可以，借助第三方库 &lt;code&gt;chardet&lt;/code&gt; 就可以做到！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python 实现命令行工具 tee</title>
+      <link>https://www.smslit.top/2018/10/24/tee-Python/</link>
+      <pubDate>Wed, 24 Oct 2018 17:58:19 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/24/tee-Python/</guid>
+      <description>&lt;p&gt;最近，朋友 &lt;a href=&#34;http://www.litreily.top&#34; target=&#34;_blank&#34;&gt;Litreily&lt;/a&gt; 发表了文章&lt;a href=&#34;http://www.litreily.top/2018/09/27/tee/&#34; target=&#34;_blank&#34;&gt;Linux指令 - tee的实现&lt;/a&gt; ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png&#34; alt=&#34;20181025154039778364827.png&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>zip 文件暴破</title>
+      <link>https://www.smslit.top/2018/10/23/crack-zip-hacker/</link>
+      <pubDate>Tue, 23 Oct 2018 17:00:50 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/23/crack-zip-hacker/</guid>
+      <description>&lt;p&gt;2007年年初，美国德克萨斯州的布朗斯维尔市的程序员 Albert Castillo 协助警方调查 John Craig Zimmerman 涉嫌拥有和制造儿童色情物品的案件，而 Castillo 就是使用&lt;strong&gt;字典式攻击技术&lt;/strong&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:https-baike-baid&#34;&gt;&lt;a href=&#34;#fn:https-baike-baid&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;解密了嫌疑人电脑中的zip压缩文件，从而得到儿童色情图片等证据，得以结束案件。本文十里就简单介绍一下使用 python3 进行字典式破解加密zip文件的方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181022154020132354092.png&#34; alt=&#34;20181022154020132354092.png&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

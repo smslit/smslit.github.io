@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Mar 2019 22:05:11 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 23:44:26 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>鸭子类型是什么鬼</title>
+      <link>https://www.smslit.top/2019/03/15/daily-duck-type/</link>
+      <pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/15/daily-duck-type/</guid>
+      <description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
+    </item>
     
     <item>
       <title>日书-很对味的收获</title>
@@ -23,10 +32,10 @@
     
     <item>
       <title>日书-君子爱财，取之有道</title>
-      <link>https://www.smslit.top/2019/03/15/daily-money-money-lie/</link>
-      <pubDate>Fri, 15 Mar 2019 10:57:09 +0800</pubDate>
+      <link>https://www.smslit.top/2019/03/14/daily-money-money-lie/</link>
+      <pubDate>Thu, 14 Mar 2019 23:57:09 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2019/03/15/daily-money-money-lie/</guid>
+      <guid>https://www.smslit.top/2019/03/14/daily-money-money-lie/</guid>
       <description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
     </item>
     
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/08/daily-absolute-power/</guid>
       <description>今天是全世界的女神节，与水木一起看了漫威的最新电影《惊奇队长》，实力超强的女英雄！惊奇队长的英文名叫Captain Marvel，直接是漫威同</description>
-    </item>
-    
-    <item>
-      <title>日书-您的支持是我前进的动力</title>
-      <link>https://www.smslit.top/2019/03/08/daily-cared-by-friends/</link>
-      <pubDate>Fri, 08 Mar 2019 00:08:34 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/08/daily-cared-by-friends/</guid>
-      <description>今天下午连续有好久不见的三位朋友都找我聊天，我甚至都在怀疑他们是不是商量好的，您可能觉得这有什么呀，但对于我来说意义非凡！从裸辞到现在马上快</description>
     </item>
     
   </channel>

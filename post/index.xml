@@ -7,8 +7,21 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Fri, 15 Mar 2019 23:44:26 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 16 Mar 2019 23:56:00 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>日书-关于 macOS 开发知识分享</title>
+			<link>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</link>
+			<pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</guid>
+			<description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
+			<content type="html"><![CDATA[<p>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着要尽量能说清楚做什么，怎么做，为什么（what-how-why），能力有限，时间就会占用很多，毕竟还要做很多其他事情，索性 《macOS 开发》(博客和知乎专栏)就成了《macOS Development weekly》，哈哈！</p>
+
+<p>关于经验分享，还是想尽量时新，参照网上老旧的开发经验也要关注和探索技术的更新，就比如十里下一篇要讲的本地通知，网上提供的方法大多是马上要废弃的方式，阅读 apple 官方关于 Notification 的开发资料才知道未来 API 的发展方向，去年 WWDC 已经很清楚说了 iOS 应用移植到 macOS 的计划，作为开发者也应注意到了 apple 正努力融合 iOS 和 macOS 开发接口，得时刻关注动向，才能让自己的作品与时俱进！知识经验的分享也便能时新！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>鸭子类型是什么鬼</title>
@@ -352,19 +365,6 @@ $$</p>
 <p>依旧觉得唯有继续坚持下去，绝不能被压力左右，要让自己有能力去回馈和关切身边的有心人！能养的活家人和自己的独立开发者才是成功的开始，压力请走开，别挡路！</p>
 
 <p>友情提示：看到博客中《日书》系列文章的朋友，大家可自觉忽略，目前阶段可能会多一些“无病呻吟”！以后尽量多放干货！对不住看文章的您了！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-《惊奇队长》</title>
-			<link>https://www.smslit.top/2019/03/08/daily-absolute-power/</link>
-			<pubDate>Fri, 08 Mar 2019 23:21:16 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/08/daily-absolute-power/</guid>
-			<description>今天是全世界的女神节，与水木一起看了漫威的最新电影《惊奇队长》，实力超强的女英雄！惊奇队长的英文名叫Captain Marvel，直接是漫威同</description>
-			<content type="html"><![CDATA[<p>今天是全世界的女神节，与水木一起看了漫威的最新电影《惊奇队长》，实力超强的女英雄！惊奇队长的英文名叫<strong>Captain Marvel</strong>，直接是漫威同名，足以看出这个人物的重要性，算是给女神们的节日礼物了吗？另外这部影片的导演还是一名女导演，水准依旧是漫威系列电影的高水准，足以看出漫威影业的“献媚”之心，哈哈！谁说女儿不如男！</p>
-
-<p>话说回来，电影里惊奇队长的实力可真是绝对压制呀！因为一直追漫威电影，对于整个故事发展的过程还是很了解的，第一个彩蛋中也看到惊奇队长因为收到弗瑞的传呼机呼叫回到了地球。可以知晓其将会在《复仇者联盟4》中对拯救灭霸毁灭后的世界起到关键性作用，期待。。。绝对实力 VS 绝对实力，五月见！</p>
 ]]></content>
 		</item>
 		

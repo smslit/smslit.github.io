@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Mar 2019 23:44:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Mar 2019 23:56:00 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>日书-关于 macOS 开发知识分享</title>
+      <link>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</link>
+      <pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</guid>
+      <description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
+    </item>
     
     <item>
       <title>鸭子类型是什么鬼</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/09/daily-pressure/</guid>
       <description>作为一个入门的独立开发者，确实得有强大的心理素质！心理难免会有薄弱的时刻，会让早已潜伏很久的压力趁虚而入，这就有点糟糕了，心情容易被压力左右</description>
-    </item>
-    
-    <item>
-      <title>日书-《惊奇队长》</title>
-      <link>https://www.smslit.top/2019/03/08/daily-absolute-power/</link>
-      <pubDate>Fri, 08 Mar 2019 23:21:16 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/08/daily-absolute-power/</guid>
-      <description>今天是全世界的女神节，与水木一起看了漫威的最新电影《惊奇队长》，实力超强的女英雄！惊奇队长的英文名叫Captain Marvel，直接是漫威同</description>
     </item>
     
   </channel>

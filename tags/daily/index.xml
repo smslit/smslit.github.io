@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Mar 2019 22:05:11 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Mar 2019 23:56:00 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>日书-关于 macOS 开发知识分享</title>
+      <link>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</link>
+      <pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</guid>
+      <description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
+    </item>
     
     <item>
       <title>日书-很对味的收获</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/08/daily-cared-by-friends/</guid>
       <description>今天下午连续有好久不见的三位朋友都找我聊天，我甚至都在怀疑他们是不是商量好的，您可能觉得这有什么呀，但对于我来说意义非凡！从裸辞到现在马上快</description>
-    </item>
-    
-    <item>
-      <title>日书-惊人的主机</title>
-      <link>https://www.smslit.top/2019/03/06/daily-amazing-computer/</link>
-      <pubDate>Wed, 06 Mar 2019 22:42:03 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/06/daily-amazing-computer/</guid>
-      <description>这些天看了某宝上的电脑主机，搜索了一下服务器主机，哇，Amazing！竟然如此便宜，志强 E5 的处理器耶，看了一下 CPU 云梯图，对照了一下桌面级的处</description>
     </item>
     
   </channel>

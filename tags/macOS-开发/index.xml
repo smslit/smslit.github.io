@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 10 Mar 2019 15:26:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Mar 2019 11:33:15 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS 开发之本地消息通知</title>
+      <link>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</link>
+      <pubDate>Sun, 17 Mar 2019 11:33:15 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</guid>
+      <description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
+    </item>
     
     <item>
       <title>macOS 开发之 NSTextField 文本的垂直居中</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/02/19/mac_app_international_2/</guid>
       <description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之 APP 名称本地化</title>
-      <link>https://www.smslit.top/2019/02/18/mac_app_international_1/</link>
-      <pubDate>Mon, 18 Feb 2019 09:10:02 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/02/18/mac_app_international_1/</guid>
-      <description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a</description>
     </item>
     
   </channel>

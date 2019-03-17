@@ -7,8 +7,336 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sat, 16 Mar 2019 23:56:00 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 17 Mar 2019 11:33:15 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>macOS 开发之本地消息通知</title>
+			<link>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</link>
+			<pubDate>Sun, 17 Mar 2019 11:33:15 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</guid>
+			<description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
+			<content type="html"><![CDATA[
+
+<p>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。</p>
+
+<h1 id="开发平台">开发平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="简单介绍">简单介绍</h1>
+
+<p>本地消息通知(Notification)是由 App 请求用户消息中心(User Notifications Center)而推送的，我们的 App 既是消息的提供者又是消息的接受者，一个 App 最多支持 64 个消息通知！</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/sq37y.svg" alt="" /></p>
+
+<h2 id="消息通知组成">消息通知组成</h2>
+
+<p>一个消息通知一般在显示上看由标题(title)、副标题(subtitle)、消息内容、logo和按钮组成。另外还包括提示音的设置和用户信息(用于传递数据)。</p>
+
+<h2 id="消息通知的类型">消息通知的类型</h2>
+
+<p>消息通知主要有三种类型：无、横幅(barner)和提示(alert)</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gvq8q.png" alt="" /></p>
+
+<p>默认情况下使用 <em>横幅</em> 样式！</p>
+
+<h2 id="通知推送的触发条件">通知推送的触发条件</h2>
+
+<p>消息推送的触发条件有多种方式，消息中心会根据指定的触发条件推送消息：</p>
+
+<ul>
+<li>直接推送通知，一般是根据 App 中自身逻辑灵活手动触发</li>
+<li>按照指定时间间隔推送通知，可以设置为重复或者不重复</li>
+<li>根据指定的日期时间推送通知，可以设置是否重复</li>
+<li>根据地理位置推送通知，通常要设置经纬度坐标以及范围(方圆距离)</li>
+</ul>
+
+<h2 id="消息通知的处理">消息通知的处理</h2>
+
+<p>本地消息通知通过用户消息通知中心的消息队列进行管理，根据通知的触发条件推送的消息会依次存放到这个消息队列，然后依次通知给 App，而 App 可以通过对消息中心的代理实现代理方法对消息通知行为进行相应处理。</p>
+
+<h2 id="消息通知的管理">消息通知的管理</h2>
+
+<p>消息通知的管理由通知中心完成，包括消息通知的注册、删除、推送以及权限。</p>
+
+<h3 id="消息通知的注册">消息通知的注册</h3>
+
+<p>要想让 App 配置好的通知能够按照预期进行推送，必须要将通知注册到通知中心。</p>
+
+<h3 id="消息通知的推送">消息通知的推送</h3>
+
+<p>通知中心会时刻监听着每个消息通知，一旦满足触发条件就会像消息通知队列中推送消息。</p>
+
+<h3 id="消息通知的删除">消息通知的删除</h3>
+
+<p>有时需要关闭已经注册的消息通知的推送活动，通知中心可以将指定消息通知删除，不再监管。</p>
+
+<h3 id="消息通知的权限">消息通知的权限</h3>
+
+<p>在 macOS 的系统偏好设置中可以设置指定应用的通知权限：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/n1q5z.png" alt="" /></p>
+
+<p>这些通知权限在 App 中可以由通知中心进行管理，通常就是消息弹窗和声音播放两点。</p>
+
+<h2 id="关于实现">关于实现</h2>
+
+<p>上面说了本地消息通知的一些基本概念和简单介绍，那么实现本地消息通知的流程就很清楚了：</p>
+
+<ul>
+<li>消息通知的配置，包括触发条件、消息通知中内容</li>
+<li>注册消息通知到消息通知中心</li>
+<li>实现消息通知中心的代理方法，从而完成对消息的处理</li>
+</ul>
+
+<p>目前看 Apple 官方的开发接口有两套：</p>
+
+<ul>
+<li>传统的消息通知接口，在 <code>Foundation</code> 框架中实现，SDK 支持明确标记 <code>macOS 10.8–10.14</code> <code>Deprecated</code>，也就是说 10.14 之后便废弃了</li>
+<li>最新的消息通知接口，与多个软件平台(iOS、watchOS、tvOS)共用，使用 <code>UserNotifacations</code> 框架，SDK 支持
+
+<ul>
+<li>iOS 10.0+</li>
+<li>macOS 10.14+</li>
+<li>tvOS 10.0+</li>
+<li>watchOS 3.0+</li>
+</ul></li>
+</ul>
+
+<p>不难看出 Apple 的软件开发生态蓝图的宏大，这不在本文讨论范围内！在下面会以一个简单的例子介绍使用两套方法的实现过程，不过会着重讲新的接口！</p>
+
+<h1 id="示例">示例</h1>
+
+<p>下面我们通过两个简单的 Demo 看一下如何实现本地消息通知。两个 Demo 中我们分别设置一个按钮，并分别绑定 各自的 Action，一个 Action 中按照传统的方式实现消息通知，另一个 Action 中按照新的方式实现。这个消息通知具有以下实现：</p>
+
+<ul>
+<li>立马推送的</li>
+<li>使用系统声音作为提示音，消息推送时播放</li>
+<li>通知携带数据在用户信息中</li>
+<li>通知设置两个按钮，一个是关闭一个是确定按钮，点击后打印传递的用户信息</li>
+</ul>
+
+<h2 id="传统实现方式">传统实现方式</h2>
+
+<ul>
+<li>打开 Xcode 新建一个使用 storyboard 的工程，我们就命名为 <code>OldNotificationDemo</code></li>
+<li>打开 <code>Main.storyboard</code> ，在 view controller 中添加一个按钮，按钮标题改为 <code>通知</code></li>
+<li>为两个按钮绑定 action，在 <code>Main.storyboard</code> 中按下快捷键 <code>Option</code> + <code>Command</code> + 回车键 打开辅助编辑器，按住 <code>ctrl</code> 键的同时鼠标左键拖动按钮到 ViewController.swift 的 ViewController 类中绑定 action 为 <code>oldNotificationAction</code></li>
+</ul>
+
+<h3 id="更改通知样式">更改通知样式</h3>
+
+<p>传统接口下，App 默认使用横幅的通知样式，但是横幅的通知只能显示 reply button 和 other button，但是我们想自己定义一个按钮，只能使用提示的样式，所以我们首先更改一下通知样式，需要在 Info.plist 文件中添加一个新的键——<code>NSUserNotificationAlertStyle</code>，值设置为 <code>alert</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/pg2li.png" alt="" /></p>
+
+<h3 id="oldnotificationaction-实现">oldNotificationAction 实现</h3>
+
+<p>下面在 oldNotificationAction 中添加使用传统方法消息通知的实现:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">oldNotificationAction</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">userNotification</span> <span class="p">=</span> <span class="n">NSUserNotification</span><span class="p">()</span>
+    
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;传统方式&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">subtitle</span> <span class="p">=</span> <span class="s">&#34;old&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">informativeText</span> <span class="p">=</span> <span class="s">&#34;我是一个传统的方式&#34;</span>
+    
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">hasActionButton</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">otherButtonTitle</span> <span class="p">=</span> <span class="s">&#34;关闭&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">actionButtonTitle</span> <span class="p">=</span> <span class="s">&#34;显示&#34;</span>
+    
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">identifier</span> <span class="p">=</span> <span class="s">&#34;OLD_NOTIFICATION_DEMO&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;old&#34;</span><span class="p">]</span>
+    
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">soundName</span> <span class="p">=</span> <span class="n">NSUserNotificationDefaultSoundName</span>
+    
+    <span class="n">NSUserNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+    <span class="n">NSUserNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">deliver</span><span class="p">(</span><span class="n">userNotification</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<ul>
+<li>上面使用消息通知中心的 <code>deliver</code> 方法直接推送消息，如果要设置其它触发方式的通知需要使用通知中心的 <code>scheduleNotification</code> 方法</li>
+<li>将要传递用户数据设置在 <code>userNotification</code> 的 <code>userInfo</code> 中</li>
+<li>设置了通知中心的代理为 self，所以要完成剩下的实现，还需要实现代理方法</li>
+<li>要显示 action 按钮必须设置 <code>userNotification</code> 的 <code>hasActionButton</code> 为 <code>true</code></li>
+</ul>
+
+<h3 id="实现代理方法">实现代理方法</h3>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">extension</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">NSUserNotificationCenterDelegate</span> <span class="p">{</span>
+    
+    <span class="c1">// 当 App 在前台时是否弹出通知</span>
+    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">NSUserNotificationCenter</span><span class="p">,</span> <span class="n">shouldPresent</span> <span class="n">notification</span><span class="p">:</span> <span class="n">NSUserNotification</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 推送消息后的回调</span>
+    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">NSUserNotificationCenter</span><span class="p">,</span> <span class="n">didDeliver</span> <span class="n">notification</span><span class="p">:</span> <span class="n">NSUserNotification</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="si">))</span><span class="s"> -&gt; 消息已经推送&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 用户点击了通知后的回调</span>
+    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">NSUserNotificationCenter</span><span class="p">,</span> <span class="n">didActivate</span> <span class="n">notification</span><span class="p">:</span> <span class="n">NSUserNotification</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">notification</span><span class="p">.</span><span class="n">activationType</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">actionButtonClicked</span><span class="p">:</span>
+            <span class="kd">let</span> <span class="nv">method</span> <span class="p">=</span> <span class="n">notification</span><span class="p">.</span><span class="n">userInfo</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;method&#34;</span><span class="p">]</span> <span class="k">as</span><span class="o">!</span> <span class="nb">String</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;methods -&gt; </span><span class="si">\(</span><span class="n">method</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">contentsClicked</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;clicked&#34;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">replied</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;replied&#34;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">additionalActionClicked</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;additional action&#34;</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;action&#34;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span></code></pre></div>
+<ul>
+<li>代理方法 <code>userNotificationCenter(:shouldPresent:)-&gt;Bool</code> 中如果返回 false，那么 App 的窗口是当前系统桌面显示的窗口，就不会弹出通知也不会播放提示音</li>
+<li>通知中心推送消息后会调用 <code>userNotificationCenter(:didDeliver:)</code></li>
+<li>当用户操作弹窗时，比如点击弹窗、点击弹窗上的按钮时，<code>userNotificationCenter(:didActivate)</code> 方法就会被调用，在其中要实现对各种操作的处理</li>
+</ul>
+
+<h3 id="运行程序">运行程序</h3>
+
+<p>运行程序后点击窗口中按钮，不出意外就会看到通知弹窗，同时控制台会打印推送消息，点击弹窗的按钮或弹窗可以看到控制台打印了相应的信息！</p>
+
+<p>Demo 下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/jfc5c.zip" target="_blank">OldNotificationDemo</a></p>
+
+<h2 id="最新实现方式">最新实现方式</h2>
+
+<ul>
+<li>打开 Xcode 新建一个使用 storyboard 的工程，我们就命名为 <code>NotificationDemo</code></li>
+<li>打开 <code>Main.storyboard</code> ，在 view controller 中添加一个按钮，按钮标题改为 <code>通知</code></li>
+<li>为两个按钮绑定 action，在 <code>Main.storyboard</code> 中按下快捷键 <code>Option</code> + <code>Command</code> + 回车键 打开辅助编辑器，按住 <code>ctrl</code> 键的同时鼠标左键拖动按钮到 ViewController.swift 的 ViewController 类中绑定 action 为 <code>notificationAction</code></li>
+</ul>
+
+<h3 id="关于样式">关于样式</h3>
+
+<p>新的实现方式与传统的实现方式不同的是，在样式为<strong>横幅(barner)</strong>时，将鼠标放置在通知弹窗上可以显示自定义的 action 按钮，所以这里没必要更改样式！</p>
+
+<h3 id="notificationaction-实现">notificationAction 实现</h3>
+
+<p>因为新的方式使用的是 <code>UserNotifications</code> 框架，所以需要先导入模块，在 <code>ViewController.swift</code> 中添加代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">import</span> <span class="nc">UserNotifications</span></code></pre></div>
+<p>新的方式通知的实现过程与传统的有很大不同，流程大概是：</p>
+
+<ul>
+<li>先创建一个 <code>UNMutableNotificationContent</code> 对象来设置通知的内容，包括标题、内容、图片、标识符、提示声音以及用户数据</li>
+<li>(可选) 创建一个触发器，触发器的类型有很多：
+
+<ul>
+<li><code>UNCalendarNotificationTrigger</code>: 通过指定日期和时间进行触发</li>
+<li><code>UNTimeIntervalNotificationTrigger</code>: 通过设置指定时间间隔和是否重复来触发</li>
+<li><code>UNLocationNotificationTrigger</code>: 通过指定地理坐标及地域范围来触发</li>
+</ul></li>
+<li>(可选) 创建操作集合，这个操作集合类型为 <code>UNNotificationCategory</code> 对应通知弹窗的按钮，集合中元素为 <code>UNNotificationAction</code> 对象，需要调用通知中心的 <code>setNotificationCategories</code> 方法添加生效。
+
+<ul>
+<li>barner样式下直接显示两个操作项按钮</li>
+<li>alert 样式下集合下的操作项会显示为 <code>操作</code> 的子项</li>
+<li><code>UNNotificationAction</code> 创建时需要指定唯一标识符、显示名称和选项，标识符用于后期区分 action 进行操作处理</li>
+<li>集合的唯一标识符与通知内容对象的唯一标识符统一起来时，才能在 barner 样式下显示按钮</li>
+</ul></li>
+<li>然后通过上面创建好的通知内容对象和触发器创建一个通知请求，它是 <code>UNNotificationRequest</code> 对象，还需要指定一个唯一标识符，另外如果指定的触发器为空，通知中心会立即推送通知</li>
+<li>最后指定通知中心的代理对象，一般情况就是类自身即 self，之后调用通知中心对象的 <code>add</code> 方法将通知请求添加到通知中心对象，这个通知中心对象使用系统当前的就可以，调用 <code>UNUserNotificationCenter.current()</code> 即可获得</li>
+</ul>
+
+<p>所以根据我们的实现目标，<code>notificationAction</code> 的实现如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">notificationAction</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">content</span> <span class="p">=</span> <span class="n">UNMutableNotificationContent</span><span class="p">()</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;新的方式&#34;</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">body</span> <span class="p">=</span> <span class="s">&#34;我是一个新的方式&#34;</span>
+    
+    <span class="n">content</span><span class="p">.</span><span class="n">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;new&#34;</span><span class="p">]</span>
+    
+    <span class="n">content</span><span class="p">.</span><span class="n">sound</span> <span class="p">=</span> <span class="n">UNNotificationSound</span><span class="p">.</span><span class="k">default</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">categoryIdentifier</span> <span class="p">=</span> <span class="s">&#34;NOTIFICATION_DEMO&#34;</span>
+    
+    <span class="kd">let</span> <span class="nv">acceptAction</span> <span class="p">=</span> <span class="n">UNNotificationAction</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;SHOW_ACTION&#34;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;显示&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="kd">let</span> <span class="nv">declineAction</span> <span class="p">=</span> <span class="n">UNNotificationAction</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;CLOSE_ACTION&#34;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;关闭&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="kd">let</span> <span class="nv">testCategory</span> <span class="p">=</span> <span class="n">UNNotificationCategory</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;NOTIFICATION_DEMO&#34;</span><span class="p">,</span>
+                                              <span class="n">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">acceptAction</span><span class="p">,</span> <span class="n">declineAction</span><span class="p">],</span>
+                                              <span class="n">intentIdentifiers</span><span class="p">:</span> <span class="p">[],</span>
+                                              <span class="n">hiddenPreviewsBodyPlaceholder</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">,</span>
+                                              <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="n">customDismissAction</span><span class="p">)</span>
+    
+    <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;NOTIFICATION_DEMO_REQUEST&#34;</span><span class="p">,</span>
+                                        <span class="n">content</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
+                                        <span class="n">trigger</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    
+    <span class="c1">// Schedule the request with the system.</span>
+    <span class="kd">let</span> <span class="nv">notificationCenter</span> <span class="p">=</span> <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">()</span>
+    <span class="n">notificationCenter</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+    <span class="n">notificationCenter</span><span class="p">.</span><span class="n">setNotificationCategories</span><span class="p">([</span><span class="n">testCategory</span><span class="p">])</span>
+    <span class="n">notificationCenter</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="c1">// Handle any errors.</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p><strong>注意：</strong></p>
+
+<p><code>testCategory</code> 和 <code>content</code> 一定要使用一致的标识符，否则通知横幅样式下不会显示 action 按钮</p>
+
+<h3 id="代理方法的实现">代理方法的实现</h3>
+
+<p>直接贴出实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">extension</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">UNUserNotificationCenterDelegate</span> <span class="p">{</span>
+    
+    <span class="c1">// 用户点击弹窗后的回调</span>
+    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">UNUserNotificationCenter</span><span class="p">,</span> <span class="n">didReceive</span> <span class="n">response</span><span class="p">:</span> <span class="n">UNNotificationResponse</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">userInfo</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">notification</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">userInfo</span>
+        <span class="k">switch</span> <span class="n">response</span><span class="p">.</span><span class="n">actionIdentifier</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s">&#34;SHOW_ACTION&#34;</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="n">userInfo</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;CLOSE_ACTION&#34;</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Nothing to do&#34;</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+        <span class="n">completionHandler</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// 配置通知发起时的行为 alert -&gt; 显示弹窗, sound -&gt; 播放提示音</span>
+    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">UNUserNotificationCenter</span><span class="p">,</span> <span class="n">willPresent</span> <span class="n">notification</span><span class="p">:</span> <span class="n">UNNotification</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">UNNotificationPresentationOptions</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">completionHandler</span><span class="p">([.</span><span class="n">alert</span><span class="p">,</span> <span class="p">.</span><span class="n">sound</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<ul>
+<li>两个回调中都有一个逃逸闭包参数，是一个完成处理的回调，一定要执行相应的 <code>completionHandler</code></li>
+<li><code>userNotificationCenter(:willPresent:withCompletionHandler)</code> 方法中通过 <code>completionHandler</code> 配置通知行为，这里配置既显示弹窗又播放提示音</li>
+</ul>
+
+<h3 id="关于消息通知权限">关于消息通知权限</h3>
+
+<p>其实严格来讲，一个 app 在第一次启动的时候要向系统请求设置通知权限的，等在之后的所有启动的时候就不需要请求设置权限了，只需每次读取系统偏好设置中的权限配置来实现相应的通知行为。貌似在 macOS 中不做这个操作，目前也没什么影响，如果想进一步了解权限可以阅读 <a href="https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications" target="_blank">Asking Permission to Use Notifications</a>!</p>
+
+<h3 id="验证实现">验证实现</h3>
+
+<p>运行程序，点击窗口中的按钮就能看到通知了！将鼠标放在通知上，就能显示操作按钮，点击按钮就能在 xcode 控制器窗口看到相应的打印信息了。</p>
+
+<p>Demo 下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-17-NotificationDemo.zip" target="_blank">NotificationDemo</a></p>
+
+<h1 id="总结">总结</h1>
+
+<p>到目前为止，我们尝试了两种方式实现消息通知的推送，如果有其它的实现需求，比如按日期时间推送消息，直接参考阅读 Apple 官方的资料吧！Apple 的各大系统平台接口融合是大势所趋，如果有必要，大家赶快根据新的实现方式替换马上要淘汰的方法吧！</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://blog.gaelfoppolo.com/user-notifications-in-macos-66c25ed5c692" target="_blank">User Notifications in macOS</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/nsusernotificationcenter" target="_blank">NSUserNotificationCenter</a></li>
+<li><a href="https://developer.apple.com/documentation/usernotifications/unusernotificationcenter" target="_blank">UNUserNotificationCenter</a></li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>日书-关于 macOS 开发知识分享</title>
@@ -348,23 +676,6 @@ $$</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310184822.png" alt="" /></p>
 
 <p>Demo下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/VerticallyCenteredTextFieldDemo.zip" target="_blank">VerticallyCenteredTextFieldDemo.zip</a></p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-不能被压力左右</title>
-			<link>https://www.smslit.top/2019/03/09/daily-pressure/</link>
-			<pubDate>Sat, 09 Mar 2019 22:27:20 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/09/daily-pressure/</guid>
-			<description>作为一个入门的独立开发者，确实得有强大的心理素质！心理难免会有薄弱的时刻，会让早已潜伏很久的压力趁虚而入，这就有点糟糕了，心情容易被压力左右</description>
-			<content type="html"><![CDATA[<p>作为一个入门的独立开发者，确实得有强大的心理素质！心理难免会有薄弱的时刻，会让早已潜伏很久的压力趁虚而入，这就有点糟糕了，心情容易被压力左右而影响自己的工作效率！而当这种薄弱的时刻是亲近的人慢慢将我已有的心理防线慢慢剥离的时候，那种说不出的压抑与落魄，难以言喻！个人认为压力是客观存在的，人们当察觉到的时候才会知道这个东西的存在，这时它就是一种真切的主观心理反馈！</p>
-
-<p>生活的压力乃至生存的压力都无时无刻对我虎视眈眈，一不小心便会被啃一口，诸多压力不益多说！被送压力的情况也不在少数，十里也是真真切切的感受到了它们的存在，只好心里设下一种虚无缥缈的防线，假装看不见，才可安定心神，醉心于自己的目标！心里提醒自己，万不能被这些左右，否则便辜负那些支持我的人了。另外身边的人跟着自己一起受罪，十里真的是歉意层叠万丈，已成可怕的负罪深渊！</p>
-
-<p>依旧觉得唯有继续坚持下去，绝不能被压力左右，要让自己有能力去回馈和关切身边的有心人！能养的活家人和自己的独立开发者才是成功的开始，压力请走开，别挡路！</p>
-
-<p>友情提示：看到博客中《日书》系列文章的朋友，大家可自觉忽略，目前阶段可能会多一些“无病呻吟”！以后尽量多放干货！对不住看文章的您了！</p>
 ]]></content>
 		</item>
 		

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 16 Mar 2019 23:56:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Mar 2019 11:33:15 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS 开发之本地消息通知</title>
+      <link>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</link>
+      <pubDate>Sun, 17 Mar 2019 11:33:15 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</guid>
+      <description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
+    </item>
     
     <item>
       <title>日书-关于 macOS 开发知识分享</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
       <description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
-    </item>
-    
-    <item>
-      <title>日书-不能被压力左右</title>
-      <link>https://www.smslit.top/2019/03/09/daily-pressure/</link>
-      <pubDate>Sat, 09 Mar 2019 22:27:20 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/09/daily-pressure/</guid>
-      <description>作为一个入门的独立开发者，确实得有强大的心理素质！心理难免会有薄弱的时刻，会让早已潜伏很久的压力趁虚而入，这就有点糟糕了，心情容易被压力左右</description>
     </item>
     
   </channel>

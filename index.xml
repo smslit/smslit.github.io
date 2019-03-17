@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 17 Mar 2019 11:33:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Mar 2019 22:55:12 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>头号玩家</title>
+      <link>https://www.smslit.top/2019/03/17/daily-ready-player-one/</link>
+      <pubDate>Sun, 17 Mar 2019 22:55:12 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/17/daily-ready-player-one/</guid>
+      <description>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说</description>
+    </item>
     
     <item>
       <title>macOS 开发之本地消息通知</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/10/daily-vim-renormal/</guid>
       <description>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之 NSTextField 文本的垂直居中</title>
-      <link>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
-      <pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
-      <description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
     </item>
     
   </channel>

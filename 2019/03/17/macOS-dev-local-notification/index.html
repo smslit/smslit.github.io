@@ -13,7 +13,7 @@
 
 <meta itemprop="datePublished" content="2019-03-17T11:33:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-17T11:33:15&#43;08:00" />
-<meta itemprop="wordCount" content="3553">
+<meta itemprop="wordCount" content="3551">
 
 
 
@@ -293,7 +293,7 @@
 <p>新的方式通知的实现过程与传统的有很大不同，流程大概是：</p>
 
 <ul>
-<li>先创建一个 <code>UNMutableNotificationContent</code> 对象来设置通知的内容，包括标题、内容、图片、标识符、提示声音以及用户数据</li>
+<li>先创建一个 <code>UNMutableNotificationContent</code> 来设置通知的内容，包括标题、内容、图片、标识符、提示声音以及用户数据</li>
 <li>(可选) 创建一个触发器，触发器的类型有很多：
 
 <ul>
@@ -301,16 +301,16 @@
 <li><code>UNTimeIntervalNotificationTrigger</code>: 通过设置指定时间间隔和是否重复来触发</li>
 <li><code>UNLocationNotificationTrigger</code>: 通过指定地理坐标及地域范围来触发</li>
 </ul></li>
-<li>(可选) 创建操作集合，这个操作集合类型为 <code>UNNotificationCategory</code> 对应通知弹窗的按钮，集合中元素为 <code>UNNotificationAction</code> 对象，需要调用通知中心的 <code>setNotificationCategories</code> 方法添加生效。
+<li>(可选) 创建操作集合，这个操作集合类型为 <code>UNNotificationCategory</code> 对应通知弹窗的按钮，集合中元素为 <code>UNNotificationAction</code> 实例，需要调用通知中心的 <code>setNotificationCategories</code> 方法添加生效。
 
 <ul>
 <li>barner样式下直接显示两个操作项按钮</li>
 <li>alert 样式下集合下的操作项会显示为 <code>操作</code> 的子项</li>
 <li><code>UNNotificationAction</code> 创建时需要指定唯一标识符、显示名称和选项，标识符用于后期区分 action 进行操作处理</li>
-<li>集合的唯一标识符与通知内容对象的唯一标识符统一起来时，才能在 barner 样式下显示按钮</li>
+<li>集合的唯一标识符与通知内容实例的唯一标识符统一起来时，才能在 barner 样式下显示按钮</li>
 </ul></li>
-<li>然后通过上面创建好的通知内容对象和触发器创建一个通知请求，它是 <code>UNNotificationRequest</code> 对象，还需要指定一个唯一标识符，另外如果指定的触发器为空，通知中心会立即推送通知</li>
-<li>最后指定通知中心的代理对象，一般情况就是类自身即 self，之后调用通知中心对象的 <code>add</code> 方法将通知请求添加到通知中心对象，这个通知中心对象使用系统当前的就可以，调用 <code>UNUserNotificationCenter.current()</code> 即可获得</li>
+<li>然后通过上面创建好的通知内容实例和触发器创建一个通知请求，它是 <code>UNNotificationRequest</code> 实例，还需要指定一个唯一标识符，另外如果指定的触发器为空，通知中心会立即推送通知</li>
+<li>最后指定通知中心的代理实例，一般情况就是类自身即 self，之后调用通知中心实例的 <code>add</code> 方法将通知请求添加到通知中心实例，这个通知中心实例使用系统当前的就可以，调用 <code>UNUserNotificationCenter.current()</code> 即可获得</li>
 </ul>
 
 <p>所以根据我们的实现目标，<code>notificationAction</code> 的实现如下：</p>
@@ -409,7 +409,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					3553 字
+					3551 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>

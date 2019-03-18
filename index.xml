@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 17 Mar 2019 22:55:12 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Mar 2019 21:21:06 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>日书-投怀 Vue</title>
+      <link>https://www.smslit.top/2019/03/18/daily-vue-vue-vue/</link>
+      <pubDate>Mon, 18 Mar 2019 21:21:06 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/18/daily-vue-vue-vue/</guid>
+      <description>说来太巧了，从前天晚上开始看 Vue 官网教程学习 Vue，今天就发现卖桃君在公众号发了宣布极客时间新推出 Vue 视频教程进行大甩卖的文章，只感叹这就是一个</description>
+    </item>
     
     <item>
       <title>日书-头号玩家</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/11/daily-new-discovery-power-man/</guid>
       <description>今天在看卖桃君的极客时间时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前</description>
-    </item>
-    
-    <item>
-      <title>日书- vim 仍然是我的利器</title>
-      <link>https://www.smslit.top/2019/03/10/daily-vim-renormal/</link>
-      <pubDate>Sun, 10 Mar 2019 22:49:00 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/10/daily-vim-renormal/</guid>
-      <description>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写</description>
     </item>
     
   </channel>

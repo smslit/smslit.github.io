@@ -7,11 +7,32 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 18 Mar 2019 21:21:06 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 19 Mar 2019 22:31:50 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>日书-投怀 Vue</title>
+			<title>甘作小众</title>
+			<link>https://www.smslit.top/daily/be-a-small-potato/</link>
+			<pubDate>Tue, 19 Mar 2019 22:31:50 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/be-a-small-potato/</guid>
+			<description>今天看知乎想法有人说： 从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。 拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发</description>
+			<content type="html"><![CDATA[<p>今天看知乎想法有人说：</p>
+
+<blockquote>
+<p>从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。</p>
+
+<p>拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发干货了。</p>
+</blockquote>
+
+<p>其实，在乎这些干什么，一定要追求流量吗？流量很重要，但也不是唯一的王道嘛！十里觉得，做好小众，沉心打造自己一番小天地，别人看到如果喜欢那很好，就一起交流嘛，如果不以为然，也不要放在心上，坚持做好自己。不管你看与不看，我都在！</p>
+
+<p>就是这样！安静的打磨自己&hellip;</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>投怀 Vue</title>
 			<link>https://www.smslit.top/daily/vue-vue-vue/</link>
 			<pubDate>Mon, 18 Mar 2019 21:21:06 +0800</pubDate>
 			
@@ -35,7 +56,7 @@
 		</item>
 		
 		<item>
-			<title>日书-头号玩家</title>
+			<title>头号玩家</title>
 			<link>https://www.smslit.top/daily/ready-player-one/</link>
 			<pubDate>Sun, 17 Mar 2019 22:55:12 +0800</pubDate>
 			
@@ -48,7 +69,7 @@
 		</item>
 		
 		<item>
-			<title>日书-关于 macOS 开发知识分享</title>
+			<title>关于 macOS 开发知识分享</title>
 			<link>https://www.smslit.top/daily/macOS-dev-plan-change/</link>
 			<pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
 			
@@ -159,7 +180,7 @@
 		</item>
 		
 		<item>
-			<title>日书-很对味的收获</title>
+			<title>很对味的收获</title>
 			<link>https://www.smslit.top/daily/amazing-ui-component/</link>
 			<pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
 			
@@ -176,7 +197,7 @@
 		</item>
 		
 		<item>
-			<title>日书-君子爱财，取之有道</title>
+			<title>君子爱财，取之有道</title>
 			<link>https://www.smslit.top/daily/money-money-lie/</link>
 			<pubDate>Thu, 14 Mar 2019 23:57:09 +0800</pubDate>
 			
@@ -193,7 +214,7 @@
 		</item>
 		
 		<item>
-			<title>日书-别致的音乐盒</title>
+			<title>别致的音乐盒</title>
 			<link>https://www.smslit.top/daily/music-box-share-to-you/</link>
 			<pubDate>Wed, 13 Mar 2019 22:17:49 +0800</pubDate>
 			
@@ -222,7 +243,7 @@ musicbox</code></pre></div>
 		</item>
 		
 		<item>
-			<title>日书-多走弯路就是捷径</title>
+			<title>多走弯路就是捷径</title>
 			<link>https://www.smslit.top/daily/study-style-not-bad/</link>
 			<pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
 			
@@ -245,7 +266,7 @@ musicbox</code></pre></div>
 		</item>
 		
 		<item>
-			<title>日书-又‘无脑’订阅了一个课程</title>
+			<title>又‘无脑’订阅了一个课程</title>
 			<link>https://www.smslit.top/daily/new-discovery-power-man/</link>
 			<pubDate>Mon, 11 Mar 2019 22:31:33 +0800</pubDate>
 			
@@ -274,23 +295,6 @@ musicbox</code></pre></div>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311230011.jpg" width="300px"/> 
 </figure>
 
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书- vim 仍然是我的利器</title>
-			<link>https://www.smslit.top/daily/vim-renormal/</link>
-			<pubDate>Sun, 10 Mar 2019 22:49:00 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/vim-renormal/</guid>
-			<description>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写</description>
-			<content type="html"><![CDATA[<p>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写文章太让人抓狂了！今天提起性子决定要查一下到底是怎么回事儿，之前发现的是只有编辑 markdown 的时候才会出现这个情况，其它文件类型都正常显示，说明这不是 vim 的锅，一定是插件或配置搞的鬼！我只好用笨办法，插件一个一个的卸载，最终查到原来是 <code>Yggdroot/indentLine</code> 这个插件导致，想到这个插件也就是在编辑代码的时候有点用处，就添加了一个屏蔽配置，当打开文件是 markdown 的时候就禁用这个插件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; 解决 indentline 导致 markdown 文件无法正常显示 `` 的问题</span><span class="err">
-</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">markdown</span><span class="p">,</span><span class="nx">md</span> <span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">indentLine_enabled</span> <span class="p">=</span> <span class="m">0</span></code></pre></div>
-<p>另外，在查找上述问题的过程中，还发现了一个小问题，vim 会把我的 markdown 文件当 liquid 类型，到是对编辑文章的时候的语法高亮影响不大，但就是被我发现了在代码块的高亮上有影响，这也是不能忍的，继续屏蔽：</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; 解决插件将 md 或 markdown 误以为 liquid 的问题</span><span class="err">
-</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">polyglot_disabled</span> <span class="p">=</span> [<span class="s1">&#39;liquid&#39;</span>]</code></pre></div>
-<p>现在舒服多了，vim 依旧棒棒哒！</p>
 ]]></content>
 		</item>
 		

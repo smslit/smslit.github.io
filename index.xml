@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 18 Mar 2019 21:21:06 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 19 Mar 2019 22:31:50 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>日书-投怀 Vue</title>
+      <title>甘作小众</title>
+      <link>https://www.smslit.top/daily/be-a-small-potato/</link>
+      <pubDate>Tue, 19 Mar 2019 22:31:50 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/be-a-small-potato/</guid>
+      <description>今天看知乎想法有人说： 从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。 拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发</description>
+    </item>
+    
+    <item>
+      <title>投怀 Vue</title>
       <link>https://www.smslit.top/daily/vue-vue-vue/</link>
       <pubDate>Mon, 18 Mar 2019 21:21:06 +0800</pubDate>
       
@@ -22,7 +31,7 @@
     </item>
     
     <item>
-      <title>日书-头号玩家</title>
+      <title>头号玩家</title>
       <link>https://www.smslit.top/daily/ready-player-one/</link>
       <pubDate>Sun, 17 Mar 2019 22:55:12 +0800</pubDate>
       
@@ -40,7 +49,7 @@
     </item>
     
     <item>
-      <title>日书-关于 macOS 开发知识分享</title>
+      <title>关于 macOS 开发知识分享</title>
       <link>https://www.smslit.top/daily/macOS-dev-plan-change/</link>
       <pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
       
@@ -58,7 +67,7 @@
     </item>
     
     <item>
-      <title>日书-很对味的收获</title>
+      <title>很对味的收获</title>
       <link>https://www.smslit.top/daily/amazing-ui-component/</link>
       <pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
       
@@ -67,7 +76,7 @@
     </item>
     
     <item>
-      <title>日书-君子爱财，取之有道</title>
+      <title>君子爱财，取之有道</title>
       <link>https://www.smslit.top/daily/money-money-lie/</link>
       <pubDate>Thu, 14 Mar 2019 23:57:09 +0800</pubDate>
       
@@ -76,7 +85,7 @@
     </item>
     
     <item>
-      <title>日书-别致的音乐盒</title>
+      <title>别致的音乐盒</title>
       <link>https://www.smslit.top/daily/music-box-share-to-you/</link>
       <pubDate>Wed, 13 Mar 2019 22:17:49 +0800</pubDate>
       
@@ -85,21 +94,12 @@
     </item>
     
     <item>
-      <title>日书-多走弯路就是捷径</title>
+      <title>多走弯路就是捷径</title>
       <link>https://www.smslit.top/daily/study-style-not-bad/</link>
       <pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
       
       <guid>https://www.smslit.top/daily/study-style-not-bad/</guid>
       <description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
-    </item>
-    
-    <item>
-      <title>日书-又‘无脑’订阅了一个课程</title>
-      <link>https://www.smslit.top/daily/new-discovery-power-man/</link>
-      <pubDate>Mon, 11 Mar 2019 22:31:33 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/new-discovery-power-man/</guid>
-      <description>今天在看卖桃君的极客时间时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前</description>
     </item>
     
   </channel>

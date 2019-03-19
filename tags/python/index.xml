@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Mar 2019 23:44:26 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Jan 2019 15:10:32 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>鸭子类型是什么鬼</title>
-      <link>https://www.smslit.top/2019/03/15/daily-duck-type/</link>
-      <pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/15/daily-duck-type/</guid>
-      <description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
-    </item>
     
     <item>
       <title>python 利用百度 AI 实现 OCR</title>
@@ -112,6 +103,17 @@
       <description>&lt;p&gt;最近，朋友 &lt;a href=&#34;http://www.litreily.top&#34; target=&#34;_blank&#34;&gt;Litreily&lt;/a&gt; 发表了文章&lt;a href=&#34;http://www.litreily.top/2018/09/27/tee/&#34; target=&#34;_blank&#34;&gt;Linux指令 - tee的实现&lt;/a&gt; ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png&#34; alt=&#34;20181025154039778364827.png&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>zip 文件暴破</title>
+      <link>https://www.smslit.top/2018/10/23/crack-zip-hacker/</link>
+      <pubDate>Tue, 23 Oct 2018 17:00:50 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2018/10/23/crack-zip-hacker/</guid>
+      <description>&lt;p&gt;2007年年初，美国德克萨斯州的布朗斯维尔市的程序员 Albert Castillo 协助警方调查 John Craig Zimmerman 涉嫌拥有和制造儿童色情物品的案件，而 Castillo 就是使用&lt;strong&gt;字典式攻击技术&lt;/strong&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:https-baike-baid&#34;&gt;&lt;a href=&#34;#fn:https-baike-baid&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;解密了嫌疑人电脑中的zip压缩文件，从而得到儿童色情图片等证据，得以结束案件。本文十里就简单介绍一下使用 python3 进行字典式破解加密zip文件的方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181022154020132354092.png&#34; alt=&#34;20181022154020132354092.png&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

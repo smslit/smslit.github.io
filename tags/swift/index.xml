@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Mar 2019 23:44:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Nov 2016 21:53:23 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>鸭子类型是什么鬼</title>
-      <link>https://www.smslit.top/2019/03/15/daily-duck-type/</link>
-      <pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/15/daily-duck-type/</guid>
-      <description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
-    </item>
     
     <item>
       <title>swift获取系统当前时间</title>

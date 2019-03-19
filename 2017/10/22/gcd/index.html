@@ -13,7 +13,7 @@
 
 <meta itemprop="datePublished" content="2017-10-22T20:47:49&#43;08:00" />
 <meta itemprop="dateModified" content="2017-10-22T20:47:49&#43;08:00" />
-<meta itemprop="wordCount" content="819">
+<meta itemprop="wordCount" content="802">
 
 
 
@@ -101,7 +101,7 @@ $$</p>
 
 <p>两种证明定理的思路。</p>
 
-<p>若整数 \(d\)  整除整数 \(a\) ，记作 \(d\vert a\)。</p>
+<p>若整数 $d$  整除整数 $a$ ，记作 $d\vert a$。</p>
 
 <h3 id="方法1">方法1</h3>
 
@@ -124,7 +124,7 @@ $$</p>
 \end{aligned}
 $$</p>
 
-<p>所以，\(d\) 也是 \(b\) 和 \(a\ \boldsymbol{\mathrm{mod}}\ b\) 的公约数。</p>
+<p>所以，$d$ 也是 $b$ 和 $a\ \boldsymbol{\mathrm{mod}}\ b$ 的公约数。</p>
 
 <p>设:</p>
 
@@ -141,7 +141,7 @@ $$</p>
 d \vert a即，d也是a的约数
 $$</p>
 
-<p>综上，\(a\) 和 \(b\) 的公约数与b和 \(a\ \boldsymbol{\mathrm{mod}}\ b\) 的公约数是一致的，那么最大公约数也是一样。</p>
+<p>综上，$a$ 和 $b$ 的公约数与b和 $a\ \boldsymbol{\mathrm{mod}}\ b$ 的公约数是一致的，那么最大公约数也是一样。</p>
 
 <h3 id="方法2">方法2</h3>
 
@@ -161,15 +161,15 @@ r&amp;=a-kb\<br />
 \end{aligned}
 $$</p>
 
-<p>\((m-kn)\) 为整数，那么有c整除余数r，即:</p>
+<p>$(m-kn)$ 为整数，那么有c整除余数r，即:</p>
 
 <p>$$
 c \vert r
 $$</p>
 
-<p>下面证明 \(c = gcd(b, r)\):</p>
+<p>下面证明 $c = gcd(b, r)$:</p>
 
-<p>设\(m-kn\) 和 \(n\) 有大于1的公约数\(d\)，即</p>
+<p>设$m-kn$ 和 $n$ 有大于1的公约数$d$，即</p>
 
 <p>$$
 \begin{cases}m-kn&amp;=xd\\n&amp;=yd\end{cases} \Longrightarrow \begin{aligned}m&amp;=kn+xd\\&amp;=kyd+xd\\&amp;=(ky+x)d\end{aligned}
@@ -183,7 +183,7 @@ b&amp;=nc=ycd
 \end{cases}
 $$</p>
 
-<p>那么有\(cd \vert a 且 cd \vert b\)，这与\(c\) 是 \(a\) 和 \(b\) 的最大公约数是矛盾的。也就是说不存在 \(d&gt;1\) 满足上述过程，也就是说有：</p>
+<p>那么有$cd \vert a 且 cd \vert b$，这与$c$ 是 $a$ 和 $b$ 的最大公约数是矛盾的。也就是说不存在 $d&gt;1$ 满足上述过程，也就是说有：</p>
 
 <p>$$
 c=gcd(b, r)
@@ -200,9 +200,10 @@ $$</p>
 <p>实现思路就是，不断的取模求最大公约数，直到整除为止就能得到最终要求解最大公约数。</p>
 
 <ol>
-<li>令 \(r = a\ \boldsymbol{\mathrm{mod}}\ b, (0 \le r &lt; b )\)
-若 \(r=0\) 算法结束, \(b\) 就是最终结果</li>
-<li>算法过程: \(a \leftarrow b, b \leftarrow r\)，返回步骤1</li>
+<li><p>令 $r = a\ \boldsymbol{\mathrm{mod}}\ b, (0 \le r &lt; b )$
+若 $r=0$ 算法结束, $b$ 就是最终结果</p></li>
+
+<li><p>算法过程: $a \leftarrow b, b \leftarrow r$，返回步骤1</p></li>
 </ol>
 
 <h2 id="具体实现">具体实现</h2>
@@ -220,7 +221,7 @@ $$</p>
     <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
 <h3 id="c-版本">c++版本</h3>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="err">，</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>
@@ -239,7 +240,7 @@ $$</p>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					819 字
+					802 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>

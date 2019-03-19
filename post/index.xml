@@ -7,45 +7,8 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 18 Mar 2019 21:21:06 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 17 Mar 2019 11:33:15 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
-		
-		<item>
-			<title>日书-投怀 Vue</title>
-			<link>https://www.smslit.top/2019/03/18/daily-vue-vue-vue/</link>
-			<pubDate>Mon, 18 Mar 2019 21:21:06 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/18/daily-vue-vue-vue/</guid>
-			<description>说来太巧了，从前天晚上开始看 Vue 官网教程学习 Vue，今天就发现卖桃君在公众号发了宣布极客时间新推出 Vue 视频教程进行大甩卖的文章，只感叹这就是一个</description>
-			<content type="html"><![CDATA[<p>说来太巧了，从前天晚上开始看 Vue 官网教程学习 Vue，今天就发现卖桃君在公众号发了宣布极客时间新推出 Vue 视频教程进行大甩卖的文章，只感叹这就是一个“阴谋”！因为之前订阅了戴铭老师的《iOS 开发高手课》的教程，感受到了极客时间对于教程质质量的把控，所以应自己所需，立马剁手订阅了唐金州老师<sup class="footnote-ref" id="fnref:Ant-Design-Vue"><a href="#fn:Ant-Design-Vue">1</a></sup>的《Vue 开发实战》的课程，可惜甩卖活动不能使用之前的 30 刀的券，但无所谓了，优良的知识是无价的，这些投资是有必要的！如果您也想了解一下课程，扫码就看：</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-18-06ffd0319ac755538a585fa74e9e035e.jpg" width="300px"/> 
-</figure>
-
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:Ant-Design-Vue">一点资讯前端技术专家，Ant Design Vue 的作者 <a class="footnote-return" href="#fnref:Ant-Design-Vue"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-头号玩家</title>
-			<link>https://www.smslit.top/2019/03/17/daily-ready-player-one/</link>
-			<pubDate>Sun, 17 Mar 2019 22:55:12 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/17/daily-ready-player-one/</guid>
-			<description>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说</description>
-			<content type="html"><![CDATA[<p>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说观后感吧！这部电影应该是会给某一代人带来猛烈回忆杀的，很羞愧的说，只有红白机游戏和一些动漫形象对十里有点&rdquo;伤害&rdquo;，童年记忆嘛，电影里那些像素游戏也没怎么玩过😅！十里对电影中那句 “The reality is the only thing that&rsquo;s real” 记忆尤为深刻，现实是唯一的真实！虚幻之外，游戏之外，身边的人、物、景才是最真实的，拥抱生活，感受生活的人情感和状态才会是饱满的，这又让十里想到专注之余能自由穿梭于自己的世界与现实世界是多么的重要！</p>
-
-<p>除了电影特效带来的快感，十里还惊叹于男主是那么的了解绿洲的缔造者，每个细节的那种默契跨越了年龄，也跨越了虚拟与现实，时间与空间都无法掩盖两个人的相同关注点！那么世界上真的会存在如此了解你并与你很合拍的人吗？</p>
-]]></content>
-		</item>
 		
 		<item>
 			<title>macOS 开发之本地消息通知</title>
@@ -376,232 +339,2010 @@
 		</item>
 		
 		<item>
-			<title>日书-关于 macOS 开发知识分享</title>
-			<link>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</link>
-			<pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
+			<title>macOS 开发之 NSTextField 文本的垂直居中</title>
+			<link>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
+			<pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
 			
-			<guid>https://www.smslit.top/2019/03/16/daily-macOS-dev-plan-change/</guid>
-			<description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
-			<content type="html"><![CDATA[<p>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着要尽量能说清楚做什么，怎么做，为什么（what-how-why），能力有限，时间就会占用很多，毕竟还要做很多其他事情，索性 《macOS 开发》(博客和知乎专栏)就成了《macOS Development weekly》，哈哈！</p>
+			<guid>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
+			<description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
+			<content type="html"><![CDATA[
 
-<p>关于经验分享，还是想尽量时新，参照网上老旧的开发经验也要关注和探索技术的更新，就比如十里下一篇要讲的本地通知，网上提供的方法大多是马上要废弃的方式，阅读 apple 官方关于 Notification 的开发资料才知道未来 API 的发展方向，去年 WWDC 已经很清楚说了 iOS 应用移植到 macOS 的计划，作为开发者也应注意到了 apple 正努力融合 iOS 和 macOS 开发接口，得时刻关注动向，才能让自己的作品与时俱进！知识经验的分享也便能时新！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>鸭子类型是什么鬼</title>
-			<link>https://www.smslit.top/2019/03/15/daily-duck-type/</link>
-			<pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/15/daily-duck-type/</guid>
-			<description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
-			<content type="html"><![CDATA[<p>刚刚看到 <a href="https://zhuanlan.zhihu.com/p/59299729" target="_blank">《Python Vs Go，鸭子类型，你有我也有》</a> 了解到 <strong>鸭子类型</strong>，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 <a href="https://www.zhihu.com/people/pegasus-wang/activities" target="_blank">PegasusWang</a> 稍微开了开车，哈哈！</p>
+<p>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可以满足我们的需求！</p>
 
-<p>在程序设计中，鸭子类型（英语：duck typing）是动态类型的一种风格。在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由&rdquo;当前方法和属性的集合&rdquo;决定。这个概念的名字来源于由James Whitcomb Riley提出的鸭子测试，“鸭子测试”可以这样表述：</p>
-
-<blockquote>
-<p>当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。<sup class="footnote-ref" id="fnref:https-zh-wikiped"><a href="#fn:https-zh-wikiped">1</a></sup></p>
-</blockquote>
-
-<p>很明显在这里，我们更关注的是对象的行为而不是它们的类型。</p>
-
-<p>举个🌰，定义一个鸭子类，其有个 <strong>叫</strong> 方法，在定义一个人类(有一种男人被称为“🦆”)，他也有 <strong>叫</strong> 的方法，总感觉好搞笑！这里我们就可以认为它们都有叫的方法，都是鸭子的行为，所以都是鸭子！Python 试一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">class</span> <span class="nc">Duck</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;呱呱&#34;</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Man</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;女王大人&#34;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">do_quack</span><span class="p">(</span><span class="n">ducker</span><span class="p">):</span>
-    <span class="n">ducker</span><span class="o">.</span><span class="n">quack</span><span class="p">()</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">Duck</span><span class="p">(</span><span class="s1">&#39;duck&#39;</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">Man</span><span class="p">(</span><span class="s1">&#39;man&#39;</span><span class="p">)</span>
-    <span class="n">do_quack</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-    <span class="n">do_quack</span><span class="p">(</span><span class="n">m</span><span class="p">)</span></code></pre></div>
-<p><a href="https://www.zhihu.com/people/pegasus-wang/activities" target="_blank">PegasusWang</a> 还用 Go 语言试了一下，使用了 interface 特性，咦！这与 swift 语言中的协议(protocol) 很像嘛，那咱用 swift 实现一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">import</span> <span class="nc">Foundation</span>
-
-<span class="kd">protocol</span> <span class="nc">Ducker</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">Duck</span><span class="p">:</span> <span class="n">Ducker</span> <span class="p">{</span>
-    
-    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
-    
-    <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
-    <span class="p">}</span>
-    
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;呱呱&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">Man</span><span class="p">:</span> <span class="n">Ducker</span> <span class="p">{</span>
-    
-    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
-    
-    <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
-    <span class="p">}</span>
-    
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;女王大人&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">Ducker</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">ducker</span><span class="p">.</span><span class="n">quack</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">Duck</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;duck&#34;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="n">Man</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;man&#34;</span><span class="p">)</span>
-
-<span class="n">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">d</span><span class="p">)</span>
-<span class="n">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">m</span><span class="p">)</span></code></pre></div>
-<p>最终我们都能听见 duck 和 man 的叫声，Nice！</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">呱呱
-女王大人</code></pre></div><div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:https-zh-wikiped">在鸭子类型中，关注点在于对象的行为，能作什么；而不是关注对象所属的类型。&ndash;<a href="https://zh.wikipedia.org/wiki/鸭子类型" target="_blank">鸭子类型</a> <a class="footnote-return" href="#fnref:https-zh-wikiped"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-很对味的收获</title>
-			<link>https://www.smslit.top/2019/03/15/daily-amazing-ui-component/</link>
-			<pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/15/daily-amazing-ui-component/</guid>
-			<description>今天看 Jason 博客文章，收获挺多。 首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择</description>
-			<content type="html"><![CDATA[<p>今天看 <a href="https://atjason.com" target="_blank">Jason</a> 博客文章，收获挺多。</p>
-
-<p>首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择了 Flask + Vue + Element 的技术栈，严格地说应该是 Flask + Vue，Element 是一个非常棒的 UI 组件库，天生与 Vue 配套，除了省很多学习成本，还因为真的喜欢 Element 的 UI 风格，棒棒的！Vue 学习ing&hellip;</p>
-
-<p>关于《不能复制时间的事，少做》还是有些启发的，为了发挥自己的价值，尽量把时间花在更有广泛影响力的产品或事情上，当然这与<strong>利基市场</strong>也不会冲突！服务小众，最大化自己的价值！</p>
-
-<p>PS: 学了一下午的 Vue，真的很对味口，道不出的一种舒服！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-君子爱财，取之有道</title>
-			<link>https://www.smslit.top/2019/03/14/daily-money-money-lie/</link>
-			<pubDate>Thu, 14 Mar 2019 23:57:09 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/14/daily-money-money-lie/</guid>
-			<description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
-			<content type="html"><![CDATA[<p>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例子就是一群高市场和营销的非技术人员拿一款语音产品（bug 满满）通过融资的方式敛财十几亿人民币，由此米奇沃克斯阐述了一些自己的思考。赚钱的方式有很多种，而很多人通过快速敛财的方式，来投资洗白，尤其是在国外融资的，往往就是在搞臭中国人的口碑，这其实是对一个正常融资环境的污染，这让那些想做好产品又只能靠融资发展的个体或公司身处一个并不公平的竞争条件下，也扼杀了一些好的创意和产品！</p>
-
-<p>米奇沃克斯在视频最后说到，真的希望会出现一些并不是以赚钱为目的的人出现&hellip;十里觉得君子爱财取之有道，他这种期待应该补充一下：真的希望多出现一些愿意做好产品并且能对消费者负责人的人或公司出现，赚钱要让消费者觉得值得，最起码要等价交换，让消费者有超值回报感最好！</p>
-
-<p>想起了农村里村干部的事情，从小就觉得村干部贪得无厌，很多人削尖了脑袋要往里钻！这些人蝇营狗苟，看到的只是钱途，却没有觉得当上村干部身上多了一个重担，缺少对村民负责的意识！个人觉得没有绝对大公无私的好村官，也不会抱以期待这种人的出现。但一定存在很智慧得民心的干部，他们为人民办实事，给村民挣福利，同时合理利用自己身份优势经营自己的事业！</p>
-
-<p>PS: 理想还是要有的，但需要让现实来调剂！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-别致的音乐盒</title>
-			<link>https://www.smslit.top/2019/03/13/daily-music-box-share-to-you/</link>
-			<pubDate>Wed, 13 Mar 2019 22:17:49 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/13/daily-music-box-share-to-you/</guid>
-			<description>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-VSC Netease Music!不过今天十里真正要分享的是一个命</description>
-			<content type="html"><![CDATA[<p>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-<a href="https://github.com/nondanee/vsc-netease-music" target="_blank">VSC Netease Music</a>!不过今天十里真正要分享的是一个命令行下的网易云音乐客户端，喜欢在终端搬砖又要听音乐的同胞的开心与喜悦呀！其实十里已经用了两年多了，感觉挺不错的，有必要分享出来，感谢作者！它就是 <a href="https://github.com/darknessomi/musicbox" target="_blank">darknessomi/musicbox</a> ，因为作者使用 python 实现并且托到了 pip，所以安装很简单。</p>
-
-<blockquote>
-<p>高品质网易云音乐命令行版本，简洁优雅，丝般顺滑，基于Python编写</p>
-</blockquote>
-
-<p>在 macOS 下安装只需要安装一个依赖，然后安装 musicbox ，开箱即用：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># 安装依赖</span>
-brew install mpg123
-<span class="c1"># 安装 musicbox</span>
-pip3 install NetEase-MusicBox
-<span class="c1"># 运行 musicbox</span>
-musicbox</code></pre></div>
-<p>音乐盒的操作倾向 vim 使用者的操作习惯：</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190314103710.png" width="70%"/> 
-</figure>
-
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-多走弯路就是捷径</title>
-			<link>https://www.smslit.top/2019/03/12/daily-study-style-not-bad/</link>
-			<pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/12/daily-study-style-not-bad/</guid>
-			<description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
-			<content type="html"><![CDATA[<p>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线后，再根据需求完成程序。其实完全可以像其它同事一样直接硬着头皮改动现有程序，但还是没这么做，在几个星期内加班熬夜拼了老命，把整个开发流程和蓝牙 4.2 协议栈的基础都好好学了一遍，然后拖了 deadline 几天按照 TI 官方推荐的方式完成了从 0 到 1 的程序，万幸！问题是还让我发现了个蓝牙芯片的硬件 bug，真的受不了各种连环坑！</p>
-
-<p>有些人可能就觉得我这是何必呢！直接在别人写了一半的程序上修改不就好了！不好，那个时候我一无所知，等了解一点所以然之后，发现之前同事写的程序有很多不太合理的地方，所以就成了上面所说的结果了！是的，短时间内学一个新的平台真的挺耗神的，但是这会夯实一定基础，后面再有什么新的需求，可以轻易应付了，正所谓长痛不如短痛！</p>
-
-<p>好处的直接表现就是：几天后另外一个部门的蓝牙程序委托给我，我不到一天就帮他们写好了！</p>
-
-<p>总结下来就是：</p>
-
-<blockquote>
-<p>多走弯路就是捷径！</p>
-</blockquote>
-
-<p>为什么会突然想起之前这个蓝牙程序开发的事情呢！是因为前段时间花了些精力学习了 falsk 框架下的 web 后端开发，当时却是花了不少时间了解了大部分的内容，以至于昨天花了不到一个小时就为一位留学的朋友方便查班车用的极小的 web 应用，方便其在 iphone 上借助<strong>快捷指令</strong> app 查班车！再一次证明了上面这一点！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>日书-又‘无脑’订阅了一个课程</title>
-			<link>https://www.smslit.top/2019/03/11/daily-new-discovery-power-man/</link>
-			<pubDate>Mon, 11 Mar 2019 22:31:33 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/11/daily-new-discovery-power-man/</guid>
-			<description>今天在看卖桃君的极客时间时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前</description>
-			<content type="html"><![CDATA[<figure class="right">
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311224911.PNG"/> 
-</figure>
-
-
-<p>今天在看卖桃君的<a href="https://time.geekbang.org" target="_blank">极客时间</a>时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前滴滴出行技术专家——戴铭，其实十里并没有太 care 他的头衔，订阅的原因有三点吧。</p>
+<h2 id="开发平台">开发平台</h2>
 
 <ul>
-<li>从原理出发，那就是除了讲其然，还会说其所以然，喜欢这种打破砂锅的出发点！渔优于鱼，不是吗？iOS 与 macOS 本是同宗，有助于理解 macOS 开发！</li>
-<li>iOS 方面的开发自己有涉足过，虽然现在还没啥像样的作品（多年前只做过两个蓝牙通信控制外设的小 app），但是还是有计划要继续的，既然现在有一个会结合实际讲开发的菜，何不尝尝！</li>
-<li>作者精心准备了很多插图，可以说是很用心了，很喜欢其画风，去作者博客<a href="https://ming1016.github.io" target="_blank">星光社 - 戴铭的博客</a>看了看，有幸看到其在去年 swift 大会准备的 PPT，通过插图讲述技术是个很好的思路呢，佩服会画插图的程序猿(目标)，右边插图感受一下！</li>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
 </ul>
 
-<p>我是不会告诉你，最重要的是第三点的！</p>
+<h2 id="准备-demo">准备 Demo</h2>
 
-<p>真的很佩服能够全面发展自己的人，兴趣还算广泛的十里，会以这些牛人为榜样，加油追赶！PS: 今天与水木一起做了好吃的不得了的麻辣香锅，很开心！</p>
+<p>还是老规矩，以实例出发，理解实现！新建一个 macOS app 的工程，使用 storyboard，这里工程就命名为 TextFieldDemo 吧。创建成功后，打开 <code>Main.storyboard</code> ，往 <code>View Controller</code> 中添加一个 <code>Text Field</code> ，调整其大小贴齐窗口四边，添加必要的布局限制，并将以下内容作为 Text Field 的内容：</p>
 
-<p>如果您也想订阅课程，请看：</p>
+<blockquote>
+<p>漫威电影宇宙（英语：Marvel Cinematic Universe，简称MCU）是由漫威漫画工作室基于漫威漫画出版物中的角色独立制作的一系列电影所构成的架空世界和共同世界（Earth-199999）。</p>
+</blockquote>
 
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311230011.jpg" width="300px"/> 
-</figure>
+<p>就像下面这样(十里这里将窗口调小了一点):</p>
 
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310154814.png" alt="" /></p>
+
+<p>运行程序可以看到显示文本是默认向上对齐的:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310155150.png" alt="" /></p>
+
+<h2 id="实现思路">实现思路</h2>
+
+<p>最终我们要实现 Demo 窗口中的文本垂直居中显示，要想做到这一点，我们得了解一下文本框显示文本的过程。NSTextField 类通过 NSTextFieldCell 类实现用户界面的显示，所以关注点应该放在 NSTextFieldCell 类上，文本是在 text field cell 上的，而 TextField 又是 text field cell 的一个容器，所以只需要调整 text field cell 在 Text Field 中的坐标，如果 y 轴坐标值合适就能实现居中，在 Cocoa 中，控件使用如下坐标系(flipped coordinate)：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310171441.png" alt="" /></p>
+
+<p>NSTextFieldCell 类继承于 NSCell 类，所以可以通过调整绘制过程中 text field cell 的 frame 坐标数据实现其位置调整，对应这个绘制过程的方法就是 <code>drawingRect(forBounds:)</code>，新坐标的计算公式为：</p>
+
+<p>$$
+y_{new} = y_{old} + (Height_{frame} - Height_{text}) \times 0.5
+$$</p>
+
+<p>其中：</p>
+
+<ul>
+<li>$Height_{frame}$ 是指默认生成的 cell 的 frame</li>
+<li>$Height_{text}$ 是文本实际占用的 frame</li>
+</ul>
+
+<p>为了更彻底一点，我们也可以调整 frame 的高度与文本实际占用的高度一致：</p>
+
+<p>$$
+Height_{frame} = Height_{text}
+$$</p>
+
+<p>也许您看了下面的图就明白上面公式的含义了：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310182541.png" alt="" /></p>
+
+<h2 id="具体实现">具体实现</h2>
+
+<p>根据上面的思路可以有两种实现方式，一种是定义一个 <code>NSTextFielCell</code> 的子类，在子类中重写方法，另一种是扩展的方式重写 <code>NSTextFieldCell</code> 的方法。第二种会影响 app 中所有的 TextField，所以这里采用第一种方式。</p>
+
+<p>在 <code>AppDelegate.swift</code> 文件中定义子类 <code>VerticallyCenteredTextFieldCell</code> 如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">VerticallyCenteredTextFieldCell</span><span class="p">:</span> <span class="n">NSTextFieldCell</span> <span class="p">{</span>
+    
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">drawingRect</span><span class="p">(</span><span class="n">forBounds</span> <span class="n">theRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">NSRect</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">newRect</span><span class="p">:</span><span class="n">NSRect</span> <span class="p">=</span> <span class="kc">super</span><span class="p">.</span><span class="n">drawingRect</span><span class="p">(</span><span class="n">forBounds</span><span class="p">:</span> <span class="n">theRect</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">textSize</span><span class="p">:</span><span class="n">NSSize</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">cellSize</span><span class="p">(</span><span class="n">forBounds</span><span class="p">:</span> <span class="n">theRect</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">heightDelta</span><span class="p">:</span><span class="n">CGFloat</span> <span class="p">=</span> <span class="n">newRect</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">textSize</span><span class="p">.</span><span class="n">height</span>
+        <span class="k">if</span> <span class="n">heightDelta</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="n">newRect</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="p">=</span> <span class="n">textSize</span><span class="p">.</span><span class="n">height</span>
+            <span class="n">newRect</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">heightDelta</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">newRect</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>然后打开 <code>Main.storyboard</code> 文件，选中之前添加的 Text Field 的 cell ，按快捷键 <code>Option</code> + <code>Command</code> + <code>3</code> 打开 Identity 检查器，在 <code>Custom Class</code> 中为 cell 指定刚定义的子类 <code>VerticallyCenteredTextFieldCell</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310183739.png" alt="" /></p>
+
+<p>运行程序就能看到文本实现了居中显示：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310184822.png" alt="" /></p>
+
+<p>Demo下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/VerticallyCenteredTextFieldDemo.zip" target="_blank">VerticallyCenteredTextFieldDemo.zip</a></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>快快拿走，Xcode 常用快捷键</title>
+			<link>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</link>
+			<pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
+			<description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
+			<content type="html"><![CDATA[
+
+<p>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！</p>
+
+<h1 id="说明">说明</h1>
+
+<ul>
+<li>Xocde 的快捷键不会随着版本更迭而变化太多，但还是要说明一下本文的快捷键均能在 Xcode 10.2 中正常使用</li>
+<li>正文中均使用快捷键修饰键的符号表示修饰符：
+
+<ul>
+<li>Control ⌃</li>
+<li>Option ⌥</li>
+<li>Shift ⇧</li>
+<li>Command ⌘</li>
+<li>Return ↩</li>
+</ul></li>
+</ul>
+
+<h1 id="窗口操作">窗口操作</h1>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190307154213.jpg" alt="" /></p>
+
+<h1 id="常规">常规</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘,</td>
+<td>打开偏好设置</td>
+</tr>
+
+<tr>
+<td>⇧⌘0</td>
+<td>打开帮助窗口</td>
+</tr>
+
+<tr>
+<td>⇧⌘c</td>
+<td>打开调试区域的终端栏</td>
+</tr>
+
+<tr>
+<td>⌘?</td>
+<td>打开帮助搜索</td>
+</tr>
+
+<tr>
+<td>⌘n</td>
+<td>新建文件</td>
+</tr>
+
+<tr>
+<td>⌘o</td>
+<td>打开文件</td>
+</tr>
+
+<tr>
+<td>⇧⌘a</td>
+<td>向工程中添加文件</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="编译及运行">编译及运行</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘b</td>
+<td>编译工程</td>
+</tr>
+
+<tr>
+<td>⇧⌘b</td>
+<td>分析工程</td>
+</tr>
+
+<tr>
+<td>⌘r</td>
+<td>运行工程</td>
+</tr>
+
+<tr>
+<td>⌘i</td>
+<td>打开 Profile</td>
+</tr>
+
+<tr>
+<td>⌘u</td>
+<td>测试工程</td>
+</tr>
+
+<tr>
+<td>⇧⌘k</td>
+<td>清理工程编译中间文件</td>
+</tr>
+
+<tr>
+<td>⌘k</td>
+<td>清空终端打印的信息</td>
+</tr>
+
+<tr>
+<td>⌘.</td>
+<td>停止运行</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="代码编辑">代码编辑</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌃Space</td>
+<td>显示补全提示项</td>
+</tr>
+
+<tr>
+<td>⌃.</td>
+<td>下一个补全提示项</td>
+</tr>
+
+<tr>
+<td>Tab</td>
+<td>选中补全提示项</td>
+</tr>
+
+<tr>
+<td>⌃/</td>
+<td>下一个代码 placeholder 项</td>
+</tr>
+
+<tr>
+<td>⇧⌃/</td>
+<td>上一个代码 placeholder 项</td>
+</tr>
+
+<tr>
+<td>⌘/</td>
+<td>注释或取消注释代码</td>
+</tr>
+
+<tr>
+<td>⌥⌘←</td>
+<td>折叠代码（方法或类）</td>
+</tr>
+
+<tr>
+<td>⌥⌘→</td>
+<td>展开折叠代码</td>
+</tr>
+
+<tr>
+<td>⌃⌘e</td>
+<td>编辑修改当前文件中所有出现光标处单词的地方</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="代码导航">代码导航</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘→</td>
+<td>跳转到行尾</td>
+</tr>
+
+<tr>
+<td>⌘←</td>
+<td>跳转到行首</td>
+</tr>
+
+<tr>
+<td>⌘↑</td>
+<td>跳转到文件顶部</td>
+</tr>
+
+<tr>
+<td>⌘↓</td>
+<td>跳转到文件底部</td>
+</tr>
+
+<tr>
+<td>⌥→</td>
+<td>向后跳过一个单词</td>
+</tr>
+
+<tr>
+<td>⌥←</td>
+<td>向前跳过一个单词</td>
+</tr>
+
+<tr>
+<td>⌘l</td>
+<td>跳转到指定行</td>
+</tr>
+
+<tr>
+<td>⌘f</td>
+<td>在文件中查找</td>
+</tr>
+
+<tr>
+<td>⇧⌘f</td>
+<td>在工程中查找</td>
+</tr>
+
+<tr>
+<td>⌘g</td>
+<td>查找下一个</td>
+</tr>
+
+<tr>
+<td>⇧⌘g</td>
+<td>查找上一个</td>
+</tr>
+
+<tr>
+<td>⌃⌘ + 鼠标左键单击</td>
+<td>跳转到定义</td>
+</tr>
+
+<tr>
+<td>⌥ + 鼠标左键单击</td>
+<td>快速帮助</td>
+</tr>
+
+<tr>
+<td>⌃⌘d</td>
+<td>显示光标处关键字的快速帮助</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="文件导航">文件导航</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌃⌘←</td>
+<td>前一个打开的文件</td>
+</tr>
+
+<tr>
+<td>⌃⌘→</td>
+<td>后一个打开的文件</td>
+</tr>
+
+<tr>
+<td>⇧⌘o</td>
+<td>快速打开文件</td>
+</tr>
+
+<tr>
+<td>⌃1</td>
+<td>显示与指定代码相关的文件</td>
+</tr>
+
+<tr>
+<td>⌘n</td>
+<td>新建文件</td>
+</tr>
+
+<tr>
+<td>⌘o</td>
+<td>打开文件</td>
+</tr>
+
+<tr>
+<td>⇧⌘a</td>
+<td>向工程中添加文件</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="调试">调试</h1>
+
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>⌘ \</td>
+<td>添加或删除断点</td>
+</tr>
+
+<tr>
+<td>⌘y</td>
+<td>禁用或激活断点</td>
+</tr>
+
+<tr>
+<td>⌃⌘y</td>
+<td>继续执行</td>
+</tr>
+
+<tr>
+<td>⌃⌘c</td>
+<td>继续执行到当前行</td>
+</tr>
+
+<tr>
+<td>F6</td>
+<td>单步跳过</td>
+</tr>
+
+<tr>
+<td>F7</td>
+<td>单步进入</td>
+</tr>
+
+<tr>
+<td>F8</td>
+<td>单步跳出</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="总结">总结</h1>
+
+<p>为了方便大家收藏，十里为此将上面的快捷键整理为一页 pdf ，方便大家及时查看：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/xcode_shortcuts.pdf" alt="" /></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>MacOS 开发之定时器的使用</title>
+			<link>https://www.smslit.top/2019/03/05/macOS-dev-timer/</link>
+			<pubDate>Tue, 05 Mar 2019 15:43:00 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/05/macOS-dev-timer/</guid>
+			<description>前段时间开发了一款状态栏小工具 时光(Time Go) ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关</description>
+			<content type="html"><![CDATA[
+
+<p>前段时间开发了一款状态栏小工具 <a href="https://github.com/smslit/timeGO" target="_blank">时光(Time Go)</a> ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关于定时器的的收获及其使用方法，我们一起进步。</p>
+
+<h1 id="实现平台">实现平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="准备环境">准备环境</h1>
+
+<p>为了更好地展示定时器的使用，这里我们使用 playground 测试我们的定时器，可以使用快捷键 <code>Option</code> + <code>Shift</code> + <code>Command</code> + n 新建 playgroud 文件。在文件中我们准备一个 TimerDemo 类用于测试定时器：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">import</span> <span class="nc">Foundation</span>
+
+
+<span class="kd">class</span> <span class="nc">TimerDemo</span> <span class="p">{</span>
+    
+    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">timeCount</span> <span class="p">=</span> <span class="mi">5</span>
+    
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">share</span> <span class="p">=</span> <span class="n">TimerDemo</span><span class="p">()</span>
+    
+    <span class="c1">// 添加不同定时器使用方法的示例代码</span>
+    <span class="kd">func</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;TimerDemo&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+
+<span class="n">TimerDemo</span><span class="p">.</span><span class="n">share</span><span class="p">.</span><span class="n">run</span><span class="p">()</span></code></pre></div>
+<p>上面定义了 TimerDemo 类，同时实现了一个 TimerDemo 的单例，方便调用方法展示效果！</p>
+
+<h1 id="定时器的使用">定时器的使用</h1>
+
+<p>网上能搜到有三种实现定时器的方式，因为苹果官方 API 的变化导致部分搜到的信息过时，本文整理的实现方法适用于上述描述的实现平台，近期应该不会过期，哈哈：</p>
+
+<ul>
+<li>Timer 类实现</li>
+<li>GCD(<a href="https://en.wikipedia.org/wiki/Grand_Central_Dispatch" target="_blank">Grand Central Dispatch</a>) 的方式</li>
+<li>利用屏幕刷新实现计数定时</li>
+</ul>
+
+<p>本人觉得第三种方式不是什么好的方式，所以本文只讲前两种方式。</p>
+
+<h2 id="使用-timer-类">使用 Timer 类</h2>
+
+<p>Timer 类的使用依赖 RunLoop(线程的事件循环，app 运行一定会有一个名为 main 的 RunLoop，主要负责界面控件的显示和交互) ，只有添加到激活状态的 RunLoop 中定时器才能正常工作。</p>
+
+<p>定时器的运行根据次数分两种：单次和循环：</p>
+
+<ul>
+<li>单次的定时器，会在指定的时间过后，自动销毁并从 RunLoop 中弹出，而不再影响 RunLoop 的运行</li>
+<li>循环的定时器，会根据指定时间间隔触发执行处理任务，需要开发者手动执行 Timer 对象的 <code>invalidate</code> 方法才能销毁并从 RunLoop 中弹出。一般使用循环定时器，不会让其一直执行，满足某种条件或执行指定次数之后，手动调用 invlaidate 方法停止定时器</li>
+</ul>
+
+<p>根据定时器的使用方式，可以分三种：</p>
+
+<ul>
+<li>使用 <code>Timer(timeInterval:repeats:block:)</code> 或 <code>Timer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法初始化 Timer 对象，将对象手动添加到指定 RunLoop 中执行</li>
+<li>使用 <code>Timer(fire:interval:repeats:block:)</code> 或 <code>Timer(fireAt:interval:target:selector:userInfo:repeats:)</code> 类方法初始化 Timer 对象，将对象手动添加到指定 RunLoop 中执行</li>
+<li>使用 <code>Timer.scheduledTimer(withTimeInterval:repeats:block:)</code> 和 <code>Timer.scheduledTimer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法，这两个方法都会创建 Timer 对象，并且以默认的运行模式添加到当前的 RunLoop 中</li>
+</ul>
+
+<p>下面我们开始尝试上面的三种方式。先在上面定义的 TimerDemo 类中声明一个 timer 属性：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">var</span> <span class="nv">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?</span></code></pre></div>
+<h3 id="第一种方式">第一种方式</h3>
+
+<h4 id="timer-timeinterval-repeats-block-类方法"><code>Timer(timeInterval:repeats:block:)</code> 类方法</h4>
+
+<ul>
+<li>timeInterval 是定时器的触发时间间隔，单位为秒</li>
+<li>repeats 布尔类型，代表是否重复，如果为 true ，定时器是循环定时器，如果为 false ，定时器是单次的</li>
+<li>block 为 <code>((timer: Timer?) -&gt; Void)</code> 类型的闭包，其中 timer 是定时器自身</li>
+</ul>
+
+<p>我们为 TimerDemo 类定义一个 <code>oneshot1</code> 方法，使用 <code>Timer(timeInterval:repeats:block:)</code> 类方法实现一个单次的定时器，如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 使用 Timer(timeInterval:repeats:block:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，单次</span>
+<span class="kd">func</span> <span class="nf">oneshot1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:repeats:block:) 初始化，单次&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">oneFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>可以看到定时器时间间隔是 1 秒，单次，并且闭包中调用定义的 <code>oneFireHandler</code> 方法，此方法是用来处理我们需要做的定时任务的，比如我们打印一个字符串：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">oneFireHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 单次倒计时结束！&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>还需要注意的是，<code>oneshot1</code> 中初始化得到 Timer 对象后，执行 <code>RunLoop.main.add(timer:forMode:)</code> 方法将定时器加入到 RunLoop 中，这一步是必须的，其中 <code>forMode</code> 参数我们使用默认模式(<code>common</code>)，可以防止其它高优先级 mode 的事件影响定时器的运行。打印信息时同时打印了当前时间，主要作为参考看倒计时对不对。下面我们测试一下我们定义的 <code>oneshot1</code> 方法:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">TimerDemo</span><span class="p">.</span><span class="n">share</span><span class="p">.</span><span class="n">oneshot1</span><span class="p">()</span></code></pre></div>
+<p>可以看到打印结果，确实是 1 秒的时间间隔，且执行了定时器任务。</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="m">2019</span>-03-05 <span class="m">13</span>:51:07 +0000: Timer<span class="o">(</span>timeInterval:repeats:block:<span class="o">)</span> 初始化，单次
+<span class="m">2019</span>-03-05 <span class="m">13</span>:51:08 +0000: 单次倒计时结束！</code></pre></div>
+<p>上面 <code>oneshot1</code> 和 <code>oneFirehandler(timer:)</code> 的实现可以简化为下面的形式，看您的使用习惯和需求决定使用哪种形式了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">oneshot1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:repeats:block:) 初始化，单次&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 单次倒计时结束！&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>我们继续试一下<strong>循环定时器</strong>，先定义一个循环定时器要处理的任务：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">loopFireHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="n">timer</span><span class="o">!</span><span class="p">.</span><span class="n">invalidate</span><span class="p">()</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 循环倒计时结束！&#34;</span><span class="p">)</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="p">=</span> <span class="mi">5</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 倒计时 </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span><span class="si">)</span><span class="s"> 秒&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p><code>loopFireHandler</code> 方法中进行倒计时，到 0 时，调用定时器对象的 <code>invalidate</code> 方法释放定时器。另外定时器的实现如下 <code>loop1</code> 方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">loop1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:repeats:block:) 初始化，循环&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>可以看到只是 <code>repeats</code> 参数改为 true，block 中调用 <code>loopFireHandler</code> 方法，下面测试一下 <code>loop1</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">TimerDemo</span><span class="p">.</span><span class="n">share</span><span class="p">.</span><span class="n">loop1</span><span class="p">()</span></code></pre></div>
+<p>运行结果如我们所想，实现了 5 秒倒计时：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="m">2019</span>-03-05 <span class="m">14</span>:10:22 +0000: Timer<span class="o">(</span>timeInterval:repeats:block:<span class="o">)</span> 初始化，循环
+<span class="m">2019</span>-03-05 <span class="m">14</span>:10:23 +0000: 倒计时 <span class="m">4</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:10:24 +0000: 倒计时 <span class="m">3</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:10:25 +0000: 倒计时 <span class="m">2</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:10:26 +0000: 倒计时 <span class="m">1</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:10:27 +0000: 倒计时 <span class="m">0</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:10:28 +0000: 循环倒计时结束！</code></pre></div>
+<h4 id="timer-timeinterval-target-selector-userinfo-repeats-类方法"><code>Timer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法</h4>
+
+<ul>
+<li>timeInterval 定时器时间间隔，单位为秒</li>
+<li>target 定时器每次循环结束后发送消息的目标对象</li>
+<li>selector 指定定时器每次计时结束要执行的方法，必须为 <code>@objc</code> 的函数对象，所以上面定义的 <code>oneFireHandler</code> 和 <code>loopFireHandler</code> 最前面要加 <code>@objc</code> 关键词</li>
+<li>userinfo 指定用户信息，可以指定为 nil</li>
+<li>repeats 决定要不要循环执行，true 为循环，false 为单次</li>
+</ul>
+
+<p>单次和循环的定时器处理，只有方法中的 <code>repeats</code> 参数和指定的处理任务函数不一样，其它都一致，所以后面只展示循环定时器的实现。</p>
+
+<p>使用方法如下 <code>loop2</code> 方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 使用 Timer(timeInterval:target:selector:userInfo:repeats:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，循环</span>
+<span class="kd">func</span> <span class="nf">loop2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:target:selector:userInfo:repeats:) 初始化，循环&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>同样需要注意的是，需要将定时器 timer 添加到 RunLoop 中去。调用这个方法 <code>TimerDemo.share.loop2()</code> 即可看到打印结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="m">2019</span>-03-05 <span class="m">14</span>:21:07 +0000: Timer<span class="o">(</span>timeInterval:target:selector:userInfo:repeats:<span class="o">)</span> 初始化，循环
+<span class="m">2019</span>-03-05 <span class="m">14</span>:21:08 +0000: 倒计时 <span class="m">4</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:21:09 +0000: 倒计时 <span class="m">3</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:21:10 +0000: 倒计时 <span class="m">2</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:21:11 +0000: 倒计时 <span class="m">1</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:21:12 +0000: 倒计时 <span class="m">0</span> 秒
+<span class="m">2019</span>-03-05 <span class="m">14</span>:21:13 +0000: 循环倒计时结束！</code></pre></div>
+<h3 id="第二种方式">第二种方式</h3>
+
+<h4 id="timer-fire-interval-repeats-block-类方法"><code>Timer(fire:interval:repeats:block:)</code> 类方法</h4>
+
+<p>这个方法相较于 <code>Timer(timeInterval:repeats:block:)</code> 只多了一个 <code>fire</code> 参数，这个参数代表的意思是什么时候触发第一次计时结束，类型是 Date 类，可以使用方法 <code>Date(timeIntervalSinceNow:)</code> 方法指定相对于现在的时刻，这个方法参数单位是秒，最终 <code>Timer(fire:interval:repeats:block:)</code> 类方法实现循环定时器的过程如下 <code>loop3</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer(fire:interval:repeats:block:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，循环</span>
+<span class="kd">func</span> <span class="nf">loop3</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(fire:interval:repeats:block:) 初始化，添加到 RunLoop，循环&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fire</span><span class="p">:</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="n">interval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>注意 <code>fire</code> 参数，这里我们设置的是 <code>Date(timeIntervalSinceNow: 0)</code>，也就是现在就触发一次计时结束，此时执行 <code>TimerDemo.share.loop3()</code> 可以看到结果:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">35</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fire</span><span class="p">:</span><span class="n">interval</span><span class="p">:</span><span class="n">repeats</span><span class="p">:</span><span class="n">block</span><span class="p">:)</span> <span class="err">初始化，添加到</span> <span class="n">RunLoop</span><span class="err">，循环</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">35</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">4</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">36</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">3</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">37</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">2</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">38</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">1</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">39</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">0</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">40</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">循环倒计时结束！</span></code></pre></div>
+<p>可以看到第一行和第二行的打印时间都是 <code>2019-03-05 14:30:35 +0000</code> 这正匹配我们设置的 fire 参数，我们改一下 fire 参数为 <code>Date(timeIntervalSinceNow: 3)</code>，也就是相对于现在延后 3 秒触发第一次计时结束，执行 <code>TimerDemo.share.loop3()</code> 看一下结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">00</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fire</span><span class="p">:</span><span class="n">interval</span><span class="p">:</span><span class="n">repeats</span><span class="p">:</span><span class="n">block</span><span class="p">:)</span> <span class="err">初始化，添加到</span> <span class="n">RunLoop</span><span class="err">，循环</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">03</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">4</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">04</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">3</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">05</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">2</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">06</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">1</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">07</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">0</span> <span class="err">秒</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">08</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">循环倒计时结束！</span></code></pre></div>
+<p>第二行与第一行的打印时间果然差了 3 秒，这下您应该明白这个 fire 参数的含义了吧！</p>
+
+<h4 id="timer-fireat-interval-target-selector-userinfo-repeats-类方法"><code>Timer(fireAt:interval:target:selector:userInfo:repeats:)</code> 类方法</h4>
+
+<p>这个方法相对于 <code>Timer(timeInterval:target:selector:userInfo:repeats:)</code> 方法多了一个 <code>fireAt</code> 参数，这个参数与上一个类方法的 <code>fire</code> 含义一致，使用就很简单了，定义 <code>loop4</code> 方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer(fireAt:interval:target:selector:userInfo:repeats:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，循环</span>
+<span class="kd">func</span> <span class="nf">loop4</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(fireAt:interval:target:selector:userInfo:repeats:) 初始化，添加到 RunLoop，循环&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fireAt</span><span class="p">:</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="n">interval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>这里就不展示执行结果了。</p>
+
+<h3 id="第三种方式">第三种方式</h3>
+
+<h4 id="timer-scheduledtimer-withtimeinterval-repeats-block-类方法"><code>Timer.scheduledTimer(withTimeInterval:repeats:block:)</code> 类方法</h4>
+
+<p>此方法参数与 <code>Timer(timeInterval:repeats:block:)</code> 参数一致，所以实现定时器一定难不倒我们了，但是这里需要注意的是，使用此方法得到的 timer 对象在执行方法的时候已经添加到 RunLoop 中了，所以不需要我们手动添加到 RunLoop 了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer.scheduledTimer(withTimeInterval:repeats:block:) 方法注册运行，循环</span>
+<span class="kd">func</span> <span class="nf">loop5</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer.scheduledTimer(withTimeInterval:repeats:block:) 方法，循环&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">.</span><span class="n">scheduledTimer</span><span class="p">(</span><span class="n">withTimeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">}</span></code></pre></div>
+<h4 id="timer-scheduledtimer-timeinterval-target-selector-userinfo-repeats-类方法"><code>Timer.scheduledTimer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法</h4>
+
+<p>此方法如同 <code>Timer.scheduledTimer(withTimeInterval:repeats:block:)</code> 方法，也不需要将方法返回的对象手动添加到 RunLoop 了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer.scheduledTimer(timeInterval:target:selector:userInfo:repeats:) 方法注册运行，循环</span>
+<span class="kd">func</span> <span class="nf">loop6</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer.scheduledTimer(withTimeInterval:repeats:block:) 方法，循环&#34;</span><span class="p">)</span>
+    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">.</span><span class="n">scheduledTimer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<h3 id="timer-类定时器总结">Timer 类定时器总结</h3>
+
+<p>综上，我们算是了解了 6 中类方法实现定时器，但是这种方式有个问题：因为是运行在 main 线程的的 RunLoop 中，所以可能出现时间延迟的问题，主线程主要处理 UI 控件的交互，如果在其中再有一些运算量大的操作，必定会影响定时器的执行（阻塞），也就是说 Timer 不论是在哪个 RunLoop 中，终究会是受 RunLoop 的影响。下面我们就再了解一个不受 RunLoop 影响的 GCD 方式的定时器。</p>
+
+<h2 id="gcd-方式的-timer">GCD 方式的 Timer</h2>
+
+<p>通过 GCD 方式创建的定时器不会受 RunLoop 的影响，是一种比较底层的实现，所以很高效而且不受窗口控件频繁操作的影响。GCD 方式的定时器类型为 <code>DispatchSourceTimer</code>，其实例对象可以使用 <code>DispatchSource</code> 的 <code>MakeTimerSource</code> 方法分配资源而得到，这个对象有以下常用方法：</p>
+
+<ul>
+<li>resume() 开启运行或恢复运行</li>
+<li>cancel() 取消定时器</li>
+<li>suspend() 挂起定时器，可以使用 resumne() 恢复运行</li>
+<li>setEventHandler(handler: (() -&gt; Void)?) 设置定时器任务的处理</li>
+<li>setCancelHandler(handler: (() -&gt; Void)?) 设置定时器取消时的处理</li>
+<li>schedule(deadline:repeating:leeway:) 配置定时器的时间参数</li>
+</ul>
+
+<h3 id="schedule-deadline-repeating-leeway-方法">schedule(deadline:repeating:leeway:) 方法</h3>
+
+<p>这个是 <code>DispatchSourceTimer</code> 对象用来配置时间参数的方法，本节主要介绍一下其参数。</p>
+
+<ul>
+<li>deadline 类型为 <code>DispatchTime</code> ，这个时间精度可以达到纳秒级，含义与上面 Timer 类的 <code>Timer(fire:interval:repeats:block:)</code> 方法的 <code>fire</code> 一致，不过类型不一样。<code>DispatchTime</code> 有 now() 方法用来获取现在的时间，可以与 <code>DispatchTimeInterval</code> 对象实现 + 操作，得到一个相对于时刻，<code>DispatchTimeInterval</code> 对象可以通过调用 <code>seconds(_:Int)</code> 方法得到秒，<code>milliseconds(_:Int)</code> 方法得到毫秒，<code>microseconds(_:Int)</code> 方法得到微秒，<code>nanoseconds(_:Int)</code> 方法得到纳秒</li>
+<li>repeating 与 Timer 类方法中的 repeat 不是一个意思，这里代表的是定时器时间间隔也就是 <strong>timeInterval</strong>，类型为 <code>DispatchTimeInterval</code>，比如指定一秒可以 <code>DispatchTimeInterval.seconds(1)</code>。这个参数具有默认值，当不指定这个参数的时候，这个参数就会设置为 <code>DispatchTimeInterval.never</code> ，那么<strong>定时器只执行一次</strong>。</li>
+<li>leeway 时间容差，是一个定时时间的宽容度，具有一个默认值，所以调用此方法的时候可以不用指定这个参数，如果要指定的话，也是 <code>DispatchTimeInterval</code> 类型</li>
+</ul>
+
+<h3 id="使用方法">使用方法</h3>
+
+<p>讲了上面这么多，还是用实际的例子说明，首先在 TimerDemo 类中添加如下属性：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">var</span> <span class="nv">gcdTimer</span><span class="p">:</span> <span class="n">DispatchSourceTimer</span><span class="p">?</span></code></pre></div>
+<p>单次定时器，如方法 <code>oneshot7</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// GCD 方式的定时器，单次</span>
+<span class="kd">func</span> <span class="nf">oneshot7</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: GCD 方式的定时器，单次&#34;</span><span class="p">)</span>
+    <span class="n">gcdTimer</span> <span class="p">=</span> <span class="n">DispatchSource</span><span class="p">.</span><span class="n">makeTimerSource</span><span class="p">()</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setEventHandler</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 单次倒计时结束！&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">schedule</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">resume</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div>
+<p>循环定时器，如方法 <code>loop7</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// GCD 方式的定时器，循环</span>
+<span class="kd">func</span> <span class="nf">loop7</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: GCD 方式的定时器，循环&#34;</span><span class="p">)</span>
+    <span class="n">gcdTimer</span> <span class="p">=</span> <span class="n">DispatchSource</span><span class="p">.</span><span class="n">makeTimerSource</span><span class="p">()</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setEventHandler</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">gcdTimer</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 倒计时 </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span><span class="si">)</span><span class="s"> 秒&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setCancelHandler</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 倒计时结束！&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">schedule</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">repeating</span><span class="p">:</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">resume</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div>
+<p><strong>注意</strong></p>
+
+<p>如果定时器任务中需要对 UI 控件进行操作，要将那部分操作放在主线程进行也就是用下面的代码包裹：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+    <span class="c1">// UI控件操作</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="总结">总结</h2>
+
+<p>上述定时器演示的 playgroud 可以通过下面链接查看：</p>
+
+<p><a href="https://gist.github.com/smslit/d62773e68d12816c4efc878395da2365" target="_blank">cocoaTimer.playground</a></p>
+
+<h1 id="两种方式示例对比">两种方式示例对比</h1>
+
+<p>为了凸显 GCD 方式定时器不受 UI 的操作的影响，本小节新建一个名为 TimerDemo 的工程，工程的 Main.storyboard 中添加一个按钮，两个 label 和一个滑块，合理放置位置，比如：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190306002519.png" alt="" /></p>
+
+<p>分别将两个 label 的按钮绑定属性到 ViewController 类，同时为按钮添加一个 action 用来启动两种定时器。两个 label 分别显示 Timer 定时器的倒计时时间和 GCD 方式的定时器的倒计时时间，当启动定时器后，我们频繁滑动滑杆，观察两个定时器的情况，最终实现的 ViewController 类如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">NSViewController</span> <span class="p">{</span>
+
+    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">timerLabel1</span><span class="p">:</span> <span class="n">NSTextField</span><span class="o">!</span>
+    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">timerLabel2</span><span class="p">:</span> <span class="n">NSTextField</span><span class="o">!</span>
+    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">timerButton</span><span class="p">:</span> <span class="n">NSButton</span><span class="o">!</span>
+    
+    <span class="kd">var</span> <span class="nv">count1</span> <span class="p">=</span> <span class="mi">60</span>
+    <span class="kd">var</span> <span class="nv">count2</span> <span class="p">=</span> <span class="mi">60</span>
+    <span class="kd">var</span> <span class="nv">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?</span>
+    <span class="kd">var</span> <span class="nv">gcdTimer</span><span class="p">:</span> <span class="n">DispatchSourceTimer</span><span class="p">?</span>
+    
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
+        <span class="c1">// Do any additional setup after loading the view.</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">var</span> <span class="nv">representedObject</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span>
+        <span class="kr">didSet</span> <span class="p">{</span>
+        <span class="c1">// Update the view, if already loaded.</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">startTimer</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">.</span><span class="n">scheduledTimer</span><span class="p">(</span><span class="n">withTimeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">count1</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="n">timer</span><span class="p">.</span><span class="n">invalidate</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">count1</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">timerLabel1</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;timer: </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">count1</span><span class="si">)</span><span class="s"> 秒&#34;</span>
+        <span class="p">}</span>
+        
+        <span class="n">gcdTimer</span> <span class="p">=</span> <span class="n">DispatchSource</span><span class="p">.</span><span class="n">makeTimerSource</span><span class="p">()</span>
+        <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setEventHandler</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">count2</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="kc">self</span><span class="p">.</span><span class="n">gcdTimer</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">count2</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+                <span class="kc">self</span><span class="p">.</span><span class="n">timerLabel2</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;gcdTimer: </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">count2</span><span class="si">)</span><span class="s"> 秒&#34;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">schedule</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">repeating</span><span class="p">:</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">leeway</span><span class="p">:</span> <span class="p">.</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">resume</span><span class="p">()</span>
+        
+        <span class="kc">self</span><span class="p">.</span><span class="n">timerButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>最后运行程序，疯狂滑动滑杆可以看到 GCD 方式的定时器丝毫不受影响，而 Timer 类的定时器受到了阻塞：</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/timer_compare.mp4" width="960px" controls="controls"></video>
+
+<p>示例工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TimerDemo.zip" target="_blank">TimerDemo</a></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>已开源 app 实现检查更新的简单方式</title>
+			<link>https://www.smslit.top/2019/03/03/macOS-dev-simple-check-update/</link>
+			<pubDate>Sun, 03 Mar 2019 09:38:27 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/03/macOS-dev-simple-check-update/</guid>
+			<description>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种</description>
+			<content type="html"><![CDATA[
+
+<p>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种简单的方式助您实现 app 检查更新的功能。</p>
+
+<h1 id="实现平台">实现平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="思路">思路</h1>
+
+<p>本文提供的方法，不需要架设服务器，只要在开源平台上托管就可以。所以，这里假设您的 app 都是在托管平台发布，并且代码也是及时推送到托管平台的。</p>
+
+<p>每个 xcode 工程中都有一个 <code>info.plist</code> 文件，使用其中的 <code>CFBundleShortVersionString</code> 键的值作为版本判断依据，app 运行起来本身能获取自己的版本号，通过网络从托管平台获取最新版本源文件中的 <code>info.plist</code> 文件，然后得到最新版本号，与自身的版本号对比，如果不一样就说明有了最新版本（更严格的判断应该是远端文件中获取的版本号新于 app 自身的版本号），然后通过提示框提醒用户有新版本发现，提示框中给出一个按钮，帮助用户跳转到开源工程最新版本的 release 页面即可。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190303111234.png" alt="" /></p>
+
+<p>这里以工程托管在 github 为例，说明几点注意的地方：</p>
+
+<ul>
+<li><p>请求的 <code>info.plist</code> 文件链接必须是直接指向原文件的，而不是浏览代码页面对应的链接，网页 github 平台上浏览工程代码，找到 <code>info.plist</code> 文件，然后点击如图位置的 <code>raw</code> 按钮即可得到源文件的直链：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190303111930.png" alt="" /></p></li>
+
+<li><p>跳转最新 release 的页面是根据 tag 名进行跳转的，所以 tag 名称最好与版本号命名规则一致，当然不一致也可以，只要最终能对应上就可以，比如十里的一个开源项目 <a href="https://github.com/smslit/textGO" target="_blank">textGO</a>，对应 tag 的 release 页面链接可以轻易获得：<code>https://github.com/smslit/textGO/releases/tag/v0.3</code> ，规则就是 <code>https://github.com/smslit/textGO/releases/tag/v</code> + 版本号</p></li>
+
+<li><p>第一步网络请求 <code>info.plist</code> 文件使用 GET 请求即可完成，网络请求相关内容可以通过另一篇文章了解：<a href="/2019/01/26/get_post_cocoa/" target="_blank">macOS 开发之实现 HTTP 的 GET 和 POST 请求</a></p></li>
+</ul>
+
+<h1 id="示例">示例</h1>
+
+<p>下面以十里的开源项目 <a href="https://github.com/smslit/textGO" target="_blank">textGO</a> 为例说明一下实现。</p>
+
+<h2 id="更新器类">更新器类</h2>
+
+<p>因为十里将项目托管到的是 github 平台，所以封装的更新器类仅适用于 github，如果适配其它平台只需修改两处 url 的处理即可。更新器类为 TextGoUpdater ，在文件 <code>TextGoUpdater.swift</code> 中定义，您可以打开这个<a href="https://github.com/smslit/textGO/blob/master/textGO/TextGoUpdater.swift" target="_blank">文件</a>查看具体实现代码。</p>
+
+<h3 id="属性">属性</h3>
+
+<p>TextGoUpdater 类中定义了两个属性，分别是 <code>user</code>、<code>url</code>。</p>
+
+<ul>
+<li><code>user</code> 指的是 github 的账户名</li>
+<li><code>url</code> 指的是 <code>info.plist</code> 文件的直链</li>
+</ul>
+
+<h3 id="方法">方法</h3>
+
+<ul>
+<li><code>init(user:)</code> 初始化方法，初始化过程中根据提供的 github 账户名和工程名推断出 <code>info.plist</code> 文件的直链并赋给 url 属性</li>
+<li><code>check(callback:)</code> 触发检查更新的过程，是公共方法。<code>callback</code> 是个逃逸闭包，完成网络请求后在进行数据处理前执行，主要方便调整控件的状态。</li>
+<li><code>checkUpdateRequestSuccess(data:response:error:callback:)</code> 封装了网络请求完成后的处理过程，是私有方法。另外使用的两个 <code>tipInfo</code> 方法在 <code>TextGoPublic.swift</code> 文件中定义，用来显示提示框告知用户检测更新的结果。检测到更新以后，会根据类的 user 属性和工程名称以及最新版本号推断出 release 页面链接。</li>
+</ul>
+
+<h3 id="使用方法">使用方法</h3>
+
+<p>使用方法很简单，主要分两种：有回调和没有回调。</p>
+
+<h4 id="无回调使用">无回调使用</h4>
+
+<p>可以在文件 <code>AppDelegate.swift</code> 中看到使用方法</p>
+
+<ul>
+<li>定义属性 updater</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">updater</span> <span class="p">=</span> <span class="n">TextGoUpdater</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="s">&#34;smslit&#34;</span><span class="p">)</span> <span class="p">{}</span></code></pre></div>
+<ul>
+<li>在 <code>checkUpdate()</code> 方法中直接调用 updater 实例的 check 方法：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">checkUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">updater</span><span class="p">.</span><span class="n">check</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span></code></pre></div>
+<h4 id="有回调使用">有回调使用</h4>
+
+<ul>
+<li>定义属性 updater</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">updater</span> <span class="p">=</span> <span class="n">TextGoUpdater</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="s">&#34;smslit&#34;</span><span class="p">)</span> <span class="p">{}</span></code></pre></div>
+<ul>
+<li>在 <code>checkUpdate()</code> 方法中直接调用 updater 实例的 check 方法：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">checkUpdate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">updater</span><span class="p">.</span><span class="n">check</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 实现对界面控件的调整</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="执行效果">执行效果</h2>
+
+<p>textGO 是一个菜单栏小工具，通过点击<code>检查更新</code>菜单项触发更新的检查，为了更好的展示效果，以视频展示，同时修改版本号来查看有更新和没更新两种情况的效果。</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/check_update_simple.mp4" width="960px" controls="controls"></video>
+
+<h1 id="总结">总结</h1>
+
+<p>本文更新器的实现思路比较简单，只是提供了检查更新的功能，不过一般情况下这就足够了，其实这种方法也能适用于托管平台的私有项目，可以在平台中共享出某个可以提供版本号的文件，得到它的直链就可以，思路一样，想办法更改两处链接就能实现。最后，祝您成功！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>MacOS 开发之本地化工具 bartycrouch 4 使用教程</title>
+			<link>https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/</link>
+			<pubDate>Fri, 01 Mar 2019 08:59:33 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
+			<description>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方</description>
+			<content type="html"><![CDATA[
+
+<p>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方法变化还挺大，所以赶快在前面三篇文章中标注了一下版本使用问题，本文简单介绍一下 bartycrouch 4 的使用。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301092140.png" alt="" /></p>
+
+<h2 id="开发平台">开发平台</h2>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h2 id="bartycrouch-准备">bartycrouch 准备</h2>
+
+<blockquote>
+<p>BartyCrouch incrementally updates your Strings files from your Code and from Interface Builder files. &ldquo;Incrementally&rdquo; means that BartyCrouch will by default keep both your already translated values and even your altered comments. Additionally you can also use BartyCrouch for machine translating from one language to 60+ other languages. Using BartyCrouch is as easy as running a few simple commands from the command line what can even be automated using a build script within your project.</p>
+</blockquote>
+
+<p><a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a></p>
+
+<p>bartycrouch 可以依据 interfaces 文件( xib 文件) 和代码(swift 、m、h 文件)来增量更新 strings 文件。在这里 <strong>增量</strong> 是指 bartycrouch 会默认保留已经翻译的值及改变了的注释。另外您也可使用 bartycrouch 借助微软的服务从一种语言机器翻译成超过 60+ 种语言。在命令行调用几个简单的命令您就可以轻而易举的使用 bartycrouch，另外您也可以在 xcode 的工程配置中添加运行脚本自动化使用 bartycrouch 完成您期望的任务。</p>
+
+<h3 id="依赖">依赖</h3>
+
+<ul>
+<li>Xcode 10.1+</li>
+<li>Swift 4.2+</li>
+<li>Xcode Command Line Tools (详见：<a href="http://stackoverflow.com/a/9329325/3451975" target="_blank">点我</a>)</li>
+</ul>
+
+<h3 id="安装方法">安装方法</h3>
+
+<p><details>
+<summary>使用 <a href="https://brew.sh/" target="_blank">Homebrew</a> 安装</summary></p>
+
+<p>通过下面的命令可以很容易安装 bartycrouch:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install bartycrouch</code></pre></div>
+<p>另外可以通过下面的命令更新 bartycrouch，保证一直使用最新保本:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew upgrade bartycrouch</code></pre></div>
+<p></details></p>
+
+<p><details>
+<summary>通过 <a href="https://github.com/yonaskolb/Mint" target="_blank">Mint</a> 安装</summary></p>
+
+<p>通过以下命令就可以安装 bartycrouch（目前通过这种方式会出现缺少动态库的问题，估计很快就会修复了，所以建议使用 homebrew 安装的方式）:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mint install Flinesoft/BartyCrouch</code></pre></div>
+<p></details></p>
+
+<h2 id="bartycrouch-使用">bartycrouch 使用</h2>
+
+<p>这里提醒一下，如果您直接用一个现有的工程尝试这个工具的话，以防万一请先用 git <em>提交</em> 一下您的代码，尽量保证安全，另外这里强烈建议如果研究明白怎么用了后使用为 xcode <a href="#创建编译脚本">创建编译脚本</a> 的方式使用 bartycrouch。</p>
+
+<p>在命令行下，先执行一下 <code>bartycrouch -h</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">$ bartycrouch -h
+
+Usage: bartycrouch &lt;command&gt; <span class="o">[</span>options<span class="o">]</span>
+
+Incrementally update <span class="p">&amp;</span> translate your Strings files from code or interface files.
+
+Commands:
+  init            Creates the default configuration file <span class="p">&amp;</span> creates a build script <span class="k">if</span> Xcode project found
+  update          Update your .strings file contents with the configured tasks <span class="o">(</span>default: interfaces, code, normalize<span class="o">)</span>
+  lint            Lints your .strings file contents
+  <span class="nb">help</span>            Prints <span class="nb">help</span> information
+  version         Prints the current version of this app</code></pre></div>
+<ul>
+<li><code>help</code>: 打印帮助信息，也就是上面，<code>bartycrouch -h</code> 等同于 <code>bartycrouch help</code></li>
+<li><code>version</code>: 打印当前 bartycrouch 的版本号</li>
+</ul>
+
+<p>下面以 bartycrouch 正常的使用流程分别讲一下 <code>init</code> <code>update</code> 和 <code>lint</code> 三个命令。</p>
+
+<h3 id="init-命令">init 命令</h3>
+
+<p>这个命令用于生成针对 Xcode 工程的 bartycrouch 配置文件。进入到 xcode 的根目录，执行以下命令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">bartycrouch init</code></pre></div>
+<p>工程根目录下会出现名为 <code>.bartycrouch.toml</code> 的文件。</p>
+
+<p><details><summary><code>.bartycrouch.toml</code> 默认内容</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
+<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span>
+
+<span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">interfaces</span><span class="p">]</span>
+<span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">defaultToBase</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">ignoreEmptyStrings</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">unstripped</span> <span class="p">=</span> <span class="kc">false</span>
+
+<span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">code</span><span class="p">]</span>
+<span class="nx">codePath</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">localizablePath</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">defaultToKeys</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">additive</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">unstripped</span> <span class="p">=</span> <span class="kc">false</span>
+
+<span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">transform</span><span class="p">]</span>
+<span class="nx">codePath</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">localizablePath</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">transformer</span> <span class="p">=</span> <span class="s2">&#34;foundation&#34;</span>
+<span class="nx">supportedLanguageEnumPath</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">typeName</span> <span class="p">=</span> <span class="s2">&#34;BartyCrouch&#34;</span>
+<span class="nx">translateMethodName</span> <span class="p">=</span> <span class="s2">&#34;translate&#34;</span>
+
+<span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">normalize</span><span class="p">]</span>
+<span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">sourceLocale</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+<span class="nx">harmonizeWithSource</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">sortByKeys</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="p">[</span><span class="nx">lint</span><span class="p">]</span>
+<span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">duplicateKeys</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">emptyValues</span> <span class="p">=</span> <span class="kc">true</span></code></pre></div>
+<p></details></p>
+
+<p>在这个配置文件中包含了另外两个命令( update 和 lint )的相关配置，这是 bartycrouch 的默认配置，应该可以在绝大多数工程中使用，但是这里需要注意以下几点：</p>
+
+<ul>
+<li><code>[update]</code> 的值就代表了，执行 <code>bartycrouch update</code> 时要完成的任务，不想执行某个任务可以直接删除，比如不执行 <code>code</code> 任务，可以写成：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
+<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span></code></pre></div>
+<ul>
+<li><p>每个任务子项中都包含了对应的配置信息，可依据工程需要进行调整，具体含义可以参考后面任务的介绍</p></li>
+
+<li><p>尽可能为包含关键字的 <code>path</code> 键提供具体的路径名称 (例如：<code>codePath</code> 设置为包含 swift 代码文件的目录)</p></li>
+
+<li><p>如果您的工程是纯 swift 实现并且使用了 update 命令的的 <a href="#transform-任务"><code>tranform</code> 任务</a>，可以删除 <code>code</code> 任务</p></li>
+
+<li><p>如果您正在使用支持 <code>structured-swift4</code> 模板的 <a href="https://github.com/SwiftGen/SwiftGen#strings" target="_blank">SwiftGen</a> ，您需要将 <code>[update.transform]</code> 的 <code>transformer</code> 从 <code>foundation</code> 改为 <code>swiftgenStructured</code></p></li>
+
+<li><p>如果您要使用 <code>transform</code> 任务，需要在工程中创建一个新文件，命名为 <code>BartyCrouch.swift</code>，内容如下：</p></li>
+</ul>
+
+<p><details><summary><code>BartyCrouch.swift</code> 代码</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//</span>
+<span class="c1">//  This file is required in order for the `transform` task of the translation helper tool BartyCrouch to work.</span>
+<span class="c1">//  See here for more details: https://github.com/Flinesoft/BartyCrouch</span>
+<span class="c1">//</span>
+
+<span class="kd">import</span> <span class="nc">Foundation</span>
+
+<span class="kd">enum</span> <span class="nc">BartyCrouch</span> <span class="p">{</span>
+    <span class="kd">enum</span> <span class="nc">SupportedLanguage</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="c1">// </span><span class="cs">TODO:</span><span class="c1"> remove unsupported languages from the following cases list &amp; add any missing languages</span>
+        <span class="k">case</span> <span class="n">arabic</span> <span class="p">=</span> <span class="s">&#34;ar&#34;</span>
+        <span class="k">case</span> <span class="n">chineseSimplified</span> <span class="p">=</span> <span class="s">&#34;zh-Hans&#34;</span>
+        <span class="k">case</span> <span class="n">chineseTraditional</span> <span class="p">=</span> <span class="s">&#34;zh-Hant&#34;</span>
+        <span class="k">case</span> <span class="n">english</span> <span class="p">=</span> <span class="s">&#34;en&#34;</span>
+        <span class="k">case</span> <span class="n">french</span> <span class="p">=</span> <span class="s">&#34;fr&#34;</span>
+        <span class="k">case</span> <span class="n">german</span> <span class="p">=</span> <span class="s">&#34;de&#34;</span>
+        <span class="k">case</span> <span class="n">hindi</span> <span class="p">=</span> <span class="s">&#34;hi&#34;</span>
+        <span class="k">case</span> <span class="n">italian</span> <span class="p">=</span> <span class="s">&#34;it&#34;</span>
+        <span class="k">case</span> <span class="n">japanese</span> <span class="p">=</span> <span class="s">&#34;ja&#34;</span>
+        <span class="k">case</span> <span class="n">korean</span> <span class="p">=</span> <span class="s">&#34;ko&#34;</span>
+        <span class="k">case</span> <span class="n">malay</span> <span class="p">=</span> <span class="s">&#34;ms&#34;</span>
+        <span class="k">case</span> <span class="n">portuguese</span> <span class="p">=</span> <span class="s">&#34;pt-BR&#34;</span>
+        <span class="k">case</span> <span class="n">russian</span> <span class="p">=</span> <span class="s">&#34;ru&#34;</span>
+        <span class="k">case</span> <span class="n">spanish</span> <span class="p">=</span> <span class="s">&#34;es&#34;</span>
+        <span class="k">case</span> <span class="n">turkish</span> <span class="p">=</span> <span class="s">&#34;tr&#34;</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">translations</span><span class="p">:</span> <span class="p">[</span><span class="n">SupportedLanguage</span><span class="p">:</span> <span class="nb">String</span><span class="p">],</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">typeName</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">methodName</span> <span class="p">=</span> <span class="kc">#function</span>
+
+        <span class="bp">print</span><span class="p">(</span>
+            <span class="s">&#34;Warning: [BartyCrouch]&#34;</span><span class="p">,</span>
+            <span class="s">&#34;Untransformed </span><span class="si">\(</span><span class="n">typeName</span><span class="si">)</span><span class="s">.</span><span class="si">\(</span><span class="n">methodName</span><span class="si">)</span><span class="s"> method call found with key &#39;</span><span class="si">\(</span><span class="n">key</span><span class="si">)</span><span class="s">&#39; and base translations &#39;</span><span class="si">\(</span><span class="n">translations</span><span class="si">)</span><span class="s">&#39;.&#34;</span><span class="p">,</span>
+            <span class="s">&#34;Please ensure that BartyCrouch is installed and configured correctly.&#34;</span>
+        <span class="p">)</span>
+
+        <span class="c1">// fall back in case something goes wrong with BartyCrouch transformation</span>
+        <span class="k">return</span> <span class="s">&#34;BC: TRANSFORMATION FAILED!&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p></details></p>
+
+<ul>
+<li><p>如果您的第一语言不是英语, 您需要将 <code>normalize</code> 任务的 <code>sourceLocale</code> 改为您的第一语言，值参考上面代码中的枚举 <code>SupportedLanguage</code> 的元素</p></li>
+
+<li><p>如果您想使用 bartycrouch 的翻译功能，需要将如下的配置添加到 <code>.bartycrouch.toml</code> 中，并且将 <code>translate</code> 添加到任务列表中，其中您需要将 <code>secret</code> 的值替换成您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key" target="_blank">Microsoft Translator Text API Subscription Key</a>:</p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">translate</span><span class="p">]</span>
+<span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+<span class="nx">secret</span> <span class="p">=</span> <span class="s2">&#34;&lt;#Subscription Key#&gt;&#34;</span>
+<span class="nx">sourceLocale</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span></code></pre></div>
+<h3 id="update-命令">update 命令</h3>
+
+<p>update 命令可以执行以下几个任务：</p>
+
+<ul>
+<li><code>interfaces</code>: 从 Storyboards &amp; XIBs 更新 <code>.strings</code> 文件</li>
+<li><code>code</code>: 根据代码中的 <code>NSLocalizedString</code> 调用更新 <code>Localizable.strings</code></li>
+<li><code>transform</code>: 仅支持 swift 文件，可以替换特定方法的调用替换为可以提供多种语言翻译的单行方式</li>
+<li><code>translate</code>: 从指定语言翻译成多种语言并替换结果到 strings 文件中</li>
+<li><code>normalize</code>: 格式化 <code>.strings</code> 文件内容：排序或者清楚多余内容</li>
+</ul>
+
+<p>上面已经提到过的，可以通过 <code>.bartycrouch.toml</code> 的 <code>task</code> 配置要执行的任务：</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
+<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span></code></pre></div>
+<h4 id="任务配置项介绍">任务配置项介绍</h4>
+
+<p><details><summary><code>interfaces</code> 配置项含义</summary></p>
+
+<ul>
+<li><code>path</code>: 查找 Storyboards &amp; XIB 文件的路径</li>
+<li><code>defaultToBase</code>: 添加 Base translation 作为新键的值</li>
+<li><code>ignoreEmptyStrings</code>: 不添加 views 中是空值的项</li>
+<li><code>unstripped</code>: 保留 Strings 文件开始和结尾的空白字符串</li>
+</ul>
+
+<p></details></p>
+
+<p><details><summary><code>code</code> 配置项含义</summary></p>
+
+<ul>
+<li><code>codePath</code>: 查找 Swift 代码文件的路径</li>
+<li><code>localizablePath</code>: 包含 <code>Localizable.strings</code> 文件的目录的父目录</li>
+<li><code>defaultsToKeys</code>: 为新键添加与新键名称一致的值</li>
+<li><code>additive</code>: 不清除未在代码中发现的键</li>
+<li><code>customFunction</code>: 替代 <code>NSLocalizedString</code> 的函数名称</li>
+<li><code>customLocalizableName</code>: 替代 <code>Localizable.strings</code> 的文件的名称</li>
+<li><code>unstripped</code>: 保留 Strings 文件开始和结尾的空白字符串</li>
+</ul>
+
+<p></details></p>
+
+<p><details><summary><code>transform</code> 配置项含义</summary></p>
+
+<ul>
+<li><code>codePath</code>: 查找 Swift 代码文件的路径</li>
+<li><code>localizablePath</code>:  包含 <code>Localizable.strings</code> 文件的目录的父目录</li>
+<li><code>transformer</code>: 指定转换的模式: 若调用 <code>NSLocalizedString</code> 接口，值就设成 <code>foundation</code>; 若调用 <code>L10n</code> 形式的接口，值就设成 <code>swiftgenStructured</code></li>
+<li><code>supportedLanguageEnumPath</code>: 包含 <code>SupportedLanguage</code> 枚举定义的 swift 文件的路径</li>
+<li><code>typeName</code>: 包含 <code>SupportedLanguage</code> 枚举和翻译方法的类型名称</li>
+<li><code>translateMethodName</code>: 翻译方法的名称</li>
+<li><code>customLocalizableName</code>: 替代 <code>Localizable.strings</code> 的文件的名称</li>
+</ul>
+
+<p></details></p>
+
+<p><details><summary><code>translate</code>  配置项含义</summary></p>
+
+<ul>
+<li><code>path</code>: 查找 <code>.strings</code> 文件的路径</li>
+<li><code>secret</code>: 您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key" target="_blank">Microsoft Translator Text API Subscription Key</a>.</li>
+<li><code>sourceLocale</code>: 指定从哪种语言翻译成其他语言</li>
+</ul>
+
+<p></details></p>
+
+<p><details><summary><code>normalize</code>  配置项含义</summary></p>
+
+<ul>
+<li><code>path</code>: 查找 <code>.strings</code> 文件的路径</li>
+<li><code>sourceLocale</code>: 指定依照哪种语言对其他语言的 string 文件进行格式化</li>
+<li><code>harmonizeWithSource</code>: 同步键值对的源语言</li>
+<li><code>sortByKeys</code>: 按照字母顺序对键进行排序</li>
+</ul>
+
+<p></details></p>
+
+<h4 id="transform-任务">transform 任务</h4>
+
+<p>如果配置文件中配置了 <code>transform</code> 任务(详见 <a href="#init-命令">init 命令</a>)并且已经在 xcode 中<a href="#创建编译脚本">创建编译脚本</a>, 在开发中您可以使用下面简化的流程编写本地化代码:</p>
+
+<ul>
+<li>您可以使用 <code>BartyCrouch.translate</code> 替代 <code>NSLocalizedString</code> 指定键、翻译方法和注释，例如:</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="s">&#34;onboarding.first-page.header-title&#34;</span><span class="p">,</span>  <span class="n">translations</span><span class="p">:</span> <span class="p">[.</span><span class="n">english</span><span class="p">:</span> <span class="s">&#34;Welcome!&#34;</span><span class="p">])</span></code></pre></div>
+<ul>
+<li><p>编译应用的时候, BartyCrouch 会自动向所有的 <code>Localizable.strings</code> 文件中添加您指定的键，并且为指定语言的键添加指定语言翻译结果</p></li>
+
+<li><p>同时 BartyCrouch 会自动依据配置中指定的 <code>transformer</code> 替换上面 <code>BartyCrouch.translate</code> 的调用为对应的方法</p>
+
+<ul>
+<li><p>当 <code>transformer</code> 设置为 <code>foundation</code>, 上面 <code>BartyCrouch.translate</code> 的调用会替换为如下的结果:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;onboarding.first-page.header-title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)</span></code></pre></div></li>
+
+<li><p>当 <code>transformer</code> 设置为 <code>swiftgenStructured</code>, 上面 <code>BartyCrouch.translate</code> 的调用会替换为如下的结果:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">L10n</span><span class="p">.</span><span class="n">Onboarding</span><span class="p">.</span><span class="n">FirstPage</span><span class="p">.</span><span class="n">headerTitle</span></code></pre></div></li>
+</ul></li>
+</ul>
+
+<h5 id="使用-transform-的优点">使用 <code>transform</code> 的优点:</h5>
+
+<ul>
+<li>不用为了添加翻译的键值而不断的切换不同语言的 Strings 文件</li>
+<li>一旦使用了 SwiftGen, 不需要手动替换 <code>NSLocalizedString</code> 为 <code>L10n</code> 的调用了</li>
+<li>与机器翻译配合使得只需在代码中使用一行代码就可以实现所有语言的翻译和值的替换</li>
+</ul>
+
+<h5 id="使用-transform-的缺点">使用 <code>transform</code> 的缺点:</h5>
+
+<ul>
+<li>只支持 swift 代码而不支持 Objective-C</li>
+<li>在下次编译之前，xcode 会有一些错误提示，但是一编译就会没有了错误提示</li>
+<li>由于 <a href="https://github.com/apple/swift-syntax" target="_blank">SwiftSyntax</a> 当前<a href="https://www.jpsim.com/evaluating-swiftsyntax-for-use-in-swiftlint/" target="_blank">运行不是特别快</a>所以看上去不如 <code>code</code> 任务快速. (但是这个会随着时间改善！)</li>
+</ul>
+
+<h3 id="lint-命令">lint 命令</h3>
+
+<p>lint 命令可以检查 <code>.strings</code> 文件，主要有下面两个检查项:</p>
+
+<ul>
+<li><code>duplicateKeys</code>: 查找同一个文件中重复的键值对</li>
+<li><code>emptyValues</code>: 查找空值的键值对</li>
+</ul>
+
+<h3 id="创建编译脚本">创建编译脚本</h3>
+
+<p>为了让 xcode 可以使用 bartycrouch 来更新和检查您的 <code>.strings</code> 文件，您可以添加一个编译脚本实现。</p>
+
+<p>按照下图所示步骤添加脚本：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301131243.jpg" alt="" /></p>
+
+<p><details><summary>脚本内容(点我查看)</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    bartycrouch update -x
+    bartycrouch lint -x
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
+<span class="k">fi</span></code></pre></div>
+<p></details></p>
+
+<p>下一步确保这个运行脚本在 <code>Compiling Sources</code> 和 <code>SwiftGen</code>(如果使用了的话) 之前运行，比如在 <code>Target Dependencies</code> 后面，像下图这样：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301131815.png" alt="" /></p>
+
+<p>现在每次运行工程，都会自动的更新和检查 <code>.strings</code> 文件，而不用手动处理了。另外如果工程的成员如果没有安装 bartycrouch 的脚本会产生警告：</p>
+
+<blockquote>
+<p>warning: BartyCrouch not installed, download it from <a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">https://github.com/Flinesoft/BartyCrouch</a></p>
+</blockquote>
+
+<p>另外补充的是，lint 和 update 有以下三个参数可用：</p>
+
+<ul>
+<li><strong><code>-v</code>, <code>--verbose</code></strong>: 打印更多的执行信息</li>
+<li><strong><code>-x</code>, <code>--xcode-output</code></strong>: 以 xcode 兼容的形式呈现错误和提醒，在 xcode 中的运行脚本中添加以后，一旦检查出错误或警告会在 xcode 的 issue 导航栏中呈现</li>
+<li><strong><code>-w</code>, <code>--fail-on-warnings</code></strong>: 遇到警告的时候返回对应代码</li>
+</ul>
+]]></content>
+		</item>
+		
+		<item>
+			<title>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</title>
+			<link>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</link>
+			<pubDate>Wed, 27 Feb 2019 10:23:39 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
+			<description>在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两</description>
+			<content type="html"><![CDATA[
+
+<p>在文章<a href="/2019/02/25/macOS-dev-nstextfield-keys/" target="_blank">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a>中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两个操作：</p>
+
+<ul>
+<li>撤销: <code>Command</code> + <code>z</code></li>
+<li>重做: <code>Shift</code> + <code>Command</code> + <code>z</code></li>
+</ul>
+
+<h1 id="实现平台">实现平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="示例工程">示例工程</h1>
+
+<p>我们继续使用 <a href="/2019/02/25/macOS-dev-nstextfield-keys/" target="_blank">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a> 中的 Demo 工程，点击下面链接可以下载：</p>
+
+<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip" target="_blank">TextFieldKeyDemo</a></p>
+
+<h1 id="添加撤销和重做支持">添加撤销和重做支持</h1>
+
+<p>这里先说一下怎么做，然后再解释。</p>
+
+<h2 id="确认勾选-undo">确认勾选 undo</h2>
+
+<p>NSTextField是默认支持撤销和重做的，打开 Main.storyboard 文件，点击 view controller 中的 Text Field，按快捷键 <code>Option</code> + <code>Command</code> + 4 打开 Text Field 的 Attribute Inspector 这是就会看到 Undo 是默认勾选的：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227124649.png" alt="" /></p>
+
+<h2 id="添加快捷键支持">添加快捷键支持</h2>
+
+<p>既然支持了 Undo，那么我们只需按照相应快捷键添加相应的操作就可以了，打开文件 AppDelegate.swift，可以看到上一篇文章中复写的 <code>performKeyEquivalent:</code> 方法，添加撤销和重做的代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 支持快捷键</span>
+<span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
+    <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">modifierFlags</span><span class="p">.</span><span class="n">isDisjoint</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;z&#34;</span><span class="p">:</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">?.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">undo</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">case</span> <span class="s">&#34;Z&#34;</span><span class="p">:</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">?.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">redo</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>添加完上述代码，按下快捷键 <code>Command</code> + <code>r</code> 运行程序，在运行起来的窗口中的文本框中输入一些字符，然后尝试按快捷键 <code>Command</code> + <code>z</code> 和 <code>Command</code> + <code>Z</code> ，恭喜你完成了撤销和重做操作的添加！</p>
+
+<ul>
+<li><code>Shift</code> + <code>Command</code> + <code>z</code> 可以理解为 <code>Command</code> + (<code>Shift</code> + <code>z</code>)，而 <code>Shift</code> + <code>z</code> 其实就是 <code>Z</code>，所以最终这个重做快捷键其实就是 <code>Command</code> + <code>Z</code>(大写的 <code>z</code>)</li>
+<li>当文本框编辑的时候其就是窗口的第一响应对象，这里使用 <code>self.window?.firstResponder</code> 就是要快速定位到正在编辑的文本对象，而不是通过 NSTextField 的对象层级关系查找键盘事件的响应对象</li>
+<li>在 macOS 中，撤销和重做被做了统一封装，由 UndoManager 类进行统一管理这两个操作，而对于继承 NSResponder 类的子类都是默认有一个 undoManager 属性的，类型就是 UndoManager，不需要手动创建。同样，NSTextField 也不例外。macOS 中文本对象的操作都是默认包含 undoManager 的管理的也不需要我们手动添加相关管理实现。</li>
+</ul>
+
+<h1 id="撤销和重做的实现原理">撤销和重做的实现原理</h1>
+
+<p>上面已经提到 App 中的撤销和重做操作是由 UndoManager 类进行管理的，虽然我们知道了如何实现 NSTextField 的撤销和重做，但是 UndoManager 实现原理和使用还是得了解一下的，后面有需求要做不是文本操作的撤销和重做功能时也就更容易上手了。</p>
+
+<h2 id="理解撤销和重做操作流程">理解撤销和重做操作流程</h2>
+
+<p>UndoManager 通过管理两个操作栈(撤销栈和重做栈)的压栈和弹栈实现 undo 和 redo，两个操作栈中保存的是最小的操作过程，这个小的操作过程被封装为 NSInvocation 对象，然后保存在两个栈中，示意大概如下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227224058.png" alt="" /></p>
+
+<p>NSInvocation 是一种包含执行方法及参数的对象。</p>
+
+<p>操作流程中的操作压栈和弹栈过程分三种情况：</p>
+
+<ul>
+<li>正常操作时：将马上要进行的正常操作的逆操作进行封装压入撤销栈，然后执行正常操作</li>
+<li>要执行撤销操作时：先从撤销栈中弹出得到要进行的操作，将这一步操作的逆操作压入重做栈，然后执行刚弹出的操作</li>
+<li>要执行重做操作时：从重做栈中弹出得到要进行的操作，将其逆向操作的封装压入撤销栈，然后进行刚弹出的操作</li>
+</ul>
+
+<h2 id="撤销和重做操作的管理">撤销和重做操作的管理</h2>
+
+<h3 id="undomanager-对象的创建">UndoManager 对象的创建</h3>
+
+<p>如上面提到的，大多数情况下对象中都有一个现成的 UndoManager 对象属性，可以直接使用这个属性 undoManager。继承 NSResponder 的子类由有：NSApplication、NSPopover、NSView、NSViewController、NSWindow 和 NSWindowController。</p>
+
+<h3 id="撤销操作压栈">撤销操作压栈</h3>
+
+<p>要将操作压入撤销栈其实就是一个注册操作的过程，有三个方法：</p>
+
+<ul>
+<li><code>registerUndo(withTarget:handler:)</code> 方法，是将对象、处理一起进行注册，使用闭包的形式，例如：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndo</span><span class="p">(</span><span class="n">withTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">textField</span><span class="p">:</span> <span class="n">NSTextField</span><span class="p">)</span> <span class="k">in</span>
+    <span class="n">textField</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
+<span class="p">}</span></code></pre></div>
+<ul>
+<li><p><code>registerUndo(withTarget:selector:object:)</code> 方法注册</p></li>
+
+<li><p>使用 <code>prepare(withInvocaionTarget:)</code> 方法注册：</p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">target</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">prepare</span><span class="p">(</span><span class="n">withInvocationTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">NSTextField</span> <span class="p">{</span>
+    <span class="n">target</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
+<span class="p">}</span></code></pre></div>
+<p><strong>注：</strong></p>
+
+<p>UndoManager 对象的 undoRegistionEnabled 是 true 的时候，撤销操作可以注册，但是如果是 false 就会禁用注册功能。</p>
+
+<h3 id="清除所有的撤销操作">清除所有的撤销操作</h3>
+
+<ul>
+<li><code>removeAllActions</code>: 删除撤销栈中所有的撤销操作</li>
+<li><code>removeAllActions(withTarget:)</code>: 删除撤销栈中指定对象的所有撤销操作</li>
+</ul>
+
+<p>需要注意的一点是：UndoManager 会强引用保留对象，所以在一个对象被删除的时候一定要清除这个对象在撤销栈中的所有撤销操作。</p>
+
+<h3 id="为撤销操作命名">为撤销操作命名</h3>
+
+<p>可以使用 <code>setActionName</code> 为撤销操作进行命名，这样在全局菜单中的编辑菜单中的就能看到撤销和重做对应的具体实际的动作。</p>
+
+<h1 id="实例感受撤销和重做的实现">实例感受撤销和重做的实现</h1>
+
+<p>这里继续使用上面的工程，实现一个可以撤销和重做的整数加法器，具体实现过程如下：</p>
+
+<ul>
+<li>另外添加两个 Text Field，三个文本框分别是加数、被加数和结果，并将其作为属性绑定到 View Controller 中</li>
+<li>添加三个按钮，分别是计算、撤销和重做，同样绑定动作到 View Controller 中</li>
+<li>添加三个 Action 的实现，在撤销和重做的实现中，可以参考下面的模板实现：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">func</span> <span class="nf">doThing</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// do the thing here</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">undoThing</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// undo the thing here</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">undoablyDoThing</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
+        <span class="n">me</span><span class="p">.</span><span class="n">redoablyUndoThing</span><span class="p">()</span>
+    <span class="p">})</span>
+    <span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
+    <span class="n">doThing</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">redoablyUndoThing</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
+        <span class="n">me</span><span class="p">.</span><span class="n">undoablyDoThing</span><span class="p">()</span>
+    <span class="p">})</span>
+    <span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
+    <span class="n">undoThing</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div>
+<p>另外还要注意的是，最好是也要将撤销按钮和重做按钮与 undoManager 的 canUndo 和 canRedo 同步，形式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canUndo</span><span class="p">)</span><span class="o">!</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">redoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canRedo</span><span class="p">)</span><span class="o">!</span></code></pre></div>
+<p>最终实现效果如下视频，视频中可以看到 ViewController 类的实现：</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/undomanager.mp4" controls="controls" width="960"></video>
+
+<p>具体实现代码可以参考 Demo 源码：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo_UndoManager.zip" target="_blank">TextFieldKeyDemo_UndoManager</a></p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li>《macOS应用开发基础教程》</li>
+<li><a href="https://stackoverflow.com/questions/36491789/using-Undomanager-how-to-register-undos-using-swift-closures" target="_blank">Using UndoManager, how to register undos using Swift closures</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/undomanager" target="_blank">UndoManager</a></li>
+</ul>
+]]></content>
+		</item>
+		
+		<item>
+			<title>macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</title>
+			<link>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</link>
+			<pubDate>Mon, 25 Feb 2019 10:00:05 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</guid>
+			<description>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得</description>
+			<content type="html"><![CDATA[
+
+<p>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得到的是系统警告音。本文就跟十里一起看一下如何让没有应用菜单的 app 中的 NSTextField 支持常用的文本操作快捷键。</p>
+
+<ul>
+<li>复制: <code>Command</code> + <code>c</code></li>
+<li>剪切: <code>Command</code> + <code>x</code></li>
+<li>粘贴: <code>Command</code> + <code>v</code></li>
+<li>全选: <code>Command</code> + <code>a</code></li>
+</ul>
+
+<h1 id="实现平台">实现平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="键盘事件">键盘事件</h1>
+
+<p>每个 app 都有自己的主循环线程(Main Run Loop)，在这个循环中会遍历系统的事件消息队列，逐一发给对应的响应对象进行处理。具体来说就是 NSApp 的 <code>sendAction:</code> 或 <code>sendEvent:</code>方法发送事件消息给 NSWindow，NSWindow 再分发给具体的视图对象，最后由相应的事件响应方法进行处理。其中一种事件，就是这里要说的<strong>键盘事件</strong>，NSApp 对不同的键盘事件处理方式会不同，主要是以下三种：</p>
+
+<ul>
+<li><strong>快捷键</strong>：如果按下快捷键，系统会先向当前的<strong>活动窗口</strong>或<strong>菜单</strong>发送 <code>performKeyEquivalent:</code> 消息，此时窗口会依次遍历所有子视图控件按照响应链传递给 <code>performKeyEquivalent:</code> 的响应者。</li>
+<li><strong>控制键</strong>：NSApp 会将消息转发给键盘窗口，完成不同的控件切换控制的功能</li>
+<li><strong>其它按键</strong>：NSApp 会将消息转发给键盘窗口，窗口对象会先定位到第一响应对象，根据响应链优先级寻找对 keyDown 键盘事件响应的视图对象，如果可以找到就由相应对象处理，否则就会按照 insertText 方法进行处理(如果是个文本控件，就会插入相应键盘文本)</li>
+</ul>
+
+<p>很明显，我们要实现本文的主题，关注快捷键的处理流程就可以了，其实 NSTextField 有上述 <code>performKeyEquivalent:</code> 消息的处理，只不过是没有任何功能实现而已，所以我们只需为 NSTextField 复写一下这个消息的处理即可，这个消息的处理返回值是一个布尔类型，返回 true 则标志着按键事件消息传递的结束。</p>
+
+<h1 id="新建-demo-工程">新建 Demo 工程</h1>
+
+<p>为了更好的说明实现方法，我们还是要通过一个实际的Demo演示！新建的工程包含 storyboard ，新建完成后添加一个文本框控件，如果您对这些操作很熟悉可以跳过本小节。</p>
+
+<ul>
+<li><p>打开 Xcode，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>N</code> 就会触发新建工程的导航窗口</p></li>
+
+<li><p>选择 macOS -&gt; Cocoa App，点击 <code>Next</code></p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217102918.png" alt="" /></p></li>
+
+<li><p>工程取名为 TextFieldKeyDemo，勾选 <code>Use Storyboards</code>，点击 Next 选择合适的目录，点击create 创建</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225210558.png" alt="" /></p></li>
+
+<li><p>进入工程后，单击 Main.storyboard ，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>l</code> 打开控件选择器，搜索 textfield ，将 Text Field 拖入 ViewController ，水平垂直居中放置:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225214726.png" alt="" /></p></li>
+</ul>
+
+<h1 id="运行工程">运行工程</h1>
+
+<h2 id="运行结果">运行结果</h2>
+
+<p>点击快捷键 <code>Command</code> + <code>r</code> 运行工程，在打开的窗口中可以看到刚刚添加的 Text Field，在其中输入一些文本，然后试一下快件键，比如全选、复制、粘贴、剪切，发现都支持。</p>
+
+<p>此时你会不会有疑问，我们并没有为 NSTextField 类复写 <code>performKeyEquivalent:</code> 方法呀，为什么文本框就支持这些快捷键了，原因是最终键盘信息消息传给了应用菜单，应用菜单中有关于文本编辑的快捷键的处理，那么问题又来了，为什么应用菜单就会对 Text Field 进行操作呢？主要两点：</p>
+
+<ul>
+<li><p>菜单栏上<strong>编辑</strong>一组中的操作正是对应文章一开头说的几个快捷键，每个操作对应都绑定了一个对象那就是 <strong>First Responder</strong>，比如 Copy 对应的绑定 action：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225215948.png" alt="" /></p></li>
+
+<li><p>当前活动窗口中的 <strong>First Responder</strong> 就是文本框</p></li>
+</ul>
+
+<h2 id="试验操作">试验操作</h2>
+
+<p>现在打开工程，打开 Main.storyboard 文件，删除 菜单栏，就是下图标注的东西：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225220724.png" alt="" /></p>
+
+<p>此时再次运行工程，在文本框中尝试使用快捷键，你就会发现如我们所想失效了！</p>
+
+<h1 id="快捷键加持">快捷键加持</h1>
+
+<p>有时我们开发 app 就是不想保留菜单栏，比如状态栏小工具。所以继续研究怎么在没有菜单栏的情况下让 Text Field 支持快捷键是有必要的！很自然的我们就会想到上面说的为 NSTextField 复写 <code>performKeyEquivalent:</code> 方法的方式来解决！</p>
+
+<p>这里直接贴出代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 自身支持快捷键</span>
+<span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
+    <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>上面的代码贴到合适位置即可，比如 AppDelegate.swift 文件 <strong>AppDelegate</strong> 类的后面。</p>
+
+<p>可以看到上面的方法实现了四个快捷键的功能，分别是：全选、复制、粘贴和剪切，都是通过 NSApp 向文本框所在窗口的 <strong>First Responder</strong>(也就是文本框自己) 发起相应行为，而这些行为是 <strong>NStext</strong> 类的基本方法。另外：</p>
+
+<ul>
+<li><code>event.charactersIgnoringModifiers</code>: 除去修饰键剩余的按键</li>
+</ul>
+
+<blockquote>
+<p><strong>charactersIgnoringModifiers</strong>: The characters generated by a key event as if no modifier key (except for Shift) applies</p>
+</blockquote>
+
+<ul>
+<li>修饰键类型为 <code>NSevent:ModifierFlags</code> 类型，是一个集合，有 capsLock、shift、control、option、command、numericPad、help、function 和 deviceIndependentFlagsMask</li>
+</ul>
+
+<p>运行工程，窗口中的 Text Field 支持四个快捷键了！但是此时有一个问题，将 <code>Command</code> 键替换为 <code>Ctrl</code> 按下快捷键也能实现相应文本操作，所以在 <strong>switch</strong> 语句之前加一个判断，如果修饰键不包含 <code>Command</code> 就按照正常响应：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">modifierFlags</span><span class="p">.</span><span class="n">isDisjoint</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<ul>
+<li><code>event.modifierFlags.isDisjoint(with: .command)</code>: 判断快捷键中的修饰键(<strong>modifier</strong>)是不是不包含 Command 键，不包含就返回 true</li>
+</ul>
+
+<blockquote>
+<p><strong>isDisjoint</strong>: Returns a Boolean value that indicates whether the set has no members in common with the given set.</p>
+</blockquote>
+
+<p>此时，还是不完美的，如果按下文本操作快捷键的同时按下了其它有效修饰键(比如 <code>Ctrl</code>) 同样可以完成文本操作，目前还没想到其他更好的处理方式！后面有所发现就会更新这里！</p>
+
+<p>不知道您会不会有疑问：怎么不支持撤销和重做两个快捷键？不是不做，<strong>撤销</strong>和<strong>重做</strong> 操作实现是挺大的一块内容，所以放到这个主题的第二篇文章介绍。</p>
+
+<p>本文工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip" target="_blank">TextFieldKeyDemo</a></p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://www.cnblogs.com/kaymin/articles/7232475.html" target="_blank">NSTextField支持Cmd+C/V快捷键复制、粘贴</a></li>
+</ul>
+]]></content>
+		</item>
+		
+		<item>
+			<title>macOS 开发之代码字符串的本地化</title>
+			<link>https://www.smslit.top/2019/02/21/mac_app_international_3/</link>
+			<pubDate>Thu, 21 Feb 2019 18:02:47 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/02/21/mac_app_international_3/</guid>
+			<description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代</description>
+			<content type="html"><![CDATA[
+
+<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代码字符串本地化。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221212506.jpg" alt="" /></p>
+
+<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a></p>
+
+<p>第二部传送门：<a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a></p>
+
+<h1 id="实现平台">实现平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="准备工程">准备工程</h1>
+
+<p>本文直接使用上一篇文章<a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip" target="_blank">点我</a>下载！</p>
+
+<p>为了展示本文要讲的内容，这里利用已有的 label，另外添加两个按钮来切换 label 的内容。</p>
+
+<h2 id="添加按钮">添加按钮</h2>
+
+<p>打开上面下载的工程，打开 <code>Main.storyboard</code> 可以看到 View controller 中已经有一个 label ，本小节添加两个按钮，并添加相应的点击 action。</p>
+
+<ol>
+<li><p>按下快件键 <code>Shift</code> + <code>Command</code> + <code>l</code> 键，打开控件选择器，搜索框输入 <code>button</code> 就会筛选出所有的按钮控件，将其中的 <code>Gradient Button</code> 拖入 View Controller，调整其大小为 50 * 232，靠左放置到合适位置，打开 Attributes Inspector(选中按钮，按组合键 <code>Option</code> + <code>Command</code> + 4)，其中勾选 <code>Transparent</code> ，Image 选择 <code>NSGoForwardTemplate</code>，然后勾选 <code>Refuse First Responder</code></p></li>
+
+<li><p>同样的方法添加第二个按钮(或者直接复制第一个按钮)，不过是靠右放置，Attributes Inspector 中更改 Image 为 <code>NSGoBackTemplate</code>，其它设置与第一个按钮一致</p></li>
+
+<li><p>按下快捷键 <code>Option</code> + <code>Command</code> + 回车键会显示 <code>Main.storyboard</code> 中 view controller 对应的 Assitant Editor 并打开对应的 swift 文件</p></li>
+
+<li><p>选中第一个按钮，按住 <code>Ctrl</code> 键，鼠标左键按住拖动至 Assitant Editor 中松手添加一个 Action ，名称为 <code>previousLabel</code></p></li>
+
+<li><p>选中第二个按钮，按住 <code>Ctrl</code> 键，鼠标左键按住拖动至 Assitant Editor 中松手添加一个 Action ，名称为 <code>nextLabel</code></p></li>
+</ol>
+
+<p>上述五步操作，可参考如下视频进行：</p>
+
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/mac_international_add_button.mp4" controls="controls" width="720"></video>
+
+<h2 id="添加-label-的-outlet">添加 Label 的 outlet</h2>
+
+<p>打开 Main.storyboard ，选中 view controller 中的 label，按下快捷键 <code>Option</code> + <code>Command</code> + 回车键会显示 <code>Main.storyboard</code> 中 view controller 对应的 Assitant Editor 并打开对应的 swift 文件，按住 <code>Ctrl</code> 键，在 label 上按住鼠标左键拖动到 Assitant Editor 中松手添加一个 outlet ，名称为 <code>movieLabel</code>。</p>
+
+<h2 id="添加标签内容">添加标签内容</h2>
+
+<p>在 ViewController.swift 的 ViewController 类中添加以下定义：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;天空之城&#34;</span><span class="p">,</span> <span class="s">&#34;幽灵公主&#34;</span><span class="p">,</span> <span class="s">&#34;风之谷&#34;</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nv">movieIndex</span> <span class="p">=</span> <span class="mi">0</span></code></pre></div>
+<p>在 ViewDidLoad 方法的 <code>super.viewDidLoad()</code> 后面添加：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span></code></pre></div>
+<h2 id="完善按钮的-action">完善按钮的 action</h2>
+
+<p>补充 <code>previousLabel</code> 和 <code>nextLabel</code> 的实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">previousLabel</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">movieIndex</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">movieIndex</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="n">movieIndex</span> <span class="p">=</span> <span class="n">movies</span><span class="p">.</span><span class="bp">count</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">nextLabel</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">movieIndex</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">movieIndex</span> <span class="o">&gt;=</span> <span class="n">movies</span><span class="p">.</span><span class="bp">count</span> <span class="p">{</span>
+        <span class="n">movieIndex</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="p">}</span>
+    <span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+<h1 id="代码本地化">代码本地化</h1>
+
+<p>代码中字符串的本地化需要新建一个名为 <code>Localizable.strings</code> 的文件，新建过程类似于<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a> 中 <code>InfoPlist.strings</code>的过程，代码中的字符串如果需要本地化必须在这个文件中定义。</p>
+
+<h2 id="添加本地化文件">添加本地化文件</h2>
+
+<ol>
+<li><p>按下快捷键 <code>Command</code> + <code>n</code> 打开新建文件的导航窗口，选中 macOS - Resources - Strings file，next， 更改名称为 <code>Localizable.strings</code></p></li>
+
+<li><p>此时会打开文件，按下快捷键 <code>Option</code> + <code>Command</code> + <code>1</code> 就会打开其 file Inspector，可以看到分组 <code>Localization</code> 中的 <code>Localize...</code> 按钮，点击这个按钮就会跳出弹窗：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114200.png" alt="" /></p></li>
+
+<li><p>选择 <code>English</code> 选项，点击 <code>Localize</code> 就会发现 <code>InfoPlist.strings</code> Inspector 中的 <code>Localizations</code> 分组变成了三个勾选框，其中 <code>English</code> 是勾选的，这里也把 Chinese 和 Japanese 勾选上，此时你会发现 Xcode 左侧工程导航栏 <code>InfoPlist.strings</code> 左侧出现了一个小三角，点开就会发现其变成了与三种语言对应的三个 Strings 文件：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221201935.png" alt="" /></p></li>
+</ol>
+
+<h2 id="代码字符串的本地化">代码字符串的本地化</h2>
+
+<p>代码中字符串的本地化需要两步，一是在刚新建的 String 文件中添加字符串定义，二是调用方法 <code>NSLocalizedString(forKey:, comment:)</code> 根据字符串定义的键获取字符串。</p>
+
+<h3 id="添加本地化字符串定义">添加本地化字符串定义</h3>
+
+<p>因为代码中只在 <code>movies</code> 初始化中使用了字符串，所以对应要定义一下它们，分别在三个 Strings 文件中定义。</p>
+
+<ul>
+<li>Localizable.strings (English):</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Laputa Castle in the Sky&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Princess Mononoke&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Nausicaa Of The Valley Of The Wind &#34;</span><span class="p">;</span></code></pre></div>
+<ul>
+<li>Localizable.strings (Chinese(Simplified)):</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;天空之城&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;幽灵公主&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;风之谷&#34;</span><span class="p">;</span></code></pre></div>
+<ul>
+<li>Localizable.strings (Japanese):</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;天空の城ラピュタ&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;もののけ姫&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;風の谷のナウシカ&#34;</span><span class="p">;</span></code></pre></div>
+<h3 id="更新代码">更新代码</h3>
+
+<p>修改添加本地化字符串对应的地方，也就是 <code>movies</code> 初始化的地方，修改为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-1.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-2.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-3.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)]</span></code></pre></div>
+<h3 id="效果展示">效果展示</h3>
+
+<p>更改系统语言查看各语言的效果。</p>
+
+<ul>
+<li><p>English</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204958.png" alt="" /></p></li>
+
+<li><p>Chinese(Simplified)</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204943.png" alt="" /></p></li>
+
+<li><p>Japanese</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204925.png" alt="" /></p></li>
+</ul>
+
+<h2 id="添加新的本地化字符串">添加新的本地化字符串</h2>
+
+<p>在 <a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a> 中提到了一个工具 <a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a>，它的子命令 <code>code</code> 可以帮助我们自动扫描代码中调用 <code>NSLocalizedString(forKey:, comment:)</code> 的地方，如果 <code>Localizable.strings</code> 中没有的字符串键会自动追加，非常方便！</p>
+
+<p>⚠️：</p>
+
+<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top" target="_blank">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640" target="_blank">macOS 开发</a>。</p>
+
+<p>所以我们在之后若要将要使用的字符串本地化，直接使用 <code>NSLocalizedString(forKey:, comment:)</code> 方法，同时定义一个新的 key 先用上，之后去命令行使用 <code>bartycrouch code</code> 就可以添加新的字符串定义，只需要再修改 Strings 文件中新加键的值就可以了。</p>
+
+<h3 id="举例说明">举例说明</h3>
+
+<ul>
+<li>比如再在 <code>movies</code> 初始化中新加一个元素，代码可写为：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-1.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-2.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-3.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-4.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)]</span></code></pre></div>
+<ul>
+<li>命令行下切换至工程文根目录，执行命令：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># -p 指定包含工程代码文件的目录 ，-l 指定可以搜到 Localizable.strings 文件的代码目录</span>
+$ bartycrouch code -p InternationalDemo -l InternationalDemo
+ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Code files.</code></pre></div>
+<ul>
+<li>打开三个 <code>Localizable.strings</code> 文件会发现新添加了一项，并且为每一个添加了预置注释：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* No comment provided by engineer. */</span>
+<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span></code></pre></div>
+<ul>
+<li>分别为三个 Strings 文件修改对应新加项的值：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Howl&#39;s Moving Castle&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;哈尔的移动城堡&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;ハウルの動く城&#34;</span><span class="p">;</span></code></pre></div>
+<p>运行程序，可以看到不同语言下，第四个电影就出现了！</p>
+
+<h3 id="编译时更新">编译时更新</h3>
+
+<p><a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a> 中在工程中创建了 build phase 运行脚本，脚本中添加代码字符串本地化要执行的命令即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Type a script or drag a script file from your workspace to insert its path.</span>
+<span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    bartycrouch interfaces -p .
+    bartycrouch code -p . -l .
+    bartycrouch lint -e -d -p .
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
+<span class="k">fi</span></code></pre></div>
+<p>至此，您应该学会如何对代码中字符串本地化了吧！</p>
+
+<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo3.zip" target="_blank">InternationalDemo3</a></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>macOS 开发之 storyboard 或 xib 本地化</title>
+			<link>https://www.smslit.top/2019/02/19/mac_app_international_2/</link>
+			<pubDate>Tue, 19 Feb 2019 08:53:54 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/02/19/mac_app_international_2/</guid>
+			<description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s</description>
+			<content type="html"><![CDATA[
+
+<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：storyboard 或 xib 本地化。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219090656.jpg" alt="" /></p>
+
+<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a></p>
+
+<p>第三部传送门：<a href="/2019/02/21/mac_app_international_3/" target="_blank">macOS 开发之代码字符串的本地化</a></p>
+
+<h1 id="实现平台">实现平台</h1>
+
+<ul>
+<li>macOS 10.14.3</li>
+<li>swift 4.2.1</li>
+<li>xcode 10.1</li>
+</ul>
+
+<h1 id="准备工程">准备工程</h1>
+
+<p>本文直接使用上一篇文章<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo.zip" target="_blank">点我</a>下载！</p>
+
+<p>打开工程后，会看到 <code>Main.storyboard</code> 左侧有个小三角，点开可以看到，包含了简体中文和日文的两个 Strings 文件，这两个文件是在<a href="/2019/02/18/mac_app_international_1/#添加语言支持" target="_blank">添加语言支持</a> 的时候添加上的，点击 <code>Main.storyboard</code> 可以在 Inspector 的 <code>Localization</code> 分组看到 English 没有勾选，勾选 English ，会看到新增了一个 English 的 Strings 文件。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219092044.jpg" alt="" /></p>
+
+<p>上面提到的 String 文件包含了 storyboard 中所有可见控件中字符串对应的内容定义，App 运行的时候会根据系统语言读取对应语言的字符串内容，以达到 storyboard 界面元素本地化显示的效果！</p>
+
+<blockquote>
+<p>如果要添加自己定义的 xib 文件，也会像 storyboard 文件一样，在 File Inspector 中会有一个 Localization 的分组，如果有 localize&hellip; 按钮，点击它就可以添加 xib 的新的语言支持！</p>
+</blockquote>
+
+<h1 id="修改-strings-文件">修改 Strings 文件</h1>
+
+<p>打开上面提到的三个 Strigns 文件：</p>
+
+<ul>
+<li>Main.Strings (English)</li>
+<li>Main.Strings (Chinese(Simplified))</li>
+<li>Main.Strings (Japanese)</li>
+</ul>
+
+<p>可以看到文件中都包含了相同的字符串项，例如其中的窗口标题项：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSWindow&#34;; title = &#34;Window&#34;; ObjectID = &#34;IQv-IB-iLA&#34;; */</span>
+<span class="s">&#34;IQv-IB-iLA.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Window&#34;</span><span class="p">;</span></code></pre></div>
+<ol>
+<li>左侧的代表了字符串标识，右侧是相对应的字符串值，我们要对应语言修改的就是每一项的右侧值。</li>
+<li>每一项后面必须有半角的分号</li>
+
+<li><p>左侧标识使用了控件的 <code>ObjectID</code>，使用点语法表示属性的方式构成字符串标识，其中 <code>ObjectID</code> 可以在控件的 Identity Inspector 中查看，比如选中 Main.storyboard 中的 Window 将 Inspector 切换到 Identity 标签页可以在 Document 分组中看到 Object ID 是 <code>IQv-IB-iLA&quot;</code></p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219112159.png" alt="" /></p></li>
+</ol>
+
+<p>下面的工作就是自行翻译并修改每一项右侧的值了，可以使用<a href="http://translate.google.cn/" target="_blank">谷歌翻译</a>协助翻译。</p>
+
+<p>将 Main.Strings (Chinese(Simplified)) 和 Main.Strings (Japanese) 中的项修改完成后就可以验证效果了。</p>
+
+<h1 id="更新-strings-文件">更新 Strings 文件</h1>
+
+<p>设计的 storyboard 并不是一成不变的，所以 Strings 文件也要随时更新。这里用到一个辅助工具叫做 <strong>bartycrouch</strong>:</p>
+
+<blockquote>
+<p>BartyCrouch incrementally updates your Strings files from your Code and from Interface Builder files. &ldquo;Incrementally&rdquo; means that BartyCrouch will by default keep both your already translated values and even your altered comments. Additionally you can also use BartyCrouch for machine translating from one language to 60+ other languages. Using BartyCrouch is as easy as running a few simple commands from the command line what can even be automated using a build script within your project.</p>
+</blockquote>
+
+<p><a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a></p>
+
+<p>这个工具也能调用微软的 API 协助翻译。</p>
+
+<h2 id="安装-bartycrouch">安装 bartycrouch</h2>
+
+<p>可以使用 homebrew 安装这个工具：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ brew install bartycrouch</code></pre></div>
+<p>⚠️：</p>
+
+<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top" target="_blank">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640" target="_blank">macOS 开发</a>。</p>
+
+<h2 id="使用">使用</h2>
+
+<p>为了验证使用，这里在 view controller 中添加了一个按钮和一个 label。</p>
+
+<h3 id="更新-interfaces">更新 interfaces</h3>
+
+<p>这里我们主要是用其从 storyboard 或者 xib 文件更新 Strings 文件的功能，只需要调用如下命令就可以工作：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ bartycrouch interfaces -p InternationalDemo/
+ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Storyboard or XIB file.</code></pre></div>
+<p>其中需要使用 <code>-p</code> 指明包含工程文件的目录，因为此时工作目录是在工程根目录下，所以要指定的目录是存放文件的 <code>InternationalDemo/</code></p>
+
+<p>执行了上面的命令以后，查看三个 Strings 文件中确实新添了按钮和 label 的相关字符串！</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSButtonCell&#34;; title = &#34;Button&#34;; ObjectID = &#34;0A1-8b-fid&#34;; */</span>
+<span class="s">&#34;0A1-8b-fid.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+
+<span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span></code></pre></div>
+<h3 id="检查-strings-文件">检查 Strings 文件</h3>
+
+<p>bartycrouch 的子命令 lint 可以帮助检查：</p>
+
+<ul>
+<li>Strings 文件中重复的键值，需要指定命令参数 <code>-d</code></li>
+<li>文件中值为空字符串的键值，需要指定命令参数 <code>-e</code></li>
+</ul>
+
+<p>比如我们检查一下有没有空值的键</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ bartycrouch lint -e -p InternationalDemo
+
+ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/zh-Hans.lproj/Main.strings.
+ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/zh-Hans.lproj/Main.strings.
+ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/ja.lproj/Main.strings.
+ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/ja.lproj/Main.strings.
+ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/en.lproj/Main.strings.
+ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/en.lproj/Main.strings.
+❌ Error! <span class="m">6</span> issue<span class="o">(</span>s<span class="o">)</span> found in <span class="m">3</span> file<span class="o">(</span>s<span class="o">)</span>. Executed <span class="m">1</span> checks in <span class="m">6</span> Strings file<span class="o">(</span>s<span class="o">)</span> in total.</code></pre></div>
+<p>这就检查出刚刚新加的按钮和 label 的相对应的字符串配置了。</p>
+
+<h3 id="自动更新和检查">自动更新和检查</h3>
+
+<p>为了更方便快捷的更新和检查 Strings 文件，这里可以为工程新建一个 Build Phase，按照下图流程添加：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219142234.jpg" alt="" /></p>
+
+<p>添加的 shell 脚本内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="c1"># Type a script or drag a script file from your workspace to insert its path.</span>
+<span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    bartycrouch interfaces -p .
+    bartycrouch lint -e -d -p .
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
+<span class="k">fi</span></code></pre></div>
+<p>运行一下工程，build 失败，原因是 <code>bartycrouch lint</code> 命令检查出了有空值字符串，以后就是每次编译都会更新 Strings 文件。</p>
+
+<p>再把按钮删除运行工程，检查出 String 文件中只有 label 相关的字符串了，给三个文件分别更改 label 标签的内容。</p>
+
+<ul>
+<li>Main.strings (English)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">;</span></code></pre></div>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143602.png" alt="" /></p>
+
+<ul>
+<li>Main.strings (Chinese(Simplified))</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;世界，你好!&#34;</span><span class="p">;</span></code></pre></div>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143627.png" alt="" /></p>
+
+<ul>
+<li>Main.strings (Japanese)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;こんにちは世界!&#34;</span><span class="p">;</span></code></pre></div>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143636.png" alt="" /></p>
+
+<p>至此，这一部分就讲完了，希望对您有所帮助！</p>
+
+<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip" target="_blank">InternationalDemo2</a></p>
 ]]></content>
 		</item>
 		

@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 19 Mar 2019 22:31:50 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 21 Mar 2019 23:22:56 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>意外的惊喜: vim 有 lsp 加持</title>
+      <link>https://www.smslit.top/daily/languange-server-protocol/</link>
+      <pubDate>Thu, 21 Mar 2019 23:22:56 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/languange-server-protocol/</guid>
+      <description>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为</description>
+    </item>
+    
+    <item>
+      <title>懵逼状态</title>
+      <link>https://www.smslit.top/daily/question-mark-fill-head/</link>
+      <pubDate>Wed, 20 Mar 2019 23:06:11 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/question-mark-fill-head/</guid>
+      <description>今天学习了下唐老师的《Vue 开发实战》已更新的视频课，我的天，虽然已经粗略看了一遍 Vue 的官方教程，但是担心的事情还是发生了！在看 Vue 官方教程的时</description>
+    </item>
     
     <item>
       <title>甘作小众</title>
@@ -82,24 +100,6 @@
       
       <guid>https://www.smslit.top/daily/study-style-not-bad/</guid>
       <description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
-    </item>
-    
-    <item>
-      <title>又‘无脑’订阅了一个课程</title>
-      <link>https://www.smslit.top/daily/new-discovery-power-man/</link>
-      <pubDate>Mon, 11 Mar 2019 22:31:33 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/new-discovery-power-man/</guid>
-      <description>今天在看卖桃君的极客时间时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前</description>
-    </item>
-    
-    <item>
-      <title> vim 仍然是我的利器</title>
-      <link>https://www.smslit.top/daily/vim-renormal/</link>
-      <pubDate>Sun, 10 Mar 2019 22:49:00 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/vim-renormal/</guid>
-      <description>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写</description>
     </item>
     
   </channel>

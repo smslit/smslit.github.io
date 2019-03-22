@@ -7,8 +7,59 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Tue, 19 Mar 2019 22:31:50 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 21 Mar 2019 23:22:56 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>意外的惊喜: vim 有 lsp 加持</title>
+			<link>https://www.smslit.top/daily/languange-server-protocol/</link>
+			<pubDate>Thu, 21 Mar 2019 23:22:56 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/languange-server-protocol/</guid>
+			<description>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为</description>
+			<content type="html"><![CDATA[<p>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？</p>
+
+<blockquote>
+<p>The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool.</p>
+</blockquote>
+
+<p>为什么会存在这个东西，算了，我也不搬运别人的话了，这里是<a href="https://langserver.org/" target="_blank">传送门</a>。简单来说，有了它，能实现语言服务和编辑器之间协作的大一统，LSP 打通了 LS 与编辑器，那么像上古神器 vim 以及神的编辑器 emacs&hellip;..只要是编辑器有 LSP 的加持都能轻松实现代码补全、定义和声明跳转、语法检查、代码格式化、重命名(用于重构)以及查看引用等，简直不要太 high！因为朋友和我都是使用 vim，所以花了一早上便研究了一下 python 和 swift 的 LSP 配置和使用。</p>
+
+<ul>
+<li><a href="https://github.com/prabirshrestha/vim-lsp" target="_blank">vim-lsp</a></li>
+</ul>
+
+<p>vim 的 LSP 配置看上面这个 vim-lsp 就够了， README 和 wiki 中一定可以找到常用编程语言的支持。</p>
+
+<p>不过，还是存在一些问题的，我配置了 python 和 swift 两种语言的 LSP，各种跳转很优秀，语法检查也不错，就是代码补全和代码格式化有些问题！不知道是不是我的 vim 的问题还是什么，补全弹窗出现的慢，尤其是 swift 的补全，竟然会卡代码，我晕～ python 的代码格式化简直不要太迷幻，总之套路不详！python 的代码补全、语法检查和代码格式化又退回到了原来的插件组合和配置，有时间再研究一下 vim-lsp &hellip;</p>
+
+<ul>
+<li>python 补全: <a href="https://github.com/maralla/completor.vim" target="_blank">completor</a> + jedi</li>
+<li>python 语法检查和代码格式化: <a href="https://github.com/w0rp/ale" target="_blank">ale</a> + pylint 和 autopep8</li>
+<li>python 代码跳转、查看引用和重构: <a href="https://github.com/prabirshrestha/vim-lsp" target="_blank">vim-lsp</a> 和 <a href="https://github.com/prabirshrestha/async.vim" target="_blank">async.vim</a> + <a href="https://github.com/palantir/python-language-server" target="_blank">python language server</a></li>
+</ul>
+
+<p>感觉也有可能是 python 的 LS 工具的原因，后面尝试一下微软的 <a href="ihttps://github.com/Microsoft/python-language-server" target="_blank">python language server</a>!</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>懵逼状态</title>
+			<link>https://www.smslit.top/daily/question-mark-fill-head/</link>
+			<pubDate>Wed, 20 Mar 2019 23:06:11 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/question-mark-fill-head/</guid>
+			<description>今天学习了下唐老师的《Vue 开发实战》已更新的视频课，我的天，虽然已经粗略看了一遍 Vue 的官方教程，但是担心的事情还是发生了！在看 Vue 官方教程的时</description>
+			<content type="html"><![CDATA[<p>今天学习了下唐老师的《Vue 开发实战》已更新的视频课，我的天，虽然已经粗略看了一遍 Vue 的官方教程，但是担心的事情还是发生了！在看 Vue 官方教程的时候，就发现概念很多，脑袋塞得满满的，俨然成了一个先进先出的队列，很早看过的还是会忘记一些，果然填鸭式地学习（爆发式吸收）还是挺熬人的，可能是因为唐老师的课干货比较多，很精炼，但是很多还是不能立即明白和吸收，还是得课后好好补课，看教程的过程中经常是下面的状态：</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-21-th.jpeg" width="200px"/> 
+</figure>
+
+
+<p>革命尚未成功，同志仍需努力！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>甘作小众</title>
@@ -237,62 +288,6 @@ musicbox</code></pre></div>
 
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190314103710.png" width="70%"/> 
-</figure>
-
-]]></content>
-		</item>
-		
-		<item>
-			<title>多走弯路就是捷径</title>
-			<link>https://www.smslit.top/daily/study-style-not-bad/</link>
-			<pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/study-style-not-bad/</guid>
-			<description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
-			<content type="html"><![CDATA[<p>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线后，再根据需求完成程序。其实完全可以像其它同事一样直接硬着头皮改动现有程序，但还是没这么做，在几个星期内加班熬夜拼了老命，把整个开发流程和蓝牙 4.2 协议栈的基础都好好学了一遍，然后拖了 deadline 几天按照 TI 官方推荐的方式完成了从 0 到 1 的程序，万幸！问题是还让我发现了个蓝牙芯片的硬件 bug，真的受不了各种连环坑！</p>
-
-<p>有些人可能就觉得我这是何必呢！直接在别人写了一半的程序上修改不就好了！不好，那个时候我一无所知，等了解一点所以然之后，发现之前同事写的程序有很多不太合理的地方，所以就成了上面所说的结果了！是的，短时间内学一个新的平台真的挺耗神的，但是这会夯实一定基础，后面再有什么新的需求，可以轻易应付了，正所谓长痛不如短痛！</p>
-
-<p>好处的直接表现就是：几天后另外一个部门的蓝牙程序委托给我，我不到一天就帮他们写好了！</p>
-
-<p>总结下来就是：</p>
-
-<blockquote>
-<p>多走弯路就是捷径！</p>
-</blockquote>
-
-<p>为什么会突然想起之前这个蓝牙程序开发的事情呢！是因为前段时间花了些精力学习了 falsk 框架下的 web 后端开发，当时却是花了不少时间了解了大部分的内容，以至于昨天花了不到一个小时就为一位留学的朋友方便查班车用的极小的 web 应用，方便其在 iphone 上借助<strong>快捷指令</strong> app 查班车！再一次证明了上面这一点！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>又‘无脑’订阅了一个课程</title>
-			<link>https://www.smslit.top/daily/new-discovery-power-man/</link>
-			<pubDate>Mon, 11 Mar 2019 22:31:33 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/new-discovery-power-man/</guid>
-			<description>今天在看卖桃君的极客时间时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前</description>
-			<content type="html"><![CDATA[<figure class="right">
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311224911.PNG"/> 
-</figure>
-
-
-<p>今天在看卖桃君的<a href="https://time.geekbang.org" target="_blank">极客时间</a>时发现了一个大🐂，很“不理智”地订阅了他的课程《iOS 开发高手课-从原理到实战，带您解决80%的开发难题》，作者是前滴滴出行技术专家——戴铭，其实十里并没有太 care 他的头衔，订阅的原因有三点吧。</p>
-
-<ul>
-<li>从原理出发，那就是除了讲其然，还会说其所以然，喜欢这种打破砂锅的出发点！渔优于鱼，不是吗？iOS 与 macOS 本是同宗，有助于理解 macOS 开发！</li>
-<li>iOS 方面的开发自己有涉足过，虽然现在还没啥像样的作品（多年前只做过两个蓝牙通信控制外设的小 app），但是还是有计划要继续的，既然现在有一个会结合实际讲开发的菜，何不尝尝！</li>
-<li>作者精心准备了很多插图，可以说是很用心了，很喜欢其画风，去作者博客<a href="https://ming1016.github.io" target="_blank">星光社 - 戴铭的博客</a>看了看，有幸看到其在去年 swift 大会准备的 PPT，通过插图讲述技术是个很好的思路呢，佩服会画插图的程序猿(目标)，右边插图感受一下！</li>
-</ul>
-
-<p>我是不会告诉你，最重要的是第三点的！</p>
-
-<p>真的很佩服能够全面发展自己的人，兴趣还算广泛的十里，会以这些牛人为榜样，加油追赶！PS: 今天与水木一起做了好吃的不得了的麻辣香锅，很开心！</p>
-
-<p>如果您也想订阅课程，请看：</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190311230011.jpg" width="300px"/> 
 </figure>
 
 ]]></content>

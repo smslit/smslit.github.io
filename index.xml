@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 19 Mar 2019 22:31:50 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 21 Mar 2019 23:22:56 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>意外的惊喜: vim 有 lsp 加持</title>
+      <link>https://www.smslit.top/daily/languange-server-protocol/</link>
+      <pubDate>Thu, 21 Mar 2019 23:22:56 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/languange-server-protocol/</guid>
+      <description>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为</description>
+    </item>
+    
+    <item>
+      <title>懵逼状态</title>
+      <link>https://www.smslit.top/daily/question-mark-fill-head/</link>
+      <pubDate>Wed, 20 Mar 2019 23:06:11 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/question-mark-fill-head/</guid>
+      <description>今天学习了下唐老师的《Vue 开发实战》已更新的视频课，我的天，虽然已经粗略看了一遍 Vue 的官方教程，但是担心的事情还是发生了！在看 Vue 官方教程的时</description>
+    </item>
     
     <item>
       <title>甘作小众</title>
@@ -82,24 +100,6 @@
       
       <guid>https://www.smslit.top/daily/money-money-lie/</guid>
       <description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
-    </item>
-    
-    <item>
-      <title>别致的音乐盒</title>
-      <link>https://www.smslit.top/daily/music-box-share-to-you/</link>
-      <pubDate>Wed, 13 Mar 2019 22:17:49 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/music-box-share-to-you/</guid>
-      <description>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-VSC Netease Music!不过今天十里真正要分享的是一个命</description>
-    </item>
-    
-    <item>
-      <title>多走弯路就是捷径</title>
-      <link>https://www.smslit.top/daily/study-style-not-bad/</link>
-      <pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/study-style-not-bad/</guid>
-      <description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
     </item>
     
   </channel>

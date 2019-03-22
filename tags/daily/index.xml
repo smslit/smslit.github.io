@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 21 Mar 2019 23:22:56 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Mar 2019 22:51:30 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>常用命令知多少</title>
+      <link>https://www.smslit.top/daily/command-analysis/</link>
+      <pubDate>Fri, 22 Mar 2019 22:51:30 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/command-analysis/</guid>
+      <description>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &amp;#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&amp;#34; &amp;#34;CMD[ a ]/count*100 &amp;#34;% &amp;#34; a }&amp;#39; | grep -v &amp;#34;./&amp;#34; | column -c3 -s &amp;#34; &amp;#34; -t |sort -nr | nl</description>
+    </item>
     
     <item>
       <title>意外的惊喜: vim 有 lsp 加持</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/music-box-share-to-you/</guid>
       <description>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-VSC Netease Music!不过今天十里真正要分享的是一个命</description>
-    </item>
-    
-    <item>
-      <title>多走弯路就是捷径</title>
-      <link>https://www.smslit.top/daily/study-style-not-bad/</link>
-      <pubDate>Tue, 12 Mar 2019 22:57:33 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/study-style-not-bad/</guid>
-      <description>记得在之间就职的公司做嵌入式开发的时候，临危受命接手其他部门的蓝牙开发，时间紧迫的情况下，还是决定好好熟悉平台了解运行原理和官方推荐开发路线</description>
     </item>
     
   </channel>

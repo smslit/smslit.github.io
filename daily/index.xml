@@ -7,8 +7,29 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Fri, 22 Mar 2019 22:51:30 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 23 Mar 2019 20:37:01 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>python 程序猿有意思的自称</title>
+			<link>https://www.smslit.top/daily/pythonist/</link>
+			<pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/pythonist/</guid>
+			<description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
+			<content type="html"><![CDATA[<p>今天看了一篇有意思的文章<a href="https://zhuanlan.zhihu.com/p/26832983" target="_blank">《我不认识Pythoner这种开发者》</a> ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意义的，不得不承认，包括十里和很多国人使用的英语偏向 <code>Chinglish</code><sup class="footnote-ref" id="fnref:Chinglish-is-sla"><a href="#fn:Chinglish-is-sla">1</a></sup>，严重的话，母语是英语的歪果仁会很费解我们的 <strong>Chinglish</strong>，所以还是希望能多看到这样的文章，以免造成与他们沟通上的障碍（主要是不能露怯呀，维护国人形象！）</p>
+
+<p>PS：确实得好好学习英语，最起码互联网行业的这些得了解多一点！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Chinglish-is-sla">Chinglish is slang for spoken or written English language that is influenced by the Chinese language. - <a href="https://en.wikipedia.org/wiki/Chinglish" target="_blank">Chinglish</a> <a class="footnote-return" href="#fnref:Chinglish-is-sla"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>常用命令知多少</title>
@@ -269,23 +290,6 @@
 <p>关于《不能复制时间的事，少做》还是有些启发的，为了发挥自己的价值，尽量把时间花在更有广泛影响力的产品或事情上，当然这与<strong>利基市场</strong>也不会冲突！服务小众，最大化自己的价值！</p>
 
 <p>PS: 学了一下午的 Vue，真的很对味口，道不出的一种舒服！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>君子爱财，取之有道</title>
-			<link>https://www.smslit.top/daily/money-money-lie/</link>
-			<pubDate>Thu, 14 Mar 2019 23:57:09 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/money-money-lie/</guid>
-			<description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
-			<content type="html"><![CDATA[<p>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例子就是一群高市场和营销的非技术人员拿一款语音产品（bug 满满）通过融资的方式敛财十几亿人民币，由此米奇沃克斯阐述了一些自己的思考。赚钱的方式有很多种，而很多人通过快速敛财的方式，来投资洗白，尤其是在国外融资的，往往就是在搞臭中国人的口碑，这其实是对一个正常融资环境的污染，这让那些想做好产品又只能靠融资发展的个体或公司身处一个并不公平的竞争条件下，也扼杀了一些好的创意和产品！</p>
-
-<p>米奇沃克斯在视频最后说到，真的希望会出现一些并不是以赚钱为目的的人出现&hellip;十里觉得君子爱财取之有道，他这种期待应该补充一下：真的希望多出现一些愿意做好产品并且能对消费者负责人的人或公司出现，赚钱要让消费者觉得值得，最起码要等价交换，让消费者有超值回报感最好！</p>
-
-<p>想起了农村里村干部的事情，从小就觉得村干部贪得无厌，很多人削尖了脑袋要往里钻！这些人蝇营狗苟，看到的只是钱途，却没有觉得当上村干部身上多了一个重担，缺少对村民负责的意识！个人觉得没有绝对大公无私的好村官，也不会抱以期待这种人的出现。但一定存在很智慧得民心的干部，他们为人民办实事，给村民挣福利，同时合理利用自己身份优势经营自己的事业！</p>
-
-<p>PS: 理想还是要有的，但需要让现实来调剂！</p>
 ]]></content>
 		</item>
 		

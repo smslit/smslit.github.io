@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 22 Mar 2019 22:51:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Mar 2019 20:37:01 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python 程序猿有意思的自称</title>
+      <link>https://www.smslit.top/daily/pythonist/</link>
+      <pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/pythonist/</guid>
+      <description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
+    </item>
     
     <item>
       <title>常用命令知多少</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/duck-type/</guid>
       <description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
-    </item>
-    
-    <item>
-      <title>很对味的收获</title>
-      <link>https://www.smslit.top/daily/amazing-ui-component/</link>
-      <pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/amazing-ui-component/</guid>
-      <description>今天看 Jason 博客文章，收获挺多。 首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择</description>
     </item>
     
   </channel>

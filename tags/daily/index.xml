@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 22 Mar 2019 22:51:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Mar 2019 20:37:01 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python 程序猿有意思的自称</title>
+      <link>https://www.smslit.top/daily/pythonist/</link>
+      <pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/pythonist/</guid>
+      <description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
+    </item>
     
     <item>
       <title>常用命令知多少</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/money-money-lie/</guid>
       <description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
-    </item>
-    
-    <item>
-      <title>别致的音乐盒</title>
-      <link>https://www.smslit.top/daily/music-box-share-to-you/</link>
-      <pubDate>Wed, 13 Mar 2019 22:17:49 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/music-box-share-to-you/</guid>
-      <description>不知道大家平常用不用网易云音乐，如果您是软件开发人员并且使用 vscode 的话，向您推荐一个 vscode 插件-VSC Netease Music!不过今天十里真正要分享的是一个命</description>
     </item>
     
   </channel>

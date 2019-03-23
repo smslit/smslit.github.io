@@ -7,25 +7,25 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="常用命令知多少">
-<meta itemprop="description" content="今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &#39;{CMD[$2]&#43;&#43;;count&#43;&#43;;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39; | grep -v &#34;./&#34; | column -c3 -s &#34; &#34; -t |sort -nr | nl">
+<meta itemprop="name" content="python 程序猿有意思的自称">
+<meta itemprop="description" content="今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意">
 
 
-<meta itemprop="datePublished" content="2019-03-22T22:51:30&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-22T22:51:30&#43;08:00" />
-<meta itemprop="wordCount" content="195">
+<meta itemprop="datePublished" content="2019-03-23T20:37:01&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-23T20:37:01&#43;08:00" />
+<meta itemprop="wordCount" content="234">
 
 
 
 <meta itemprop="keywords" content="daily," />
-<meta property="og:title" content="常用命令知多少" />
-<meta property="og:description" content="今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &#39;{CMD[$2]&#43;&#43;;count&#43;&#43;;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39; | grep -v &#34;./&#34; | column -c3 -s &#34; &#34; -t |sort -nr | nl" />
+<meta property="og:title" content="python 程序猿有意思的自称" />
+<meta property="og:description" content="今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.smslit.top/daily/command-analysis/" /><meta property="article:published_time" content="2019-03-22T22:51:30&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-22T22:51:30&#43;08:00"/>
+<meta property="og:url" content="https://www.smslit.top/daily/pythonist/" /><meta property="article:published_time" content="2019-03-23T20:37:01&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-23T20:37:01&#43;08:00"/>
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="常用命令知多少"/>
-<meta name="twitter:description" content="今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &#39;{CMD[$2]&#43;&#43;;count&#43;&#43;;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39; | grep -v &#34;./&#34; | column -c3 -s &#34; &#34; -t |sort -nr | nl"/>
+<meta name="twitter:title" content="python 程序猿有意思的自称"/>
+<meta name="twitter:description" content="今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,7 +33,7 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
 	<link rel="shortcut icon" href="/favicon.ico">
 
-	<title>常用命令知多少</title>
+	<title>python 程序猿有意思的自称</title>
 	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
@@ -79,25 +79,21 @@
 	<main class="site-main section-inner animated fadeIn faster">
 		<article class="thin">
 			<header class="post-header">
-				<div class="post-meta"><span>Mar 22, 2019</span></div>
-				<h1>常用命令知多少</h1>
+				<div class="post-meta"><span>Mar 23, 2019</span></div>
+				<h1>python 程序猿有意思的自称</h1>
 			</header>
 			<div class="content">
-				<p>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10</code></pre></div>
-<p>十里的运行结果是：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">➜  <span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10
-     <span class="m">1</span>	<span class="m">1645</span>  <span class="m">16</span>.4451%   vim
-     <span class="m">2</span>	<span class="m">1061</span>  <span class="m">10</span>.6068%   git
-     <span class="m">3</span>	<span class="m">904</span>   <span class="m">9</span>.03729%   <span class="nb">cd</span>
-     <span class="m">4</span>	<span class="m">623</span>   <span class="m">6</span>.22813%   pack
-     <span class="m">5</span>	<span class="m">346</span>   <span class="m">3</span>.45896%   pipenv
-     <span class="m">6</span>	<span class="m">343</span>   <span class="m">3</span>.42897%   ll
-     <span class="m">7</span>	<span class="m">340</span>   <span class="m">3</span>.39898%   hugo
-     <span class="m">8</span>	<span class="m">316</span>   <span class="m">3</span>.15905%   rm
-     <span class="m">9</span>	<span class="m">257</span>   <span class="m">2</span>.56923%   brew
-    <span class="m">10</span>	<span class="m">208</span>   <span class="m">2</span>.07938%   python3</code></pre></div>
-<p>使用最多的是 vim，可以看出对 vim 是真爱呀，不知您的结果是什么样的！</p>
+				<p>今天看了一篇有意思的文章<a href="https://zhuanlan.zhihu.com/p/26832983" target="_blank">《我不认识Pythoner这种开发者》</a> ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意义的，不得不承认，包括十里和很多国人使用的英语偏向 <code>Chinglish</code><sup class="footnote-ref" id="fnref:Chinglish-is-sla"><a href="#fn:Chinglish-is-sla">1</a></sup>，严重的话，母语是英语的歪果仁会很费解我们的 <strong>Chinglish</strong>，所以还是希望能多看到这样的文章，以免造成与他们沟通上的障碍（主要是不能露怯呀，维护国人形象！）</p>
+
+<p>PS：确实得好好学习英语，最起码互联网行业的这些得了解多一点！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Chinglish-is-sla">Chinglish is slang for spoken or written English language that is influenced by the Chinese language. - <a href="https://en.wikipedia.org/wiki/Chinglish" target="_blank">Chinglish</a> <a class="footnote-return" href="#fnref:Chinglish-is-sla"><sup>[return]</sup></a></li>
+</ol>
+</div>
 
 			</div>
 			<hr class="post-end">
@@ -107,19 +103,16 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					195 字
+					234 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-					2019-03-22 22:51 &#43;0800</p>
+					2019-03-23 20:37 &#43;0800</p>
 			</footer>
 		</article>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://www.smslit.top/daily/pythonist/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python 程序猿有意思的自称</span>
-			</a>
-			<a class="prev-post" href="https://www.smslit.top/daily/languange-server-protocol/">
-				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>意外的惊喜: vim 有 lsp 加持</span>
+			<a class="prev-post" href="https://www.smslit.top/daily/command-analysis/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>常用命令知多少</span>
 			</a>
 		</div>
 		<div id="comments" class="thin">
@@ -138,7 +131,7 @@
 </div>
 
 
-<span id="/daily/command-analysis/" class="leancloud_visitors" data-flag-title="常用命令知多少">
+<span id="/daily/pythonist/" class="leancloud_visitors" data-flag-title="python 程序猿有意思的自称">
   <span class="post-meta-item-text">访问量 </span>
   <span class="leancloud-visitors-count"></span>
   <p></p>

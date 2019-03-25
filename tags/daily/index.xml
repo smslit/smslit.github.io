@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 23 Mar 2019 20:37:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Mar 2019 23:35:12 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://www.smslit.top/daily/hello-world/</link>
+      <pubDate>Mon, 25 Mar 2019 23:35:12 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/hello-world/</guid>
+      <description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
+    </item>
+    
+    <item>
+      <title>人生苦短，我用 VS Code</title>
+      <link>https://www.smslit.top/daily/vsc-from-vim/</link>
+      <pubDate>Sun, 24 Mar 2019 23:41:45 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
+      <description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
+    </item>
     
     <item>
       <title>python 程序猿有意思的自称</title>
@@ -82,24 +100,6 @@
       
       <guid>https://www.smslit.top/daily/macOS-dev-plan-change/</guid>
       <description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
-    </item>
-    
-    <item>
-      <title>很对味的收获</title>
-      <link>https://www.smslit.top/daily/amazing-ui-component/</link>
-      <pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/amazing-ui-component/</guid>
-      <description>今天看 Jason 博客文章，收获挺多。 首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择</description>
-    </item>
-    
-    <item>
-      <title>君子爱财，取之有道</title>
-      <link>https://www.smslit.top/daily/money-money-lie/</link>
-      <pubDate>Thu, 14 Mar 2019 23:57:09 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/money-money-lie/</guid>
-      <description>今天看了一期米奇沃克斯的 Vlog 《当产品融资变得如此随意，打工族怎么活？》，里面他描述了自己的一些购买融资产品经历以及合作经历，其中一个很夸张的例</description>
     </item>
     
   </channel>

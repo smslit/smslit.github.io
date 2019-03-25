@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 23 Mar 2019 20:37:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Mar 2019 23:35:12 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://www.smslit.top/daily/hello-world/</link>
+      <pubDate>Mon, 25 Mar 2019 23:35:12 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/hello-world/</guid>
+      <description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
+    </item>
+    
+    <item>
+      <title>人生苦短，我用 VS Code</title>
+      <link>https://www.smslit.top/daily/vsc-from-vim/</link>
+      <pubDate>Sun, 24 Mar 2019 23:41:45 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
+      <description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
+    </item>
     
     <item>
       <title>python 程序猿有意思的自称</title>
@@ -82,24 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</guid>
       <description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
-    </item>
-    
-    <item>
-      <title>关于 macOS 开发知识分享</title>
-      <link>https://www.smslit.top/daily/macOS-dev-plan-change/</link>
-      <pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/macOS-dev-plan-change/</guid>
-      <description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
-    </item>
-    
-    <item>
-      <title>鸭子类型是什么鬼</title>
-      <link>https://www.smslit.top/daily/duck-type/</link>
-      <pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/duck-type/</guid>
-      <description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
     </item>
     
   </channel>

@@ -7,8 +7,51 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sat, 23 Mar 2019 20:37:01 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 25 Mar 2019 23:35:12 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Hello World</title>
+			<link>https://www.smslit.top/daily/hello-world/</link>
+			<pubDate>Mon, 25 Mar 2019 23:35:12 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/hello-world/</guid>
+			<description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
+			<content type="html"><![CDATA[<p>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，很和谐！没毛病！</p>
+
+<p>hello world 程序的实际表现就是在电脑屏幕（准确的说应该叫终端，很早的时候电脑屏幕只能显示字符串）上打印 “hello, world”。因为在《The C Programme Language》使用而广泛流行。</p>
+<div class="highlight"><pre class="chroma"><code class="language-C" data-lang="C"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
+<p>因为其简洁实用，在后续出现的编程语言的第一范例几乎都是这个 hello world 程序，只是不同编程语言的相应实现，比如 python</p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
+<p>swift 版本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="bp">print</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
+<p>你好，世界！很好的寓意，你好，欢迎你来到一个新的世界，猩球！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>人生苦短，我用 VS Code</title>
+			<link>https://www.smslit.top/daily/vsc-from-vim/</link>
+			<pubDate>Sun, 24 Mar 2019 23:41:45 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
+			<description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
+			<content type="html"><![CDATA[<p>这些天配置 vim 的 LSP<sup class="footnote-ref" id="fnref:Language-Server"><a href="#fn:Language-Server">1</a></sup>，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像十里这么追求完美的人怎么能过去，试了各种各样的方法去弥补不满意的地方，但青春耗不起呀！</p>
+
+<p>而 vscode 只需安装一个插件就能搞定，轻松到怀疑人生，而且除了 LSP 的完美实现，同样拥有完备的 DAP<sup class="footnote-ref" id="fnref:Debug-Adapter-Pr"><a href="#fn:Debug-Adapter-Pr">2</a></sup> 支持，简直不要太轻松！感觉整合世界都和平了！因为习惯了 vim 的操作方式，所以尝试了 vim 的插件，总是达不到原生 vim 的全键盘操作的连贯性，索性奔着 vscode 的良好生态，逐步适应 vscode 的使用套路，虽然不能全键盘操作，但依旧很 high 幺！时间都花在搬砖上就可以了！</p>
+
+<p>使用 VS Code 从嵌入式开发，到前端开发和后端开发，都能得到统一的开发体验，编码、调试、补全、语法分析、重构、跳转等等，总结下来就是技术栈过渡和使用都很顺畅，此刻尽享丝滑！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Language-Server"><a href="https://microsoft.github.io/language-server-protocol/" target="_blank">Language Server Protocol</a> <a class="footnote-return" href="#fnref:Language-Server"><sup>[return]</sup></a></li>
+<li id="fn:Debug-Adapter-Pr"><a href="https://microsoft.github.io/debug-adapter-protocol/" target="_blank">Debug Adapter Protocol</a> <a class="footnote-return" href="#fnref:Debug-Adapter-Pr"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>python 程序猿有意思的自称</title>
@@ -175,121 +218,6 @@
 			<content type="html"><![CDATA[<p>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着要尽量能说清楚做什么，怎么做，为什么（what-how-why），能力有限，时间就会占用很多，毕竟还要做很多其他事情，索性 《macOS 开发》(博客和知乎专栏)就成了《macOS Development weekly》，哈哈！</p>
 
 <p>关于经验分享，还是想尽量时新，参照网上老旧的开发经验也要关注和探索技术的更新，就比如十里下一篇要讲的本地通知，网上提供的方法大多是马上要废弃的方式，阅读 apple 官方关于 Notification 的开发资料才知道未来 API 的发展方向，去年 WWDC 已经很清楚说了 iOS 应用移植到 macOS 的计划，作为开发者也应注意到了 apple 正努力融合 iOS 和 macOS 开发接口，得时刻关注动向，才能让自己的作品与时俱进！知识经验的分享也便能时新！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>鸭子类型是什么鬼</title>
-			<link>https://www.smslit.top/daily/duck-type/</link>
-			<pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/duck-type/</guid>
-			<description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
-			<content type="html"><![CDATA[<p>刚刚看到 <a href="https://zhuanlan.zhihu.com/p/59299729" target="_blank">《Python Vs Go，鸭子类型，你有我也有》</a> 了解到 <strong>鸭子类型</strong>，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 <a href="https://www.zhihu.com/people/pegasus-wang/activities" target="_blank">PegasusWang</a> 稍微开了开车，哈哈！</p>
-
-<p>在程序设计中，鸭子类型（英语：duck typing）是动态类型的一种风格。在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由&rdquo;当前方法和属性的集合&rdquo;决定。这个概念的名字来源于由James Whitcomb Riley提出的鸭子测试，“鸭子测试”可以这样表述：</p>
-
-<blockquote>
-<p>当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。<sup class="footnote-ref" id="fnref:https-zh-wikiped"><a href="#fn:https-zh-wikiped">1</a></sup></p>
-</blockquote>
-
-<p>很明显在这里，我们更关注的是对象的行为而不是它们的类型。</p>
-
-<p>举个🌰，定义一个鸭子类，其有个 <strong>叫</strong> 方法，在定义一个人类(有一种男人被称为“🦆”)，他也有 <strong>叫</strong> 的方法，总感觉好搞笑！这里我们就可以认为它们都有叫的方法，都是鸭子的行为，所以都是鸭子！Python 试一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">class</span> <span class="nc">Duck</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;呱呱&#34;</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Man</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;女王大人&#34;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">do_quack</span><span class="p">(</span><span class="n">ducker</span><span class="p">):</span>
-    <span class="n">ducker</span><span class="o">.</span><span class="n">quack</span><span class="p">()</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">Duck</span><span class="p">(</span><span class="s1">&#39;duck&#39;</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">Man</span><span class="p">(</span><span class="s1">&#39;man&#39;</span><span class="p">)</span>
-    <span class="n">do_quack</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-    <span class="n">do_quack</span><span class="p">(</span><span class="n">m</span><span class="p">)</span></code></pre></div>
-<p><a href="https://www.zhihu.com/people/pegasus-wang/activities" target="_blank">PegasusWang</a> 还用 Go 语言试了一下，使用了 interface 特性，咦！这与 swift 语言中的协议(protocol) 很像嘛，那咱用 swift 实现一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">import</span> <span class="nc">Foundation</span>
-
-<span class="kd">protocol</span> <span class="nc">Ducker</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">Duck</span><span class="p">:</span> <span class="n">Ducker</span> <span class="p">{</span>
-    
-    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
-    
-    <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
-    <span class="p">}</span>
-    
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;呱呱&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">Man</span><span class="p">:</span> <span class="n">Ducker</span> <span class="p">{</span>
-    
-    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
-    
-    <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
-    <span class="p">}</span>
-    
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;女王大人&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">Ducker</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">ducker</span><span class="p">.</span><span class="n">quack</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">Duck</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;duck&#34;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="n">Man</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;man&#34;</span><span class="p">)</span>
-
-<span class="n">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">d</span><span class="p">)</span>
-<span class="n">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">m</span><span class="p">)</span></code></pre></div>
-<p>最终我们都能听见 duck 和 man 的叫声，Nice！</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">呱呱
-女王大人</code></pre></div><div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:https-zh-wikiped">在鸭子类型中，关注点在于对象的行为，能作什么；而不是关注对象所属的类型。&ndash;<a href="https://zh.wikipedia.org/wiki/鸭子类型" target="_blank">鸭子类型</a> <a class="footnote-return" href="#fnref:https-zh-wikiped"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>很对味的收获</title>
-			<link>https://www.smslit.top/daily/amazing-ui-component/</link>
-			<pubDate>Fri, 15 Mar 2019 22:05:11 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/amazing-ui-component/</guid>
-			<description>今天看 Jason 博客文章，收获挺多。 首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择</description>
-			<content type="html"><![CDATA[<p>今天看 <a href="https://atjason.com" target="_blank">Jason</a> 博客文章，收获挺多。</p>
-
-<p>首先是解决了最近一直纠结的问题，web 开发前后端分离的技术栈的选择，看了很多 angular\rect\vue 大战的文章，但最终还是受教于 Jason 选择了 Flask + Vue + Element 的技术栈，严格地说应该是 Flask + Vue，Element 是一个非常棒的 UI 组件库，天生与 Vue 配套，除了省很多学习成本，还因为真的喜欢 Element 的 UI 风格，棒棒的！Vue 学习ing&hellip;</p>
-
-<p>关于《不能复制时间的事，少做》还是有些启发的，为了发挥自己的价值，尽量把时间花在更有广泛影响力的产品或事情上，当然这与<strong>利基市场</strong>也不会冲突！服务小众，最大化自己的价值！</p>
-
-<p>PS: 学了一下午的 Vue，真的很对味口，道不出的一种舒服！</p>
 ]]></content>
 		</item>
 		

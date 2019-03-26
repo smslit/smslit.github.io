@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>macOS 开发之 Swift 的 Codable</title>
+      <link>https://www.smslit.top/2019/03/24/macOS-dev-swift-codable/</link>
+      <pubDate>Sun, 24 Mar 2019 16:49:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/24/macOS-dev-swift-codable/</guid>
+      <description>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 Codable，在本文一起探讨一下以下三个方</description>
+    </item>
+    
+    <item>
       <title>python 程序猿有意思的自称</title>
       <link>https://www.smslit.top/daily/pythonist/</link>
       <pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/ready-player-one/</guid>
       <description>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之本地消息通知</title>
-      <link>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</link>
-      <pubDate>Sun, 17 Mar 2019 11:33:15 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/17/macOS-dev-local-notification/</guid>
-      <description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
     </item>
     
   </channel>

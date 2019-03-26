@@ -7,8 +7,328 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sun, 17 Mar 2019 11:33:15 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 24 Mar 2019 16:49:16 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>macOS 开发之 Swift 的 Codable</title>
+			<link>https://www.smslit.top/2019/03/24/macOS-dev-swift-codable/</link>
+			<pubDate>Sun, 24 Mar 2019 16:49:16 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/03/24/macOS-dev-swift-codable/</guid>
+			<description>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 Codable，在本文一起探讨一下以下三个方</description>
+			<content type="html"><![CDATA[
+
+<p>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 <strong>Codable</strong>，在本文一起探讨一下以下三个方面：</p>
+
+<ul>
+<li>什么是 Swift 的 Codable</li>
+<li>怎么使用 Codable</li>
+<li>Codable 给我们带来什么便利</li>
+</ul>
+
+<h1 id="开发平台">开发平台</h1>
+
+<ul>
+<li>macOS 10.14.4</li>
+<li>Swift 5</li>
+<li>xcode 10.2</li>
+</ul>
+
+<h1 id="swift-的-codable">Swift 的 Codable</h1>
+
+<blockquote>
+<p>In a nutshell, Encoding is the process of transforming your own custom type, class or struct to external data representation type like JSON or plist or something else &amp; Decoding is the process of transforming external data representation type like JSON or plist to your own custom type, class or struct.</p>
+</blockquote>
+
+<h2 id="可以使用的协议">可以使用的协议</h2>
+
+<p>Swift 的标准库中包含了用于自定义类型(结构体、类)与其它表示形式(JSON、Property List 或 二进制)的数据之间相互转换的协议：</p>
+
+<ul>
+<li><p><strong>Encodable</strong>: 用于自定义类型向 JSON 或 Property List 的转换，协议包含一个方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">encode</span><span class="p">(</span><span class="n">to</span><span class="p">:)</span> </code></pre></div></li>
+
+<li><p><strong>Decodable</strong>: 用于自 JSON 或 Property List 数据向自定义类型的转换，协议包含一个方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">init</span><span class="p">(</span><span class="n">from</span><span class="p">:)</span></code></pre></div></li>
+
+<li><p><strong>Codable</strong>: 包含 Encodable 和 Decodable 两方面的转换，其定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">typealias</span> <span class="n">Codable</span> <span class="p">=</span> <span class="n">Decodable</span> <span class="o">&amp;</span> <span class="n">Encodable</span></code></pre></div></li>
+</ul>
+
+<p>使用 Codable 协议 的 Encodable 和 Decodable，可以让我们轻松实现自定义数据类型的序列化以及得到相应数据类型的实例对象。按照字面意思，我们后面将数据类型实例向 JSON 或 Property List 转换的过程称为编码，反之，称为解码！</p>
+
+<h2 id="遵循协议的类型">遵循协议的类型</h2>
+
+<p>如果我们想要实现自定义类型或数据模型的编码和解码，必须遵循 Codable 协议！Swift 基本的内建类型已经是 Codable 的了，比如 <code>String</code>、<code>Int</code>、<code>Double</code>、<code>Date</code> 和 <code>Data</code>。另外像 <code>Array</code>、<code>Dictionary</code> 和 <code>Optional</code> 也都是遵循 Codable 协议的，可以进行编码和解码。</p>
+
+<p>如下自定义的结构体 Person 和 Team，遵循 Codable 协议，同时结构体的所有属性要么是标准的 Codable 类型，要么包含 Codable 类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">var</span> <span class="nv">isMale</span><span class="p">:</span> <span class="nb">Bool</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">Team</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">master</span><span class="p">:</span> <span class="n">Person</span>
+    <span class="kd">var</span> <span class="nv">memebers</span><span class="p">:</span> <span class="p">[</span><span class="n">Person</span><span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="codable-类型的编解码">Codable 类型的编解码</h2>
+
+<p>对于 Codable 的类型，需要使用相应的编码器对我们的数据进行编码和解码，具体细节可以参考后面的小节，有两种编码器可用：</p>
+
+<ul>
+<li><strong>JSON</strong>
+
+<ul>
+<li><code>JSONEncoder</code>: 将 Codable 类型数据编码为 JSON 数据</li>
+<li><code>JSONDecoder</code>: 将 JSON 数据解码为指定的 Codable 类型数据</li>
+</ul></li>
+<li><strong>Property List</strong>
+
+<ul>
+<li><code>PropertyListEncoder</code>: 将 Codable 类型数据编码为 plist 数据</li>
+<li><code>PropertyListDecoder</code>: 将 plist 数据解码为指定的 Codable 类型数据</li>
+</ul></li>
+</ul>
+
+<h1 id="codable-的使用">Codable 的使用</h1>
+
+<p>下面我们就一起研究一下 Codable 的使用，这里我们只尝试 Codable 类型数据与 JSON 数据的编码解码的实现。</p>
+
+<h2 id="编码和解码">编码和解码</h2>
+
+<h3 id="使用-jsonencoder-编码">使用 <code>JSONEncoder</code> 编码</h3>
+
+<p>非常简单，只需调用 <code>JSONEncoder</code> 的 <code>encode(_:)</code> 方法就能将 Codable 类型转换为 JSON 数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">jack</span> <span class="p">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;Jack&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">jackData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">jack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">jackData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>可以看到打印出转换得到的 JSON 字符串数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;age&#34;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&#34;isMale&#34;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;Jack&#34;</span><span class="p">}</span></code></pre></div>
+<p>是不是很方便，解码同样如此简单！</p>
+
+<h3 id="使用-jsondecoder-解码">使用 <code>JSONDecoder</code> 解码</h3>
+
+<p>只需要调用 <code>JSONDecoder</code> 实例的 <code>decode(_:from:)</code> 方法就能将 JSON 对象转换得到指定类型的实例。</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">jsonString</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34;
+</span><span class="s">{
+</span><span class="s">    &#34;</span><span class="n">id</span><span class="s">&#34;: 2,
+</span><span class="s">    &#34;</span><span class="n">name</span><span class="s">&#34;: &#34;</span><span class="n">lucy</span><span class="s">&#34;,
+</span><span class="s">    &#34;</span><span class="n">age</span><span class="s">&#34;: 11,
+</span><span class="s">    &#34;</span><span class="n">isMale</span><span class="s">&#34;: false
+</span><span class="s">}
+</span><span class="s">&#34;&#34;&#34;</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">json</span> <span class="p">=</span> <span class="n">jsonString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">lucy</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">lucy</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>打印结果，如您所料，将 JSON 字符串成功的解码为了 Person 实例对象：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;lucy&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span></code></pre></div>
+<h3 id="codable-使用的基本步骤">Codable 使用的基本步骤</h3>
+
+<p>综上过程，我们可以总结一下，要使用 Swift 的特性其实很简单，分两步：</p>
+
+<ul>
+<li>自定义类型遵循 Codable 协议</li>
+<li>使用编码器实现自定义类型数据的编码和解码</li>
+</ul>
+
+<h2 id="使用-codingkeys-来选择部分属性是-codable-的">使用 CodingKeys 来选择部分属性是 Codable 的</h2>
+
+<p>也许此时此刻您可能会想：</p>
+
+<ul>
+<li>如果不想把自定义数据所有的属性编码到 JSON 该怎么办？</li>
+<li>如果 JSON 数据中的键名与自定义类型中的属性名不一致怎么办？</li>
+</ul>
+
+<p>请放心，您想到的，Apple 同样照顾到了！就是本节要讲的 <code>CodingKeys</code></p>
+
+<blockquote>
+<p>Codable types can declare a special nested enumeration named CodingKeys that conforms to the CodingKey protocol. When this enumeration is present, its cases serve as the authoritative list of properties that must be included when instances of a codable type are encoded or decoded. The names of the enumeration cases should match the names you&rsquo;ve given to the corresponding properties in your type.</p>
+</blockquote>
+
+<p><code>CodingKeys</code> 是我们在自定义数据类型中定义的枚举，有以下两点要求：</p>
+
+<ul>
+<li>枚举元素类型是 String，并且遵循 CodingKey 协议、</li>
+<li>枚举元素的名称必须与自定义类型中的属性名称保持一致</li>
+</ul>
+
+<p>那么我们回过头来看一下前面的两个问题怎么解决：</p>
+
+<ul>
+<li>CodingKeys 中的元素与自定义数据类型中的属性名称对应，只要删除对应属性的枚举元素就可以实现编码时对应属性的忽略，这样就解决了第一个问题，但是要注意，不编码的属性必须赋予默认值</li>
+<li>为 CodingKeys 中枚举元素自定义 String 值与 JSON 数据中的键名对应起来，就能解决第二个问题。</li>
+</ul>
+
+<p>假如想为 Person 结构体添加一个 <code>description</code> 的属性，同时不想让它参与编码和解码，另外 JSON 数据中的键名是中文的，我们可以重构 Person 类：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Person</span> <span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">id</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">var</span> <span class="nv">isMale</span><span class="p">:</span> <span class="nb">Bool</span>
+    <span class="kd">var</span> <span class="nv">description</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;person&#34;</span>
+    
+    <span class="kd">enum</span> <span class="nc">CodingKeys</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">CodingKey</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">id</span> <span class="p">=</span> <span class="s">&#34;身份证号&#34;</span>
+        <span class="k">case</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;姓名&#34;</span>
+        <span class="k">case</span> <span class="n">age</span> <span class="p">=</span> <span class="s">&#34;年龄&#34;</span>
+        <span class="k">case</span> <span class="n">isMale</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>我们看一下将自定义数据转换为 JSON 会是怎样的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">tim</span> <span class="p">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;tim&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">timData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">timData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>编码得到的 JSON 数据如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;姓名&#34;</span><span class="p">:</span><span class="s2">&#34;tim&#34;</span><span class="p">,</span><span class="nt">&#34;isMale&#34;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="nt">&#34;年龄&#34;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="nt">&#34;身份证号&#34;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span></code></pre></div>
+<h2 id="自定义-encode-和-decode">自定义 encode 和 decode</h2>
+
+<p>我们定义一个 Size 结构体、Point 结构体和 Rect 结构体如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Size</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">width</span><span class="p">:</span> <span class="nb">Double</span>
+    <span class="kd">var</span> <span class="nv">height</span><span class="p">:</span> <span class="nb">Double</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">Point</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">x</span><span class="p">:</span> <span class="nb">Double</span>
+    <span class="kd">var</span> <span class="nv">y</span><span class="p">:</span> <span class="nb">Double</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">Rect</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">position</span><span class="p">:</span> <span class="n">Point</span>
+    <span class="kd">var</span> <span class="nv">size</span><span class="p">:</span> <span class="n">Size</span>
+<span class="p">}</span></code></pre></div>
+<p>我们利用一开始定义的 Rect 结构体声明一个 rect，坐标在原点，宽高都为 2.0，并将其转换为 JSON 数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">rectData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>team 对应的 JSON 字符串如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;position&#34;</span><span class="p">:{</span><span class="nt">&#34;x&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;y&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="nt">&#34;size&#34;</span><span class="p">:{</span><span class="nt">&#34;width&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&#34;height&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">}}</span></code></pre></div>
+<p>但是呢，十里不想让 JSON 数据中 x 和 y 嵌套在 positon 中，也不想 width 和 height 嵌套在 size 中，而是像下面的样子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span>
+    <span class="nt">&#34;x&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;y&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;width&#34;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="nt">&#34;height&#34;</span><span class="p">:</span> <span class="mf">2.0</span>
+<span class="p">}</span></code></pre></div>
+<p>要实现这种需求，我们必须自定义 <code>Encodable</code> 协议的 <code>encode(_:)</code> 方法 和 <code>Decodable</code> 协议的 <code>init(from:)</code> 方法，实现自定义的编码解码逻辑，大体分下面几步：</p>
+
+<ul>
+<li>定义 CodingKeys 枚举，元素与目标 JSON 数据的键名对应，定义 x 和 y 而不是 position，定义 width 和 height 而不是 size</li>
+<li>删除 Rect 定义中的 Codable</li>
+<li>扩展 Rect 遵循 Encodable 协议，并实现 <code>encode(_:)</code> 方法</li>
+<li>扩展 Rect 遵循 Decodable 协议，并实现 <code>init(from:)</code> 方法</li>
+</ul>
+
+<p>最终 Rect 定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Rect</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">position</span><span class="p">:</span> <span class="n">Point</span>
+    <span class="kd">var</span> <span class="nv">size</span><span class="p">:</span> <span class="n">Size</span>
+    
+    <span class="kd">enum</span> <span class="nc">CodingKeys</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">CodingKey</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">x</span>
+        <span class="k">case</span> <span class="n">y</span>
+        <span class="k">case</span> <span class="n">width</span>
+        <span class="k">case</span> <span class="n">height</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">Rect</span><span class="p">:</span> <span class="n">Encodable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="n">encoder</span><span class="p">:</span> <span class="n">Encoder</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">container</span> <span class="p">=</span> <span class="n">encoder</span><span class="p">.</span><span class="n">container</span><span class="p">(</span><span class="n">keyedBy</span><span class="p">:</span> <span class="n">CodingKeys</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+        <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">width</span><span class="p">)</span>
+        <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="nc">Rect</span><span class="p">:</span> <span class="n">Decodable</span> <span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">from</span> <span class="n">decoder</span><span class="p">:</span> <span class="n">Decoder</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">container</span> <span class="p">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="p">.</span><span class="n">container</span><span class="p">(</span><span class="n">keyedBy</span><span class="p">:</span> <span class="n">CodingKeys</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">x</span> <span class="p">=</span> <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="nb">Double</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">x</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">y</span> <span class="p">=</span> <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="nb">Double</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">position</span> <span class="p">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">width</span> <span class="p">=</span> <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="nb">Double</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">width</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">height</span> <span class="p">=</span> <span class="k">try</span> <span class="n">container</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="nb">Double</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="p">.</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">size</span> <span class="p">=</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">height</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>测试一下编码实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">rectData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>得到的 JSON 数据的打印结果为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;y&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;x&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;width&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&#34;height&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span></code></pre></div>
+<p>测试一下解码的实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rectString</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34;
+</span><span class="s">{
+</span><span class="s">    &#34;</span><span class="n">x</span><span class="s">&#34;: 3,
+</span><span class="s">    &#34;</span><span class="n">y</span><span class="s">&#34;: 3,
+</span><span class="s">    &#34;</span><span class="n">width</span><span class="s">&#34;: 2.5,
+</span><span class="s">    &#34;</span><span class="n">height</span><span class="s">&#34;: 2.5
+</span><span class="s">}
+</span><span class="s">&#34;&#34;&#34;</span>
+
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">json</span> <span class="p">=</span> <span class="n">rectString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">newRect</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Rect</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">newRect</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>得到的 newRect 实例对象打印结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">__lldb_expr_21</span><span class="p">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">__lldb_expr_21</span><span class="p">.</span><span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">))</span></code></pre></div>
+<h1 id="codable-带来的福利">Codable 带来的福利</h1>
+
+<p>上面说了这么多的 Codable ，到底我们能用它来干什么呢，最主要的两个应用方向就是自定义类型数据持久化和网络通信。</p>
+
+<h2 id="数据持久化">数据持久化</h2>
+
+<p>其中一种常用的数据持久化方式就是属性列表(Property List)，<code>UserDefaults.standard</code> 适合存储轻量级的本地数据，其提供了与默认数据库相交互的编程接口。其实它存储在应用程序的一个plist文件里，路径为应用沙盒Document目录平级的 <code>/Library/Prefereces</code> 里。另外，其只能存储可以序列化的数据类型，比如我们一开始说的那些基本类型，也就是 Codable 的，所以一旦我们自定义的数据类型遵循了 Codable 协议，即可序列化了，那我们的自定义类型的数据可以自由存取了。</p>
+
+<p><strong>注意：</strong></p>
+
+<ul>
+<li>使用这种方式一般用于存储应用程序的配置信息</li>
+<li>手动调用 <code>synchronize</code> 方法可以立马将数据持久化存储</li>
+</ul>
+
+<p>这里只是以这种数据持久化为例，讲一下如何持久化自定义数据类型的数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rectDemo</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">demoData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">rectDemo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">demoData</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;rect-test&#34;</span><span class="p">)</span>
+    <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">synchronize</span><span class="p">()</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;saved successfully!&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectJson</span> <span class="p">=</span> <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;rect-test&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">Data</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">newRect</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Rect</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">rectJson</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">newRect</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<p>可以看到打印结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">saved</span> <span class="n">successfully</span><span class="o">!</span>
+<span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">__lldb_expr_29</span><span class="p">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">__lldb_expr_29</span><span class="p">.</span><span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span></code></pre></div>
+<h2 id="网络通信">网络通信</h2>
+
+<p>HTTP/HTTPS 网络通信中 JSON 是常用的交互数据类型，假如我们编写一个网络接口，当外部请求的时候，我们为其返回一个响应，如果我们定义一个 Codable 的 Response 类型，可以方便生成响应数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Response</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">ststus</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="kd">var</span> <span class="nv">message</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nv">res</span> <span class="p">=</span> <span class="n">Response</span><span class="p">(</span><span class="n">ststus</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">&#34;OK&#34;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">resData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></code></pre></div>
+<h1 id="总结">总结</h1>
+
+<p>Swift 4 开始支持的 Codable 大大简化了对自定义类型数据序列化的实现，相信您会用得到！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>macOS 开发之本地消息通知</title>
@@ -2175,174 +2495,6 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 <p>至此，您应该学会如何对代码中字符串本地化了吧！</p>
 
 <p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo3.zip" target="_blank">InternationalDemo3</a></p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>macOS 开发之 storyboard 或 xib 本地化</title>
-			<link>https://www.smslit.top/2019/02/19/mac_app_international_2/</link>
-			<pubDate>Tue, 19 Feb 2019 08:53:54 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/02/19/mac_app_international_2/</guid>
-			<description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s</description>
-			<content type="html"><![CDATA[
-
-<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：storyboard 或 xib 本地化。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219090656.jpg" alt="" /></p>
-
-<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a></p>
-
-<p>第三部传送门：<a href="/2019/02/21/mac_app_international_3/" target="_blank">macOS 开发之代码字符串的本地化</a></p>
-
-<h1 id="实现平台">实现平台</h1>
-
-<ul>
-<li>macOS 10.14.3</li>
-<li>swift 4.2.1</li>
-<li>xcode 10.1</li>
-</ul>
-
-<h1 id="准备工程">准备工程</h1>
-
-<p>本文直接使用上一篇文章<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo.zip" target="_blank">点我</a>下载！</p>
-
-<p>打开工程后，会看到 <code>Main.storyboard</code> 左侧有个小三角，点开可以看到，包含了简体中文和日文的两个 Strings 文件，这两个文件是在<a href="/2019/02/18/mac_app_international_1/#添加语言支持" target="_blank">添加语言支持</a> 的时候添加上的，点击 <code>Main.storyboard</code> 可以在 Inspector 的 <code>Localization</code> 分组看到 English 没有勾选，勾选 English ，会看到新增了一个 English 的 Strings 文件。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219092044.jpg" alt="" /></p>
-
-<p>上面提到的 String 文件包含了 storyboard 中所有可见控件中字符串对应的内容定义，App 运行的时候会根据系统语言读取对应语言的字符串内容，以达到 storyboard 界面元素本地化显示的效果！</p>
-
-<blockquote>
-<p>如果要添加自己定义的 xib 文件，也会像 storyboard 文件一样，在 File Inspector 中会有一个 Localization 的分组，如果有 localize&hellip; 按钮，点击它就可以添加 xib 的新的语言支持！</p>
-</blockquote>
-
-<h1 id="修改-strings-文件">修改 Strings 文件</h1>
-
-<p>打开上面提到的三个 Strigns 文件：</p>
-
-<ul>
-<li>Main.Strings (English)</li>
-<li>Main.Strings (Chinese(Simplified))</li>
-<li>Main.Strings (Japanese)</li>
-</ul>
-
-<p>可以看到文件中都包含了相同的字符串项，例如其中的窗口标题项：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSWindow&#34;; title = &#34;Window&#34;; ObjectID = &#34;IQv-IB-iLA&#34;; */</span>
-<span class="s">&#34;IQv-IB-iLA.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Window&#34;</span><span class="p">;</span></code></pre></div>
-<ol>
-<li>左侧的代表了字符串标识，右侧是相对应的字符串值，我们要对应语言修改的就是每一项的右侧值。</li>
-<li>每一项后面必须有半角的分号</li>
-
-<li><p>左侧标识使用了控件的 <code>ObjectID</code>，使用点语法表示属性的方式构成字符串标识，其中 <code>ObjectID</code> 可以在控件的 Identity Inspector 中查看，比如选中 Main.storyboard 中的 Window 将 Inspector 切换到 Identity 标签页可以在 Document 分组中看到 Object ID 是 <code>IQv-IB-iLA&quot;</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219112159.png" alt="" /></p></li>
-</ol>
-
-<p>下面的工作就是自行翻译并修改每一项右侧的值了，可以使用<a href="http://translate.google.cn/" target="_blank">谷歌翻译</a>协助翻译。</p>
-
-<p>将 Main.Strings (Chinese(Simplified)) 和 Main.Strings (Japanese) 中的项修改完成后就可以验证效果了。</p>
-
-<h1 id="更新-strings-文件">更新 Strings 文件</h1>
-
-<p>设计的 storyboard 并不是一成不变的，所以 Strings 文件也要随时更新。这里用到一个辅助工具叫做 <strong>bartycrouch</strong>:</p>
-
-<blockquote>
-<p>BartyCrouch incrementally updates your Strings files from your Code and from Interface Builder files. &ldquo;Incrementally&rdquo; means that BartyCrouch will by default keep both your already translated values and even your altered comments. Additionally you can also use BartyCrouch for machine translating from one language to 60+ other languages. Using BartyCrouch is as easy as running a few simple commands from the command line what can even be automated using a build script within your project.</p>
-</blockquote>
-
-<p><a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a></p>
-
-<p>这个工具也能调用微软的 API 协助翻译。</p>
-
-<h2 id="安装-bartycrouch">安装 bartycrouch</h2>
-
-<p>可以使用 homebrew 安装这个工具：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ brew install bartycrouch</code></pre></div>
-<p>⚠️：</p>
-
-<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top" target="_blank">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640" target="_blank">macOS 开发</a>。</p>
-
-<h2 id="使用">使用</h2>
-
-<p>为了验证使用，这里在 view controller 中添加了一个按钮和一个 label。</p>
-
-<h3 id="更新-interfaces">更新 interfaces</h3>
-
-<p>这里我们主要是用其从 storyboard 或者 xib 文件更新 Strings 文件的功能，只需要调用如下命令就可以工作：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ bartycrouch interfaces -p InternationalDemo/
-ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Storyboard or XIB file.</code></pre></div>
-<p>其中需要使用 <code>-p</code> 指明包含工程文件的目录，因为此时工作目录是在工程根目录下，所以要指定的目录是存放文件的 <code>InternationalDemo/</code></p>
-
-<p>执行了上面的命令以后，查看三个 Strings 文件中确实新添了按钮和 label 的相关字符串！</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSButtonCell&#34;; title = &#34;Button&#34;; ObjectID = &#34;0A1-8b-fid&#34;; */</span>
-<span class="s">&#34;0A1-8b-fid.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
-
-<span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span></code></pre></div>
-<h3 id="检查-strings-文件">检查 Strings 文件</h3>
-
-<p>bartycrouch 的子命令 lint 可以帮助检查：</p>
-
-<ul>
-<li>Strings 文件中重复的键值，需要指定命令参数 <code>-d</code></li>
-<li>文件中值为空字符串的键值，需要指定命令参数 <code>-e</code></li>
-</ul>
-
-<p>比如我们检查一下有没有空值的键</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ bartycrouch lint -e -p InternationalDemo
-
-ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/zh-Hans.lproj/Main.strings.
-ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/zh-Hans.lproj/Main.strings.
-ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/ja.lproj/Main.strings.
-ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/ja.lproj/Main.strings.
-ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/en.lproj/Main.strings.
-ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/en.lproj/Main.strings.
-❌ Error! <span class="m">6</span> issue<span class="o">(</span>s<span class="o">)</span> found in <span class="m">3</span> file<span class="o">(</span>s<span class="o">)</span>. Executed <span class="m">1</span> checks in <span class="m">6</span> Strings file<span class="o">(</span>s<span class="o">)</span> in total.</code></pre></div>
-<p>这就检查出刚刚新加的按钮和 label 的相对应的字符串配置了。</p>
-
-<h3 id="自动更新和检查">自动更新和检查</h3>
-
-<p>为了更方便快捷的更新和检查 Strings 文件，这里可以为工程新建一个 Build Phase，按照下图流程添加：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219142234.jpg" alt="" /></p>
-
-<p>添加的 shell 脚本内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="c1"># Type a script or drag a script file from your workspace to insert its path.</span>
-<span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
-    bartycrouch interfaces -p .
-    bartycrouch lint -e -d -p .
-<span class="k">else</span>
-    <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
-<span class="k">fi</span></code></pre></div>
-<p>运行一下工程，build 失败，原因是 <code>bartycrouch lint</code> 命令检查出了有空值字符串，以后就是每次编译都会更新 Strings 文件。</p>
-
-<p>再把按钮删除运行工程，检查出 String 文件中只有 label 相关的字符串了，给三个文件分别更改 label 标签的内容。</p>
-
-<ul>
-<li>Main.strings (English)</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">;</span></code></pre></div>
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143602.png" alt="" /></p>
-
-<ul>
-<li>Main.strings (Chinese(Simplified))</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;世界，你好!&#34;</span><span class="p">;</span></code></pre></div>
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143627.png" alt="" /></p>
-
-<ul>
-<li>Main.strings (Japanese)</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;こんにちは世界!&#34;</span><span class="p">;</span></code></pre></div>
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143636.png" alt="" /></p>
-
-<p>至此，这一部分就讲完了，希望对您有所帮助！</p>
-
-<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip" target="_blank">InternationalDemo2</a></p>
 ]]></content>
 		</item>
 		

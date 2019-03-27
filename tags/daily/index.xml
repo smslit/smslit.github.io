@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 25 Mar 2019 23:35:12 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2019 12:03:44 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Apple 2019 春季发布会</title>
+      <link>https://www.smslit.top/daily/apple-spring-conference-2019/</link>
+      <pubDate>Tue, 26 Mar 2019 12:03:44 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/apple-spring-conference-2019/</guid>
+      <description>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Ap</description>
+    </item>
     
     <item>
       <title>Hello World</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/ready-player-one/</guid>
       <description>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说</description>
-    </item>
-    
-    <item>
-      <title>关于 macOS 开发知识分享</title>
-      <link>https://www.smslit.top/daily/macOS-dev-plan-change/</link>
-      <pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/macOS-dev-plan-change/</guid>
-      <description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
     </item>
     
   </channel>

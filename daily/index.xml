@@ -7,8 +7,30 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 25 Mar 2019 23:35:12 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 26 Mar 2019 12:03:44 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Apple 2019 春季发布会</title>
+			<link>https://www.smslit.top/daily/apple-spring-conference-2019/</link>
+			<pubDate>Tue, 26 Mar 2019 12:03:44 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/apple-spring-conference-2019/</guid>
+			<description>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Ap</description>
+			<content type="html"><![CDATA[<p>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Apple 强调了 <strong>硬件-软件-服务</strong> 的铁三角战略，所以顺理成章地在发布会上发布了一个接一个服务，果然如网络上传播的消息一致！而且好像绝大部分跟我们绝大部分中国用户没多大关系嘛，boring&hellip;看了一半多竟然睡着了🤣😴。</p>
+
+<p>早上醒来后看报道，发现睡着前竟然是看完了所有的服务发布，会面俨然成了明星见面会的时候就不小心进入梦乡了，哈哈！说笑归说笑，发布的服务涉及了人们生活的很大方面：阅读 📰、支付 💳、游戏 🎮 和 观影 🎟:</p>
+
+<ul>
+<li>Apple News+：涵盖300多种报刊或推荐文章的订阅服务</li>
+<li>依托于苹果支付（Apple Pay）的苹果信用卡Apple Card</li>
+<li>Apple Arcade：iOS系统内部的游戏平台</li>
+<li>苹果推出两款流媒体服务：TV Channels和原创节目集合Apple TV+</li>
+</ul>
+
+<p>Apple 一直致力于 <strong>硬件-软件-服务</strong> 三方面的发展，其实有些不均衡的，软件和硬件可以说非常强大了，但是过去服务还是单一了一些，这次发布会可以说是史上最软了吧，可以看出 Apple 要大力发展服务的决心，毕竟目前来看硬件和软件的营收开始出现萎靡缩水的现象，扩展业务，发展内容分发和订阅服务势在必行！想到 Apple 这是想着法得挣我们消费者的钱，就有点那个 🤯。。。但是如果服务到位，大家还是愿意打开钱包的嘛，相信 Apple 会像硬件和软件一样会提供高质量服务，这也应该是 Apple 产品用户喜闻乐见的！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Hello World</title>
@@ -207,19 +229,6 @@
 			<content type="html"><![CDATA[<p>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说观后感吧！这部电影应该是会给某一代人带来猛烈回忆杀的，很羞愧的说，只有红白机游戏和一些动漫形象对十里有点&rdquo;伤害&rdquo;，童年记忆嘛，电影里那些像素游戏也没怎么玩过😅！十里对电影中那句 “The reality is the only thing that&rsquo;s real” 记忆尤为深刻，现实是唯一的真实！虚幻之外，游戏之外，身边的人、物、景才是最真实的，拥抱生活，感受生活的人情感和状态才会是饱满的，这又让十里想到专注之余能自由穿梭于自己的世界与现实世界是多么的重要！</p>
 
 <p>除了电影特效带来的快感，十里还惊叹于男主是那么的了解绿洲的缔造者，每个细节的那种默契跨越了年龄，也跨越了虚拟与现实，时间与空间都无法掩盖两个人的相同关注点！那么世界上真的会存在如此了解你并与你很合拍的人吗？</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>关于 macOS 开发知识分享</title>
-			<link>https://www.smslit.top/daily/macOS-dev-plan-change/</link>
-			<pubDate>Sat, 16 Mar 2019 23:56:00 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/macOS-dev-plan-change/</guid>
-			<description>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着</description>
-			<content type="html"><![CDATA[<p>已经有好些天没有发 macOS 开发的经验分享了，考虑到现阶段时间的紧俏，更改知识分享周期为 weekly。其实每一篇分享背后，十里要做很多工作，十里想着要尽量能说清楚做什么，怎么做，为什么（what-how-why），能力有限，时间就会占用很多，毕竟还要做很多其他事情，索性 《macOS 开发》(博客和知乎专栏)就成了《macOS Development weekly》，哈哈！</p>
-
-<p>关于经验分享，还是想尽量时新，参照网上老旧的开发经验也要关注和探索技术的更新，就比如十里下一篇要讲的本地通知，网上提供的方法大多是马上要废弃的方式，阅读 apple 官方关于 Notification 的开发资料才知道未来 API 的发展方向，去年 WWDC 已经很清楚说了 iOS 应用移植到 macOS 的计划，作为开发者也应注意到了 apple 正努力融合 iOS 和 macOS 开发接口，得时刻关注动向，才能让自己的作品与时俱进！知识经验的分享也便能时新！</p>
 ]]></content>
 		</item>
 		

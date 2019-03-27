@@ -7,8 +7,43 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Tue, 26 Mar 2019 12:03:44 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 27 Mar 2019 23:22:47 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>当颜控又盯上了 gruvbox</title>
+			<link>https://www.smslit.top/daily/scheme-changing/</link>
+			<pubDate>Wed, 27 Mar 2019 23:22:47 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/scheme-changing/</guid>
+			<description>作为一个颜控无论终端还是编辑器，用了四年的 solarized 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推</description>
+			<content type="html"><![CDATA[
+
+<p>作为一个颜控无论终端还是编辑器，用了四年的 <a href="https://ethanschoonover.com/solarized/" target="_blank">solarized</a> 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推荐这个经典的主题，不管他们喜不喜欢，反正我是很青睐的！</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-27-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-27%2023.38.21.png" width="450px"/> 
+</figure>
+
+
+<p>但是前段时间在研究 vim 的 lsp 的使用的时候，vim-lsp 插件的 README 中提到的 gruvbox 引起了我的注意。哇！一了解原来是一款相见恨晚的主题，呃。。。就这么抛弃了 solarized ，十里替他伤心！当颜控遇到好的主题 -&gt; 什么 iterm2、vim 还有 vscode 都改成了 gruvbox 主题的 dark 系。</p>
+
+<p>用了快一周了，如 solarized 一样非常合十里的口味，眼睛很舒服，开心地搬砖！</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-27-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-27%2023.54.20.png" width="745px"/> 
+</figure>
+
+
+<h2 id="也许您需要">也许您需要</h2>
+
+<ul>
+<li>iterm2: <a href="https://github.com/morhetz/gruvbox-contrib/tree/master/iterm2" target="_blank">morhetz/gruvbox-contrib/iterm2</a></li>
+<li>vim: <a href="https://github.com/morhetz/gruvbox" target="_blank">morhetz/gruvbox</a></li>
+<li>vscode: <a href="https://github.com/jdinhify/vscode-theme-gruvbox" target="_blank">jdinhify/vscode-theme-gruvbox</a></li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Apple 2019 春季发布会</title>
@@ -216,19 +251,6 @@
 <li id="fn:Ant-Design-Vue">一点资讯前端技术专家，Ant Design Vue 的作者 <a class="footnote-return" href="#fnref:Ant-Design-Vue"><sup>[return]</sup></a></li>
 </ol>
 </div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>头号玩家</title>
-			<link>https://www.smslit.top/daily/ready-player-one/</link>
-			<pubDate>Sun, 17 Mar 2019 22:55:12 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/ready-player-one/</guid>
-			<description>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说</description>
-			<content type="html"><![CDATA[<p>昨天和今天终于看完了斯皮尔伯格的新电影《头号玩家》，也不算新电影了，因为上映了都一年多了，尴尬！两个多小时的电影花两天看完不过分吧，还是说说观后感吧！这部电影应该是会给某一代人带来猛烈回忆杀的，很羞愧的说，只有红白机游戏和一些动漫形象对十里有点&rdquo;伤害&rdquo;，童年记忆嘛，电影里那些像素游戏也没怎么玩过😅！十里对电影中那句 “The reality is the only thing that&rsquo;s real” 记忆尤为深刻，现实是唯一的真实！虚幻之外，游戏之外，身边的人、物、景才是最真实的，拥抱生活，感受生活的人情感和状态才会是饱满的，这又让十里想到专注之余能自由穿梭于自己的世界与现实世界是多么的重要！</p>
-
-<p>除了电影特效带来的快感，十里还惊叹于男主是那么的了解绿洲的缔造者，每个细节的那种默契跨越了年龄，也跨越了虚拟与现实，时间与空间都无法掩盖两个人的相同关注点！那么世界上真的会存在如此了解你并与你很合拍的人吗？</p>
 ]]></content>
 		</item>
 		

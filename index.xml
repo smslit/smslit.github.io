@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 26 Mar 2019 12:03:44 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 27 Mar 2019 23:22:47 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>当颜控又盯上了 gruvbox</title>
+      <link>https://www.smslit.top/daily/scheme-changing/</link>
+      <pubDate>Wed, 27 Mar 2019 23:22:47 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/scheme-changing/</guid>
+      <description>作为一个颜控无论终端还是编辑器，用了四年的 solarized 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推</description>
+    </item>
     
     <item>
       <title>Apple 2019 春季发布会</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/be-a-small-potato/</guid>
       <description>今天看知乎想法有人说： 从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。 拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发</description>
-    </item>
-    
-    <item>
-      <title>投怀 Vue</title>
-      <link>https://www.smslit.top/daily/vue-vue-vue/</link>
-      <pubDate>Mon, 18 Mar 2019 21:21:06 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/vue-vue-vue/</guid>
-      <description>说来太巧了，从前天晚上开始看 Vue 官网教程学习 Vue，今天就发现卖桃君在公众号发了宣布极客时间新推出 Vue 视频教程进行大甩卖的文章，只感叹这就是一个</description>
     </item>
     
   </channel>

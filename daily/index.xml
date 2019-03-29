@@ -7,8 +7,31 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 27 Mar 2019 23:22:47 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 29 Mar 2019 09:36:02 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>raywenderlich 高质量的视频教程</title>
+			<link>https://www.smslit.top/daily/raywenderlich-nice/</link>
+			<pubDate>Fri, 29 Mar 2019 09:36:02 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/raywenderlich-nice/</guid>
+			<description>今天看到 Kevin 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 Raywenderlich 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！</description>
+			<content type="html"><![CDATA[<p>今天看到 <a href="https://zhowkev.in" target="_blank">Kevin</a> 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 <a href="https://www.raywenderlich.com" target="_blank">Raywenderlich</a> 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！<a href="https://www.raywenderlich.com" target="_blank">Raywenderlich</a> 出品必属精品。哎，不禁想起好朋友东东经常对我的高度评价“xx出品，必属精品”，哈哈，怀念（现在分隔两地）🤪！</p>
+
+<p>因为一直惦记 raywenderlich 今年二月份刚出的 Vapor 的教程，但是需要订阅才能查看，but 它们国外支付都一个尿性，订阅只支持信用卡，哀莫大于心死！只好求助于万能的某宝<sup class="footnote-ref" id="fnref:https-www-taobao"><a href="#fn:https-www-taobao">1</a></sup>，果真有！买了一个订阅一个月的账号，想想都知道，店主是把账号分给很多人用的，使用过程中果然，网站时不时提醒：同时只能一个人使用！💢🤮🤬</p>
+
+<p>不爽😕！看来我要祭出我的神器了 - *Downie 3*，这是一款专门下载网页内视频的，但是一开始只能下载免费的那个视频，不用担心，神器之所以是神器，在于真的有神力🤫！Downie3 支持一种手动的模式，它会打开一个类似于浏览器的页面，只要在这个页面登陆订阅 raywenderlich 的账号，就可以为所欲为的下载解析出来的视频了，不要太 high！🤙🏻🤙🏻🤙🏻</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:https-www-taobao">之前做嵌入式开发的时候，经常与外设芯片或设备打交道，如果在网页找不到芯片或设备的相关资料，那来到 <a href="https://www.taobao.com" target="_blank">某宝</a> 轻易查到相关资料的可能性极大！ <a class="footnote-return" href="#fnref:https-www-taobao"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>当颜控又盯上了 gruvbox</title>
@@ -241,30 +264,6 @@
 <p>其实，在乎这些干什么，一定要追求流量吗？流量很重要，但也不是唯一的王道嘛！十里觉得，做好小众，沉心打造自己一番小天地，别人看到如果喜欢那很好，就一起交流嘛，如果不以为然，也不要放在心上，坚持做好自己。不管你看与不看，我都在！</p>
 
 <p>就是这样！安静的打磨自己&hellip;</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>投怀 Vue</title>
-			<link>https://www.smslit.top/daily/vue-vue-vue/</link>
-			<pubDate>Mon, 18 Mar 2019 21:21:06 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/vue-vue-vue/</guid>
-			<description>说来太巧了，从前天晚上开始看 Vue 官网教程学习 Vue，今天就发现卖桃君在公众号发了宣布极客时间新推出 Vue 视频教程进行大甩卖的文章，只感叹这就是一个</description>
-			<content type="html"><![CDATA[<p>说来太巧了，从前天晚上开始看 Vue 官网教程学习 Vue，今天就发现卖桃君在公众号发了宣布极客时间新推出 Vue 视频教程进行大甩卖的文章，只感叹这就是一个“阴谋”！因为之前订阅了戴铭老师的《iOS 开发高手课》的教程，感受到了极客时间对于教程质质量的把控，所以应自己所需，立马剁手订阅了唐金州老师<sup class="footnote-ref" id="fnref:Ant-Design-Vue"><a href="#fn:Ant-Design-Vue">1</a></sup>的《Vue 开发实战》的课程，可惜甩卖活动不能使用之前的 30 刀的券，但无所谓了，优良的知识是无价的，这些投资是有必要的！如果您也想了解一下课程，扫码就看：</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-18-06ffd0319ac755538a585fa74e9e035e.jpg" width="300px"/> 
-</figure>
-
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:Ant-Design-Vue">一点资讯前端技术专家，Ant Design Vue 的作者 <a class="footnote-return" href="#fnref:Ant-Design-Vue"><sup>[return]</sup></a></li>
-</ol>
-</div>
 ]]></content>
 		</item>
 		

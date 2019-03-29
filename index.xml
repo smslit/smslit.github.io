@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 27 Mar 2019 23:22:47 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Mar 2019 09:36:02 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>raywenderlich 高质量的视频教程</title>
+      <link>https://www.smslit.top/daily/raywenderlich-nice/</link>
+      <pubDate>Fri, 29 Mar 2019 09:36:02 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/raywenderlich-nice/</guid>
+      <description>今天看到 Kevin 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 Raywenderlich 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！</description>
+    </item>
     
     <item>
       <title>当颜控又盯上了 gruvbox</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/question-mark-fill-head/</guid>
       <description>今天学习了下唐老师的《Vue 开发实战》已更新的视频课，我的天，虽然已经粗略看了一遍 Vue 的官方教程，但是担心的事情还是发生了！在看 Vue 官方教程的时</description>
-    </item>
-    
-    <item>
-      <title>甘作小众</title>
-      <link>https://www.smslit.top/daily/be-a-small-potato/</link>
-      <pubDate>Tue, 19 Mar 2019 22:31:50 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/be-a-small-potato/</guid>
-      <description>今天看知乎想法有人说： 从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。 拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发</description>
     </item>
     
   </channel>

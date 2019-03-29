@@ -7,8 +7,44 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 28 Mar 2019 19:36:02 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 29 Mar 2019 12:56:53 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>OpenEmu - 红白的记忆</title>
+			<link>https://www.smslit.top/daily/nes-openemu/</link>
+			<pubDate>Fri, 29 Mar 2019 12:56:53 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/nes-openemu/</guid>
+			<description>红白机，小霸王学习机等等承载着 80尾巴-90头 这代很多人的游戏往事，我管这叫红白的记忆，不是粉红色的记忆！🤩 十里本人是一个 90 后，儿时是和两个</description>
+			<content type="html"><![CDATA[<p>红白机，小霸王学习机等等承载着 80尾巴-90头 这代很多人的游戏往事，我管这叫红白的记忆，不是粉红色的记忆！🤩</p>
+
+<figure class="right">
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-29-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-29%2016.23.14.jpg"/> 
+</figure>
+
+
+<p>十里本人是一个 90 后，儿时是和两个发小一起浪到大的，逮鱼摸虾、搭棚钻洞、玩四驱车和看动画片之外最美好的记忆就是一起玩红白机游戏了，十里属于没游戏🎮天赋的人，但也不至于特别菜，我们几个小伙伴最大的喜悦来源于玩通关一致觉得有意思的游戏(一般是在比我小一岁的发小家玩，因为他爸是个游戏迷，带着我们玩)，单人的也好双人的也罢，统统玩个底朝天，单人的话我们就排队，一个人玩一命&hellip;不过从初中开始之后就没怎么玩了！</p>
+
+<p>到了大学才知道，原来电脑上有模拟器这个东西，可以玩过去经常玩的红白机游戏，这种游戏的格式是 nes 文件，其实很惊讶，一般游戏都不到 1 MB，竟然能承载多少我们这代人（包括歪果仁）的像素游戏回忆！去年就发现了一款软件叫 <a href="http://openemu.org" target="_blank">OpenEmu</a> 。</p>
+
+<p><a href="http://openemu.org" target="_blank">OpenEmu</a> 可以说是一款万能的游戏模拟器了，支持 29 种类似的游戏平台，不过我只玩过了 NES 的游戏，游戏画面的渲染模式也有好几种，可以说是我用过的游戏模拟器中最棒的了，除了玩游戏之外，还可以管理游戏，暂存游戏状态等，支持很多种控制器，当然十里这里使用键盘模拟手柄按键的!</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-29-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-29%2016.34.34.png" width="754px"/> 
+</figure>
+
+
+<p>要劳逸结合嘛，所以有时候搬砖搬累了就会玩玩 NES 游戏，放松一下（情怀时刻🤣）！来一局经典的超级玛丽，这是十里玩的第一款红白机游戏：</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-29-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-29%2016.33.48.png" width="754px"/> 
+</figure>
+
+
+<p>PS: 现在感觉游戏好简单，有些轻松可以通关，毕竟自己没天赋，还有一些还是感觉有点难！🤔</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>raywenderlich 高质量的视频教程</title>
@@ -243,27 +279,6 @@
 
 
 <p>革命尚未成功，同志仍需努力！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>甘作小众</title>
-			<link>https://www.smslit.top/daily/be-a-small-potato/</link>
-			<pubDate>Tue, 19 Mar 2019 22:31:50 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/be-a-small-potato/</guid>
-			<description>今天看知乎想法有人说： 从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。 拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发</description>
-			<content type="html"><![CDATA[<p>今天看知乎想法有人说：</p>
-
-<blockquote>
-<p>从统计数据上看，在网上发『干货』远没有发『鸡汤』来得受欢迎。</p>
-
-<p>拿知乎来说，干货几十个赞，鸡汤几百上千个赞。慢慢也就没人发干货了。</p>
-</blockquote>
-
-<p>其实，在乎这些干什么，一定要追求流量吗？流量很重要，但也不是唯一的王道嘛！十里觉得，做好小众，沉心打造自己一番小天地，别人看到如果喜欢那很好，就一起交流嘛，如果不以为然，也不要放在心上，坚持做好自己。不管你看与不看，我都在！</p>
-
-<p>就是这样！安静的打磨自己&hellip;</p>
 ]]></content>
 		</item>
 		

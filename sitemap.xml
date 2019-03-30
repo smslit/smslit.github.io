@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.smslit.top/2019/03/30/what-is-pio/</loc>
+    <lastmod>2019-03-30T17:45:14+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.smslit.top/daily/nes-openemu/</loc>
     <lastmod>2019-03-29T12:56:53+08:00</lastmod>
   </url>
@@ -970,13 +975,13 @@
   
   <url>
     <loc>https://www.smslit.top/post/</loc>
-    <lastmod>2019-03-24T16:49:16+08:00</lastmod>
+    <lastmod>2019-03-30T17:45:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.smslit.top/</loc>
-    <lastmod>2019-03-29T12:56:53+08:00</lastmod>
+    <lastmod>2019-03-30T17:45:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1226,8 +1231,14 @@
   </url>
   
   <url>
+    <loc>https://www.smslit.top/tags/pio/</loc>
+    <lastmod>2019-03-30T17:45:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.smslit.top/tags/platformio/</loc>
-    <lastmod>2018-10-12T12:50:37+08:00</lastmod>
+    <lastmod>2019-03-30T17:45:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   

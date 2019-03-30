@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 29 Mar 2019 12:56:53 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2019 17:45:14 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO 是什么</title>
+      <link>https://www.smslit.top/2019/03/30/what-is-pio/</link>
+      <pubDate>Sat, 30 Mar 2019 17:45:14 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/03/30/what-is-pio/</guid>
+      <description>PlatformIO is an open source ecosystem for IoT development. Cross-platform IDE and unified debugger. Remote unit testing and firmware updates. PlatformIO 是一个用于物联网开发的开源生态系统。它提供跨平台的开发环境和统一的调试器，还支持远程单元测试和固件</description>
+    </item>
     
     <item>
       <title>OpenEmu - 红白的记忆</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/command-analysis/</guid>
       <description>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &amp;#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&amp;#34; &amp;#34;CMD[ a ]/count*100 &amp;#34;% &amp;#34; a }&amp;#39; | grep -v &amp;#34;./&amp;#34; | column -c3 -s &amp;#34; &amp;#34; -t |sort -nr | nl</description>
-    </item>
-    
-    <item>
-      <title>意外的惊喜: vim 有 lsp 加持</title>
-      <link>https://www.smslit.top/daily/languange-server-protocol/</link>
-      <pubDate>Thu, 21 Mar 2019 23:22:56 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/languange-server-protocol/</guid>
-      <description>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为</description>
     </item>
     
   </channel>

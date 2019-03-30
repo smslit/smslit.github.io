@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 29 Mar 2019 12:56:53 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2019 22:18:46 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浪以工作室之名</title>
+      <link>https://www.smslit.top/conten/daily/stupid-studio/</link>
+      <pubDate>Sat, 30 Mar 2019 22:18:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/conten/daily/stupid-studio/</guid>
+      <description>许多创业者在早期，觉得还不想雇佣人（要发工资、交五险一金），通常对外号称以工作室的名义经营业务。比如，我认识许多比较历害的UI设计师，无论是</description>
+    </item>
     
     <item>
       <title>OpenEmu - 红白的记忆</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/languange-server-protocol/</guid>
       <description>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为</description>
-    </item>
-    
-    <item>
-      <title>懵逼状态</title>
-      <link>https://www.smslit.top/daily/question-mark-fill-head/</link>
-      <pubDate>Wed, 20 Mar 2019 23:06:11 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/question-mark-fill-head/</guid>
-      <description>今天学习了下唐老师的《Vue 开发实战》已更新的视频课，我的天，虽然已经粗略看了一遍 Vue 的官方教程，但是担心的事情还是发生了！在看 Vue 官方教程的时</description>
     </item>
     
   </channel>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contens on SMSLIT</title>
+    <link>https://www.smslit.top/conten/</link>
+    <description>Recent content in Contens on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 30 Mar 2019 22:18:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.smslit.top/conten/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>浪以工作室之名</title>
+      <link>https://www.smslit.top/conten/daily/stupid-studio/</link>
+      <pubDate>Sat, 30 Mar 2019 22:18:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/conten/daily/stupid-studio/</guid>
+      <description>许多创业者在早期，觉得还不想雇佣人（要发工资、交五险一金），通常对外号称以工作室的名义经营业务。比如，我认识许多比较历害的UI设计师，无论是</description>
+    </item>
+    
+  </channel>
+</rss>

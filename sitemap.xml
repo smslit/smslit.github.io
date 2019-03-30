@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.smslit.top/conten/daily/stupid-studio/</loc>
+    <lastmod>2019-03-30T22:18:46+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.smslit.top/2019/03/30/what-is-pio/</loc>
     <lastmod>2019-03-30T17:45:14+08:00</lastmod>
   </url>
@@ -968,6 +973,12 @@
   </url>
   
   <url>
+    <loc>https://www.smslit.top/conten/</loc>
+    <lastmod>2019-03-30T22:18:46+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.smslit.top/daily/</loc>
     <lastmod>2019-03-29T12:56:53+08:00</lastmod>
     <priority>0</priority>
@@ -981,7 +992,7 @@
   
   <url>
     <loc>https://www.smslit.top/</loc>
-    <lastmod>2019-03-30T17:45:14+08:00</lastmod>
+    <lastmod>2019-03-30T22:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1076,7 +1087,7 @@
   
   <url>
     <loc>https://www.smslit.top/tags/daily/</loc>
-    <lastmod>2019-03-29T12:56:53+08:00</lastmod>
+    <lastmod>2019-03-30T22:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   

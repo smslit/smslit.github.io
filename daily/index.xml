@@ -7,8 +7,33 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sat, 30 Mar 2019 22:18:46 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 31 Mar 2019 22:19:05 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>神秘的土耳其</title>
+			<link>https://www.smslit.top/daily/magic-turkey/</link>
+			<pubDate>Sun, 31 Mar 2019 22:19:05 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/magic-turkey/</guid>
+			<description>今天看了一部土耳其电影《山 2》，奔着 imdb 9.7 分决定看的，怎么说呢？我又看了下豆瓣的评分 6.8，低的有点过头，为啥这么大的分差呢？网上有人说情节很</description>
+			<content type="html"><![CDATA[<p>今天看了一部土耳其电影《山 2》，奔着 imdb 9.7 分决定看的，怎么说呢？我又看了下豆瓣的评分 6.8，低的有点过头，为啥这么大的分差呢？网上有人说情节很平庸，在我看来不至于用平庸来形容，一上来就是任务，整部电影好像一直是在一种紧绷着的状态，少了一种跌宕的感觉，但是我觉得还是一部好电影的，里面的取景拍摄很高级，是大片的水准，整部电影类似于《战狼》，宣扬的是爱国报国精神，我就打个 8.2 ($\frac{9.7 + 6.8}{2}$)分吧!</p>
+
+<p>前几天看到少数派里发了一篇文章也提到了土耳其，说是注册什么 Netflix 的，记不太清楚了，好像土耳其的服务器最便宜还是什么来着，完蛋🤭，忘记&hellip;！</p>
+
+<p>再往前想，为 Vapor 官方主页翻译并 Pull Request 成功后，现在主页可以显示中文描述了，Vapor 送给我了平台 <a href="https://discordapp.com" target="_blank">Discord</a> 的一分钱，呃。。。我也用不到呀，了解了一下 Discord，做的界面和交互可以说是相当优秀了，Vapor 的论坛就是在这个平台的，必须翻墙才能上，哎&hellip;听说在国外相当火爆，腾讯都投资了🧐，这些都不是重点，重点是好像又在某个地方看到了土耳其。</p>
+
+<p>请告诉我，这不是孕妇效应<sup class="footnote-ref" id="fnref:LV-LV"><a href="#fn:LV-LV">1</a></sup>，土耳其好神秘！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:LV-LV">孕妇效应意即偶然因素随着自己的关注而让你觉得是个普遍现象，就是当人怀孕了就更容易发现孕妇，你开了奔驰就更容易看到奔驰，你拎个LV就发现满大街都是LV。世界其实挺美好的，看人把内心投射在哪里，而要投射前，先让自己的内心美好起来。相由心生，境由心造。 <a class="footnote-return" href="#fnref:LV-LV"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>浪以工作室之名</title>
@@ -255,39 +280,6 @@
      <span class="m">9</span>	<span class="m">257</span>   <span class="m">2</span>.56923%   brew
     <span class="m">10</span>	<span class="m">208</span>   <span class="m">2</span>.07938%   python3</code></pre></div>
 <p>使用最多的是 vim，可以看出对 vim 是真爱呀，不知您的结果是什么样的！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>意外的惊喜: vim 有 lsp 加持</title>
-			<link>https://www.smslit.top/daily/languange-server-protocol/</link>
-			<pubDate>Thu, 21 Mar 2019 23:22:56 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/languange-server-protocol/</guid>
-			<description>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为</description>
-			<content type="html"><![CDATA[<p>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？</p>
-
-<blockquote>
-<p>The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool.</p>
-</blockquote>
-
-<p>为什么会存在这个东西，算了，我也不搬运别人的话了，这里是<a href="https://langserver.org/" target="_blank">传送门</a>。简单来说，有了它，能实现语言服务和编辑器之间协作的大一统，LSP 打通了 LS 与编辑器，那么像上古神器 vim 以及神的编辑器 emacs&hellip;..只要是编辑器有 LSP 的加持都能轻松实现代码补全、定义和声明跳转、语法检查、代码格式化、重命名(用于重构)以及查看引用等，简直不要太 high！因为朋友和我都是使用 vim，所以花了一早上便研究了一下 python 和 swift 的 LSP 配置和使用。</p>
-
-<ul>
-<li><a href="https://github.com/prabirshrestha/vim-lsp" target="_blank">vim-lsp</a></li>
-</ul>
-
-<p>vim 的 LSP 配置看上面这个 vim-lsp 就够了， README 和 wiki 中一定可以找到常用编程语言的支持。</p>
-
-<p>不过，还是存在一些问题的，我配置了 python 和 swift 两种语言的 LSP，各种跳转很优秀，语法检查也不错，就是代码补全和代码格式化有些问题！不知道是不是我的 vim 的问题还是什么，补全弹窗出现的慢，尤其是 swift 的补全，竟然会卡代码，我晕～ python 的代码格式化简直不要太迷幻，总之套路不详！python 的代码补全、语法检查和代码格式化又退回到了原来的插件组合和配置，有时间再研究一下 vim-lsp &hellip;</p>
-
-<ul>
-<li>python 补全: <a href="https://github.com/maralla/completor.vim" target="_blank">completor</a> + jedi</li>
-<li>python 语法检查和代码格式化: <a href="https://github.com/w0rp/ale" target="_blank">ale</a> + pylint 和 autopep8</li>
-<li>python 代码跳转、查看引用和重构: <a href="https://github.com/prabirshrestha/vim-lsp" target="_blank">vim-lsp</a> 和 <a href="https://github.com/prabirshrestha/async.vim" target="_blank">async.vim</a> + <a href="https://github.com/palantir/python-language-server" target="_blank">python language server</a></li>
-</ul>
-
-<p>感觉也有可能是 python 的 LS 工具的原因，后面尝试一下微软的 <a href="ihttps://github.com/Microsoft/python-language-server" target="_blank">python language server</a>!</p>
 ]]></content>
 		</item>
 		

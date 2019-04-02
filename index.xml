@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 30 Mar 2019 22:18:46 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 08:20:10 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS 开发之 Windows 和 WindowController</title>
+      <link>https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
+      <pubDate>Mon, 01 Apr 2019 08:20:10 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
+      <description>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口</description>
+    </item>
+    
+    <item>
+      <title>神秘的土耳其</title>
+      <link>https://www.smslit.top/daily/magic-turkey/</link>
+      <pubDate>Sun, 31 Mar 2019 22:19:05 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/magic-turkey/</guid>
+      <description>今天看了一部土耳其电影《山 2》，奔着 imdb 9.7 分决定看的，怎么说呢？我又看了下豆瓣的评分 6.8，低的有点过头，为啥这么大的分差呢？网上有人说情节很</description>
+    </item>
     
     <item>
       <title>浪以工作室之名</title>
@@ -82,24 +100,6 @@
       
       <guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
       <description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之 Swift 的 Codable</title>
-      <link>https://www.smslit.top/2019/03/24/macOS-dev-swift-codable/</link>
-      <pubDate>Sun, 24 Mar 2019 16:49:16 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/24/macOS-dev-swift-codable/</guid>
-      <description>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 Codable，在本文一起探讨一下以下三个方</description>
-    </item>
-    
-    <item>
-      <title>python 程序猿有意思的自称</title>
-      <link>https://www.smslit.top/daily/pythonist/</link>
-      <pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/pythonist/</guid>
-      <description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
     </item>
     
   </channel>

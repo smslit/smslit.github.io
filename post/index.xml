@@ -7,8 +7,505 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sat, 30 Mar 2019 17:45:14 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 01 Apr 2019 08:20:10 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>macOS 开发之 Windows 和 WindowController</title>
+			<link>https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
+			<pubDate>Mon, 01 Apr 2019 08:20:10 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
+			<description>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口</description>
+			<content type="html"><![CDATA[
+
+<p>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口(tabbed interface)。</p>
+
+<h1 id="开发平台">开发平台</h1>
+
+<ul>
+<li>macOS 10.14.4</li>
+<li>Swift 5</li>
+<li>xcode 10.2</li>
+</ul>
+
+<h1 id="概述">概述</h1>
+
+<p>所有 macOS 程序要呈现用户界面都是以 Windows 作为容器的，当然除了纯粹的命令行工具和菜单栏小工具。Windows 定义了 App 在屏幕中的活动区域，在这个区域内允许用户进行易于理解的多任务交互操作。macOS 应用最终可分为以下几种：</p>
+
+<ul>
+<li><p>单窗口的工具，比如计算器</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-single-Window.png" width="210px"/> 
+</figure>
+</li>
+
+<li><p>单窗口的 library-style 应用，比如照片应用(Photos.app)</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-library-Style1.png" width="560px"/> 
+</figure>
+</li>
+
+<li><p>基于文档的多窗口应用，比如文本编辑应用(TextEdit.app)</p>
+
+<figure>
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-document-based1.png" width="640px"/> 
+</figure>
+</li>
+</ul>
+
+<p>不管属于哪一类的应用，几乎每一个 macOS 应用都是使用 MVC (Model-View-Controller) 构建的，这是 macOS 开发中核心的开发模式。</p>
+
+<p>Cocoa 应用中，一个窗口是 <code>NSWindow</code> 类的一个实例(window 就是 view 的容器)，其与控制器紧密配合工作，而控制器是 <code>NSWIndowController</code> 的一个实例。在一个设计良好的应用中会发现通常窗口和控制器是一一对应的，而 MVC 模式中的第三个组成部分——模型(model)的使用会根据应用的类型和设计而不同。</p>
+
+<p>在本文中我们会创建一个有点像 TextEdit 的应用，是 document based 的，我管它叫 <strong>5kmEditor</strong>，这个名字随便，只要您喜欢啥都行！在我们开发过程中，将会涉及到以下内容：</p>
+
+<ul>
+<li>窗口 和 窗口控制器</li>
+<li>document 架构</li>
+<li>NSTextView</li>
+<li>模态窗口</li>
+<li>菜单栏和菜单项</li>
+</ul>
+
+<h1 id="搞起">搞起</h1>
+
+<p>启动 Xcode，按快捷键 <code>Shift</code> + <code>Command</code> + <code>n</code> ，新建工程，选择 macOS -&gt; Cocoa App，点击 Next：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2012.48.44.png" alt="" /></p>
+
+<p>新出现的窗口中，勾选 <code>Create Document-Based Application</code>，应用的名称随意取，比如 <strong>5kmEditor</strong>，然后 <code>Document Extention</code> 这一项指定文件的扩展名，其决定以后应用保存文件的扩展名，比如十里指定的是 <code>5km</code>，可以不勾选包含测试，点击 Next：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2020.56.55.png" alt="" /></p>
+
+<p>选择合适的目录，点击 <code>Create</code> 创建即可，创建成功后编译运行，你会看到类似下面的窗口：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2020.59.52.png" alt="" /></p>
+
+<p>此时，按快捷键 <code>Command</code> + <code>n</code> 或者菜单栏点击 File -&gt; New，可以创建新的窗口如下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-multi-windwos.png" alt="" /></p>
+
+<h1 id="document-based-应用如何工作">Document-Based 应用如何工作</h1>
+
+<p>上面也看到了这类应用的样子，下面花几分钟一起看一下 Document-Based 应用如何工作的。</p>
+
+<h2 id="document-的结构">Document 的结构</h2>
+
+<p>一个 Document 其实就是 <code>NSDocument</code> 的一个实例对象，文档模型 <code>NSDocument</code> 作为模型保存了文档的数据，同时负责文档窗口控制器 <code>NSWindowController</code> 的创建管理，它管理文档数据，负责文档打开时数据读取的管理和文档对象管理的数据保存到文件的处理，而文件有可能是在硬盘也有可能在 iCloud，均支持。</p>
+
+<p>创建关联的 <code>NSWindowController</code> 负责展示文档的内容，内容视图最终相应处理用户对文档操作的各种交互事件。</p>
+
+<p><code>NSDocumentController</code> 是一个单例对象，主要负责文档模型 <code>NSDocument</code> 的管理工作，维护系统中所有的文档模型 <code>NSDocument</code> 列表，控制多个文档窗口的激活切换，同时跟踪当前活动文档对象，最终结构图如下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-document-arch.png" alt="" /></p>
+
+<h2 id="禁用-document-的保存和打开">禁用 Document 的保存和打开</h2>
+
+<p>Document-Based 应用的 Documnent 架构支持文件的保存和打开，但是需要定义 <code>Document</code> 类中自己具体实现，本文暂不涉及这部分内容，所以先禁用 Document 的保存和打开。</p>
+
+<p>打开文件 <code>Document.swift</code>，会发现有两个函数是空的：</p>
+
+<ul>
+<li><code>data(ofType:)</code>: 用于写文件</li>
+<li><code>read(from:ofType:)</code>: 用于读取文件</li>
+</ul>
+
+<p>同时还有一个函数是 <code>autosavesInPlace()-&gt;Bool</code>，更改返回值为 <code>false</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">class</span> <span class="nc">var</span> <span class="n">autosavesInPlace</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span></code></pre></div>
+<p>这样我们首先禁用了自动保存功能，下面我们需要禁用菜单栏 File 中的保存和打开菜单项。在这之前，我们运行程序，点击 File -&gt; Open ，竟然会弹出打开文件的窗口，很神奇，我们并没有实现打开呀，为什么会出现文件打开窗口呢？</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2023.23.37.png" alt="" /></p>
+
+<p>其实是因为 Open 的菜单项绑定了具体的 Action，Action中实现了这些，所以我们只需要断开菜单项与 Action 的链接就可以禁用掉菜单项，视觉上的表现就是菜单栏相应菜单项会变灰色不可用。</p>
+
+<p>打开 <code>Main.storyboard</code> ，找到 <code>Application Scene</code>，点击菜单栏中 File，选择其中的 <code>Open</code>，右击会看到所有的连接，点击 Sent Action 中连接右侧的 <code>x</code> 号，即可断开连接：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2023.34.42-1.png" alt="" /></p>
+
+<p>同样的操作，分别将 <code>Save...</code>、<code>Save As...</code> 和 <code>Reverrt to Saved</code> 与相应的 Action 断开连接。</p>
+
+<p>然后删除 <code>Open Recent</code> 菜单项，最后我们重写一下 <code>save(withDelegate:didSave:contexInfo:)</code> 方法，后面我们会用到，主要是添加一个错误🙅‍提醒窗口，打开 <code>Document.swift</code> 文件，在 <code>Document</code> 类中添加重写方法如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">func</span> <span class="nf">save</span><span class="p">(</span><span class="n">withDelegate</span> <span class="n">delegate</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?,</span> <span class="n">didSave</span> <span class="n">didSaveSelector</span><span class="p">:</span> <span class="nb">Selector</span><span class="p">?,</span> <span class="n">contextInfo</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedDescriptionKey</span><span class="p">:</span> <span class="s">&#34;Sorry, no saving implemented in this post. Click &#39;Do not save&#39; to quit!&#34;</span><span class="p">]</span>
+    <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">NSError</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="n">NSOSStatusErrorDomain</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="n">unimpErr</span><span class="p">,</span> <span class="n">userInfo</span><span class="p">:</span> <span class="n">userInfo</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">alert</span> <span class="p">=</span> <span class="n">NSAlert</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">error</span><span class="p">)</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">runModal</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div>
+<p>运行程序，此时会看到菜单栏的相应菜单项已经禁用：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2023.41.27.png" alt="" /></p>
+
+<h1 id="窗口显示">窗口显示</h1>
+
+<p>上面新建文件的时候，我们发现新建文档的窗口完全覆盖了之前的文档窗口，然而这不是我们想要的结果，本节就聊一下怎么合理布局窗口的位置。进行改造前，我们需要新建一个 <code>NSWindowController</code> 的子类，然后添加相应的代码实现我们预期的功能。</p>
+
+<h2 id="新建-nswindowcontroller-的子类">新建 NSWindowController 的子类</h2>
+
+<p>工程导航栏选择 <code>5kmEditor</code>，按下快捷键 <code>Command</code> + <code>n</code>，就会弹出新建文件的导航窗口，选择 macOS -&gt; Source -&gt; Cocoa Class，点击 Next</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2023.58.08.png" alt="" /></p>
+
+<p>取名为 <code>WindowController</code>，选择继承自 <code>NSWindowController</code>，不要勾选 <code>Also Create XIB file for user interface</code>，语言选择 <code>Swift</code> ，点击 Next，之后默认然后点击 Create 即可创建。</p>
+
+<p>下一步需要确保 storyboard 中的 window 的控制器是我们刚定义的 <code>WindowController</code> 的实例，打开 <code>Main.storyboard</code> 点击 <code>Window Controller Scene</code> 中的 <code>Window Controller</code>，按快捷键 <code>Option</code> + <code>Command</code> + <code>3</code> ，在右侧显示的 <code>Identity Inspector</code> 中配置 Custom Class 为 <code>WindowController</code>，也就是刚刚创建的类：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2000.08.04.png" alt="" /></p>
+
+<h2 id="层叠窗口">层叠窗口</h2>
+
+<p>现在我们可以使新建的窗口层叠显示而不是覆盖显示，打开新建的 <code>WindowController.swift</code> 文件，添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">coder</span><span class="p">)</span>
+    <span class="n">shouldCascadeWindows</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="p">}</span></code></pre></div>
+<p>只需要设置 <code>shouldCascadeWindows</code> 为 true 就可以实现层叠效果，运行程序测试一下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-cascade_windows.png" alt="" /></p>
+
+<h2 id="以标签页显示">以标签页显示</h2>
+
+<p>层叠效果很不错，但我们可以尝试一下其它的方式，比如从 macOS Sierra 开始新增加的 tabbed Windows，简单说就是新建的窗口以标签页显示。</p>
+
+<p>打开 <code>Main.storyboard</code>，选中 <code>Window Controller scene</code> 下的 <code>Window</code> ，然后打开 Inspector 栏的 <code>Attributes Inspector</code> (可以按快捷键 <code>Option</code> + <code>Command</code> + <code>4</code>)，找到 <code>Tabbing Mode</code>，更改它的值为 <code>Preferred</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2006.59.56.png" alt="" /></p>
+
+<p>运行程序，然后按快捷键 <code>Command</code> + <code>n</code> 新建窗口，可以看到新的窗口以标签页的方式显示了：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2007.04.58.png" alt="" /></p>
+
+<p>当我们运行程序的时候，macOS 会根据当前屏幕大小和应用请求窗口的大来决定应用窗口的显示位置和实际的大小，下面我们将学习两种方式控制应用窗口的显示位置和实际大小。</p>
+
+<h2 id="使用-interface-builder-设置窗口显示位置">使用 Interface Builder 设置窗口显示位置</h2>
+
+<p>首先我们需要先使用 Interface Builder 设置窗口的初始位置。</p>
+
+<p>打开 <code>Main.storyboard</code>，选中 <code>Window Controller scene</code> 下的 <code>Window</code> ，然后打开 Inspector 栏的 <code>Size Inspector</code> (可以按快捷键 <code>Option</code> + <code>Command</code> + <code>5</code>)，找到 Initial Position，运行程序后的窗口就是按照这个设置初始位置的：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2007.28.32.jpg" alt="" /></p>
+
+<p>其中 x 代表窗口到屏幕左边缘的距离，y 代表窗口到屏幕底边的距离，单位是 px，在 macOS 中应用的坐标原点在左下角，这与 iOS 中是不同的（iOS 使用的是 flipped 坐标系，其原点在左上角）。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-Window-position-1.png" alt="" /></p>
+
+<p>我们可以点击上面 Size Inspector 中的窗口位置预览图中的红色 constrains，这会决定 macOS 显示应用窗口位置的设定，点击红色 Constrains 可以打开或关闭相关限制，同时会看到下面两个下拉框得值会改变，比如这里：</p>
+
+<ul>
+<li>取消上边和右边的红色限制，此时会看到下面两个下拉框的值分别变成 <code>Fixed From Left</code> 和 <code>Fixed From Bottom</code></li>
+<li>设置初始的位置：x -&gt; 200, y -&gt; 200</li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2009.45.16.png" alt="" /></p>
+
+<p>此时重新编译运行应用，你会发现不管屏幕多大，只要尺寸允许范围内，应用的窗口会显示在离屏幕左边和底边均为 200 px 的位置。</p>
+
+<p>⚠️: macOS 会记住 app 的窗口显示位置，所以需要先把应用完全退出，然后再编译运行就能看到修改的效果！</p>
+
+<h2 id="代码实现对窗口显示位置的设置">代码实现对窗口显示位置的设置</h2>
+
+<p>代码实现的话，需要在 window 加载之后进行设置，在 WindowsController 中重写的 windowDidLoad 方法中添加相关代码。</p>
+
+<p>这次我们来点特别的，我们设置窗口显示在离屏幕顶边和左边均为 150px 的位置，打开 <code>WindowController.swift</code> 文件，在 <code>WindowController</code> 类中修改 windowDidLoad 方法内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">func</span> <span class="nf">windowDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kc">super</span><span class="p">.</span><span class="n">windowDidLoad</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">window</span> <span class="p">=</span> <span class="n">window</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">screen</span> <span class="p">=</span> <span class="n">window</span><span class="p">.</span><span class="n">screen</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">offsetFromLeftOfScreen</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">offsetFromTopOFScreen</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">screenFrame</span> <span class="p">=</span> <span class="n">screen</span><span class="p">.</span><span class="n">visibleFrame</span>
+        <span class="kd">let</span> <span class="nv">offsetFromBottomOfScreen</span> <span class="p">=</span> <span class="n">screenFrame</span><span class="p">.</span><span class="n">maxY</span> <span class="o">-</span> <span class="n">window</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">offsetFromTopOFScreen</span>
+        <span class="n">window</span><span class="p">.</span><span class="n">setFrameOrigin</span><span class="p">(</span><span class="n">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">offsetFromLeftOfScreen</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">offsetFromBottomOfScreen</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>上面代码主要完成以下工作：</p>
+
+<ul>
+<li>获取需要用到的 <code>NSWindow</code> 和 <code>NSScreen</code> 的实例</li>
+<li>得到 screen 的 <code>visibleFrame</code></li>
+<li>通过离顶边的距离计算得到离底边距离</li>
+<li>设置 window 的远点坐标为 (offsetFromLeftOfScreen, offsetFromBottomOfScreen)</li>
+</ul>
+
+<p>选中之前显示的应用窗口，<code>Command</code> + <code>q</code> 完全退出应用，然后回到 Xcode 编译运行应用，会看到应用的窗口如期显示在指定的位置：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-positionDemo-1.png" alt="" /></p>
+
+<h1 id="变身超-mini-富文本处理工具">变身超 mini 富文本处理工具</h1>
+
+<p>Cocoa 有很多可以添加到 window 中的牛🐂的功能性 UI 控件，在本节我们将会用到 <code>NSTextView</code>，在这之前，我们需要了解 <code>NSWindow</code> 的 content view。</p>
+
+<h2 id="content-view">content view</h2>
+
+<p><code>contentView</code> 位于 window 中视图层次的根级，在这个视图中我们可以放置所有界面元素。另外，我们还能替换默认的 <code>contentView</code> 为我们自定义的视图，在这里我们就不做相关操作了，以后我们可能会用到！</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2010.58.22.png" alt="" /></p>
+
+<h2 id="添加-text-view">添加 Text View</h2>
+
+<p>打开 <code>Main.storyboard</code> 文件，找到 View Contorller Scene 下的 View Controller，其下的 View 中有个控价 <code>Your document contents here</code> ，将其删除，然后我们添加 Text View:</p>
+
+<ul>
+<li>按快捷键 <code>Shift</code> + <code>Command</code> + <code>l</code> 打开 <code>Object Library</code></li>
+
+<li><p>搜索 Text View</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2019.34.32.png" alt="" /></p></li>
+
+<li><p>将 <code>Rich Document Content Text View</code> 拖入 Content View 中</p></li>
+
+<li><p>调整 <code>Rich Document Content Text View</code> 的大小和位置，最终使其四边分别与 <code>contentView</code> 的边缘贴齐</p></li>
+
+<li><p>选中刚添加的 Text View 控件，然后点击底边的 <code>Resolve Auto Layout Issues</code> 按钮，选中 <code>Reset To Suggested Constrains</code></p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2020.38.53.png" alt="" /></p></li>
+
+<li><p>添加限制之后的样子如下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2020.39.14.png" alt="" /></p></li>
+</ul>
+
+<p>编译运行，可以看到刚添加的 Text View 了：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2020.39.25.png" alt="" /></p>
+
+<p>在窗口的 Text View 中可以添加进行文本编辑了，也支持常用的快捷键，比如复制、粘贴、剪切、撤销、重做等。窗口中也出现了一组工具栏，支持字体设置、简单的段落设置等，同时菜单栏的 Format 的菜单项功能也是可用的，还支持查找替换。这一小节我们没有添加任何代码，就完成了一个简单的富文本编辑工具了，是不是炒🐔煎🍳！</p>
+
+<h2 id="撤销和重做">撤销和重做</h2>
+
+<p>在窗口中添加部分文本，已经可以完成基本的富文本编辑功能了，但是此时还不支持撤销和重做，我们需要添加支持。</p>
+
+<ul>
+<li>打开 <code>Main.storyboard</code> 文件，依次找到 <code>View Controller</code> -&gt; <code>View</code> -&gt; <code>Scroll View - Text View</code> -&gt; <code>Clip View</code>  -&gt; <code>Text View</code>，选中 <code>Text View</code></li>
+<li>按下快捷键 <code>Option</code> + <code>Command</code> + <code>4</code> 打开 Attribute Inspector，勾选 <code>Undo</code> 复选框</li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2020.45.04.png" alt="" /></p>
+
+<p>此时运行程序，就支持 Undo 和 Redo 了！</p>
+
+<p>在文本框添加文本以后，我们点击窗口关闭按钮，此时会提醒要不要保存文档：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2020.40.49.png" alt="" /></p>
+
+<p>点击 save 按钮，会弹出一个警告窗口：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-01-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2020.02.36.png" alt="" /></p>
+
+<p>是不是对里面的内容很熟悉，这就是前面添加的 save 方法中的错误信息。</p>
+
+<h1 id="模态窗口-modal-window">模态窗口(Modal Window)</h1>
+
+<p>模态窗口是一种特殊的窗口，一旦显示就会独占用户的所有操作事件，一直到它被关闭，其它窗口才能响应用户的操作。</p>
+
+<p>显示模态窗口有三种方法：</p>
+
+<ul>
+<li>以一个普通窗口的形式显示，使用 <code>NSApplication.runModal(for:)</code> 触发显示</li>
+<li>以 Modal sheet 的形式显示， 调用 <code>NSWindow.beginSheet(_:completionHandler:)</code> 显示窗口</li>
+<li>通过模态会话的形式，本文暂不涉及这种高级的方法</li>
+</ul>
+
+<p>其实，文档的保存和打开窗口就是模态窗帘的好例子，就像上面关闭窗口时弹出的提示保存的窗口，它出现在窗口的顶部，这就是 Modal Sheet，在本文也不讲这种模态窗口，下面我们一起实现一个显示字数和段落统计的模态窗口，它是以一个正常窗口形式显示的。</p>
+
+<h2 id="添加一个新的窗口">添加一个新的窗口</h2>
+
+<p>打开 <code>Main.storyboard</code> 文件，按快捷键 <code>Shift</code> + <code>Command</code> + <code>l</code> 打开 Object Library，搜索 Window Controller，拖拽 <code>Window Controller</code> 进入画布，这会生成两个场景：Window Controller Scene 和 View Controller Scene。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2008.46.15.jpg" alt="" /></p>
+
+<p>选中刚添加的 WIndow Controller Scene 中的 Window，按快捷键 <code>Option</code> + <code>Command</code> + <code>5</code>，打开 Size Inspector，调整其宽为 300，高为 150。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2008.54.23.png" alt="" /></p>
+
+<p>继续选中 Window，按快捷键 <code>Option</code> + <code>Command</code> + <code>4</code> 打开 Atrribute Inspector，取消 Close、Resize 和 Minimise 控件复选框的勾选，设置标题为 <code>Word Count</code>。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.02.30.png" alt="" /></p>
+
+<p>窗口 Close 按钮会造成一个 bug：当点击这个按钮后虽然窗口已经关闭，但是应用因为没有调用 <code>stopModal</code> 方法而一直保留在模态状态，这就很尴尬了！</p>
+
+<p>另外，不保留 Minimise 和 Resize 按钮是为了遵循 Apple 的 <a href="https://developer.apple.com/design/human-interface-guidelines/macos/overview/themes/" target="_blank">Human Interface Guidelines (HIG)</a>。</p>
+
+<p>选中新添加的 View Controller Scene 中的 View，按下快捷键 <code>Option</code> + <code>Command</code> + <code>5</code> 打开 Size Inspector，设置宽为 300 高为 150。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.10.18.png" alt="" /></p>
+
+<h2 id="配置-word-count-窗口">配置 Word Count 窗口</h2>
+
+<p><code>Shift</code> + <code>Command</code> + <code>l</code> 打开 Object Library 拖拽 4 个 label 到 View 中。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.18.39.png" alt="" /></p>
+
+<p>改变四个 label 的标题分别为：<strong>Word Count</strong>、<strong>Paragraph Count</strong>、<strong>0</strong> 和 <strong>0</strong>，同时设置它们都是右对齐，调整它们的宽为 120，这里我们不涉及自动布局，可能会出现几个警告，先不管它们。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.37.07.png" alt="" /></p>
+
+<p>从 Object Library 推拽一个 Push Button 到 View 中，更改其标题为 OK，手动调整所有控件布局到合适的位置。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.41.34.png" alt="" /></p>
+
+<h2 id="创建-word-count-的-view-controller-的类">创建 Word Count 的 View Controller 的类</h2>
+
+<p><code>Command</code> + <code>n</code> 会打开一个文件新建的导航窗口，我们选择 macOS -&gt; Source -&gt; Cocoa Class，新出现的窗口中输入类的名称为 <code>WordCountViewController</code>，<strong>Subclass of</strong> 设置为 <code>NSViewController</code>，取消勾选 <code>Also create XIB for user interface</code></p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.49.32.png" alt="" /></p>
+
+<p>点击 Next 创建新的文件。</p>
+
+<p>打开 <code>Main.storyboard</code>，选中新添加的 View Controller，按快捷键 <code>Option</code> + <code>Command</code> + <code>3</code> 打开 Identity Inspector，选择 class 为刚添加的 <code>WordCountViewController</code> 类。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2009.52.17.png" alt="" /></p>
+
+<h2 id="绑定计数-label-与-view-controller">绑定计数 label 与 View Controller</h2>
+
+<p>打开新建的 <code>WordCountViewController.swift</code> 文件，在 WordCountViewCOntroller 中添加属性如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">wordCount</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">0</span>
+<span class="kr">@objc</span> <span class="kr">dynamic</span> <span class="kd">var</span> <span class="nv">paragraphCount</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">0</span></code></pre></div>
+<p>⚠️：两个属性添加了 <code>@objc dynamic</code> 修饰符是为了有效实现 <code>Cocoa Bindings</code><sup class="footnote-ref" id="fnref:Cocoa-Bindings-U"><a href="#fn:Cocoa-Bindings-U">1</a></sup>，否则绑定无效运行时会报错。</p>
+
+<p>打开 <code>Main.storyboard</code> 选中与 Word Count 的 label 相对应的数字 label，按下快捷键 <code>Option</code> + <code>Command</code> + <code>7</code> 打开 Bindings Inspector:</p>
+
+<ul>
+<li>点击 <strong>Value</strong> 左边的小三角，展开 <strong>Value</strong></li>
+<li><strong>Bind to</strong> 的下拉框选择 <code>Word Count View Controller</code></li>
+<li>勾选 <strong>Bind to</strong></li>
+<li><strong>Model Key Path</strong> 输入 <code>wordCount</code></li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2010.11.47.png" alt="" /></p>
+
+<p>同样的步骤，与 Paragraph Count 的 label 相对应的数字 label 绑定到 <code>paragraphCount</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2010.17.58.png" alt="" /></p>
+
+<p>下一步设置 Window Controller 的 <strong>Storyboard ID</strong>。</p>
+
+<p>选择 <strong>Word Count Window</strong> 的 <strong>Window Controller</strong>，然后按快捷键 <code>Option</code> + <code>Command</code> + <code>3</code> 打开 Identity Inspector，更改 <strong>Storyboard ID</strong> 的值为 <code>Word Count Window Controller</code>。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2010.20.24.png" alt="" /></p>
+
+<h2 id="显示和关闭模态窗口">显示和关闭模态窗口</h2>
+
+<p>前面的准备工作做足了，那本节讲讲如何召唤和轰走模态窗口。</p>
+
+<h3 id="出来吧-模态窗口">出来吧，模态窗口</h3>
+
+<p>打开 <strong>ViewController.swift</strong> 文件，在类中添加以下属性：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBOutlet</span> <span class="kd">var</span> <span class="nv">text</span><span class="p">:</span> <span class="n">NSTextView</span><span class="o">!</span></code></pre></div>
+<p>同时添加以下方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">showWordCountWindow</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 1</span>
+    <span class="kd">let</span> <span class="nv">storyboard</span> <span class="p">=</span> <span class="n">NSStoryboard</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;Main&#34;</span><span class="p">,</span> <span class="n">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">wordCountWindowController</span> <span class="p">=</span> <span class="n">storyboard</span><span class="p">.</span><span class="n">instantiateController</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span> <span class="s">&#34;Word Count Window Controller&#34;</span><span class="p">)</span> <span class="k">as</span><span class="o">!</span> <span class="n">NSWindowController</span>
+
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">wordCountWindow</span> <span class="p">=</span> <span class="n">wordCountWindowController</span><span class="p">.</span><span class="n">window</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">textStorage</span> <span class="p">=</span> <span class="n">text</span><span class="p">.</span><span class="n">textStorage</span> <span class="p">{</span>
+
+        <span class="c1">// 2</span>
+        <span class="kd">let</span> <span class="nv">wordCountViewController</span> <span class="p">=</span> <span class="n">wordCountWindow</span><span class="p">.</span><span class="n">contentViewController</span> <span class="k">as</span><span class="o">!</span> <span class="n">WordCountViewController</span>
+        <span class="n">wordCountViewController</span><span class="p">.</span><span class="n">wordCount</span> <span class="p">=</span> <span class="n">textStorage</span><span class="p">.</span><span class="n">words</span><span class="p">.</span><span class="bp">count</span>
+        <span class="n">wordCountViewController</span><span class="p">.</span><span class="n">paragraphCount</span> <span class="p">=</span> <span class="n">textStorage</span><span class="p">.</span><span class="n">paragraphs</span><span class="p">.</span><span class="bp">count</span>
+
+        <span class="c1">// 3</span>
+        <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">runModal</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="n">wordCountWindow</span><span class="p">)</span>
+        <span class="c1">// 4</span>
+        <span class="n">wordCountWindow</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>打开 <strong>Main.storyboard</strong> 文件，选中添加 Text View 的 View Controller，按住 <code>Ctrl</code> 键，点击 View Controller 按钮，不松手拖动至 Text View 上松手，此时会弹出一个绑定选择框，里面就包含了我们刚添加的 text 属性，点击它，这就完成了 Text View 控件与 text 属性的绑定</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2010.34.58.png" alt="" /></p>
+
+<p>上面添加的方法，这里一步一步的说明一下：</p>
+
+<ol>
+<li>使用之前配置的 <strong>Storyboard ID</strong> 实例化一个 <strong>Word Count Window Controller</strong> 对象</li>
+<li>从 text view 的 storage 对象中获取字数统计和段落统计，将值设置到 <strong>wordCountViewController</strong> 的两个属性 <code>wordCount</code> 和 <code>paragraphCount</code></li>
+<li>模态方式显示 word count 窗口</li>
+<li>一旦模态状态结束就关闭模态窗口，这里需要注意，只要模态不结束这一句就不会执行</li>
+</ol>
+
+<h3 id="消失吧-模态窗口">消失吧，模态窗口</h3>
+
+<p>这里我们需要添加结束模态的实现，打开文件 <strong>WordCountViewController.swift</strong>，添加以下方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">dismissWordCountWindow</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="n">NSButton</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">stopModal</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div>
+<p>下面我们将此方法与上面添加的 OK 按钮进行绑定。</p>
+
+<p>打开 <code>Main.storyboard</code>，选中 OK 按钮，点击它，同时按住 <code>Ctrl</code> 键，拖动鼠标至 <strong>Word Count View Controller</strong> 的按钮上，在弹出的绑定窗口上选择刚添加的方法 <code>dismissWordCountWindow</code> 即可完成绑定。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2011.01.15.png" alt="" /></p>
+
+<h3 id="添加召唤模态的符咒">添加召唤模态的符咒</h3>
+
+<p>这里我们以菜单栏的菜单项的方式触发模态窗口。</p>
+
+<p>打开 <strong>Main.storyboard</strong> 文件，找到 <strong>Main Menu</strong>，点击展开 <strong>Edit</strong>，然后进行以下操作：</p>
+
+<ol>
+<li><code>Shift</code> + <code>Command</code> + <code>l</code> 打开 Object Library，搜索 <code>Menu Item</code>，拖动到最下面的位置，添加一个新的菜单项，选中它</li>
+<li><code>Option</code> + <code>Command</code> + <code>4</code> 打开它的 <strong>Attribute Inspector</strong>，更改标题为 <strong>Word Count</strong>，同时配置快捷键为 <strong>⌘K</strong></li>
+</ol>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2011.20.01.png" alt="" /></p>
+
+<p>下面我们需要为其绑定上面定义的方法 <code>showWordCountWindow</code>，点击菜单项 <strong>Word Count</strong>，同时按住 <code>Ctrl</code> 键，拖动至 <strong>Application Scene</strong> 下的 <strong>First Responder</strong> 上松手，在弹出的列表中找到方法 <code>showWordCountWindow</code>，选择它，这就完成了触发模态的绑定：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2011.30.40-1.png" alt="" /></p>
+
+<h3 id="召唤模态">召唤模态</h3>
+
+<p>编译运行程序，在窗口中输入一些内容，比如：</p>
+
+<blockquote>
+<p>望岳</p>
+
+<p>唐代：杜甫</p>
+
+<p>岱宗夫如何？齐鲁青未了。</p>
+
+<p>造化钟神秀，阴阳割昏晓。</p>
+
+<p>荡胸生曾云，决眦入归鸟。</p>
+
+<p>会当凌绝顶，一览众山小。</p>
+</blockquote>
+
+<p>菜单栏 Edit -&gt; Word Count (或者按快捷键 <code>Command</code> + <code>k</code>) 就能打开统计字数的模态窗口。</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2013.13.18.png" alt="" /></p>
+
+<p>点击 OK 就可以“轰走”模态窗口了。</p>
+
+<h1 id="总结">总结</h1>
+
+<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-5kmEditor.zip" target="_blank">点我</a>可以下载本文中的工程。本文涉及到了以下内容：</p>
+
+<ul>
+<li>MVC 的设计模式</li>
+<li>多窗口应用的实现</li>
+<li>Interface Builder 和 代码 两种方式控制窗口位置</li>
+<li>控件与类属性的绑定，控件 Action 与类方法的绑定</li>
+<li>窗口形式的 macOS 的常规开发姿势</li>
+<li>如何代码控制显示模态窗口</li>
+<li>富文本编辑的简单实现</li>
+</ul>
+
+<p>希望对大家学习 macOS 开发有所帮助！感谢您的阅读！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Cocoa-Bindings-U">Cocoa Bindings 是 UI 开发中一个强大的技术，主要用于数据与 UI 的绑定，可以阅读 <a href="https://www.raywenderlich.com/141297/cocoa-bindings-macos" target="_blank"> Cocoa Bindings on macOS </a> 了解更多相关内容，后面有时间十里会专门写一篇相关的文章与大家一起学习！ <a class="footnote-return" href="#fnref:Cocoa-Bindings-U"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>PlatformIO 是什么</title>
@@ -2235,152 +2732,6 @@ Commands:
 <li>《macOS应用开发基础教程》</li>
 <li><a href="https://stackoverflow.com/questions/36491789/using-Undomanager-how-to-register-undos-using-swift-closures" target="_blank">Using UndoManager, how to register undos using Swift closures</a></li>
 <li><a href="https://developer.apple.com/documentation/foundation/undomanager" target="_blank">UndoManager</a></li>
-</ul>
-]]></content>
-		</item>
-		
-		<item>
-			<title>macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</title>
-			<link>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</link>
-			<pubDate>Mon, 25 Feb 2019 10:00:05 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</guid>
-			<description>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得</description>
-			<content type="html"><![CDATA[
-
-<p>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得到的是系统警告音。本文就跟十里一起看一下如何让没有应用菜单的 app 中的 NSTextField 支持常用的文本操作快捷键。</p>
-
-<ul>
-<li>复制: <code>Command</code> + <code>c</code></li>
-<li>剪切: <code>Command</code> + <code>x</code></li>
-<li>粘贴: <code>Command</code> + <code>v</code></li>
-<li>全选: <code>Command</code> + <code>a</code></li>
-</ul>
-
-<h1 id="实现平台">实现平台</h1>
-
-<ul>
-<li>macOS 10.14.3</li>
-<li>swift 4.2.1</li>
-<li>xcode 10.1</li>
-</ul>
-
-<h1 id="键盘事件">键盘事件</h1>
-
-<p>每个 app 都有自己的主循环线程(Main Run Loop)，在这个循环中会遍历系统的事件消息队列，逐一发给对应的响应对象进行处理。具体来说就是 NSApp 的 <code>sendAction:</code> 或 <code>sendEvent:</code>方法发送事件消息给 NSWindow，NSWindow 再分发给具体的视图对象，最后由相应的事件响应方法进行处理。其中一种事件，就是这里要说的<strong>键盘事件</strong>，NSApp 对不同的键盘事件处理方式会不同，主要是以下三种：</p>
-
-<ul>
-<li><strong>快捷键</strong>：如果按下快捷键，系统会先向当前的<strong>活动窗口</strong>或<strong>菜单</strong>发送 <code>performKeyEquivalent:</code> 消息，此时窗口会依次遍历所有子视图控件按照响应链传递给 <code>performKeyEquivalent:</code> 的响应者。</li>
-<li><strong>控制键</strong>：NSApp 会将消息转发给键盘窗口，完成不同的控件切换控制的功能</li>
-<li><strong>其它按键</strong>：NSApp 会将消息转发给键盘窗口，窗口对象会先定位到第一响应对象，根据响应链优先级寻找对 keyDown 键盘事件响应的视图对象，如果可以找到就由相应对象处理，否则就会按照 insertText 方法进行处理(如果是个文本控件，就会插入相应键盘文本)</li>
-</ul>
-
-<p>很明显，我们要实现本文的主题，关注快捷键的处理流程就可以了，其实 NSTextField 有上述 <code>performKeyEquivalent:</code> 消息的处理，只不过是没有任何功能实现而已，所以我们只需为 NSTextField 复写一下这个消息的处理即可，这个消息的处理返回值是一个布尔类型，返回 true 则标志着按键事件消息传递的结束。</p>
-
-<h1 id="新建-demo-工程">新建 Demo 工程</h1>
-
-<p>为了更好的说明实现方法，我们还是要通过一个实际的Demo演示！新建的工程包含 storyboard ，新建完成后添加一个文本框控件，如果您对这些操作很熟悉可以跳过本小节。</p>
-
-<ul>
-<li><p>打开 Xcode，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>N</code> 就会触发新建工程的导航窗口</p></li>
-
-<li><p>选择 macOS -&gt; Cocoa App，点击 <code>Next</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217102918.png" alt="" /></p></li>
-
-<li><p>工程取名为 TextFieldKeyDemo，勾选 <code>Use Storyboards</code>，点击 Next 选择合适的目录，点击create 创建</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225210558.png" alt="" /></p></li>
-
-<li><p>进入工程后，单击 Main.storyboard ，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>l</code> 打开控件选择器，搜索 textfield ，将 Text Field 拖入 ViewController ，水平垂直居中放置:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225214726.png" alt="" /></p></li>
-</ul>
-
-<h1 id="运行工程">运行工程</h1>
-
-<h2 id="运行结果">运行结果</h2>
-
-<p>点击快捷键 <code>Command</code> + <code>r</code> 运行工程，在打开的窗口中可以看到刚刚添加的 Text Field，在其中输入一些文本，然后试一下快件键，比如全选、复制、粘贴、剪切，发现都支持。</p>
-
-<p>此时你会不会有疑问，我们并没有为 NSTextField 类复写 <code>performKeyEquivalent:</code> 方法呀，为什么文本框就支持这些快捷键了，原因是最终键盘信息消息传给了应用菜单，应用菜单中有关于文本编辑的快捷键的处理，那么问题又来了，为什么应用菜单就会对 Text Field 进行操作呢？主要两点：</p>
-
-<ul>
-<li><p>菜单栏上<strong>编辑</strong>一组中的操作正是对应文章一开头说的几个快捷键，每个操作对应都绑定了一个对象那就是 <strong>First Responder</strong>，比如 Copy 对应的绑定 action：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225215948.png" alt="" /></p></li>
-
-<li><p>当前活动窗口中的 <strong>First Responder</strong> 就是文本框</p></li>
-</ul>
-
-<h2 id="试验操作">试验操作</h2>
-
-<p>现在打开工程，打开 Main.storyboard 文件，删除 菜单栏，就是下图标注的东西：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225220724.png" alt="" /></p>
-
-<p>此时再次运行工程，在文本框中尝试使用快捷键，你就会发现如我们所想失效了！</p>
-
-<h1 id="快捷键加持">快捷键加持</h1>
-
-<p>有时我们开发 app 就是不想保留菜单栏，比如状态栏小工具。所以继续研究怎么在没有菜单栏的情况下让 Text Field 支持快捷键是有必要的！很自然的我们就会想到上面说的为 NSTextField 复写 <code>performKeyEquivalent:</code> 方法的方式来解决！</p>
-
-<p>这里直接贴出代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 自身支持快捷键</span>
-<span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
-    <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
-        <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">default</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>上面的代码贴到合适位置即可，比如 AppDelegate.swift 文件 <strong>AppDelegate</strong> 类的后面。</p>
-
-<p>可以看到上面的方法实现了四个快捷键的功能，分别是：全选、复制、粘贴和剪切，都是通过 NSApp 向文本框所在窗口的 <strong>First Responder</strong>(也就是文本框自己) 发起相应行为，而这些行为是 <strong>NStext</strong> 类的基本方法。另外：</p>
-
-<ul>
-<li><code>event.charactersIgnoringModifiers</code>: 除去修饰键剩余的按键</li>
-</ul>
-
-<blockquote>
-<p><strong>charactersIgnoringModifiers</strong>: The characters generated by a key event as if no modifier key (except for Shift) applies</p>
-</blockquote>
-
-<ul>
-<li>修饰键类型为 <code>NSevent:ModifierFlags</code> 类型，是一个集合，有 capsLock、shift、control、option、command、numericPad、help、function 和 deviceIndependentFlagsMask</li>
-</ul>
-
-<p>运行工程，窗口中的 Text Field 支持四个快捷键了！但是此时有一个问题，将 <code>Command</code> 键替换为 <code>Ctrl</code> 按下快捷键也能实现相应文本操作，所以在 <strong>switch</strong> 语句之前加一个判断，如果修饰键不包含 <code>Command</code> 就按照正常响应：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">modifierFlags</span><span class="p">.</span><span class="n">isDisjoint</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<ul>
-<li><code>event.modifierFlags.isDisjoint(with: .command)</code>: 判断快捷键中的修饰键(<strong>modifier</strong>)是不是不包含 Command 键，不包含就返回 true</li>
-</ul>
-
-<blockquote>
-<p><strong>isDisjoint</strong>: Returns a Boolean value that indicates whether the set has no members in common with the given set.</p>
-</blockquote>
-
-<p>此时，还是不完美的，如果按下文本操作快捷键的同时按下了其它有效修饰键(比如 <code>Ctrl</code>) 同样可以完成文本操作，目前还没想到其他更好的处理方式！后面有所发现就会更新这里！</p>
-
-<p>不知道您会不会有疑问：怎么不支持撤销和重做两个快捷键？不是不做，<strong>撤销</strong>和<strong>重做</strong> 操作实现是挺大的一块内容，所以放到这个主题的第二篇文章介绍。</p>
-
-<p>本文工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip" target="_blank">TextFieldKeyDemo</a></p>
-
-<h1 id="参考">参考</h1>
-
-<ul>
-<li><a href="https://www.cnblogs.com/kaymin/articles/7232475.html" target="_blank">NSTextField支持Cmd+C/V快捷键复制、粘贴</a></li>
 </ul>
 ]]></content>
 		</item>

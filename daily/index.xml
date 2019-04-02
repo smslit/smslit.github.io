@@ -7,8 +7,25 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sun, 31 Mar 2019 22:19:05 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 02 Apr 2019 13:57:11 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>震惊！这篇教程花了一天多的时间</title>
+			<link>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</link>
+			<pubDate>Tue, 02 Apr 2019 13:57:11 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</guid>
+			<description>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！macOS 开</description>
+			<content type="html"><![CDATA[<p>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！<a href="https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/" target="_blank">macOS 开发之 Windows 和 WindowController</a> 这篇文章应该是有史以来写的最长的一篇教程了，整篇文章突破了 6000 字，Amazing&hellip;</p>
+
+<p>其实在写这篇文章的时候，在插图上花了些功夫，用 Surface 画了些可爱的示意图，忽然有种艺术细胞要点燃的感觉，哈哈，就是想画画，虽然有点简单，但是貌似感受了画画善用图层带来的效率福利。现在回想起来，以前 surface 就在眼前，为啥没想着用它来练习画插图呢！这里十里要推荐一款软件，<a href="https://www.sketchbook.com" target="_blank">SketchBook</a>，是 AutoDesk 公司的一款短小精悍的神器，好像从去年开始就免费了，记得之前用数位板在 macOS 练习画画的时候就用的这款软件，尽管之前练习了没多久就放弃了😅，但是现在拾起来挺容易的，丝滑！</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2014.12.55.png" alt="" /></p>
+
+<p>美好的起点，从笔尖开始&hellip;</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>神秘的土耳其</title>
@@ -255,31 +272,6 @@
 <li id="fn:Chinglish-is-sla">Chinglish is slang for spoken or written English language that is influenced by the Chinese language. - <a href="https://en.wikipedia.org/wiki/Chinglish" target="_blank">Chinglish</a> <a class="footnote-return" href="#fnref:Chinglish-is-sla"><sup>[return]</sup></a></li>
 </ol>
 </div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>常用命令知多少</title>
-			<link>https://www.smslit.top/daily/command-analysis/</link>
-			<pubDate>Fri, 22 Mar 2019 22:51:30 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/command-analysis/</guid>
-			<description>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &amp;#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&amp;#34; &amp;#34;CMD[ a ]/count*100 &amp;#34;% &amp;#34; a }&amp;#39; | grep -v &amp;#34;./&amp;#34; | column -c3 -s &amp;#34; &amp;#34; -t |sort -nr | nl</description>
-			<content type="html"><![CDATA[<p>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10</code></pre></div>
-<p>十里的运行结果是：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">➜  <span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10
-     <span class="m">1</span>	<span class="m">1645</span>  <span class="m">16</span>.4451%   vim
-     <span class="m">2</span>	<span class="m">1061</span>  <span class="m">10</span>.6068%   git
-     <span class="m">3</span>	<span class="m">904</span>   <span class="m">9</span>.03729%   <span class="nb">cd</span>
-     <span class="m">4</span>	<span class="m">623</span>   <span class="m">6</span>.22813%   pack
-     <span class="m">5</span>	<span class="m">346</span>   <span class="m">3</span>.45896%   pipenv
-     <span class="m">6</span>	<span class="m">343</span>   <span class="m">3</span>.42897%   ll
-     <span class="m">7</span>	<span class="m">340</span>   <span class="m">3</span>.39898%   hugo
-     <span class="m">8</span>	<span class="m">316</span>   <span class="m">3</span>.15905%   rm
-     <span class="m">9</span>	<span class="m">257</span>   <span class="m">2</span>.56923%   brew
-    <span class="m">10</span>	<span class="m">208</span>   <span class="m">2</span>.07938%   python3</code></pre></div>
-<p>使用最多的是 vim，可以看出对 vim 是真爱呀，不知您的结果是什么样的！</p>
 ]]></content>
 		</item>
 		

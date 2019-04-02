@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 01 Apr 2019 08:20:10 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 13:57:11 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>震惊！这篇教程花了一天多的时间</title>
+      <link>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</link>
+      <pubDate>Tue, 02 Apr 2019 13:57:11 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</guid>
+      <description>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！macOS 开</description>
+    </item>
     
     <item>
       <title>macOS 开发之 Windows 和 WindowController</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/hello-world/</guid>
       <description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
-    </item>
-    
-    <item>
-      <title>人生苦短，我用 VS Code</title>
-      <link>https://www.smslit.top/daily/vsc-from-vim/</link>
-      <pubDate>Sun, 24 Mar 2019 23:41:45 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
-      <description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
     </item>
     
   </channel>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 31 Mar 2019 22:19:05 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 13:57:11 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>震惊！这篇教程花了一天多的时间</title>
+      <link>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</link>
+      <pubDate>Tue, 02 Apr 2019 13:57:11 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</guid>
+      <description>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！macOS 开</description>
+    </item>
     
     <item>
       <title>神秘的土耳其</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/pythonist/</guid>
       <description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
-    </item>
-    
-    <item>
-      <title>常用命令知多少</title>
-      <link>https://www.smslit.top/daily/command-analysis/</link>
-      <pubDate>Fri, 22 Mar 2019 22:51:30 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/command-analysis/</guid>
-      <description>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &amp;#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&amp;#34; &amp;#34;CMD[ a ]/count*100 &amp;#34;% &amp;#34; a }&amp;#39; | grep -v &amp;#34;./&amp;#34; | column -c3 -s &amp;#34; &amp;#34; -t |sort -nr | nl</description>
     </item>
     
   </channel>

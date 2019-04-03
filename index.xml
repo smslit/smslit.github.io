@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 02 Apr 2019 13:57:11 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Apr 2019 18:46:34 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>007 还是 996</title>
+      <link>https://www.smslit.top/daily/007-996/</link>
+      <pubDate>Wed, 03 Apr 2019 18:46:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/007-996/</guid>
+      <description>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人</description>
+    </item>
     
     <item>
       <title>震惊！这篇教程花了一天多的时间</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/apple-spring-conference-2019/</guid>
       <description>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Ap</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://www.smslit.top/daily/hello-world/</link>
-      <pubDate>Mon, 25 Mar 2019 23:35:12 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/hello-world/</guid>
-      <description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
     </item>
     
   </channel>

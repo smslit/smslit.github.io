@@ -7,8 +7,38 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Tue, 02 Apr 2019 13:57:11 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 03 Apr 2019 18:46:34 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>007 还是 996</title>
+			<link>https://www.smslit.top/daily/007-996/</link>
+			<pubDate>Wed, 03 Apr 2019 18:46:34 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/007-996/</guid>
+			<description>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人</description>
+			<content type="html"><![CDATA[<p>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人道！</p>
+
+<blockquote>
+<p>996.ICU 指的是 “工作996”， 生病ICU。在中国，这是程序员之间的一种自嘲的说法，意思是按照996的模式工作，那以后就得进ICU了。</p>
+</blockquote>
+
+<p>挺有意思的项目哈，持续关注了快一周了，曾看到 issue 一度成为靓丽的广告牌，各种招聘求职，失控了，作者估计都要崩溃了，已经关闭 issue，要疯了！</p>
+
+<p>有意思的是，今天跟甲方爸爸的一名技术人员聊天的时候:</p>
+
+<ul>
+<li>他问我：是不是快下班了？</li>
+<li>我说：我随时都在上班</li>
+<li>他就来了个神回复：你是 007 吗？</li>
+<li>我淡定的回答了他：是的，我是！是不是比 996 还猛！</li>
+</ul>
+
+<p>是呀，生活中有很多职业像独立开发者的初级阶段一样真的要 007 了，当然很浮夸了，只是夸张说的是工作随时随地，没有上下班，😂，不必认真！</p>
+
+<p>PS: 我真的是 007 🤩，不人道是天道&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;酬勤!</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>震惊！这篇教程花了一天多的时间</title>
@@ -249,27 +279,6 @@
 <ol>
 <li id="fn:Language-Server"><a href="https://microsoft.github.io/language-server-protocol/" target="_blank">Language Server Protocol</a> <a class="footnote-return" href="#fnref:Language-Server"><sup>[return]</sup></a></li>
 <li id="fn:Debug-Adapter-Pr"><a href="https://microsoft.github.io/debug-adapter-protocol/" target="_blank">Debug Adapter Protocol</a> <a class="footnote-return" href="#fnref:Debug-Adapter-Pr"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>python 程序猿有意思的自称</title>
-			<link>https://www.smslit.top/daily/pythonist/</link>
-			<pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/pythonist/</guid>
-			<description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
-			<content type="html"><![CDATA[<p>今天看了一篇有意思的文章<a href="https://zhuanlan.zhihu.com/p/26832983" target="_blank">《我不认识Pythoner这种开发者》</a> ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意义的，不得不承认，包括十里和很多国人使用的英语偏向 <code>Chinglish</code><sup class="footnote-ref" id="fnref:Chinglish-is-sla"><a href="#fn:Chinglish-is-sla">1</a></sup>，严重的话，母语是英语的歪果仁会很费解我们的 <strong>Chinglish</strong>，所以还是希望能多看到这样的文章，以免造成与他们沟通上的障碍（主要是不能露怯呀，维护国人形象！）</p>
-
-<p>PS：确实得好好学习英语，最起码互联网行业的这些得了解多一点！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:Chinglish-is-sla">Chinglish is slang for spoken or written English language that is influenced by the Chinese language. - <a href="https://en.wikipedia.org/wiki/Chinglish" target="_blank">Chinglish</a> <a class="footnote-return" href="#fnref:Chinglish-is-sla"><sup>[return]</sup></a></li>
 </ol>
 </div>
 ]]></content>

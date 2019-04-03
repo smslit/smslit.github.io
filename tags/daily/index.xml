@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 02 Apr 2019 13:57:11 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Apr 2019 18:46:34 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>007 还是 996</title>
+      <link>https://www.smslit.top/daily/007-996/</link>
+      <pubDate>Wed, 03 Apr 2019 18:46:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/007-996/</guid>
+      <description>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人</description>
+    </item>
     
     <item>
       <title>震惊！这篇教程花了一天多的时间</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
       <description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
-    </item>
-    
-    <item>
-      <title>python 程序猿有意思的自称</title>
-      <link>https://www.smslit.top/daily/pythonist/</link>
-      <pubDate>Sat, 23 Mar 2019 20:37:01 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/pythonist/</guid>
-      <description>今天看了一篇有意思的文章《我不认识Pythoner这种开发者》 ，涨姿势了！我是不会告诉你们我立马把 Me 页面的描述改了的🙈!作者的讨论其实是有意</description>
     </item>
     
   </channel>

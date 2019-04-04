@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 03 Apr 2019 18:46:34 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Apr 2019 20:35:32 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>coc.nvim 真香</title>
+      <link>https://www.smslit.top/daily/coc-nvim-taste-good/</link>
+      <pubDate>Thu, 04 Apr 2019 20:35:32 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/coc-nvim-taste-good/</guid>
+      <description>前些天网友 Linger 推荐给十里一个 vim 上用的插件 coc.nvim1，这个插件就像 vim-lsp 一样让 vim 支持 LSP2，但实现的更为彻底，还支持安装 coc 插件，支持绝大部</description>
+    </item>
     
     <item>
       <title>007 还是 996</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/scheme-changing/</guid>
       <description>作为一个颜控无论终端还是编辑器，用了四年的 solarized 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推</description>
-    </item>
-    
-    <item>
-      <title>Apple 2019 春季发布会</title>
-      <link>https://www.smslit.top/daily/apple-spring-conference-2019/</link>
-      <pubDate>Tue, 26 Mar 2019 12:03:44 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/apple-spring-conference-2019/</guid>
-      <description>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Ap</description>
     </item>
     
   </channel>

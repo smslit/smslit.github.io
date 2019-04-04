@@ -7,8 +7,31 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 03 Apr 2019 18:46:34 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 04 Apr 2019 20:35:32 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>coc.nvim 真香</title>
+			<link>https://www.smslit.top/daily/coc-nvim-taste-good/</link>
+			<pubDate>Thu, 04 Apr 2019 20:35:32 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/coc-nvim-taste-good/</guid>
+			<description>前些天网友 Linger 推荐给十里一个 vim 上用的插件 coc.nvim1，这个插件就像 vim-lsp 一样让 vim 支持 LSP2，但实现的更为彻底，还支持安装 coc 插件，支持绝大部</description>
+			<content type="html"><![CDATA[<p>前些天网友 <a href="https://linger.ink/" target="_blank">Linger</a> 推荐给十里一个 vim 上用的插件 <a href="https://github.com/neoclide/coc.nvim" target="_blank">coc.nvim</a><sup class="footnote-ref" id="fnref:Intellisense-eng"><a href="#fn:Intellisense-eng">1</a></sup>，这个插件就像 vim-lsp 一样让 vim 支持 LSP<sup class="footnote-ref" id="fnref:Language-Server"><a href="#fn:Language-Server">2</a></sup>，但实现的更为彻底，还支持安装 coc 插件，支持绝大部分流行的开发语言，是国人的作品，真的如 VSCode 一般，前天花了一晚上研究了一下它的配置，昨天和今天就已经用上了，真香！</p>
+
+<p>coc.nvim 完全解决了之前使用 vim-lsp 时遇到的各种小问题，可以丝滑的全键盘写代码，不小心又从 vscode 这个坑跳回了 vim 这个坑🥳，如果只是写代码 vim + coc.nvim 绝对香，估计 DAP<sup class="footnote-ref" id="fnref:Debug-adapter-pr"><a href="#fn:Debug-adapter-pr">3</a></sup> 不太好支持了，调试的操作便捷性上与 VScode 是差一大截，但是目前来说，用各种 xdb(gdb/pydb) 命令就足够用了，先安然自得地继续使用 vim 吧！🤪</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Intellisense-eng">Intellisense engine for vim8 &amp; neovim, full language server protocol support as VSCode <a class="footnote-return" href="#fnref:Intellisense-eng"><sup>[return]</sup></a></li>
+<li id="fn:Language-Server">Language Server Protocol <a class="footnote-return" href="#fnref:Language-Server"><sup>[return]</sup></a></li>
+<li id="fn:Debug-adapter-pr">Debug adapter protocol <a class="footnote-return" href="#fnref:Debug-adapter-pr"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>007 还是 996</title>
@@ -255,32 +278,6 @@
 <p>swift 版本：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="bp">print</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
 <p>你好，世界！很好的寓意，你好，欢迎你来到一个新的世界，猩球！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>人生苦短，我用 VS Code</title>
-			<link>https://www.smslit.top/daily/vsc-from-vim/</link>
-			<pubDate>Sun, 24 Mar 2019 23:41:45 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/vsc-from-vim/</guid>
-			<description>这些天配置 vim 的 LSP1，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像</description>
-			<content type="html"><![CDATA[<p>这些天配置 vim 的 LSP<sup class="footnote-ref" id="fnref:Language-Server"><a href="#fn:Language-Server">1</a></sup>，主要是针对 python 和 Swift，LSP 确实让人很激动！但兴奋之余，对于 vim 的配置，简直可以怀疑人生，总有各种不满意的地方，像十里这么追求完美的人怎么能过去，试了各种各样的方法去弥补不满意的地方，但青春耗不起呀！</p>
-
-<p>而 vscode 只需安装一个插件就能搞定，轻松到怀疑人生，而且除了 LSP 的完美实现，同样拥有完备的 DAP<sup class="footnote-ref" id="fnref:Debug-Adapter-Pr"><a href="#fn:Debug-Adapter-Pr">2</a></sup> 支持，简直不要太轻松！感觉整合世界都和平了！因为习惯了 vim 的操作方式，所以尝试了 vim 的插件，总是达不到原生 vim 的全键盘操作的连贯性，索性奔着 vscode 的良好生态，逐步适应 vscode 的使用套路，虽然不能全键盘操作，但依旧很 high 幺！时间都花在搬砖上就可以了！</p>
-
-<p>使用 VS Code 从嵌入式开发，到前端开发和后端开发，都能得到统一的开发体验，编码、调试、补全、语法分析、重构、跳转等等，总结下来就是技术栈过渡和使用都很顺畅，此刻尽享丝滑！</p>
-
-<p>人生苦短，我用 VS Code！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:Language-Server"><a href="https://microsoft.github.io/language-server-protocol/" target="_blank">Language Server Protocol</a> <a class="footnote-return" href="#fnref:Language-Server"><sup>[return]</sup></a></li>
-<li id="fn:Debug-Adapter-Pr"><a href="https://microsoft.github.io/debug-adapter-protocol/" target="_blank">Debug Adapter Protocol</a> <a class="footnote-return" href="#fnref:Debug-Adapter-Pr"><sup>[return]</sup></a></li>
-</ol>
-</div>
 ]]></content>
 		</item>
 		

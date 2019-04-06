@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 04 Apr 2019 20:35:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2019 19:35:46 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>同理心</title>
+      <link>https://www.smslit.top/daily/empathy-microsoft-culture/</link>
+      <pubDate>Fri, 05 Apr 2019 19:35:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/empathy-microsoft-culture/</guid>
+      <description>同理心（英语：empathy）或称做换位思考、神入或共情，是一种将自己置于他人的位置、并能够理解或感受他人在其框架内所经历的事物的能力。同理</description>
+    </item>
     
     <item>
       <title>coc.nvim 真香</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/raywenderlich-nice/</guid>
       <description>今天看到 Kevin 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 Raywenderlich 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！</description>
-    </item>
-    
-    <item>
-      <title>当颜控又盯上了 gruvbox</title>
-      <link>https://www.smslit.top/daily/scheme-changing/</link>
-      <pubDate>Wed, 27 Mar 2019 23:22:47 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/scheme-changing/</guid>
-      <description>作为一个颜控无论终端还是编辑器，用了四年的 solarized 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推</description>
     </item>
     
   </channel>

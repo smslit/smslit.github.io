@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 04 Apr 2019 20:35:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2019 19:35:46 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>同理心</title>
+      <link>https://www.smslit.top/daily/empathy-microsoft-culture/</link>
+      <pubDate>Fri, 05 Apr 2019 19:35:46 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/empathy-microsoft-culture/</guid>
+      <description>同理心（英语：empathy）或称做换位思考、神入或共情，是一种将自己置于他人的位置、并能够理解或感受他人在其框架内所经历的事物的能力。同理</description>
+    </item>
     
     <item>
       <title>coc.nvim 真香</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/apple-spring-conference-2019/</guid>
       <description>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Ap</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://www.smslit.top/daily/hello-world/</link>
-      <pubDate>Mon, 25 Mar 2019 23:35:12 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/hello-world/</guid>
-      <description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
     </item>
     
   </channel>

@@ -7,8 +7,42 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 04 Apr 2019 20:35:32 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 05 Apr 2019 19:35:46 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>同理心</title>
+			<link>https://www.smslit.top/daily/empathy-microsoft-culture/</link>
+			<pubDate>Fri, 05 Apr 2019 19:35:46 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/empathy-microsoft-culture/</guid>
+			<description>同理心（英语：empathy）或称做换位思考、神入或共情，是一种将自己置于他人的位置、并能够理解或感受他人在其框架内所经历的事物的能力。同理</description>
+			<content type="html"><![CDATA[
+
+<blockquote>
+<p>同理心（英语：empathy）或称做换位思考、神入或共情，是一种将自己置于他人的位置、并能够理解或感受他人在其框架内所经历的事物的能力。同理心与同情心并不相同。同理心指能够站在对方立场设身处地思考、于人际交往过程中能够体会他人的情绪和想法、理解他人的立场和感受，并站在他人的角度思考和处理问题。它主要表现包括了情绪自控、换位思考、倾听能力以及表达尊重等与情商相关的方面。</p>
+</blockquote>
+
+<figure class="right">
+    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-06-cry-boy.jpg" width="240px"/> 
+</figure>
+
+
+<p>自从<a href="https://zh.wikipedia.org/wiki/薩蒂亞·納德拉" target="_blank">纳德拉</a>担任微软 CEO 以来，我们可以看到微软的巨大变化，他真的让微软这只大象跳起了舞，去年最大的事情就是微软收购了 github。更加开放的微软从原来的内忧外患到重生，其中一个很重要的一点是纳德拉对微软企业文化的重塑，这其中其关键性作用的是纳德拉的同理心，这体现在了方方面面，比如其更看中一线员工的思考、让员工有更多展示成果的机会、企业内部的黑客文化，还有其对 KPI 考核制度的调整，加入了一项重要的考核指标-对他人的贡献率等等。</p>
+
+<p>听别人说，管理企业就是在管人，最终还是心理学的范畴！这么看的话，纳德拉的同理心正是帮助了他从心理上抓住了员工的心。每个人的思维方式和价值观都是受到个人经历影响的，纳德拉也不例外，有很多瞬间告诉他同理心这一人生奥义，比如下面要说的两件事。</p>
+
+<h2 id="面试官的问题">面试官的问题</h2>
+
+<p>他当年在微软参加面试时，面试官问了他一个问题——如果冬天你在街上看到一个没有人照料的孩子在哭，你的第一反应是要做什么？年轻的纳德拉说，我会打 911 报警，让警察来解决这个问题。当时主考官没说什么，但当纳德拉面试通过的时候，面试官专门过来拍拍他肩膀跟他说，其实你的第一反应应该是先把孩子抱起来，纳德拉的些许惭愧让他有了一些思考。</p>
+
+<h2 id="孩子才是最大的受害者">孩子才是最大的受害者</h2>
+
+<p>他的第一个孩子是一个早产儿，因为宫内窒息，出生后就被诊断为终身残疾。纳德拉非常痛苦，时常在生活中表现出自己的情绪。然而他的妻子对他说，我们关注的不应该是孩子对我们生活造成的影响，而是应该思考如何帮助我们的孩子，这其实不是我们的苦难，而是这个孩子一生的苦难。</p>
+
+<p>当时这给纳德拉非常强烈的震撼，他觉得待人处事时要有同理心，真正站在别人的位置设身处地地思考，感同身受地去行动。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>coc.nvim 真香</title>
@@ -259,25 +293,6 @@
 </ul>
 
 <p>Apple 一直致力于 <strong>硬件-软件-服务</strong> 三方面的发展，其实有些不均衡的，软件和硬件可以说非常强大了，但是过去服务还是单一了一些，这次发布会可以说是史上最软了吧，可以看出 Apple 要大力发展服务的决心，毕竟目前来看硬件和软件的营收开始出现萎靡缩水的现象，扩展业务，发展内容分发和订阅服务势在必行！想到 Apple 这是想着法得挣我们消费者的钱，就有点那个 🤯。。。但是如果服务到位，大家还是愿意打开钱包的嘛，相信 Apple 会像硬件和软件一样会提供高质量服务，这也应该是 Apple 产品用户喜闻乐见的！</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>Hello World</title>
-			<link>https://www.smslit.top/daily/hello-world/</link>
-			<pubDate>Mon, 25 Mar 2019 23:35:12 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/hello-world/</guid>
-			<description>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，</description>
-			<content type="html"><![CDATA[<p>想象一下，很多年以后，作为一名老程序员的您决定培养一门兴趣爱好，比如书法-写毛笔，很好，您提笔一挥，纸上跃然出现 “hello， world”，很和谐！没毛病！</p>
-
-<p>hello world 程序的实际表现就是在电脑屏幕（准确的说应该叫终端，很早的时候电脑屏幕只能显示字符串）上打印 “hello, world”。因为在《The C Programme Language》使用而广泛流行。</p>
-<div class="highlight"><pre class="chroma"><code class="language-C" data-lang="C"><span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
-<p>因为其简洁实用，在后续出现的编程语言的第一范例几乎都是这个 hello world 程序，只是不同编程语言的相应实现，比如 python</p>
-<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
-<p>swift 版本：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="bp">print</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span></code></pre></div>
-<p>你好，世界！很好的寓意，你好，欢迎你来到一个新的世界，猩球！</p>
 ]]></content>
 		</item>
 		

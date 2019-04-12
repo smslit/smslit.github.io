@@ -7,10 +7,64 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 05 Apr 2019 19:35:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2019 19:05:39 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>离线安装 python 第三方库</title>
+      <link>https://www.smslit.top/daily/offline-pip-install/</link>
+      <pubDate>Thu, 11 Apr 2019 19:05:39 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/offline-pip-install/</guid>
+      <description>昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也</description>
+    </item>
+    
+    <item>
+      <title>套娃式开发</title>
+      <link>https://www.smslit.top/daily/matryoshka-development/</link>
+      <pubDate>Wed, 10 Apr 2019 18:38:30 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/matryoshka-development/</guid>
+      <description>最近接了一个项目，经过前几天的沟通，很负责任的说很令人崩溃，对方的技术人员可能是在安逸的大环境中生活惯了，略微有点懒而且还过于自信，技术之间</description>
+    </item>
+    
+    <item>
+      <title>白日梦还是要做的</title>
+      <link>https://www.smslit.top/daily/dream-always-here/</link>
+      <pubDate>Tue, 09 Apr 2019 22:58:14 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/dream-always-here/</guid>
+      <description>每个人都会有自己的追求，大大小小的。别说自己没有追求，我觉得那不可能，流浪汉都会想着下一顿饭要吃上大餐，更何况我们还没有沦落到流浪汉的地步！</description>
+    </item>
+    
+    <item>
+      <title>小鬼缠身</title>
+      <link>https://www.smslit.top/daily/sickness-playes-with-me/</link>
+      <pubDate>Mon, 08 Apr 2019 21:32:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/sickness-playes-with-me/</guid>
+      <description>见到你十里很高兴很激动，但在流泪，为什么会这样？因为感冒在捉弄十里。最近嘴里还长了三处口腔溃疡，嘴角上火撕裂，oh，my God！这是小病鬼缠</description>
+    </item>
+    
+    <item>
+      <title>小聚长谈</title>
+      <link>https://www.smslit.top/daily/big-chat-little-reunion/</link>
+      <pubDate>Sun, 07 Apr 2019 22:20:39 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/big-chat-little-reunion/</guid>
+      <description>相逢握手一大笑，古人风物两依然。</description>
+    </item>
+    
+    <item>
+      <title>Google 的人文关怀</title>
+      <link>https://www.smslit.top/daily/google-geek-care/</link>
+      <pubDate>Sat, 06 Apr 2019 11:32:14 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/google-geek-care/</guid>
+      <description>在国内极客们大多很热爱 Google ，为什么呢？单纯的只是因为这个公司很酷吗？当然不是，黑科技满满的 Google，貌似是一名极致科技侠，其实他还是一个关</description>
+    </item>
     
     <item>
       <title>同理心</title>
@@ -46,60 +100,6 @@
       
       <guid>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</guid>
       <description>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！macOS 开</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之 Windows 和 WindowController</title>
-      <link>https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
-      <pubDate>Mon, 01 Apr 2019 08:20:10 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
-      <description>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口</description>
-    </item>
-    
-    <item>
-      <title>神秘的土耳其</title>
-      <link>https://www.smslit.top/daily/magic-turkey/</link>
-      <pubDate>Sun, 31 Mar 2019 22:19:05 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/magic-turkey/</guid>
-      <description>今天看了一部土耳其电影《山 2》，奔着 imdb 9.7 分决定看的，怎么说呢？我又看了下豆瓣的评分 6.8，低的有点过头，为啥这么大的分差呢？网上有人说情节很</description>
-    </item>
-    
-    <item>
-      <title>浪以工作室之名</title>
-      <link>https://www.smslit.top/daily/stupid-studio/</link>
-      <pubDate>Sat, 30 Mar 2019 22:18:46 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/stupid-studio/</guid>
-      <description>许多创业者在早期，觉得还不想雇佣人（要发工资、交五险一金），通常对外号称以工作室的名义经营业务。比如，我认识许多比较历害的UI设计师，无论是</description>
-    </item>
-    
-    <item>
-      <title>PlatformIO 是什么</title>
-      <link>https://www.smslit.top/2019/03/30/what-is-pio/</link>
-      <pubDate>Sat, 30 Mar 2019 17:45:14 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/03/30/what-is-pio/</guid>
-      <description>PlatformIO is an open source ecosystem for IoT development. Cross-platform IDE and unified debugger. Remote unit testing and firmware updates. PlatformIO 是一个用于物联网开发的开源生态系统。它提供跨平台的开发环境和统一的调试器，还支持远程单元测试和固件</description>
-    </item>
-    
-    <item>
-      <title>OpenEmu - 红白的记忆</title>
-      <link>https://www.smslit.top/daily/nes-openemu/</link>
-      <pubDate>Fri, 29 Mar 2019 12:56:53 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/nes-openemu/</guid>
-      <description>红白机，小霸王学习机等等承载着 80尾巴-90头 这代很多人的游戏往事，我管这叫红白的记忆，不是粉红色的记忆！🤩 十里本人是一个 90 后，儿时是和两个</description>
-    </item>
-    
-    <item>
-      <title>raywenderlich 高质量的视频教程</title>
-      <link>https://www.smslit.top/daily/raywenderlich-nice/</link>
-      <pubDate>Thu, 28 Mar 2019 19:36:02 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/raywenderlich-nice/</guid>
-      <description>今天看到 Kevin 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 Raywenderlich 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！</description>
     </item>
     
   </channel>

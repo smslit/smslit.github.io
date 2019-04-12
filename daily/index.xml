@@ -7,8 +7,121 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Fri, 05 Apr 2019 19:35:46 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 11 Apr 2019 19:05:39 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>离线安装 python 第三方库</title>
+			<link>https://www.smslit.top/daily/offline-pip-install/</link>
+			<pubDate>Thu, 11 Apr 2019 19:05:39 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/offline-pip-install/</guid>
+			<description>昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也</description>
+			<content type="html"><![CDATA[<p>昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也不好解决依赖的问题呀🤮，其实 pip 支持批量下载和安装第三方库，开干！</p>
+
+<ol>
+<li>找一台安装 64 位 windows 的电脑就当是 A 吧，安装上与不能访问互联网的远程主机一样版本的 python</li>
+
+<li><p>在 A 中打开 cmd，使用 pip 命令安装i(<code>pip install</code>)开发需要的第三方库，执行一下命令导出 <strong>requirements.txt</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip freeze &gt; requirements.txt</code></pre></div></li>
+
+<li><p>在 A 上利用刚导出的 <strong>requirements.txt</strong> 下载第三方包及其依赖包到 <strong>packages</strong> 目录中：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip download -r requirements.txt -d packages</code></pre></div></li>
+
+<li><p>将 <strong>requirements.txt</strong> 和 <strong>packages</strong> 压缩一下，这里实例压缩成了 zip，将 zip 包一层层的发送到远程开发机中</p></li>
+
+<li><p>将 zip 包中的 *<strong>requirements.txt</strong> 和 <strong>packages</strong> 解压到桌面，打开 cmd 切换到到桌面，使用 pip 安装离线包:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip install --no-index --find-links<span class="o">=</span>pakages -r requirements.txt</code></pre></div></li>
+</ol>
+
+<p>完美！🤓</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>套娃式开发</title>
+			<link>https://www.smslit.top/daily/matryoshka-development/</link>
+			<pubDate>Wed, 10 Apr 2019 18:38:30 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/matryoshka-development/</guid>
+			<description>最近接了一个项目，经过前几天的沟通，很负责任的说很令人崩溃，对方的技术人员可能是在安逸的大环境中生活惯了，略微有点懒而且还过于自信，技术之间</description>
+			<content type="html"><![CDATA[<p>最近接了一个项目，经过前几天的沟通，很负责任的说很令人崩溃，对方的技术人员可能是在安逸的大环境中生活惯了，略微有点懒而且还过于自信，技术之间的鸿沟立现！不过还好，这位技术应该是个同龄人，还是很好说话和配合的。</p>
+
+<p>其实更崩溃的是，他们给准备了一台 windows server 的远程开发机，这还不算完，我还要跨过千山万水才可以连到那台电脑上，可以说是崩溃 plus 了，怎么说呢！假如我要远程连到的开发机是 DST 的话，链路是这样的：</p>
+
+<p>$$
+💻 我的主机 \xrightarrow{TeamViewer} 💻 \xrightarrow{Remote Desktop} 🖥  \xrightarrow{Remote Desktop} 🖥 DST
+$$</p>
+
+<p>这样做出于什么考虑呢？就是因为单位性质的原因，强调安全问题，他们生产组网和办公区的网是隔离的，办公区的可以连接外网，但是生产组中主机就不能连接外网！崩溃 Max 来了，安装什么工具都得下载好离线安装包一层一层的给它传进去才能进行下一步！</p>
+
+<p>先不说了，我得继续安装工具去了👷</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>白日梦还是要做的</title>
+			<link>https://www.smslit.top/daily/dream-always-here/</link>
+			<pubDate>Tue, 09 Apr 2019 22:58:14 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/dream-always-here/</guid>
+			<description>每个人都会有自己的追求，大大小小的。别说自己没有追求，我觉得那不可能，流浪汉都会想着下一顿饭要吃上大餐，更何况我们还没有沦落到流浪汉的地步！</description>
+			<content type="html"><![CDATA[<p>每个人都会有自己的追求，大大小小的。别说自己没有追求，我觉得那不可能，流浪汉都会想着下一顿饭要吃上大餐，更何况我们还没有沦落到流浪汉的地步！所以梦想还是要有的，万一实现了呢！</p>
+
+<p>看似比较遥远的的梦想，应该都可以称为白日梦吧，就问你，要不要做！必须做呀，YY 很过瘾的不是吗？但是兴奋激动之余，留给我们更多的是考虑怎么实现、落实到行动和一直都不放弃，毕竟天上不会掉馅饼的，不是吗？</p>
+
+<p>欢乐喜剧人第五季中，金婧和吴彼的小品中说的一句话：只要我们不放弃，一定会有好运气！</p>
+
+<p>PS:别吵我，我还做着白日梦呢！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>小鬼缠身</title>
+			<link>https://www.smslit.top/daily/sickness-playes-with-me/</link>
+			<pubDate>Mon, 08 Apr 2019 21:32:34 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/sickness-playes-with-me/</guid>
+			<description>见到你十里很高兴很激动，但在流泪，为什么会这样？因为感冒在捉弄十里。最近嘴里还长了三处口腔溃疡，嘴角上火撕裂，oh，my God！这是小病鬼缠</description>
+			<content type="html"><![CDATA[<p>见到你十里很高兴很激动，但在流泪，为什么会这样？因为感冒在捉弄十里。最近嘴里还长了三处口腔溃疡，嘴角上火撕裂，oh，my God！这是小病鬼缠身，要被玩坏了！不说了不说了，这里依旧没有干货，吃 💊 眯睎了！</p>
+
+<p>PS：大家一定要注意天冷加衣，😷 也挺耽误事儿的，哎呀，要睡着了 😪</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>小聚长谈</title>
+			<link>https://www.smslit.top/daily/big-chat-little-reunion/</link>
+			<pubDate>Sun, 07 Apr 2019 22:20:39 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/big-chat-little-reunion/</guid>
+			<description>相逢握手一大笑，古人风物两依然。</description>
+			<content type="html"><![CDATA[<p>相逢握手一大笑，古人风物两依然。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Google 的人文关怀</title>
+			<link>https://www.smslit.top/daily/google-geek-care/</link>
+			<pubDate>Sat, 06 Apr 2019 11:32:14 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/google-geek-care/</guid>
+			<description>在国内极客们大多很热爱 Google ，为什么呢？单纯的只是因为这个公司很酷吗？当然不是，黑科技满满的 Google，貌似是一名极致科技侠，其实他还是一个关</description>
+			<content type="html"><![CDATA[<p>在国内极客们大多很热爱 Google ，为什么呢？单纯的只是因为这个公司很酷吗？当然不是，黑科技满满的 Google，貌似是一名极致科技侠，其实他还是一个关注人文的诗人！</p>
+
+<p>去年 Google IO 大会上推出了一个不起眼的技术，名为 Pretty Please，其实 Google 对这个功能很重视，这个功能的主要作用就是鼓励小孩子使用 Google Home 的时候学会对音箱说 <strong>Please</strong>，现阶段很多音箱，直呼其名（比如小爱、小度）便能得到想要的结果，当小孩子与音箱的交流方式成为习惯其实会影响长大后与真人的交流方式，而 Pretty Please 则会给孩子礼貌行为<sup class="footnote-ref" id="fnref:Please"><a href="#fn:Please">1</a></sup>正向激励。从这个细节不难看出 Google 的人文关怀，也许是这一点以及其他很多类似的考量人带给了极客们追捧与热爱的隐藏理由。科技发展往往是两面的，带来颠覆性的生产价值之外，也会是一把利刃。很多例子已经说明了这一点，社交网络拉近了人们的距离，但同时也让人们之间变得更加陌生。Google 有知有畏，因为手握先进技术，所以更应该对技术对社会负责。</p>
+
+<p>大家喜欢 Google 的酷的背后就是 Google 的人文关怀！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Please">比如，下达命令时说 Please <a class="footnote-return" href="#fnref:Please"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>同理心</title>
@@ -111,188 +224,6 @@
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2014.12.55.png" alt="" /></p>
 
 <p>美好的起点，从笔尖开始&hellip;</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>神秘的土耳其</title>
-			<link>https://www.smslit.top/daily/magic-turkey/</link>
-			<pubDate>Sun, 31 Mar 2019 22:19:05 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/magic-turkey/</guid>
-			<description>今天看了一部土耳其电影《山 2》，奔着 imdb 9.7 分决定看的，怎么说呢？我又看了下豆瓣的评分 6.8，低的有点过头，为啥这么大的分差呢？网上有人说情节很</description>
-			<content type="html"><![CDATA[<p>今天看了一部土耳其电影《山 2》，奔着 imdb 9.7 分决定看的，怎么说呢？我又看了下豆瓣的评分 6.8，低的有点过头，为啥这么大的分差呢？网上有人说情节很平庸，在我看来不至于用平庸来形容，一上来就是任务，整部电影好像一直是在一种紧绷着的状态，少了一种跌宕的感觉，但是我觉得还是一部好电影的，里面的取景拍摄很高级，是大片的水准，整部电影类似于《战狼》，宣扬的是爱国报国精神，我就打个 8.2 ($\frac{9.7 + 6.8}{2}$)分吧!</p>
-
-<p>前几天看到少数派里发了一篇文章也提到了土耳其，说是注册什么 Netflix 的，记不太清楚了，好像土耳其的服务器最便宜还是什么来着，完蛋🤭，忘记&hellip;！</p>
-
-<p>再往前想，为 Vapor 官方主页翻译并 Pull Request 成功后，现在主页可以显示中文描述了，Vapor 送给我了平台 <a href="https://discordapp.com" target="_blank">Discord</a> 的一分钱，呃。。。我也用不到呀，了解了一下 Discord，做的界面和交互可以说是相当优秀了，Vapor 的论坛就是在这个平台的，必须翻墙才能上，哎&hellip;听说在国外相当火爆，腾讯都投资了🧐，这些都不是重点，重点是好像又在某个地方看到了土耳其。</p>
-
-<p>请告诉我，这不是孕妇效应<sup class="footnote-ref" id="fnref:LV-LV"><a href="#fn:LV-LV">1</a></sup>，土耳其好神秘！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:LV-LV">孕妇效应意即偶然因素随着自己的关注而让你觉得是个普遍现象，就是当人怀孕了就更容易发现孕妇，你开了奔驰就更容易看到奔驰，你拎个LV就发现满大街都是LV。世界其实挺美好的，看人把内心投射在哪里，而要投射前，先让自己的内心美好起来。相由心生，境由心造。 <a class="footnote-return" href="#fnref:LV-LV"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>浪以工作室之名</title>
-			<link>https://www.smslit.top/daily/stupid-studio/</link>
-			<pubDate>Sat, 30 Mar 2019 22:18:46 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/stupid-studio/</guid>
-			<description>许多创业者在早期，觉得还不想雇佣人（要发工资、交五险一金），通常对外号称以工作室的名义经营业务。比如，我认识许多比较历害的UI设计师，无论是</description>
-			<content type="html"><![CDATA[<blockquote>
-<p>许多创业者在早期，觉得还不想雇佣人（要发工资、交五险一金），通常对外号称以工作室的名义经营业务。比如，我认识许多比较历害的UI设计师，无论是在公司上班业余接私单，还是自己全职接大活，都喜欢以“XX设计工作室”的名义对外揽活。</p>
-
-<p>事实上，他们口中的工作室，是假的“工作室”，就是自己租的房子，吃饭、睡觉、工作的场所，问他能否提供发票时，才知道，这个“工作室”是没有去工商注册，当然就没有发票可言了。</p>
-</blockquote>
-
-<p>呀，好了，以后我就自称是 <strong>十里工作室</strong> 了🤔。<a href="https://www.zhihu.com/people/laofei/activities" target="_blank">黄非</a><sup class="footnote-ref" id="fnref:BB-2002-4-2006-2"><a href="#fn:BB-2002-4-2006-2">1</a></sup> 说：作为新兴行业的创业者，在早期草根阶段，强烈去工商注册具有正规营业执照的“工作室”，这样，你才是名正言顺的“工作室”！&hellip;关于税收，就说到工作室的命门了，许多人注册工作室，目的是为了实现收入的合法化，开票了，就不用担心我的收入没有交税了。此外，我当然也希望交的税能够税负越低越好咯。</p>
-
-<p>呃&hellip;好吧，有点麻烦，先 Mark！还是继续修炼修炼出山后再浪以工作室之名吧！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:BB-2002-4-2006-2">黄非，互联网界外号“老非”，连续创业者/自媒体人/瞎BB砖家/俊男——就是时下流行的斜杠青年。2002年毕业于厦门大学会计系，4年会计师事务所混霸经验，2006年创办尚科网络，2014作为联合创始人创办“请他教”，现在想不开在折腾“数豆者”，开发了一款永久免费的财务软件【科目记】供中小企业会计使用。 <a class="footnote-return" href="#fnref:BB-2002-4-2006-2"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>OpenEmu - 红白的记忆</title>
-			<link>https://www.smslit.top/daily/nes-openemu/</link>
-			<pubDate>Fri, 29 Mar 2019 12:56:53 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/nes-openemu/</guid>
-			<description>红白机，小霸王学习机等等承载着 80尾巴-90头 这代很多人的游戏往事，我管这叫红白的记忆，不是粉红色的记忆！🤩 十里本人是一个 90 后，儿时是和两个</description>
-			<content type="html"><![CDATA[<p>红白机，小霸王学习机等等承载着 80尾巴-90头 这代很多人的游戏往事，我管这叫红白的记忆，不是粉红色的记忆！🤩</p>
-
-<figure class="right">
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-29-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-29%2016.23.14.jpg"/> 
-</figure>
-
-
-<p>十里本人是一个 90 后，儿时是和两个发小一起浪到大的，逮鱼摸虾、搭棚钻洞、玩四驱车和看动画片之外最美好的记忆就是一起玩红白机游戏了，十里属于没游戏🎮天赋的人，但也不至于特别菜，我们几个小伙伴最大的喜悦来源于玩通关一致觉得有意思的游戏(一般是在比我小一岁的发小家玩，因为他爸是个游戏迷，带着我们玩)，单人的也好双人的也罢，统统玩个底朝天，单人的话我们就排队，一个人玩一命&hellip;不过从初中开始之后就没怎么玩了！</p>
-
-<p>到了大学才知道，原来电脑上有模拟器这个东西，可以玩过去经常玩的红白机游戏，这种游戏的格式是 nes 文件，其实很惊讶，一般游戏都不到 1 MB，竟然能承载多少我们这代人（包括歪果仁）的像素游戏回忆！去年就发现了一款软件叫 <a href="http://openemu.org" target="_blank">OpenEmu</a> 。</p>
-
-<p><a href="http://openemu.org" target="_blank">OpenEmu</a> 可以说是一款万能的游戏模拟器了，支持 29 种类似的游戏平台，不过我只玩过了 NES 的游戏，游戏画面的渲染模式也有好几种，可以说是我用过的游戏模拟器中最棒的了，除了玩游戏之外，还可以管理游戏，暂存游戏状态等，支持很多种控制器，当然十里这里使用键盘模拟手柄按键的!</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-29-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-29%2016.34.34.png" width="754px"/> 
-</figure>
-
-
-<p>要劳逸结合嘛，所以有时候搬砖搬累了就会玩玩 NES 游戏，放松一下（情怀时刻🤣）！来一局经典的超级玛丽，这是十里玩的第一款红白机游戏：</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-29-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-29%2016.33.48.png" width="754px"/> 
-</figure>
-
-
-<p>PS: 现在感觉游戏好简单，有些轻松可以通关，毕竟自己没天赋，还有一些还是感觉有点难！🤔</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>raywenderlich 高质量的视频教程</title>
-			<link>https://www.smslit.top/daily/raywenderlich-nice/</link>
-			<pubDate>Thu, 28 Mar 2019 19:36:02 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/raywenderlich-nice/</guid>
-			<description>今天看到 Kevin 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 Raywenderlich 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！</description>
-			<content type="html"><![CDATA[<p>今天看到 <a href="https://zhowkev.in" target="_blank">Kevin</a> 微博分享到 ARKit 的视频教程在免费，点开链接。啊！原来是 <a href="https://www.raywenderlich.com" target="_blank">Raywenderlich</a> 出品呀，十里一直关注的平台，大牛们也一直关注，他们也需要随时充个电嘛，站个队！<a href="https://www.raywenderlich.com" target="_blank">Raywenderlich</a> 出品必属精品。哎，不禁想起好朋友东东经常对我的高度评价“xx出品，必属精品”，哈哈，怀念（现在分隔两地）🤪！</p>
-
-<p>因为一直惦记 raywenderlich 今年二月份刚出的 Vapor 的教程，但是需要订阅才能查看，but 它们国外支付都一个尿性，订阅只支持信用卡，哀莫大于心死！只好求助于万能的某宝<sup class="footnote-ref" id="fnref:https-www-taobao"><a href="#fn:https-www-taobao">1</a></sup>，果真有！买了一个订阅一个月的账号，想想都知道，店主是把账号分给很多人用的，使用过程中果然，网站时不时提醒：同时只能一个人使用！💢🤮🤬</p>
-
-<p>不爽😕！看来我要祭出我的神器了 - *Downie 3*，这是一款专门下载网页内视频的，但是一开始只能下载免费的那个视频，不用担心，神器之所以是神器，在于真的有神力🤫！Downie3 支持一种手动的模式，它会打开一个类似于浏览器的页面，只要在这个页面登陆订阅 raywenderlich 的账号，就可以为所欲为的下载解析出来的视频了，不要太 high！🤙🏻🤙🏻🤙🏻</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:https-www-taobao">之前做嵌入式开发的时候，经常与外设芯片或设备打交道，如果在网页找不到芯片或设备的相关资料，那来到 <a href="https://www.taobao.com" target="_blank">某宝</a> 轻易查到相关资料的可能性极大！ <a class="footnote-return" href="#fnref:https-www-taobao"><sup>[return]</sup></a></li>
-</ol>
-</div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>当颜控又盯上了 gruvbox</title>
-			<link>https://www.smslit.top/daily/scheme-changing/</link>
-			<pubDate>Wed, 27 Mar 2019 23:22:47 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/scheme-changing/</guid>
-			<description>作为一个颜控无论终端还是编辑器，用了四年的 solarized 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推</description>
-			<content type="html"><![CDATA[
-
-<p>作为一个颜控无论终端还是编辑器，用了四年的 <a href="https://ethanschoonover.com/solarized/" target="_blank">solarized</a> 主题，一直使用 dark 系，平时敲命令写代码，都能得到统一的视觉享受，也会不遗余力的向周围的朋友和同事推荐这个经典的主题，不管他们喜不喜欢，反正我是很青睐的！</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-27-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-27%2023.38.21.png" width="450px"/> 
-</figure>
-
-
-<p>但是前段时间在研究 vim 的 lsp 的使用的时候，vim-lsp 插件的 README 中提到的 gruvbox 引起了我的注意。哇！一了解原来是一款相见恨晚的主题，呃。。。就这么抛弃了 solarized ，十里替他伤心！当颜控遇到好的主题 -&gt; 什么 iterm2、vim 还有 vscode 都改成了 gruvbox 主题的 dark 系。</p>
-
-<p>用了快一周了，如 solarized 一样非常合十里的口味，眼睛很舒服，开心地搬砖！</p>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-27-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-27%2023.54.20.png" width="745px"/> 
-</figure>
-
-
-<h2 id="也许您需要">也许您需要</h2>
-
-<ul>
-<li>iterm2: <a href="https://github.com/morhetz/gruvbox-contrib/tree/master/iterm2" target="_blank">morhetz/gruvbox-contrib/iterm2</a></li>
-<li>vim: <a href="https://github.com/morhetz/gruvbox" target="_blank">morhetz/gruvbox</a></li>
-<li>vscode: <a href="https://github.com/jdinhify/vscode-theme-gruvbox" target="_blank">jdinhify/vscode-theme-gruvbox</a></li>
-</ul>
-
-<h2 id="iterm2-主题配色对比">iterm2 主题配色对比</h2>
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-27-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-28%2000.06.03.png" width="689px"/> 
-</figure>
-
-
-<hr />
-
-<figure>
-    <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-27-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-28%2000.06.17.png" width="689px"/> 
-</figure>
-
-]]></content>
-		</item>
-		
-		<item>
-			<title>Apple 2019 春季发布会</title>
-			<link>https://www.smslit.top/daily/apple-spring-conference-2019/</link>
-			<pubDate>Tue, 26 Mar 2019 12:03:44 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/apple-spring-conference-2019/</guid>
-			<description>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Ap</description>
-			<content type="html"><![CDATA[<p>本来打算不熬夜看春季发布会的，最近太累了，而且又到了春困之时，得克制！But，睡不着了，那就委屈一下自己看看春季发布会，:-D。发布会上Apple 强调了 <strong>硬件-软件-服务</strong> 的铁三角战略，所以顺理成章地在发布会上发布了一个接一个服务，果然如网络上传播的消息一致！而且好像绝大部分跟我们绝大部分中国用户没多大关系嘛，boring&hellip;看了一半多竟然睡着了🤣😴。</p>
-
-<p>早上醒来后看报道，发现睡着前竟然是看完了所有的服务发布，会面俨然成了明星见面会的时候就不小心进入梦乡了，哈哈！说笑归说笑，发布的服务涉及了人们生活的很大方面：阅读 📰、支付 💳、游戏 🎮 和 观影 🎟:</p>
-
-<ul>
-<li>Apple News+：涵盖300多种报刊或推荐文章的订阅服务</li>
-<li>依托于苹果支付（Apple Pay）的苹果信用卡Apple Card</li>
-<li>Apple Arcade：iOS系统内部的游戏平台</li>
-<li>苹果推出两款流媒体服务：TV Channels和原创节目集合Apple TV+</li>
-</ul>
-
-<p>Apple 一直致力于 <strong>硬件-软件-服务</strong> 三方面的发展，其实有些不均衡的，软件和硬件可以说非常强大了，但是过去服务还是单一了一些，这次发布会可以说是史上最软了吧，可以看出 Apple 要大力发展服务的决心，毕竟目前来看硬件和软件的营收开始出现萎靡缩水的现象，扩展业务，发展内容分发和订阅服务势在必行！想到 Apple 这是想着法得挣我们消费者的钱，就有点那个 🤯。。。但是如果服务到位，大家还是愿意打开钱包的嘛，相信 Apple 会像硬件和软件一样会提供高质量服务，这也应该是 Apple 产品用户喜闻乐见的！</p>
 ]]></content>
 		</item>
 		

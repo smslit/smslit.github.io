@@ -7,8 +7,43 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 11 Apr 2019 19:05:39 +0800</lastBuildDate>
+		<lastBuildDate>Sun, 14 Apr 2019 21:34:04 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Parallels Desktop 体验极佳</title>
+			<link>https://www.smslit.top/daily/nice-virtual-machine/</link>
+			<pubDate>Sun, 14 Apr 2019 21:34:04 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/nice-virtual-machine/</guid>
+			<description>今天发现昨天 Bootcamp 安装的 windows 好像有 bug，mac 出现了假死状态，而且动不动就与外接显示器失联，无法忍受，又把 windows 干掉了！😤，决定使用虚拟机安装 win</description>
+			<content type="html"><![CDATA[<p>今天发现昨天 Bootcamp 安装的 windows 好像有 bug，mac 出现了假死状态，而且动不动就与外接显示器失联，无法忍受，又把 windows 干掉了！😤，决定使用虚拟机安装 windows，首先使用了之前用过的 virtual box，🤨，竟然有点卡，而且显示也有挺大问题的，看网上说 mac 下 Parallels Desktop 体验最好，试了一下，太惊喜了！显示效果极棒，应该是针对 HiDPI 优化的很好，另外文件和粘贴板也是打通了的，可以说是开箱即用，体验贼棒！</p>
+
+<p>什么！为了这个 windows 的开发环境已经纠结了一天了，不要紧不要紧，有 Parallels Desktop 加持，花了两个小时做出来了今天要开发的 KingHistorian 数据库数据查询工具，扔进远程主机，用 python 编写了测试程序试了一下数据的获取和解析，就差长时间测试了，今天的任务完美收工！</p>
+
+<p>PS：看来有必要得准备一个 windows 主机来应对 windows 下的开发需求！另外， Parallels Desktop  真香！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Windows，又见面了</title>
+			<link>https://www.smslit.top/daily/hello-windows-again/</link>
+			<pubDate>Sat, 13 Apr 2019 19:36:20 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/hello-windows-again/</guid>
+			<description>以为 pyodbc 可以解决在 远程 windows 主机中获取甲方爸爸的另类数据库的数据，万万没有想到，数据是可以获取但是时间戳的格式不忍直视。最后发现，极有可能是这个数</description>
+			<content type="html"><![CDATA[<p>以为 pyodbc 可以解决在 远程 windows 主机中获取甲方爸爸的另类数据库的数据，万万没有想到，数据是可以获取但是时间戳的格式不忍直视。最后发现，极有可能是这个数据库的 ODBC 驱动的问题，与 pyodbc 的配合不是很默契。只能换另一种思路获取数据了，因为这个数据库有 c/c++ 的开发接口，可以直接与数据库的服务进行交互，在数据库 GUI 管理工具的安装目录下竟然让我给找出来了一些简单的例程，🥳。</p>
+
+<p>得使用 Visual Studio 进行开发，尽管内心是拒绝的，但还是用 Bootcamp 安装了个 windows，安装了 VS，开始了“愉快”的 vc++ 的开发之旅。幸好之前上学的时候学过 VC++ 的开发，发现其中一个例程是执行 sql 语句的，不过是 MFC 界面的工具，想好了两种方式与 python 进行数据对接：</p>
+
+<ul>
+<li>编写一个通用的可以执行 SQL 语句的命令行工具，因为只需要获取数据，所以可以通过 csv 文件向 python 传递数据</li>
+<li>编写一个 python 模块，实现一些简单的必要功能，可以在 python 中导入使用，这个方法其实更香一点</li>
+</ul>
+
+<p>最后决定先用第一种方法，更省时间，目前看这一块不会造成速度瓶颈！Nice，明天就写一个命令行工具，windows，又见面了，虽然不大想见！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>离线安装 python 第三方库</title>
@@ -177,53 +212,6 @@ $$</p>
 <li id="fn:Debug-adapter-pr">Debug adapter protocol <a class="footnote-return" href="#fnref:Debug-adapter-pr"><sup>[return]</sup></a></li>
 </ol>
 </div>
-]]></content>
-		</item>
-		
-		<item>
-			<title>007 还是 996</title>
-			<link>https://www.smslit.top/daily/007-996/</link>
-			<pubDate>Wed, 03 Apr 2019 18:46:34 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/007-996/</guid>
-			<description>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人</description>
-			<content type="html"><![CDATA[<p>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人道！</p>
-
-<blockquote>
-<p>996.ICU 指的是 “工作996”， 生病ICU。在中国，这是程序员之间的一种自嘲的说法，意思是按照996的模式工作，那以后就得进ICU了。</p>
-</blockquote>
-
-<p>挺有意思的项目哈，持续关注了快一周了，曾看到 issue 一度成为靓丽的广告牌，各种招聘求职，失控了，作者估计都要崩溃了，已经关闭 issue，要疯了！</p>
-
-<p>有意思的是，今天跟甲方爸爸的一名技术人员聊天的时候:</p>
-
-<ul>
-<li>他问我：是不是快下班了？</li>
-<li>我说：我随时都在上班</li>
-<li>他就来了个神回复：你是 007 吗？</li>
-<li>我淡定的回答了他：是的，我是！是不是比 996 还猛！</li>
-</ul>
-
-<p>是呀，生活中有很多职业像独立开发者的初级阶段一样真的要 007 了，当然很浮夸了，只是夸张说的是工作随时随地，没有上下班，😂，不必认真！</p>
-
-<p>PS: 我真的是 007 🤩，不人道是天道&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;酬勤!</p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>震惊！这篇教程花了一天多的时间</title>
-			<link>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</link>
-			<pubDate>Tue, 02 Apr 2019 13:57:11 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</guid>
-			<description>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！macOS 开</description>
-			<content type="html"><![CDATA[<p>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！<a href="https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/" target="_blank">macOS 开发之 Windows 和 WindowController</a> 这篇文章应该是有史以来写的最长的一篇教程了，整篇文章突破了 6000 字，Amazing&hellip;</p>
-
-<p>其实在写这篇文章的时候，在插图上花了些功夫，用 Surface 画了些可爱的示意图，忽然有种艺术细胞要点燃的感觉，哈哈，就是想画画，虽然有点简单，但是貌似感受了画画善用图层带来的效率福利。现在回想起来，以前 surface 就在眼前，为啥没想着用它来练习画插图呢！这里十里要推荐一款软件，<a href="https://www.sketchbook.com" target="_blank">SketchBook</a>，是 AutoDesk 公司的一款短小精悍的神器，好像从去年开始就免费了，记得之前用数位板在 macOS 练习画画的时候就用的这款软件，尽管之前练习了没多久就放弃了😅，但是现在拾起来挺容易的，丝滑！</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-04-02-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-02%2014.12.55.png" alt="" /></p>
-
-<p>美好的起点，从笔尖开始&hellip;</p>
 ]]></content>
 		</item>
 		

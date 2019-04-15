@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 11 Apr 2019 19:05:39 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Apr 2019 21:34:04 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Parallels Desktop 体验极佳</title>
+      <link>https://www.smslit.top/daily/nice-virtual-machine/</link>
+      <pubDate>Sun, 14 Apr 2019 21:34:04 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/nice-virtual-machine/</guid>
+      <description>今天发现昨天 Bootcamp 安装的 windows 好像有 bug，mac 出现了假死状态，而且动不动就与外接显示器失联，无法忍受，又把 windows 干掉了！😤，决定使用虚拟机安装 win</description>
+    </item>
+    
+    <item>
+      <title>Windows，又见面了</title>
+      <link>https://www.smslit.top/daily/hello-windows-again/</link>
+      <pubDate>Sat, 13 Apr 2019 19:36:20 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/hello-windows-again/</guid>
+      <description>以为 pyodbc 可以解决在 远程 windows 主机中获取甲方爸爸的另类数据库的数据，万万没有想到，数据是可以获取但是时间戳的格式不忍直视。最后发现，极有可能是这个数</description>
+    </item>
     
     <item>
       <title>离线安装 python 第三方库</title>
@@ -82,24 +100,6 @@
       
       <guid>https://www.smslit.top/daily/coc-nvim-taste-good/</guid>
       <description>前些天网友 Linger 推荐给十里一个 vim 上用的插件 coc.nvim1，这个插件就像 vim-lsp 一样让 vim 支持 LSP2，但实现的更为彻底，还支持安装 coc 插件，支持绝大部</description>
-    </item>
-    
-    <item>
-      <title>007 还是 996</title>
-      <link>https://www.smslit.top/daily/007-996/</link>
-      <pubDate>Wed, 03 Apr 2019 18:46:34 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/007-996/</guid>
-      <description>最近 github 上的 996 项目可谓是火的不能再火了，一路 star 狂奔，前些天已经超过 bootstrap 了，目前已经超过 16 万了，python 之父都专门发了 twitter，称：不人</description>
-    </item>
-    
-    <item>
-      <title>震惊！这篇教程花了一天多的时间</title>
-      <link>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</link>
-      <pubDate>Tue, 02 Apr 2019 13:57:11 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/more-time-for-macOS-dev-post/</guid>
-      <description>这一两天在写一篇 macOS 开发相关的文章，竟然花了我一天多的时间，为什么花这么长时间在一篇文章上！既然踏上了征途，必须死磕到底，写完你！macOS 开</description>
     </item>
     
   </channel>

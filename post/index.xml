@@ -7,8 +7,145 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 01 Apr 2019 08:20:10 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 05 Aug 2019 17:17:42 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PlatformIO IDE(VScode) 下调试 STM32 平台程序</title>
+			<link>https://www.smslit.top/2019/08/05/platformio-debug/</link>
+			<pubDate>Mon, 05 Aug 2019 17:17:42 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/08/05/platformio-debug/</guid>
+			<description>PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在</description>
+			<content type="html"><![CDATA[
+
+<p><strong>PlatformIO</strong> 系列文章 <a href="/2017/11/08/stm32InPIO-start/#调试配置" target="_blank"><strong>stm32开发新方式-platformio</strong></a> 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在我们可以使用内建支持更好的方式调试我们的 ST MCU 的程序了，那今天我们就聊一下这一块内容。</p>
+
+<p>官方称其为 PIO Unified Debugger，很好理解，就是统一的调试器，意思是凡是 PIO 支持的可调式的 MCU 开发平台均可以使用统一功能的调试器，PIO 跨平台的特性仍然支持程序调试，也就是说在 windows、linux和 macOS 下均可以得到相同的开发体验。</p>
+
+<blockquote>
+<p>You should have PIO Account to work with PIO Unified Debugger. A registration is FREE.</p>
+</blockquote>
+
+<p>官方说明免费使用这个调试功能需要登录一个 PIO 账户，这个很简单嘛，注册一个然后在 VSCode 的 PIO IDE 中登录即可，这可能是唯一的限制了！</p>
+
+<h2 id="功能特性">功能特性</h2>
+
+<p>官方文档中提到 VScode 搭建的 PIO 开发环境可以提供最强大的调试功能特性，包括以下：</p>
+
+<ul>
+<li><strong>局部、全局和静态变量的浏览器</strong> (Local, Global, and Static Variable Explorer)</li>
+<li><strong>条件断点</strong> (Conditional Breakpoints)</li>
+<li><strong>表达式监控</strong> (Expressions and Watchpoints)</li>
+<li><strong>通用寄存器检阅</strong> (Generic Registers)</li>
+<li><strong>外设寄存器检阅</strong> (Peripheral Registers)</li>
+<li><strong>内存数据检阅器</strong> (Memory Viewer)</li>
+<li><strong>汇编检阅</strong> (Disassembly)</li>
+<li><strong>多线程支持</strong> (Multi-thread support)</li>
+<li><strong>调试会话的热重启和激活</strong> (A hot restart of an active debugging session)</li>
+</ul>
+
+<p>以下为 <strong>genericSTM32F103C8</strong> 开发板使用 Arduino 开发框架时调试程序时的界面：</p>
+
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ukpd0n9wj31hc0u0q80.jpg" alt="" /></p>
+
+<h2 id="实践">实践</h2>
+
+<p>下面我们就以 <strong>genericSTM32F103C8</strong> 开发板使用 Arduino 开发框架为例讲解一下，调试程序是多么的简单。</p>
+
+<h3 id="前提条件">前提条件</h3>
+
+<h4 id="开发环境">开发环境</h4>
+
+<ul>
+<li>已经安装 vscode</li>
+<li>vscode 已经安装 PlatformIO IDE 插件</li>
+</ul>
+
+<p>上述条件满足后，打开 vscode 新的窗口，会如下图中所示，左边栏多出 PlatformIO 的logo，以及最下边状态栏左边有个小房子的图标：</p>
+
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ul9bsjubj31hc0u0go1.jpg" alt="" /></p>
+
+<h4 id="硬件">硬件</h4>
+
+<ul>
+<li>一个 stm32f103c8t6 的最小系统板</li>
+<li>stlink v2 调试器</li>
+</ul>
+
+<h4 id="pio-账户">PIO 账户</h4>
+
+<p>如果没有 PIO 账户那就先注册一个，打开 vscode 点击上图中提到的小房子的图标就会打开 PlatformIO 的管理页面，点击右上角的 PIO Account 图标</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5uliezdtej302i02c0hn.jpg" alt="" /></p>
+
+<p>此时会跳转到 PIO 账户登录页面，登录按钮下面有一个链接 <strong>create a new one</strong> ，点击一下即可进入注册页面：</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5ulnmveigj316i0u0wfn.jpg" alt="" /></p>
+
+<p>输入自己的邮箱，点击注册按钮即可完成注册， PlatformIO 会自动生成一个密码发到你的邮箱，返回到登录页面输入邮箱和密码登录即可。</p>
+
+<h3 id="新建项目">新建项目</h3>
+
+<p>返回到 Home 页面，点击 New Project 按钮开始新建项目，这里项目名称定义为 <strong>c8t6Blink</strong>，一个控制 LED 闪烁的简单例子，Board 就选 <strong>STM32F103C8(20k RAM. 64k Flash)(Generic)</strong> ，然后使用 <strong>Arduino</strong> 框架，最后点击 Finish 即可创建项目：</p>
+
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5um2h72phj316i0u0q4y.jpg" alt="" /></p>
+
+<p>初次创建可能需要时间会长一点，会下载编译需要的一些依赖工具包，以后再创建相同平台项目的时候就很快了。</p>
+
+<h3 id="编写程序">编写程序</h3>
+
+<p>手头上这个最小系统板上的 LED 是 PB0 管脚控制的，硬件设计是低电平 LED 点亮，所以一个简单的闪灯程序如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define LED_PIN PB0
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your setup code here, to run once:
+</span><span class="c1"></span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your main code here, to run repeatedly:
+</span><span class="c1"></span>  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+<p>点击底部状态栏左边的小对号图标就可以进行编译，编译完成后点击右边向右的箭头图标就可以烧写程序，初次上传烧写需要时间长一些，PIO 需要下载一些相关工具包，以后就是正常上传程序了，完成后就能看到程序正常运行，LED 闪了起来。</p>
+
+<h3 id="调试程序">调试程序</h3>
+
+<p>按下 <strong>F5</strong> 按键即可触发程序调试，本以为会出现类似本篇文章第一张图的样子，结果会出现以下错误：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">&gt; Executing task: platformio debug &lt;
+
+Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</span> <span class="k">for</span> environment
+终端进程已终止，退出代码: <span class="m">1</span>
+
+终端将被任务重用，按任意键关闭。</code></pre></div>
+<p>为什么会出现这个错误？原因很简单，PIO 不知道我们是用什么调试工具进行程序调试，所以需要在项目配置文件 <code>platformio.ini</code> 中指明一下我们使用 stlink 进行调试：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
+<span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
+<span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
+<span class="na">framework</span> <span class="o">=</span> <span class="s">arduino</span>
+<span class="na">debug_tool</span> <span class="o">=</span> <span class="s">stlink</span></code></pre></div>
+<p>此时点击 <strong>F5</strong> 就可以正常触发调试了，可以看到启动调试程序默认停到 main 中第一句。</p>
+
+<ul>
+<li>顶部会看到调试工具栏，可以实现调试会话的重启、程序启停、执行等操作按钮</li>
+<li>可以在代码编辑器行号前面单击添加或删除断点</li>
+<li>左侧调试工具区点击 <strong>PERIPHERALS</strong> 栏，可以查看所有外设寄存器配置，方便验证寄存器配置正确与否</li>
+<li><strong>MEMORY</strong> 栏可以添加内存地址来查看指定字节的数据，方便验证指针数据</li>
+<li><strong>监视</strong> 中可以添加监测变量，随时查看变量变化</li>
+<li><strong>变量</strong> 中展示了所有当前断点可检阅的全局、局部以及静态变量</li>
+<li><strong>调用堆栈</strong> 中展示了函数的调用层次</li>
+<li>调试控制台的最下方可以输入 <strong>adb</strong> 命令，从而实现更强大的调试操作</li>
+<li><strong>DISASSEMBLY</strong> 栏可以控制切换汇编窗口方便查看汇编代码</li>
+</ul>
+
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g5ung40o74j31hc0u0wkt.jpg" alt="" /></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>macOS 开发之 Windows 和 WindowController</title>
@@ -2546,196 +2683,6 @@ Commands:
 <li><strong><code>-v</code>, <code>--verbose</code></strong>: 打印更多的执行信息</li>
 <li><strong><code>-x</code>, <code>--xcode-output</code></strong>: 以 xcode 兼容的形式呈现错误和提醒，在 xcode 中的运行脚本中添加以后，一旦检查出错误或警告会在 xcode 的 issue 导航栏中呈现</li>
 <li><strong><code>-w</code>, <code>--fail-on-warnings</code></strong>: 遇到警告的时候返回对应代码</li>
-</ul>
-]]></content>
-		</item>
-		
-		<item>
-			<title>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</title>
-			<link>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</link>
-			<pubDate>Wed, 27 Feb 2019 10:23:39 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
-			<description>在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两</description>
-			<content type="html"><![CDATA[
-
-<p>在文章<a href="/2019/02/25/macOS-dev-nstextfield-keys/" target="_blank">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a>中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两个操作：</p>
-
-<ul>
-<li>撤销: <code>Command</code> + <code>z</code></li>
-<li>重做: <code>Shift</code> + <code>Command</code> + <code>z</code></li>
-</ul>
-
-<h1 id="实现平台">实现平台</h1>
-
-<ul>
-<li>macOS 10.14.3</li>
-<li>swift 4.2.1</li>
-<li>xcode 10.1</li>
-</ul>
-
-<h1 id="示例工程">示例工程</h1>
-
-<p>我们继续使用 <a href="/2019/02/25/macOS-dev-nstextfield-keys/" target="_blank">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a> 中的 Demo 工程，点击下面链接可以下载：</p>
-
-<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip" target="_blank">TextFieldKeyDemo</a></p>
-
-<h1 id="添加撤销和重做支持">添加撤销和重做支持</h1>
-
-<p>这里先说一下怎么做，然后再解释。</p>
-
-<h2 id="确认勾选-undo">确认勾选 undo</h2>
-
-<p>NSTextField是默认支持撤销和重做的，打开 Main.storyboard 文件，点击 view controller 中的 Text Field，按快捷键 <code>Option</code> + <code>Command</code> + 4 打开 Text Field 的 Attribute Inspector 这是就会看到 Undo 是默认勾选的：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227124649.png" alt="" /></p>
-
-<h2 id="添加快捷键支持">添加快捷键支持</h2>
-
-<p>既然支持了 Undo，那么我们只需按照相应快捷键添加相应的操作就可以了，打开文件 AppDelegate.swift，可以看到上一篇文章中复写的 <code>performKeyEquivalent:</code> 方法，添加撤销和重做的代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 支持快捷键</span>
-<span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
-    <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">modifierFlags</span><span class="p">.</span><span class="n">isDisjoint</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
-        <span class="p">}</span>
-        
-        <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;z&#34;</span><span class="p">:</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">?.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">undo</span><span class="p">()</span>
-            <span class="k">return</span> <span class="kc">true</span>
-        <span class="k">case</span> <span class="s">&#34;Z&#34;</span><span class="p">:</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">?.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">redo</span><span class="p">()</span>
-            <span class="k">return</span> <span class="kc">true</span>
-        <span class="k">default</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>添加完上述代码，按下快捷键 <code>Command</code> + <code>r</code> 运行程序，在运行起来的窗口中的文本框中输入一些字符，然后尝试按快捷键 <code>Command</code> + <code>z</code> 和 <code>Command</code> + <code>Z</code> ，恭喜你完成了撤销和重做操作的添加！</p>
-
-<ul>
-<li><code>Shift</code> + <code>Command</code> + <code>z</code> 可以理解为 <code>Command</code> + (<code>Shift</code> + <code>z</code>)，而 <code>Shift</code> + <code>z</code> 其实就是 <code>Z</code>，所以最终这个重做快捷键其实就是 <code>Command</code> + <code>Z</code>(大写的 <code>z</code>)</li>
-<li>当文本框编辑的时候其就是窗口的第一响应对象，这里使用 <code>self.window?.firstResponder</code> 就是要快速定位到正在编辑的文本对象，而不是通过 NSTextField 的对象层级关系查找键盘事件的响应对象</li>
-<li>在 macOS 中，撤销和重做被做了统一封装，由 UndoManager 类进行统一管理这两个操作，而对于继承 NSResponder 类的子类都是默认有一个 undoManager 属性的，类型就是 UndoManager，不需要手动创建。同样，NSTextField 也不例外。macOS 中文本对象的操作都是默认包含 undoManager 的管理的也不需要我们手动添加相关管理实现。</li>
-</ul>
-
-<h1 id="撤销和重做的实现原理">撤销和重做的实现原理</h1>
-
-<p>上面已经提到 App 中的撤销和重做操作是由 UndoManager 类进行管理的，虽然我们知道了如何实现 NSTextField 的撤销和重做，但是 UndoManager 实现原理和使用还是得了解一下的，后面有需求要做不是文本操作的撤销和重做功能时也就更容易上手了。</p>
-
-<h2 id="理解撤销和重做操作流程">理解撤销和重做操作流程</h2>
-
-<p>UndoManager 通过管理两个操作栈(撤销栈和重做栈)的压栈和弹栈实现 undo 和 redo，两个操作栈中保存的是最小的操作过程，这个小的操作过程被封装为 NSInvocation 对象，然后保存在两个栈中，示意大概如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227224058.png" alt="" /></p>
-
-<p>NSInvocation 是一种包含执行方法及参数的对象。</p>
-
-<p>操作流程中的操作压栈和弹栈过程分三种情况：</p>
-
-<ul>
-<li>正常操作时：将马上要进行的正常操作的逆操作进行封装压入撤销栈，然后执行正常操作</li>
-<li>要执行撤销操作时：先从撤销栈中弹出得到要进行的操作，将这一步操作的逆操作压入重做栈，然后执行刚弹出的操作</li>
-<li>要执行重做操作时：从重做栈中弹出得到要进行的操作，将其逆向操作的封装压入撤销栈，然后进行刚弹出的操作</li>
-</ul>
-
-<h2 id="撤销和重做操作的管理">撤销和重做操作的管理</h2>
-
-<h3 id="undomanager-对象的创建">UndoManager 对象的创建</h3>
-
-<p>如上面提到的，大多数情况下对象中都有一个现成的 UndoManager 对象属性，可以直接使用这个属性 undoManager。继承 NSResponder 的子类由有：NSApplication、NSPopover、NSView、NSViewController、NSWindow 和 NSWindowController。</p>
-
-<h3 id="撤销操作压栈">撤销操作压栈</h3>
-
-<p>要将操作压入撤销栈其实就是一个注册操作的过程，有三个方法：</p>
-
-<ul>
-<li><code>registerUndo(withTarget:handler:)</code> 方法，是将对象、处理一起进行注册，使用闭包的形式，例如：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndo</span><span class="p">(</span><span class="n">withTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">textField</span><span class="p">:</span> <span class="n">NSTextField</span><span class="p">)</span> <span class="k">in</span>
-    <span class="n">textField</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-<span class="p">}</span></code></pre></div>
-<ul>
-<li><p><code>registerUndo(withTarget:selector:object:)</code> 方法注册</p></li>
-
-<li><p>使用 <code>prepare(withInvocaionTarget:)</code> 方法注册：</p></li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">target</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">prepare</span><span class="p">(</span><span class="n">withInvocationTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">NSTextField</span> <span class="p">{</span>
-    <span class="n">target</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-<span class="p">}</span></code></pre></div>
-<p><strong>注：</strong></p>
-
-<p>UndoManager 对象的 undoRegistionEnabled 是 true 的时候，撤销操作可以注册，但是如果是 false 就会禁用注册功能。</p>
-
-<h3 id="清除所有的撤销操作">清除所有的撤销操作</h3>
-
-<ul>
-<li><code>removeAllActions</code>: 删除撤销栈中所有的撤销操作</li>
-<li><code>removeAllActions(withTarget:)</code>: 删除撤销栈中指定对象的所有撤销操作</li>
-</ul>
-
-<p>需要注意的一点是：UndoManager 会强引用保留对象，所以在一个对象被删除的时候一定要清除这个对象在撤销栈中的所有撤销操作。</p>
-
-<h3 id="为撤销操作命名">为撤销操作命名</h3>
-
-<p>可以使用 <code>setActionName</code> 为撤销操作进行命名，这样在全局菜单中的编辑菜单中的就能看到撤销和重做对应的具体实际的动作。</p>
-
-<h1 id="实例感受撤销和重做的实现">实例感受撤销和重做的实现</h1>
-
-<p>这里继续使用上面的工程，实现一个可以撤销和重做的整数加法器，具体实现过程如下：</p>
-
-<ul>
-<li>另外添加两个 Text Field，三个文本框分别是加数、被加数和结果，并将其作为属性绑定到 View Controller 中</li>
-<li>添加三个按钮，分别是计算、撤销和重做，同样绑定动作到 View Controller 中</li>
-<li>添加三个 Action 的实现，在撤销和重做的实现中，可以参考下面的模板实现：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">func</span> <span class="nf">doThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// do the thing here</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kd">func</span> <span class="nf">undoThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// undo the thing here</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">undoablyDoThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
-        <span class="n">me</span><span class="p">.</span><span class="n">redoablyUndoThing</span><span class="p">()</span>
-    <span class="p">})</span>
-    <span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
-    <span class="n">doThing</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">redoablyUndoThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
-        <span class="n">me</span><span class="p">.</span><span class="n">undoablyDoThing</span><span class="p">()</span>
-    <span class="p">})</span>
-    <span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
-    <span class="n">undoThing</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div>
-<p>另外还要注意的是，最好是也要将撤销按钮和重做按钮与 undoManager 的 canUndo 和 canRedo 同步，形式如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canUndo</span><span class="p">)</span><span class="o">!</span>
-<span class="kc">self</span><span class="p">.</span><span class="n">redoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canRedo</span><span class="p">)</span><span class="o">!</span></code></pre></div>
-<p>最终实现效果如下视频，视频中可以看到 ViewController 类的实现：</p>
-
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/undomanager.mp4" controls="controls" width="960"></video>
-
-<p>具体实现代码可以参考 Demo 源码：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo_UndoManager.zip" target="_blank">TextFieldKeyDemo_UndoManager</a></p>
-
-<h1 id="参考">参考</h1>
-
-<ul>
-<li>《macOS应用开发基础教程》</li>
-<li><a href="https://stackoverflow.com/questions/36491789/using-Undomanager-how-to-register-undos-using-swift-closures" target="_blank">Using UndoManager, how to register undos using Swift closures</a></li>
-<li><a href="https://developer.apple.com/documentation/foundation/undomanager" target="_blank">UndoManager</a></li>
 </ul>
 ]]></content>
 		</item>

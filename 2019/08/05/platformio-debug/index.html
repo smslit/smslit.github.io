@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="PlatformIO IDE(VScode) 下调试 STM32 平台程序">
+<meta itemprop="description" content="PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在">
+
+
+<meta itemprop="datePublished" content="2019-08-05T17:17:42&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-05T17:17:42&#43;08:00" />
+<meta itemprop="wordCount" content="1521">
+
+
+
+<meta itemprop="keywords" content="stm32,platformio,pio," />
+<meta property="og:title" content="PlatformIO IDE(VScode) 下调试 STM32 平台程序" />
+<meta property="og:description" content="PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.smslit.top/2019/08/05/platformio-debug/" />
+<meta property="article:published_time" content="2019-08-05T17:17:42&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-05T17:17:42&#43;08:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PlatformIO IDE(VScode) 下调试 STM32 平台程序"/>
+<meta name="twitter:description" content="PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>PlatformIO IDE(VScode) 下调试 STM32 平台程序</title>
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	
+	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.smslit.top">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://www.smslit.top/post/">Posts</a>
+					<a href="https://www.smslit.top/tags/">Tags</a>
+					<a href="https://www.smslit.top/about/">Me</a>
+					<a href="https://smslit.coding.me/ownwiki/">wiki</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.smslit.top/post/">Posts</a></li>
+			<li><a href="https://www.smslit.top/tags/">Tags</a></li>
+			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://smslit.coding.me/ownwiki/">wiki</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 5, 2019</span></div>
+				<h1>PlatformIO IDE(VScode) 下调试 STM32 平台程序</h1>
+			</header>
+			<div class="content">
+				
+
+<p><strong>PlatformIO</strong> 系列文章 <a href="/2017/11/08/stm32InPIO-start/#调试配置" target="_blank"><strong>stm32开发新方式-platformio</strong></a> 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在我们可以使用内建支持更好的方式调试我们的 ST MCU 的程序了，那今天我们就聊一下这一块内容。</p>
+
+<p>官方称其为 PIO Unified Debugger，很好理解，就是统一的调试器，意思是凡是 PIO 支持的可调式的 MCU 开发平台均可以使用统一功能的调试器，PIO 跨平台的特性仍然支持程序调试，也就是说在 windows、linux和 macOS 下均可以得到相同的开发体验。</p>
+
+<blockquote>
+<p>You should have PIO Account to work with PIO Unified Debugger. A registration is FREE.</p>
+</blockquote>
+
+<p>官方说明免费使用这个调试功能需要登录一个 PIO 账户，这个很简单嘛，注册一个然后在 VSCode 的 PIO IDE 中登录即可，这可能是唯一的限制了！</p>
+
+<h2 id="功能特性">功能特性</h2>
+
+<p>官方文档中提到 VScode 搭建的 PIO 开发环境可以提供最强大的调试功能特性，包括以下：</p>
+
+<ul>
+<li><strong>局部、全局和静态变量的浏览器</strong> (Local, Global, and Static Variable Explorer)</li>
+<li><strong>条件断点</strong> (Conditional Breakpoints)</li>
+<li><strong>表达式监控</strong> (Expressions and Watchpoints)</li>
+<li><strong>通用寄存器检阅</strong> (Generic Registers)</li>
+<li><strong>外设寄存器检阅</strong> (Peripheral Registers)</li>
+<li><strong>内存数据检阅器</strong> (Memory Viewer)</li>
+<li><strong>汇编检阅</strong> (Disassembly)</li>
+<li><strong>多线程支持</strong> (Multi-thread support)</li>
+<li><strong>调试会话的热重启和激活</strong> (A hot restart of an active debugging session)</li>
+</ul>
+
+<p>以下为 <strong>genericSTM32F103C8</strong> 开发板使用 Arduino 开发框架时调试程序时的界面：</p>
+
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ukpd0n9wj31hc0u0q80.jpg" alt="" /></p>
+
+<h2 id="实践">实践</h2>
+
+<p>下面我们就以 <strong>genericSTM32F103C8</strong> 开发板使用 Arduino 开发框架为例讲解一下，调试程序是多么的简单。</p>
+
+<h3 id="前提条件">前提条件</h3>
+
+<h4 id="开发环境">开发环境</h4>
+
+<ul>
+<li>已经安装 vscode</li>
+<li>vscode 已经安装 PlatformIO IDE 插件</li>
+</ul>
+
+<p>上述条件满足后，打开 vscode 新的窗口，会如下图中所示，左边栏多出 PlatformIO 的logo，以及最下边状态栏左边有个小房子的图标：</p>
+
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ul9bsjubj31hc0u0go1.jpg" alt="" /></p>
+
+<h4 id="硬件">硬件</h4>
+
+<ul>
+<li>一个 stm32f103c8t6 的最小系统板</li>
+<li>stlink v2 调试器</li>
+</ul>
+
+<h4 id="pio-账户">PIO 账户</h4>
+
+<p>如果没有 PIO 账户那就先注册一个，打开 vscode 点击上图中提到的小房子的图标就会打开 PlatformIO 的管理页面，点击右上角的 PIO Account 图标</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5uliezdtej302i02c0hn.jpg" alt="" /></p>
+
+<p>此时会跳转到 PIO 账户登录页面，登录按钮下面有一个链接 <strong>create a new one</strong> ，点击一下即可进入注册页面：</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5ulnmveigj316i0u0wfn.jpg" alt="" /></p>
+
+<p>输入自己的邮箱，点击注册按钮即可完成注册， PlatformIO 会自动生成一个密码发到你的邮箱，返回到登录页面输入邮箱和密码登录即可。</p>
+
+<h3 id="新建项目">新建项目</h3>
+
+<p>返回到 Home 页面，点击 New Project 按钮开始新建项目，这里项目名称定义为 <strong>c8t6Blink</strong>，一个控制 LED 闪烁的简单例子，Board 就选 <strong>STM32F103C8(20k RAM. 64k Flash)(Generic)</strong> ，然后使用 <strong>Arduino</strong> 框架，最后点击 Finish 即可创建项目：</p>
+
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5um2h72phj316i0u0q4y.jpg" alt="" /></p>
+
+<p>初次创建可能需要时间会长一点，会下载编译需要的一些依赖工具包，以后再创建相同平台项目的时候就很快了。</p>
+
+<h3 id="编写程序">编写程序</h3>
+
+<p>手头上这个最小系统板上的 LED 是 PB0 管脚控制的，硬件设计是低电平 LED 点亮，所以一个简单的闪灯程序如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define LED_PIN PB0
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your setup code here, to run once:
+</span><span class="c1"></span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// put your main code here, to run repeatedly:
+</span><span class="c1"></span>  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+<p>点击底部状态栏左边的小对号图标就可以进行编译，编译完成后点击右边向右的箭头图标就可以烧写程序，初次上传烧写需要时间长一些，PIO 需要下载一些相关工具包，以后就是正常上传程序了，完成后就能看到程序正常运行，LED 闪了起来。</p>
+
+<h3 id="调试程序">调试程序</h3>
+
+<p>按下 <strong>F5</strong> 按键即可触发程序调试，本以为会出现类似本篇文章第一张图的样子，结果会出现以下错误：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">&gt; Executing task: platformio debug &lt;
+
+Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</span> <span class="k">for</span> environment
+终端进程已终止，退出代码: <span class="m">1</span>
+
+终端将被任务重用，按任意键关闭。</code></pre></div>
+<p>为什么会出现这个错误？原因很简单，PIO 不知道我们是用什么调试工具进行程序调试，所以需要在项目配置文件 <code>platformio.ini</code> 中指明一下我们使用 stlink 进行调试：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
+<span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
+<span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
+<span class="na">framework</span> <span class="o">=</span> <span class="s">arduino</span>
+<span class="na">debug_tool</span> <span class="o">=</span> <span class="s">stlink</span></code></pre></div>
+<p>此时点击 <strong>F5</strong> 就可以正常触发调试了，可以看到启动调试程序默认停到 main 中第一句。</p>
+
+<ul>
+<li>顶部会看到调试工具栏，可以实现调试会话的重启、程序启停、执行等操作按钮</li>
+<li>可以在代码编辑器行号前面单击添加或删除断点</li>
+<li>左侧调试工具区点击 <strong>PERIPHERALS</strong> 栏，可以查看所有外设寄存器配置，方便验证寄存器配置正确与否</li>
+<li><strong>MEMORY</strong> 栏可以添加内存地址来查看指定字节的数据，方便验证指针数据</li>
+<li><strong>监视</strong> 中可以添加监测变量，随时查看变量变化</li>
+<li><strong>变量</strong> 中展示了所有当前断点可检阅的全局、局部以及静态变量</li>
+<li><strong>调用堆栈</strong> 中展示了函数的调用层次</li>
+<li>调试控制台的最下方可以输入 <strong>adb</strong> 命令，从而实现更强大的调试操作</li>
+<li><strong>DISASSEMBLY</strong> 栏可以控制切换汇编窗口方便查看汇编代码</li>
+</ul>
+
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g5ung40o74j31hc0u0wkt.jpg" alt="" /></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/stm32">stm32</a></span><span class="tag"><a href="https://www.smslit.top/tags/platformio">platformio</a></span><span class="tag"><a href="https://www.smslit.top/tags/pio">pio</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					1521 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2019-08-05 17:17 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.smslit.top/2019/04/01/macOS-dev-windows-and-windowcontroller/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>macOS 开发之 Windows 和 WindowController</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2019/08/05/platformio-debug/" class="leancloud_visitors" data-flag-title="PlatformIO IDE(VScode) 下调试 STM32 平台程序">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true 
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://www.smslit.top/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+	
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {equationNumbers: {autoNumber: "AMS"}},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

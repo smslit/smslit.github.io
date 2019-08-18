@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 15 Aug 2017 10:00:29 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Aug 2019 17:02:01 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/mcu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
+      <link>https://www.smslit.top/2019/08/18/platformio-libraries/</link>
+      <pubDate>Sun, 18 Aug 2019 17:02:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/18/platformio-libraries/</guid>
+      <description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
+    </item>
     
     <item>
       <title>vim也是platformio的IDE</title>

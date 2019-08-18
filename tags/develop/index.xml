@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 26 Jan 2019 15:10:40 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Aug 2019 17:02:01 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
+      <link>https://www.smslit.top/2019/08/18/platformio-libraries/</link>
+      <pubDate>Sun, 18 Aug 2019 17:02:01 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/18/platformio-libraries/</guid>
+      <description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
+    </item>
     
     <item>
       <title>macOS 开发之实现 HTTP 的 GET 和 POST 请求</title>
@@ -113,15 +122,6 @@ Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;
       
       <guid>https://www.smslit.top/2017/10/24/comtrade/</guid>
       <description>&lt;p&gt;工作中接触了comtrade这个东西，尤其最近研究故障判断算法，直接接触的就是comtrade波形文件，目前十里研究算法使用python的科学计算包&lt;code&gt;Anaconda&lt;/code&gt;，为了方便获取波形数据和快速查看波形，用python实现了comtrade模块和comtrade波形查看命令行工具。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>编程工具的选择引发的思考--至停滞不前的自己</title>
-      <link>https://www.smslit.top/2017/09/23/coding-editor/</link>
-      <pubDate>Sat, 23 Sep 2017 15:13:34 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2017/09/23/coding-editor/</guid>
-      <description>&lt;p&gt;最近有了一些感悟，十里惊恐的看到自己在很多不必要的事情上浪费了太多时间!比如编辑工具和开发平台的选择！&lt;/p&gt;</description>
     </item>
     
   </channel>

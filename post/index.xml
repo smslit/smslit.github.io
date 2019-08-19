@@ -7,8 +7,171 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sun, 18 Aug 2019 17:02:01 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 19 Aug 2019 10:49:25 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
+			<link>https://www.smslit.top/2019/08/19/platformio-libraries/</link>
+			<pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/08/19/platformio-libraries/</guid>
+			<description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
+			<content type="html"><![CDATA[
+
+<p>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就带大家了解一下在 PlatformIO IDE (VSCode) 中如何使用和管理这些库。</p>
+
+<h2 id="前言">前言</h2>
+
+<p>本文将使用 Arduino Leonardo 讲解，以文章 <a href="/2019/08/18/platformio-newproject/" target="_blank">PlatformIO IDE(VSCode) 基本使用 - 新建项目</a> 中新建的控制 LED 闪烁的工程（blink）为例。</p>
+
+<p>这个工程中 LED 的控制是阻塞式的，因为使用了 <code>delay</code> 方法，就是死等延时这造成了运算资源的浪费，有没有更好的方法控制 LED 按周期闪烁，而不阻塞呢？笔者很自然地想到了用定时器控制 led 就行啦，所以这就有了我们的新的需求，有没有第三方库支持定时器操作呢！</p>
+
+<p>PIO 提供了很好的方式帮助我们查找和管理第三方库，在下一小节跟笔者一起看一下如何找到我们需要的第三方库。</p>
+
+<h2 id="第三方库的管理">第三方库的管理</h2>
+
+<p>首先我们打开 blink 工程，然后打开 PIO Home 页面，点击左侧的 <strong>Libraries</strong> 标签打开库的标签页，我们会看到库的标签页中有四个标签页分别是：</p>
+
+<ul>
+<li><strong>Registry</strong>：仓库，在这里我们可以查找我们需要的第三方库，也能看到按照下载量排序的关键词标签，也能看到最近库的下载排名</li>
+<li><strong>Installed</strong>：在这里我们能看到曾经安装的库，并对它们进行管理</li>
+<li><strong>Build-in</strong>：在这里我们能看到安装的平台和框架中内建的库</li>
+<li><strong>Updates</strong>：在这里我们能看到需要更新的库</li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819165858-rZXhxO.png" alt="" /></p>
+
+<h3 id="库的查找">库的查找</h3>
+
+<p>按照上面提到的需求，我们在 <strong>Registry</strong> 标签页中查找库，我们在搜索框中搜索定时器对应的英文 <code>Timer</code>:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819170522-tktUXt.png" alt="" /></p>
+
+<p>可以看到会列出搜索到的结果，搜索优先会按照框架进行关键词搜索，我们看一下具体的一个条目，比如第一个库 <strong>Ticker</strong>，每个条目包含的信息如下：</p>
+
+<ul>
+<li>名称及功能描述</li>
+<li>适用的框架</li>
+<li>适用的平台</li>
+<li>关键词标签</li>
+<li>其它：下载量、例程数</li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819171521-GCYNkM.png" alt="" /></p>
+
+<p>根据第一个描述就符合我们的需求呀，我们点击一下进入库的页面：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819172308-nxocy5.png" alt="" /></p>
+
+<p>可以看到有五个标签页，这里简单说明一下：</p>
+
+<ul>
+<li><strong>Examples</strong>：展示库中包含的例程，有的包含多个，可以点击下拉列表选择不同的例程查看代码</li>
+<li><strong>Installtion</strong>：展示如何在项目工程中使用库，在 <code>platformio.ini</code> 文件中如何配置</li>
+<li><strong>Headers</strong>：库中包含的头文件</li>
+<li><strong>Manifest</strong>：这个一般不用关心，展示的是这个库在 PIO 仓库中的配置信息</li>
+<li><strong>Changelog</strong>：更新日志</li>
+</ul>
+
+<h3 id="库的安装">库的安装</h3>
+
+<p>安装库一般是两种形式，一种是全局安装，其他项目工程也能够使用，另一种是只安装到指定项目工程中。</p>
+
+<p>点击 <strong>Install</strong> 会默认全局安装，这样其它的工程项目也能使用而不用重复安装。</p>
+
+<p>另外，也可以点击 Install 按钮右边的 <code>...</code> 按钮完成指定位置的安装：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819200737-zYvJxn.png" alt="" /></p>
+
+<p>这里我们采用全局安装，点击 <code>Install</code> 按钮即可，库安装完成后会有弹窗提示。</p>
+
+<h3 id="库的卸载">库的卸载</h3>
+
+<p>有时有些库可能不再会使用，如果想卸载怎么操作？找到 Librairies 的 Installed 标签页，就会看到我们刚才安装的 <strong>Ticker</strong> 库，可以看到 <code>Uninstall</code> 按钮，点击它按照提示操作即可完成卸载，点击 <code>Reveal</code> 按钮会打开安装库的目录：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819201650-LtB1dT.png" alt="" /></p>
+
+<h3 id="库的更新">库的更新</h3>
+
+<p>PIO Home 启动后会检测库的更新，如果库有新的版本发布，就会在 Libraries - Updates 页面出现待更新的库，点击 <code>Update</code> 按钮即可实现更新！</p>
+
+<h2 id="库的使用">库的使用</h2>
+
+<h3 id="配置">配置</h3>
+
+<p>使用第三方库的方式会在库的页面的 <code>Installtion</code> 标签页展示，比如 <strong>Ticker</strong> 库的：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190819202421-yNf4mA.png" alt="" /></p>
+
+<p>需要在 <code>paltformio.ini</code> 文件中添加 <code>lib_deps</code> 项，指定库即可，主要有三种方式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">lib_deps</span> <span class="o">=</span>
+<span class="c1"># 使用库的名称</span>
+    <span class="na">Ticker</span>
+
+<span class="c1"># ... 或者使用库的 ID</span>
+    <span class="na">1586</span>
+
+<span class="c1"># ... 或者使用指定版本的库</span>
+    <span class="na">Ticker@3.1.5</span>
+    
+<span class="c1"># Semantic Versioning Rules</span>
+<span class="c1"># http://docs.platformio.org/page/userguide/lib/cmd_install.html#description</span>
+<span class="c1"># Ticker@^3.1.5</span>
+<span class="c1"># Ticker@~3.1.5</span>
+<span class="c1"># Ticker@&gt;=3.1.5</span></code></pre></div>
+<p>我们这里采用第一种方式，最终 <strong>blink</strong> 项目的 <code>platformio.ini</code> 内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="p">[</span><span class="nl">env</span><span class="p">:</span><span class="n">leonardo</span><span class="p">]</span>
+<span class="n">platform</span> <span class="o">=</span> <span class="n">atmelavr</span>
+<span class="n">board</span> <span class="o">=</span> <span class="n">leonardo</span>
+<span class="n">framework</span> <span class="o">=</span> <span class="n">arduino</span>
+<span class="n">lib_deps</span> <span class="o">=</span>
+  <span class="cp"># Using a library name
+</span><span class="cp"></span>  <span class="n">Ticker</span></code></pre></div>
+<p>这里要注意的是，一个项目工程极有可能会使用多个库，这是有两种语法配置：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1">; one line definition (comma + space)</span>
+<span class="k">[env:myenv]</span>
+<span class="na">lib_deps</span> <span class="o">=</span> <span class="s">LIBRARY_1, LIBRARY_2, LIBRARY_N</span>
+
+<span class="c1">; multi-line definition</span>
+<span class="k">[env:myenv2]</span>
+<span class="na">lib_deps</span> <span class="o">=</span><span class="s">
+</span><span class="s">  LIBRARY_1
+</span><span class="s">  LIBRARY_2
+</span><span class="s">  LIBRARY_N</span></code></pre></div>
+<h3 id="使用库">使用库</h3>
+
+<p>这样我们就可以在工程中源代码中包含库的头文件然后使用库了，因为毕竟是别人的写的库，所以应该先看一下例程的用法，然后根据自己的需求实现自己需要的功能。</p>
+
+<p>比如还是实现 1s 切换一次 LED 状态实现等的闪烁，只需要编写相应的处理函数，定义新的 Ticker 指定处理函数和时间参数即可，代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;Ticker.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">blink</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="n">uint32_t</span> <span class="n">state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">state</span> <span class="o">^=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Ticker</span> <span class="nf">timer</span><span class="p">(</span><span class="n">blink</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MILLIS</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+  <span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">timer</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+  <span class="c1">//放置其它处理操作
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div>
+<p>编译上传程序，顺利的话同样实现了 LED 的秒闪烁。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>本文只是简单的说了库管理和使用的基本常用操作，可以满足基本使用需求了，如果需要了解更多内容，可以参考：<a href="https://docs.platformio.org/en/latest/librarymanager/index.html" target="_blank">Library Manager</a>。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
@@ -20,8 +183,6 @@
 			<content type="html"><![CDATA[
 
 <p>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190818191530-rsl49p.png" alt="" /></p>
 
 <h2 id="基本概念">基本概念</h2>
 
@@ -2462,114 +2623,6 @@ $$</p>
 <video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/timer_compare.mp4" width="960px" controls="controls"></video>
 
 <p>示例工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TimerDemo.zip" target="_blank">TimerDemo</a></p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>已开源 app 实现检查更新的简单方式</title>
-			<link>https://www.smslit.top/2019/03/03/macOS-dev-simple-check-update/</link>
-			<pubDate>Sun, 03 Mar 2019 09:38:27 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/03/macOS-dev-simple-check-update/</guid>
-			<description>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种</description>
-			<content type="html"><![CDATA[
-
-<p>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种简单的方式助您实现 app 检查更新的功能。</p>
-
-<h1 id="实现平台">实现平台</h1>
-
-<ul>
-<li>macOS 10.14.3</li>
-<li>swift 4.2.1</li>
-<li>xcode 10.1</li>
-</ul>
-
-<h1 id="思路">思路</h1>
-
-<p>本文提供的方法，不需要架设服务器，只要在开源平台上托管就可以。所以，这里假设您的 app 都是在托管平台发布，并且代码也是及时推送到托管平台的。</p>
-
-<p>每个 xcode 工程中都有一个 <code>info.plist</code> 文件，使用其中的 <code>CFBundleShortVersionString</code> 键的值作为版本判断依据，app 运行起来本身能获取自己的版本号，通过网络从托管平台获取最新版本源文件中的 <code>info.plist</code> 文件，然后得到最新版本号，与自身的版本号对比，如果不一样就说明有了最新版本（更严格的判断应该是远端文件中获取的版本号新于 app 自身的版本号），然后通过提示框提醒用户有新版本发现，提示框中给出一个按钮，帮助用户跳转到开源工程最新版本的 release 页面即可。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190303111234.png" alt="" /></p>
-
-<p>这里以工程托管在 github 为例，说明几点注意的地方：</p>
-
-<ul>
-<li><p>请求的 <code>info.plist</code> 文件链接必须是直接指向原文件的，而不是浏览代码页面对应的链接，网页 github 平台上浏览工程代码，找到 <code>info.plist</code> 文件，然后点击如图位置的 <code>raw</code> 按钮即可得到源文件的直链：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190303111930.png" alt="" /></p></li>
-
-<li><p>跳转最新 release 的页面是根据 tag 名进行跳转的，所以 tag 名称最好与版本号命名规则一致，当然不一致也可以，只要最终能对应上就可以，比如十里的一个开源项目 <a href="https://github.com/smslit/textGO" target="_blank">textGO</a>，对应 tag 的 release 页面链接可以轻易获得：<code>https://github.com/smslit/textGO/releases/tag/v0.3</code> ，规则就是 <code>https://github.com/smslit/textGO/releases/tag/v</code> + 版本号</p></li>
-
-<li><p>第一步网络请求 <code>info.plist</code> 文件使用 GET 请求即可完成，网络请求相关内容可以通过另一篇文章了解：<a href="/2019/01/26/get_post_cocoa/" target="_blank">macOS 开发之实现 HTTP 的 GET 和 POST 请求</a></p></li>
-</ul>
-
-<h1 id="示例">示例</h1>
-
-<p>下面以十里的开源项目 <a href="https://github.com/smslit/textGO" target="_blank">textGO</a> 为例说明一下实现。</p>
-
-<h2 id="更新器类">更新器类</h2>
-
-<p>因为十里将项目托管到的是 github 平台，所以封装的更新器类仅适用于 github，如果适配其它平台只需修改两处 url 的处理即可。更新器类为 TextGoUpdater ，在文件 <code>TextGoUpdater.swift</code> 中定义，您可以打开这个<a href="https://github.com/smslit/textGO/blob/master/textGO/TextGoUpdater.swift" target="_blank">文件</a>查看具体实现代码。</p>
-
-<h3 id="属性">属性</h3>
-
-<p>TextGoUpdater 类中定义了两个属性，分别是 <code>user</code>、<code>url</code>。</p>
-
-<ul>
-<li><code>user</code> 指的是 github 的账户名</li>
-<li><code>url</code> 指的是 <code>info.plist</code> 文件的直链</li>
-</ul>
-
-<h3 id="方法">方法</h3>
-
-<ul>
-<li><code>init(user:)</code> 初始化方法，初始化过程中根据提供的 github 账户名和工程名推断出 <code>info.plist</code> 文件的直链并赋给 url 属性</li>
-<li><code>check(callback:)</code> 触发检查更新的过程，是公共方法。<code>callback</code> 是个逃逸闭包，完成网络请求后在进行数据处理前执行，主要方便调整控件的状态。</li>
-<li><code>checkUpdateRequestSuccess(data:response:error:callback:)</code> 封装了网络请求完成后的处理过程，是私有方法。另外使用的两个 <code>tipInfo</code> 方法在 <code>TextGoPublic.swift</code> 文件中定义，用来显示提示框告知用户检测更新的结果。检测到更新以后，会根据类的 user 属性和工程名称以及最新版本号推断出 release 页面链接。</li>
-</ul>
-
-<h3 id="使用方法">使用方法</h3>
-
-<p>使用方法很简单，主要分两种：有回调和没有回调。</p>
-
-<h4 id="无回调使用">无回调使用</h4>
-
-<p>可以在文件 <code>AppDelegate.swift</code> 中看到使用方法</p>
-
-<ul>
-<li>定义属性 updater</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">updater</span> <span class="p">=</span> <span class="n">TextGoUpdater</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="s">&#34;smslit&#34;</span><span class="p">)</span> <span class="p">{}</span></code></pre></div>
-<ul>
-<li>在 <code>checkUpdate()</code> 方法中直接调用 updater 实例的 check 方法：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">checkUpdate</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">updater</span><span class="p">.</span><span class="n">check</span><span class="p">()</span> <span class="p">{}</span>
-<span class="p">}</span></code></pre></div>
-<h4 id="有回调使用">有回调使用</h4>
-
-<ul>
-<li>定义属性 updater</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">updater</span> <span class="p">=</span> <span class="n">TextGoUpdater</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="s">&#34;smslit&#34;</span><span class="p">)</span> <span class="p">{}</span></code></pre></div>
-<ul>
-<li>在 <code>checkUpdate()</code> 方法中直接调用 updater 实例的 check 方法：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">checkUpdate</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">updater</span><span class="p">.</span><span class="n">check</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// 实现对界面控件的调整</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<h2 id="执行效果">执行效果</h2>
-
-<p>textGO 是一个菜单栏小工具，通过点击<code>检查更新</code>菜单项触发更新的检查，为了更好的展示效果，以视频展示，同时修改版本号来查看有更新和没更新两种情况的效果。</p>
-
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/check_update_simple.mp4" width="960px" controls="controls"></video>
-
-<h1 id="总结">总结</h1>
-
-<p>本文更新器的实现思路比较简单，只是提供了检查更新的功能，不过一般情况下这就足够了，其实这种方法也能适用于托管平台的私有项目，可以在平台中共享出某个可以提供版本号的文件，得到它的直链就可以，思路一样，想办法更改两处链接就能实现。最后，祝您成功！</p>
 ]]></content>
 		</item>
 		

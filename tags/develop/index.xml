@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 18 Aug 2019 17:02:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 10:49:25 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
+      <link>https://www.smslit.top/2019/08/19/platformio-libraries/</link>
+      <pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/19/platformio-libraries/</guid>
+      <description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
@@ -113,15 +122,6 @@ Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;
       
       <guid>https://www.smslit.top/2017/10/31/timetogo/</guid>
       <description>&lt;p&gt;看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>comtrade文件解析</title>
-      <link>https://www.smslit.top/2017/10/24/comtrade/</link>
-      <pubDate>Tue, 24 Oct 2017 06:43:36 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2017/10/24/comtrade/</guid>
-      <description>&lt;p&gt;工作中接触了comtrade这个东西，尤其最近研究故障判断算法，直接接触的就是comtrade波形文件，目前十里研究算法使用python的科学计算包&lt;code&gt;Anaconda&lt;/code&gt;，为了方便获取波形数据和快速查看波形，用python实现了comtrade模块和comtrade波形查看命令行工具。&lt;/p&gt;</description>
     </item>
     
   </channel>

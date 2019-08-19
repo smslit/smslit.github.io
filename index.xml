@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 18 Aug 2019 17:02:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 10:49:25 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
+      <link>https://www.smslit.top/2019/08/19/platformio-libraries/</link>
+      <pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/19/platformio-libraries/</guid>
+      <description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/dream-always-here/</guid>
       <description>每个人都会有自己的追求，大大小小的。别说自己没有追求，我觉得那不可能，流浪汉都会想着下一顿饭要吃上大餐，更何况我们还没有沦落到流浪汉的地步！</description>
-    </item>
-    
-    <item>
-      <title>小鬼缠身</title>
-      <link>https://www.smslit.top/daily/sickness-playes-with-me/</link>
-      <pubDate>Mon, 08 Apr 2019 21:32:34 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/sickness-playes-with-me/</guid>
-      <description>见到你十里很高兴很激动，但在流泪，为什么会这样？因为感冒在捉弄十里。最近嘴里还长了三处口腔溃疡，嘴角上火撕裂，oh，my God！这是小病鬼缠</description>
     </item>
     
   </channel>

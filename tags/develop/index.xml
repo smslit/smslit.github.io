@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 19 Aug 2019 10:49:25 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2019 10:51:18 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
+      <link>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</link>
+      <pubDate>Wed, 21 Aug 2019 10:51:18 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</guid>
+      <description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
@@ -113,15 +122,6 @@ Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;
       
       <guid>https://www.smslit.top/2018/02/10/stm32-AFIO/</guid>
       <description>&lt;p&gt;不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>时间都去哪儿了</title>
-      <link>https://www.smslit.top/2017/10/31/timetogo/</link>
-      <pubDate>Tue, 31 Oct 2017 06:35:29 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2017/10/31/timetogo/</guid>
-      <description>&lt;p&gt;看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。&lt;/p&gt;</description>
     </item>
     
   </channel>

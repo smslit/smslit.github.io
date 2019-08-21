@@ -7,8 +7,297 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 19 Aug 2019 10:49:25 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 21 Aug 2019 10:51:18 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
+			<link>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</link>
+			<pubDate>Wed, 21 Aug 2019 10:51:18 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</guid>
+			<description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
+			<content type="html"><![CDATA[
+
+<p>最近做一个项目需要用到红外接收，项目工程针对的是 <code>STM32F103C8T6</code> 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个条件的，索性就自己造个轮子呗，也不难！</p>
+
+<h2 id="硬件连接">硬件连接</h2>
+
+<p>本文的实现驱动的硬件条件如下：</p>
+
+<ul>
+<li>STM32F103C8T6 最小系统板</li>
+<li>stlink v2 仿真调试器</li>
+<li>VS1838B 红外接收头</li>
+<li>常规的红外遥控器</li>
+</ul>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821125056-eMMm6g.jpg" alt="" /></p>
+
+<p>VS1838B 有三个管脚，VCC 、 GND 和 OUT，搭建的硬件电路很简单，不需要其他的配套电路，直接连接单片机管脚和电源就能正常使用，这里我将管脚连接到 <strong>PA0</strong> 管脚。</p>
+
+<h2 id="红外相关知识">红外相关知识</h2>
+
+<p>要想编写红外驱动需要了解红外接收器输出得信号特点，根据 VS1838B 输出信号有的放矢的设计信号解析驱动。</p>
+
+<p>笔者手头的红外遥控器采用 NEC 编码协议<sup class="footnote-ref" id="fnref:NEC-https-blog-c"><a href="#fn:NEC-https-blog-c">1</a></sup>，其中红外发射芯片会自动扫描矩阵键盘电路，根据不同的键码，生成一串二进制数据，再按每位的二进制数据用相应的红外光信号发出。遥控器上的一个按键按下后的 <strong>bit</strong> 数据:</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821135123-cVuJ0l.png" alt="" /></p>
+
+<p>引导码用于标识一个键码数据的传输开始，将传输 32 位数据，共四个字节，按照先低位后高位传输。第一个字节为用户编码，用于标识遥控器的厂家，第二个字节为用户编吗的反码，用于校验用户编码。第三个字节是按键编码用于区别按下的键，第四个字节为按键编码的反码，用于校验按键编码, 从而确保红外线传输的数据的有效性。</p>
+
+<p>引导码、位数据 0 和位数据 1 信号特征明显，可以参考如下：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821143223-HkqRTp.png" alt="" /></p>
+
+<p>上面就是红外要发射数据的格式了，真正发射光信号的时候，其实是将待发射的数据调制到一个 38KHz 的光信号中的，红外接收头比如 VS1838B，接收到这个信号后会对信号进行信号放大、带通滤波、解调、波形整形最终还原出原始的 NEC 协议按键编码，但是要注意的是从 VS1838B 输出的信号是与原始编码反相的<sup class="footnote-ref" id="fnref:35-linux-https-b"><a href="#fn:35-linux-https-b">2</a></sup>，通俗讲就是高低电平是反着的。</p>
+
+<h2 id="驱动设计思路">驱动设计思路</h2>
+
+<p>为了找到解析 VS1838B 输出信号的方法，我们还是得先分析一下引导码、位数据 0 和 位数据 1 的特征，其实我们只要找到能区分这三个信号的方法即可。</p>
+
+<p>观察上一小节信号特征图，可以发现三种信号最明显的区别就是低电平时间：</p>
+
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>低电平时间(ms)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>引导码</td>
+<td>4.5ms</td>
+</tr>
+
+<tr>
+<td>b0</td>
+<td>0.56ms</td>
+</tr>
+
+<tr>
+<td>b1</td>
+<td>1.68ms</td>
+</tr>
+</tbody>
+</table>
+
+<p>但是我们知道 VS1838B 输出信号是与图中高低信号相反的，所以针对 VS1838B 的输出信号，我们只需要判断每段高电平的时间就可以区分出引导码、位数据 0 和 位数据 1。</p>
+
+<p>一组红外数据的信号是以引导码开始的，所以正常状态下一旦判断到是引导码，下面就应该通过区分位数据信号来保存位数据生成字节数据了，需要连续分辨 32 位数据是 0 或 1即可。</p>
+
+<p>为了保证及时的判断管脚电平的变化，这里采用 IO 外部中断的方式，在中断子程序中实现解析逻辑，解析数据之前关键的一点还是得到高电平时间，将外部中断触发方式设置为电平变化触发，也就是无论电平下降沿还是上升沿都会触发中断。</p>
+
+<p>中断处理逻辑中，加入状态机的处理形式，可分两种状态：</p>
+
+<ul>
+<li><strong>正常状态</strong>：等待引导码</li>
+<li><strong>接收数据状态</strong>：解析 0、1 数据</li>
+</ul>
+
+<p>最终结果存储在一个 32 位整型数据中，那么整个中断的处理逻辑步骤可参考如下：</p>
+
+<ol>
+<li>判断进入中断时管脚电平
+
+<ul>
+<li>如果是高电平，记录此刻时间，退出中断</li>
+<li>如果是低电平，用此刻时间减去记录的时间就得到了高电平脉冲宽度（单位 us），然后进行第 2 步</li>
+</ul></li>
+<li>判断此时状态：
+
+<ul>
+<li>如果是<strong>正常状态</strong>，脉宽如果大于 4000us 说明是引导码，此时将状态切换为<strong>接收数据状态</strong>，结果置为 0，然后退出中断</li>
+<li>如果是<strong>接收数据状态</strong>，判断脉宽如果在 1120us 和 2240us 之间说明是 1 ，将结果的对应位置 1 ，然后判断是否接受完所有位：
+
+<ul>
+<li>如果是，对结果进行校验（利用反码），如果正确进行数据处理</li>
+<li>如果没有，退出中断</li>
+</ul></li>
+</ul></li>
+</ol>
+
+<h2 id="驱动程序实现">驱动程序实现</h2>
+
+<p>根据上述思路设计了红外接收驱动程序，以库的形式对程序封装，声明对象只需指定管脚和处理回调函数即可，在 PlatformIO IDE 项目工程目录 lib 中新建 IrRemote 目录，目录下放置源代码 irRemote.h 和 irRemote.cpp。理论上只要是使用 Arduino 框架，并且管脚支持 IO 外部中断，均可以正常使用。</p>
+
+<h3 id="irremote-h">irRemote.h</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef IRREMOTE_H_
+</span><span class="cp">#define IRREMOTE_H_
+</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&#34;Arduino.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IrRemoteCBPtr</span><span class="p">)(</span><span class="n">uint32_t</span><span class="p">);</span>
+
+<span class="k">enum</span> <span class="n">IrRemoteState</span> <span class="p">{</span> <span class="n">WAITING</span><span class="p">,</span> <span class="n">READING</span> <span class="p">};</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @brief 红外接收结果联合体
+</span><span class="cm"> *
+</span><span class="cm"> * 定义红外接收联合体是为了可以从原生的 32 位数据，轻松获取字节数据
+</span><span class="cm"> */</span>
+<span class="k">union</span> <span class="n">IrRemoteResult</span> <span class="p">{</span>
+  <span class="n">uint32_t</span> <span class="n">value</span><span class="p">;</span>
+  <span class="n">uint8_t</span> <span class="n">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">IrRemote</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="cm">/**
+</span><span class="cm">   * @brief 红外类的构造函数
+</span><span class="cm">   *
+</span><span class="cm">   * 指定红外的管脚和回调函数
+</span><span class="cm">   *
+</span><span class="cm">   * @param pin 连接红外数据输出的管脚
+</span><span class="cm">   * @param callback
+</span><span class="cm">   * 收到数据后要执行的回调函数，回调函数具有一个参数用于传递数据结果
+</span><span class="cm">   */</span>
+  <span class="n">IrRemote</span><span class="p">(</span><span class="n">uint8_t</span> <span class="n">pin</span><span class="p">,</span> <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">);</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * @brief 红外数据接收处理函数
+</span><span class="cm">   *
+</span><span class="cm">   * 分析红外输出电平及持续时间，解析得到数据
+</span><span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">handler</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * @brief 启动红外接收
+</span><span class="cm">   *
+</span><span class="cm">   * 开启红外数据解析逻辑
+</span><span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">begin</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * @brief 关闭红外接收
+</span><span class="cm">   *
+</span><span class="cm">   * 关闭红外数据解析逻辑
+</span><span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">end</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="n">uint8_t</span> <span class="n">pin</span><span class="p">;</span>             <span class="c1">// 连接红外输出的管脚
+</span><span class="c1"></span>  <span class="n">uint32_t</span> <span class="n">time</span><span class="p">;</span>           <span class="c1">// 上一次 FALLING 的时刻，单位 us
+</span><span class="c1"></span>  <span class="n">uint32_t</span> <span class="n">width</span><span class="p">;</span>          <span class="c1">// 脉冲宽度，单位 us
+</span><span class="c1"></span>  <span class="n">uint32_t</span> <span class="n">count</span><span class="p">;</span>          <span class="c1">// 数据接收位数计数
+</span><span class="c1"></span>  <span class="n">IrRemoteState</span> <span class="n">state</span><span class="p">;</span>     <span class="c1">// 处理状态
+</span><span class="c1"></span>  <span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">;</span>   <span class="c1">// 收到的数据结果
+</span><span class="c1"></span>  <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">;</span>  <span class="c1">// 收到数据的回调函数
+</span><span class="c1"></span>
+  <span class="cm">/**
+</span><span class="cm">   * @brief 红外接收结果校验
+</span><span class="cm">   *
+</span><span class="cm">   * 校验红外接收结果，最后两个字节互为反码即为正确结果
+</span><span class="cm">   *
+</span><span class="cm">   * @param result 解析得到的红外接收结果
+</span><span class="cm">   */</span>
+  <span class="kt">bool</span> <span class="nf">check</span><span class="p">(</span><span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cp">#endif
+</span></code></pre></div>
+<h3 id="irremote-cpp">irRemote.cpp</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;irRemote.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">nullCB</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">_</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">irRxHandler</span><span class="p">(</span><span class="n">IrRemote</span> <span class="o">*</span><span class="n">ir</span><span class="p">)</span> <span class="p">{</span> <span class="n">ir</span><span class="o">-&gt;</span><span class="n">handler</span><span class="p">();</span> <span class="p">}</span>
+
+<span class="n">IrRemote</span><span class="o">::</span><span class="n">IrRemote</span><span class="p">(</span><span class="n">uint8_t</span> <span class="n">pin</span><span class="p">,</span> <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span> <span class="o">=</span> <span class="n">pin</span><span class="p">;</span>
+  <span class="k">this</span><span class="o">-&gt;</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">;</span>
+
+  <span class="n">pinMode</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">handler</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">)</span> <span class="o">==</span> <span class="n">HIGH</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">time</span> <span class="o">=</span> <span class="n">micros</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">=</span> <span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">;</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="nl">WAITING</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">4000</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">READING</span><span class="p">;</span>
+          <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="nl">READING</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">1120</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">2240</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span> <span class="o">|=</span> <span class="p">(</span><span class="mh">0x00000001</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">32</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">WAITING</span><span class="p">;</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">detachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">);</span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">callback</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+            <span class="n">attachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="p">(</span><span class="n">voidArgumentFuncPtr</span><span class="p">)</span><span class="n">irRxHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span>
+                            <span class="n">CHANGE</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">default</span><span class="o">:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">begin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">WAITING</span><span class="p">;</span>
+  <span class="n">attachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="p">(</span><span class="n">voidArgumentFuncPtr</span><span class="p">)</span><span class="n">irRxHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">CHANGE</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">end</span><span class="p">()</span> <span class="p">{</span> <span class="n">detachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">check</span><span class="p">(</span><span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+      <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="测试驱动">测试驱动</h2>
+
+<p>编写一个例程测试一下驱动，当收到数据的时候通过串口把数据打印出来，<code>main.cpp</code> 内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;irRemote.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span> <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">HEX</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="n">IrRemote</span> <span class="nf">ir</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">test</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 启动红外接收
+</span><span class="c1"></span>  <span class="n">ir</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{}</span>
+</code></pre></div>
+<p>将连接了 VS1838B 的 stm32f103c8t6 最小系统板通过 stlink 连接电脑同时将其 usb 直连到电脑，编译上传程序，待运行以后，打开串口调试助手，对着 VS1838B 按下红外遥控按钮，便可以看到对应的 32 位原数据(从高位到低位四个字节分别是按键编码反码、按键编码、用户编码反码、用户编码)：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821162128-Mce9i5.png" alt="" /></p>
+
+<h2 id="总结">总结</h2>
+
+<p>本文讲的红外驱动实现思路对于 NEC 协议的红外数据解析应该是通用的，笔者因为使用了 Arduino 框架，所以是以 Arduino 为基础设计的驱动程序，当然不使用 Arduino 框架也可以按照实现思路进行设计对应的驱动，思路可行就可以！希望本文介绍的思路能够帮到您！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:NEC-https-blog-c"><a href="https://blog.csdn.net/yu__jia/article/details/52912762" target="_blank"> NEC红外线编码协议</a> <a class="footnote-return" href="#fnref:NEC-https-blog-c"><sup>[return]</sup></a></li>
+<li id="fn:35-linux-https-b"><a href="https://blog.csdn.net/jklinux/article/details/73498067" target="_blank">35 红外接收头在linux内核里的驱动</a> <a class="footnote-return" href="#fnref:35-linux-https-b"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
@@ -2257,372 +2546,6 @@ $$</p>
 <p>为了方便大家收藏，十里为此将上面的快捷键整理为一页 pdf ，方便大家及时查看：</p>
 
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/xcode_shortcuts.pdf" alt="" /></p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>macOS 开发之定时器的使用</title>
-			<link>https://www.smslit.top/2019/03/05/macOS-dev-timer/</link>
-			<pubDate>Tue, 05 Mar 2019 15:43:00 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/05/macOS-dev-timer/</guid>
-			<description>前段时间开发了一款状态栏小工具 时光(Time Go) ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关</description>
-			<content type="html"><![CDATA[
-
-<p>前段时间开发了一款状态栏小工具 <a href="https://github.com/smslit/timeGO" target="_blank">时光(Time Go)</a> ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关于定时器的的收获及其使用方法，我们一起进步。</p>
-
-<h1 id="实现平台">实现平台</h1>
-
-<ul>
-<li>macOS 10.14.3</li>
-<li>swift 4.2.1</li>
-<li>xcode 10.1</li>
-</ul>
-
-<h1 id="准备环境">准备环境</h1>
-
-<p>为了更好地展示定时器的使用，这里我们使用 playground 测试我们的定时器，可以使用快捷键 <code>Option</code> + <code>Shift</code> + <code>Command</code> + n 新建 playgroud 文件。在文件中我们准备一个 TimerDemo 类用于测试定时器：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">import</span> <span class="nc">Foundation</span>
-
-
-<span class="kd">class</span> <span class="nc">TimerDemo</span> <span class="p">{</span>
-    
-    <span class="kd">private</span> <span class="kd">var</span> <span class="nv">timeCount</span> <span class="p">=</span> <span class="mi">5</span>
-    
-    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">share</span> <span class="p">=</span> <span class="n">TimerDemo</span><span class="p">()</span>
-    
-    <span class="c1">// 添加不同定时器使用方法的示例代码</span>
-    <span class="kd">func</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;TimerDemo&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-<span class="p">}</span>
-
-<span class="n">TimerDemo</span><span class="p">.</span><span class="n">share</span><span class="p">.</span><span class="n">run</span><span class="p">()</span></code></pre></div>
-<p>上面定义了 TimerDemo 类，同时实现了一个 TimerDemo 的单例，方便调用方法展示效果！</p>
-
-<h1 id="定时器的使用">定时器的使用</h1>
-
-<p>网上能搜到有三种实现定时器的方式，因为苹果官方 API 的变化导致部分搜到的信息过时，本文整理的实现方法适用于上述描述的实现平台，近期应该不会过期，哈哈：</p>
-
-<ul>
-<li>Timer 类实现</li>
-<li>GCD(<a href="https://en.wikipedia.org/wiki/Grand_Central_Dispatch" target="_blank">Grand Central Dispatch</a>) 的方式</li>
-<li>利用屏幕刷新实现计数定时</li>
-</ul>
-
-<p>本人觉得第三种方式不是什么好的方式，所以本文只讲前两种方式。</p>
-
-<h2 id="使用-timer-类">使用 Timer 类</h2>
-
-<p>Timer 类的使用依赖 RunLoop(线程的事件循环，app 运行一定会有一个名为 main 的 RunLoop，主要负责界面控件的显示和交互) ，只有添加到激活状态的 RunLoop 中定时器才能正常工作。</p>
-
-<p>定时器的运行根据次数分两种：单次和循环：</p>
-
-<ul>
-<li>单次的定时器，会在指定的时间过后，自动销毁并从 RunLoop 中弹出，而不再影响 RunLoop 的运行</li>
-<li>循环的定时器，会根据指定时间间隔触发执行处理任务，需要开发者手动执行 Timer 对象的 <code>invalidate</code> 方法才能销毁并从 RunLoop 中弹出。一般使用循环定时器，不会让其一直执行，满足某种条件或执行指定次数之后，手动调用 invlaidate 方法停止定时器</li>
-</ul>
-
-<p>根据定时器的使用方式，可以分三种：</p>
-
-<ul>
-<li>使用 <code>Timer(timeInterval:repeats:block:)</code> 或 <code>Timer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法初始化 Timer 对象，将对象手动添加到指定 RunLoop 中执行</li>
-<li>使用 <code>Timer(fire:interval:repeats:block:)</code> 或 <code>Timer(fireAt:interval:target:selector:userInfo:repeats:)</code> 类方法初始化 Timer 对象，将对象手动添加到指定 RunLoop 中执行</li>
-<li>使用 <code>Timer.scheduledTimer(withTimeInterval:repeats:block:)</code> 和 <code>Timer.scheduledTimer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法，这两个方法都会创建 Timer 对象，并且以默认的运行模式添加到当前的 RunLoop 中</li>
-</ul>
-
-<p>下面我们开始尝试上面的三种方式。先在上面定义的 TimerDemo 类中声明一个 timer 属性：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">var</span> <span class="nv">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?</span></code></pre></div>
-<h3 id="第一种方式">第一种方式</h3>
-
-<h4 id="timer-timeinterval-repeats-block-类方法"><code>Timer(timeInterval:repeats:block:)</code> 类方法</h4>
-
-<ul>
-<li>timeInterval 是定时器的触发时间间隔，单位为秒</li>
-<li>repeats 布尔类型，代表是否重复，如果为 true ，定时器是循环定时器，如果为 false ，定时器是单次的</li>
-<li>block 为 <code>((timer: Timer?) -&gt; Void)</code> 类型的闭包，其中 timer 是定时器自身</li>
-</ul>
-
-<p>我们为 TimerDemo 类定义一个 <code>oneshot1</code> 方法，使用 <code>Timer(timeInterval:repeats:block:)</code> 类方法实现一个单次的定时器，如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 使用 Timer(timeInterval:repeats:block:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，单次</span>
-<span class="kd">func</span> <span class="nf">oneshot1</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:repeats:block:) 初始化，单次&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">oneFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>可以看到定时器时间间隔是 1 秒，单次，并且闭包中调用定义的 <code>oneFireHandler</code> 方法，此方法是用来处理我们需要做的定时任务的，比如我们打印一个字符串：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">oneFireHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 单次倒计时结束！&#34;</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>还需要注意的是，<code>oneshot1</code> 中初始化得到 Timer 对象后，执行 <code>RunLoop.main.add(timer:forMode:)</code> 方法将定时器加入到 RunLoop 中，这一步是必须的，其中 <code>forMode</code> 参数我们使用默认模式(<code>common</code>)，可以防止其它高优先级 mode 的事件影响定时器的运行。打印信息时同时打印了当前时间，主要作为参考看倒计时对不对。下面我们测试一下我们定义的 <code>oneshot1</code> 方法:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">TimerDemo</span><span class="p">.</span><span class="n">share</span><span class="p">.</span><span class="n">oneshot1</span><span class="p">()</span></code></pre></div>
-<p>可以看到打印结果，确实是 1 秒的时间间隔，且执行了定时器任务。</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="m">2019</span>-03-05 <span class="m">13</span>:51:07 +0000: Timer<span class="o">(</span>timeInterval:repeats:block:<span class="o">)</span> 初始化，单次
-<span class="m">2019</span>-03-05 <span class="m">13</span>:51:08 +0000: 单次倒计时结束！</code></pre></div>
-<p>上面 <code>oneshot1</code> 和 <code>oneFirehandler(timer:)</code> 的实现可以简化为下面的形式，看您的使用习惯和需求决定使用哪种形式了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">oneshot1</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:repeats:block:) 初始化，单次&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 单次倒计时结束！&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>我们继续试一下<strong>循环定时器</strong>，先定义一个循环定时器要处理的任务：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@objc</span> <span class="kd">private</span> <span class="kd">func</span> <span class="nf">loopFireHandler</span><span class="p">(</span><span class="kc">_</span> <span class="n">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
-        <span class="n">timer</span><span class="o">!</span><span class="p">.</span><span class="n">invalidate</span><span class="p">()</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 循环倒计时结束！&#34;</span><span class="p">)</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="p">=</span> <span class="mi">5</span>
-        <span class="k">return</span>
-    <span class="p">}</span>
-    <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 倒计时 </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span><span class="si">)</span><span class="s"> 秒&#34;</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p><code>loopFireHandler</code> 方法中进行倒计时，到 0 时，调用定时器对象的 <code>invalidate</code> 方法释放定时器。另外定时器的实现如下 <code>loop1</code> 方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">loop1</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:repeats:block:) 初始化，循环&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>可以看到只是 <code>repeats</code> 参数改为 true，block 中调用 <code>loopFireHandler</code> 方法，下面测试一下 <code>loop1</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">TimerDemo</span><span class="p">.</span><span class="n">share</span><span class="p">.</span><span class="n">loop1</span><span class="p">()</span></code></pre></div>
-<p>运行结果如我们所想，实现了 5 秒倒计时：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="m">2019</span>-03-05 <span class="m">14</span>:10:22 +0000: Timer<span class="o">(</span>timeInterval:repeats:block:<span class="o">)</span> 初始化，循环
-<span class="m">2019</span>-03-05 <span class="m">14</span>:10:23 +0000: 倒计时 <span class="m">4</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:10:24 +0000: 倒计时 <span class="m">3</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:10:25 +0000: 倒计时 <span class="m">2</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:10:26 +0000: 倒计时 <span class="m">1</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:10:27 +0000: 倒计时 <span class="m">0</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:10:28 +0000: 循环倒计时结束！</code></pre></div>
-<h4 id="timer-timeinterval-target-selector-userinfo-repeats-类方法"><code>Timer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法</h4>
-
-<ul>
-<li>timeInterval 定时器时间间隔，单位为秒</li>
-<li>target 定时器每次循环结束后发送消息的目标对象</li>
-<li>selector 指定定时器每次计时结束要执行的方法，必须为 <code>@objc</code> 的函数对象，所以上面定义的 <code>oneFireHandler</code> 和 <code>loopFireHandler</code> 最前面要加 <code>@objc</code> 关键词</li>
-<li>userinfo 指定用户信息，可以指定为 nil</li>
-<li>repeats 决定要不要循环执行，true 为循环，false 为单次</li>
-</ul>
-
-<p>单次和循环的定时器处理，只有方法中的 <code>repeats</code> 参数和指定的处理任务函数不一样，其它都一致，所以后面只展示循环定时器的实现。</p>
-
-<p>使用方法如下 <code>loop2</code> 方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 使用 Timer(timeInterval:target:selector:userInfo:repeats:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，循环</span>
-<span class="kd">func</span> <span class="nf">loop2</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(timeInterval:target:selector:userInfo:repeats:) 初始化，循环&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>同样需要注意的是，需要将定时器 timer 添加到 RunLoop 中去。调用这个方法 <code>TimerDemo.share.loop2()</code> 即可看到打印结果：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="m">2019</span>-03-05 <span class="m">14</span>:21:07 +0000: Timer<span class="o">(</span>timeInterval:target:selector:userInfo:repeats:<span class="o">)</span> 初始化，循环
-<span class="m">2019</span>-03-05 <span class="m">14</span>:21:08 +0000: 倒计时 <span class="m">4</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:21:09 +0000: 倒计时 <span class="m">3</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:21:10 +0000: 倒计时 <span class="m">2</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:21:11 +0000: 倒计时 <span class="m">1</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:21:12 +0000: 倒计时 <span class="m">0</span> 秒
-<span class="m">2019</span>-03-05 <span class="m">14</span>:21:13 +0000: 循环倒计时结束！</code></pre></div>
-<h3 id="第二种方式">第二种方式</h3>
-
-<h4 id="timer-fire-interval-repeats-block-类方法"><code>Timer(fire:interval:repeats:block:)</code> 类方法</h4>
-
-<p>这个方法相较于 <code>Timer(timeInterval:repeats:block:)</code> 只多了一个 <code>fire</code> 参数，这个参数代表的意思是什么时候触发第一次计时结束，类型是 Date 类，可以使用方法 <code>Date(timeIntervalSinceNow:)</code> 方法指定相对于现在的时刻，这个方法参数单位是秒，最终 <code>Timer(fire:interval:repeats:block:)</code> 类方法实现循环定时器的过程如下 <code>loop3</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer(fire:interval:repeats:block:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，循环</span>
-<span class="kd">func</span> <span class="nf">loop3</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(fire:interval:repeats:block:) 初始化，添加到 RunLoop，循环&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fire</span><span class="p">:</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="n">interval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
-    <span class="p">})</span>
-    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>注意 <code>fire</code> 参数，这里我们设置的是 <code>Date(timeIntervalSinceNow: 0)</code>，也就是现在就触发一次计时结束，此时执行 <code>TimerDemo.share.loop3()</code> 可以看到结果:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">35</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fire</span><span class="p">:</span><span class="n">interval</span><span class="p">:</span><span class="n">repeats</span><span class="p">:</span><span class="n">block</span><span class="p">:)</span> <span class="err">初始化，添加到</span> <span class="n">RunLoop</span><span class="err">，循环</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">35</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">4</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">36</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">3</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">37</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">2</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">38</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">1</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">39</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">0</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">40</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">循环倒计时结束！</span></code></pre></div>
-<p>可以看到第一行和第二行的打印时间都是 <code>2019-03-05 14:30:35 +0000</code> 这正匹配我们设置的 fire 参数，我们改一下 fire 参数为 <code>Date(timeIntervalSinceNow: 3)</code>，也就是相对于现在延后 3 秒触发第一次计时结束，执行 <code>TimerDemo.share.loop3()</code> 看一下结果：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">00</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fire</span><span class="p">:</span><span class="n">interval</span><span class="p">:</span><span class="n">repeats</span><span class="p">:</span><span class="n">block</span><span class="p">:)</span> <span class="err">初始化，添加到</span> <span class="n">RunLoop</span><span class="err">，循环</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">03</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">4</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">04</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">3</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">05</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">2</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">06</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">1</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">07</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">倒计时</span> <span class="mi">0</span> <span class="err">秒</span>
-<span class="mi">2019</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">05</span> <span class="mi">14</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">08</span> <span class="o">+</span><span class="mi">0000</span><span class="p">:</span> <span class="err">循环倒计时结束！</span></code></pre></div>
-<p>第二行与第一行的打印时间果然差了 3 秒，这下您应该明白这个 fire 参数的含义了吧！</p>
-
-<h4 id="timer-fireat-interval-target-selector-userinfo-repeats-类方法"><code>Timer(fireAt:interval:target:selector:userInfo:repeats:)</code> 类方法</h4>
-
-<p>这个方法相对于 <code>Timer(timeInterval:target:selector:userInfo:repeats:)</code> 方法多了一个 <code>fireAt</code> 参数，这个参数与上一个类方法的 <code>fire</code> 含义一致，使用就很简单了，定义 <code>loop4</code> 方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer(fireAt:interval:target:selector:userInfo:repeats:) 初始化对象，并将其添加到 main 线程的 RunLoop 中，循环</span>
-<span class="kd">func</span> <span class="nf">loop4</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer(fireAt:interval:target:selector:userInfo:repeats:) 初始化，添加到 RunLoop，循环&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">fireAt</span><span class="p">:</span> <span class="n">Date</span><span class="p">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="n">interval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-    <span class="n">RunLoop</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">timer</span><span class="o">!</span><span class="p">,</span> <span class="n">forMode</span><span class="p">:</span> <span class="p">.</span><span class="n">common</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<p>这里就不展示执行结果了。</p>
-
-<h3 id="第三种方式">第三种方式</h3>
-
-<h4 id="timer-scheduledtimer-withtimeinterval-repeats-block-类方法"><code>Timer.scheduledTimer(withTimeInterval:repeats:block:)</code> 类方法</h4>
-
-<p>此方法参数与 <code>Timer(timeInterval:repeats:block:)</code> 参数一致，所以实现定时器一定难不倒我们了，但是这里需要注意的是，使用此方法得到的 timer 对象在执行方法的时候已经添加到 RunLoop 中了，所以不需要我们手动添加到 RunLoop 了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer.scheduledTimer(withTimeInterval:repeats:block:) 方法注册运行，循环</span>
-<span class="kd">func</span> <span class="nf">loop5</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer.scheduledTimer(withTimeInterval:repeats:block:) 方法，循环&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">.</span><span class="n">scheduledTimer</span><span class="p">(</span><span class="n">withTimeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
-    <span class="p">})</span>
-<span class="p">}</span></code></pre></div>
-<h4 id="timer-scheduledtimer-timeinterval-target-selector-userinfo-repeats-类方法"><code>Timer.scheduledTimer(timeInterval:target:selector:userInfo:repeats:)</code> 类方法</h4>
-
-<p>此方法如同 <code>Timer.scheduledTimer(withTimeInterval:repeats:block:)</code> 方法，也不需要将方法返回的对象手动添加到 RunLoop 了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//  使用 Timer.scheduledTimer(timeInterval:target:selector:userInfo:repeats:) 方法注册运行，循环</span>
-<span class="kd">func</span> <span class="nf">loop6</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: Timer.scheduledTimer(withTimeInterval:repeats:block:) 方法，循环&#34;</span><span class="p">)</span>
-    <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">.</span><span class="n">scheduledTimer</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">loopFireHandler</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">userInfo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<h3 id="timer-类定时器总结">Timer 类定时器总结</h3>
-
-<p>综上，我们算是了解了 6 中类方法实现定时器，但是这种方式有个问题：因为是运行在 main 线程的的 RunLoop 中，所以可能出现时间延迟的问题，主线程主要处理 UI 控件的交互，如果在其中再有一些运算量大的操作，必定会影响定时器的执行（阻塞），也就是说 Timer 不论是在哪个 RunLoop 中，终究会是受 RunLoop 的影响。下面我们就再了解一个不受 RunLoop 影响的 GCD 方式的定时器。</p>
-
-<h2 id="gcd-方式的-timer">GCD 方式的 Timer</h2>
-
-<p>通过 GCD 方式创建的定时器不会受 RunLoop 的影响，是一种比较底层的实现，所以很高效而且不受窗口控件频繁操作的影响。GCD 方式的定时器类型为 <code>DispatchSourceTimer</code>，其实例对象可以使用 <code>DispatchSource</code> 的 <code>MakeTimerSource</code> 方法分配资源而得到，这个对象有以下常用方法：</p>
-
-<ul>
-<li>resume() 开启运行或恢复运行</li>
-<li>cancel() 取消定时器</li>
-<li>suspend() 挂起定时器，可以使用 resumne() 恢复运行</li>
-<li>setEventHandler(handler: (() -&gt; Void)?) 设置定时器任务的处理</li>
-<li>setCancelHandler(handler: (() -&gt; Void)?) 设置定时器取消时的处理</li>
-<li>schedule(deadline:repeating:leeway:) 配置定时器的时间参数</li>
-</ul>
-
-<h3 id="schedule-deadline-repeating-leeway-方法">schedule(deadline:repeating:leeway:) 方法</h3>
-
-<p>这个是 <code>DispatchSourceTimer</code> 对象用来配置时间参数的方法，本节主要介绍一下其参数。</p>
-
-<ul>
-<li>deadline 类型为 <code>DispatchTime</code> ，这个时间精度可以达到纳秒级，含义与上面 Timer 类的 <code>Timer(fire:interval:repeats:block:)</code> 方法的 <code>fire</code> 一致，不过类型不一样。<code>DispatchTime</code> 有 now() 方法用来获取现在的时间，可以与 <code>DispatchTimeInterval</code> 对象实现 + 操作，得到一个相对于时刻，<code>DispatchTimeInterval</code> 对象可以通过调用 <code>seconds(_:Int)</code> 方法得到秒，<code>milliseconds(_:Int)</code> 方法得到毫秒，<code>microseconds(_:Int)</code> 方法得到微秒，<code>nanoseconds(_:Int)</code> 方法得到纳秒</li>
-<li>repeating 与 Timer 类方法中的 repeat 不是一个意思，这里代表的是定时器时间间隔也就是 <strong>timeInterval</strong>，类型为 <code>DispatchTimeInterval</code>，比如指定一秒可以 <code>DispatchTimeInterval.seconds(1)</code>。这个参数具有默认值，当不指定这个参数的时候，这个参数就会设置为 <code>DispatchTimeInterval.never</code> ，那么<strong>定时器只执行一次</strong>。</li>
-<li>leeway 时间容差，是一个定时时间的宽容度，具有一个默认值，所以调用此方法的时候可以不用指定这个参数，如果要指定的话，也是 <code>DispatchTimeInterval</code> 类型</li>
-</ul>
-
-<h3 id="使用方法">使用方法</h3>
-
-<p>讲了上面这么多，还是用实际的例子说明，首先在 TimerDemo 类中添加如下属性：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">var</span> <span class="nv">gcdTimer</span><span class="p">:</span> <span class="n">DispatchSourceTimer</span><span class="p">?</span></code></pre></div>
-<p>单次定时器，如方法 <code>oneshot7</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// GCD 方式的定时器，单次</span>
-<span class="kd">func</span> <span class="nf">oneshot7</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: GCD 方式的定时器，单次&#34;</span><span class="p">)</span>
-    <span class="n">gcdTimer</span> <span class="p">=</span> <span class="n">DispatchSource</span><span class="p">.</span><span class="n">makeTimerSource</span><span class="p">()</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setEventHandler</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 单次倒计时结束！&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">schedule</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">resume</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div>
-<p>循环定时器，如方法 <code>loop7</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// GCD 方式的定时器，循环</span>
-<span class="kd">func</span> <span class="nf">loop7</span><span class="p">()</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: GCD 方式的定时器，循环&#34;</span><span class="p">)</span>
-    <span class="n">gcdTimer</span> <span class="p">=</span> <span class="n">DispatchSource</span><span class="p">.</span><span class="n">makeTimerSource</span><span class="p">()</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setEventHandler</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">gcdTimer</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-        <span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 倒计时 </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">timeCount</span><span class="si">)</span><span class="s"> 秒&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setCancelHandler</span><span class="p">()</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">())</span><span class="s">: 倒计时结束！&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">schedule</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">repeating</span><span class="p">:</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">resume</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div>
-<p><strong>注意</strong></p>
-
-<p>如果定时器任务中需要对 UI 控件进行操作，要将那部分操作放在主线程进行也就是用下面的代码包裹：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
-    <span class="c1">// UI控件操作</span>
-<span class="p">}</span></code></pre></div>
-<h2 id="总结">总结</h2>
-
-<p>上述定时器演示的 playgroud 可以通过下面链接查看：</p>
-
-<p><a href="https://gist.github.com/smslit/d62773e68d12816c4efc878395da2365" target="_blank">cocoaTimer.playground</a></p>
-
-<h1 id="两种方式示例对比">两种方式示例对比</h1>
-
-<p>为了凸显 GCD 方式定时器不受 UI 的操作的影响，本小节新建一个名为 TimerDemo 的工程，工程的 Main.storyboard 中添加一个按钮，两个 label 和一个滑块，合理放置位置，比如：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190306002519.png" alt="" /></p>
-
-<p>分别将两个 label 的按钮绑定属性到 ViewController 类，同时为按钮添加一个 action 用来启动两种定时器。两个 label 分别显示 Timer 定时器的倒计时时间和 GCD 方式的定时器的倒计时时间，当启动定时器后，我们频繁滑动滑杆，观察两个定时器的情况，最终实现的 ViewController 类如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">NSViewController</span> <span class="p">{</span>
-
-    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">timerLabel1</span><span class="p">:</span> <span class="n">NSTextField</span><span class="o">!</span>
-    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">timerLabel2</span><span class="p">:</span> <span class="n">NSTextField</span><span class="o">!</span>
-    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">timerButton</span><span class="p">:</span> <span class="n">NSButton</span><span class="o">!</span>
-    
-    <span class="kd">var</span> <span class="nv">count1</span> <span class="p">=</span> <span class="mi">60</span>
-    <span class="kd">var</span> <span class="nv">count2</span> <span class="p">=</span> <span class="mi">60</span>
-    <span class="kd">var</span> <span class="nv">timer</span><span class="p">:</span> <span class="n">Timer</span><span class="p">?</span>
-    <span class="kd">var</span> <span class="nv">gcdTimer</span><span class="p">:</span> <span class="n">DispatchSourceTimer</span><span class="p">?</span>
-    
-    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
-
-        <span class="c1">// Do any additional setup after loading the view.</span>
-    <span class="p">}</span>
-
-    <span class="kr">override</span> <span class="kd">var</span> <span class="nv">representedObject</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span> <span class="p">{</span>
-        <span class="kr">didSet</span> <span class="p">{</span>
-        <span class="c1">// Update the view, if already loaded.</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">startTimer</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">timer</span> <span class="p">=</span> <span class="n">Timer</span><span class="p">.</span><span class="n">scheduledTimer</span><span class="p">(</span><span class="n">withTimeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">timer</span> <span class="k">in</span>
-            <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">count1</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
-                <span class="n">timer</span><span class="p">.</span><span class="n">invalidate</span><span class="p">()</span>
-                <span class="k">return</span>
-            <span class="p">}</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">count1</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">timerLabel1</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;timer: </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">count1</span><span class="si">)</span><span class="s"> 秒&#34;</span>
-        <span class="p">}</span>
-        
-        <span class="n">gcdTimer</span> <span class="p">=</span> <span class="n">DispatchSource</span><span class="p">.</span><span class="n">makeTimerSource</span><span class="p">()</span>
-        <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">setEventHandler</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="kc">self</span><span class="p">.</span><span class="n">count2</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
-                <span class="kc">self</span><span class="p">.</span><span class="n">gcdTimer</span><span class="p">?.</span><span class="n">cancel</span><span class="p">()</span>
-                <span class="k">return</span>
-            <span class="p">}</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">count2</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
-                <span class="kc">self</span><span class="p">.</span><span class="n">timerLabel2</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;gcdTimer: </span><span class="si">\(</span><span class="kc">self</span><span class="p">.</span><span class="n">count2</span><span class="si">)</span><span class="s"> 秒&#34;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">schedule</span><span class="p">(</span><span class="n">deadline</span><span class="p">:</span> <span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">repeating</span><span class="p">:</span> <span class="p">.</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">leeway</span><span class="p">:</span> <span class="p">.</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">gcdTimer</span><span class="p">?.</span><span class="n">resume</span><span class="p">()</span>
-        
-        <span class="kc">self</span><span class="p">.</span><span class="n">timerButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>最后运行程序，疯狂滑动滑杆可以看到 GCD 方式的定时器丝毫不受影响，而 Timer 类的定时器受到了阻塞：</p>
-
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/timer_compare.mp4" width="960px" controls="controls"></video>
-
-<p>示例工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TimerDemo.zip" target="_blank">TimerDemo</a></p>
 ]]></content>
 		</item>
 		

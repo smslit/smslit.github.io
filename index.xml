@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 21 Aug 2019 10:51:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
+      <link>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</link>
+      <pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</guid>
+      <description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/offline-pip-install/</guid>
       <description>昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也</description>
-    </item>
-    
-    <item>
-      <title>套娃式开发</title>
-      <link>https://www.smslit.top/daily/matryoshka-development/</link>
-      <pubDate>Wed, 10 Apr 2019 18:38:30 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/matryoshka-development/</guid>
-      <description>最近接了一个项目，经过前几天的沟通，很负责任的说很令人崩溃，对方的技术人员可能是在安逸的大环境中生活惯了，略微有点懒而且还过于自信，技术之间</description>
     </item>
     
   </channel>

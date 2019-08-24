@@ -7,8 +7,225 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 21 Aug 2019 10:51:18 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
+			<link>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</link>
+			<pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</guid>
+			<description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
+			<content type="html"><![CDATA[
+
+<p>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一个 <strong>stm32cube</strong> 框架的工程，并且将 LED 点亮。</p>
+
+<h2 id="测试平台">测试平台</h2>
+
+<ul>
+<li>PlatformIO IDE (VSCode)</li>
+<li>stm32f103c8t6 最小系统板，板载 LED 连接在 <strong>PC13</strong> 管脚，低电平点亮</li>
+<li>stlink v2 仿真调试器</li>
+</ul>
+
+<p>测试目标：创建 <strong>stm32cube</strong> 框架的工程项目，实现 LED 周期闪烁的代码</p>
+
+<h2 id="创建工程项目">创建工程项目</h2>
+
+<p>这一步很简单，注意选择框架 <strong>stm32cube</strong><sup class="footnote-ref" id="fnref:stm32cube-cubemx"><a href="#fn:stm32cube-cubemx">1</a></sup>，开发板选择 <strong>STM32F103C8(20k RAM. 64k Flash)(Generic)</strong>，名称随便，最后点击创建即可：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824193953-b9xwHn.png" alt="" /></p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824194009-9G7nyQ.png" alt="" /></p>
+
+<h2 id="添加例程代码">添加例程代码</h2>
+
+<p>按照 <a href="https://docs.platformio.org/en/latest/tutorials/ststm32/stm32cube_debugging_unit_testing.html#adding-code-to-the-generated-project" target="_blank">STM32Cube HAL and Nucleo-F401RE: debugging and unit testing - Adding Code to the Generated Project</a> <sup class="footnote-ref" id="fnref:STM32Cube-HAL-an"><a href="#fn:STM32Cube-HAL-an">2</a></sup> 描述的过程添加适合自己开发板的代码（修改对应的 LED 管脚即可）。</p>
+
+<p>右键 src 文件夹，新建两个文件，一个是 <code>main.h</code> 另一个是 <code>main.c</code>：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824195932-qoIR8c.png" alt="" /></p>
+
+<p>向 <code>mian.h</code> 中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef MAIN_H
+</span><span class="cp">#define MAIN_H
+</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&#34;stm32f1xx_hal.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define LED_PIN GPIO_PIN_13
+</span><span class="cp">#define LED_GPIO_PORT GPIOC
+</span><span class="cp">#define LED_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()
+</span><span class="cp"></span>
+<span class="cp">#endif  </span><span class="c1">// MAIN_H
+</span></code></pre></div>
+<p>向 <code>mian.c</code> 中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;main.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">LED_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">HAL_Init</span><span class="p">();</span>
+  <span class="n">LED_Init</span><span class="p">();</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// LED 翻转
+</span><span class="c1"></span>    <span class="n">HAL_GPIO_TogglePin</span><span class="p">(</span><span class="n">LED_GPIO_PORT</span><span class="p">,</span> <span class="n">LED_PIN</span><span class="p">);</span>
+    <span class="n">HAL_Delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">LED_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// LED GPIO 初始化
+</span><span class="c1"></span>  <span class="n">LED_GPIO_CLK_ENABLE</span><span class="p">();</span>
+  <span class="n">GPIO_InitTypeDef</span> <span class="n">GPIO_InitStruct</span><span class="p">;</span>
+  <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Pin</span> <span class="o">=</span> <span class="n">LED_PIN</span><span class="p">;</span>
+  <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Mode</span> <span class="o">=</span> <span class="n">GPIO_MODE_OUTPUT_PP</span><span class="p">;</span>
+  <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Pull</span> <span class="o">=</span> <span class="n">GPIO_PULLUP</span><span class="p">;</span>
+  <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Speed</span> <span class="o">=</span> <span class="n">GPIO_SPEED_FREQ_HIGH</span><span class="p">;</span>
+  <span class="n">HAL_GPIO_Init</span><span class="p">(</span><span class="n">LED_GPIO_PORT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">GPIO_InitStruct</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">SysTick_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span> <span class="n">HAL_IncTick</span><span class="p">();</span> <span class="p">}</span></code></pre></div>
+<p>确保把 stm32f103c8t6 的最小系统板通过 stlink 连接到电脑 usb，编译并上传程序：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824222127-q3S1ZX.png" alt="" /></p>
+
+<p><strong>what？</strong> LED 竟然没有如期的闪动起来!</p>
+
+<h2 id="解决问题">解决问题</h2>
+
+<p>代码都正确呀，为什么程序没有正常工作呢?首先怀疑对象是系统时钟，用示波器测试了一下芯片的高速晶振管脚，竟然没有起振，哎呀，我们确实没有添加系统时钟配置的代码，再次对照一下用 <strong>STMCubeMX</strong><sup class="footnote-ref" id="fnref:STM32CubeMX-is-a"><a href="#fn:STM32CubeMX-is-a">3</a></sup> 生成的普通项目的源码，确实我们的工程中缺少了对于时钟的配置。</p>
+
+<p>为了解决这个问题，参考了 STMCubeMX 项目，笔者建议除了添加时钟的配置之外，还要加一些可能以后会用到的处理函数。这里我们添加两个新的文件 <code>sys_basic.h</code> 和 <code>sys_basic.c</code>。</p>
+
+<p>文件 <code>sys_basic.h</code> 内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#ifndef SYS_BASIC_H
+</span><span class="cp">#define SYS_BASIC_H
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">_Error_Handler</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+<span class="cp">#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">SystemClock_Config</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cp">#endif</span></code></pre></div>
+<p>文件 <code>sys_basic.c</code> 内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;sys_basic.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;stm32f1xx_hal.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cm">/** System Clock Configuration
+</span><span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">SystemClock_Config</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">RCC_OscInitTypeDef</span> <span class="n">RCC_OscInitStruct</span><span class="p">;</span>
+  <span class="n">RCC_ClkInitTypeDef</span> <span class="n">RCC_ClkInitStruct</span><span class="p">;</span>
+
+  <span class="cm">/**Initializes the CPU, AHB and APB busses clocks
+</span><span class="cm">   */</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">OscillatorType</span> <span class="o">=</span> <span class="n">RCC_OSCILLATORTYPE_HSE</span><span class="p">;</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">HSEState</span> <span class="o">=</span> <span class="n">RCC_HSE_ON</span><span class="p">;</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">HSEPredivValue</span> <span class="o">=</span> <span class="n">RCC_HSE_PREDIV_DIV1</span><span class="p">;</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">HSIState</span> <span class="o">=</span> <span class="n">RCC_HSI_ON</span><span class="p">;</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">PLL</span><span class="p">.</span><span class="n">PLLState</span> <span class="o">=</span> <span class="n">RCC_PLL_ON</span><span class="p">;</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">PLL</span><span class="p">.</span><span class="n">PLLSource</span> <span class="o">=</span> <span class="n">RCC_PLLSOURCE_HSE</span><span class="p">;</span>
+  <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">PLL</span><span class="p">.</span><span class="n">PLLMUL</span> <span class="o">=</span> <span class="n">RCC_PLL_MUL9</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_RCC_OscConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RCC_OscInitStruct</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_Error_Handler</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**Initializes the CPU, AHB and APB busses clocks
+</span><span class="cm">   */</span>
+  <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">ClockType</span> <span class="o">=</span> <span class="n">RCC_CLOCKTYPE_HCLK</span> <span class="o">|</span> <span class="n">RCC_CLOCKTYPE_SYSCLK</span> <span class="o">|</span>
+                                <span class="n">RCC_CLOCKTYPE_PCLK1</span> <span class="o">|</span> <span class="n">RCC_CLOCKTYPE_PCLK2</span><span class="p">;</span>
+  <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">SYSCLKSource</span> <span class="o">=</span> <span class="n">RCC_SYSCLKSOURCE_PLLCLK</span><span class="p">;</span>
+  <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">AHBCLKDivider</span> <span class="o">=</span> <span class="n">RCC_SYSCLK_DIV1</span><span class="p">;</span>
+  <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">APB1CLKDivider</span> <span class="o">=</span> <span class="n">RCC_HCLK_DIV2</span><span class="p">;</span>
+  <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">APB2CLKDivider</span> <span class="o">=</span> <span class="n">RCC_HCLK_DIV1</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_RCC_ClockConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RCC_ClkInitStruct</span><span class="p">,</span> <span class="n">FLASH_LATENCY_2</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_Error_Handler</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**Configure the Systick interrupt time
+</span><span class="cm">   */</span>
+  <span class="n">HAL_SYSTICK_Config</span><span class="p">(</span><span class="n">HAL_RCC_GetHCLKFreq</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">);</span>
+
+  <span class="cm">/**Configure the Systick
+</span><span class="cm">   */</span>
+  <span class="n">HAL_SYSTICK_CLKSourceConfig</span><span class="p">(</span><span class="n">SYSTICK_CLKSOURCE_HCLK</span><span class="p">);</span>
+
+  <span class="cm">/* SysTick_IRQn interrupt configuration */</span>
+  <span class="n">HAL_NVIC_SetPriority</span><span class="p">(</span><span class="n">SysTick_IRQn</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @brief  This function is executed in case of error occurrence.
+</span><span class="cm"> * @param  None
+</span><span class="cm"> * @retval None
+</span><span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">_Error_Handler</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">file</span><span class="p">,</span> <span class="kt">int</span> <span class="n">line</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* USER CODE BEGIN Error_Handler_Debug */</span>
+  <span class="cm">/* User can add his own implementation to report the HAL error return state */</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="cm">/* USER CODE END Error_Handler_Debug */</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">NMI_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">HardFault_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">MemManage_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">BusFault_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">UsageFault_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">SVC_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">DebugMon_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">PendSV_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span></code></pre></div>
+<p>时钟初始化在函数 <code>SystemClock_Config</code> 中实现，这里时钟源选择使用 8M 高速晶振、9倍频等等常用的时钟配置，在 <code>main.c</code> 中包含头文件 <code>sys_basic.h</code> 并在主函数 <code>HAL_Init();</code> 后加入时钟初始化函数调用 <code>SystemClock_Config();</code>。</p>
+
+<p>此时编译上传程序，可以看到 LED 如期灵动了起来！</p>
+
+<h2 id="调试程序">调试程序</h2>
+
+<p>调试程序与使用 Arduino 框架时一致，需要在配置文件中指定调试工具，这里使用的是 stlink ，所以 <code>paltformio.ini</code> 的内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
+<span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
+<span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
+<span class="na">framework</span> <span class="o">=</span> <span class="s">stm32cube</span>
+<span class="na">debug_tool</span> <span class="o">=</span> <span class="s">stlink</span></code></pre></div>
+<p>点击 F5 按键便可以进行程序调试了！</p>
+
+<h2 id="总结">总结</h2>
+
+<p>本文简单讲解了创建 stm32cube 框架的 PIO 工程的过程、遇到的问题及解决方法，希望对初次使用 PIO 开发 stm32cube 项目的同学有所帮助！</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:stm32cube-cubemx">stm32cube 对应的就是 cubemx 库，详见<a href="https://docs.platformio.org/en/latest/frameworks/stm32cube.html" target="_blank">STM32Cube</a> <a class="footnote-return" href="#fnref:stm32cube-cubemx"><sup>[return]</sup></a></li>
+<li id="fn:STM32Cube-HAL-an"><a href="https://docs.platformio.org/en/latest/tutorials/ststm32/stm32cube_debugging_unit_testing.html#tutorial-stm32cube-debugging-unit-testing" target="_blank">STM32Cube HAL and Nucleo-F401RE: debugging and unit testing</a> <a class="footnote-return" href="#fnref:STM32Cube-HAL-an"><sup>[return]</sup></a></li>
+<li id="fn:STM32CubeMX-is-a">STM32CubeMX is a graphical tool that allows a very easy configuration of STM32 microcontrollers and microprocessors, as well as the generation of the corresponding initialization C code for the Arm® Cortex®-M core or a partial Linux® Device Tree for Arm® Cortex®-A core), through a step-by-step process.——<a href="https://www.st.com/en/development-tools/stm32cubemx.html" target="_blank">STM32CubeMX</a> <a class="footnote-return" href="#fnref:STM32CubeMX-is-a"><sup>[return]</sup></a></li>
+</ol>
+</div>
+]]></content>
+		</item>
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
@@ -2170,382 +2387,6 @@ $$</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310184822.png" alt="" /></p>
 
 <p>Demo下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/VerticallyCenteredTextFieldDemo.zip" target="_blank">VerticallyCenteredTextFieldDemo.zip</a></p>
-]]></content>
-		</item>
-		
-		<item>
-			<title>快快拿走，Xcode 常用快捷键</title>
-			<link>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</link>
-			<pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
-			<description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
-			<content type="html"><![CDATA[
-
-<p>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！</p>
-
-<h1 id="说明">说明</h1>
-
-<ul>
-<li>Xocde 的快捷键不会随着版本更迭而变化太多，但还是要说明一下本文的快捷键均能在 Xcode 10.2 中正常使用</li>
-<li>正文中均使用快捷键修饰键的符号表示修饰符：
-
-<ul>
-<li>Control ⌃</li>
-<li>Option ⌥</li>
-<li>Shift ⇧</li>
-<li>Command ⌘</li>
-<li>Return ↩</li>
-</ul></li>
-</ul>
-
-<h1 id="窗口操作">窗口操作</h1>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190307154213.jpg" alt="" /></p>
-
-<h1 id="常规">常规</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>⌘,</td>
-<td>打开偏好设置</td>
-</tr>
-
-<tr>
-<td>⇧⌘0</td>
-<td>打开帮助窗口</td>
-</tr>
-
-<tr>
-<td>⇧⌘c</td>
-<td>打开调试区域的终端栏</td>
-</tr>
-
-<tr>
-<td>⌘?</td>
-<td>打开帮助搜索</td>
-</tr>
-
-<tr>
-<td>⌘n</td>
-<td>新建文件</td>
-</tr>
-
-<tr>
-<td>⌘o</td>
-<td>打开文件</td>
-</tr>
-
-<tr>
-<td>⇧⌘a</td>
-<td>向工程中添加文件</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="编译及运行">编译及运行</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>⌘b</td>
-<td>编译工程</td>
-</tr>
-
-<tr>
-<td>⇧⌘b</td>
-<td>分析工程</td>
-</tr>
-
-<tr>
-<td>⌘r</td>
-<td>运行工程</td>
-</tr>
-
-<tr>
-<td>⌘i</td>
-<td>打开 Profile</td>
-</tr>
-
-<tr>
-<td>⌘u</td>
-<td>测试工程</td>
-</tr>
-
-<tr>
-<td>⇧⌘k</td>
-<td>清理工程编译中间文件</td>
-</tr>
-
-<tr>
-<td>⌘k</td>
-<td>清空终端打印的信息</td>
-</tr>
-
-<tr>
-<td>⌘.</td>
-<td>停止运行</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="代码编辑">代码编辑</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>⌃Space</td>
-<td>显示补全提示项</td>
-</tr>
-
-<tr>
-<td>⌃.</td>
-<td>下一个补全提示项</td>
-</tr>
-
-<tr>
-<td>Tab</td>
-<td>选中补全提示项</td>
-</tr>
-
-<tr>
-<td>⌃/</td>
-<td>下一个代码 placeholder 项</td>
-</tr>
-
-<tr>
-<td>⇧⌃/</td>
-<td>上一个代码 placeholder 项</td>
-</tr>
-
-<tr>
-<td>⌘/</td>
-<td>注释或取消注释代码</td>
-</tr>
-
-<tr>
-<td>⌥⌘←</td>
-<td>折叠代码（方法或类）</td>
-</tr>
-
-<tr>
-<td>⌥⌘→</td>
-<td>展开折叠代码</td>
-</tr>
-
-<tr>
-<td>⌃⌘e</td>
-<td>编辑修改当前文件中所有出现光标处单词的地方</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="代码导航">代码导航</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>⌘→</td>
-<td>跳转到行尾</td>
-</tr>
-
-<tr>
-<td>⌘←</td>
-<td>跳转到行首</td>
-</tr>
-
-<tr>
-<td>⌘↑</td>
-<td>跳转到文件顶部</td>
-</tr>
-
-<tr>
-<td>⌘↓</td>
-<td>跳转到文件底部</td>
-</tr>
-
-<tr>
-<td>⌥→</td>
-<td>向后跳过一个单词</td>
-</tr>
-
-<tr>
-<td>⌥←</td>
-<td>向前跳过一个单词</td>
-</tr>
-
-<tr>
-<td>⌘l</td>
-<td>跳转到指定行</td>
-</tr>
-
-<tr>
-<td>⌘f</td>
-<td>在文件中查找</td>
-</tr>
-
-<tr>
-<td>⇧⌘f</td>
-<td>在工程中查找</td>
-</tr>
-
-<tr>
-<td>⌘g</td>
-<td>查找下一个</td>
-</tr>
-
-<tr>
-<td>⇧⌘g</td>
-<td>查找上一个</td>
-</tr>
-
-<tr>
-<td>⌃⌘ + 鼠标左键单击</td>
-<td>跳转到定义</td>
-</tr>
-
-<tr>
-<td>⌥ + 鼠标左键单击</td>
-<td>快速帮助</td>
-</tr>
-
-<tr>
-<td>⌃⌘d</td>
-<td>显示光标处关键字的快速帮助</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="文件导航">文件导航</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>⌃⌘←</td>
-<td>前一个打开的文件</td>
-</tr>
-
-<tr>
-<td>⌃⌘→</td>
-<td>后一个打开的文件</td>
-</tr>
-
-<tr>
-<td>⇧⌘o</td>
-<td>快速打开文件</td>
-</tr>
-
-<tr>
-<td>⌃1</td>
-<td>显示与指定代码相关的文件</td>
-</tr>
-
-<tr>
-<td>⌘n</td>
-<td>新建文件</td>
-</tr>
-
-<tr>
-<td>⌘o</td>
-<td>打开文件</td>
-</tr>
-
-<tr>
-<td>⇧⌘a</td>
-<td>向工程中添加文件</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="调试">调试</h1>
-
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>⌘ \</td>
-<td>添加或删除断点</td>
-</tr>
-
-<tr>
-<td>⌘y</td>
-<td>禁用或激活断点</td>
-</tr>
-
-<tr>
-<td>⌃⌘y</td>
-<td>继续执行</td>
-</tr>
-
-<tr>
-<td>⌃⌘c</td>
-<td>继续执行到当前行</td>
-</tr>
-
-<tr>
-<td>F6</td>
-<td>单步跳过</td>
-</tr>
-
-<tr>
-<td>F7</td>
-<td>单步进入</td>
-</tr>
-
-<tr>
-<td>F8</td>
-<td>单步跳出</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="总结">总结</h1>
-
-<p>为了方便大家收藏，十里为此将上面的快捷键整理为一页 pdf ，方便大家及时查看：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/xcode_shortcuts.pdf" alt="" /></p>
 ]]></content>
 		</item>
 		

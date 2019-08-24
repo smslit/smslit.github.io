@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 21 Aug 2019 10:51:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
+      <link>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</link>
+      <pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</guid>
+      <description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
@@ -113,15 +122,6 @@ Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;
 &lt;video src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/pap.er.mp4&#34; controls=&#34;controls&#34; width=&#34;100%&#34; poster=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153023532585285.jpg&#34;&gt;pap.er&lt;/video&gt;
 
 &lt;p&gt;昨天研究了&lt;code&gt;Popover&lt;/code&gt;的使用，所以今天以一个实例与大家分享一下！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>逼疯我的AFIO，STM32的JTAG调试接口作为GPIO用</title>
-      <link>https://www.smslit.top/2018/02/10/stm32-AFIO/</link>
-      <pubDate>Sat, 10 Feb 2018 16:34:01 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2018/02/10/stm32-AFIO/</guid>
-      <description>&lt;p&gt;不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！&lt;/p&gt;</description>
     </item>
     
   </channel>

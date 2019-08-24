@@ -47,7 +47,7 @@
 
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824195932-qoIR8c.png" alt="" /></p>
 
-<p>向 <code>mian.h</code> 中添加以下代码：</p>
+<p>向 <code>mian.h</code> 中添加以下代码，如果您的板载 LED 连接到其它管脚，请相应修改关于 LED 的三个宏定义：</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef MAIN_H
 </span><span class="cp">#define MAIN_H
 </span><span class="cp"></span>

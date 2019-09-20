@@ -211,7 +211,7 @@ docker-machine version <span class="m">0</span>.16.0, build 702c267f</code></pre
 <li>更新软件源信息：<code>apt-get update</code></li>
 <li>因为这个 ubuntu 的依赖镜像太精简了，所以好多工具没有安装，先安装一下 vim: <code>apt-get install vim</code></li>
 
-<li><p>可以看到安装挺慢的，之所以先安装 vim 是为了可以编辑 <code>/etc/apt/source.list</code> 更换为国内访问更快的软件源，比如将文件中的内容替换为如下阿里云的：</p>
+<li><p>可以看到安装挺慢的，之所以先安装 vim 是为了可以编辑 <code>/etc/apt/sources.list</code> 更换为国内访问更快的软件源，比如将文件中的内容替换为如下阿里云的：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span>
 <span class="na">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span>
 <span class="na">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span>

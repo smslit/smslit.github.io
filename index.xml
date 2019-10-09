@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Oct 2019 14:46:34 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>1. 两数之和</title>
+      <link>https://www.smslit.top/leetcode/1.twosum/</link>
+      <pubDate>Tue, 08 Oct 2019 14:46:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/leetcode/1.twosum/</guid>
+      <description>描述 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/hello-windows-again/</guid>
       <description>以为 pyodbc 可以解决在 远程 windows 主机中获取甲方爸爸的另类数据库的数据，万万没有想到，数据是可以获取但是时间戳的格式不忍直视。最后发现，极有可能是这个数</description>
-    </item>
-    
-    <item>
-      <title>离线安装 python 第三方库</title>
-      <link>https://www.smslit.top/daily/offline-pip-install/</link>
-      <pubDate>Thu, 11 Apr 2019 19:05:39 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/offline-pip-install/</guid>
-      <description>昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也</description>
     </item>
     
   </channel>

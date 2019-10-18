@@ -7,8 +7,55 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 18 Oct 2019 10:13:52 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>macbook pro 换脸成功</title>
+			<link>https://www.smslit.top/2019/10/18/mbp-screen/</link>
+			<pubDate>Fri, 18 Oct 2019 10:13:52 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/10/18/mbp-screen/</guid>
+			<description>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部</description>
+			<content type="html"><![CDATA[
+
+<p>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部最密集，造孽呀！没错，它需要得到救赎，就由我来帮它做换脸手术吧！</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191018104714-0v0def.jpg" alt="" /></p>
+
+<!-- more -->
+
+<h2 id="购买新脸">购买新脸</h2>
+
+<p>去过 Apple 实体店，换屏幕需要四千多大洋，我去，有点猛烈，为了节流，十里决定亲自帮 MBP 换脸，木有办法，需要现便宜买张合适的脸，从某宝网上花了不到两千大洋买了一个屏幕总成，整个上盖包含屏幕，A1707 深空灰版本：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191018105601-4XfdSf.jpg" alt="" /></p>
+
+<h2 id="拆屏幕">拆屏幕</h2>
+
+<p>不得不说，小心翼翼，生怕把后盖弄变形，单单后盖拆了很久，不过掌握了诀窍。MBP 做工极佳，看到内部的设计也会明白为什么卖这么贵了！为了拆屏幕，可是动了不少螺丝和结构，还好的是，不需要拆主板！</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191018111142-ggDM4B.jpg" alt="" /></p>
+
+<h2 id="安装屏幕">安装屏幕</h2>
+
+<p>屏幕取下的时候挺费劲的，往上卡屏幕也得小心，再按照倒序还原螺丝和结构的位置就 OK 了：</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191018112349-FEAIqy.jpg" alt="" /></p>
+
+<p>最后开机，完美点亮屏幕</p>
+
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191018112421-WBnF7U.jpg" alt="" /></p>
+
+<h2 id="总结">总结</h2>
+
+<ul>
+<li>拆机过程中发现电池有鼓包现象，这有点恐怖呀，算了先不理会！我好像拆完后盖，没有先把电池电源断开，好险，没有发生什么问题！😅</li>
+<li>换完脸之后，第一次开机极慢，据说这是正常现象，我重复重启几次之后就正常了</li>
+<li>可以开心地拿着 MBP 出去浪了</li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
@@ -2293,100 +2340,6 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 <li><a href="https://developer.apple.com/documentation/foundation/nsusernotificationcenter" target="_blank">NSUserNotificationCenter</a></li>
 <li><a href="https://developer.apple.com/documentation/usernotifications/unusernotificationcenter" target="_blank">UNUserNotificationCenter</a></li>
 </ul>
-]]></content>
-		</item>
-		
-		<item>
-			<title>macOS 开发之 NSTextField 文本的垂直居中</title>
-			<link>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
-			<pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
-			
-			<guid>https://www.smslit.top/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
-			<description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
-			<content type="html"><![CDATA[
-
-<p>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可以满足我们的需求！</p>
-
-<h2 id="开发平台">开发平台</h2>
-
-<ul>
-<li>macOS 10.14.3</li>
-<li>swift 4.2.1</li>
-<li>xcode 10.1</li>
-</ul>
-
-<h2 id="准备-demo">准备 Demo</h2>
-
-<p>还是老规矩，以实例出发，理解实现！新建一个 macOS app 的工程，使用 storyboard，这里工程就命名为 TextFieldDemo 吧。创建成功后，打开 <code>Main.storyboard</code> ，往 <code>View Controller</code> 中添加一个 <code>Text Field</code> ，调整其大小贴齐窗口四边，添加必要的布局限制，并将以下内容作为 Text Field 的内容：</p>
-
-<blockquote>
-<p>漫威电影宇宙（英语：Marvel Cinematic Universe，简称MCU）是由漫威漫画工作室基于漫威漫画出版物中的角色独立制作的一系列电影所构成的架空世界和共同世界（Earth-199999）。</p>
-</blockquote>
-
-<p>就像下面这样(十里这里将窗口调小了一点):</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310154814.png" alt="" /></p>
-
-<p>运行程序可以看到显示文本是默认向上对齐的:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310155150.png" alt="" /></p>
-
-<h2 id="实现思路">实现思路</h2>
-
-<p>最终我们要实现 Demo 窗口中的文本垂直居中显示，要想做到这一点，我们得了解一下文本框显示文本的过程。NSTextField 类通过 NSTextFieldCell 类实现用户界面的显示，所以关注点应该放在 NSTextFieldCell 类上，文本是在 text field cell 上的，而 TextField 又是 text field cell 的一个容器，所以只需要调整 text field cell 在 Text Field 中的坐标，如果 y 轴坐标值合适就能实现居中，在 Cocoa 中，控件使用如下坐标系(flipped coordinate)：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310171441.png" alt="" /></p>
-
-<p>NSTextFieldCell 类继承于 NSCell 类，所以可以通过调整绘制过程中 text field cell 的 frame 坐标数据实现其位置调整，对应这个绘制过程的方法就是 <code>drawingRect(forBounds:)</code>，新坐标的计算公式为：</p>
-
-<p>$$
-y_{new} = y_{old} + (Height_{frame} - Height_{text}) \times 0.5
-$$</p>
-
-<p>其中：</p>
-
-<ul>
-<li>$Height_{frame}$ 是指默认生成的 cell 的 frame</li>
-<li>$Height_{text}$ 是文本实际占用的 frame</li>
-</ul>
-
-<p>为了更彻底一点，我们也可以调整 frame 的高度与文本实际占用的高度一致：</p>
-
-<p>$$
-Height_{frame} = Height_{text}
-$$</p>
-
-<p>也许您看了下面的图就明白上面公式的含义了：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310182541.png" alt="" /></p>
-
-<h2 id="具体实现">具体实现</h2>
-
-<p>根据上面的思路可以有两种实现方式，一种是定义一个 <code>NSTextFielCell</code> 的子类，在子类中重写方法，另一种是扩展的方式重写 <code>NSTextFieldCell</code> 的方法。第二种会影响 app 中所有的 TextField，所以这里采用第一种方式。</p>
-
-<p>在 <code>AppDelegate.swift</code> 文件中定义子类 <code>VerticallyCenteredTextFieldCell</code> 如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">VerticallyCenteredTextFieldCell</span><span class="p">:</span> <span class="n">NSTextFieldCell</span> <span class="p">{</span>
-    
-    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">drawingRect</span><span class="p">(</span><span class="n">forBounds</span> <span class="n">theRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">NSRect</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nv">newRect</span><span class="p">:</span><span class="n">NSRect</span> <span class="p">=</span> <span class="kc">super</span><span class="p">.</span><span class="n">drawingRect</span><span class="p">(</span><span class="n">forBounds</span><span class="p">:</span> <span class="n">theRect</span><span class="p">)</span>
-        <span class="kd">let</span> <span class="nv">textSize</span><span class="p">:</span><span class="n">NSSize</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">cellSize</span><span class="p">(</span><span class="n">forBounds</span><span class="p">:</span> <span class="n">theRect</span><span class="p">)</span>
-        <span class="kd">let</span> <span class="nv">heightDelta</span><span class="p">:</span><span class="n">CGFloat</span> <span class="p">=</span> <span class="n">newRect</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">textSize</span><span class="p">.</span><span class="n">height</span>
-        <span class="k">if</span> <span class="n">heightDelta</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-            <span class="n">newRect</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span> <span class="p">=</span> <span class="n">textSize</span><span class="p">.</span><span class="n">height</span>
-            <span class="n">newRect</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">heightDelta</span> <span class="o">/</span> <span class="mi">2</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">newRect</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>然后打开 <code>Main.storyboard</code> 文件，选中之前添加的 Text Field 的 cell ，按快捷键 <code>Option</code> + <code>Command</code> + <code>3</code> 打开 Identity 检查器，在 <code>Custom Class</code> 中为 cell 指定刚定义的子类 <code>VerticallyCenteredTextFieldCell</code>:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310183739.png" alt="" /></p>
-
-<p>运行程序就能看到文本实现了居中显示：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190310184822.png" alt="" /></p>
-
-<p>Demo下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/VerticallyCenteredTextFieldDemo.zip" target="_blank">VerticallyCenteredTextFieldDemo.zip</a></p>
 ]]></content>
 		</item>
 		

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 08 Oct 2019 14:46:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 10:13:52 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macbook pro 换脸成功</title>
+      <link>https://www.smslit.top/2019/10/18/mbp-screen/</link>
+      <pubDate>Fri, 18 Oct 2019 10:13:52 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/18/mbp-screen/</guid>
+      <description>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部</description>
+    </item>
     
     <item>
       <title>1. 两数之和</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/nice-virtual-machine/</guid>
       <description>今天发现昨天 Bootcamp 安装的 windows 好像有 bug，mac 出现了假死状态，而且动不动就与外接显示器失联，无法忍受，又把 windows 干掉了！😤，决定使用虚拟机安装 win</description>
-    </item>
-    
-    <item>
-      <title>Windows，又见面了</title>
-      <link>https://www.smslit.top/daily/hello-windows-again/</link>
-      <pubDate>Sat, 13 Apr 2019 19:36:20 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/hello-windows-again/</guid>
-      <description>以为 pyodbc 可以解决在 远程 windows 主机中获取甲方爸爸的另类数据库的数据，万万没有想到，数据是可以获取但是时间戳的格式不忍直视。最后发现，极有可能是这个数</description>
     </item>
     
   </channel>

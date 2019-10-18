@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 20 Oct 2018 10:09:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 10:13:52 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/life/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macbook pro 换脸成功</title>
+      <link>https://www.smslit.top/2019/10/18/mbp-screen/</link>
+      <pubDate>Fri, 18 Oct 2019 10:13:52 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/18/mbp-screen/</guid>
+      <description>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部</description>
+    </item>
     
     <item>
       <title>图中藏(cáng)语</title>
@@ -99,15 +108,6 @@
       
       <guid>https://www.smslit.top/2017/05/12/coincidental/</guid>
       <description>&lt;p&gt;2017年注定是一个巧合非常多的一年。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>从简开始</title>
-      <link>https://www.smslit.top/2017/03/19/simpleStart/</link>
-      <pubDate>Sun, 19 Mar 2017 13:07:48 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2017/03/19/simpleStart/</guid>
-      <description>&lt;p&gt;从今天开始博客更换面貌，使用了hexo的apollo主题，真的像主题作者说的，博客应该以内容为主，所以SMSLIT要从简开始了！&lt;/p&gt;</description>
     </item>
     
   </channel>

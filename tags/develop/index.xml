@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 16:46:21 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS应用开发基础之菜单栏形式的状态栏小工具</title>
+      <link>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</link>
+      <pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</guid>
+      <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
+    </item>
     
     <item>
       <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
@@ -109,19 +118,6 @@ Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;获取的元素不可见是什么鬼，操控其它浏览器却没有这个问题，研究了一下，现分享解决方法。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>macOS应用开发基础之Popover</title>
-      <link>https://www.smslit.top/2018/06/29/macOS-dev-basic-NSPopover/</link>
-      <pubDate>Fri, 29 Jun 2018 15:20:04 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2018/06/29/macOS-dev-basic-NSPopover/</guid>
-      <description>&lt;p&gt;mac中安装了一个叫&lt;a href=&#34;http://paper.meiyuan.in&#34; target=&#34;_blank&#34;&gt;pap.er&lt;/a&gt;的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 &lt;code&gt;Popover&lt;/code&gt; 中实现。看视频感受一下，叫&lt;code&gt;Popover&lt;/code&gt;的弹窗，这是本文要讲的东西。&lt;/p&gt;
-
-&lt;video src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/pap.er.mp4&#34; controls=&#34;controls&#34; width=&#34;100%&#34; poster=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153023532585285.jpg&#34;&gt;pap.er&lt;/video&gt;
-
-&lt;p&gt;昨天研究了&lt;code&gt;Popover&lt;/code&gt;的使用，所以今天以一个实例与大家分享一下！&lt;/p&gt;</description>
     </item>
     
   </channel>

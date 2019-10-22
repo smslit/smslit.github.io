@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 18 Oct 2019 10:13:52 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 16:46:21 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS应用开发基础之菜单栏形式的状态栏小工具</title>
+      <link>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</link>
+      <pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</guid>
+      <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
+    </item>
     
     <item>
       <title>macbook pro 换脸成功</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/daily/happy-from-believed/</guid>
       <description>最近在做的一个活是学长给介绍的，回想过去自己从上学到工作，又到现在自由放荡的状态，整个过程中好像机会都是自己跑来见我的。上大学的时候，能够进</description>
-    </item>
-    
-    <item>
-      <title>Parallels Desktop 体验极佳</title>
-      <link>https://www.smslit.top/daily/nice-virtual-machine/</link>
-      <pubDate>Sun, 14 Apr 2019 21:34:04 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/nice-virtual-machine/</guid>
-      <description>今天发现昨天 Bootcamp 安装的 windows 好像有 bug，mac 出现了假死状态，而且动不动就与外接显示器失联，无法忍受，又把 windows 干掉了！😤，决定使用虚拟机安装 win</description>
     </item>
     
   </channel>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 01 Apr 2019 08:20:10 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 16:46:21 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS应用开发基础之菜单栏形式的状态栏小工具</title>
+      <link>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</link>
+      <pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</guid>
+      <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
+    </item>
     
     <item>
       <title>macOS 开发之 Windows 和 WindowController</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
       <description>在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</title>
-      <link>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</link>
-      <pubDate>Mon, 25 Feb 2019 10:00:05 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/</guid>
-      <description>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得</description>
     </item>
     
   </channel>

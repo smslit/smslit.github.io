@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做">
 <meta itemprop="description" content="在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两">
 
 
@@ -22,8 +21,8 @@
 <meta property="og:description" content="在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/" />
-<meta property="article:published_time" content="2019-02-27T10:23:39&#43;08:00"/>
-<meta property="article:modified_time" content="2019-02-27T10:23:39&#43;08:00"/>
+<meta property="article:published_time" content="2019-02-27T10:23:39+08:00" />
+<meta property="article:modified_time" content="2019-02-27T10:23:39+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做"/>
 <meta name="twitter:description" content="在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两"/>
@@ -35,7 +34,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227110533.jpg');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -187,19 +186,19 @@
 <p>要将操作压入撤销栈其实就是一个注册操作的过程，有三个方法：</p>
 
 <ul>
-<li><code>registerUndo(withTarget:handler:)</code> 方法，是将对象、处理一起进行注册，使用闭包的形式，例如：</li>
-</ul>
+<li><p><code>registerUndo(withTarget:handler:)</code> 方法，是将对象、处理一起进行注册，使用闭包的形式，例如：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndo</span><span class="p">(</span><span class="n">withTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">textField</span><span class="p">:</span> <span class="n">NSTextField</span><span class="p">)</span> <span class="k">in</span>
-    <span class="n">textField</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-<span class="p">}</span></code></pre></div>
-<ul>
+<span class="n">textField</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
+<span class="p">}</span></code></pre></div></li>
+
 <li><p><code>registerUndo(withTarget:selector:object:)</code> 方法注册</p></li>
 
-<li><p>使用 <code>prepare(withInvocaionTarget:)</code> 方法注册：</p></li>
-</ul>
+<li><p>使用 <code>prepare(withInvocaionTarget:)</code> 方法注册：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">target</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">prepare</span><span class="p">(</span><span class="n">withInvocationTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">NSTextField</span> <span class="p">{</span>
-    <span class="n">target</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-<span class="p">}</span></code></pre></div>
+<span class="n">target</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
+<span class="p">}</span></code></pre></div></li>
+</ul>
+
 <p><strong>注：</strong></p>
 
 <p>UndoManager 对象的 undoRegistionEnabled 是 true 的时候，撤销操作可以注册，但是如果是 false 就会禁用注册功能。</p>
@@ -224,31 +223,33 @@
 <ul>
 <li>另外添加两个 Text Field，三个文本框分别是加数、被加数和结果，并将其作为属性绑定到 View Controller 中</li>
 <li>添加三个按钮，分别是计算、撤销和重做，同样绑定动作到 View Controller 中</li>
-<li>添加三个 Action 的实现，在撤销和重做的实现中，可以参考下面的模板实现：</li>
-</ul>
+
+<li><p>添加三个 Action 的实现，在撤销和重做的实现中，可以参考下面的模板实现：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">func</span> <span class="nf">doThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// do the thing here</span>
+<span class="c1">// do the thing here</span>
 <span class="p">}</span>
 
 <span class="kd">private</span> <span class="kd">func</span> <span class="nf">undoThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// undo the thing here</span>
+<span class="c1">// undo the thing here</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">undoablyDoThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
-        <span class="n">me</span><span class="p">.</span><span class="n">redoablyUndoThing</span><span class="p">()</span>
-    <span class="p">})</span>
-    <span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
-    <span class="n">doThing</span><span class="p">()</span>
+<span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
+    <span class="n">me</span><span class="p">.</span><span class="n">redoablyUndoThing</span><span class="p">()</span>
+<span class="p">})</span>
+<span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
+<span class="n">doThing</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">redoablyUndoThing</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
-        <span class="n">me</span><span class="p">.</span><span class="n">undoablyDoThing</span><span class="p">()</span>
-    <span class="p">})</span>
-    <span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
-    <span class="n">undoThing</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div>
+<span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
+    <span class="n">me</span><span class="p">.</span><span class="n">undoablyDoThing</span><span class="p">()</span>
+<span class="p">})</span>
+<span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
+<span class="n">undoThing</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div></li>
+</ul>
+
 <p>另外还要注意的是，最好是也要将撤销按钮和重做按钮与 undoManager 的 canUndo 和 canRedo 同步，形式如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canUndo</span><span class="p">)</span><span class="o">!</span>
 <span class="kc">self</span><span class="p">.</span><span class="n">redoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canRedo</span><span class="p">)</span><span class="o">!</span></code></pre></div>

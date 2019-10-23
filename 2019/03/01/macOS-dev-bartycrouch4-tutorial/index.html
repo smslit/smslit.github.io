@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="macOS 开发之本地化工具 bartycrouch 4 使用教程">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之本地化工具 bartycrouch 4 使用教程">
 <meta itemprop="description" content="前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方">
 
 
@@ -22,8 +21,8 @@
 <meta property="og:description" content="前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/" />
-<meta property="article:published_time" content="2019-03-01T08:59:33&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-01T08:59:33&#43;08:00"/>
+<meta property="article:published_time" content="2019-03-01T08:59:33+08:00" />
+<meta property="article:modified_time" content="2019-03-01T08:59:33+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="macOS 开发之本地化工具 bartycrouch 4 使用教程"/>
 <meta name="twitter:description" content="前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方"/>
@@ -35,7 +34,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>macOS 开发之本地化工具 bartycrouch 4 使用教程</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301092140.png');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -205,11 +204,10 @@ Commands:
 <p>在这个配置文件中包含了另外两个命令( update 和 lint )的相关配置，这是 bartycrouch 的默认配置，应该可以在绝大多数工程中使用，但是这里需要注意以下几点：</p>
 
 <ul>
-<li><code>[update]</code> 的值就代表了，执行 <code>bartycrouch update</code> 时要完成的任务，不想执行某个任务可以直接删除，比如不执行 <code>code</code> 任务，可以写成：</li>
-</ul>
+<li><p><code>[update]</code> 的值就代表了，执行 <code>bartycrouch update</code> 时要完成的任务，不想执行某个任务可以直接删除，比如不执行 <code>code</code> 任务，可以写成：</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
-<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span></code></pre></div>
-<ul>
+<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span></code></pre></div></li>
+
 <li><p>每个任务子项中都包含了对应的配置信息，可依据工程需要进行调整，具体含义可以参考后面任务的介绍</p></li>
 
 <li><p>尽可能为包含关键字的 <code>path</code> 键提供具体的路径名称 (例如：<code>codePath</code> 设置为包含 swift 代码文件的目录)</p></li>
@@ -268,12 +266,13 @@ Commands:
 <ul>
 <li><p>如果您的第一语言不是英语, 您需要将 <code>normalize</code> 任务的 <code>sourceLocale</code> 改为您的第一语言，值参考上面代码中的枚举 <code>SupportedLanguage</code> 的元素</p></li>
 
-<li><p>如果您想使用 bartycrouch 的翻译功能，需要将如下的配置添加到 <code>.bartycrouch.toml</code> 中，并且将 <code>translate</code> 添加到任务列表中，其中您需要将 <code>secret</code> 的值替换成您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key" target="_blank">Microsoft Translator Text API Subscription Key</a>:</p></li>
-</ul>
+<li><p>如果您想使用 bartycrouch 的翻译功能，需要将如下的配置添加到 <code>.bartycrouch.toml</code> 中，并且将 <code>translate</code> 添加到任务列表中，其中您需要将 <code>secret</code> 的值替换成您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key" target="_blank">Microsoft Translator Text API Subscription Key</a>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">translate</span><span class="p">]</span>
 <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
 <span class="nx">secret</span> <span class="p">=</span> <span class="s2">&#34;&lt;#Subscription Key#&gt;&#34;</span>
-<span class="nx">sourceLocale</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span></code></pre></div>
+<span class="nx">sourceLocale</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span></code></pre></div></li>
+</ul>
+
 <h3 id="update-命令">update 命令</h3>
 
 <p>update 命令可以执行以下几个任务：</p>
@@ -356,10 +355,9 @@ Commands:
 <p>如果配置文件中配置了 <code>transform</code> 任务(详见 <a href="#init-命令">init 命令</a>)并且已经在 xcode 中<a href="#创建编译脚本">创建编译脚本</a>, 在开发中您可以使用下面简化的流程编写本地化代码:</p>
 
 <ul>
-<li>您可以使用 <code>BartyCrouch.translate</code> 替代 <code>NSLocalizedString</code> 指定键、翻译方法和注释，例如:</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="s">&#34;onboarding.first-page.header-title&#34;</span><span class="p">,</span>  <span class="n">translations</span><span class="p">:</span> <span class="p">[.</span><span class="n">english</span><span class="p">:</span> <span class="s">&#34;Welcome!&#34;</span><span class="p">])</span></code></pre></div>
-<ul>
+<li><p>您可以使用 <code>BartyCrouch.translate</code> 替代 <code>NSLocalizedString</code> 指定键、翻译方法和注释，例如:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="s">&#34;onboarding.first-page.header-title&#34;</span><span class="p">,</span>  <span class="n">translations</span><span class="p">:</span> <span class="p">[.</span><span class="n">english</span><span class="p">:</span> <span class="s">&#34;Welcome!&#34;</span><span class="p">])</span></code></pre></div></li>
+
 <li><p>编译应用的时候, BartyCrouch 会自动向所有的 <code>Localizable.strings</code> 文件中添加您指定的键，并且为指定语言的键添加指定语言翻译结果</p></li>
 
 <li><p>同时 BartyCrouch 会自动依据配置中指定的 <code>transformer</code> 替换上面 <code>BartyCrouch.translate</code> 的调用为对应的方法</p>

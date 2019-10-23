@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="python3 简单实现验证码识别器">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python3 简单实现验证码识别器">
 <meta itemprop="description" content="编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！
 
 ">
@@ -26,8 +25,8 @@
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/10/12/verification_code_chars/" />
-<meta property="article:published_time" content="2018-10-12T14:59:37&#43;08:00"/>
-<meta property="article:modified_time" content="2018-10-12T14:59:37&#43;08:00"/>
+<meta property="article:published_time" content="2018-10-12T14:59:37+08:00" />
+<meta property="article:modified_time" content="2018-10-12T14:59:37+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python3 简单实现验证码识别器"/>
 <meta name="twitter:description" content="编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！
@@ -41,7 +40,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>python3 简单实现验证码识别器</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -181,7 +180,7 @@ Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>: <sp
 <p>先将图片灰度化，这样每个像素点的取值范围就是 <strong>[0, 255]</strong> 了，取得像素分布直方图数据:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_binary_image</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="s1">&#39;&#39;&#39;得到二值化图片数据&#39;&#39;&#39;</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">)</span>
     <span class="n">his</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">histogram</span><span class="p">()</span>
     <span class="n">his_10</span> <span class="o">=</span> <span class="p">[(</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">his</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]]</span>
     <span class="k">print</span><span class="p">(</span><span class="n">his_10</span><span class="p">)</span></code></pre></div>
@@ -201,7 +200,7 @@ Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>: <sp
 <p>选择其中 <strong>220</strong> 和 <strong>227</strong> 值作为阈值。最终实现封装为函数如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_binary_image</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="s1">&#39;&#39;&#39;得到二值化图片数据&#39;&#39;&#39;</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;P&#34;</span><span class="p">)</span>
     <span class="c1"># his = img.histogram()</span>
     <span class="c1"># his_10 = [(j, k) for j,k in sorted(enumerate(his), key=lambda x:x[1], reverse = True)[:10]]</span>
     <span class="c1"># print(his_10)</span>
@@ -312,7 +311,7 @@ Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>: <sp
             <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="s1">&#39;.gif&#39;</span> <span class="ow">in</span> <span class="n">img</span><span class="p">:</span>
                 <span class="n">img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">letter_dir</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
-                <span class="n">letter_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+                <span class="n">letter_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
                 <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">build_vector</span><span class="p">(</span><span class="n">letter_image</span><span class="p">))</span>
                 <span class="n">imageset</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">letter</span><span class="p">:</span> <span class="n">temp</span><span class="p">})</span>
     
@@ -411,7 +410,7 @@ Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>: <sp
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">):</span>
         <span class="k">if</span> <span class="s1">&#39;.gif&#39;</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">:</span> <span class="c1"># 避免 tesseract 读取 gif 图片出问题</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;b_code.png&#39;</span>
-            <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="n">args</span><span class="o">.</span><span class="n">imgfile</span> <span class="o">=</span> <span class="n">filename</span>
         <span class="k">print</span><span class="p">(</span><span class="n">methods</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">method</span><span class="p">][</span><span class="s1">&#39;tip&#39;</span><span class="p">],</span> <span class="n">methods</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">method</span><span class="p">][</span><span class="s1">&#39;method&#39;</span><span class="p">](</span><span class="n">args</span><span class="o">.</span><span class="n">imgfile</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>

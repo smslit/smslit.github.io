@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="macOS 开发之实现 HTTP 的 GET 和 POST 请求">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之实现 HTTP 的 GET 和 POST 请求">
 <meta itemprop="description" content="在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift">
 
 
@@ -22,8 +21,8 @@
 <meta property="og:description" content="在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/01/26/get_post_cocoa/" />
-<meta property="article:published_time" content="2019-01-26T15:10:40&#43;08:00"/>
-<meta property="article:modified_time" content="2019-01-26T15:10:40&#43;08:00"/>
+<meta property="article:published_time" content="2019-01-26T15:10:40+08:00" />
+<meta property="article:modified_time" content="2019-01-26T15:10:40+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="macOS 开发之实现 HTTP 的 GET 和 POST 请求"/>
 <meta name="twitter:description" content="在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift"/>
@@ -35,7 +34,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>macOS 开发之实现 HTTP 的 GET 和 POST 请求</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190223133434.png');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -111,7 +110,7 @@
 <span class="kd">var</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">URLRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
     <span class="k">do</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="o">!</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as</span><span class="o">!</span> <span class="n">NSDictionary</span>
+        <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="p">!,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
         <span class="bp">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
     <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
         <span class="bp">print</span><span class="p">(</span><span class="s">&#34;无法连接到服务器&#34;</span><span class="p">)</span>
@@ -160,7 +159,7 @@
 <span class="n">request</span><span class="p">.</span><span class="n">httpBody</span> <span class="p">=</span> <span class="n">postString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
     <span class="k">do</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="o">!</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">ReadingOptions</span><span class="p">.</span><span class="n">mutableContainers</span><span class="p">)</span> <span class="k">as</span><span class="o">!</span> <span class="n">NSDictionary</span>
+        <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="p">!,</span> <span class="n">options</span><span class="p">:</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">ReadingOptions</span><span class="p">.</span><span class="n">mutableContainers</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
         <span class="bp">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
     <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
         <span class="bp">print</span><span class="p">(</span><span class="s">&#34;无法连接到服务器&#34;</span><span class="p">)</span>
@@ -233,26 +232,25 @@
 <p>通过请求获取了数据以后，通常需要更新一下界面中的显示结果，此时就会出现问题！上面的接口采用异步的方式，就是为了防止请求时间过长导致界面卡死，请求是在新的线程进行，但是界面是在主线程处理，所以一旦在请求完直接处理界面的话，就会导致 App 崩溃，所以这里建议使用委托以及在委托线程中修改UI，方法如下（这里以简单的 GET 请求为例，POST 请求类似操作）：</p>
 
 <ul>
-<li>封装一个请求的方法，其中一个参数是请求完成后处理事务的回调函数：</li>
-</ul>
+<li><p>封装一个请求的方法，其中一个参数是请求完成后处理事务的回调函数：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">sendGetRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">((</span><span class="n">Data</span><span class="p">?,</span><span class="n">URLResponse</span><span class="p">?,</span><span class="n">Error</span><span class="p">?)-&gt;</span><span class="nb">Void</span><span class="p">))</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
-    <span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div>
-<ul>
-<li>定义刚才所说的回调函数，包含参数 data, response 和 error，这个回调可以根据不同 API 功能定义多个，以相应功能命名，比如是获取天气：</li>
-</ul>
+<span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+<span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>定义刚才所说的回调函数，包含参数 data, response 和 error，这个回调可以根据不同 API 功能定义多个，以相应功能命名，比如是获取天气：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">getWeatherSuccess</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">?,</span> <span class="n">response</span><span class="p">:</span> <span class="n">URLResponse</span><span class="p">?,</span> <span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
-    <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
-        <span class="c1">// 这里完成 UI 相关操作，调用 UI 对象时要加上 self</span>
-        <span class="c1">// 比如： self.weatherLabel = &#34;...&#34;</span>
-    <span class="p">}</span>
-<span class="p">}</span> </code></pre></div>
-<ul>
-<li>最后在要请求数据的地方调用第一步定义的通用方法即可，只需指定不同的处理回调就可以完成多 API 的不同请求：</li>
+<span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+    <span class="c1">// 这里完成 UI 相关操作，调用 UI 对象时要加上 self</span>
+    <span class="c1">// 比如： self.weatherLabel = &#34;...&#34;</span>
+<span class="p">}</span>
+<span class="p">}</span> </code></pre></div></li>
+
+<li><p>最后在要请求数据的地方调用第一步定义的通用方法即可，只需指定不同的处理回调就可以完成多 API 的不同请求：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">sendGetRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&#34;http://127.0.0.1/api&#34;</span><span class="p">,</span> <span class="n">getWeatherSuccess</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="n">response</span><span class="p">:</span><span class="n">error</span><span class="p">:))</span></code></pre></div></li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">sendGetRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&#34;http://127.0.0.1/api&#34;</span><span class="p">,</span> <span class="n">getWeatherSuccess</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="n">response</span><span class="p">:</span><span class="n">error</span><span class="p">:))</span></code></pre></div>
+
 <h1 id="天气实例">天气实例</h1>
 
 <p>下面以一个获取天气的实例，讲解一下 HTTP 的 GET 请求方式，POST 方式按照上面讲的方式基本差不多少，无非是加了请求数据，这里就先不讲 POST 请求实例了。</p>
@@ -301,9 +299,9 @@
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">parseTemperatureForToday</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">?,</span> <span class="n">response</span><span class="p">:</span> <span class="n">URLResponse</span><span class="p">?,</span> <span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
     <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
         <span class="k">do</span> <span class="p">{</span>
-            <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="o">!</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[</span><span class="n">JSONSerialization</span><span class="p">.</span><span class="n">ReadingOptions</span><span class="p">.</span><span class="n">mutableContainers</span><span class="p">])</span> <span class="k">as</span><span class="o">!</span> <span class="n">NSDictionary</span>
-            <span class="kd">let</span> <span class="nv">todayData</span> <span class="p">=</span> <span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;data&#34;</span><span class="p">)</span> <span class="k">as</span><span class="o">!</span> <span class="n">NSDictionary</span>
-            <span class="kd">let</span> <span class="nv">tempValue</span> <span class="p">=</span> <span class="n">todayData</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;wendu&#34;</span><span class="p">)</span> <span class="k">as</span><span class="o">!</span> <span class="nb">String</span>
+            <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="p">!,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[</span><span class="n">JSONSerialization</span><span class="p">.</span><span class="n">ReadingOptions</span><span class="p">.</span><span class="n">mutableContainers</span><span class="p">])</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
+            <span class="kd">let</span> <span class="nv">todayData</span> <span class="p">=</span> <span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;data&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
+            <span class="kd">let</span> <span class="nv">tempValue</span> <span class="p">=</span> <span class="n">todayData</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;wendu&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="nb">String</span>
             <span class="kc">self</span><span class="p">.</span><span class="n">temperatureLabel</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">tempValue</span> <span class="o">+</span> <span class="s">&#34; °C&#34;</span>
         <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
             <span class="bp">print</span><span class="p">(</span><span class="s">&#34;无法连接到服务器&#34;</span><span class="p">)</span>

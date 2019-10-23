@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="Jekyll博客添加多说评论">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Jekyll博客添加多说评论">
 <meta itemprop="description" content="jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。">
 
 
@@ -22,8 +21,8 @@
 <meta property="og:description" content="jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/07/16/jekyllCommit/" />
-<meta property="article:published_time" content="2015-07-16T23:07:46&#43;08:00"/>
-<meta property="article:modified_time" content="2015-07-16T23:07:46&#43;08:00"/>
+<meta property="article:published_time" content="2015-07-16T23:07:46+08:00" />
+<meta property="article:modified_time" content="2015-07-16T23:07:46+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jekyll博客添加多说评论"/>
 <meta name="twitter:description" content="jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。"/>
@@ -35,7 +34,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Jekyll博客添加多说评论</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -126,14 +125,14 @@
 
 <p><strong>通用代码如下:</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c">&lt;!--</span> <span class="nx">多说评论框</span> <span class="nx">start</span> <span class="o">--&gt;</span>
-	<span class="o">&lt;</span><span class="nx">div</span> <span class="k">class</span><span class="o">=</span><span class="s2">&#34;ds-thread&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">thread</span><span class="o">-</span><span class="nx">key</span><span class="o">=</span><span class="s2">&#34;请将此处替换成文章在你的站点中的ID&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&#34;请替换成文章的标题&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">url</span><span class="o">=</span><span class="s2">&#34;请替换成文章的网址&#34;</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
+	<span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;ds-thread&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">thread</span><span class="o">-</span><span class="nx">key</span><span class="o">=</span><span class="s2">&#34;请将此处替换成文章在你的站点中的ID&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&#34;请替换成文章的标题&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">url</span><span class="o">=</span><span class="s2">&#34;请替换成文章的网址&#34;</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
 <span class="c">&lt;!--</span> <span class="nx">多说评论框</span> <span class="nx">end</span> <span class="o">--&gt;</span>
 <span class="c">&lt;!--</span> <span class="nx">多说公共JS代码</span> <span class="nx">start</span> <span class="p">(</span><span class="nx">一个网页只需插入一次</span><span class="p">)</span> <span class="o">--&gt;</span>
 <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;text/javascript&#34;</span><span class="o">&gt;</span>
 <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&#34;请将此处替换为你的多说站点的短名short_name&#34;</span><span class="p">};</span>
 	<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-		<span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="kr">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">==</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https:&#39;</span> <span class="o">:</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;//static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
 		<span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> 

@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="图中藏(cáng)语">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="图中藏(cáng)语">
 <meta itemprop="description" content="今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。
 
 ">
@@ -26,8 +25,8 @@
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/10/20/codeimg-python/" />
-<meta property="article:published_time" content="2018-10-20T10:09:31&#43;08:00"/>
-<meta property="article:modified_time" content="2018-10-20T10:09:31&#43;08:00"/>
+<meta property="article:published_time" content="2018-10-20T10:09:31+08:00" />
+<meta property="article:modified_time" content="2018-10-20T10:09:31+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="图中藏(cáng)语"/>
 <meta name="twitter:description" content="今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。
@@ -41,7 +40,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>图中藏(cáng)语</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -132,7 +131,7 @@
 
 <p>对于不含透明通道的位图图片（比如jpg）来说，少一个 Alpha 通道，那么 <a href="#数据存储" target="_blank">原理-数据存储</a> 提到的四通道存储方案显然缺少通道，其实解决很简单，只需要使用 <strong>pillow</strong> 库将 jpg 图片数据转换为带 alpha 通道的数据即可进行，可使用如下的方法转换：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demo.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span></code></pre></div>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;demo.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span></code></pre></div>
 <p>直接转换为 RGBA 模式即可。</p>
 
 <h4 id="怎么判断图片有没有隐写信息问题">怎么判断图片有没有隐写信息问题</h4>
@@ -264,7 +263,7 @@ $$</p>
 <p>类的初始化，主要是根据指定图片和指定存储协议头初始化基本属性：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">,</span> <span class="n">pkghead</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">imgpath</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="k">if</span> <span class="n">pkghead</span><span class="p">:</span>
@@ -407,7 +406,7 @@ $$</p>
 <p>这个方法用来打开新的图片获取 RGBA 模式的图片数据覆盖原来的属性 <code>image</code>，并记录图片路径到属性 <code>imgpath</code>，实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">imgpath</span> <span class="o">=</span> <span class="n">imgpath</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">None</span></code></pre></div>
@@ -437,7 +436,7 @@ $$</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">mi</span> <span class="o">=</span> <span class="n">MessageImage</span><span class="p">(</span><span class="s1">&#39;demo.png&#39;</span><span class="p">)</span>
     <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;你好，世界！hello, world!&#39;</span><span class="p">)</span>
-    <span class="n">mi</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;demo_code.png&#39;</span><span class="p">)</span>
+    <span class="n">mi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;demo_code.png&#39;</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span></code></pre></div>
 <p>这里以图片 <a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/demo.png" target="_blank">demo.png</a> 为例，如果最终打印了解析结果，就说明 <code>MessageImage</code> 类搞定了，类似于：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python messageimage.py

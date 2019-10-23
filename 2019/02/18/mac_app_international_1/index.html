@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="macOS 开发之 APP 名称本地化">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之 APP 名称本地化">
 <meta itemprop="description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a">
 
 
@@ -22,8 +21,8 @@
 <meta property="og:description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/18/mac_app_international_1/" />
-<meta property="article:published_time" content="2019-02-18T09:10:02&#43;08:00"/>
-<meta property="article:modified_time" content="2019-02-18T09:10:02&#43;08:00"/>
+<meta property="article:published_time" content="2019-02-18T09:10:02+08:00" />
+<meta property="article:modified_time" content="2019-02-18T09:10:02+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="macOS 开发之 APP 名称本地化"/>
 <meta name="twitter:description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a"/>
@@ -35,7 +34,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>macOS 开发之 APP 名称本地化</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.645b14dc26ce57a45585b37a4ef11a96fee72376dcd62ffbcd5103cd5edf7f1c.css" integrity="sha256-ZFsU3CbOV6RVhbN6TvEalv7nI3bc1i/7zVEDzV7ffxw=">
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
@@ -179,17 +178,16 @@
 <p>要实现菜单栏 App 名称本地化需要在上面添加的三个文件中添加 <code>CFBundleName</code> 字符串。</p>
 
 <ul>
-<li><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</li>
+<li><p><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;International Demo&#34;</span><span class="p">;</span></code></pre></div></li>
+
+<li><p><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;国际化演示&#34;</span><span class="p">;</span></code></pre></div></li>
+
+<li><p><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;国際デモ&#34;</span><span class="p">;</span></code></pre></div></li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;International Demo&#34;</span><span class="p">;</span></code></pre></div>
-<ul>
-<li><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;国际化演示&#34;</span><span class="p">;</span></code></pre></div>
-<ul>
-<li><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;国際デモ&#34;</span><span class="p">;</span></code></pre></div>
+
 <blockquote>
 <p>更改系统语言设置，可以查看不同语言设置下的运行效果，在系统语言设置中更改了语言是大部分生效的，不要关闭设置窗口，否则关闭的话会提示重启，各类语言设置检查之后在改回原来的语言即可!</p>
 </blockquote>
@@ -213,17 +211,16 @@
 <p>如上在三个文件中添加 <code>CFBundleDisplayName</code> 字符串。</p>
 
 <ul>
-<li><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</li>
+<li><p><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;International Demo&#34;</span><span class="p">;</span></code></pre></div></li>
+
+<li><p><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;国际化演示&#34;</span><span class="p">;</span></code></pre></div></li>
+
+<li><p><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;国際デモ&#34;</span><span class="p">;</span></code></pre></div></li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;International Demo&#34;</span><span class="p">;</span></code></pre></div>
-<ul>
-<li><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;国际化演示&#34;</span><span class="p">;</span></code></pre></div>
-<ul>
-<li><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;国際デモ&#34;</span><span class="p">;</span></code></pre></div>
+
 <p>还差一步，需要在工程的 Info 配置中添加 <code>Bundle display name</code> 项：</p>
 
 <ol>

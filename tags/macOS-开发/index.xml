@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 16:46:21 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/macOS-%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
+      <link>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</link>
+      <pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</guid>
+      <description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
+    </item>
     
     <item>
       <title>macOS 开发之菜单栏形式的状态栏小工具</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
       <description>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</title>
-      <link>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</link>
-      <pubDate>Wed, 27 Feb 2019 10:23:39 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
-      <description>在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两</description>
     </item>
     
   </channel>

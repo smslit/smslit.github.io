@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 16:46:21 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
+      <link>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</link>
+      <pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</guid>
+      <description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
+    </item>
     
     <item>
       <title>macOS 开发之菜单栏形式的状态栏小工具</title>
@@ -103,21 +112,6 @@ Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;
       
       <guid>https://www.smslit.top/2018/09/13/python-argparse/</guid>
       <description>&lt;p&gt;如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：&lt;code&gt;ls -l&lt;/code&gt;。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 &lt;code&gt;sys.argv&lt;/code&gt; 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 &lt;strong&gt;argparse&lt;/strong&gt; 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Phantomjs失控 - Element is not currently visible</title>
-      <link>https://www.smslit.top/2018/09/07/phantomjs-element-invisible/</link>
-      <pubDate>Fri, 07 Sep 2018 16:50:29 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2018/09/07/phantomjs-element-invisible/</guid>
-      <description>&lt;p&gt;今天写一个爬虫，使用 &lt;a href=&#34;https://www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;selenium&lt;/strong&gt;&lt;/a&gt;(可以操纵浏览器的python库)操控phantomjs出了问题：&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Element is not currently visible and may not be manipulated exception&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;获取的元素不可见是什么鬼，操控其它浏览器却没有这个问题，研究了一下，现分享解决方法。&lt;/p&gt;</description>
     </item>
     
   </channel>

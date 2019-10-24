@@ -6,8 +6,114 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Tue, 22 Oct 2019 16:46:21 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
+			<link>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</link>
+			<pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</guid>
+			<description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
+			<content type="html"><![CDATA[
+
+<p>上一篇文章 <a href="/2019/10/22/macOS-dev-basic-nsmenu/" target="_blank">macOS 开发之菜单栏形式的状态栏小工具</a> 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图标，都会弹出我们添加的菜单，考虑到我们可能会需要分别对鼠标左右键单击菜单栏按钮进行不同的处理，所以写此文讲解一下如何实现。</p>
+
+<!-- more -->
+
+<h2 id="工程">工程</h2>
+
+<p>我们继续使用上一篇文章最后完成的工程：</p>
+
+<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022195552-l6UN33.zip" target="_blank">MenuToolDemo</a></p>
+
+<h2 id="探索">探索</h2>
+
+<p>为了展示左键和右键点击处理的区别，指定不同的行为：</p>
+
+<ul>
+<li>左键单击：显示一个提示窗口</li>
+<li>右键单击：弹出之前的菜单</li>
+</ul>
+
+<p>我们第一反应就是，为按钮设置点击事件直接分开处理就可以了，我们试一下。</p>
+
+<ol>
+<li><p>打开文件 <code>AppDelegate.swift</code>，修改之前工程中指定 button 图标的代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&#34;StatusIcon&#34;</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">mouseClickHandler</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="p">[.</span><span class="n">leftMouseUp</span><span class="p">,</span> <span class="p">.</span><span class="n">rightMouseUp</span><span class="p">])</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>在方法 <code>applicationDidFinishLaunching(_ aNotification:)</code> 后面添加鼠标点击处理方法 <code>mouseClickHandler</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">mouseClickHandler</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">event</span> <span class="p">=</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">currentEvent</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">type</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">leftMouseUp</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;左键&#34;</span><span class="p">)</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;右键&#34;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+</ol>
+
+<p>运行程序，是不是发现，左键和右键单击还都是显示菜单，而没有打印出 <strong>左键</strong> 和 <strong>右键</strong>，这是为什么呢？</p>
+
+<p>我们尝试把下面的代码注释掉：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">statusItem</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="n">menu</span></code></pre></div>
+<p>再次运行程序，Amazing！是不是左键单击就打印 <strong>左键</strong> 右键单击就打印出 <strong>右键</strong>！所以我们能想到的原因就是<strong>当指定 <code>menu</code> 后，系统会忽略按钮的事件设置，都只是弹出菜单</strong>。</p>
+
+<h2 id="思路">思路</h2>
+
+<p>有了上面的探索，是不是就有思路了！目标中右键还是要显示菜单的，所以我们可以在右键单击的时候指定 <strong>menu</strong>，菜单关闭的时候将 <code>statusItem</code> 的 <code>menu</code> 设置为 <strong>nil</strong>，这样就保证常态下，menu 是不指定的，就可以响应我们设置的左右键单击的处理了。</p>
+
+<h2 id="实现">实现</h2>
+
+<ol>
+<li><p>删除 <code>applicationDidFinishLaunching</code> 中的 <code>statusItem.menu = menu</code></p></li>
+
+<li><p>修改 <code>mouseClickHandler</code> 的处理如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">mouseClickHandler</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">event</span> <span class="p">=</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">currentEvent</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">type</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">leftMouseUp</span><span class="p">:</span>
+            <span class="c1">// 使用警告窗口示意左键单击</span>
+            <span class="kd">let</span> <span class="nv">alert</span> <span class="p">=</span> <span class="n">NSAlert</span><span class="p">()</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">messageText</span> <span class="p">=</span> <span class="s">&#34;鼠标事件&#34;</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">informativeText</span> <span class="p">=</span> <span class="s">&#34;左键单击&#34;</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">withTitle</span><span class="p">:</span> <span class="s">&#34;关闭&#34;</span><span class="p">)</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">window</span><span class="p">.</span><span class="n">titlebarAppearsTransparent</span> <span class="p">=</span> <span class="kc">true</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">runModal</span><span class="p">()</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="n">statusItem</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="n">menu</span>
+            <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span><span class="p">?.</span><span class="n">performClick</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div></li>
+
+<li><p>保证菜单关闭的时候，将 <code>statusItem</code> 的 <code>menu</code> 设置为 nil，扩展一下 <strong>AppDelegate</strong>，遵循 <code>NSMenuDelegate</code> 在方法 Menu 关闭后指定 nil：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">NSMenuDelegate</span> <span class="p">{</span>
+    <span class="c1">// 为了保证按钮的单击事件设置有效，menu要去除</span>
+    <span class="kd">func</span> <span class="nf">menuDidClose</span><span class="p">(</span><span class="kc">_</span> <span class="n">menu</span><span class="p">:</span> <span class="n">NSMenu</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">statusItem</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>需要指定 <code>menu</code> 的代理为 AppDelegate，在 <code>applicationDidFinishLaunching</code> 方法中添加下面的代码:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">menu</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span></code></pre></div></li>
+</ol>
+
+<p>此时运行程序，鼠标左键单击菜单栏按钮，便会弹出警告窗口，右键单击就能显示菜单了。</p>
+
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191024094833-3CiYyz.mp4" width="100%" controls="controls"></p>
+
+<p>工程打包如下：</p>
+
+<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191024095445-Rhex8j.zip" target="_blank">MenuToolDemo2</a></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>macOS 开发之菜单栏形式的状态栏小工具</title>

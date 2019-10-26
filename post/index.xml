@@ -3505,6 +3505,8 @@ $$</p>
 
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190303111234.png" alt="" /></p>
 
+<p><strong>注</strong>：本文描述的具体方法不适用于 <strong>Xcode 11</strong> 及以上版本，因为 info.plist 的内容有变化，不过可以继续使用此文描述的思路，不同的是需要解析的文件不是 <code>info.plist</code> 而是 <code>xxxxx.xcodeproj/project.pbxproj</code> ，版本就是其中的 <code>MARKETING_VERSION</code>。</p>
+
 <p>这里以工程托管在 github 为例，说明几点注意的地方：</p>
 
 <ul>
@@ -3578,7 +3580,7 @@ $$</p>
 
 <p>textGO 是一个菜单栏小工具，通过点击<code>检查更新</code>菜单项触发更新的检查，为了更好的展示效果，以视频展示，同时修改版本号来查看有更新和没更新两种情况的效果。</p>
 
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/check_update_simple.mp4" width="960px" controls="controls"></video>
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/check_update_simple.mp4" width="100%" controls="controls"></video>
 
 <h1 id="总结">总结</h1>
 

@@ -6,8 +6,199 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate>
+		<lastBuildDate>Mon, 11 Nov 2019 11:04:25 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Ant Design Vue 工程配置笔记</title>
+			<link>https://www.smslit.top/2019/11/11/ant-design-vue-note-start/</link>
+			<pubDate>Mon, 11 Nov 2019 11:04:25 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2019/11/11/ant-design-vue-note-start/</guid>
+			<description>工程配置 创建工程 # 安装 Vue # npm install -g @vue/cli $ vue creat antd-demo 排除 vscode 配置忽略 vscode 打开上面创建的工程，修改 .gitignore 文件内容为： .DS_Store node_modules /dist # local env files .env.local .env.*.local # Log files npm-debug.log* yarn-debug.log* yarn-error.log* # Editor directories and files .idea -</description>
+			<content type="html"><![CDATA[
+
+<h2 id="工程配置">工程配置</h2>
+
+<h3 id="创建工程">创建工程</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 安装 Vue</span>
+<span class="c1"># npm install -g @vue/cli</span>
+$ vue creat antd-demo</code></pre></div>
+<h3 id="排除-vscode-配置忽略">排除 vscode 配置忽略</h3>
+
+<p>vscode 打开上面创建的工程，修改 <code>.gitignore</code> 文件内容为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">.DS_Store
+node_modules
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+<span class="gd">- .vscode
+</span><span class="gd"></span><span class="gi">+ .vscode/*
+</span><span class="gi"></span>*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+<span class="gi">+ !.vscode/settings.json
+</span></code></pre></div>
+<h3 id="修改-vscode-工程配置">修改 vscode 工程配置</h3>
+
+<p>修改文件 <code>.vscode/settings.json</code> ，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="err">//</span> <span class="err">vscode默认启用了根据文件类型自动设置tabsize的选项</span>
+  <span class="nt">&#34;editor.detectIndentation&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">重新设定tabsize</span>
+  <span class="nt">&#34;editor.tabSize&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#每次保存的时候自动格式化</span>
+  <span class="nt">&#34;editor.formatOnSave&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#每次保存的时候将代码按eslint格式进行修复</span>
+  <span class="nt">&#34;eslint.autoFixOnSave&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">添加</span> <span class="err">vue</span> <span class="err">支持</span>
+  <span class="nt">&#34;eslint.validate&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&#34;javascript&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;javascriptreact&#34;</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;vue&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;autoFix&#34;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="err">//</span> <span class="err">#让prettier使用eslint的代码格式进行校验</span>
+  <span class="nt">&#34;prettier.eslintIntegration&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#去掉代码结尾的分号</span>
+  <span class="nt">&#34;prettier.semi&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#使用带引号替代双引号</span>
+  <span class="nt">&#34;prettier.singleQuote&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#让函数(名)和后面的括号之间加个空格</span>
+  <span class="nt">&#34;javascript.format.insertSpaceBeforeFunctionParenthesis&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#这个按用户自身习惯选择</span>
+  <span class="nt">&#34;vetur.format.defaultFormatter.html&#34;</span><span class="p">:</span> <span class="s2">&#34;js-beautify-html&#34;</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">#让vue中的js按编辑器自带的ts格式进行格式化</span>
+  <span class="nt">&#34;vetur.format.defaultFormatter.js&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode-typescript&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;vetur.format.defaultFormatterOptions&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;js-beautify-html&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;wrap_attributes&#34;</span><span class="p">:</span> <span class="s2">&#34;force-aligned&#34;</span>
+      <span class="err">//</span> <span class="err">#vue组件中html代码格式化样式</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">}</span></code></pre></div>
+<h3 id="安装-ant-design-vue">安装 Ant Design Vue</h3>
+
+<p>从 yarn 或 npm 安装并引入 ant-design-vue。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add ant-design-vue</code></pre></div>
+<h3 id="安装-antd-导入插件">安装 antd 导入插件</h3>
+
+<p><a href="https://github.com/ant-design/babel-plugin-import" target="_blank">babel-plugin-import</a> 是一个用于按需加载组件代码和样式的 babel 插件（<a href="https://www.antdv.com/docs/vue/getting-started-cn/#按需加载" target="_blank">原理</a>）。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add babel-plugin-import --dev</code></pre></div>
+<p>修改<code>babel.config.js</code>文件，配置 babel-plugin-import</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"> module.exports = {
+  presets: [&#34;@vue/app&#34;],
+<span class="gi">+  plugins: [
+</span><span class="gi">+    [
+</span><span class="gi">+      &#34;import&#34;,
+</span><span class="gi">+      { libraryName: &#34;ant-design-vue&#34;, libraryDirectory: &#34;es&#34;, style: true }
+</span><span class="gi">+    ]
+</span><span class="gi">+  ]
+</span><span class="gi"></span>};
+</code></pre></div>
+<h2 id="简单测试">简单测试</h2>
+
+<p>修改 <code>main.js</code> 文件如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">  import Vue from &#39;vue&#39;
+<span class="gi">+ import { Button } from &#39;ant-design-vue&#39;;
+</span><span class="gi"></span>  import App from &#39;./App&#39;
+
+<span class="gi">+ Vue.component(Button.name, Button)
+</span><span class="gi"></span>
+  Vue.config.productionTip = false
+
+  new Vue({
+    render: h =&gt; h(App)
+  }).$mount(&#34;#app&#34;);
+</code></pre></div>
+<p>修改 <code>src/App.vue</code>的 template 内容。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">&lt;template&gt;
+  &lt;div id=&#34;app&#34;&gt;
+    &lt;img src=&#34;./assets/logo.png&#34;&gt;
+<span class="gd">-    &lt;HelloWorld msg=&#34;Welcome to Your Vue.js App&#34;/&gt;
+</span><span class="gd"></span><span class="gi">+    &lt;a-button type=&#34;primary&#34;&gt;Button&gt;&lt;/a-button&gt;
+</span><span class="gi"></span>  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  
+<span class="gd">- import HelloWorld from &#39;./components/HelloWorld.vue&#39;
+</span><span class="gd"></span>
+export default {
+  name: &#39;app&#39;,
+  components: {
+<span class="gd">-     HelloWorld
+</span><span class="gd"></span>  }
+}
+&lt;/script&gt;
+...
+</code></pre></div>
+<p>此时运行 <code>yarn serve</code> 会出现错误。</p>
+
+<h3 id="core-js-错误">core-js 错误</h3>
+
+<p>出现如下错误提示：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yarn serve                                         
+yarn run v1.19.1
+$ vue-cli-service serve
+ INFO  Starting development server...
+<span class="m">98</span>% after emitting CopyPlugin
+
+ ERROR  Failed to compile with <span class="m">1</span> errors                                                                                                              <span class="m">10</span>:34:18 AM
+
+This dependency was not found:
+
+* core-js/modules/es.function.name in ./src/main.js
+
+To install it, you can run: npm install --save core-js/modules/es.function.name</code></pre></div>
+<p>解决：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add core-js</code></pre></div>
+<h3 id="less-loader-错误">less-loader 错误</h3>
+
+<p>再次运行仍然有错误：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yarn serve
+yarn run v1.19.1
+$ vue-cli-service serve
+ INFO  Starting development server...
+<span class="m">98</span>% after emitting CopyPlugin
+
+ ERROR  Failed to compile with <span class="m">2</span> errors                                                                                                              <span class="m">10</span>:36:34 AM
+
+Failed to resolve loader: less-loader
+You may need to install it.
+Failed to resolve loader: less-loader
+You may need to install it.</code></pre></div>
+<h4 id="解决">解决</h4>
+
+<h5 id="安装-less-loader">安装 less-loader</h5>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ npm i less less-loader --save-dev</code></pre></div>
+<p>添加配置文件 <code>vue.config.js</code> ，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">css</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaderOptions</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">less</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">javascriptEnabled</span><span class="o">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<p>此时运行，正常的话就可以查看页面了。</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>

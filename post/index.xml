@@ -184,7 +184,7 @@ Failed to resolve loader: less-loader
 You may need to install it.</code></pre></div>
 <h4 id="解决">解决</h4>
 
-<h5 id="安装-less-loader">安装 less-loader</h5>
+<h5 id="安装-less-和-less-loader">安装 less 和 less-loader</h5>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ npm i less less-loader --save-dev</code></pre></div>
 <p>添加配置文件 <code>vue.config.js</code> ，内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>

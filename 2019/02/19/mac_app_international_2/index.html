@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之 storyboard 或 xib 本地化">
 <meta itemprop="description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s">
-
-
 <meta itemprop="datePublished" content="2019-02-19T08:53:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-19T08:53:54&#43;08:00" />
-<meta itemprop="wordCount" content="1636">
+<meta itemprop="wordCount" content="1576">
 
 
 
-<meta itemprop="keywords" content="macOS 开发," />
-<meta property="og:title" content="macOS 开发之 storyboard 或 xib 本地化" />
+<meta itemprop="keywords" content="macOS 开发," /><meta property="og:title" content="macOS 开发之 storyboard 或 xib 本地化" />
 <meta property="og:description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/19/mac_app_international_2/" />
@@ -83,110 +80,79 @@
 				<h1>macOS 开发之 storyboard 或 xib 本地化</h1>
 			</header>
 			<div class="content">
-				
-
-<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：storyboard 或 xib 本地化。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219090656.jpg" alt="" /></p>
-
-<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a></p>
-
-<p>第三部传送门：<a href="/2019/02/21/mac_app_international_3/" target="_blank">macOS 开发之代码字符串的本地化</a></p>
-
+				<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：storyboard 或 xib 本地化。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219090656.jpg" alt=""></p>
+<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/">macOS 开发之 APP 名称本地化</a></p>
+<p>第三部传送门：<a href="/2019/02/21/mac_app_international_3/">macOS 开发之代码字符串的本地化</a></p>
 <h1 id="实现平台">实现平台</h1>
-
 <ul>
 <li>macOS 10.14.3</li>
 <li>swift 4.2.1</li>
 <li>xcode 10.1</li>
 </ul>
-
 <h1 id="准备工程">准备工程</h1>
-
-<p>本文直接使用上一篇文章<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo.zip" target="_blank">点我</a>下载！</p>
-
-<p>打开工程后，会看到 <code>Main.storyboard</code> 左侧有个小三角，点开可以看到，包含了简体中文和日文的两个 Strings 文件，这两个文件是在<a href="/2019/02/18/mac_app_international_1/#添加语言支持" target="_blank">添加语言支持</a> 的时候添加上的，点击 <code>Main.storyboard</code> 可以在 Inspector 的 <code>Localization</code> 分组看到 English 没有勾选，勾选 English ，会看到新增了一个 English 的 Strings 文件。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219092044.jpg" alt="" /></p>
-
+<p>本文直接使用上一篇文章<a href="/2019/02/18/mac_app_international_1/">macOS 开发之 APP 名称本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo.zip">点我</a>下载！</p>
+<p>打开工程后，会看到 <code>Main.storyboard</code> 左侧有个小三角，点开可以看到，包含了简体中文和日文的两个 Strings 文件，这两个文件是在<a href="/2019/02/18/mac_app_international_1/#添加语言支持">添加语言支持</a> 的时候添加上的，点击 <code>Main.storyboard</code> 可以在 Inspector 的 <code>Localization</code> 分组看到 English 没有勾选，勾选 English ，会看到新增了一个 English 的 Strings 文件。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219092044.jpg" alt=""></p>
 <p>上面提到的 String 文件包含了 storyboard 中所有可见控件中字符串对应的内容定义，App 运行的时候会根据系统语言读取对应语言的字符串内容，以达到 storyboard 界面元素本地化显示的效果！</p>
-
 <blockquote>
 <p>如果要添加自己定义的 xib 文件，也会像 storyboard 文件一样，在 File Inspector 中会有一个 Localization 的分组，如果有 localize&hellip; 按钮，点击它就可以添加 xib 的新的语言支持！</p>
 </blockquote>
-
 <h1 id="修改-strings-文件">修改 Strings 文件</h1>
-
 <p>打开上面提到的三个 Strigns 文件：</p>
-
 <ul>
 <li>Main.Strings (English)</li>
 <li>Main.Strings (Chinese(Simplified))</li>
 <li>Main.Strings (Japanese)</li>
 </ul>
-
 <p>可以看到文件中都包含了相同的字符串项，例如其中的窗口标题项：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSWindow&#34;; title = &#34;Window&#34;; ObjectID = &#34;IQv-IB-iLA&#34;; */</span>
-<span class="s">&#34;IQv-IB-iLA.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Window&#34;</span><span class="p">;</span></code></pre></div>
-<ol>
-<li>左侧的代表了字符串标识，右侧是相对应的字符串值，我们要对应语言修改的就是每一项的右侧值。</li>
-<li>每一项后面必须有半角的分号</li>
-
-<li><p>左侧标识使用了控件的 <code>ObjectID</code>，使用点语法表示属性的方式构成字符串标识，其中 <code>ObjectID</code> 可以在控件的 Identity Inspector 中查看，比如选中 Main.storyboard 中的 Window 将 Inspector 切换到 Identity 标签页可以在 Document 分组中看到 Object ID 是 <code>IQv-IB-iLA&quot;</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219112159.png" alt="" /></p></li>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">W</span><span class="cm">i</span><span class="cm">n</span><span class="cm">d</span><span class="cm">o</span><span class="cm">w</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">W</span><span class="cm">i</span><span class="cm">n</span><span class="cm">d</span><span class="cm">o</span><span class="cm">w</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">I</span><span class="cm">Q</span><span class="cm">v</span><span class="cm">-</span><span class="cm">I</span><span class="cm">B</span><span class="cm">-</span><span class="cm">i</span><span class="cm">L</span><span class="cm">A</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">IQv-IB-iLA.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Window</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ol>
+<li>
+<p>左侧的代表了字符串标识，右侧是相对应的字符串值，我们要对应语言修改的就是每一项的右侧值。</p>
+</li>
+<li>
+<p>每一项后面必须有半角的分号</p>
+</li>
+<li>
+<p>左侧标识使用了控件的 <code>ObjectID</code>，使用点语法表示属性的方式构成字符串标识，其中 <code>ObjectID</code> 可以在控件的 Identity Inspector 中查看，比如选中 Main.storyboard 中的 Window 将 Inspector 切换到 Identity 标签页可以在 Document 分组中看到 Object ID 是 <code>IQv-IB-iLA&quot;</code></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219112159.png" alt=""></p>
+</li>
 </ol>
-
-<p>下面的工作就是自行翻译并修改每一项右侧的值了，可以使用<a href="http://translate.google.cn/" target="_blank">谷歌翻译</a>协助翻译。</p>
-
+<p>下面的工作就是自行翻译并修改每一项右侧的值了，可以使用<a href="http://translate.google.cn/">谷歌翻译</a>协助翻译。</p>
 <p>将 Main.Strings (Chinese(Simplified)) 和 Main.Strings (Japanese) 中的项修改完成后就可以验证效果了。</p>
-
 <h1 id="更新-strings-文件">更新 Strings 文件</h1>
-
 <p>设计的 storyboard 并不是一成不变的，所以 Strings 文件也要随时更新。这里用到一个辅助工具叫做 <strong>bartycrouch</strong>:</p>
-
 <blockquote>
 <p>BartyCrouch incrementally updates your Strings files from your Code and from Interface Builder files. &ldquo;Incrementally&rdquo; means that BartyCrouch will by default keep both your already translated values and even your altered comments. Additionally you can also use BartyCrouch for machine translating from one language to 60+ other languages. Using BartyCrouch is as easy as running a few simple commands from the command line what can even be automated using a build script within your project.</p>
 </blockquote>
-
-<p><a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a></p>
-
+<p><a href="https://github.com/Flinesoft/BartyCrouch">BartyCrouch</a></p>
 <p>这个工具也能调用微软的 API 协助翻译。</p>
-
 <h2 id="安装-bartycrouch">安装 bartycrouch</h2>
-
 <p>可以使用 homebrew 安装这个工具：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ brew install bartycrouch</code></pre></div>
-<p>⚠️：</p>
-
-<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top" target="_blank">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640" target="_blank">macOS 开发</a>。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ brew install bartycrouch
+</code></pre></div><p>⚠️：</p>
+<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640">macOS 开发</a>。</p>
 <h2 id="使用">使用</h2>
-
 <p>为了验证使用，这里在 view controller 中添加了一个按钮和一个 label。</p>
-
 <h3 id="更新-interfaces">更新 interfaces</h3>
-
 <p>这里我们主要是用其从 storyboard 或者 xib 文件更新 Strings 文件的功能，只需要调用如下命令就可以工作：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ bartycrouch interfaces -p InternationalDemo/
-ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Storyboard or XIB file.</code></pre></div>
-<p>其中需要使用 <code>-p</code> 指明包含工程文件的目录，因为此时工作目录是在工程根目录下，所以要指定的目录是存放文件的 <code>InternationalDemo/</code></p>
-
+ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Storyboard or XIB file.
+</code></pre></div><p>其中需要使用 <code>-p</code> 指明包含工程文件的目录，因为此时工作目录是在工程根目录下，所以要指定的目录是存放文件的 <code>InternationalDemo/</code></p>
 <p>执行了上面的命令以后，查看三个 Strings 文件中确实新添了按钮和 label 的相关字符串！</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSButtonCell&#34;; title = &#34;Button&#34;; ObjectID = &#34;0A1-8b-fid&#34;; */</span>
-<span class="s">&#34;0A1-8b-fid.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">B</span><span class="cm">u</span><span class="cm">t</span><span class="cm">t</span><span class="cm">o</span><span class="cm">n</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">B</span><span class="cm">u</span><span class="cm">t</span><span class="cm">t</span><span class="cm">o</span><span class="cm">n</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">0</span><span class="cm">A</span><span class="cm">1</span><span class="cm">-</span><span class="cm">8</span><span class="cm">b</span><span class="cm">-</span><span class="cm">f</span><span class="cm">i</span><span class="cm">d</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">0A1-8b-fid.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">;</span>
 
-<span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span></code></pre></div>
-<h3 id="检查-strings-文件">检查 Strings 文件</h3>
-
+<span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><h3 id="检查-strings-文件">检查 Strings 文件</h3>
 <p>bartycrouch 的子命令 lint 可以帮助检查：</p>
-
 <ul>
 <li>Strings 文件中重复的键值，需要指定命令参数 <code>-d</code></li>
 <li>文件中值为空字符串的键值，需要指定命令参数 <code>-e</code></li>
 </ul>
-
 <p>比如我们检查一下有没有空值的键</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ bartycrouch lint -e -p InternationalDemo
 
@@ -196,15 +162,11 @@
 ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/ja.lproj/Main.strings.
 ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;0A1-8b-fid.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/en.lproj/Main.strings.
 ℹ️ Found empty value <span class="k">for</span> key <span class="s1">&#39;by2-mL-GsU.title&#39;</span> in file /Users/5km/Documents/workspace/macOS/InternationalDemo/InternationalDemo/en.lproj/Main.strings.
-❌ Error! <span class="m">6</span> issue<span class="o">(</span>s<span class="o">)</span> found in <span class="m">3</span> file<span class="o">(</span>s<span class="o">)</span>. Executed <span class="m">1</span> checks in <span class="m">6</span> Strings file<span class="o">(</span>s<span class="o">)</span> in total.</code></pre></div>
-<p>这就检查出刚刚新加的按钮和 label 的相对应的字符串配置了。</p>
-
+❌ Error! <span class="m">6</span> issue<span class="o">(</span>s<span class="o">)</span> found in <span class="m">3</span> file<span class="o">(</span>s<span class="o">)</span>. Executed <span class="m">1</span> checks in <span class="m">6</span> Strings file<span class="o">(</span>s<span class="o">)</span> in total.
+</code></pre></div><p>这就检查出刚刚新加的按钮和 label 的相对应的字符串配置了。</p>
 <h3 id="自动更新和检查">自动更新和检查</h3>
-
 <p>为了更方便快捷的更新和检查 Strings 文件，这里可以为工程新建一个 Build Phase，按照下图流程添加：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219142234.jpg" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219142234.jpg" alt=""></p>
 <p>添加的 shell 脚本内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="c1"># Type a script or drag a script file from your workspace to insert its path.</span>
 <span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
@@ -212,38 +174,29 @@
     bartycrouch lint -e -d -p .
 <span class="k">else</span>
     <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
-<span class="k">fi</span></code></pre></div>
-<p>运行一下工程，build 失败，原因是 <code>bartycrouch lint</code> 命令检查出了有空值字符串，以后就是每次编译都会更新 Strings 文件。</p>
-
+<span class="k">fi</span>
+</code></pre></div><p>运行一下工程，build 失败，原因是 <code>bartycrouch lint</code> 命令检查出了有空值字符串，以后就是每次编译都会更新 Strings 文件。</p>
 <p>再把按钮删除运行工程，检查出 String 文件中只有 label 相关的字符串了，给三个文件分别更改 label 标签的内容。</p>
-
 <ul>
-<li><p>Main.strings (English)</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">;</span></code></pre></div></li>
+<li>Main.strings (English)</li>
 </ul>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143602.png" alt="" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Hello, world!</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143602.png" alt=""></p>
 <ul>
-<li><p>Main.strings (Chinese(Simplified))</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;世界，你好!&#34;</span><span class="p">;</span></code></pre></div></li>
+<li>Main.strings (Chinese(Simplified))</li>
 </ul>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143627.png" alt="" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">世界，你好!</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143627.png" alt=""></p>
 <ul>
-<li><p>Main.strings (Japanese)</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
-<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;こんにちは世界!&#34;</span><span class="p">;</span></code></pre></div></li>
+<li>Main.strings (Japanese)</li>
 </ul>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143636.png" alt="" /></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">こんにちは世界!</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143636.png" alt=""></p>
 <p>至此，这一部分就讲完了，希望对您有所帮助！</p>
-
-<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip" target="_blank">InternationalDemo2</a></p>
+<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip">InternationalDemo2</a></p>
 
 			</div>
 			<hr class="post-end">
@@ -253,7 +206,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1636 字
+					1576 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -263,21 +216,16 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#实现平台">实现平台</a></li>
-<li><a href="#准备工程">准备工程</a></li>
-<li><a href="#修改-strings-文件">修改 Strings 文件</a></li>
-<li><a href="#更新-strings-文件">更新 Strings 文件</a>
-<ul>
-<li><a href="#安装-bartycrouch">安装 bartycrouch</a></li>
-<li><a href="#使用">使用</a>
-<ul>
-<li><a href="#更新-interfaces">更新 interfaces</a></li>
-<li><a href="#检查-strings-文件">检查 Strings 文件</a></li>
-<li><a href="#自动更新和检查">自动更新和检查</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#安装-bartycrouch">安装 bartycrouch</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#更新-interfaces">更新 interfaces</a></li>
+        <li><a href="#检查-strings-文件">检查 Strings 文件</a></li>
+        <li><a href="#自动更新和检查">自动更新和检查</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -328,7 +276,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

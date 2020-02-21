@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS升级到12.5后jupyter不能自动打开浏览器">
 <meta itemprop="description" content="升级了macOS后一直也没有使用jupyter notebook，昨天使用了发现竟然不能自动打开浏览器了。">
-
-
 <meta itemprop="datePublished" content="2017-06-05T14:00:13&#43;08:00" />
 <meta itemprop="dateModified" content="2017-06-05T14:00:13&#43;08:00" />
 <meta itemprop="wordCount" content="466">
 
 
 
-<meta itemprop="keywords" content="develop,python," />
-<meta property="og:title" content="macOS升级到12.5后jupyter不能自动打开浏览器" />
+<meta itemprop="keywords" content="develop,python," /><meta property="og:title" content="macOS升级到12.5后jupyter不能自动打开浏览器" />
 <meta property="og:description" content="升级了macOS后一直也没有使用jupyter notebook，昨天使用了发现竟然不能自动打开浏览器了。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/06/05/jupyter-notebook-not-auto-open-webpage/" />
@@ -84,9 +81,8 @@
 			</header>
 			<div class="content">
 				<p>升级了macOS后一直也没有使用<strong>jupyter notebook</strong>，昨天使用了发现竟然不能自动打开浏览器了。</p>
-
 <p>终端下调用<strong>jupyter notebook</strong>：</p>
-<div class="highlight"><pre class="chroma">➜  LearnPythonNotebook git:(master) ✗ jupyter notebook
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  LearnPythonNotebook git:(master) ✗ jupyter notebook
 zsh: /usr/local/bin/jupyter: bad interpreter: /usr/local/opt/python/bin/python2.7: no such file or directory
 [I 13:58:51.602 NotebookApp] Serving notebooks from local directory: /Users/smslit/Desktop/LearnPythonNotebook
 [I 13:58:51.602 NotebookApp] 0 active kernels
@@ -97,20 +93,21 @@ zsh: /usr/local/bin/jupyter: bad interpreter: /usr/local/opt/python/bin/python2.
     Copy/paste this URL into your browser when you connect for the first time,
     to login with a token:
         http://localhost:8888/?token=f6ca93231d4791de0dd64749e7f2fd62a50e55fc01456716
-0:97: execution error: “&#34;http://localhost:8888/tree?token=50b06d86ad89e16f44b101656e1b3aec168231dd00b143a4&#34;”不理解“open location”信息。 (-1708)</pre></div>
-<p>问了一下我们的哥(谷歌)，找到了解决方案，在<code>~/.jupyter</code>目录下创建文件<code>jupyter_notebook_config.py</code>，文件内容如下：</p>
-<div class="highlight"><pre class="chroma">c.NotebookApp.browser = u&#39;Safari&#39;
+0:97: execution error: “&#34;http://localhost:8888/tree?token=50b06d86ad89e16f44b101656e1b3aec168231dd00b143a4&#34;”不理解“open location”信息。 (-1708)
+</code></pre></div><p>问了一下我们的哥(谷歌)，找到了解决方案，在<code>~/.jupyter</code>目录下创建文件<code>jupyter_notebook_config.py</code>，文件内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">c.NotebookApp.browser = u&#39;Safari&#39;
 c.NotebookApp.token = &#39;&#39;
-c.NotebookApp.password = &#39;&#39;</pre></div>
-<p>重新启动一下<strong>jupyter notebook</strong>:</p>
-<div class="highlight"><pre class="chroma">➜  LearnPythonNotebook git:(master) ✗ jupyter notebook
+c.NotebookApp.password = &#39;&#39;
+</code></pre></div><p>重新启动一下<strong>jupyter notebook</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  LearnPythonNotebook git:(master) ✗ jupyter notebook
 zsh: /usr/local/bin/jupyter: bad interpreter: /usr/local/opt/python/bin/python2.7: no such file or directory
 [W 14:19:57.878 NotebookApp] All authentication is disabled.  Anyone who can connect to this server will be able to run code.
 [I 14:19:57.888 NotebookApp] Serving notebooks from local directory: /Users/smslit/Desktop/LearnPythonNotebook
 [I 14:19:57.888 NotebookApp] 0 active kernels
 [I 14:19:57.888 NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/
-[I 14:19:57.888 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</pre></div>
-<p>可以自动打开safari了，<em>peace！</em></p>
+[I 14:19:57.888 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+
+</code></pre></div><p>可以自动打开safari了，<em>peace！</em></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -174,7 +171,7 @@ zsh: /usr/local/bin/jupyter: bad interpreter: /usr/local/opt/python/bin/python2.
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

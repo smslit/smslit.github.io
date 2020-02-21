@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Jekyll博客添加多说评论">
 <meta itemprop="description" content="jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。">
-
-
 <meta itemprop="datePublished" content="2015-07-16T23:07:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-07-16T23:07:46&#43;08:00" />
 <meta itemprop="wordCount" content="1055">
 
 
 
-<meta itemprop="keywords" content="blog,jekyll,comment," />
-<meta property="og:title" content="Jekyll博客添加多说评论" />
+<meta itemprop="keywords" content="blog,jekyll,comment," /><meta property="og:title" content="Jekyll博客添加多说评论" />
 <meta property="og:description" content="jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/07/16/jekyllCommit/" />
@@ -84,82 +81,52 @@
 			</header>
 			<div class="content">
 				<p>jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。</p>
-
-<h3 id="多说-的介绍">『多说』的介绍</h3>
-
+<h3 id="多说的介绍">『多说』的介绍</h3>
 <p>多说是追求最佳用户体验的社会化评论框，为中小网站提供新浪微博、QQ（QQ空间和腾讯微博）、人人、开心网、豆瓣、网易微博、搜狐微博、百度、淘宝、Google等多帐号登录并评论功能。它帮你搭建更活跃，互动性更强的评论平台。具有众多实用特性，功能强大且永久免费。</p>
-
 <h3 id="具体实现">具体实现</h3>
-
-<h4 id="注册-多说-http-duoshuo-com">注册<a href="http://duoshuo.com/" target="_blank">多说</a></h4>
-
+<h4 id="注册多说httpduoshuocom">注册<a href="http://duoshuo.com/">多说</a></h4>
 <p>注册账户，并创建多说站点。</p>
-
 <h5 id="登录">登录</h5>
-
 <p>先用现有的微博、qq或百度帐号什么的登录多说</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/u94vt.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/u94vt.png" alt="1"></p>
 <h5 id="跳转">跳转</h5>
-
 <p>登录后，再回到首页，点击『我要安装』，然后就跳转到创建站点的页面。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/d0b1l.png" alt="2" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/d0b1l.png" alt="2"></p>
 <h5 id="创建站点">创建站点</h5>
-
 <p>创建属于自己的站点。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/zivhx.png" alt="3" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/zivhx.png" alt="3"></p>
 <h4 id="配置">配置</h4>
-
 <p>根据自己需要进行配置，复制JS代码</p>
-
 <h5 id="js代码">JS代码</h5>
-
 <p>这里我用默认配置生成的JS代码，依次选择标签『工具』-『获取代码』-『通用代码』，点击复制即可将代码复制到粘贴板上：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/w5x1p.png" alt="4" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/w5x1p.png" alt="4"></p>
 <p><strong>通用代码如下:</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c">&lt;!--</span> <span class="nx">多说评论框</span> <span class="nx">start</span> <span class="o">--&gt;</span>
-	<span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;ds-thread&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">thread</span><span class="o">-</span><span class="nx">key</span><span class="o">=</span><span class="s2">&#34;请将此处替换成文章在你的站点中的ID&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&#34;请替换成文章的标题&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">url</span><span class="o">=</span><span class="s2">&#34;请替换成文章的网址&#34;</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-<span class="c">&lt;!--</span> <span class="nx">多说评论框</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-<span class="c">&lt;!--</span> <span class="nx">多说公共JS代码</span> <span class="nx">start</span> <span class="p">(</span><span class="nx">一个网页只需插入一次</span><span class="p">)</span> <span class="o">--&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c">&lt;!--</span> <span class="nx">多说评论框</span> <span class="nx">start</span> <span class="o">--</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;ds-thread&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">thread</span><span class="o">-</span><span class="nx">key</span><span class="o">=</span><span class="s2">&#34;请将此处替换成文章在你的站点中的ID&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">title</span><span class="o">=</span><span class="s2">&#34;请替换成文章的标题&#34;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">url</span><span class="o">=</span><span class="s2">&#34;请替换成文章的网址&#34;</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="c">&lt;!--</span> <span class="nx">多说评论框</span> <span class="nx">end</span> <span class="o">--</span><span class="o">&gt;</span>
+<span class="c">&lt;!--</span> <span class="nx">多说公共JS代码</span> <span class="nx">start</span> <span class="p">(</span><span class="nx">一个网页只需插入一次</span><span class="p">)</span> <span class="o">--</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;text/javascript&#34;</span><span class="o">&gt;</span>
-<span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&#34;请将此处替换为你的多说站点的短名short_name&#34;</span><span class="p">};</span>
-	<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&#34;请将此处替换为你的多说站点的短名short_name&#34;</span><span class="p">}</span><span class="p">;</span>
+	<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">==</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https:&#39;</span> <span class="o">:</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;//static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
-		<span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> 
-		 <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">);</span>
-	<span class="p">})();</span>
-	<span class="o">&lt;</span><span class="err">/script&gt;</span>
-<span class="c">&lt;!--</span> <span class="nx">多说公共JS代码</span> <span class="nx">end</span> <span class="o">--&gt;</span>
-</code></pre></div>
-<p><strong>按照代码中中文提示替换成对应自己网页的设置就可以了。</strong>
+		<span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+		 <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ds</span><span class="p">)</span><span class="p">;</span>
+	<span class="p">}</span><span class="p">)</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+	<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+<span class="c">&lt;!--</span> <span class="nx">多说公共JS代码</span> <span class="nx">end</span> <span class="o">--</span><span class="o">&gt;</span>
+</code></pre></div><p><strong>按照代码中中文提示替换成对应自己网页的设置就可以了。</strong>
 <strong>一般的:</strong></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/i234m.png" alt="5" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/i234m.png" alt="5"></p>
 <h5 id="编辑布局文件">编辑布局文件</h5>
-
 <p>将修改好的JS代码粘贴到<code>_layout</code>文件夹下post中配置布局layout对应的html文件的最后，即可实现如此博文下面的评论框。</p>
-
 <h4 id="修改样式">修改样式</h4>
-
 <p>修改css进行评论框样式更改</p>
-
 <p>你会发现我的评论框对应头像是圆的，就是添加样式配置实现的。</p>
-
 <p>下面要添加的代码均添加到<code>_sass</code>文件夹下的的<code>_layout.scss</code>文件中。</p>
-
 <h5 id="实现其他样式">实现其他样式</h5>
-
 <p>实现圆形头像，并可以在鼠标置于上面时，头像旋转360度</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">#</span><span class="nn">ds-reset</span> <span class="p">.</span><span class="nc">ds-avatar</span> <span class="nt">img</span> <span class="p">{</span>
   <span class="k">width</span><span class="p">:</span> <span class="mi">54</span><span class="kt">px</span> <span class="cp">!important</span><span class="p">;</span>
@@ -172,28 +139,21 @@
   <span class="k">transition</span><span class="p">:</span> <span class="k">transform</span> <span class="mf">0.4</span><span class="kt">s</span> <span class="kc">ease</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="p">#</span><span class="nn">ds-reset</span> <span class="p">.</span><span class="nc">ds-avatar</span> <span class="nt">img</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotateZ</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">);</span>
-  <span class="kp">-moz-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotateZ</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">);</span>
-  <span class="k">transform</span><span class="p">:</span> <span class="nb">rotateZ</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
-<h5 id="隐藏">隐藏</h5>
-
+  <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotateZ</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="kp">-moz-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotateZ</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">rotateZ</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h5 id="隐藏">隐藏</h5>
 <p>隐藏评论框底下显示“xx正在使用多说”字样</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="err">#</span><span class="nx">ds</span><span class="o">-</span><span class="nx">reset</span> <span class="p">.</span><span class="nx">ds</span><span class="o">-</span><span class="nx">powered</span><span class="o">-</span><span class="nx">by</span> <span class="p">{</span>
   <span class="nx">display</span><span class="o">:</span> <span class="nx">none</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<h4 id="留言板">留言板</h4>
-
+</code></pre></div><h4 id="留言板">留言板</h4>
 <p>为博客开发留言板功能</p>
-
 <p><strong>其实就是开辟一个新的导航项『Message』,在其中对应的layout布局文件中加入上面的评论JS代码。</strong></p>
-
 <p><strong>效果如本网站的<a href="/message">Message页</a></strong></p>
-
 <h4 id="参考">参考</h4>
-
-<p><a href="http://liberize.me/tech/jekyll-use-duoshuo-comment-system.html" target="_blank"><strong>Jekyll 使用多说评论系统</strong></a></p>
+<p><a href="http://liberize.me/tech/jekyll-use-duoshuo-comment-system.html"><strong>Jekyll 使用多说评论系统</strong></a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -212,36 +172,14 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#多说-的介绍">『多说』的介绍</a></li>
-<li><a href="#具体实现">具体实现</a>
-<ul>
-<li><a href="#注册-多说-http-duoshuo-com">注册<a href="http://duoshuo.com/" target="_blank">多说</a></a>
-<ul>
-<li><a href="#登录">登录</a></li>
-<li><a href="#跳转">跳转</a></li>
-<li><a href="#创建站点">创建站点</a></li>
-</ul></li>
-<li><a href="#配置">配置</a>
-<ul>
-<li><a href="#js代码">JS代码</a></li>
-<li><a href="#编辑布局文件">编辑布局文件</a></li>
-</ul></li>
-<li><a href="#修改样式">修改样式</a>
-<ul>
-<li><a href="#实现其他样式">实现其他样式</a></li>
-<li><a href="#隐藏">隐藏</a></li>
-</ul></li>
-<li><a href="#留言板">留言板</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#多说的介绍">『多说』的介绍</a></li>
+        <li><a href="#具体实现">具体实现</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -292,7 +230,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

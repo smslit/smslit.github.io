@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动">
 <meta itemprop="description" content="最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个">
-
-
 <meta itemprop="datePublished" content="2019-08-21T10:51:18&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-21T10:51:18&#43;08:00" />
-<meta itemprop="wordCount" content="2356">
+<meta itemprop="wordCount" content="2357">
 
 
 
-<meta itemprop="keywords" content="platformio,develop,mcu,arduino," />
-<meta property="og:title" content="PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动" />
+<meta itemprop="keywords" content="platformio,develop,mcu,arduino," /><meta property="og:title" content="PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动" />
 <meta property="og:description" content="最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/08/21/platformio-irremote-driver/" />
@@ -83,47 +80,29 @@
 				<h1>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</h1>
 			</header>
 			<div class="content">
-				
-
-<p>最近做一个项目需要用到红外接收，项目工程针对的是 <code>STM32F103C8T6</code> 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个条件的，索性就自己造个轮子呗，也不难！</p>
-
+				<p>最近做一个项目需要用到红外接收，项目工程针对的是 <code>STM32F103C8T6</code> 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个条件的，索性就自己造个轮子呗，也不难！</p>
 <h2 id="硬件连接">硬件连接</h2>
-
 <p>本文的实现驱动的硬件条件如下：</p>
-
 <ul>
 <li>STM32F103C8T6 最小系统板</li>
 <li>stlink v2 仿真调试器</li>
 <li>VS1838B 红外接收头</li>
 <li>常规的红外遥控器</li>
 </ul>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821125056-eMMm6g.jpg" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821125056-eMMm6g.jpg" alt=""></p>
 <p>VS1838B 有三个管脚，VCC 、 GND 和 OUT，搭建的硬件电路很简单，不需要其他的配套电路，直接连接单片机管脚和电源就能正常使用，这里我将管脚连接到 <strong>PA0</strong> 管脚。</p>
-
 <h2 id="红外相关知识">红外相关知识</h2>
-
 <p>要想编写红外驱动需要了解红外接收器输出得信号特点，根据 VS1838B 输出信号有的放矢的设计信号解析驱动。</p>
-
-<p>笔者手头的红外遥控器采用 NEC 编码协议<sup class="footnote-ref" id="fnref:NEC-https-blog-c"><a href="#fn:NEC-https-blog-c">1</a></sup>，其中红外发射芯片会自动扫描矩阵键盘电路，根据不同的键码，生成一串二进制数据，再按每位的二进制数据用相应的红外光信号发出。遥控器上的一个按键按下后的 <strong>bit</strong> 数据:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821135123-cVuJ0l.png" alt="" /></p>
-
+<p>笔者手头的红外遥控器采用 NEC 编码协议^[<a href="https://blog.csdn.net/yu__jia/article/details/52912762">
+NEC红外线编码协议</a>]，其中红外发射芯片会自动扫描矩阵键盘电路，根据不同的键码，生成一串二进制数据，再按每位的二进制数据用相应的红外光信号发出。遥控器上的一个按键按下后的 <strong>bit</strong> 数据:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821135123-cVuJ0l.png" alt=""></p>
 <p>引导码用于标识一个键码数据的传输开始，将传输 32 位数据，共四个字节，按照先低位后高位传输。第一个字节为用户编码，用于标识遥控器的厂家，第二个字节为用户编吗的反码，用于校验用户编码。第三个字节是按键编码用于区别按下的键，第四个字节为按键编码的反码，用于校验按键编码, 从而确保红外线传输的数据的有效性。</p>
-
 <p>引导码、位数据 0 和位数据 1 信号特征明显，可以参考如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821143223-HkqRTp.png" alt="" /></p>
-
-<p>上面就是红外要发射数据的格式了，真正发射光信号的时候，其实是将待发射的数据调制到一个 38KHz 的光信号中的，红外接收头比如 VS1838B，接收到这个信号后会对信号进行信号放大、带通滤波、解调、波形整形最终还原出原始的 NEC 协议按键编码，但是要注意的是从 VS1838B 输出的信号是与原始编码反相的<sup class="footnote-ref" id="fnref:35-linux-https-b"><a href="#fn:35-linux-https-b">2</a></sup>，通俗讲就是高低电平是反着的。</p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821143223-HkqRTp.png" alt=""></p>
+<p>上面就是红外要发射数据的格式了，真正发射光信号的时候，其实是将待发射的数据调制到一个 38KHz 的光信号中的，红外接收头比如 VS1838B，接收到这个信号后会对信号进行信号放大、带通滤波、解调、波形整形最终还原出原始的 NEC 协议按键编码，但是要注意的是从 VS1838B 输出的信号是与原始编码反相的^[<a href="https://blog.csdn.net/jklinux/article/details/73498067">35 红外接收头在linux内核里的驱动</a>]，通俗讲就是高低电平是反着的。</p>
 <h2 id="驱动设计思路">驱动设计思路</h2>
-
 <p>为了找到解析 VS1838B 输出信号的方法，我们还是得先分析一下引导码、位数据 0 和 位数据 1 的特征，其实我们只要找到能区分这三个信号的方法即可。</p>
-
 <p>观察上一小节信号特征图，可以发现三种信号最明显的区别就是低电平时间：</p>
-
 <table>
 <thead>
 <tr>
@@ -131,73 +110,60 @@
 <th>低电平时间(ms)</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>引导码</td>
 <td>4.5ms</td>
 </tr>
-
 <tr>
 <td>b0</td>
 <td>0.56ms</td>
 </tr>
-
 <tr>
 <td>b1</td>
 <td>1.68ms</td>
 </tr>
 </tbody>
 </table>
-
 <p>但是我们知道 VS1838B 输出信号是与图中高低信号相反的，所以针对 VS1838B 的输出信号，我们只需要判断每段高电平的时间就可以区分出引导码、位数据 0 和 位数据 1。</p>
-
 <p>一组红外数据的信号是以引导码开始的，所以正常状态下一旦判断到是引导码，下面就应该通过区分位数据信号来保存位数据生成字节数据了，需要连续分辨 32 位数据是 0 或 1即可。</p>
-
 <p>为了保证及时的判断管脚电平的变化，这里采用 IO 外部中断的方式，在中断子程序中实现解析逻辑，解析数据之前关键的一点还是得到高电平时间，将外部中断触发方式设置为电平变化触发，也就是无论电平下降沿还是上升沿都会触发中断。</p>
-
 <p>中断处理逻辑中，加入状态机的处理形式，可分两种状态：</p>
-
 <ul>
 <li><strong>正常状态</strong>：等待引导码</li>
 <li><strong>接收数据状态</strong>：解析 0、1 数据</li>
 </ul>
-
 <p>最终结果存储在一个 32 位整型数据中，那么整个中断的处理逻辑步骤可参考如下：</p>
-
 <ol>
 <li>判断进入中断时管脚电平
-
 <ul>
 <li>如果是高电平，记录此刻时间，退出中断</li>
 <li>如果是低电平，用此刻时间减去记录的时间就得到了高电平脉冲宽度（单位 us），然后进行第 2 步</li>
-</ul></li>
+</ul>
+</li>
 <li>判断此时状态：
-
 <ul>
 <li>如果是<strong>正常状态</strong>，脉宽如果大于 4000us 说明是引导码，此时将状态切换为<strong>接收数据状态</strong>，结果置为 0，然后退出中断</li>
 <li>如果是<strong>接收数据状态</strong>，判断脉宽如果在 1120us 和 2240us 之间说明是 1 ，将结果的对应位置 1 ，然后判断是否接受完所有位：
-
 <ul>
 <li>如果是，对结果进行校验（利用反码），如果正确进行数据处理</li>
 <li>如果没有，退出中断</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-
 <h2 id="驱动程序实现">驱动程序实现</h2>
-
 <p>根据上述思路设计了红外接收驱动程序，以库的形式对程序封装，声明对象只需指定管脚和处理回调函数即可，在 PlatformIO IDE 项目工程目录 lib 中新建 IrRemote 目录，目录下放置源代码 irRemote.h 和 irRemote.cpp。理论上只要是使用 Arduino 框架，并且管脚支持 IO 外部中断，均可以正常使用。</p>
-
-<h3 id="irremote-h">irRemote.h</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef IRREMOTE_H_
-</span><span class="cp">#define IRREMOTE_H_
+<h3 id="irremoteh">irRemote.h</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">ifndef IRREMOTE_H_</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define IRREMOTE_H_</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&#34;Arduino.h&#34;</span><span class="cp">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;Arduino.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IrRemoteCBPtr</span><span class="p">)(</span><span class="kt">uint32_t</span><span class="p">);</span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IrRemoteCBPtr</span><span class="p">)</span><span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="p">;</span>
 
-<span class="k">enum</span> <span class="nc">IrRemoteState</span> <span class="p">{</span> <span class="n">WAITING</span><span class="p">,</span> <span class="n">READING</span> <span class="p">};</span>
+<span class="k">enum</span> <span class="nc">IrRemoteState</span> <span class="p">{</span> <span class="n">WAITING</span><span class="p">,</span> <span class="n">READING</span> <span class="p">}</span><span class="p">;</span>
 
 <span class="cm">/**
 </span><span class="cm"> * @brief 红外接收结果联合体
@@ -206,8 +172,8 @@
 </span><span class="cm"> */</span>
 <span class="k">union</span> <span class="nc">IrRemoteResult</span> <span class="p">{</span>
   <span class="kt">uint32_t</span> <span class="n">value</span><span class="p">;</span>
-  <span class="kt">uint8_t</span> <span class="n">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
-<span class="p">};</span>
+  <span class="kt">uint8_t</span> <span class="n">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">IrRemote</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
@@ -220,28 +186,28 @@
 </span><span class="cm">   * @param callback
 </span><span class="cm">   * 收到数据后要执行的回调函数，回调函数具有一个参数用于传递数据结果
 </span><span class="cm">   */</span>
-  <span class="n">IrRemote</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">pin</span><span class="p">,</span> <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">);</span>
+  <span class="n">IrRemote</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">pin</span><span class="p">,</span> <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">)</span><span class="p">;</span>
 
   <span class="cm">/**
 </span><span class="cm">   * @brief 红外数据接收处理函数
 </span><span class="cm">   *
 </span><span class="cm">   * 分析红外输出电平及持续时间，解析得到数据
 </span><span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">handler</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="p">;</span>
 
   <span class="cm">/**
 </span><span class="cm">   * @brief 启动红外接收
 </span><span class="cm">   *
 </span><span class="cm">   * 开启红外数据解析逻辑
 </span><span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">begin</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">begin</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="p">;</span>
 
   <span class="cm">/**
 </span><span class="cm">   * @brief 关闭红外接收
 </span><span class="cm">   *
 </span><span class="cm">   * 关闭红外数据解析逻辑
 </span><span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">end</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="nf">end</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="p">;</span>
 
  <span class="k">private</span><span class="o">:</span>
   <span class="kt">uint8_t</span> <span class="n">pin</span><span class="p">;</span>             <span class="c1">// 连接红外输出的管脚
@@ -259,51 +225,50 @@
 </span><span class="cm">   *
 </span><span class="cm">   * @param result 解析得到的红外接收结果
 </span><span class="cm">   */</span>
-  <span class="kt">bool</span> <span class="nf">check</span><span class="p">(</span><span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">);</span>
-<span class="p">};</span>
+  <span class="kt">bool</span> <span class="nf">check</span><span class="p">(</span><span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 
-<span class="cp">#endif
-</span></code></pre></div>
-<h3 id="irremote-cpp">irRemote.cpp</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;irRemote.h&#34;</span><span class="cp">
+<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+</span></code></pre></div><h3 id="irremotecpp">irRemote.cpp</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;irRemote.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">nullCB</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">_</span><span class="p">)</span> <span class="p">{}</span>
+<span class="kt">void</span> <span class="nf">nullCB</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">_</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">irRxHandler</span><span class="p">(</span><span class="n">IrRemote</span> <span class="o">*</span><span class="n">ir</span><span class="p">)</span> <span class="p">{</span> <span class="n">ir</span><span class="o">-&gt;</span><span class="n">handler</span><span class="p">();</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">irRxHandler</span><span class="p">(</span><span class="n">IrRemote</span> <span class="o">*</span><span class="n">ir</span><span class="p">)</span> <span class="p">{</span> <span class="n">ir</span><span class="o">-</span><span class="o">&gt;</span><span class="n">handler</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="n">IrRemote</span><span class="o">::</span><span class="n">IrRemote</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">pin</span><span class="p">,</span> <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span> <span class="o">=</span> <span class="n">pin</span><span class="p">;</span>
-  <span class="k">this</span><span class="o">-&gt;</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">;</span>
+<span class="n">IrRemote</span><span class="o">:</span><span class="o">:</span><span class="n">IrRemote</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">pin</span><span class="p">,</span> <span class="n">IrRemoteCBPtr</span> <span class="n">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span> <span class="o">=</span> <span class="n">pin</span><span class="p">;</span>
+  <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="p">;</span>
 
-  <span class="n">pinMode</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">handler</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">)</span> <span class="o">==</span> <span class="n">HIGH</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">time</span> <span class="o">=</span> <span class="n">micros</span><span class="p">();</span>
+<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">:</span><span class="o">:</span><span class="n">handler</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="n">HIGH</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">time</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">=</span> <span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">time</span><span class="p">;</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">width</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">time</span><span class="p">;</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">case</span> <span class="nl">WAITING</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">4000</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">READING</span><span class="p">;</span>
-          <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-          <span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">4000</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">READING</span><span class="p">;</span>
+          <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="k">break</span><span class="p">;</span>
       <span class="k">case</span> <span class="nl">READING</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">1120</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">2240</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span> <span class="o">|=</span> <span class="p">(</span><span class="mh">0x00000001</span> <span class="o">&lt;&lt;</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">1120</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">width</span> <span class="o">&lt;</span> <span class="mi">2240</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span> <span class="o">|</span><span class="o">=</span> <span class="p">(</span><span class="mh">0x00000001</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">count</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">32</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">this</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-          <span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">WAITING</span><span class="p">;</span>
-          <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">detachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">);</span>
-            <span class="k">this</span><span class="o">-&gt;</span><span class="n">callback</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
-            <span class="n">attachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="p">(</span><span class="n">voidArgumentFuncPtr</span><span class="p">)</span><span class="n">irRxHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span>
-                            <span class="n">CHANGE</span><span class="p">);</span>
+        <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">count</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">count</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">32</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">WAITING</span><span class="p">;</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">result</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">detachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span><span class="p">)</span><span class="p">;</span>
+            <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">callback</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">)</span><span class="p">;</span>
+            <span class="n">attachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="p">(</span><span class="n">voidArgumentFuncPtr</span><span class="p">)</span><span class="n">irRxHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span>
+                            <span class="n">CHANGE</span><span class="p">)</span><span class="p">;</span>
           <span class="p">}</span>
         <span class="p">}</span>
         <span class="k">break</span><span class="p">;</span>
@@ -313,55 +278,41 @@
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">begin</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">this</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">WAITING</span><span class="p">;</span>
-  <span class="n">attachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="p">(</span><span class="n">voidArgumentFuncPtr</span><span class="p">)</span><span class="n">irRxHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">CHANGE</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">:</span><span class="o">:</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">WAITING</span><span class="p">;</span>
+  <span class="n">attachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span><span class="p">,</span> <span class="p">(</span><span class="n">voidArgumentFuncPtr</span><span class="p">)</span><span class="n">irRxHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">CHANGE</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">end</span><span class="p">()</span> <span class="p">{</span> <span class="n">detachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">pin</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="n">IrRemote</span><span class="o">:</span><span class="o">:</span><span class="n">end</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="n">detachInterrupt</span><span class="p">(</span><span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pin</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="kt">bool</span> <span class="n">IrRemote</span><span class="o">::</span><span class="n">check</span><span class="p">(</span><span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">((</span><span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
-      <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span><span class="p">))</span> <span class="p">{</span>
+<span class="kt">bool</span> <span class="n">IrRemote</span><span class="o">:</span><span class="o">:</span><span class="n">check</span><span class="p">(</span><span class="n">IrRemoteResult</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xFF</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
+      <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">.</span><span class="n">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xFF</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<h2 id="测试驱动">测试驱动</h2>
-
+</code></pre></div><h2 id="测试驱动">测试驱动</h2>
 <p>编写一个例程测试一下驱动，当收到数据的时候通过串口把数据打印出来，<code>main.cpp</code> 内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;irRemote.h&#34;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;irRemote.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span> <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">HEX</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span> <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">HEX</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="n">IrRemote</span> <span class="nf">ir</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">test</span><span class="p">);</span>
+<span class="n">IrRemote</span> <span class="nf">ir</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// 启动红外接收
-</span><span class="c1"></span>  <span class="n">ir</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+</span><span class="c1"></span>  <span class="n">ir</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{}</span>
-</code></pre></div>
-<p>将连接了 VS1838B 的 stm32f103c8t6 最小系统板通过 stlink 连接电脑同时将其 usb 直连到电脑，编译上传程序，待运行以后，打开串口调试助手，对着 VS1838B 按下红外遥控按钮，便可以看到对应的 32 位原数据(从高位到低位四个字节分别是按键编码反码、按键编码、用户编码反码、用户编码)：</p>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
 
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821162128-Mce9i5.png" alt="" /></p>
-
+</code></pre></div><p>将连接了 VS1838B 的 stm32f103c8t6 最小系统板通过 stlink 连接电脑同时将其 usb 直连到电脑，编译上传程序，待运行以后，打开串口调试助手，对着 VS1838B 按下红外遥控按钮，便可以看到对应的 32 位原数据(从高位到低位四个字节分别是按键编码反码、按键编码、用户编码反码、用户编码)：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190821162128-Mce9i5.png" alt=""></p>
 <h2 id="总结">总结</h2>
-
 <p>本文讲的红外驱动实现思路对于 NEC 协议的红外数据解析应该是通用的，笔者因为使用了 Arduino 框架，所以是以 Arduino 为基础设计的驱动程序，当然不使用 Arduino 框架也可以按照实现思路进行设计对应的驱动，思路可行就可以！希望本文介绍的思路能够帮到您！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:NEC-https-blog-c"><a href="https://blog.csdn.net/yu__jia/article/details/52912762" target="_blank"> NEC红外线编码协议</a> <a class="footnote-return" href="#fnref:NEC-https-blog-c"><sup>[return]</sup></a></li>
-<li id="fn:35-linux-https-b"><a href="https://blog.csdn.net/jklinux/article/details/73498067" target="_blank">35 红外接收头在linux内核里的驱动</a> <a class="footnote-return" href="#fnref:35-linux-https-b"><sup>[return]</sup></a></li>
-</ol>
-</div>
 
 			</div>
 			<hr class="post-end">
@@ -371,7 +322,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2356 字
+					2357 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -381,21 +332,19 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#硬件连接">硬件连接</a></li>
-<li><a href="#红外相关知识">红外相关知识</a></li>
-<li><a href="#驱动设计思路">驱动设计思路</a></li>
-<li><a href="#驱动程序实现">驱动程序实现</a>
-<ul>
-<li><a href="#irremote-h">irRemote.h</a></li>
-<li><a href="#irremote-cpp">irRemote.cpp</a></li>
-</ul></li>
-<li><a href="#测试驱动">测试驱动</a></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#硬件连接">硬件连接</a></li>
+    <li><a href="#红外相关知识">红外相关知识</a></li>
+    <li><a href="#驱动设计思路">驱动设计思路</a></li>
+    <li><a href="#驱动程序实现">驱动程序实现</a>
+      <ul>
+        <li><a href="#irremoteh">irRemote.h</a></li>
+        <li><a href="#irremotecpp">irRemote.cpp</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试驱动">测试驱动</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -446,7 +395,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

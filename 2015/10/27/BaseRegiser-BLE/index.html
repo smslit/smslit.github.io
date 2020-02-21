@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="BLE开发笔记——CC2541寄存器整理">
 <meta itemprop="description" content="CC2541本质上是一个8051内核的单片机，对其编程必须了解其寄存器，本文整理了常用的寄存器。">
-
-
 <meta itemprop="datePublished" content="2015-10-27T14:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-27T14:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="5087">
+<meta itemprop="wordCount" content="1033">
 
 
 
-<meta itemprop="keywords" content="ble," />
-<meta property="og:title" content="BLE开发笔记——CC2541寄存器整理" />
+<meta itemprop="keywords" content="ble," /><meta property="og:title" content="BLE开发笔记——CC2541寄存器整理" />
 <meta property="og:description" content="CC2541本质上是一个8051内核的单片机，对其编程必须了解其寄存器，本文整理了常用的寄存器。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/27/BaseRegiser-BLE/" />
@@ -84,9 +81,7 @@
 			</header>
 			<div class="content">
 				<p>CC2541本质上是一个8051内核的单片机，对其编程必须了解其寄存器，本文整理了常用的寄存器。</p>
-
 <h4 id="访问模式">访问模式</h4>
-
 <table>
 <thead>
 <tr>
@@ -94,143 +89,51 @@
 <th align="center">访问模式</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">R/W</td>
 <td align="center">可读写</td>
 </tr>
-
 <tr>
 <td align="center">R</td>
 <td align="center">只读</td>
 </tr>
-
 <tr>
 <td align="center">R0</td>
 <td align="center">读0</td>
 </tr>
-
 <tr>
 <td align="center">R1</td>
 <td align="center">读1</td>
 </tr>
-
 <tr>
 <td align="center">W</td>
 <td align="center">只写</td>
 </tr>
-
 <tr>
 <td align="center">W0</td>
 <td align="center">写0</td>
 </tr>
-
 <tr>
 <td align="center">W1</td>
 <td align="center">写1</td>
 </tr>
-
 <tr>
 <td align="center">H0</td>
 <td align="center">硬件清除</td>
 </tr>
-
 <tr>
 <td align="center">H1</td>
 <td align="center">硬件设置</td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="时钟相关">时钟相关</h4>
-
-<h5 id="时钟控制命令-clkconcmd-0xc6">时钟控制命令（CLKCONCMD，0xC6）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>   
-   <tr>
-      <td>7</td>
-      <td>OSC32K</td>
-      <td>1</td>
-      <td>R/W</td>
-      <td>32kHz时钟振荡器选择。设置该位只能发起一个时钟源改变。CLKCONSTA.OSC32K 反映当前的设置。当要改变该位必须选择16MHz RCOSC作为系统时钟。0:32 kHz XOSC;1:32 kHz RCOSC;</td>
-   </tr>
-   <tr>
-      <td>6</td>
-      <td>OSC</td>
-      <td>1</td>
-      <td>R/W</td>
-      <td>系统时钟 源选择 。设置该位只能发起一个时钟源改变。CLKCONSTA.OSC 反映当前的设置。0:32 MHz XOSC;1:16 MHz RCOSC;</td>
-   </tr>
-   <tr>
-      <td>5:3</td>
-      <td>TICKSPD[2:0]</td>
-      <td>001</td>
-      <td>R/W</td>
-      <td>定时器标记输出设置。不能高于通过 OSC 位设置的系统时钟设置。000:32 MHz;001:16 MHz;010:8 MHz;011:4 MHz;100:2 MHz;101:1 MHz;110:500 kHz;111:250 kHz;注意 CLKCONCMD.TICKSPD 可以设置为任意值，但是结果受CLKCONCMD.OSC 设置的限制，即如果 CLKCONCMD.OSC=1且 CLKCONCMD.TICKSPD=000，CLKCONCMD.TICKSPD 读出001 且实际 TICKSPD 是 16 MHz。</td>
-   </tr>
-   <tr>
-      <td>2:0</td>
-      <td>CLKSPD</td>
-      <td>001</td>
-      <td>R/W</td>
-      <td>时钟速度。不能高于通过 OSC 位设置的系统时钟设置 。 表示当前系统时钟频率。000:32MHz;001:16MHz;010:8MHz;011:4MHz;100:2MHz;101:1MHz;110:500 kHz;111:250 kHz;注意CLKCONCMD.CLKSPD可以设置为任意值，但是结果受CLKCONCMD.OSC设置的限制，即如果CLKCONCMD.OSC=1且CLKCONCMD.CLKSPD=000 ， CLKCONCMD.CLKSPD读出001且实际CLKSPD是16MHz。还要注意调试器不能和一个划分过的系统时钟一起工作。当运行调试器，当CLKCONCMD.OSC=0，CLKCONCMD.CLKSPD的值必须设置为000，或当CLKCONCMD.OSC=1设置为001。</td>
-   </tr>
-</table>
-
-<h5 id="时钟控制状态-clkconsta-0x9e">时钟控制状态（CLKCONSTA，0x9E）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>7</td>
-      <td>OSC32K</td>
-      <td>1</td>
-      <td>R</td>
-      <td>当前选择的 32 kHz 时钟源。0:32kHz XOSC;1:32kHz RCOSC;</td>
-   </tr>
-   <tr>
-      <td>6</td>
-      <td>OSC </td>
-      <td>1</td>
-      <td>R</td>
-      <td>当前选择的系统时钟。0:32MHz XOSC;1:16MHz RCOSC</td>
-   </tr>
-   <tr>
-      <td>5:3</td>
-      <td>TICKSPD[2:0]</td>
-      <td>001</td>
-      <td>R</td>
-      <td>当前设置的定时器标记输出。000:32MHz;001:16MHz;010:8MHz;011:4MHz;100:2MHz;101:1MHz;110:500kHz;111:250 kHz;</td>
-   </tr>
-   <tr>
-      <td>2:0</td>
-      <td>CLKSPD</td>
-      <td>001</td>
-      <td>R</td>
-      <td>当前时钟速度。000:32MHz;001:16MHz;010:8MHz;011:4MHz;100:2MHz;101:1MHz;110:500kHz;111:250 kHz;</td>
-   </tr>
-</table>
-
-<h5 id="睡眠模式控制命令-sleepcmd-0xbe">睡眠模式控制命令（SLEEPCMD，0xBE）</h5>
-
+<h5 id="时钟控制命令clkconcmd0xc6">时钟控制命令（CLKCONCMD，0xC6）</h5>
+<!-- raw HTML omitted -->
+<h5 id="时钟控制状态clkconsta0x9e">时钟控制状态（CLKCONSTA，0x9E）</h5>
+<!-- raw HTML omitted -->
+<h5 id="睡眠模式控制命令sleepcmd0xbe">睡眠模式控制命令（SLEEPCMD，0xBE）</h5>
 <table>
 <thead>
 <tr>
@@ -241,7 +144,6 @@
 <th>描述</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">7</td>
@@ -250,7 +152,6 @@
 <td align="center">R/W</td>
 <td>禁用32-kHz RC振荡器. 0: 使能32-kHz RC振荡器. 1: 禁用32-kHz RC振荡器.在任何时刻都可以设置此bit位，但在片上16-MHz高速RC振荡器起振前设置不会有作用。</td>
 </tr>
-
 <tr>
 <td align="center">6:3</td>
 <td align="center">-</td>
@@ -258,7 +159,6 @@
 <td align="center">R0</td>
 <td>保留</td>
 </tr>
-
 <tr>
 <td align="center">2</td>
 <td align="center">OSC_PD</td>
@@ -266,7 +166,6 @@
 <td align="center">R/W</td>
 <td>设置晶振、振荡器电源。1:关闭未使用振荡器和晶振的电源  0:开启所有振荡器和晶振的电源。</td>
 </tr>
-
 <tr>
 <td align="center">1:0</td>
 <td align="center">MODE[1:0]</td>
@@ -276,9 +175,7 @@
 </tr>
 </tbody>
 </table>
-
-<h5 id="睡眠模式状态-sleepsta-0x9d">睡眠模式状态（SLEEPSTA，0x9D）</h5>
-
+<h5 id="睡眠模式状态sleepsta0x9d">睡眠模式状态（SLEEPSTA，0x9D）</h5>
 <table>
 <thead>
 <tr>
@@ -289,7 +186,6 @@
 <th>描述</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">7</td>
@@ -298,7 +194,6 @@
 <td align="center">R</td>
 <td>禁用32-kHz RC振荡器. 0: 使能32-kHz RC振荡器. 1: 禁用32-kHz RC振荡器.在任何时刻都可以设置此bit位，但在片上16-MHz高速RC振荡器起振前设置不会有作用。</td>
 </tr>
-
 <tr>
 <td align="center">6:5</td>
 <td align="center">-</td>
@@ -306,7 +201,6 @@
 <td align="center">R</td>
 <td>保留</td>
 </tr>
-
 <tr>
 <td align="center">4:3</td>
 <td align="center">RST[1:0]</td>
@@ -314,7 +208,6 @@
 <td align="center">R</td>
 <td>记录最终复位信号源。有多种复位，寄存器只保留最后事件，00:上电复位和掉电检测  01:外部复位信号  10:看门狗时钟复位 11:时钟丢失复位。</td>
 </tr>
-
 <tr>
 <td align="center">2</td>
 <td align="center">OSC_PD</td>
@@ -322,7 +215,6 @@
 <td align="center">R</td>
 <td>1:关闭未使用振荡器和晶振的电源  0:开启所有振荡器和晶振的电源。</td>
 </tr>
-
 <tr>
 <td align="center">1</td>
 <td align="center">-</td>
@@ -330,7 +222,6 @@
 <td align="center">R</td>
 <td>保留.</td>
 </tr>
-
 <tr>
 <td align="center">0</td>
 <td align="center">CLK32K</td>
@@ -340,11 +231,8 @@
 </tr>
 </tbody>
 </table>
-
 <h4 id="io寄存器">IO寄存器</h4>
-
-<h5 id="端口寄存器-p0-p1-p2">端口寄存器（P0，P1，P2）</h5>
-
+<h5 id="端口寄存器p0p1p2">端口寄存器（P0，P1，P2）</h5>
 <table>
 <thead>
 <tr>
@@ -356,7 +244,6 @@
 <th>描述</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">P0</td>
@@ -366,7 +253,6 @@
 <td align="center">R/W</td>
 <td>端口0，通用I/O端口，可以位寻址。 XDATA (0x7080).</td>
 </tr>
-
 <tr>
 <td align="center">P1</td>
 <td align="center">7:0</td>
@@ -375,7 +261,6 @@
 <td align="center">R/W</td>
 <td>端口1，通用I/O端口，可以位寻址。 XDATA (0x7090).</td>
 </tr>
-
 <tr>
 <td align="center">P2</td>
 <td align="center">7:5</td>
@@ -384,7 +269,6 @@
 <td align="center">R0</td>
 <td>未使用</td>
 </tr>
-
 <tr>
 <td align="center">P2</td>
 <td align="center">4:0</td>
@@ -395,702 +279,39 @@
 </tr>
 </tbody>
 </table>
-
-<h4 id="方向寄存器-p0dir-p1dir-p2dir">方向寄存器（P0DIR，P1DIR，P2DIR）</h4>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>P0DIR</td>
-      <td>7:0</td>
-      <td>DIRP0_[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>P0.7--P0.0的方向（0：输入 1：输出)</td>
-   </tr>
-   <tr>
-      <td>P1DIR</td>
-      <td>7:0</td>
-      <td>DIRP1_[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>P1.7--P1.0的方向（0：输入 1：输出)</td>
-   </tr>
-   <tr>
-      <td>P2DIR</td>
-      <td>7:6</td>
-      <td>PRIP0[1:0]</td>
-      <td>00</td>
-      <td>R/W</td>
-      <td>端口0外设优先级控制，当PERCFG分配给一些外设相同引脚的时候，这些位将确定优先级。优先级从前到后如下：00：USART 0，USART 1，Timer 1; 01：USART 1，USART 0，Timer 1; 10：Timer 1 channels 0-1，USART 1，USART 0，Timer 1 channels 2-3; 11：Timer 1 channels 2-3，USART 0，USART 1，Timer 1 channels 0-1</td>
-   </tr>
-   <tr>
-      <td>P2DIR</td>
-      <td>5</td>
-      <td>---</td>
-      <td>0</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>P2DIR</td>
-      <td>4:0</td>
-      <td>DIRP2_[4:0]</td>
-      <td>00000</td>
-      <td>R/W</td>
-      <td>P2.4—P2.0的方向（0：输入 1：输出)</td>
-   </tr>
-</table>
-
-<h5 id="外设控制-percfg">外设控制（PERCFG）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>
-   
-   <tr>
-      <td>PERCFG</td>
-      <td>7</td>
-      <td>---</td>
-      <td>0</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>PERCFG</td>
-      <td>6</td>
-      <td>T1CFG</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>计时器1的I/O位置：0：位置1; 1：位置2</td>
-   </tr>
-   <tr>
-      <td>PERCFG</td>
-      <td>5</td>
-      <td>T3CFG</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>计时器3的I/O位置：0：位置1; 1：位置2</td>
-   </tr>
-   <tr>
-      <td>PERCFG</td>
-      <td>4</td>
-      <td>T4CFG</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>计时器4的I/O位置：0：位置1; 1：位置2</td>
-   </tr>
-   <tr>
-      <td>PERCFG</td>
-      <td>3:2</td>
-      <td>---</td>
-      <td>00</td>
-      <td>R/W</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>PERCFG</td>
-      <td>1</td>
-      <td>U1CFG</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>USART 1的I/O位置：0：位置1; 1：位置2</td>
-   </tr>
-   <tr>
-      <td>PERCFG</td>
-      <td>0</td>
-      <td>U0CFG</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>USART 0的I/O位置：0：位置1; 1：位置2</td>
-   </tr>
-</table>
-
-<h5 id="功能选择-p0sel-p1sel-p2sel">功能选择（P0SEL，P1SEL，P2SEL）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>
-   
-   <tr>
-      <td>P0SEL</td>
-      <td>7:0</td>
-      <td>SELP0_[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>P0.7--P0.0的功能选择（0：通用I/O  1：外设功能）</td>
-   </tr>
-   <tr>
-      <td>P1SEL</td>
-      <td>7:0</td>
-      <td>SELP1_[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>P1.7--P1.0的功能选择（0：通用I/O  1：外设功能）</td>
-   </tr>
-   <tr>
-      <td>P2SEL</td>
-      <td>7</td>
-      <td>---</td>
-      <td>0</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>P2SEL</td>
-      <td>6</td>
-      <td>PRI3P1</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1外设优先级控制，当PERCFG分配USART0和USART1相同引脚的时候，这些位将确定优先级。0：USART 0 优先; 1：USART 1 优先</td>
-   </tr>
-   <tr>
-      <td>P2SEL</td>
-      <td>5</td>
-      <td>PRI2P1</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1外设优先级控制，当PERCFG分配USART1和TIMER3相同引脚的时候，这些位将确定优先级。0：USART 1 优先; 1：TIMER 3 优先</td>
-   </tr>
-   <tr>
-      <td>P2SEL</td>
-      <td>4</td>
-      <td>PRI1P1</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1外设优先级控制，当PERCFG分配TIMER1和TIMER4相同引脚的时候，这些位将确定优先级。0：TIMER 1 优先; 1：TIMER 4 优先</td>
-   </tr>
-   <tr>
-      <td>P2SEL</td>
-      <td>3</td>
-      <td>PRI0P1</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1外设优先级控制，当PERCFG分配USART0和TIMER1相同引脚的时候，这些位将确定优先级。0：USART 0 优先; 1：TIMER 1 优先</td>
-   </tr>
-   <tr>
-      <td>P2SEL</td>
-      <td>2:0</td>
-      <td>SELP2_[2:0]</td>
-      <td>000</td>
-      <td>R/W</td>
-      <td>P2.2--P2.0的功能选择（0：通用I/O  1：外设功能）</td>
-   </tr>
-</table>
-
-<h5 id="输入模式-p0inp-p1inp-p2inp">输入模式（P0INP，P1INP，P2INP）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>
-   
-   <tr>
-      <td>P0INP</td>
-      <td>7:0</td>
-      <td>MDP0_[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>P0.7--P0.0的输入模式: 0：上拉/下拉（具体看PDUP0设置）; 1：三态</td>
-   </tr>
-   <tr>
-      <td>P1INP</td>
-      <td>7:2</td>
-      <td>MDP1_[7:2]</td>
-      <td>000000</td>
-      <td>R/W</td>
-      <td>P1.7—P1.2的输入模式:0：上拉/下拉（具体看PDUP1设置）;1：三态</td>
-   </tr>
-   <tr>
-      <td>P1INP</td>
-      <td>1:0</td>
-      <td>---</td>
-      <td>00</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>P2INP</td>
-      <td>7</td>
-      <td>PDUP2</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口2上拉/下拉选择，对所有端口2引脚设置为上拉/下拉输入:0：上拉;1：下拉</td>
-   </tr>
-   <tr>
-      <td>P2INP</td>
-      <td>6</td>
-      <td>PDUP1</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1上拉/下拉选择，对所有端口1引脚设置为上拉/下拉输入:0：上拉;1：下拉</td>
-   </tr>
-   <tr>
-      <td>P2INP</td>
-      <td>5</td>
-      <td>PDUP0</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口0上拉/下拉选择，对所有端口0引脚设置为上拉/下拉输入:0：上拉;1：下拉</td>
-   </tr>
-   <tr>
-      <td>P2INP</td>
-      <td>4:0</td>
-      <td>MDP2_[4:0]</td>
-      <td>00000</td>
-      <td>R/W</td>
-      <td>P2.4—P2.0的输入模式: 0：上拉/下拉（具体看PDUP2设置）;1：三态</td>
-   </tr>
-</table>
-
-<h5 id="中断状态标志-p0ifg-p1ifg-p2ifg">中断状态标志（P0IFG，P1IFG，P2IFG）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读/写</th>
-      <th>描述</th>
-   </tr>
-</thead>
-   
-   <tr>
-      <td>P0IFG</td>
-      <td>7:0</td>
-      <td>P0IF[7:0]</td>
-      <td>0x00</td>
-      <td>R/W0</td>
-      <td>端口0，位7至位0输入中断状态标志。当某引脚上有中断请求未决信号时，其相应标志为设1。</td>
-   </tr>
-   <tr>
-      <td>P1IFG</td>
-      <td>7:0</td>
-      <td>P1IF[7:0]</td>
-      <td>0x00</td>
-      <td>R/W0</td>
-      <td>端口1，位7至位0输入中断状态标志。当某引脚上有中断请求未决信号时，其相应标志为设1。</td>
-   </tr>
-   <tr>
-      <td>P2IFG</td>
-      <td>7:5</td>
-      <td>---</td>
-      <td>000</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>P2IFG</td>
-      <td>4:0</td>
-      <td>P2IF[4:0]</td>
-      <td>0x00</td>
-      <td>R/W0</td>
-      <td>端口2，位4至位0输入中断状态标志。当某引脚上有中断请求未决信号时，其相应标志为设1。</td>
-   </tr>
-</table>
-
-<h5 id="中断控制-pictl">中断控制（PICTL）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>
-   
-   <tr>
-      <td>PICTL</td>
-      <td>7</td>
-      <td>PADSC</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>强制引脚在输出模式。选择输出驱动能力，由DVDD引脚提供。0：最小驱动能力;1：最大驱动能力</td>
-   </tr>
-   <tr>
-      <td>PICTL</td>
-      <td>6:4</td>
-      <td>---</td>
-      <td>000</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>PICTL</td>
-      <td>3</td>
-      <td>P2ICON</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口2，引脚4至0输入模式下的中断配置，该位为端口2的4-0脚的输入选择中断请求条件。0：输入的上升沿引起中断;1：输入的下降沿引起中断</td>
-   </tr>
-   <tr>
-      <td>PICTL</td>
-      <td>2</td>
-      <td>P1ICONH</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1，引脚7至4输入模式下的中断配置，该位为端口1的7-4脚的输入选择中断请求条件。0：输入的上升沿引起中断;1：输入的下降沿引起中断</td>
-   </tr>
-   <tr>
-      <td>PICTL</td>
-      <td>1</td>
-      <td>P1ICONL</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口1，引脚3至0输入模式下的中断配置，该位为端口1的3-0脚的输入选择中断请求条件。0：输入的上升沿引起中断;1：输入的下降沿引起中断</td>
-   </tr>
-   <tr>
-      <td>PICTL</td>
-      <td>0</td>
-      <td>P0ICON</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>端口0，引脚7至0输入模式下的中断配置，该位为端口0的7-0脚的输入选择中断请求条件。0：输入的上升沿引起中断;1：输入的下降沿引起中断</td>
-   </tr>
-</table>
-
-<h5 id="中断屏蔽-p0ien-p1ien-p2ien">中断屏蔽（P0IEN，P1IEN，P2IEN）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>
-   
-   <tr>
-      <td>P0IEN</td>
-      <td>7:0</td>
-      <td>P0_[7:0]IEN</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>端口0，位7至位0中断使能。0：中断禁止;1：中断使能</td>
-   </tr>
-   <tr>
-      <td>P1IEN</td>
-      <td>7:0</td>
-      <td>P1_[7:0]IEN</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>端口1，位7至位0中断使能。0：中断禁止;1：中断使能</td>
-   </tr>
-   <tr>
-      <td>P2IEN</td>
-      <td>7:6</td>
-      <td>---</td>
-      <td>00</td>
-      <td>R0</td>
-      <td>未使用</td>
-   </tr>
-   <tr>
-      <td>P2IEN</td>
-      <td>5</td>
-      <td>DPIEN</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>USB D+ 中断使能。</td>
-   </tr>
-   <tr>
-      <td>P2IEN</td>
-      <td>4:0</td>
-      <td>P2_[4:0]IEN</td>
-      <td>00000</td>
-      <td>R/W</td>
-      <td>端口2，位4至位0中断使能。0：中断禁止;1：中断使能</td>
-   </tr>
-</table>
-
-<h4 id="adc输入配置-apcfg">ADC输入配置（APCFG）</h4>
-
-<table>
-<thead>
-   <tr>
-      <th>端口</th>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>   
-   <tr>
-      <td>APCFG</td>
-      <td>7:0</td>
-      <td>APCFG[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>模拟外围I/O配置（ADC输入配置），APCFG[7:0]选择P0.7—P0.0作为模拟输入口。0：模拟输入（ADC输入）禁止; 1：模拟输入（ACD输入）使能</td>
-   </tr>
-</table>
-
+<h4 id="方向寄存器p0dirp1dirp2dir">方向寄存器（P0DIR，P1DIR，P2DIR）</h4>
+<!-- raw HTML omitted -->
+<h5 id="外设控制percfg">外设控制（PERCFG）</h5>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h5 id="功能选择p0selp1selp2sel">功能选择（P0SEL，P1SEL，P2SEL）</h5>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h5 id="输入模式p0inpp1inpp2inp">输入模式（P0INP，P1INP，P2INP）</h5>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h5 id="中断状态标志p0ifgp1ifgp2ifg">中断状态标志（P0IFG，P1IFG，P2IFG）</h5>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h5 id="中断控制pictl">中断控制（PICTL）</h5>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h5 id="中断屏蔽p0ienp1ienp2ien">中断屏蔽（P0IEN，P1IEN，P2IEN）</h5>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="adc输入配置apcfg">ADC输入配置（APCFG）</h4>
+<!-- raw HTML omitted -->
 <h4 id="串口及spi相关">串口及SPI相关</h4>
-
-<h5 id="usart0的控制和状态-u0csr-0x86">USART0的控制和状态（U0CSR，0x86）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>7</td>
-      <td>MODE</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>USART模式选择: 0:SPI模式;1:UART模式</td>
-   </tr>
-   <tr>
-      <td>6</td>
-      <td>RE</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART接收器使能。注意在UART完全配置之前不使能接收。0:禁用接收器;1:接收器使能</td>
-   </tr>
-   <tr>
-      <td>5</td>
-      <td>SLAVE</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>SPI主或者从模式选择.0:SPI主模式;1:SPI从模式;</td>
-   </tr>
-   <tr>
-      <td>4</td>
-      <td>FE</td>
-      <td>0</td>
-      <td>R/W0</td>
-      <td>UART帧错误状态.0:无帧错误检测;1:字节收到不正确停止位级别</td>
-   </tr>
-   <tr>
-      <td>3</td>
-      <td>ERR</td>
-      <td>0</td>
-      <td>R/W0</td>
-      <td>UART奇偶错误状态.0:无奇偶错误检测;1:字节收到奇偶错误</td>
-   </tr>
-   <tr>
-      <td>2</td>
-      <td>RX_BYTE</td>
-      <td>0</td>
-      <td>R/W0</td>
-      <td>接收字节状态。URAT模式和SPI从模式。当读U0DBUF该位自动清除，通过写0清除它，这样有效丢弃U0DBUF中的数据 。0:没有收到字节;1:准备好接收字节</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>TX_BYTE</td>
-      <td>0</td>
-      <td>R/W0</td>
-      <td>传送字节状态。URAT模式和SPI主模式.0:字节没有被传送;1:写到数据缓存寄存器的最后字节被传送</td>
-   </tr>
-   <tr>
-      <td>0</td>
-      <td>ACTIVE</td>
-      <td>0</td>
-      <td>R</td>
-      <td>USART传送/接收主动状态、在SPI从模式下该位等于从模式选择。0:USART空闲;1:在传送或者接收模式USART忙碌</td>
-   </tr>
-</table>
-
-<h5 id="uart的控制-u0ucr-0xc4">UART的控制（U0UCR，0xC4）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>7</td>
-      <td>FLUSH</td>
-      <td>0</td>
-      <td>R0/W1</td>
-      <td>清除单元。当设置时，该事件将会立即停止当前操作并且返回单元的空闲状态。</td>
-   </tr>
-   <tr>
-      <td>6</td>
-      <td>FLOW</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART硬件流使能。用RTS和CTS引脚选择硬件流控制的使用。0:流控制禁止.1:流控制使能.</td>
-   </tr>
-   <tr>
-      <td>5</td>
-      <td>D9</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART奇偶校验位。当使能奇偶校验，写入D9的值决定发送的第9位的值，如果收到的第9位不匹配收到字节的奇偶校验，接收时报告ERR。如果奇偶校验使能， 那么该位设置以下奇偶校验级别。0:奇校验;1:偶校验.</td>
-   </tr>
-   <tr>
-      <td>4</td>
-      <td>BIT9</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART 9位数据使能。当该位是1时, 使能奇偶校验位传输（即第9位）。如果通过PARITY使能奇偶校验，第9位的内容是通过D9给出的。0:8位传送;1:9位传送</td>
-   </tr>
-   <tr>
-      <td>3</td>
-      <td>PARITY</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART奇偶校验使能。除了为奇偶校验设置该位用于计算，必须使能9位模式。0:禁用奇偶校验;1:奇偶校验使能</td>
-   </tr>
-   <tr>
-      <td>2</td>
-      <td>SPB</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART停止位的位数。选择要传送的停止位的位数.0:1位停止位;1:2位停止位</td>
-   </tr>
-   <tr>
-      <td>1</td>
-      <td>STOP</td>
-      <td>1</td>
-      <td>R/W</td>
-      <td>UART停止位的电平必须不同于开始位的电平.0:停止位低电平;1:停止位高电平</td>
-   </tr>
-   <tr>
-      <td>0</td>
-      <td>START</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>UART起始位电平。闲置线的极性采用选择的起始位级别的电平的相反的电平。0:起始位低电平;1:起始位高电平</td>
-   </tr>
-</table>
-
-<h5 id="usart0的通用控制-u0gcr-0xc5">USART0的通用控制（U0GCR，0xC5）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>7</td>
-      <td>CPOL</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>SPI的时钟极性.0:负时钟极性;1:正时钟极性;</td>
-   </tr>
-   <tr>
-      <td>6</td>
-      <td>CPHA</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>SPI时钟相位.0:当SCK从CPOL倒置到CPOL时数据输出到MOSI,并且当SCK从CPOL倒置到CPOL时数据输入抽样到 MISO。1:当SCK从CPOL倒置到CPOL时数据输出到MOSI，并且当SCK从CPOL倒置到 CPOL 时数据输入抽样到 MISO 。</td>
-   </tr>
-   <tr>
-      <td>5</td>
-      <td>ORDER</td>
-      <td>0</td>
-      <td>R/W</td>
-      <td>传送位顺序.0:LSB先传送;1:MSB先传送;</td>
-   </tr>
-   <tr>
-      <td>4:0</td>
-      <td>BAUD_E[4:0]</td>
-      <td>0</td>
-      <td>0000</td>
-      <td>R/W 波特率指数值。BAUD_E 和 BAUD_M 决定了 UART 波特率 和 SPI 的主 SCK 时</td>
-   </tr>
-</table>
-
-<h5 id="usart0的数据缓存-u0buf-0xc1">USART0的数据缓存（U0BUF，0xC1）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>7:0</td>
-      <td>DATA[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>USART接收和传送数据 。 当写这个寄存器的时候数据被写到内部，传送数据寄存</td>
-   </tr>
-</table>
-
-<h5 id="usart0波特率-u0baud-0xc2">USART0波特率（U0BAUD，0xC2）</h5>
-
-<table>
-<thead>
-   <tr>
-      <th>Bit位</th>
-      <th>名称</th>
-      <th>初始化</th>
-      <th>读写</th>
-      <th>描述</th>
-   </tr>
-</thead>  
-   <tr>
-      <td>7:0</td>
-      <td>BAUD_M[7:0]</td>
-      <td>0x00</td>
-      <td>R/W</td>
-      <td>波特率小数部分的值。 BAUD_E和 BAUD_M决定了UART的波特率和SPI的主SCK</td>
-   </tr>
-</table>
+<h5 id="usart0的控制和状态u0csr0x86">USART0的控制和状态（U0CSR，0x86）</h5>
+<!-- raw HTML omitted -->
+<h5 id="uart的控制u0ucr0xc4">UART的控制（U0UCR，0xC4）</h5>
+<!-- raw HTML omitted -->
+<h5 id="usart0的通用控制u0gcr0xc5">USART0的通用控制（U0GCR，0xC5）</h5>
+<!-- raw HTML omitted -->
+<h5 id="usart0的数据缓存u0buf0xc1">USART0的数据缓存（U0BUF，0xC1）</h5>
+<!-- raw HTML omitted -->
+<h5 id="usart0波特率u0baud0xc2">USART0波特率（U0BAUD，0xC2）</h5>
+<!-- raw HTML omitted -->
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -1099,7 +320,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					5087 字
+					1033 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -1109,47 +330,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#访问模式">访问模式</a></li>
-<li><a href="#时钟相关">时钟相关</a>
-<ul>
-<li><a href="#时钟控制命令-clkconcmd-0xc6">时钟控制命令（CLKCONCMD，0xC6）</a></li>
-<li><a href="#时钟控制状态-clkconsta-0x9e">时钟控制状态（CLKCONSTA，0x9E）</a></li>
-<li><a href="#睡眠模式控制命令-sleepcmd-0xbe">睡眠模式控制命令（SLEEPCMD，0xBE）</a></li>
-<li><a href="#睡眠模式状态-sleepsta-0x9d">睡眠模式状态（SLEEPSTA，0x9D）</a></li>
-</ul></li>
-<li><a href="#io寄存器">IO寄存器</a>
-<ul>
-<li><a href="#端口寄存器-p0-p1-p2">端口寄存器（P0，P1，P2）</a></li>
-</ul></li>
-<li><a href="#方向寄存器-p0dir-p1dir-p2dir">方向寄存器（P0DIR，P1DIR，P2DIR）</a>
-<ul>
-<li><a href="#外设控制-percfg">外设控制（PERCFG）</a></li>
-<li><a href="#功能选择-p0sel-p1sel-p2sel">功能选择（P0SEL，P1SEL，P2SEL）</a></li>
-<li><a href="#输入模式-p0inp-p1inp-p2inp">输入模式（P0INP，P1INP，P2INP）</a></li>
-<li><a href="#中断状态标志-p0ifg-p1ifg-p2ifg">中断状态标志（P0IFG，P1IFG，P2IFG）</a></li>
-<li><a href="#中断控制-pictl">中断控制（PICTL）</a></li>
-<li><a href="#中断屏蔽-p0ien-p1ien-p2ien">中断屏蔽（P0IEN，P1IEN，P2IEN）</a></li>
-</ul></li>
-<li><a href="#adc输入配置-apcfg">ADC输入配置（APCFG）</a></li>
-<li><a href="#串口及spi相关">串口及SPI相关</a>
-<ul>
-<li><a href="#usart0的控制和状态-u0csr-0x86">USART0的控制和状态（U0CSR，0x86）</a></li>
-<li><a href="#uart的控制-u0ucr-0xc4">UART的控制（U0UCR，0xC4）</a></li>
-<li><a href="#usart0的通用控制-u0gcr-0xc5">USART0的通用控制（U0GCR，0xC5）</a></li>
-<li><a href="#usart0的数据缓存-u0buf-0xc1">USART0的数据缓存（U0BUF，0xC1）</a></li>
-<li><a href="#usart0波特率-u0baud-0xc2">USART0波特率（U0BAUD，0xC2）</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -1200,7 +387,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

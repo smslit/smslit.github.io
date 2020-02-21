@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="PlatformIO IDE(VScode) 下调试 STM32 平台程序">
 <meta itemprop="description" content="PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在">
-
-
 <meta itemprop="datePublished" content="2019-08-05T17:17:42&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-05T17:17:42&#43;08:00" />
 <meta itemprop="wordCount" content="1521">
 
 
 
-<meta itemprop="keywords" content="stm32,platformio,pio," />
-<meta property="og:title" content="PlatformIO IDE(VScode) 下调试 STM32 平台程序" />
+<meta itemprop="keywords" content="stm32,platformio,pio," /><meta property="og:title" content="PlatformIO IDE(VScode) 下调试 STM32 平台程序" />
 <meta property="og:description" content="PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/08/05/platformio-debug/" />
@@ -83,22 +80,14 @@
 				<h1>PlatformIO IDE(VScode) 下调试 STM32 平台程序</h1>
 			</header>
 			<div class="content">
-				
-
-<p><strong>PlatformIO</strong> 系列文章 <a href="/2017/11/08/stm32InPIO-start/#调试配置" target="_blank"><strong>stm32开发新方式-platformio</strong></a> 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在我们可以使用内建支持更好的方式调试我们的 ST MCU 的程序了，那今天我们就聊一下这一块内容。</p>
-
+				<p><strong>PlatformIO</strong> 系列文章 <a href="/2017/11/08/stm32InPIO-start/#调试配置"><strong>stm32开发新方式-platformio</strong></a> 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在我们可以使用内建支持更好的方式调试我们的 ST MCU 的程序了，那今天我们就聊一下这一块内容。</p>
 <p>官方称其为 PIO Unified Debugger，很好理解，就是统一的调试器，意思是凡是 PIO 支持的可调式的 MCU 开发平台均可以使用统一功能的调试器，PIO 跨平台的特性仍然支持程序调试，也就是说在 windows、linux和 macOS 下均可以得到相同的开发体验。</p>
-
 <blockquote>
 <p>You should have PIO Account to work with PIO Unified Debugger. A registration is FREE.</p>
 </blockquote>
-
 <p>官方说明免费使用这个调试功能需要登录一个 PIO 账户，这个很简单嘛，注册一个然后在 VSCode 的 PIO IDE 中登录即可，这可能是唯一的限制了！</p>
-
 <h2 id="功能特性">功能特性</h2>
-
 <p>官方文档中提到 VScode 搭建的 PIO 开发环境可以提供最强大的调试功能特性，包括以下：</p>
-
 <ul>
 <li><strong>局部、全局和静态变量的浏览器</strong> (Local, Global, and Static Variable Explorer)</li>
 <li><strong>条件断点</strong> (Conditional Breakpoints)</li>
@@ -110,93 +99,67 @@
 <li><strong>多线程支持</strong> (Multi-thread support)</li>
 <li><strong>调试会话的热重启和激活</strong> (A hot restart of an active debugging session)</li>
 </ul>
-
 <p>以下为 <strong>genericSTM32F103C8</strong> 开发板使用 Arduino 开发框架时调试程序时的界面：</p>
-
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ukpd0n9wj31hc0u0q80.jpg" alt="" /></p>
-
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ukpd0n9wj31hc0u0q80.jpg" alt=""></p>
 <h2 id="实践">实践</h2>
-
 <p>下面我们就以 <strong>genericSTM32F103C8</strong> 开发板使用 Arduino 开发框架为例讲解一下，调试程序是多么的简单。</p>
-
 <h3 id="前提条件">前提条件</h3>
-
 <h4 id="开发环境">开发环境</h4>
-
 <ul>
 <li>已经安装 vscode</li>
 <li>vscode 已经安装 PlatformIO IDE 插件</li>
 </ul>
-
 <p>上述条件满足后，打开 vscode 新的窗口，会如下图中所示，左边栏多出 PlatformIO 的logo，以及最下边状态栏左边有个小房子的图标：</p>
-
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ul9bsjubj31hc0u0go1.jpg" alt="" /></p>
-
+<p><img src="http://ww3.sinaimg.cn/large/006tNc79ly1g5ul9bsjubj31hc0u0go1.jpg" alt=""></p>
 <h4 id="硬件">硬件</h4>
-
 <ul>
 <li>一个 stm32f103c8t6 的最小系统板</li>
 <li>stlink v2 调试器</li>
 </ul>
-
 <h4 id="pio-账户">PIO 账户</h4>
-
 <p>如果没有 PIO 账户那就先注册一个，打开 vscode 点击上图中提到的小房子的图标就会打开 PlatformIO 的管理页面，点击右上角的 PIO Account 图标</p>
-
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5uliezdtej302i02c0hn.jpg" alt="" /></p>
-
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5uliezdtej302i02c0hn.jpg" alt=""></p>
 <p>此时会跳转到 PIO 账户登录页面，登录按钮下面有一个链接 <strong>create a new one</strong> ，点击一下即可进入注册页面：</p>
-
-<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5ulnmveigj316i0u0wfn.jpg" alt="" /></p>
-
+<p><img src="http://ww2.sinaimg.cn/large/006tNc79ly1g5ulnmveigj316i0u0wfn.jpg" alt=""></p>
 <p>输入自己的邮箱，点击注册按钮即可完成注册， PlatformIO 会自动生成一个密码发到你的邮箱，返回到登录页面输入邮箱和密码登录即可。</p>
-
 <h3 id="新建项目">新建项目</h3>
-
 <p>返回到 Home 页面，点击 New Project 按钮开始新建项目，这里项目名称定义为 <strong>c8t6Blink</strong>，一个控制 LED 闪烁的简单例子，Board 就选 <strong>STM32F103C8(20k RAM. 64k Flash)(Generic)</strong> ，然后使用 <strong>Arduino</strong> 框架，最后点击 Finish 即可创建项目：</p>
-
-<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5um2h72phj316i0u0q4y.jpg" alt="" /></p>
-
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1g5um2h72phj316i0u0q4y.jpg" alt=""></p>
 <p>初次创建可能需要时间会长一点，会下载编译需要的一些依赖工具包，以后再创建相同平台项目的时候就很快了。</p>
-
 <h3 id="编写程序">编写程序</h3>
-
 <p>手头上这个最小系统板上的 LED 是 PB0 管脚控制的，硬件设计是低电平 LED 点亮，所以一个简单的闪灯程序如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#define LED_PIN PB0
+<span class="cp">#</span><span class="cp">define LED_PIN PB0</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// put your setup code here, to run once:
-</span><span class="c1"></span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span><span class="c1"></span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// put your main code here, to run repeatedly:
-</span><span class="c1"></span>  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
-<p>点击底部状态栏左边的小对号图标就可以进行编译，编译完成后点击右边向右的箭头图标就可以烧写程序，初次上传烧写需要时间长一些，PIO 需要下载一些相关工具包，以后就是正常上传程序了，完成后就能看到程序正常运行，LED 闪了起来。</p>
-
+</span><span class="c1"></span>  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>点击底部状态栏左边的小对号图标就可以进行编译，编译完成后点击右边向右的箭头图标就可以烧写程序，初次上传烧写需要时间长一些，PIO 需要下载一些相关工具包，以后就是正常上传程序了，完成后就能看到程序正常运行，LED 闪了起来。</p>
 <h3 id="调试程序">调试程序</h3>
-
 <p>按下 <strong>F5</strong> 按键即可触发程序调试，本以为会出现类似本篇文章第一张图的样子，结果会出现以下错误：</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">&gt; Executing task: platformio debug &lt;
 
 Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</span> <span class="k">for</span> environment
 终端进程已终止，退出代码: <span class="m">1</span>
 
-终端将被任务重用，按任意键关闭。</code></pre></div>
-<p>为什么会出现这个错误？原因很简单，PIO 不知道我们是用什么调试工具进行程序调试，所以需要在项目配置文件 <code>platformio.ini</code> 中指明一下我们使用 stlink 进行调试：</p>
+终端将被任务重用，按任意键关闭。
+</code></pre></div><p>为什么会出现这个错误？原因很简单，PIO 不知道我们是用什么调试工具进行程序调试，所以需要在项目配置文件 <code>platformio.ini</code> 中指明一下我们使用 stlink 进行调试：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
 <span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
 <span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
 <span class="na">framework</span> <span class="o">=</span> <span class="s">arduino</span>
-<span class="na">debug_tool</span> <span class="o">=</span> <span class="s">stlink</span></code></pre></div>
-<p>此时点击 <strong>F5</strong> 就可以正常触发调试了，可以看到启动调试程序默认停到 main 中第一句。</p>
-
+<span class="na">debug_tool</span> <span class="o">=</span> <span class="s">stlink</span>
+</code></pre></div><p>此时点击 <strong>F5</strong> 就可以正常触发调试了，可以看到启动调试程序默认停到 main 中第一句。</p>
 <ul>
 <li>顶部会看到调试工具栏，可以实现调试会话的重启、程序启停、执行等操作按钮</li>
 <li>可以在代码编辑器行号前面单击添加或删除断点</li>
@@ -208,8 +171,7 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 <li>调试控制台的最下方可以输入 <strong>adb</strong> 命令，从而实现更强大的调试操作</li>
 <li><strong>DISASSEMBLY</strong> 栏可以控制切换汇编窗口方便查看汇编代码</li>
 </ul>
-
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g5ung40o74j31hc0u0wkt.jpg" alt="" /></p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79ly1g5ung40o74j31hc0u0wkt.jpg" alt=""></p>
 
 			</div>
 			<hr class="post-end">
@@ -229,24 +191,17 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#功能特性">功能特性</a></li>
-<li><a href="#实践">实践</a>
-<ul>
-<li><a href="#前提条件">前提条件</a>
-<ul>
-<li><a href="#开发环境">开发环境</a></li>
-<li><a href="#硬件">硬件</a></li>
-<li><a href="#pio-账户">PIO 账户</a></li>
-</ul></li>
-<li><a href="#新建项目">新建项目</a></li>
-<li><a href="#编写程序">编写程序</a></li>
-<li><a href="#调试程序">调试程序</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#功能特性">功能特性</a></li>
+    <li><a href="#实践">实践</a>
+      <ul>
+        <li><a href="#前提条件">前提条件</a></li>
+        <li><a href="#新建项目">新建项目</a></li>
+        <li><a href="#编写程序">编写程序</a></li>
+        <li><a href="#调试程序">调试程序</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -297,7 +252,7 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python 利用百度 AI 实现 OCR">
 <meta itemprop="description" content="前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。
-
 ">
-
-
 <meta itemprop="datePublished" content="2019-01-10T15:10:32&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-10T15:10:32&#43;08:00" />
-<meta itemprop="wordCount" content="1298">
+<meta itemprop="wordCount" content="1395">
 
 
 
-<meta itemprop="keywords" content="python,ocr," />
-<meta property="og:title" content="python 利用百度 AI 实现 OCR" />
+<meta itemprop="keywords" content="python,ocr," /><meta property="og:title" content="python 利用百度 AI 实现 OCR" />
 <meta property="og:description" content="前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/01/10/textgo_python/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python 利用百度 AI 实现 OCR"/>
 <meta name="twitter:description" content="前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,13 +84,9 @@
 			</header>
 			<div class="content">
 				<p>前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110210442.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110210442.png" alt=""></p>
 <h1 id="实现分析">实现分析</h1>
-
-<p>阅读了百度提供的文章<a href="http://ai.baidu.com/forum/topic/show/867951" target="_blank"><strong>只要10分钟 快速掌握文字识别</strong></a>，基本就可以整理出实现的步骤了：</p>
-
+<p>阅读了百度提供的文章<a href="http://ai.baidu.com/forum/topic/show/867951"><strong>只要10分钟 快速掌握文字识别</strong></a>，基本就可以整理出实现的步骤了：</p>
 <ol>
 <li>创建百度应用，获取 api_key 和 secret_key</li>
 <li>利用 api_key 和 secret_key 获取 access token</li>
@@ -104,142 +94,132 @@
 <li>利用图片BASE64码和 access token 构建 POST</li>
 <li>响应结果中解析结果</li>
 </ol>
-
 <p>其中第一步需要在百度 AI 控制台实现，有了 api_key 和 secret_key 剩下的四步就可以用 python 实现了，最终 python 程序设计思路：</p>
-
 <ol>
 <li>指定配置文件和图片路径</li>
 <li>读取配置文件中的 api_key 和 secret_key</li>
 <li>判断配置文件是否有 access_token
-
 <ul>
 <li>如果没有：利用 api_key 和 secret_key 获取 access_key，并将 access_token 写入配置文件</li>
 <li>如果有：读取配置中的 access_key</li>
-</ul></li>
+</ul>
+</li>
 <li>将指定图片转换为 BASE64 码</li>
 <li>根据 access_token 和 图片的 BASE64 码 构建 POST，发送请求，解析返回的结果</li>
 <li>打印 OCR 结果</li>
 </ol>
-
 <h1 id="代码实现">代码实现</h1>
-
 <h2 id="textgo-类">textGO 类</h2>
-
 <p>根据上面的思路，封装了 textGO 类：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">class</span> <span class="nc">TextGO</span><span class="p">:</span>
-    <span class="s2">&#34;&#34;&#34; 定义 ocr 类 &#34;&#34;&#34;</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 定义 ocr 类 </span><span class="s2">&#34;&#34;&#34;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_file</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_file</span><span class="p">)</span><span class="p">:</span>
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;api_key&#34;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;secret_key&#34;</span><span class="p">)):</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;请指定一个合理的配置文件，配置文件中要包含 api_key 和 secret_key!&#34;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">api_key</span><span class="s2">&#34;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">secret_key</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">请指定一个合理的配置文件，配置文件中要包含 api_key 和 secret_key!</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
             <span class="k">return</span>
-        <span class="n">access_token</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;access_token&#34;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">access_token</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">access_token</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+        <span class="n">access_token</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">access_token</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">access_token</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">access_token</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="p">:</span>
             <span class="n">access_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span>
-                <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;api_key&#34;</span><span class="p">),</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;secret_key&#34;</span><span class="p">))</span>
-            <span class="n">config</span><span class="p">[</span><span class="s2">&#34;access_token&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_token</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">api_key</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">secret_key</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">)</span>
+            <span class="n">config</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">access_token</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_token</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;access_token&#34;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">access_token</span><span class="s2">&#34;</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="s2">&#34;&#34;&#34; 从 json 文件中读取配置 &#34;&#34;&#34;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;指定的配置文件 {config_file} 不存在!&#34;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">{}</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">load_file</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 从 json 文件中读取配置 </span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">指定的配置文件 {config_file} 不存在!</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="p">}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">r</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">load_file</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">load_file</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="p">}</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="s2">&#34;&#34;&#34; 将配置写入文件 &#34;&#34;&#34;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">write_config</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 将配置写入文件 </span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">w</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_obj</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f_obj</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">img_to_base64</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
-        <span class="s2">&#34;&#34;&#34; convert img to base64 data &#34;&#34;&#34;</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">img_f</span><span class="p">:</span>
-            <span class="n">file_data</span> <span class="o">=</span> <span class="n">img_f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">img_to_base64</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> convert img to base64 data </span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">rb</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">img_f</span><span class="p">:</span>
+            <span class="n">file_data</span> <span class="o">=</span> <span class="n">img_f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b64encode</span><span class="p">(</span><span class="n">file_data</span><span class="p">)</span>
-            <span class="n">b64_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">b64_data</span><span class="p">,</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+            <span class="n">b64_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">b64_data</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">utf-8</span><span class="s2">&#34;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">b64_str</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
-        <span class="s2">&#34;&#34;&#34; 获取百度 AI 的文字识别 access_token &#34;&#34;&#34;</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;获取百度 AI 文字识别的 Access Token ...&#34;</span><span class="p">)</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=</span><span class="si">%s</span><span class="s2">&amp;client_secret=</span><span class="si">%s</span><span class="s2">&#34;</span>
+    <span class="k">def</span> <span class="nf">get_access_token</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 获取百度 AI 的文字识别 access_token </span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">获取百度 AI 文字识别的 Access Token ...</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=</span><span class="si">%s</span><span class="s2">&amp;client_secret=</span><span class="si">%s</span><span class="s2">&#34;</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="n">url</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">))</span>
-        <span class="n">body_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">%</span> <span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">)</span><span class="p">)</span>
+        <span class="n">body_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">utf-8</span><span class="s2">&#34;</span><span class="p">)</span>
         <span class="n">body_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_str</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">body_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;access_token&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">body_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">access_token</span><span class="s2">&#34;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">ocr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
-        <span class="s2">&#34;&#34;&#34; 利用百度 AI 识别文字 &#34;&#34;&#34;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;没有 access_token&#34;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="s2">&#34;&#34;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;https://aip.baidubce.com/rest/2.0/ocr/v1/accurate?access_token={self.access_token}&#34;</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;Content-Type&#34;</span><span class="p">:</span> <span class="s2">&#34;application/x-www-form-urlencoded&#34;</span><span class="p">}</span>
+    <span class="k">def</span> <span class="nf">ocr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 利用百度 AI 识别文字 </span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">没有 access_token</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">https://aip.baidubce.com/rest/2.0/ocr/v1/accurate?access_token={self.access_token}</span><span class="s2">&#34;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Content-Type</span><span class="s2">&#34;</span><span class="p">:</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">application/x-www-form-urlencoded</span><span class="s2">&#34;</span><span class="p">}</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&#34;image_type&#34;</span><span class="p">:</span> <span class="s2">&#34;BASE64&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;image&#34;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_to_base64</span><span class="p">(</span><span class="n">img</span><span class="p">),</span>
-            <span class="s2">&#34;group_id&#34;</span><span class="p">:</span> <span class="s2">&#34;textGO_test&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;user_id&#34;</span><span class="p">:</span> <span class="s2">&#34;5km&#34;</span>
+            <span class="sa"></span><span class="s2">&#34;</span><span class="s2">image_type</span><span class="s2">&#34;</span><span class="p">:</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">BASE64</span><span class="s2">&#34;</span><span class="p">,</span>
+            <span class="sa"></span><span class="s2">&#34;</span><span class="s2">image</span><span class="s2">&#34;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_to_base64</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="p">,</span>
+            <span class="sa"></span><span class="s2">&#34;</span><span class="s2">group_id</span><span class="s2">&#34;</span><span class="p">:</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">textGO_test</span><span class="s2">&#34;</span><span class="p">,</span>
+            <span class="sa"></span><span class="s2">&#34;</span><span class="s2">user_id</span><span class="s2">&#34;</span><span class="p">:</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">5km</span><span class="s2">&#34;</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="n">body_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+            <span class="n">body_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">utf-8</span><span class="s2">&#34;</span><span class="p">)</span>
             <span class="n">body_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_str</span><span class="p">)</span>
-            <span class="n">words</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">body_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;words_result&#34;</span><span class="p">):</span>
-                <span class="n">words</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;words&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">body_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">words_result</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">words</span> <span class="o">+</span><span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">words</span><span class="s2">&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
             <span class="k">return</span> <span class="n">words</span>
-        <span class="k">return</span> <span class="s2">&#34;&#34;</span></code></pre></div>
-<ol>
+        <span class="k">return</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
+</code></pre></div><ol>
 <li>图片转码使用了内建库 <strong>base64</strong></li>
 <li>配置的读取和写入使用了库 <strong>json</strong></li>
 <li>发送 GET 和 POST 请求使用库 <strong>requests</strong></li>
 </ol>
-
 <h2 id="解析命令参数">解析命令参数</h2>
-
 <p>为了更好的实现命令形式，这里使用了库 <strong>argparse</strong>，封装了函数 <code>get_args</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">get_args</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">:</span>
-    <span class="s2">&#34;&#34;&#34; 获取命令参数 &#34;&#34;&#34;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;OCR 识别图片中的文字&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;img&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;指定要识别的图片&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">get_args</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 获取命令参数 </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">OCR 识别图片中的文字</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">img</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">指定要识别的图片</span><span class="s2">&#34;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&#34;-c&#34;</span><span class="p">,</span> <span class="s2">&#34;--config&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&#34;./config.json&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;指定配置文件&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></code></pre></div>
-<h2 id="功能使用">功能使用</h2>
-
+        <span class="sa"></span><span class="s2">&#34;</span><span class="s2">-c</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--config</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">./config.json</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">指定配置文件</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><h2 id="功能使用">功能使用</h2>
 <p>定义 main 函数，实现整个过程：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="s2">&#34;&#34;&#34; 主函数 &#34;&#34;&#34;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> 主函数 </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">(</span><span class="p">)</span>
     <span class="n">textGO</span> <span class="o">=</span> <span class="n">TextGO</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">textGO</span><span class="o">.</span><span class="n">ocr</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">img</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span></code></pre></div>
-<p>在使用前还需要按照<a href="http://ai.baidu.com/forum/topic/show/867951" target="_blank">只要10分钟 快速掌握文字识别</a>中的操作获取自己的 api_key 和 secret_key ，将他们以下面的形式写入到一个文件，我这里写入文件是 <code>config.json</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;api_key&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;secret_key&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">}</span></code></pre></div>
-<blockquote>
+    <span class="k">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</code></pre></div><p>在使用前还需要按照<a href="http://ai.baidu.com/forum/topic/show/867951">只要10分钟 快速掌握文字识别</a>中的操作获取自己的 api_key 和 secret_key ，将他们以下面的形式写入到一个文件，我这里写入文件是 <code>config.json</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">&#34;api_key&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;secret_key&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">}</span>
+</code></pre></div><blockquote>
 <p>将自己应用的 api_key 和 secret_key 对应填到上面 json 内容的对应位置！</p>
 </blockquote>
-
 <p>然后调用主函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span></code></pre></div>
-<p>最终 textGO.py 的文件代码就完成了。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>最终 textGO.py 的文件代码就完成了。</p>
 <h2 id="测试功能">测试功能</h2>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">python3 textGO.py -h</code></pre></div>
-<p>通过上述命令查看帮助信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">python3 textGO.py -h
+</code></pre></div><p>通过上述命令查看帮助信息：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">usage: textGO.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-c CONFIG<span class="o">]</span> img
 
 OCR 识别图片中的文字
@@ -250,31 +230,30 @@ positional arguments:
 optional arguments:
   -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
   -c CONFIG, --config CONFIG
-                        指定配置文件</code></pre></div>
-<p>准备一张图片，假如：</p>
-
+                        指定配置文件
+</code></pre></div><p>准备一张图片，假如：</p>
 <ul>
-<li><p>图片路径是 <code>~/Desktop/demo.png</code>：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110231944.png" alt="" /></p></li>
-
-<li><p>配置文件路径为 <code>~/Desktop/config</code></p></li>
+<li>
+<p>图片路径是 <code>~/Desktop/demo.png</code>：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110231944.png" alt=""></p>
+</li>
+<li>
+<p>配置文件路径为 <code>~/Desktop/config</code></p>
+</li>
 </ul>
-
 <p>那么可以使用如下命令并得到结果:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">python3 textGO.py -c ~/Desktop/config.json ~/Desktop/demo.png
 获取百度 AI 文字识别的 Access Token ...
  macOS Mojave
 版本10.14.2
- MacBook Pro<span class="o">(</span><span class="m">15</span>-inch, <span class="m">2016</span><span class="o">)</span>
+ MacBook Pro<span class="o">(</span>15-inch, 2016<span class="o">)</span>
 处理器2.6 GHz Intel Core i7
 内存16GB2133 MHZ LPDDR3
 图形卡 Radeon Pro4502048MB
  Intel HD Graphics <span class="m">530</span> <span class="m">1536</span> MB
-序列号co2 SXCQWGTFL</code></pre></div>
-<h2 id="代码托管">代码托管</h2>
-
-<p>代码已托管至 github：<a href="https://github.com/smslit/tools-with-script/tree/master/textGO" target="_blank">tools-with-script/textGO/</a></p>
+序列号co2 SXCQWGTFL
+</code></pre></div><h2 id="代码托管">代码托管</h2>
+<p>代码已托管至 github：<a href="https://github.com/smslit/tools-with-script/tree/master/textGO">tools-with-script/textGO/</a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -283,7 +262,7 @@ optional arguments:
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1298 字
+					1395 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -293,17 +272,13 @@ optional arguments:
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#实现分析">实现分析</a></li>
-<li><a href="#代码实现">代码实现</a>
-<ul>
-<li><a href="#textgo-类">textGO 类</a></li>
-<li><a href="#解析命令参数">解析命令参数</a></li>
-<li><a href="#功能使用">功能使用</a></li>
-<li><a href="#测试功能">测试功能</a></li>
-<li><a href="#代码托管">代码托管</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#textgo-类">textGO 类</a></li>
+    <li><a href="#解析命令参数">解析命令参数</a></li>
+    <li><a href="#功能使用">功能使用</a></li>
+    <li><a href="#测试功能">测试功能</a></li>
+    <li><a href="#代码托管">代码托管</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -354,7 +329,7 @@ optional arguments:
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Fedora使用笔记">
 <meta itemprop="description" content="俗话说得好，好记性不如烂笔头，曾经解决过的问题，再次遇到还要再花大量时间去解决，不能忍呀，在fedora的使用过程中，难免遇到好多问题，本文记录在使用Fedora过程中部分遇到的问题。">
-
-
 <meta itemprop="datePublished" content="2016-04-28T15:17:29&#43;08:00" />
 <meta itemprop="dateModified" content="2016-04-28T15:17:29&#43;08:00" />
 <meta itemprop="wordCount" content="316">
 
 
 
-<meta itemprop="keywords" content="linux," />
-<meta property="og:title" content="Fedora使用笔记" />
+<meta itemprop="keywords" content="linux," /><meta property="og:title" content="Fedora使用笔记" />
 <meta property="og:description" content="俗话说得好，好记性不如烂笔头，曾经解决过的问题，再次遇到还要再花大量时间去解决，不能忍呀，在fedora的使用过程中，难免遇到好多问题，本文记录在使用Fedora过程中部分遇到的问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/04/28/fedora-note/" />
@@ -84,31 +81,29 @@
 			</header>
 			<div class="content">
 				<p>俗话说得好，好记性不如烂笔头，曾经解决过的问题，再次遇到还要再花大量时间去解决，不能忍呀，在fedora的使用过程中，难免遇到好多问题，本文记录在使用Fedora过程中部分遇到的问题。</p>
-
 <h3 id="安装eagle-pcb缺少库的问题">安装eagle pcb缺少库的问题</h3>
-
 <p>在安装eagle pcb软件的时候，提示缺少库文件，如下：</p>
-
 <blockquote>
 <p>➜  CadSoft.Computer.EAGLE.Professional.v7.5.0.LINUX.X64 ./eagle-lin64-7.5.0.run
 Ensure the following libraries are available:
-    libssl.so.1.0.0 =&gt; not found
-    libcrypto.so.1.0.0 =&gt; not found
+libssl.so.1.0.0 =&gt; not found
+libcrypto.so.1.0.0 =&gt; not found
 /tmp/eagle-setup.6307/eagle-7.5.0/bin/eagle: error while loading shared libraries: libssl.so.1.0.0: cannot open shared object file: No such file or directory</p>
 </blockquote>
-
 <p>后来发现，原来系统中其实已经安装了依赖库，只不过是版本较高，eagle安装过程中不认，所以可以通过建立软链接，名为所需依赖库就可以了，可以执行以下命令，当然库的版本还是以当前电脑系统为准：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /lib/lib64
 $ sudo ln -s libssl.so.1.0.2g libssl.so.1.0.0
-$ sudo ln -s libcrypto.so.1.0.2g libcrypto.so.1.0.0</code></pre></div>
-<h3 id="安装evopop主题">安装Evopop主题</h3>
-
+$ sudo ln -s libcrypto.so.1.0.2g libcrypto.so.1.0.0
+</code></pre></div><h3 id="安装evopop主题">安装Evopop主题</h3>
 <ul>
-<li><p>添加主题的安装源：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo dnf copr <span class="nb">enable</span> heikoada/gtk-themes</code></pre></div></li>
-
-<li><p>安装主题：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo dnf install evopop-gtk-theme-common.noarch evopop-gtk-theme-gtk3 evopop-gtk-theme-metacity evopop-gtk-theme-gtk2</code></pre></div></li>
+<li>
+<p>添加主题的安装源：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo dnf copr <span class="nb">enable</span> heikoada/gtk-themes
+</code></pre></div></li>
+<li>
+<p>安装主题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo dnf install evopop-gtk-theme-common.noarch evopop-gtk-theme-gtk3 evopop-gtk-theme-metacity evopop-gtk-theme-gtk2
+</code></pre></div></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -128,16 +123,14 @@ $ sudo ln -s libcrypto.so.1.0.2g libcrypto.so.1.0.0</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#安装eagle-pcb缺少库的问题">安装eagle pcb缺少库的问题</a></li>
-<li><a href="#安装evopop主题">安装Evopop主题</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装eagle-pcb缺少库的问题">安装eagle pcb缺少库的问题</a></li>
+        <li><a href="#安装evopop主题">安装Evopop主题</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -188,7 +181,7 @@ $ sudo ln -s libcrypto.so.1.0.2g libcrypto.so.1.0.0</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -27,9 +27,8 @@
       <pubDate>Wed, 11 Jul 2018 23:28:08 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/07/11/platformio-command-device/</guid>
-      <description>&lt;p&gt;今天收到了前些天买的&lt;a href=&#34;https://store.arduino.cc/arduino-leonardo-with-headers&#34; target=&#34;_blank&#34;&gt;Arduino Leonardo&lt;/a&gt;，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 &lt;strong&gt;platformio&lt;/strong&gt; 监视 Arduino的串口数据。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180711153132350560223.jpg&#34; alt=&#34;20180711153132350560223.jpg&#34; /&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;今天收到了前些天买的&lt;a href=&#34;https://store.arduino.cc/arduino-leonardo-with-headers&#34;&gt;Arduino Leonardo&lt;/a&gt;，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 &lt;strong&gt;platformio&lt;/strong&gt; 监视 Arduino的串口数据。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180711153132350560223.jpg&#34; alt=&#34;20180711153132350560223.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -56,7 +55,7 @@
       <pubDate>Mon, 23 Nov 2015 22:00:00 +0800</pubDate>
       
       <guid>https://www.smslit.top/2015/11/23/asciiBoardMap-Arduino/</guid>
-      <description>&lt;p&gt;在为Arduino写代码的时候，有时很头疼怎么更好的示意连线图呢，今天看Arduino官网博客时看到了一篇文章&lt;a href=&#34;https://blog.arduino.cc/2015/11/20/arduino-pinout-ascii-art-ready-to-go/&#34; target=&#34;_blank&#34;&gt;ARDUINO PINOUT ASCII ART READY TO GO&lt;/a&gt;，用Ascii字符表示连线的话真的很形象。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在为Arduino写代码的时候，有时很头疼怎么更好的示意连线图呢，今天看Arduino官网博客时看到了一篇文章&lt;a href=&#34;https://blog.arduino.cc/2015/11/20/arduino-pinout-ascii-art-ready-to-go/&#34;&gt;ARDUINO PINOUT ASCII ART READY TO GO&lt;/a&gt;，用Ascii字符表示连线的话真的很形象。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -93,8 +92,7 @@
       
       <guid>https://www.smslit.top/2014/03/27/ArduinoUnoHIDKeyboard/</guid>
       <description>&lt;p&gt;本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。&lt;/p&gt;
-
-&lt;p&gt;本文搬自我之前在Arduino中文社区的帖子-&lt;a href=&#34;http://www.arduino.cn/thread-5107-1-1.html&#34; target=&#34;_blank&#34;&gt;UNO R3 软件实现HID键盘功能&lt;/a&gt;，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！&lt;/p&gt;</description>
+&lt;p&gt;本文搬自我之前在Arduino中文社区的帖子-&lt;a href=&#34;http://www.arduino.cn/thread-5107-1-1.html&#34;&gt;UNO R3 软件实现HID键盘功能&lt;/a&gt;，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！&lt;/p&gt;</description>
     </item>
     
   </channel>

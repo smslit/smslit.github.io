@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="各类硬件接口定义">
 <meta itemprop="description" content="脑子存储不够用了，故专门开本文整理各类硬件接口，以备不时之需。">
-
-
 <meta itemprop="datePublished" content="2016-04-16T08:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2016-04-16T08:10:46&#43;08:00" />
 <meta itemprop="wordCount" content="871">
 
 
 
-<meta itemprop="keywords" content="debugger," />
-<meta property="og:title" content="各类硬件接口定义" />
+<meta itemprop="keywords" content="debugger," /><meta property="og:title" content="各类硬件接口定义" />
 <meta property="og:description" content="脑子存储不够用了，故专门开本文整理各类硬件接口，以备不时之需。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/04/16/HardwareInterface-Elec/" />
@@ -84,17 +81,11 @@
 			</header>
 			<div class="content">
 				<p>脑子存储不够用了，故专门开本文整理各类硬件接口，以备不时之需。</p>
-
 <h2 id="icd3">ICD3</h2>
-
 <h3 id="定义">定义</h3>
-
 <p>MPLAB ICD 3 在线调试器是一款由在 Windows ® 平台上运行 MPLAB IDE (v8.15 或更高版本)软件的 PC 控制的在线调试器。 MPLAB ICD 3 在线调试器是开发工程师工具包的不可或缺的组成部分。可用于从软件开发到硬件集成等各种应用领域。MPLAB ICD 3 在线调试器是一款支持硬件和软件开发的复杂调试器系统,专用于基于在线串行编程 (In-Circuit Serial ProgrammingTM, ICSPTM)和增强型在线串行编程双线串行接口的 Microchip PIC ® 单片机 (MCU)和 dsPIC ® 数字信号控制器 (Digital Signal Controller, DSC)。</p>
-
 <h3 id="接口定义">接口定义</h3>
-
 <p>贝能国际ICD3 In-Circuit Debugger采用6线接口连接目标板其接插件引脚定义如下表格：</p>
-
 <table>
 <thead>
 <tr>
@@ -103,38 +94,32 @@
 <th align="left">定义</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">蓝色线</td>
 <td align="center">PIN1</td>
 <td align="left">VPP（编程电压）</td>
 </tr>
-
 <tr>
 <td align="center">黄色线</td>
 <td align="center">PIN2</td>
 <td align="left">VDD（电源正极）</td>
 </tr>
-
 <tr>
 <td align="center">绿色线</td>
 <td align="center">PIN3</td>
 <td align="left">VSS（电源负极）</td>
 </tr>
-
 <tr>
 <td align="center">红色线</td>
 <td align="center">PIN4</td>
 <td align="left">PGD（编程数据）</td>
 </tr>
-
 <tr>
 <td align="center">黑色线</td>
 <td align="center">PIN5</td>
 <td align="left">PGC（编程时钟）</td>
 </tr>
-
 <tr>
 <td align="center">白色线</td>
 <td align="center">PIN6</td>
@@ -142,19 +127,12 @@
 </tr>
 </tbody>
 </table>
-
 <h2 id="cc-debugger">CC Debugger</h2>
-
 <h3 id="接口示意图">接口示意图</h3>
-
 <p>CCdebugger的接口示意图如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/scmwy.jpg" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/scmwy.jpg" alt="1"></p>
 <h3 id="接口说明">接口说明</h3>
-
 <p>详表如下：</p>
-
 <table>
 <thead>
 <tr>
@@ -163,62 +141,52 @@
 <th>说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>1</td>
 <td>GND</td>
 <td>地线</td>
 </tr>
-
 <tr>
 <td>2</td>
 <td>VDD</td>
 <td>目标板的正电源</td>
 </tr>
-
 <tr>
 <td>3</td>
 <td>DC</td>
 <td>调试接口时钟线</td>
 </tr>
-
 <tr>
 <td>4</td>
 <td>DD</td>
 <td>调试接口数据线</td>
 </tr>
-
 <tr>
 <td>5</td>
 <td>CSn</td>
 <td>下载串口片选线（低电平有效）</td>
 </tr>
-
 <tr>
 <td>6</td>
 <td>SCLK</td>
 <td>下载串口时钟线</td>
 </tr>
-
 <tr>
 <td>7</td>
 <td>RESETn</td>
 <td>调试器复位接口</td>
 </tr>
-
 <tr>
 <td>8</td>
 <td>MOSI</td>
 <td>下载串口数据输出线</td>
 </tr>
-
 <tr>
 <td>9</td>
 <td>3.3V</td>
 <td>仿真器3.3V电源输出</td>
 </tr>
-
 <tr>
 <td>10</td>
 <td>MISO</td>
@@ -226,15 +194,10 @@
 </tr>
 </tbody>
 </table>
-
 <p>详见<a href="/ble/2015/10/26/CCDebugger-BLE.html">BLE开发笔记——CC Debugger的使用</a></p>
-
 <h2 id="avr-isp">AVR ISP</h2>
-
 <h3 id="接口定义-1">接口定义</h3>
-
 <p>大部分AVR MCU的ISP数据端口亦为 SCK、MOSI、MISO引脚（如Attiny13/24/2313，Atmega48/88/168/329，Atmega16/32/162，Atmega8515/8535等），如下：</p>
-
 <table>
 <thead>
 <tr>
@@ -242,42 +205,34 @@
 <th align="center">AVR单片机</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">MISO</td>
 <td align="center">MISO</td>
 </tr>
-
 <tr>
 <td align="center">VCC</td>
 <td align="center">VCC</td>
 </tr>
-
 <tr>
 <td align="center">SCK</td>
 <td align="center">SCK</td>
 </tr>
-
 <tr>
 <td align="center">MOSI</td>
 <td align="center">MOSI</td>
 </tr>
-
 <tr>
 <td align="center">RESET</td>
 <td align="center">RESET</td>
 </tr>
-
 <tr>
 <td align="center">GND</td>
 <td align="center">GND</td>
 </tr>
 </tbody>
 </table>
-
 <p>少部分AVRMCU的ISP数据端口则不是使用这些接口，而是：SCK、PDI、PDO引脚（如ATmega64/128/1281等），如下：</p>
-
 <table>
 <thead>
 <tr>
@@ -285,51 +240,39 @@
 <th align="center">AVR单片机</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">MISO</td>
 <td align="center">PDO</td>
 </tr>
-
 <tr>
 <td align="center">VCC</td>
 <td align="center">VCC</td>
 </tr>
-
 <tr>
 <td align="center">SCK</td>
 <td align="center">SCK</td>
 </tr>
-
 <tr>
 <td align="center">MOSI</td>
 <td align="center">PDI</td>
 </tr>
-
 <tr>
 <td align="center">RESET</td>
 <td align="center">RESET</td>
 </tr>
-
 <tr>
 <td align="center">GND</td>
 <td align="center">GND</td>
 </tr>
 </tbody>
 </table>
-
 <p>以上仅例举出常用的AVR型号的连接方式，若您使用的AVR型号没有被列举到，请查看相关型号的PDF文档，里面的编程章节将有介绍使用ISP时，需连接哪些引脚。</p>
-
 <h3 id="标准接口图">标准接口图</h3>
-
 <p>10脚的ISP接口示意图如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/pj743.jpg" alt="10_pin_isp" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/pj743.jpg" alt="10_pin_isp"></p>
 <p>6脚的ISP接口示意图如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/w3p0u.jpg" alt="6_pin_isp" /></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/w3p0u.jpg" alt="6_pin_isp"></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -348,26 +291,26 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#icd3">ICD3</a>
-<ul>
-<li><a href="#定义">定义</a></li>
-<li><a href="#接口定义">接口定义</a></li>
-</ul></li>
-<li><a href="#cc-debugger">CC Debugger</a>
-<ul>
-<li><a href="#接口示意图">接口示意图</a></li>
-<li><a href="#接口说明">接口说明</a></li>
-</ul></li>
-<li><a href="#avr-isp">AVR ISP</a>
-<ul>
-<li><a href="#接口定义-1">接口定义</a></li>
-<li><a href="#标准接口图">标准接口图</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#icd3">ICD3</a>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#接口定义">接口定义</a></li>
+      </ul>
+    </li>
+    <li><a href="#cc-debugger">CC Debugger</a>
+      <ul>
+        <li><a href="#接口示意图">接口示意图</a></li>
+        <li><a href="#接口说明">接口说明</a></li>
+      </ul>
+    </li>
+    <li><a href="#avr-isp">AVR ISP</a>
+      <ul>
+        <li><a href="#接口定义-1">接口定义</a></li>
+        <li><a href="#标准接口图">标准接口图</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -418,7 +361,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

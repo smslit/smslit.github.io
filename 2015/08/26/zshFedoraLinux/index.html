@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Fedora Linux下将终端改用zsh">
 <meta itemprop="description" content="本文将介绍如何在Fedora Linux下从bash进入zsh阵营。">
-
-
 <meta itemprop="datePublished" content="2015-08-26T17:55:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-08-26T17:55:46&#43;08:00" />
-<meta itemprop="wordCount" content="816">
+<meta itemprop="wordCount" content="818">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta property="og:title" content="Fedora Linux下将终端改用zsh" />
+<meta itemprop="keywords" content="" /><meta property="og:title" content="Fedora Linux下将终端改用zsh" />
 <meta property="og:description" content="本文将介绍如何在Fedora Linux下从bash进入zsh阵营。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/08/26/zshFedoraLinux/" />
@@ -84,77 +81,56 @@
 			</header>
 			<div class="content">
 				<p>本文将介绍如何在Fedora Linux下从bash进入zsh阵营。</p>
-
 <h4 id="简说">简说</h4>
-
-<p>据说zsh是很复杂的，但功能强大，因牛人robbyrussell弄了个oh-my-zsh，让zsh的使用门槛降了好多。看到有网友整理了<a href="http://www.linuxeden.com/html/develop/20120928/130477.html" target="_blank">使用 Zsh 的九个理由</a>，不知道这些是不是可以说服你使用zsh，^_^，配合oh-my-zsh，可以简单上手zsh，本文就说一下我在fedora22下安装zsh的过程。</p>
-
+<p>据说zsh是很复杂的，但功能强大，因牛人robbyrussell弄了个oh-my-zsh，让zsh的使用门槛降了好多。看到有网友整理了<a href="http://www.linuxeden.com/html/develop/20120928/130477.html">使用 Zsh 的九个理由</a>，不知道这些是不是可以说服你使用zsh，^_^，配合oh-my-zsh，可以简单上手zsh，本文就说一下我在fedora22下安装zsh的过程。</p>
 <h4 id="安装过程">安装过程</h4>
-
 <h5 id="安装zsh"><strong>安装zsh</strong></h5>
-
 <p><strong>fedora是不自带zsh，需要我们自己安装，执行下面命令安装：</strong></p>
-
 <p><code>sudo dnf install zsh</code></p>
-
 <h5 id="安装oh-my-zsh"><strong>安装oh-my-zsh</strong></h5>
-
 <p><strong>oh-my-zsh确实很赞，这个必须安装，它是github上的一个项目，git clone到$HOME下就OK了：</strong></p>
-
 <p><code>cd ~</code></p>
-
 <p><code>git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</code></p>
-
-<p><strong>注：</strong>没有特殊声明，均在$HOME目录下操作。</p>
-
-<h5 id="生成-zshrc-文件"><strong>生成[.zshrc]文件</strong></h5>
-
+<p>**注：**没有特殊声明，均在$HOME目录下操作。</p>
+<h5 id="生成zshrc文件"><strong>生成[.zshrc]文件</strong></h5>
 <p><strong>只需从oh-my-zsh中的模板拷贝过来就可以了，这个文件类似[.bashrc]文件，执行下面命令搞定：</strong></p>
-
 <p><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
-
 <h5 id="配置主题"><strong>配置主题</strong></h5>
-
 <ul>
-<li><p>编辑[.zshrc]文件，只需配置[ZSH_THEME]的值就可以，我是用默认的[robbyrussell]主题，还有个不错的主题[candy]。</p>
-
+<li>
+<p>编辑[.zshrc]文件，只需配置[ZSH_THEME]的值就可以，我是用默认的[robbyrussell]主题，还有个不错的主题[candy]。</p>
 <ul>
 <li><code>gedit .zshrc</code></li>
-<li>修改[ZSH_THEME=&ldquo;robbyrussell&rdquo;]一项即可，将robbyrussell修改为你想要的主题就可以了。比如[ZSH_THEME=&ldquo;candy&rdquo;]。</li>
-</ul></li>
-
-<li><p>你可能会问都有什么主题，这个我们可以通过下面的命令来列出所有主题，自己试着看看，自己喜欢哪个就用哪个：</p>
-
-<p><code>ls ~/.oh-my-zsh/themes/</code></p></li>
+<li>修改[ZSH_THEME=&quot;robbyrussell&rdquo;]一项即可，将robbyrussell修改为你想要的主题就可以了。比如[ZSH_THEME=&quot;candy&rdquo;]。</li>
 </ul>
-
+</li>
+<li>
+<p>你可能会问都有什么主题，这个我们可以通过下面的命令来列出所有主题，自己试着看看，自己喜欢哪个就用哪个：</p>
+<p><code>ls ~/.oh-my-zsh/themes/</code></p>
+</li>
+</ul>
 <h5 id="配置插件"><strong>配置插件</strong></h5>
-
 <ul>
-<li><p>编辑[.zshrc]文件，只需配置[plugins]的值，默认是[plugins=(git)]，要用插件的话只需加入名称，空格相隔就可以，就像这样：</p>
-
-<p><code>plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm zsh-syntax-highlighting sublime)</code></p></li>
-
-<li><p>同样通过下面命令，我们也可以查看已经安装的插件：</p>
-
-<p><code>ls ~/.oh-my-zsh/plugins/</code></p></li>
+<li>
+<p>编辑[.zshrc]文件，只需配置[plugins]的值，默认是[plugins=(git)]，要用插件的话只需加入名称，空格相隔就可以，就像这样：</p>
+<p><code>plugins=(git git-flow debian grails rvm history-substring-search github gradle svn node npm zsh-syntax-highlighting sublime)</code></p>
+</li>
+<li>
+<p>同样通过下面命令，我们也可以查看已经安装的插件：</p>
+<p><code>ls ~/.oh-my-zsh/plugins/</code></p>
+</li>
 </ul>
-
 <h5 id="切换到zsh"><strong>切换到zsh</strong></h5>
-
 <p><strong>最后一步，就是切换到zsh，然后重启就可以用上zsh了，感受其强大吧！</strong></p>
-
 <p><code>chsh -s /bin/zsh</code></p>
-
 <h4 id="尾述">尾述</h4>
-
-<p>更多与oh-my-zsh相关，详见<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank"><strong>oh-my-zsh</strong></a></p>
+<p>更多与oh-my-zsh相关，详见<a href="https://github.com/robbyrussell/oh-my-zsh"><strong>oh-my-zsh</strong></a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					816 字
+					818 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -164,28 +140,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#简说">简说</a></li>
-<li><a href="#安装过程">安装过程</a>
-<ul>
-<li><a href="#安装zsh"><strong>安装zsh</strong></a></li>
-<li><a href="#安装oh-my-zsh"><strong>安装oh-my-zsh</strong></a></li>
-<li><a href="#生成-zshrc-文件"><strong>生成[.zshrc]文件</strong></a></li>
-<li><a href="#配置主题"><strong>配置主题</strong></a></li>
-<li><a href="#配置插件"><strong>配置插件</strong></a></li>
-<li><a href="#切换到zsh"><strong>切换到zsh</strong></a></li>
-</ul></li>
-<li><a href="#尾述">尾述</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -236,7 +197,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

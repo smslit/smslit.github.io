@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="1. 两数之和">
 <meta itemprop="description" content="描述 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一">
-
-
 <meta itemprop="datePublished" content="2019-10-08T14:46:34&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-08T14:46:34&#43;08:00" />
 <meta itemprop="wordCount" content="274">
 
 
 
-<meta itemprop="keywords" content="leetcode," />
-<meta property="og:title" content="1. 两数之和" />
+<meta itemprop="keywords" content="leetcode," /><meta property="og:title" content="1. 两数之和" />
 <meta property="og:description" content="描述 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/leetcode/1.twosum/" />
@@ -79,43 +76,29 @@
 	<main class="site-main section-inner thin animated fadeIn faster">
 		<h1>1. 两数之和</h1>
 		<div class="content">
-			
-
-<h2 id="描述">描述</h2>
-
+			<h2 id="描述">描述</h2>
 <p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
-
 <p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-
 <p>示例:</p>
-
 <blockquote>
 <p>给定 nums = [2, 7, 11, 15], target = 9</p>
-
-<p>因为 nums<strong>[0]</strong> + nums<strong>[1]</strong> = 2 + 7 = 9
-所以返回 <strong>[0, 1]</strong></p>
+<p>因为 nums**[0]** + nums**[1]** = 2 + 7 = 9
+所以返回 **[0, 1]**</p>
 </blockquote>
-
 <h2 id="题解">题解</h2>
-
-<h3 id="方法一-暴力法">方法一：暴力法</h3>
-
+<h3 id="方法一暴力法">方法一：暴力法</h3>
 <p>暴力法很简单，遍历每个元素 $x$，并查找是否存在一个值与 $target - x$ 相等的目标元素。</p>
-
 <h4 id="swift-实现">swift 实现</h4>
-
 <h4 id="python3-实现">Python3 实现</h4>
-
 <h4 id="复杂度分析">复杂度分析</h4>
-
 <ul>
-<li>时间复杂度：$O(n^2)$,</li>
-</ul>
-
+<li>
+<p>时间复杂度：$O(n^2)$,</p>
 <p>对于每个元素，我们试图通过遍历数组的其余部分来寻找它所对应的目标元素，这将耗费 $O(n)$ 的时间。因此时间复杂度是 $O(n^2)$。</p>
-
-<ul>
-<li>空间复杂度：$O(1)$。</li>
+</li>
+<li>
+<p>空间复杂度：$O(1)$。</p>
+</li>
 </ul>
 
 		</div>
@@ -161,7 +144,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

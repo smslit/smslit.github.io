@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="vim中恢复ctrl&#43;z">
 <meta itemprop="description" content="就在刚才vim下编辑一个文本本来想按下shift&#43;zz来保存文本并退出vim，没想到又按成了ctrl&#43;z，之前不了解状况的我，以为保存了，但是再次用vim打开这个文本的时候，发现vim保存了一个对应的swp文件，总会出现下面的提示，我这次忍无可忍了，就搜索了解了一下。">
-
-
 <meta itemprop="datePublished" content="2017-01-13T09:37:56&#43;08:00" />
 <meta itemprop="dateModified" content="2017-01-13T09:37:56&#43;08:00" />
 <meta itemprop="wordCount" content="436">
 
 
 
-<meta itemprop="keywords" content="vim," />
-<meta property="og:title" content="vim中恢复ctrl&#43;z" />
+<meta itemprop="keywords" content="vim," /><meta property="og:title" content="vim中恢复ctrl&#43;z" />
 <meta property="og:description" content="就在刚才vim下编辑一个文本本来想按下shift&#43;zz来保存文本并退出vim，没想到又按成了ctrl&#43;z，之前不了解状况的我，以为保存了，但是再次用vim打开这个文本的时候，发现vim保存了一个对应的swp文件，总会出现下面的提示，我这次忍无可忍了，就搜索了解了一下。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/01/13/vim-Ctrl-z/" />
@@ -84,41 +81,39 @@
 			</header>
 			<div class="content">
 				<p>就在刚才vim下编辑一个文本本来想按下<code>shift+zz</code>来保存文本并退出vim，没想到又按成了<code>ctrl+z</code>，之前不了解状况的我，以为保存了，但是再次用vim打开这个文本的时候，发现vim保存了一个对应的swp文件，总会出现下面的提示，我这次忍无可忍了，就搜索了解了一下。</p>
-
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">E325: ATTENTION
 Found a swap file by the name <span class="s2">&#34;.vimrc.swp&#34;</span>
-          owned by: smslit   dated: Fri Jan <span class="m">13</span> <span class="m">10</span>:27:11 <span class="m">2017</span>
+          owned by: smslit   dated: Fri Jan <span class="m">13</span> 10:27:11 <span class="m">2017</span>
          file name: ~smslit/.vimrc
           modified: no
          user name: smslit   host name: tianyes-Mac-mini.local
         process ID: <span class="m">1110</span> <span class="o">(</span>still running<span class="o">)</span>
 While opening file <span class="s2">&#34;.vimrc&#34;</span>
-             dated: Sun Nov <span class="m">27</span> <span class="m">16</span>:58:29 <span class="m">2016</span>
+             dated: Sun Nov <span class="m">27</span> 16:58:29 <span class="m">2016</span>
 
-<span class="o">(</span><span class="m">1</span><span class="o">)</span> Another program may be editing the same file.  If this is the <span class="k">case</span>,
+<span class="o">(</span>1<span class="o">)</span> Another program may be editing the same file.  If this is the <span class="k">case</span>,
     be careful not to end up with two different instances of the same
     file when making changes.  Quit, or <span class="k">continue</span> with caution.
-<span class="o">(</span><span class="m">2</span><span class="o">)</span> An edit session <span class="k">for</span> this file crashed.
+<span class="o">(</span>2<span class="o">)</span> An edit session <span class="k">for</span> this file crashed.
     If this is the <span class="k">case</span>, use <span class="s2">&#34;:recover&#34;</span> or <span class="s2">&#34;vim -r .vimrc&#34;</span>
     to recover the changes <span class="o">(</span>see <span class="s2">&#34;:help recovery&#34;</span><span class="o">)</span>.
     If you did this already, delete the swap file <span class="s2">&#34;.vimrc.swp&#34;</span>
     to avoid this message.
 
 Swap file <span class="s2">&#34;.vimrc.swp&#34;</span> already exists!
-<span class="o">[</span>O<span class="o">]</span>pen Read-Only, <span class="o">(</span>E<span class="o">)</span>dit anyway, <span class="o">(</span>R<span class="o">)</span>ecover, <span class="o">(</span>Q<span class="o">)</span>uit, <span class="o">(</span>A<span class="o">)</span>bort:</code></pre></div>
-<p>原来是因为把编辑这个文件的vim推到了后台，其实按下<code>ctrl+z</code>后会有提示如下，但之前不知道咋回事儿，其实仔细想想，好像有个很好的朋友告诉过我这个，汗，记性变差好严重！</p>
+<span class="o">[</span>O<span class="o">]</span>pen Read-Only, <span class="o">(</span>E<span class="o">)</span>dit anyway, <span class="o">(</span>R<span class="o">)</span>ecover, <span class="o">(</span>Q<span class="o">)</span>uit, <span class="o">(</span>A<span class="o">)</span>bort:
+</code></pre></div><p>原来是因为把编辑这个文件的vim推到了后台，其实按下<code>ctrl+z</code>后会有提示如下，但之前不知道咋回事儿，其实仔细想想，好像有个很好的朋友告诉过我这个，汗，记性变差好严重！</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  ~ vim .vimrc
 
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>  + <span class="m">1110</span> suspended  vim .vimrc</code></pre></div>
-<p>解决办法很简单，可以先查看一下后台有啥：</p>
+<span class="o">[</span>1<span class="o">]</span>  + <span class="m">1110</span> suspended  vim .vimrc
+</code></pre></div><p>解决办法很简单，可以先查看一下后台有啥：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  ~ <span class="nb">jobs</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>  + suspended  vim .vimrc</code></pre></div>
-<p>然后执行fg，就能跳回编辑文件的vim了：</p>
+<span class="o">[</span>1<span class="o">]</span>  + suspended  vim .vimrc
+</code></pre></div><p>然后执行fg，就能跳回编辑文件的vim了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  ~ <span class="nb">fg</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span>  + <span class="m">1110</span> continued  vim .vimrc</code></pre></div>
-<p>为此做了动态图片可以看清操作流程：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rgp9o.gif" alt="vimCtrlZ" /></p>
+<span class="o">[</span>1<span class="o">]</span>  + <span class="m">1110</span> continued  vim .vimrc
+</code></pre></div><p>为此做了动态图片可以看清操作流程：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rgp9o.gif" alt="vimCtrlZ"></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -182,7 +177,7 @@ Swap file <span class="s2">&#34;.vimrc.swp&#34;</span> already exists!
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

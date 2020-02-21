@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content=" vim 仍然是我的利器">
 <meta itemprop="description" content="之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写">
-
-
 <meta itemprop="datePublished" content="2019-03-10T22:49:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-10T22:49:00&#43;08:00" />
-<meta itemprop="wordCount" content="403">
+<meta itemprop="wordCount" content="420">
 
 
 
-<meta itemprop="keywords" content="daily," />
-<meta property="og:title" content=" vim 仍然是我的利器" />
+<meta itemprop="keywords" content="daily," /><meta property="og:title" content=" vim 仍然是我的利器" />
 <meta property="og:description" content="之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/daily/vim-renormal/" />
@@ -85,11 +82,11 @@
 			<div class="content">
 				<p>之前对 vim 生气了，是因为在编辑 markdown 文档的时候，` 简直是鬼魂般的存在，一会显示一会儿消失，常态是看不到这个反撇号，文档中还会经常使用到这个，用 vim 写文章太让人抓狂了！今天提起性子决定要查一下到底是怎么回事儿，之前发现的是只有编辑 markdown 的时候才会出现这个情况，其它文件类型都正常显示，说明这不是 vim 的锅，一定是插件或配置搞的鬼！我只好用笨办法，插件一个一个的卸载，最终查到原来是 <code>Yggdroot/indentLine</code> 这个插件导致，想到这个插件也就是在编辑代码的时候有点用处，就添加了一个屏蔽配置，当打开文件是 markdown 的时候就禁用这个插件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; 解决 indentline 导致 markdown 文件无法正常显示 `` 的问题</span><span class="err">
-</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">markdown</span><span class="p">,</span><span class="nx">md</span> <span class="k">let</span> <span class="nx">g</span>:<span class="nx">indentLine_enabled</span> <span class="p">=</span> <span class="m">0</span></code></pre></div>
-<p>另外，在查找上述问题的过程中，还发现了一个小问题，vim 会把我的 markdown 文件当 liquid 类型，到是对编辑文章的时候的语法高亮影响不大，但就是被我发现了在代码块的高亮上有影响，这也是不能忍的，继续屏蔽：</p>
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">markdown</span><span class="p">,</span><span class="nx">md</span> <span class="k">let</span> <span class="nx">g</span>:<span class="nx">indentLine_enabled</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span></code></pre></div><p>另外，在查找上述问题的过程中，还发现了一个小问题，vim 会把我的 markdown 文件当 liquid 类型，到是对编辑文章的时候的语法高亮影响不大，但就是被我发现了在代码块的高亮上有影响，这也是不能忍的，继续屏蔽：</p>
 <div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; 解决插件将 md 或 markdown 误以为 liquid 的问题</span><span class="err">
-</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">polyglot_disabled</span> <span class="p">=</span> [<span class="s1">&#39;liquid&#39;</span>]</code></pre></div>
-<p>现在舒服多了，vim 依旧棒棒哒！</p>
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">polyglot_disabled</span> <span class="p">=</span> [<span class="s1">&#39;liquid&#39;</span>]<span class="err">
+</span></code></pre></div><p>现在舒服多了，vim 依旧棒棒哒！</p>
 
 			</div>
 			<hr class="post-end">
@@ -99,7 +96,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					403 字
+					420 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -154,7 +151,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

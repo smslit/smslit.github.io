@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="数学知识复习">
 <meta itemprop="description" content="记得高中的时候数学能力还是很突出的，但到了大学，高数好像离十里越来越远。过去这么长时间，已经有了定论：十里的数学知识已还给老师！这还真是让人崩溃，现在无处不数学，当然为了研究算法也得把高数给拾回来，所以有了本篇数学知识的复习。">
-
-
 <meta itemprop="datePublished" content="2017-10-27T08:51:23&#43;08:00" />
 <meta itemprop="dateModified" content="2017-10-27T08:51:23&#43;08:00" />
 <meta itemprop="wordCount" content="1217">
 
 
 
-<meta itemprop="keywords" content="algorithm,math," />
-<meta property="og:title" content="数学知识复习" />
+<meta itemprop="keywords" content="algorithm,math," /><meta property="og:title" content="数学知识复习" />
 <meta property="og:description" content="记得高中的时候数学能力还是很突出的，但到了大学，高数好像离十里越来越远。过去这么长时间，已经有了定论：十里的数学知识已还给老师！这还真是让人崩溃，现在无处不数学，当然为了研究算法也得把高数给拾回来，所以有了本篇数学知识的复习。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/10/27/mathknowlege/" />
@@ -84,13 +81,9 @@
 			</header>
 			<div class="content">
 				<p>记得高中的时候数学能力还是很突出的，但到了大学，高数好像离十里越来越远。过去这么长时间，已经有了定论：十里的数学知识已还给老师！这还真是让人崩溃，现在无处不数学，当然为了研究算法也得把高数给拾回来，所以有了本篇数学知识的复习。</p>
-
 <p>此篇应该会一直补充，十里会边学习边丰富文章内容，一方面根据需求复习数学的基础知识，另一方面锻炼整理能力。</p>
-
 <p>虽然部分知识很简单，也在这里一并整理上，主要参考：<strong>《数据结构与算法分析——C语言描述》</strong></p>
-
 <h2 id="指数">指数</h2>
-
 <p>$$
 \begin{aligned}
 &amp; X^AX^B=X^{A+B}\newline
@@ -100,11 +93,8 @@
 &amp; 2^N+2^N=2^{N+1}
 \end{aligned}
 $$</p>
-
 <h2 id="对数">对数</h2>
-
 <p>除了特殊说明，所有的对数均以2为底数。</p>
-
 <p>$$
 \begin{aligned}
 &amp; \log_AB=\frac{\log_CB}{\log_CA}\newline
@@ -114,38 +104,28 @@ $$</p>
 &amp; \log X &lt; X(对所有的X&gt;0成立。)
 \end{aligned}
 $$</p>
-
 <h2 id="级数">级数</h2>
-
 <h3 id="几何级数">几何级数</h3>
-
 <p>公式</p>
-
 <p>$$\begin{equation}
 \sum_{i=0}^N A^i=\frac{A^{N+1}-1}{A-1}
 \end{equation}\label{eq1}$$</p>
-
 <p>分两种情况讨论：</p>
-
 <ol>
-<li><p>$A = 1$</p>
-
+<li>
+<p>$A = 1$</p>
 <p>此时，有：</p>
-
 <p>$$\begin{equation}
 \sum_{i=0}^N A^i\xrightarrow[]{A=1}\sum_{i=0}^N 1=N
-\end{equation}\label{eq4}$$</p></li>
-
-<li><p>$A \ne 1$</p>
-
+\end{equation}\label{eq4}$$</p>
+</li>
+<li>
+<p>$A \ne 1$</p>
 <p>公式 $\ref{eq1}$ 证明：</p>
-
 <p>$$
 S=1+A+A^2+A^3+A^4+\dots+A^N
 $$</p>
-
 <p>$AS=A\times S+1-1$, 有:</p>
-
 <p>$$
 \begin{aligned}
 &amp; AS=1+A+A^2+A^3+A^4+\dots+A^N+A^{N+1}-1\newline
@@ -153,27 +133,19 @@ $$</p>
 &amp; \therefore S=\frac{A^{N+1}-1}{A-1}
 \end{aligned}
 $$</p>
-
 <p>那么可得：</p>
-
 <p>$$
 \sum_{i=0}^N A^i=\frac{A^{N+1}-1}{A-1}
 $$</p>
-
 <p>特别的，当 $A=2$ 时，有:</p>
-
 <p>$$
 \sum_{i=0}^N 2^i=2^{N+1}-1
 $$</p>
-
 <p>另外当 $0&lt;A&lt;1$ 时，由 $\ref{eq1}$ 公式还可以得到公式 $\ref{eq2}$:</p>
-
 <p>$$\begin{equation}
 \sum_{i=0}^N A^i \le \frac{1}{1-A}
 \end{equation}\label{eq2}$$</p>
-
 <p>公式 $\ref{eq2}$ 表示了 $N\rightarrow\infty$ 值趋近于 $\frac{1}{1-A}$  简单证明过程如下：</p>
-
 <p>$$
 \begin{aligned}
 &amp; S = 1 + A + A^2 + A^3 + A^4 + \dots \newline
@@ -182,25 +154,19 @@ $$</p>
 &amp; \therefore S-AS \le 1 \newline
 &amp; \therefore \sum_{i=0}^N A^i = S \le \frac{1}{1-A}
 \end{aligned}
-$$</p></li>
+$$</p>
+</li>
 </ol>
-
 <h3 id="算术级数">算术级数</h3>
-
 <p>另一种常用类型的级数是算术级数，任何如下公式 $\ref{eq3}$ 的级数都可以通过基本公式计算值。</p>
-
 <p>$$\begin{equation}
 \sum_{i=1}^N i=\frac{N(N+1)}{2} \approx \frac{N^2}{2}
 \end{equation}\label{eq3}$$</p>
-
 <p>比如，$1+5+9+13+\dots+(4N-3)$ 有：</p>
-
 <p>$$\begin{equation}
 \sum_{i=1}{^N} 4N-3=N(2N-1)
 \end{equation}\label{eq5}$$</p>
-
 <p>公式 $\ref{eq5}$ 计算过程依赖于公式 $\ref{eq4}$ 和 $\ref{eq3}$:</p>
-
 <p>$$
 \begin{aligned}
 \sum_{i=1}{^N} 4N-3&amp;=1+5+9+13+\dots+(4N-3) \newline
@@ -209,19 +175,13 @@ $$</p></li>
 &amp;=N(2N-1)
 \end{aligned}
 $$</p>
-
 <h4 id="平方和公式">平方和公式</h4>
-
 <p>不太常见的还有平方和公式，又叫四角锥数或金字塔数，如公式 $\ref{eq6}$：</p>
-
 <p>$$\begin{equation}
 \sum_{i=1}^N i^2=\frac{N(N+1)(2N+1)}{6}
 \end{equation}\label{eq6}$$</p>
-
 <p>这里简单说一下恒等式方法证明公式 $\ref{eq6}$ 的过程：</p>
-
 <p>已知 $(N+1)^3=N^3+3N^2+3N+1$，那么可得：</p>
-
 <p>$$
 \begin{aligned}
 (N+1)^3-N^3&amp;=3N^2+3N+1 \newline
@@ -231,9 +191,7 @@ N^3-(N-1)^3&amp;=3(N-1)^2+3(N-1)+1 \newline
 2^3-1^3&amp;=3\times 1^2+3\times 1 + 1
 \end{aligned}
 $$</p>
-
 <p>恒等式左右相加可得:</p>
-
 <p>$$
 \begin{aligned}
 (n+1)^3-1&amp;=3(1^2+2^2+3^2+\dots+N^2)+3(1+2+3+\dots+N)+N \newline
@@ -241,65 +199,43 @@ $$</p>
 1^2+2^2+3^2+\dots+N^2i&amp;=\frac{(N+1)^3-\frac{3N(N+1)}{2}-N-1}{3}
 \end{aligned}
 $$</p>
-
 <p>最终整理可得:</p>
-
 <p>$$
 \sum_{i+1}^N i^2=1+2^2+3^2+\dots+N^2=\frac{N(N+1)(2N+1)}{6}
 $$</p>
-
-<p>其它证明方法可参考:<a href="https://baike.baidu.com/item/%E5%B9%B3%E6%96%B9%E5%92%8C%E5%85%AC%E5%BC%8F/3264126?fr=aladdin" target="_blank">平方和公式</a></p>
-
-<h4 id="冯哈伯公式-faulhaber-s-formula">冯哈伯公式(Faulhaber&rsquo;s formula)</h4>
-
-<p>平方和公式是冯哈伯公式(Faulhaber&rsquo;s formula<a href="https://en.wikipedia.org/wiki/Faulhaber%27s_formula" target="_blank">2</a>)的一个特例，可知有如下有近似估计公式:</p>
-
+<p>其它证明方法可参考:<a href="https://baike.baidu.com/item/%E5%B9%B3%E6%96%B9%E5%92%8C%E5%85%AC%E5%BC%8F/3264126?fr=aladdin">平方和公式</a></p>
+<h4 id="冯哈伯公式faulhabers-formula">冯哈伯公式(Faulhaber&rsquo;s formula)</h4>
+<p>平方和公式是冯哈伯公式(Faulhaber&rsquo;s formula<a href="https://en.wikipedia.org/wiki/Faulhaber%27s_formula">2</a>)的一个特例，可知有如下有近似估计公式:</p>
 <p>$$
 \sum_{i=1}^N i^k \approx \frac{N^{k+1}}{\vert k+1 \vert},\ k\ne-1
 $$</p>
-
 <p>可以看到上述公式的条件为 $k\ne-1$，$k=-1$ 时公式 $\ref{eq6}$ 是不成立的，这时需要用到一个据说在计算机领域经常用到的公式：</p>
-
 <p>$$
 H_N=\sum_{i=1}^N \frac{1}{i} \approx \log_eN
 $$</p>
-
 <p>$H_N$ 叫做调和数，上述近似式的误差趋近于 $\gamma\approx 0.57721566$，这个数值称为欧拉常数(Euler&rsquo;s constant)</p>
-
 <h3 id="代数运算">代数运算</h3>
-
 <p>$$
 \begin{aligned}
 &amp; \sum_{i=1}^N f(N)=Nf(N)\newline
 &amp; \sum_{i=n_{0}}^N f(i)=\sum_{i=1}^N f(i) - \sum_{i=1}^{n_{0}-1} f(i)
 \end{aligned}
 $$</p>
-
 <h2 id="证明方法">证明方法</h2>
-
 <p>数据结构及算法分析中针对结论常用的的证明方法有归纳法和反证法。</p>
-
 <h3 id="归纳法">归纳法</h3>
-
 <p>归纳法有两个标准的部分：</p>
-
 <ul>
 <li><strong>证明基准情形</strong>：确定定理对于某些值的正确性；</li>
 <li><strong>归纳假设</strong></li>
 </ul>
-
 <p>以公式 $\ref{eq6}$ 为例进行说明，归纳法证明如下。</p>
-
 <p>对于基准情形，定理当 $N=1$ 时代入数可知成立；对于归纳假设，假设公式 $\ref{eq6}$ 对于 $1 \le k \le N$ 成立，在此情况下，只需证明 $N+1$ 时公式同样成立即可。</p>
-
 <p>如果 $N\ge1$, 易得：</p>
-
 <p>$$
 \sum_{i=1}^{N+1} i^2=\sum_{i=1}^{N} i^2 + (N+1)^2
 $$</p>
-
 <p>代入公式 $\ref{eq6}$:</p>
-
 <p>$$
 \begin{aligned}
 \sum_{i=1}^{N+1} i^2&amp;=\frac{N(N+1)(2N+1)}{6}+(N+1)^2 \newline
@@ -307,11 +243,8 @@ $$</p>
 &amp;=\frac{(N+1)[(N+1)+1][2(N+1)+1]}{6}
 \end{aligned}
 $$</p>
-
 <p>可以看到, $N+1$ 时符合，定理得证。</p>
-
 <h3 id="反证法">反证法</h3>
-
 <p>通过证明定理不成立，然后证明该假设导致某个已知的性质不成立，从而说明愿假设是错误的。</p>
 			</div>
 			<hr class="post-end">
@@ -331,28 +264,23 @@ $$</p>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#指数">指数</a></li>
-<li><a href="#对数">对数</a></li>
-<li><a href="#级数">级数</a>
-<ul>
-<li><a href="#几何级数">几何级数</a></li>
-<li><a href="#算术级数">算术级数</a>
-<ul>
-<li><a href="#平方和公式">平方和公式</a></li>
-<li><a href="#冯哈伯公式-faulhaber-s-formula">冯哈伯公式(Faulhaber&rsquo;s formula)</a></li>
-</ul></li>
-<li><a href="#代数运算">代数运算</a></li>
-</ul></li>
-<li><a href="#证明方法">证明方法</a>
-<ul>
-<li><a href="#归纳法">归纳法</a></li>
-<li><a href="#反证法">反证法</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#指数">指数</a></li>
+    <li><a href="#对数">对数</a></li>
+    <li><a href="#级数">级数</a>
+      <ul>
+        <li><a href="#几何级数">几何级数</a></li>
+        <li><a href="#算术级数">算术级数</a></li>
+        <li><a href="#代数运算">代数运算</a></li>
+      </ul>
+    </li>
+    <li><a href="#证明方法">证明方法</a>
+      <ul>
+        <li><a href="#归纳法">归纳法</a></li>
+        <li><a href="#反证法">反证法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -403,7 +331,7 @@ $$</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

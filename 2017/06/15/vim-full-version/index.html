@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="ubuntu 16.04下编译全功能vim8.0">
 <meta itemprop="description" content="十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持clipboard的vim，毅然决然的决定自己编译一个全功能的vim！">
-
-
 <meta itemprop="datePublished" content="2017-06-15T08:24:08&#43;08:00" />
 <meta itemprop="dateModified" content="2017-06-15T08:24:08&#43;08:00" />
-<meta itemprop="wordCount" content="779">
+<meta itemprop="wordCount" content="710">
 
 
 
-<meta itemprop="keywords" content="vim,develop," />
-<meta property="og:title" content="ubuntu 16.04下编译全功能vim8.0" />
+<meta itemprop="keywords" content="vim,develop," /><meta property="og:title" content="ubuntu 16.04下编译全功能vim8.0" />
 <meta property="og:description" content="十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持clipboard的vim，毅然决然的决定自己编译一个全功能的vim！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/06/15/vim-full-version/" />
@@ -84,23 +81,18 @@
 			</header>
 			<div class="content">
 				<p>十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持<code>clipboard</code>的vim，毅然决然的决定自己编译一个全功能的vim！</p>
-
 <h2 id="编译vim">编译vim</h2>
-
 <h3 id="卸载原有的所有vim">卸载原有的所有vim</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common</code></pre></div>
-<div class="tip">
-有可能之前使用checkinstall安装了vim，可以通过`dpkg -r vim`和`sudo rm -rf /usr/local/share/vim /usr/bin/vim`卸载一下试试！
-</div>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
+</code></pre></div><!-- raw HTML omitted -->
 <h3 id="安装编译vim需要的依赖包">安装编译vim需要的依赖包</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libatk1.0-dev libx11-dev libxpm-dev libxt-dev</code></pre></div>
-<h3 id="下载源码">下载源码</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libatk1.0-dev libx11-dev libxpm-dev libxt-dev
+</code></pre></div><h3 id="下载源码">下载源码</h3>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Downloads
 git clone https://github.com/vim/vim
 <span class="nb">cd</span> vim
-git pull <span class="o">&amp;&amp;</span> git fetch</code></pre></div>
-<h3 id="配置编译">配置编译</h3>
+git pull <span class="o">&amp;&amp;</span> git fetch
+</code></pre></div><h3 id="配置编译">配置编译</h3>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure <span class="se">\
 </span><span class="se"></span>--enable-multibyte <span class="se">\
 </span><span class="se"></span>--enable-perlinterp<span class="o">=</span>dynamic <span class="se">\
@@ -120,15 +112,15 @@ git pull <span class="o">&amp;&amp;</span> git fetch</code></pre></div>
 </span><span class="se"></span>--enable-largefile <span class="se">\
 </span><span class="se"></span>--disable-netbeans <span class="se">\
 </span><span class="se"></span>--with-compiledby<span class="o">=</span><span class="s2">&#34;yourname&#34;</span> <span class="se">\
-</span><span class="se"></span>--enable-fail-if-missing</code></pre></div>
-<h3 id="编译并安装">编译并安装</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make <span class="o">&amp;&amp;</span> sudo make install</code></pre></div>
-<h3 id="测试一下">测试一下</h3>
-
+</span><span class="se"></span>--enable-fail-if-missing
+</code></pre></div><h3 id="编译并安装">编译并安装</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make <span class="o">&amp;&amp;</span> sudo make install
+</code></pre></div><h3 id="测试一下">测试一下</h3>
 <ul>
-<li><p>先看一下版本信息</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">VIM - Vi IMproved <span class="m">8</span>.0 <span class="o">(</span><span class="m">2016</span> Sep <span class="m">12</span>, compiled Jun <span class="m">14</span> <span class="m">2017</span> <span class="m">19</span>:00:28<span class="o">)</span>
-包含补丁: <span class="m">1</span>-642
+<li>
+<p>先看一下版本信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">VIM - Vi IMproved 8.0 <span class="o">(</span><span class="m">2016</span> Sep 12, compiled Jun <span class="m">14</span> <span class="m">2017</span> 19:00:28<span class="o">)</span>
+包含补丁: 1-642
 编译者 yourname
 巨型版本 带 GTK2 图形界面。
   可使用<span class="o">(</span>+<span class="o">)</span>与不可使用<span class="o">(</span>-<span class="o">)</span>的功能:
@@ -137,7 +129,7 @@ git pull <span class="o">&amp;&amp;</span> git fetch</code></pre></div>
 +autocmd         +float           +mouse_urxvt     -tcl
 +balloon_eval    +folding         +mouse_xterm     +termguicolors
 +browse          -footer          +multi_byte      +terminfo
-++builtin_terms  +fork<span class="o">()</span>          +multi_lang      +termresponse
+++builtin_terms  +fork<span class="o">(</span><span class="o">)</span>          +multi_lang      +termresponse
 +byte_offset     +gettext         -mzscheme        +textobjects
 +channel         -hangul_input    -netbeans_intg   +timers
 +cindent         +iconv           +num64           +title
@@ -162,31 +154,29 @@ git pull <span class="o">&amp;&amp;</span> git fetch</code></pre></div>
 +ex_extra        -mouse_gpm       -sun_workshop    -xterm_save
 +extra_search    -mouse_jsbterm   +syntax          
 +farsi           +mouse_netterm   +tag_binary      
-     系统 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/vimrc&#34;</span>
-     用户 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.vimrc&#34;</span>
+     系统 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/vimrc</span><span class="s2">&#34;</span>
+     用户 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.vimrc</span><span class="s2">&#34;</span>
  第二用户 vimrc 文件: <span class="s2">&#34;~/.vim/vimrc&#34;</span>
-      用户 exrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.exrc&#34;</span>
-    系统 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/gvimrc&#34;</span>
-    用户 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.gvimrc&#34;</span>
+      用户 exrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.exrc</span><span class="s2">&#34;</span>
+    系统 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/gvimrc</span><span class="s2">&#34;</span>
+    用户 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.gvimrc</span><span class="s2">&#34;</span>
 第二用户 gvimrc 文件: <span class="s2">&#34;~/.vim/gvimrc&#34;</span>
-       defaults file: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/defaults.vim&#34;</span>
-        系统菜单文件: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/menu.vim&#34;</span>
+       defaults file: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/defaults.vim</span><span class="s2">&#34;</span>
+        系统菜单文件: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/menu.vim</span><span class="s2">&#34;</span>
          <span class="nv">$VIM</span> 预设值: <span class="s2">&#34;/usr/local/share/vim&#34;</span>
 编译方式: gcc -c -I. -Iproto -DHAVE_CONFIG_H -DFEAT_GUI_GTK  -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/freetype2   -g -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE<span class="o">=</span><span class="m">1</span>       
-链接方式: gcc   -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic -Wl,-E   -L/usr/local/lib -Wl,--as-needed -o vim   -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype -lSM -lICE -lXpm -lXt -lX11 -lXdmcp -lSM -lICE  -lm -ltinfo -lnsl  -lselinux   -ldl  -L/usr/lib/x86_64-linux-gnu -lluajit-5.1 -Wl,-E  -fstack-protector-strong -L/usr/local/lib  -L/usr/lib/x86_64-linux-gnu/perl/5.22/CORE -lperl -ldl -lm -lpthread -lcrypt</code></pre></div>
-<p>试了一下可以用<code>+</code>和<code>*</code>寄存器了。</p></li>
+链接方式: gcc   -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic -Wl,-E   -L/usr/local/lib -Wl,--as-needed -o vim   -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype -lSM -lICE -lXpm -lXt -lX11 -lXdmcp -lSM -lICE  -lm -ltinfo -lnsl  -lselinux   -ldl  -L/usr/lib/x86_64-linux-gnu -lluajit-5.1 -Wl,-E  -fstack-protector-strong -L/usr/local/lib  -L/usr/lib/x86_64-linux-gnu/perl/5.22/CORE -lperl -ldl -lm -lpthread -lcrypt
+</code></pre></div><p>试了一下可以用<code>+</code>和<code>*</code>寄存器了。</p>
+</li>
 </ul>
-
 <h2 id="打包vim的deb包">打包vim的deb包</h2>
-
 <p>可以使用checkinstall工具对编译的vim进行打包生成deb安装包，方便以后直接安装。</p>
-
 <h3 id="安装checkinstall">安装checkinstall</h3>
-<div class="highlight"><pre class="chroma">sudo apt-get install</pre></div>
-<h3 id="生成deb包">生成deb包</h3>
-<div class="highlight"><pre class="chroma">cd vim
-sudo checkinstall</pre></div>
-<p><a href="https://pan.baidu.com/s/1slDFMHJ" target="_blank">点我</a>下载十里编译的巨型版本vim安装包，嘎嘎！密码: <code>vhdd</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">sudo apt-get install
+</code></pre></div><h3 id="生成deb包">生成deb包</h3>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd vim
+sudo checkinstall
+</code></pre></div><p><a href="https://pan.baidu.com/s/1slDFMHJ">点我</a>下载十里编译的巨型版本vim安装包，嘎嘎！密码: <code>vhdd</code></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -195,7 +185,7 @@ sudo checkinstall</pre></div>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					779 字
+					710 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -205,25 +195,24 @@ sudo checkinstall</pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#编译vim">编译vim</a>
-<ul>
-<li><a href="#卸载原有的所有vim">卸载原有的所有vim</a></li>
-<li><a href="#安装编译vim需要的依赖包">安装编译vim需要的依赖包</a></li>
-<li><a href="#下载源码">下载源码</a></li>
-<li><a href="#配置编译">配置编译</a></li>
-<li><a href="#编译并安装">编译并安装</a></li>
-<li><a href="#测试一下">测试一下</a></li>
-</ul></li>
-<li><a href="#打包vim的deb包">打包vim的deb包</a>
-<ul>
-<li><a href="#安装checkinstall">安装checkinstall</a></li>
-<li><a href="#生成deb包">生成deb包</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#编译vim">编译vim</a>
+      <ul>
+        <li><a href="#卸载原有的所有vim">卸载原有的所有vim</a></li>
+        <li><a href="#安装编译vim需要的依赖包">安装编译vim需要的依赖包</a></li>
+        <li><a href="#下载源码">下载源码</a></li>
+        <li><a href="#配置编译">配置编译</a></li>
+        <li><a href="#编译并安装">编译并安装</a></li>
+        <li><a href="#测试一下">测试一下</a></li>
+      </ul>
+    </li>
+    <li><a href="#打包vim的deb包">打包vim的deb包</a>
+      <ul>
+        <li><a href="#安装checkinstall">安装checkinstall</a></li>
+        <li><a href="#生成deb包">生成deb包</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -274,7 +263,7 @@ sudo checkinstall</pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

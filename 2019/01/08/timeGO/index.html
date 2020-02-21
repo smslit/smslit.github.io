@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="TimeGO 一款轻量简洁的计时提醒 app">
 <meta itemprop="description" content="之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 iTimer 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 timeGO。">
-
-
 <meta itemprop="datePublished" content="2019-01-08T04:35:37&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-08T04:35:37&#43;08:00" />
 <meta itemprop="wordCount" content="1124">
 
 
 
-<meta itemprop="keywords" content="macOS 开发,project," />
-<meta property="og:title" content="TimeGO 一款轻量简洁的计时提醒 app" />
+<meta itemprop="keywords" content="macOS 开发,project," /><meta property="og:title" content="TimeGO 一款轻量简洁的计时提醒 app" />
 <meta property="og:description" content="之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 iTimer 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 timeGO。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/01/08/timeGO/" />
@@ -83,162 +80,128 @@
 				<h1>TimeGO 一款轻量简洁的计时提醒 app</h1>
 			</header>
 			<div class="content">
-				<p>之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 <a href="https://toolinbox.net/iTimer/" target="_blank">iTimer</a> 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 <strong>timeGO</strong>。</p>
-
+				<p>之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 <a href="https://toolinbox.net/iTimer/">iTimer</a> 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 <strong>timeGO</strong>。</p>
 <h1 id="简介">简介</h1>
-
 <p>持续更新中！</p>
-
 <ul>
-<li><p>可配置时间和通知信息，可使用以下表达式配置计时器序列组合
+<li>
+<p>可配置时间和通知信息，可使用以下表达式配置计时器序列组合
 表达式格式如下：</p>
-<div class="highlight"><pre class="chroma">$0+1$</pre></div>
-<ol>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">$0+1$
+</code></pre></div><ol>
 <li>其中 0 和 1 是普通计时器的编号，完成序号 0 的计时器计时以后会自动开启序号 1 的计时。</li>
 <li>指定的序号必须是普通计时器的编号</li>
 <li>可以重复使用序号，比如 <strong>$0+1+0+1+0+1+0+1$</strong>，会按照表达式顺序执行相应计时器。</li>
-</ol></li>
-
-<li><p>支持语音提醒，跟随软件的语言设置自动选择相关语言的提醒助手。</p></li>
-
-<li><p>状态栏小工具，轻量，可以快速控制计时器，让您更加专注自己的工作，状态栏显示进度</p></li>
-
-<li><p>设计清新，适应系统主题，Dark 模式显示更佳</p></li>
-
-<li><p>开源，已托管于 github，<a href="https://github.com/smslit/timeGO" target="_blank">smslit/timeGO</a> 完全免费</p></li>
-
-<li><p>支持多种语言：简体中文、繁体中文、英文、日文、韩文</p></li>
+</ol>
+</li>
+<li>
+<p>支持语音提醒，跟随软件的语言设置自动选择相关语言的提醒助手。</p>
+</li>
+<li>
+<p>状态栏小工具，轻量，可以快速控制计时器，让您更加专注自己的工作，状态栏显示进度</p>
+</li>
+<li>
+<p>设计清新，适应系统主题，Dark 模式显示更佳</p>
+</li>
+<li>
+<p>开源，已托管于 github，<a href="https://github.com/smslit/timeGO">smslit/timeGO</a> 完全免费</p>
+</li>
+<li>
+<p>支持多种语言：简体中文、繁体中文、英文、日文、韩文</p>
+</li>
 </ul>
-
-<p>如果您喜欢，请您“赶快拿走”！最新版本可以去 github 项目仓库的 <a href="https://github.com/smslit/timeGO/releases" target="_blank">release</a> 页面下载!</p>
-
+<p>如果您喜欢，请您“赶快拿走”！最新版本可以去 github 项目仓库的 <a href="https://github.com/smslit/timeGO/releases">release</a> 页面下载!</p>
 <h1 id="app-截图">App 截图</h1>
-
 <h2 id="图标截图">图标截图</h2>
-
 <p>图标设计灵感来源于 Smartisan OS 系统自带的时钟 app。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190108030519.png" width="128px"></p>
-
+<!-- raw HTML omitted -->
 <h2 id="应用截图">应用截图</h2>
-
 <ul>
-<li><p>浅色模式(Aqua Mode)</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190213182802.jpg" alt="" /></p></li>
-
-<li><p>深色模式(Dark Aqua Mode)</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190213182843.jpg" alt="" /></p></li>
+<li>
+<p>浅色模式(Aqua Mode)</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190213182802.jpg" alt=""></p>
+</li>
+<li>
+<p>深色模式(Dark Aqua Mode)</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190213182843.jpg" alt=""></p>
+</li>
 </ul>
-
 <h1 id="支持">支持</h1>
-
 <h2 id="分享">分享</h2>
-
 <p>如果您认为这个 app 还不错的话，那就分享给您周边的小伙伴吧，一起感受分享的快乐！</p>
-
 <h2 id="反馈">反馈</h2>
-
 <p>如果您有什么建议或者使用过程中遇到了问题，就反馈一下吧，您可以通过以下三种方式进行反馈：</p>
-
 <ul>
 <li>此页面的评论留言</li>
 <li>app 设置窗口的 <strong>反馈信息</strong> 功能</li>
-<li>直接向 5km@smslit.cn 发送邮件</li>
+<li>直接向 <a href="mailto:5km@smslit.cn">5km@smslit.cn</a> 发送邮件</li>
 </ul>
-
 <h2 id="打赏">打赏</h2>
-
 <p>如果您很欣赏，那就点下面的 <strong>赞赏支持</strong> 扫码请我喝咖啡吧！</p>
-
 <h1 id="更新日志">更新日志</h1>
-
-<h2 id="v0-3-0">v0.3.0</h2>
-
+<h2 id="v030">v0.3.0</h2>
 <h3 id="功能添加">功能添加</h3>
-
 <ol>
 <li>定时器配置支持文本编辑基本快捷键</li>
 <li>国际化APP，并添加界面语言的设置，支持语言：
-
 <ul>
 <li>简体中文</li>
 <li>繁体中文</li>
 <li>英文</li>
 <li>日文</li>
 <li>韩文</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h3 id="部分调整">部分调整</h3>
-
 <ol>
 <li>语音提醒跟随界面语言设置调整声音。</li>
 <li>调整定时器配置读取的处理</li>
 <li>调整控件布局</li>
 </ol>
-
 <h3 id="问题修复">问题修复</h3>
-
 <ol>
 <li>修复定时器公式输入一个$符引起崩溃的问题</li>
 <li>修复控件布局问题</li>
 <li>解决没有定时器设置时点击开始按钮崩溃的问题</li>
 </ol>
-
-<h2 id="v0-2-1">v0.2.1</h2>
-
+<h2 id="v021">v0.2.1</h2>
 <h3 id="功能添加-1">功能添加</h3>
-
 <p>添加语音提醒支持，并添加相关配置项</p>
-
 <h3 id="部分调整-1">部分调整</h3>
-
 <ul>
 <li>删除没必要的action连接</li>
 <li>优化设置数据操作</li>
 <li>支持 macOS 10.13</li>
 <li>关于窗口标题栏透明</li>
 </ul>
-
-<h2 id="v0-2-0">v0.2.0</h2>
-
+<h2 id="v020">v0.2.0</h2>
 <h3 id="功能添加-2">功能添加</h3>
-
 <ol>
 <li><strong>状态栏显示计时器进度</strong></li>
 <li>关于窗口添加链接</li>
 <li>添加计时器的备注功能;</li>
 <li><strong>添加彩蛋: 可定义计时器序列，任意组合已有普通计时器</strong></li>
 </ol>
-
 <h3 id="部分调整-2">部分调整</h3>
-
 <ol>
 <li>调整退出按钮到第一层弹窗中，方便退出</li>
 <li>删除提醒信息label;  调整计时选择器的项目标题格式</li>
 <li>调整新添加计时器默认备注为空字符串</li>
 </ol>
-
 <h3 id="问题修复-1">问题修复</h3>
-
 <ol>
 <li>修复计时器开起时仍是满进度的 bug</li>
 <li>修复app运行久了无法出现进度显示的问题</li>
 <li>修复软件版本号显示不全的问题</li>
 </ol>
-
-<h2 id="v0-1-0">v0.1.0</h2>
-
+<h2 id="v010">v0.1.0</h2>
 <ol>
 <li>添加计时器配置功能</li>
 <li>添加额外功能：反馈和关于</li>
 <li>优化部分代码实现，修复程序特定情况崩溃的问题</li>
 </ol>
-
-<h2 id="v0-0-0">v0.0.0</h2>
-
+<h2 id="v000">v0.0.0</h2>
 <ul>
 <li>固定的时间选择</li>
 <li>倒计时结束通知</li>
@@ -262,42 +225,41 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#简介">简介</a></li>
-<li><a href="#app-截图">App 截图</a>
-<ul>
-<li><a href="#图标截图">图标截图</a></li>
-<li><a href="#应用截图">应用截图</a></li>
-</ul></li>
-<li><a href="#支持">支持</a>
-<ul>
-<li><a href="#分享">分享</a></li>
-<li><a href="#反馈">反馈</a></li>
-<li><a href="#打赏">打赏</a></li>
-</ul></li>
-<li><a href="#更新日志">更新日志</a>
-<ul>
-<li><a href="#v0-3-0">v0.3.0</a>
-<ul>
-<li><a href="#功能添加">功能添加</a></li>
-<li><a href="#部分调整">部分调整</a></li>
-<li><a href="#问题修复">问题修复</a></li>
-</ul></li>
-<li><a href="#v0-2-1">v0.2.1</a>
-<ul>
-<li><a href="#功能添加-1">功能添加</a></li>
-<li><a href="#部分调整-1">部分调整</a></li>
-</ul></li>
-<li><a href="#v0-2-0">v0.2.0</a>
-<ul>
-<li><a href="#功能添加-2">功能添加</a></li>
-<li><a href="#部分调整-2">部分调整</a></li>
-<li><a href="#问题修复-1">问题修复</a></li>
-</ul></li>
-<li><a href="#v0-1-0">v0.1.0</a></li>
-<li><a href="#v0-0-0">v0.0.0</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#图标截图">图标截图</a></li>
+    <li><a href="#应用截图">应用截图</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#分享">分享</a></li>
+    <li><a href="#反馈">反馈</a></li>
+    <li><a href="#打赏">打赏</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#v030">v0.3.0</a>
+      <ul>
+        <li><a href="#功能添加">功能添加</a></li>
+        <li><a href="#部分调整">部分调整</a></li>
+        <li><a href="#问题修复">问题修复</a></li>
+      </ul>
+    </li>
+    <li><a href="#v021">v0.2.1</a>
+      <ul>
+        <li><a href="#功能添加-1">功能添加</a></li>
+        <li><a href="#部分调整-1">部分调整</a></li>
+      </ul>
+    </li>
+    <li><a href="#v020">v0.2.0</a>
+      <ul>
+        <li><a href="#功能添加-2">功能添加</a></li>
+        <li><a href="#部分调整-2">部分调整</a></li>
+        <li><a href="#问题修复-1">问题修复</a></li>
+      </ul>
+    </li>
+    <li><a href="#v010">v0.1.0</a></li>
+    <li><a href="#v000">v0.0.0</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -348,7 +310,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -37,7 +37,6 @@
       
       <guid>https://www.smslit.top/2015/10/15/PostImgCenter-Jekyll/</guid>
       <description>&lt;p&gt;在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。&lt;/p&gt;
-
 &lt;p&gt;当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。&lt;/p&gt;</description>
     </item>
     

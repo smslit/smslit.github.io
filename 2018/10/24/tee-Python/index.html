@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python 实现命令行工具 tee">
 <meta itemprop="description" content="最近，朋友 Litreily 发表了文章Linux指令 - tee的实现 ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！
-
 ">
-
-
 <meta itemprop="datePublished" content="2018-10-24T17:58:19&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-24T17:58:19&#43;08:00" />
-<meta itemprop="wordCount" content="1372">
+<meta itemprop="wordCount" content="1391">
 
 
 
-<meta itemprop="keywords" content="python,command,terminal,shell," />
-<meta property="og:title" content="python 实现命令行工具 tee" />
+<meta itemprop="keywords" content="python,command,terminal,shell," /><meta property="og:title" content="python 实现命令行工具 tee" />
 <meta property="og:description" content="最近，朋友 Litreily 发表了文章Linux指令 - tee的实现 ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/10/24/tee-Python/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python 实现命令行工具 tee"/>
 <meta name="twitter:description" content="最近，朋友 Litreily 发表了文章Linux指令 - tee的实现 ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -89,18 +83,13 @@
 				<h1>python 实现命令行工具 tee</h1>
 			</header>
 			<div class="content">
-				<p>最近，朋友 <a href="http://www.litreily.top" target="_blank">Litreily</a> 发表了文章<a href="http://www.litreily.top/2018/09/27/tee/" target="_blank">Linux指令 - tee的实现</a> ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png" alt="20181025154039778364827.png" /></p>
-
+				<p>最近，朋友 <a href="http://www.litreily.top">Litreily</a> 发表了文章<a href="http://www.litreily.top/2018/09/27/tee/">Linux指令 - tee的实现</a> ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png" alt="20181025154039778364827.png"></p>
 <h1 id="tee命令">tee命令</h1>
-
 <p>macOS下也有 tee 命令，好像跟 linux 下的有一点点差别，这个小节讲一下 macOS 下的 tee 命令的使用，总该感受下它的功能才能实现它吧！</p>
-
 <h2 id="tee的功能">tee的功能</h2>
-
 <p>打开终端，输入命令 <code>man tee</code> 可以查看 tee 的手册，介绍非常简单，当然是因为这个命令功能很简单。</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">TEE<span class="o">(</span><span class="m">1</span><span class="o">)</span>                    BSD General Commands Manual                   TEE<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">TEE<span class="o">(</span>1<span class="o">)</span>                    BSD General Commands Manual                   TEE<span class="o">(</span>1<span class="o">)</span>
 
 NAME
      tee -- pipe fitting
@@ -126,13 +115,11 @@ DESCRIPTION
      The tee utility exits <span class="m">0</span> on success, and &gt;0 <span class="k">if</span> an error occurs.
 
 STANDARDS
-     The tee <span class="k">function</span> is expected to be POSIX IEEE Std <span class="m">1003</span>.2 <span class="o">(</span><span class="sb">``</span>POSIX.2<span class="s1">&#39;&#39;</span><span class="o">)</span> compatible.
+     The tee <span class="k">function</span> is expected to be POSIX IEEE Std 1003.2 <span class="o">(</span><span class="sb">`</span><span class="sb">`</span>POSIX.2<span class="s1">&#39;&#39;</span><span class="o">)</span> compatible.
 
-BSD                              June <span class="m">6</span>, <span class="m">1993</span>                              BSD</code></pre></div>
-<p>功能简单来说就是把标准输入传输给标准输出(打印出来)的同时将输入内容写入到指定文件，而在指定文件的时候加上 <code>-a</code> 会在文件内容的基础上追加输入而不是覆盖<sup class="footnote-ref" id="fnref:tee-https-www-ib"><a href="#fn:tee-https-www-ib">1</a></sup>。</p>
-
+BSD                              June 6, <span class="m">1993</span>                              BSD
+</code></pre></div><p>功能简单来说就是把标准输入传输给标准输出(打印出来)的同时将输入内容写入到指定文件，而在指定文件的时候加上 <code>-a</code> 会在文件内容的基础上追加输入而不是覆盖^[<a href="https://www.ibm.com/support/knowledgecenter/zh/ssw_aix_71/com.ibm.aix.cmds5/tee.htm">tee 命令</a>]。</p>
 <h2 id="tee的使用">tee的使用</h2>
-
 <p>还是得实际使用使用才能感受它的功能：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ tee log.txt
 <span class="nb">test</span>
@@ -154,68 +141,66 @@ $ cat log.txt
 $ tee
 hah
 hah
-^C</code></pre></div>
-<ol>
+^C
+</code></pre></div><ol>
 <li>tee 命令指定文件 <code>log.txt</code>，输入内容敲回车就会打印输入的内容，比如 <code>test</code> 和 <code>原来如此</code>，CTRL + c 退出命令，用 cat 命令查看 <code>log.txt</code> 的内容与输入的内容一致。</li>
 <li>加入 <code>-a</code> 选项，就会在指定文件追加输入的内容，比如 <code>生活如此精彩</code>。</li>
 <li>不指定文件的话，只会打印输入的内容。</li>
 </ol>
-
 <h1 id="python实现tee">python实现tee</h1>
-
-<p>这里只实现上面 <a href="#tee的使用" target="_blank">tee的使用</a> 小节中测试的功能。</p>
-
+<p>这里只实现上面 <a href="#tee的使用">tee的使用</a> 小节中测试的功能。</p>
 <h2 id="文件准备">文件准备</h2>
-
 <ol>
-<li>新建文件：<code>touch tee</code></li>
-<li>为文件添加运行权限： <code>chmod +x tee</code></li>
-
-<li><p>文件中指明解释器，添加以下内容到 <code>tee</code> 文件中：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span></code></pre></div></li>
-
-<li><p>文件中导入必要的库：</p>
+<li>
+<p>新建文件：<code>touch tee</code></p>
+</li>
+<li>
+<p>为文件添加运行权限： <code>chmod +x tee</code></p>
+</li>
+<li>
+<p>文件中指明解释器，添加以下内容到 <code>tee</code> 文件中：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+</code></pre></div></li>
+<li>
+<p>文件中导入必要的库：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">argparse</span></code></pre></div>
-<ul>
+<span class="kn">import</span> <span class="nn">argparse</span>
+</code></pre></div><ul>
 <li>sys 库用于操作标准输入输出；</li>
-<li>argparse 库用于解析命令参数，这个库的基本使用可以参考我的另一篇文章 <a href="/2018/09/13/python-argparse/" target="_blank">argparse 库的使用</a></li>
-</ul></li>
+<li>argparse 库用于解析命令参数，这个库的基本使用可以参考我的另一篇文章 <a href="/2018/09/13/python-argparse/">argparse 库的使用</a></li>
+</ul>
+</li>
 </ol>
-
 <h2 id="解析命令参数">解析命令参数</h2>
-
 <p>这里将使用 argparse 库解析参数的操作封装为函数 <code>getargs</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">():</span>
-    <span class="s2">&#34;&#34;&#34;获取命令参数
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;The tee utility copies standard </span><span class="se">\
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">获取命令参数</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">The tee utility copies standard </span><span class="se">\
 </span><span class="se"></span><span class="s2">                                                input to standard output, making a </span><span class="se">\
 </span><span class="se"></span><span class="s2">                                                copy in zero or more files.  The </span><span class="se">\
-</span><span class="se"></span><span class="s2">                                                output is unbuffered.&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&#34;v 1.0.0&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--append&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&#34;store_true&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Append the output to the files rather than overwriting them.&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;A pathname of an output file.&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></code></pre></div>
-<h2 id="tee功能实现">tee功能实现</h2>
-
+</span><span class="se"></span><span class="s2">                                                output is unbuffered.</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-v</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--version</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">version</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">v 1.0.0</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--append</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">store_true</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Append the output to the files rather than overwriting them.</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">file</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">*</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">A pathname of an output file.</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><h2 id="tee功能实现">tee功能实现</h2>
 <p>直接在 <code>__main__</code> 中实现 tee 的功能如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
-    <span class="n">filemode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">append</span> <span class="k">else</span> <span class="s1">&#39;w&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">filemode</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">append</span> <span class="k">else</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">filemode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">filemode</span> <span class="ow">is</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
-            <span class="n">filemode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span></code></pre></div>
-<p>可以看到代码非常简单就实现了 tee 的完整功能，直接操作 <code>sys.stdin</code> 、<code>sys.stdout</code><sup class="footnote-ref" id="fnref:python-tee-https"><a href="#fn:python-tee-https">2</a></sup> 和 文件<sup class="footnote-ref" id="fnref:tee-http-outofme"><a href="#fn:tee-http-outofme">3</a></sup>即可！最终代码可参考：<a href="https://github.com/smslit/tools-with-script/blob/master/tee/tee" target="_blank">tools-with-script/tee/tee</a>。</p>
-
+        <span class="k">if</span> <span class="n">filemode</span> <span class="ow">is</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="n">filemode</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span>
+</code></pre></div><p>可以看到代码非常简单就实现了 tee 的完整功能，直接操作 <code>sys.stdin</code> 、<code>sys.stdout</code>^[<a href="https://sparkydogx.github.io/2018/08/08/python-tee/">使用python实现tee的效果</a>] 和 文件^[<a href="http://outofmemory.cn/code-snippet/11733/achieve-tee-command">实现tee命令</a>]即可！最终代码可参考：<a href="https://github.com/smslit/tools-with-script/blob/master/tee/tee">tools-with-script/tee/tee</a>。</p>
 <h1 id="测试">测试</h1>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ ./tee --help
-usage: tee <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>-a<span class="o">]</span> <span class="o">[</span>file <span class="o">[</span>file ...<span class="o">]]</span>
+usage: tee <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>-a<span class="o">]</span> <span class="o">[</span>file <span class="o">[</span>file ...<span class="o">]</span><span class="o">]</span>
 
 The tee utility copies standard input to standard output, making a copy in
 zero or more files. The output is unbuffered.
@@ -254,9 +239,8 @@ who i am
 that<span class="err">&#39;</span>s good
 Wonderful
 $ cat log1.txt
-Wonderful</code></pre></div>
-<p>测试步骤解释如下：</p>
-
+Wonderful
+</code></pre></div><p>测试步骤解释如下：</p>
 <ol>
 <li>打印帮助信息；</li>
 <li>不指定任何参数，只会将标准输入打印到标准输出；</li>
@@ -267,16 +251,6 @@ Wonderful</code></pre></div>
 <li>指定两个文件 <code>log.txt</code> 和 <code>log1.txt</code>，并指定为追加模式，标准输入 <code>Wonderful</code>，标准输出正常打印；</li>
 <li>查看 <code>log.txt</code> 内容是在原来的内容上追加了上一步输入的 <code>that's good</code>，而新文件 <code>log1.txt</code> 内容为上一步的 <code>Wonderful</code>；</li>
 </ol>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:tee-https-www-ib"><a href="https://www.ibm.com/support/knowledgecenter/zh/ssw_aix_71/com.ibm.aix.cmds5/tee.htm" target="_blank">tee 命令</a> <a class="footnote-return" href="#fnref:tee-https-www-ib"><sup>[return]</sup></a></li>
-<li id="fn:python-tee-https"><a href="https://sparkydogx.github.io/2018/08/08/python-tee/" target="_blank">使用python实现tee的效果</a> <a class="footnote-return" href="#fnref:python-tee-https"><sup>[return]</sup></a></li>
-<li id="fn:tee-http-outofme"><a href="http://outofmemory.cn/code-snippet/11733/achieve-tee-command" target="_blank">实现tee命令</a> <a class="footnote-return" href="#fnref:tee-http-outofme"><sup>[return]</sup></a></li>
-</ol>
-</div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -285,7 +259,7 @@ Wonderful</code></pre></div>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1372 字
+					1391 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -295,20 +269,16 @@ Wonderful</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#tee命令">tee命令</a>
-<ul>
-<li><a href="#tee的功能">tee的功能</a></li>
-<li><a href="#tee的使用">tee的使用</a></li>
-</ul></li>
-<li><a href="#python实现tee">python实现tee</a>
-<ul>
-<li><a href="#文件准备">文件准备</a></li>
-<li><a href="#解析命令参数">解析命令参数</a></li>
-<li><a href="#tee功能实现">tee功能实现</a></li>
-</ul></li>
-<li><a href="#测试">测试</a></li>
-</ul>
+  <ul>
+    <li><a href="#tee的功能">tee的功能</a></li>
+    <li><a href="#tee的使用">tee的使用</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#文件准备">文件准备</a></li>
+    <li><a href="#解析命令参数">解析命令参数</a></li>
+    <li><a href="#tee功能实现">tee功能实现</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -359,7 +329,7 @@ Wonderful</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

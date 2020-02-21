@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="linux下文件打包及解压缩">
 <meta itemprop="description" content="本文是关于linux下文件打包和解压缩的学习记录。">
-
-
 <meta itemprop="datePublished" content="2015-09-12T14:00:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-09-12T14:00:46&#43;08:00" />
-<meta itemprop="wordCount" content="1879">
+<meta itemprop="wordCount" content="1903">
 
 
 
-<meta itemprop="keywords" content="linux,terminal,tar," />
-<meta property="og:title" content="linux下文件打包及解压缩" />
+<meta itemprop="keywords" content="linux,terminal,tar," /><meta property="og:title" content="linux下文件打包及解压缩" />
 <meta property="og:description" content="本文是关于linux下文件打包和解压缩的学习记录。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/09/12/linux-zipUnzip/" />
@@ -84,9 +81,7 @@
 			</header>
 			<div class="content">
 				<p>本文是关于linux下文件打包和解压缩的学习记录。</p>
-
 <p>windows中常用的压缩格式不外乎zip，rar，7z三种格式，而到了linux除了这三种压缩格式还有很多：gz,xz,bz2,tar,tar.gz,tar.xz,tar.bz2，简单介绍如下：</p>
-
 <table>
 <thead>
 <tr>
@@ -94,201 +89,190 @@
 <th>说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>zip</td>
 <td>zip程序打包压缩的文件</td>
 </tr>
-
 <tr>
 <td>rar</td>
 <td>rar程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>7z</td>
 <td>7zip程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar</td>
 <td>tar程序打包，未压缩的文件</td>
 </tr>
-
 <tr>
 <td>gz</td>
 <td>gzip程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>xz</td>
 <td>xz程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>bz2</td>
 <td>bzip2程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.gz</td>
 <td>tar打包，gzip程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.xz</td>
 <td>tar打包，xz程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.bz2</td>
 <td>tar打包，bzip2程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.7z</td>
 <td>tar打包，7zip程序压缩的文件</td>
 </tr>
 </tbody>
 </table>
-
 <p><strong>不过常用的只是zip，rar和tar命令。</strong></p>
-
 <h4 id="zip压缩打包程序">zip压缩打包程序</h4>
-
 <h5 id="使用zip打包文件">使用zip打包文件</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -q -o test.zip ./test</code></pre></div>
-<p>上面命令将当前目录下的test目录打包压缩成test.zip。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -q -o test.zip ./test
+</code></pre></div><p>上面命令将当前目录下的test目录打包压缩成test.zip。</p>
 <ul>
 <li>-r：表示递归打包目录及目录里的所有内容</li>
 <li>-q：表示安静模式，不在终端里打印信息</li>
 <li>-o：表示输出文件，后面需要紧跟打包生成的文件名</li>
 </ul>
-
-<h5 id="查看压缩包信息-大小或其它">查看压缩包信息（大小或其它）</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ du -h test.zip</code></pre></div>
-<ul>
+<h5 id="查看压缩包信息大小或其它">查看压缩包信息（大小或其它）</h5>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ du -h test.zip
+</code></pre></div><ul>
 <li>-h：&ndash;human-readable</li>
 <li>-d：&ndash;max-depth（查看文件深度）</li>
 </ul>
-
 <p>或</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ file test.zip</code></pre></div>
-<h5 id="设置压缩级别">设置压缩级别</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -9 -q -o test9.zip ./test -x ./*.zip</code></pre></div>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ file test.zip
+</code></pre></div><h5 id="设置压缩级别">设置压缩级别</h5>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -9 -q -o test9.zip ./test -x ./*.zip
+</code></pre></div><ul>
 <li>-[1~9]：1表示最快压缩体积最大，9表示体积最小耗时最长</li>
 <li>-x：排除文件选项，后面加上文件</li>
 </ul>
-
 <h5 id="加密压缩">加密压缩</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -e -o test.zip ./test</code></pre></div>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -e -o test.zip ./test
+</code></pre></div><ul>
 <li>-e：加密选项</li>
 </ul>
-
 <h5 id="兼容windows换行选项">兼容windows换行选项</h5>
-
 <ul>
-<li><p>关于zip命令，因为 Windows 系统与 Linux/Unix 在文本文件格式上的一些兼容问题，比如换行符（为不可见字符），在 Windows 为 CR+LF（Carriage-Return+Line-Feed：回车加换行），而在 Linux/Unix 上为 LF（换行），所以如果在不加处理的情况下，在 Linux 上编辑的文本，在 Windows 系统上打开可能看起来是没有换行的。如果你想让你在 Linux 创建的 zip 压缩文件在 Windows 上解压后没有任何问题，那么你还需要对命令做一些修改，需要加个选项<code>-l</code>，将<code>LF</code>转换为<code>CR+LF</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ zip -r -l -o test.zip ./test</code></pre></div></li>
+<li>关于zip命令，因为 Windows 系统与 Linux/Unix 在文本文件格式上的一些兼容问题，比如换行符（为不可见字符），在 Windows 为 CR+LF（Carriage-Return+Line-Feed：回车加换行），而在 Linux/Unix 上为 LF（换行），所以如果在不加处理的情况下，在 Linux 上编辑的文本，在 Windows 系统上打开可能看起来是没有换行的。如果你想让你在 Linux 创建的 zip 压缩文件在 Windows 上解压后没有任何问题，那么你还需要对命令做一些修改，需要加个选项<code>-l</code>，将<code>LF</code>转换为<code>CR+LF</code>：</li>
 </ul>
-
+<pre><code>``` bash
+$ zip -r -l -o test.zip ./test
+```
+</code></pre>
 <h4 id="unzip命令解压缩zip文件">unzip命令解压缩zip文件</h4>
-
 <h5 id="普通解压zip">普通解压zip</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip test.zip</code></pre></div>
-<h5 id="带参数解压">带参数解压</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip -q test.zip -d ziptest</code></pre></div>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip test.zip
+</code></pre></div><h5 id="带参数解压">带参数解压</h5>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip -q test.zip -d ziptest
+</code></pre></div><ul>
 <li>-q：静默模式，不打印解压信息</li>
 <li>-d：解压到指定目录，如果目录不存在就新建目录</li>
 </ul>
-
 <h5 id="换行兼容问题">换行兼容问题</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip -l test.zip</code></pre></div>
-<h5 id="编码问题">编码问题</h5>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip -l test.zip
+</code></pre></div><h5 id="编码问题">编码问题</h5>
 <ul>
-<li><p>使用unzip解压文件时我们同样应该注意兼容问题，不过这里我们关心的不再是上面的问题，而是中文编码的问题，通常 Windows 系统上面创建的压缩文件，如果有有包含中文的文档或以中文作为文件名的文件时默认会采用 GBK 或其它编码，而 Linux 上面默认使用的是 UTF-8 编码，如果不加任何处理，直接解压的话可能会出现中文乱码的问题（有时候它会自动帮你处理），为了解决这个问题，我们可以在解压时指定编码类型。使用-O（英文字母，大写o）参数指定编码类型：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unzip -O GBK test.zip</code></pre></div></li>
+<li>使用unzip解压文件时我们同样应该注意兼容问题，不过这里我们关心的不再是上面的问题，而是中文编码的问题，通常 Windows 系统上面创建的压缩文件，如果有有包含中文的文档或以中文作为文件名的文件时默认会采用 GBK 或其它编码，而 Linux 上面默认使用的是 UTF-8 编码，如果不加任何处理，直接解压的话可能会出现中文乱码的问题（有时候它会自动帮你处理），为了解决这个问题，我们可以在解压时指定编码类型。使用-O（英文字母，大写o）参数指定编码类型：</li>
 </ul>
-
+<pre><code>``` bash
+$ unzip -O GBK test.zip
+```
+</code></pre>
 <h4 id="rar打包压缩命令">rar打包压缩命令</h4>
-
 <p>rar也是 Windows 上常用的一种压缩文件格式，在 Linux 上可以使用rar和unrar工具分别创建和解压 rar 压缩包。</p>
-
 <h5 id="安装rar和unrar工具">安装rar和unrar工具</h5>
-
 <ul>
-<li><p>ubuntu:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get update
-$ sudo apt-get install rar unrar</code></pre></div></li>
-
-<li><p>fedora</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo dnf update
-$ sudo dnf install unrar</code></pre></div></li>
-
-<li><p>目前，我只找到了fedora下unrar。</p></li>
+<li>ubuntu:</li>
 </ul>
-
-<h5 id="从指定文件或目录创建压缩包或添加文件到压缩包">从指定文件或目录创建压缩包或添加文件到压缩包</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rar a test.rar .</code></pre></div>
+<pre><code>``` bash
+$ sudo apt-get update
+$ sudo apt-get install rar unrar
+```
+</code></pre>
 <ul>
+<li>fedora</li>
+</ul>
+<pre><code>``` bash
+$ sudo dnf update
+$ sudo dnf install unrar
+```
+</code></pre>
+<ul>
+<li>目前，我只找到了fedora下unrar。</li>
+</ul>
+<h5 id="从指定文件或目录创建压缩包或添加文件到压缩包">从指定文件或目录创建压缩包或添加文件到压缩包</h5>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rar a test.rar .
+</code></pre></div><ul>
 <li>上面的命令使用a参数添加一个目录～到一个归档文件中，如果该文件不存在就会自动创建。</li>
 <li><em>注：rar 的命令参数没有-，如果加上会报错。</em></li>
 </ul>
-
 <h5 id="从指定压缩包文件中删除某个文件">从指定压缩包文件中删除某个文件</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rar d test.rar .zshrc</code></pre></div>
-<h5 id="查看不解压文件">查看不解压文件</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rar l test.rar</code></pre></div>
-<h5 id="unrar解压文件">unrar解压文件</h5>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rar d test.rar .zshrc
+</code></pre></div><h5 id="查看不解压文件">查看不解压文件</h5>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ rar l test.rar
+</code></pre></div><h5 id="unrar解压文件">unrar解压文件</h5>
 <ul>
-<li><p>全路径解压：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ unrar x test.rar</code></pre></div></li>
-
-<li><p>去掉解压路径</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir tmp
-$ unrar e test.rar tmp/</code></pre></div></li>
+<li>全路径解压：</li>
 </ul>
-
-<h4 id="tar打包解压工具">tar打包解压工具</h4>
-
-<p>在 Linux 上面更常用的是tar工具，tar 原本只是一个打包工具，只是同时还是实现了对 7z，gzip，xz，bzip2 等工具的支持，这些压缩工具本身只能实现对文件或目录（单独压缩目录中的文件）的压缩，没有实现对文件的打包压缩，所以我们也无需再单独去学习其他几个工具，tar 的解压和压缩都是同一个命令，只需参数不同，使用比较方便。</p>
-
-<h5 id="创建一个tar包">创建一个tar包</h5>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tar -cf test.tar ~</code></pre></div>
+<pre><code>``` bash
+$ unrar x test.rar
+```
+</code></pre>
 <ul>
+<li>去掉解压路径</li>
+</ul>
+<pre><code>``` bash
+$ mkdir tmp
+$ unrar e test.rar tmp/
+```
+</code></pre>
+<h4 id="tar打包解压工具">tar打包解压工具</h4>
+<p>在 Linux 上面更常用的是tar工具，tar 原本只是一个打包工具，只是同时还是实现了对 7z，gzip，xz，bzip2 等工具的支持，这些压缩工具本身只能实现对文件或目录（单独压缩目录中的文件）的压缩，没有实现对文件的打包压缩，所以我们也无需再单独去学习其他几个工具，tar 的解压和压缩都是同一个命令，只需参数不同，使用比较方便。</p>
+<h5 id="创建一个tar包">创建一个tar包</h5>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tar -cf test.tar ~
+</code></pre></div><ul>
 <li>-c：表示创建一个tar包</li>
 <li>-f：用于指定创建的文件名，注意文件名必须紧跟在-f后面，比如不能写成<code>tar -fc test.tar</code>，可以写成<code>tar -f test.tar -c ~</code>。</li>
 <li>-v：以可视的方式输出打包文件</li>
-
-<li><p>-z：创建gzip压缩文件，如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tar -czf test.tar.gz ~</code></pre></div></li>
-
-<li><p><em>注：tar会自动去掉表示绝对路径的/，你也可以使用-P保留绝对路径符。</em></p></li>
+<li>-z：创建gzip压缩文件，如：</li>
 </ul>
-
+<pre><code>``` bash
+$ tar -czf test.tar.gz ~
+```
+</code></pre>
+<ul>
+<li><em>注：tar会自动去掉表示绝对路径的/，你也可以使用-P保留绝对路径符。</em></li>
+</ul>
 <h5 id="解压tar文件包">解压tar文件包</h5>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir tardir
-$ tar -xf test.tar -C tardir</code></pre></div>
-<ul>
+$ tar -xf test.tar -C tardir
+</code></pre></div><ul>
 <li>-x：解压文件</li>
 <li>-C：解压到指定目录</li>
 <li>-t：之查看不解压</li>
 <li>-p：保留文件属性</li>
 <li>-h：保留文件链接（符号链接和软链接）</li>
-
-<li><p>-z：解压tar.gz压缩文件(即gzip文件)，如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tar -xzf test.tar.gz</code></pre></div></li>
+<li>-z：解压tar.gz压缩文件(即gzip文件)，如：</li>
 </ul>
-
+<pre><code>``` bash
+$ tar -xzf test.tar.gz
+```
+</code></pre>
 <p>现在我们要使用其他的压缩工具创建或解压相应文件只需要更改一个参数即可：</p>
-
 <table>
 <thead>
 <tr>
@@ -296,28 +280,23 @@ $ tar -xf test.tar -C tardir</code></pre></div>
 <th>对应解压参数</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>.tar.gz</td>
 <td>-z</td>
 </tr>
-
 <tr>
 <td>.tar.xz</td>
 <td>-J</td>
 </tr>
-
 <tr>
 <td>.tar.bz2</td>
 <td>-j</td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="参考">参考</h4>
-
-<p><a href="https://www.shiyanlou.com/courses/1" target="_blank">实验楼网站课程-linux基础入门-文件打包与解压缩</a></p>
+<p><a href="https://www.shiyanlou.com/courses/1">实验楼网站课程-linux基础入门-文件打包与解压缩</a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -326,7 +305,7 @@ $ tar -xf test.tar -C tardir</code></pre></div>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1879 字
+					1903 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -336,46 +315,13 @@ $ tar -xf test.tar -C tardir</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#zip压缩打包程序">zip压缩打包程序</a>
-<ul>
-<li><a href="#使用zip打包文件">使用zip打包文件</a></li>
-<li><a href="#查看压缩包信息-大小或其它">查看压缩包信息（大小或其它）</a></li>
-<li><a href="#设置压缩级别">设置压缩级别</a></li>
-<li><a href="#加密压缩">加密压缩</a></li>
-<li><a href="#兼容windows换行选项">兼容windows换行选项</a></li>
-</ul></li>
-<li><a href="#unzip命令解压缩zip文件">unzip命令解压缩zip文件</a>
-<ul>
-<li><a href="#普通解压zip">普通解压zip</a></li>
-<li><a href="#带参数解压">带参数解压</a></li>
-<li><a href="#换行兼容问题">换行兼容问题</a></li>
-<li><a href="#编码问题">编码问题</a></li>
-</ul></li>
-<li><a href="#rar打包压缩命令">rar打包压缩命令</a>
-<ul>
-<li><a href="#安装rar和unrar工具">安装rar和unrar工具</a></li>
-<li><a href="#从指定文件或目录创建压缩包或添加文件到压缩包">从指定文件或目录创建压缩包或添加文件到压缩包</a></li>
-<li><a href="#从指定压缩包文件中删除某个文件">从指定压缩包文件中删除某个文件</a></li>
-<li><a href="#查看不解压文件">查看不解压文件</a></li>
-<li><a href="#unrar解压文件">unrar解压文件</a></li>
-</ul></li>
-<li><a href="#tar打包解压工具">tar打包解压工具</a>
-<ul>
-<li><a href="#创建一个tar包">创建一个tar包</a></li>
-<li><a href="#解压tar文件包">解压tar文件包</a></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -426,7 +372,7 @@ $ tar -xf test.tar -C tardir</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

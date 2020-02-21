@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 11 Nov 2019 11:04:25 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
+      <link>https://www.smslit.top/2020/02/21/pyenv_pipenv/</link>
+      <pubDate>Fri, 21 Feb 2020 15:57:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/02/21/pyenv_pipenv/</guid>
+      <description>如果你已经无法容忍机器上杂乱的 python 版本，pyenv 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！ 本文适用于 macOS 下的</description>
+    </item>
     
     <item>
       <title>Ant Design Vue 工程配置笔记</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/08/18/platformio-newproject/</guid>
       <description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
-    </item>
-    
-    <item>
-      <title>PlatformIO IDE(VScode) 下调试 STM32 平台程序</title>
-      <link>https://www.smslit.top/2019/08/05/platformio-debug/</link>
-      <pubDate>Mon, 05 Aug 2019 17:17:42 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/08/05/platformio-debug/</guid>
-      <description>PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在</description>
     </item>
     
   </channel>

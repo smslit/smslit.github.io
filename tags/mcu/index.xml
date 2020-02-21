@@ -63,7 +63,7 @@
       <pubDate>Sat, 20 May 2017 19:59:43 +0800</pubDate>
       
       <guid>https://www.smslit.top/2017/05/20/platformio-start/</guid>
-      <description>&lt;p&gt;十里还是比较喜欢用终端解决问题的，在某个&lt;a href=&#34;https://www.hexcrow.org&#34; target=&#34;_blank&#34;&gt;小伙伴&lt;/a&gt;身上学到了些&lt;a href=&#34;http://www.vim.org&#34; target=&#34;_blank&#34;&gt;vim&lt;/a&gt;神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用&lt;code&gt;arduino&lt;/code&gt;，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持&lt;code&gt;Arduino&lt;/code&gt;开发的CLI，没想到就找到了文章主角&lt;a href=&#34;http://platformio.org&#34; target=&#34;_blank&#34;&gt;platformio&lt;/a&gt;，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(+arm)，简直了！特此分享！&lt;/p&gt;</description>
+      <description>&lt;p&gt;十里还是比较喜欢用终端解决问题的，在某个&lt;a href=&#34;https://www.hexcrow.org&#34;&gt;小伙伴&lt;/a&gt;身上学到了些&lt;a href=&#34;http://www.vim.org&#34;&gt;vim&lt;/a&gt;神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用&lt;code&gt;arduino&lt;/code&gt;，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持&lt;code&gt;Arduino&lt;/code&gt;开发的CLI，没想到就找到了文章主角&lt;a href=&#34;http://platformio.org&#34;&gt;platformio&lt;/a&gt;，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(+arm)，简直了！特此分享！&lt;/p&gt;</description>
     </item>
     
   </channel>

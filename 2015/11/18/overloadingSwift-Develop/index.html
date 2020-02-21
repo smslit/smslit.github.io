@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="iOS开发学习——解决Xcode7 Swift2中odjc的函数重载问题">
 <meta itemprop="description" content="最近在学习斯坦福大学白胡子老头去年的iOS8的开发教程，跟着他的视频教程走，刚开始不久就发现自己栽进了坑里，同样的代码，为啥我的就会报错呢：
-
 ">
-
-
 <meta itemprop="datePublished" content="2015-11-18T22:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-11-18T22:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="452">
 
 
 
-<meta itemprop="keywords" content="swift," />
-<meta property="og:title" content="iOS开发学习——解决Xcode7 Swift2中odjc的函数重载问题" />
+<meta itemprop="keywords" content="swift," /><meta property="og:title" content="iOS开发学习——解决Xcode7 Swift2中odjc的函数重载问题" />
 <meta property="og:description" content="最近在学习斯坦福大学白胡子老头去年的iOS8的开发教程，跟着他的视频教程走，刚开始不久就发现自己栽进了坑里，同样的代码，为啥我的就会报错呢：
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/11/18/overloadingSwift-Develop/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="iOS开发学习——解决Xcode7 Swift2中odjc的函数重载问题"/>
 <meta name="twitter:description" content="最近在学习斯坦福大学白胡子老头去年的iOS8的开发教程，跟着他的视频教程走，刚开始不久就发现自己栽进了坑里，同样的代码，为啥我的就会报错呢：
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,36 +84,31 @@
 			</header>
 			<div class="content">
 				<p>最近在学习斯坦福大学白胡子老头去年的iOS8的开发教程，跟着他的视频教程走，刚开始不久就发现自己栽进了坑里，同样的代码，为啥我的就会报错呢：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5djgg.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5djgg.png" alt="1"></p>
 <p>错误内容是：</p>
-
 <blockquote>
 <p>/Users/smslit/Documents/workspace/iOS/learn/Calculator/Calculator/
 ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective-C selector &lsquo;performOperation:&rsquo; conflicts with previous declaration with the same Objective-C selector</p>
 </blockquote>
-
-<p>最后在<a href="http://www.cocoachina.com/bbs/read.php?tid=297461#1290696" target="_blank">新手求助：同一个名下两种功能的func，是不是不能自动判断了</a>找到了原因：</p>
-
+<p>最后在<a href="http://www.cocoachina.com/bbs/read.php?tid=297461#1290696">新手求助：同一个名下两种功能的func，是不是不能自动判断了</a>找到了原因：</p>
 <p>这是因为你的viewcontroller 继承了UIViewController.而UIViewController 继承自oc的NSObject. 在swift 中被修饰成@objc class. 那么就必须要遵循oc的selector，在oc中是不支持方法重载的。所以会报上面的错误。这跟使用的Xcode版本有关，白胡子老头使用的版本较低，而我使用的是Xcode7，已经是Swift2了，与之前有好多不同的地方。</p>
-
-<p>在<a href="http://stackoverflow.com/questions/29457720/compiler-error-method-with-objective-c-selector-conflicts-with-previous-declara" target="_blank">Compiler error: Method with Objective-C selector conflicts with previous declaration with the same Objective-C selector</a>找到了解决办法：</p>
-
+<p>在<a href="http://stackoverflow.com/questions/29457720/compiler-error-method-with-objective-c-selector-conflicts-with-previous-declara">Compiler error: Method with Objective-C selector conflicts with previous declaration with the same Objective-C selector</a>找到了解决办法：</p>
 <p>在Xcode7的Swift2中有两种解决方法：</p>
-
 <ul>
-<li><p>一种是使用@objc(newNameMethod:)，如下</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">,</span> <span class="n">par2</span><span class="p">)</span> <span class="p">{...}</span>
+<li>
+<p>一种是使用@objc(newNameMethod:)，如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">,</span> <span class="n">par2</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
 
-<span class="kr">@objc</span><span class="p">(</span><span class="n">methodTow</span><span class="p">:)</span>
-<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">)</span> <span class="p">{...}</span></code></pre></div></li>
-
-<li><p>另一种是使用 @nonobjc，如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">()</span> <span class="p">{...}</span>
+<span class="kr">@objc</span><span class="p">(</span><span class="n">methodTow</span><span class="p">:</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>另一种是使用 @nonobjc，如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
 
 <span class="p">@</span><span class="n">nonobjc</span>
-<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">()</span> <span class="p">{...}</span></code></pre></div></li>
+<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
+</code></pre></div></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -138,7 +127,7 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 		</article>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
-			
+			<nav id="TableOfContents"></nav>
 		</aside>
 		<div class="post-nav thin">
 			<a class="next-post" href="https://www.smslit.top/2015/11/20/0ohmFunction-elec/">
@@ -188,7 +177,7 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

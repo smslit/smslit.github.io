@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="stm32开发新方式-platformio">
 <meta itemprop="description" content="platformio，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。">
-
-
 <meta itemprop="datePublished" content="2017-11-08T09:10:51&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-10T11:00:46&#43;08:00" />
-<meta itemprop="wordCount" content="2387">
+<meta itemprop="wordCount" content="2389">
 
 
 
-<meta itemprop="keywords" content="stm32,platformio,pio," />
-<meta property="og:title" content="stm32开发新方式-platformio" />
+<meta itemprop="keywords" content="stm32,platformio,pio," /><meta property="og:title" content="stm32开发新方式-platformio" />
 <meta property="og:description" content="platformio，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/11/08/stm32InPIO-start/" />
@@ -83,27 +80,24 @@
 				<h1>stm32开发新方式-platformio</h1>
 			</header>
 			<div class="content">
-				<p><a href="http://platformio.org/" target="_blank">platformio</a>，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。</p>
-
-<p>如果您不喜欢使用CLI(命令行)的stm32开发方式，可以阅读文章<a href="/2018/10/10/vscode-pio-ide/" target="_blank"><strong>stm32开发新方式——platformio的IDE</strong></a>，也许你会得到惊喜！</p>
-
+				<p><a href="http://platformio.org/">platformio</a>，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。</p>
+<p>如果您不喜欢使用CLI(命令行)的stm32开发方式，可以阅读文章<a href="/2018/10/10/vscode-pio-ide/"><strong>stm32开发新方式——platformio的IDE</strong></a>，也许你会得到惊喜！</p>
 <p>测试环境：</p>
-
 <ol>
 <li>macOS</li>
 <li>stm32f103c8t6最小系统板</li>
 <li>st-link v2</li>
 </ol>
-
 <h2 id="新建pio工程">新建pio工程</h2>
-
 <ul>
-<li><p>创建工程文件夹并进入：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir <span class="nb">test</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> test</code></pre></div></li>
-
-<li><p>查找自己适合的板子</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio boards</code></pre></div>
-<p>会看到以下结果，十里这里选择<code>genericSTM32F103C8</code>，这里执行这个命令，主要是查找对应自己最小系统板的<code>board ID</code>:</p>
+<li>
+<p>创建工程文件夹并进入：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir <span class="nb">test</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nb">test</span>
+</code></pre></div></li>
+<li>
+<p>查找自己适合的板子</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio boards
+</code></pre></div><p>会看到以下结果，十里这里选择<code>genericSTM32F103C8</code>，这里执行这个命令，主要是查找对应自己最小系统板的<code>board ID</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">...
 disco_l152rb          STM32L152RBT6  32Mhz     128kB   16kB   ST STM32LDISCOVERY
 disco_f100rb          STM32F100RBT6  24Mhz     128kB   8kB    ST STM32VLDISCOVERY
@@ -113,12 +107,14 @@ genericSTM32F103R8    STM32F103R8    72Mhz     64kB    20kB   STM32F103R8 <span 
 genericSTM32F103RB    STM32F103RB    72Mhz     128kB   20kB   STM32F103RB <span class="o">(</span>20k RAM. 128k Flash<span class="o">)</span>
 genericSTM32F103RC    STM32F103RC    72Mhz     256kB   48kB   STM32F103RC <span class="o">(</span>48k RAM. 256k Flash<span class="o">)</span>
 genericSTM32F103RE    STM32F103RE    72Mhz     512kB   64kB   STM32F103RE <span class="o">(</span>64k RAM. 512k Flash<span class="o">)</span>
-...</code></pre></div></li>
-
-<li><p>初始化工程，以vim作为IDE：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio init --ide vim -b genericSTM32F103C8</code></pre></div></li>
-
-<li><p>新建Makefile，添加以下内容（这里注意缩进问题）：</p>
+...
+</code></pre></div></li>
+<li>
+<p>初始化工程，以vim作为IDE：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio init --ide vim -b genericSTM32F103C8
+</code></pre></div></li>
+<li>
+<p>新建Makefile，添加以下内容（这里注意缩进问题）：</p>
 <div class="highlight"><pre class="chroma"><code class="language-mk" data-lang="mk"><span class="nf">all</span><span class="o">:</span>
   platformio -f -c vim run
 <span class="nf">upload</span><span class="o">:</span>
@@ -132,38 +128,35 @@ genericSTM32F103RE    STM32F103RE    72Mhz     512kB   64kB   STM32F103RE <span 
 <span class="nf">update</span><span class="o">:</span>
   platformio -f -c vim update
 </code></pre></div></li>
-
-<li><p>配置<code>platformio.ini</code>文件
+<li>
+<p>配置<code>platformio.ini</code>文件
 因为我们这里使用stlink v2，所以需要将程序上传方式定为<code>stlink</code>，默认生成的工程使用<code>arduino</code>框架，这是玩过Arduino的网友的福音，不是吗？只需添加一行指定程序上传方式，最终内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
 <span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
 <span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
 <span class="na">framework</span> <span class="o">=</span> <span class="s">arduino</span>
-<span class="na">upload_protocol</span> <span class="o">=</span> <span class="s">stlink</span></code></pre></div></li>
+<span class="na">upload_protocol</span> <span class="o">=</span> <span class="s">stlink</span>
+</code></pre></div></li>
 </ul>
-
 <p><code>upload_protocol = stlink</code> 可以省略。</p>
-
 <h2 id="添加代码">添加代码</h2>
-
 <p>添加点灯代码，十里的最小系统板上LED对应于管脚<code>PB0</code>，所以在<code>src</code>目录下添加<code>main.cpp</code>的内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>编译一下，编译的时候会下载stm32平台开发需要的编译工具和相关框架，你能做的就是waiting&hellip;：</p>
+</code></pre></div><p>编译一下，编译的时候会下载stm32平台开发需要的编译工具和相关框架，你能做的就是waiting&hellip;：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ <span class="nb">test</span> make all
 platformio -f -c vim run
-<span class="o">[</span>Wed Nov  <span class="m">8</span> <span class="m">09</span>:42:57 <span class="m">2017</span><span class="o">]</span> Processing genericSTM32F103C8 
+<span class="o">[</span>Wed Nov  <span class="m">8</span> 09:42:57 2017<span class="o">]</span> Processing genericSTM32F103C8 
 <span class="o">(</span>upload_protocol: stlink<span class="p">;</span> platform: ststm32<span class="p">;</span> board: genericSTM32F103C8<span class="p">;</span> framework: arduino<span class="o">)</span>
 --------------------------------------------------------------------------------------------------
 Verbose mode can be enabled via <span class="sb">`</span>-v, --verbose<span class="sb">`</span> option
@@ -173,16 +166,15 @@ No dependencies
 Linking .pioenvs/genericSTM32F103C8/firmware.elf
 Calculating size .pioenvs/genericSTM32F103C8/firmware.elf
 text	   data	    bss	    dec	    hex	filename
-<span class="m">6484</span>	   <span class="m">1936</span>	    <span class="m">312</span>	   <span class="m">8732</span>	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
-<span class="o">================================</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took <span class="m">1</span>.55 <span class="nv">seconds</span> <span class="o">=====================================</span></code></pre></div>
-<h2 id="上传程序">上传程序</h2>
-
+6484	   1936	    312	   8732	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
+<span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took 1.55 <span class="nv">seconds</span> <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span>
+</code></pre></div><h2 id="上传程序">上传程序</h2>
 <p>因为前面已经配置了程序上传方式为<code>stlink</code>，所以将stlink连接最小系统板和mac就可以执行上传了，这里也会下载相应的下载工具，waiting &hellip; ：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ make upload</code></pre></div>
-<p>正常的话就会看到命令行窗口打印上传过程的信息。但也可能会遇到下面类似的问题：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ make upload
+</code></pre></div><p>正常的话就会看到命令行窗口打印上传过程的信息。但也可能会遇到下面类似的问题：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ <span class="nb">test</span> make upload
 platformio -f -c vim run --target upload
-<span class="o">[</span>Wed Nov  <span class="m">8</span> <span class="m">09</span>:50:10 <span class="m">2017</span><span class="o">]</span> Processing genericSTM32F103C8 
+<span class="o">[</span>Wed Nov  <span class="m">8</span> 09:50:10 2017<span class="o">]</span> Processing genericSTM32F103C8 
 <span class="o">(</span>upload_protocol: stlink<span class="p">;</span> platform: ststm32<span class="p">;</span> board: genericSTM32F103C8<span class="p">;</span> framework: arduino<span class="o">)</span>
 ------------------------------------------------------------------------------------------------------
 Verbose mode can be enabled via <span class="sb">`</span>-v, --verbose<span class="sb">`</span> option
@@ -192,72 +184,65 @@ No dependencies
 Linking .pioenvs/genericSTM32F103C8/firmware.elf
 Checking program size
 text	   data	    bss	    dec	    hex	filename
-<span class="m">6484</span>	   <span class="m">1936</span>	    <span class="m">312</span>	   <span class="m">8732</span>	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
+6484	   1936	    312	   8732	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
 Uploading .pioenvs/genericSTM32F103C8/firmware.bin
-<span class="m">2017</span>-11-08T09:50:11 INFO src/common.c: Loading device parameters....
-<span class="m">2017</span>-11-08T09:50:11 WARN src/common.c: unknown chip id! 0xe0042000
-st-flash <span class="m">1</span>.3.1
+2017-11-08T09:50:11 INFO src/common.c: Loading device parameters....
+2017-11-08T09:50:11 WARN src/common.c: unknown chip id! 0xe0042000
+st-flash 1.3.1
 *** <span class="o">[</span>upload<span class="o">]</span> Error <span class="nv">255</span>
-<span class="o">======================================</span> <span class="o">[</span>ERROR<span class="o">]</span> Took <span class="m">1</span>.53 <span class="nv">seconds</span> <span class="o">======================================</span>
-make: *** <span class="o">[</span>upload<span class="o">]</span> Error <span class="m">1</span></code></pre></div>
-<blockquote>
+<span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="o">[</span>ERROR<span class="o">]</span> Took 1.53 <span class="nv">seconds</span> <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span>
+make: *** <span class="o">[</span>upload<span class="o">]</span> Error <span class="m">1</span>
+</code></pre></div><blockquote>
 <p>有一个临时的解决方法，将板上的<code>BOOT0</code>与<code>VDD</code>短接，复位一下最小系统板，会进入boot模式，此时执行<code>make upload</code>，程序会同时烧写在flash和内存上，一旦复位内存上的程序会消失，如果<code>BOOT0</code>还是接<code>VDD</code>的话还会进入boot模式，此时程序已经没了，但是flash 中仍然存在，所以只需将<code>BOOT0</code>短接<code>GND</code>再复位一下，板子就从flash启动了，所以最终程序调试方法为：</p>
-
+</blockquote>
+<blockquote>
 <p>调试程序：<code>BOOT0</code>短接<code>VDD</code>，每次上传程序先复位板子，然后执行<code>make upload</code>;不进行调试的话，先以调试程序的方式上传程序，然后短接<code>BOOT0</code>和<code>GND</code>，复位一下板子，板子会从flash启动运行固化的程序。</p>
 </blockquote>
-
 <p>上述问题本来不该出现，后来发现原来是我的usb hub有问题，我直接将stlink v2连接到macbook上是没有上述问题的。</p>
-
 <h2 id="调试程序">调试程序</h2>
-
 <p>MCU开发过程中有可能会遇到比较棘手的问题，所以硬件调试是少不了的。如果是第一次建立这个stm的PIO工程，在上面编译过程中就会下载stm32单片机开发需要的编译工具和调试工具。</p>
-
 <h3 id="调试配置">调试配置</h3>
-
 <p>免费版的PIO有所限制，不支持stm32硬件调试，但我们可以自己进行简单配置，搭建硬件调试的快捷方式：</p>
-
 <ol>
-<li><p>添加必要的编译选项</p>
-
+<li>
+<p>添加必要的编译选项</p>
 <p>向 <code>platformio.ini</code> 文件中添加以下内容：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">build_flags</span> <span class="o">=</span> <span class="s">
-</span><span class="s">    -g</span></code></pre></div>
-<p>添加这个参数项，是为了编译生成调试需要的符号项，比如变量名、函数名等。</p></li>
-
-<li><p>添加调试相关的Make快捷命令</p>
-
+</span><span class="s">    -g</span>
+</code></pre></div><p>添加这个参数项，是为了编译生成调试需要的符号项，比如变量名、函数名等。</p>
+</li>
+<li>
+<p>添加调试相关的Make快捷命令</p>
 <p>向 <code>Makefile</code> 中添加以下代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">debug</span><span class="o">:</span>
     arm-none-eabi-gdb .pioenvs/genericSTM32F103C8/firmware.elf
 
 <span class="nf">server</span><span class="o">:</span>
     openocd -f interface/stlink.cfg -f target/stm32f1x.cfg &gt; .dblog
-</code></pre></div>
-<ul>
-<li><strong>server</strong> 命令：用于开启 <strong>openocd</strong> 调试服务，指明了使用 <strong>stlink</strong> 调试 stm32f1x 系列芯片<sup class="footnote-ref" id="fnref:openocd-export-P"><a href="#fn:openocd-export-P">1</a></sup>；</li>
-<li><strong>debug</strong> 命令：用于开启gdb进行调试，指明了 <code>.pioenvs/genericSTM32F103C8/firmware.elf</code> 为可执行调试文件<sup class="footnote-ref" id="fnref:arm-none-eabi-gd"><a href="#fn:arm-none-eabi-gd">2</a></sup>；</li>
-</ul></li>
-
-<li><p>添加gdb初始化文件</p>
-
+</code></pre></div><ul>
+<li><strong>server</strong> 命令：用于开启 <strong>openocd</strong> 调试服务，指明了使用 <strong>stlink</strong> 调试 stm32f1x 系列芯片^[系统环境变量中已添加openocd的路径(<code>export PATH=&quot;/Users/5km/.platformio/packages/tool-openocd/bin:$PATH&quot;</code>)，调用 <strong>openocd</strong> 的时候会先从其相对路径下查找指定的配置文件，所以这里可以使用配置文件的相对路径，比如<code>interface/stlink.cfg</code>。关于openocd的使用参考<a href="http://openocd.org/doc-release/html/index.html">OpenOCD User’s Guide</a>。]；</li>
+<li><strong>debug</strong> 命令：用于开启gdb进行调试，指明了 <code>.pioenvs/genericSTM32F103C8/firmware.elf</code> 为可执行调试文件^[这里调用了 <code>arm-none-eabi-gdb</code> 这个是 arm 芯片的交叉编译链工具集中的调试命令，这里直接调用，是因为工具集路径已经添加到环境变量中了]；</li>
+</ul>
+</li>
+<li>
+<p>添加gdb初始化文件</p>
 <p>工程根目录下添加文件 <code>.gdbinit</code>，内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">target extended-remote localhost:3333</span>
 <span class="na">monitor reset halt</span>
 <span class="na">load</span>
 <span class="na">break main</span>
-<span class="na">continue</span></code></pre></div>
-<p>上述内容，会在开启调试命令后执行，首先连接本地已经开始的 <strong>openocd</strong> 调试服务，复位待调试硬件，加载可执行文件（这里是elf文件），然后在程序入口 <strong>main函数</strong> 处打断点，最后执行程序到 <strong>main</strong> 函数。</p></li>
+<span class="na">continue</span>
+</code></pre></div><p>上述内容，会在开启调试命令后执行，首先连接本地已经开始的 <strong>openocd</strong> 调试服务，复位待调试硬件，加载可执行文件（这里是elf文件），然后在程序入口 <strong>main函数</strong> 处打断点，最后执行程序到 <strong>main</strong> 函数。</p>
+</li>
 </ol>
-
 <h3 id="调试操作">调试操作</h3>
-
 <p>完成上述配置后就可以进行调试了。</p>
-
 <ol>
-<li><p>开启调试服务</p>
+<li>
+<p>开启调试服务</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$  make server
 ~/.platformio/packages/tool-openocd/bin/openocd -f ~/.platformio/packages/tool-openocd/scripts/interface/stlink.cfg -f ~/.platformio/packages/tool-openocd/scripts/target/stm32f1x.cfg &gt; .dblog
-GNU MCU Eclipse <span class="m">64</span>-bits Open On-Chip Debugger <span class="m">0</span>.10.0+dev-00392-gbe9ef0b0 <span class="o">(</span><span class="m">2018</span>-01-12-16:51<span class="o">)</span>
+GNU MCU Eclipse 64-bits Open On-Chip Debugger 0.10.0+dev-00392-gbe9ef0b0 <span class="o">(</span>2018-01-12-16:51<span class="o">)</span>
 Licensed under GNU GPL v2
 For bug reports, <span class="nb">read</span>
         http://openocd.org/doc/doxygen/bugs.html
@@ -273,21 +258,22 @@ Info : Unable to match requested speed <span class="m">1000</span> kHz, using <s
 Info : clock speed <span class="m">950</span> kHz
 Info : STLINK v2 JTAG v18 API v2 SWIM v4 VID 0x0483 PID 0x3748
 Info : using stlink api v2
-Info : Target voltage: <span class="m">3</span>.241188
+Info : Target voltage: 3.241188
 Info : stm32f1x.cpu: hardware has <span class="m">6</span> breakpoints, <span class="m">4</span> watchpoints
 Info : Listening on port <span class="m">3333</span> <span class="k">for</span> gdb connections
-...</code></pre></div></li>
-
-<li><p>启动调试</p>
+...
+</code></pre></div></li>
+<li>
+<p>启动调试</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$  make debug
 arm-none-eabi-gdb .pioenvs/genericSTM32F103C8/firmware.elf
-GNU gdb <span class="o">(</span>GNU Tools <span class="k">for</span> Arm Embedded Processors <span class="m">7</span>-2017-q4-major<span class="o">)</span> <span class="m">8</span>.0.50.20171128-git
+GNU gdb <span class="o">(</span>GNU Tools <span class="k">for</span> Arm Embedded Processors 7-2017-q4-major<span class="o">)</span> 8.0.50.20171128-git
 Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2017</span> Free Software Foundation, Inc.
 ...
 ...
 ...
 Reading symbols from .pioenvs/genericSTM32F103C8/firmware.elf...done.
-0x00000000 in ?? <span class="o">()</span>
+0x00000000 in ?? <span class="o">(</span><span class="o">)</span>
 target halted due to debug-request, current mode: Thread
 xPSR: 0x01000000 pc: 0x08000fb8 msp: 0x20005000
 Loading section .text, size 0x39e4 lma 0x8000000
@@ -296,23 +282,15 @@ Loading section .data, size 0x938 lma 0x80039f0
 Loading section .rodata, size 0x4fc lma 0x8004328
 Start address 0x8000fb8, load size <span class="m">18464</span>
 Transfer rate: <span class="m">16</span> KB/sec, <span class="m">4616</span> bytes/write.
-Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/packages/framework-arduinoststm32/STM32F1/cores/maple/main.cpp, line <span class="m">38</span>.
+Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/packages/framework-arduinoststm32/STM32F1/cores/maple/main.cpp, line 38.
 ---Type &lt;<span class="k">return</span>&gt; to <span class="k">continue</span>, or q &lt;<span class="k">return</span>&gt; to quit---
-<span class="o">(</span>gdb<span class="o">)</span> </code></pre></div></li>
-
-<li><p>进行gdb调试</p>
-
-<p>下面就可以使用 <strong>gdb</strong> 命令对程序进行调试了：打断点，单步，执行等等，相关gdb跳是命令这里就不讲解了，可以阅读 <a href="https://liuenyan.github.io/sphinx-wiki/gdb.html" target="_blank">GDB 命令速查</a> 了解。</p></li>
+<span class="o">(</span>gdb<span class="o">)</span> 
+</code></pre></div></li>
+<li>
+<p>进行gdb调试</p>
+<p>下面就可以使用 <strong>gdb</strong> 命令对程序进行调试了：打断点，单步，执行等等，相关gdb跳是命令这里就不讲解了，可以阅读 <a href="https://liuenyan.github.io/sphinx-wiki/gdb.html">GDB 命令速查</a> 了解。</p>
+</li>
 </ol>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:openocd-export-P">系统环境变量中已添加openocd的路径(<code>export PATH=&quot;/Users/5km/.platformio/packages/tool-openocd/bin:$PATH&quot;</code>)，调用 <strong>openocd</strong> 的时候会先从其相对路径下查找指定的配置文件，所以这里可以使用配置文件的相对路径，比如<code>interface/stlink.cfg</code>。关于openocd的使用参考<a href="http://openocd.org/doc-release/html/index.html" target="_blank">OpenOCD User’s Guide</a>。 <a class="footnote-return" href="#fnref:openocd-export-P"><sup>[return]</sup></a></li>
-<li id="fn:arm-none-eabi-gd">这里调用了 <code>arm-none-eabi-gdb</code> 这个是 arm 芯片的交叉编译链工具集中的调试命令，这里直接调用，是因为工具集路径已经添加到环境变量中了 <a class="footnote-return" href="#fnref:arm-none-eabi-gd"><sup>[return]</sup></a></li>
-</ol>
-</div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -321,7 +299,7 @@ Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/pa
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2387 字
+					2389 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -331,19 +309,17 @@ Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/pa
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#新建pio工程">新建pio工程</a></li>
-<li><a href="#添加代码">添加代码</a></li>
-<li><a href="#上传程序">上传程序</a></li>
-<li><a href="#调试程序">调试程序</a>
-<ul>
-<li><a href="#调试配置">调试配置</a></li>
-<li><a href="#调试操作">调试操作</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#新建pio工程">新建pio工程</a></li>
+    <li><a href="#添加代码">添加代码</a></li>
+    <li><a href="#上传程序">上传程序</a></li>
+    <li><a href="#调试程序">调试程序</a>
+      <ul>
+        <li><a href="#调试配置">调试配置</a></li>
+        <li><a href="#调试操作">调试操作</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -394,7 +370,7 @@ Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/pa
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

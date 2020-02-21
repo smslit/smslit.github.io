@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作">
 <meta itemprop="description" content="在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得">
-
-
 <meta itemprop="datePublished" content="2019-02-25T10:00:05&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-25T10:00:05&#43;08:00" />
-<meta itemprop="wordCount" content="1981">
+<meta itemprop="wordCount" content="1983">
 
 
 
-<meta itemprop="keywords" content="macOS 开发," />
-<meta property="og:title" content="macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作" />
+<meta itemprop="keywords" content="macOS 开发," /><meta property="og:title" content="macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作" />
 <meta property="og:description" content="在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/25/macOS-dev-nstextfield-keys/" />
@@ -84,141 +81,110 @@
 				<h1>macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</h1>
 			</header>
 			<div class="content">
-				
-
-<p>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得到的是系统警告音。本文就跟十里一起看一下如何让没有应用菜单的 app 中的 NSTextField 支持常用的文本操作快捷键。</p>
-
+				<p>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得到的是系统警告音。本文就跟十里一起看一下如何让没有应用菜单的 app 中的 NSTextField 支持常用的文本操作快捷键。</p>
 <ul>
 <li>复制: <code>Command</code> + <code>c</code></li>
 <li>剪切: <code>Command</code> + <code>x</code></li>
 <li>粘贴: <code>Command</code> + <code>v</code></li>
 <li>全选: <code>Command</code> + <code>a</code></li>
 </ul>
-
 <h1 id="实现平台">实现平台</h1>
-
 <ul>
 <li>macOS 10.14.3</li>
 <li>swift 4.2.1</li>
 <li>xcode 10.1</li>
 </ul>
-
 <h1 id="键盘事件">键盘事件</h1>
-
-<p>每个 app 都有自己的主循环线程(Main Run Loop)，在这个循环中会遍历系统的事件消息队列，逐一发给对应的响应对象进行处理。具体来说就是 NSApp 的 <code>sendAction:</code> 或 <code>sendEvent:</code>方法发送事件消息给 NSWindow，NSWindow 再分发给具体的视图对象，最后由相应的事件响应方法进行处理。其中一种事件，就是这里要说的<strong>键盘事件</strong>，NSApp 对不同的键盘事件处理方式会不同，主要是以下三种：</p>
-
+<p>每个 app 都有自己的主循环线程(Main Run Loop)，在这个循环中会遍历系统的事件消息队列，逐一发给对应的响应对象进行处理。具体来说就是 NSApp 的 <code>sendAction:</code> 或 <code>sendEvent: </code>方法发送事件消息给 NSWindow，NSWindow 再分发给具体的视图对象，最后由相应的事件响应方法进行处理。其中一种事件，就是这里要说的<strong>键盘事件</strong>，NSApp 对不同的键盘事件处理方式会不同，主要是以下三种：</p>
 <ul>
 <li><strong>快捷键</strong>：如果按下快捷键，系统会先向当前的<strong>活动窗口</strong>或<strong>菜单</strong>发送 <code>performKeyEquivalent:</code> 消息，此时窗口会依次遍历所有子视图控件按照响应链传递给 <code>performKeyEquivalent:</code> 的响应者。</li>
 <li><strong>控制键</strong>：NSApp 会将消息转发给键盘窗口，完成不同的控件切换控制的功能</li>
 <li><strong>其它按键</strong>：NSApp 会将消息转发给键盘窗口，窗口对象会先定位到第一响应对象，根据响应链优先级寻找对 keyDown 键盘事件响应的视图对象，如果可以找到就由相应对象处理，否则就会按照 insertText 方法进行处理(如果是个文本控件，就会插入相应键盘文本)</li>
 </ul>
-
 <p>很明显，我们要实现本文的主题，关注快捷键的处理流程就可以了，其实 NSTextField 有上述 <code>performKeyEquivalent:</code> 消息的处理，只不过是没有任何功能实现而已，所以我们只需为 NSTextField 复写一下这个消息的处理即可，这个消息的处理返回值是一个布尔类型，返回 true 则标志着按键事件消息传递的结束。</p>
-
 <h1 id="新建-demo-工程">新建 Demo 工程</h1>
-
 <p>为了更好的说明实现方法，我们还是要通过一个实际的Demo演示！新建的工程包含 storyboard ，新建完成后添加一个文本框控件，如果您对这些操作很熟悉可以跳过本小节。</p>
-
 <ul>
-<li><p>打开 Xcode，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>N</code> 就会触发新建工程的导航窗口</p></li>
-
-<li><p>选择 macOS -&gt; Cocoa App，点击 <code>Next</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217102918.png" alt="" /></p></li>
-
-<li><p>工程取名为 TextFieldKeyDemo，勾选 <code>Use Storyboards</code>，点击 Next 选择合适的目录，点击create 创建</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225210558.png" alt="" /></p></li>
-
-<li><p>进入工程后，单击 Main.storyboard ，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>l</code> 打开控件选择器，搜索 textfield ，将 Text Field 拖入 ViewController ，水平垂直居中放置:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225214726.png" alt="" /></p></li>
+<li>
+<p>打开 Xcode，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>N</code> 就会触发新建工程的导航窗口</p>
+</li>
+<li>
+<p>选择 macOS -&gt; Cocoa App，点击 <code>Next</code></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217102918.png" alt=""></p>
+</li>
+<li>
+<p>工程取名为 TextFieldKeyDemo，勾选 <code>Use Storyboards</code>，点击 Next 选择合适的目录，点击create 创建</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225210558.png" alt=""></p>
+</li>
+<li>
+<p>进入工程后，单击 Main.storyboard ，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>l</code> 打开控件选择器，搜索 textfield ，将 Text Field 拖入 ViewController ，水平垂直居中放置:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225214726.png" alt=""></p>
+</li>
 </ul>
-
 <h1 id="运行工程">运行工程</h1>
-
 <h2 id="运行结果">运行结果</h2>
-
 <p>点击快捷键 <code>Command</code> + <code>r</code> 运行工程，在打开的窗口中可以看到刚刚添加的 Text Field，在其中输入一些文本，然后试一下快件键，比如全选、复制、粘贴、剪切，发现都支持。</p>
-
 <p>此时你会不会有疑问，我们并没有为 NSTextField 类复写 <code>performKeyEquivalent:</code> 方法呀，为什么文本框就支持这些快捷键了，原因是最终键盘信息消息传给了应用菜单，应用菜单中有关于文本编辑的快捷键的处理，那么问题又来了，为什么应用菜单就会对 Text Field 进行操作呢？主要两点：</p>
-
 <ul>
-<li><p>菜单栏上<strong>编辑</strong>一组中的操作正是对应文章一开头说的几个快捷键，每个操作对应都绑定了一个对象那就是 <strong>First Responder</strong>，比如 Copy 对应的绑定 action：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225215948.png" alt="" /></p></li>
-
-<li><p>当前活动窗口中的 <strong>First Responder</strong> 就是文本框</p></li>
+<li>
+<p>菜单栏上<strong>编辑</strong>一组中的操作正是对应文章一开头说的几个快捷键，每个操作对应都绑定了一个对象那就是 <strong>First Responder</strong>，比如 Copy 对应的绑定 action：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225215948.png" alt=""></p>
+</li>
+<li>
+<p>当前活动窗口中的 <strong>First Responder</strong> 就是文本框</p>
+</li>
 </ul>
-
 <h2 id="试验操作">试验操作</h2>
-
 <p>现在打开工程，打开 Main.storyboard 文件，删除 菜单栏，就是下图标注的东西：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225220724.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225220724.png" alt=""></p>
 <p>此时再次运行工程，在文本框中尝试使用快捷键，你就会发现如我们所想失效了！</p>
-
 <h1 id="快捷键加持">快捷键加持</h1>
-
 <p>有时我们开发 app 就是不想保留菜单栏，比如状态栏小工具。所以继续研究怎么在没有菜单栏的情况下让 Text Field 支持快捷键是有必要的！很自然的我们就会想到上面说的为 NSTextField 复写 <code>performKeyEquivalent:</code> 方法的方式来解决！</p>
-
 <p>这里直接贴出代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 自身支持快捷键</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//</span><span class="c1"> </span><span class="c1">N</span><span class="c1">S</span><span class="c1">T</span><span class="c1">e</span><span class="c1">x</span><span class="c1">t</span><span class="c1">F</span><span class="c1">i</span><span class="c1">e</span><span class="c1">l</span><span class="c1">d</span><span class="c1"> </span><span class="c1">自</span><span class="c1">身</span><span class="c1">支</span><span class="c1">持</span><span class="c1">快</span><span class="c1">捷</span><span class="c1">键</span>
 <span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
     <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
         <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">a</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">c</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">v</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">x</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
         <span class="k">default</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>上面的代码贴到合适位置即可，比如 AppDelegate.swift 文件 <strong>AppDelegate</strong> 类的后面。</p>
-
+<span class="p">}</span>
+</code></pre></div><p>上面的代码贴到合适位置即可，比如 AppDelegate.swift 文件 <strong>AppDelegate</strong> 类的后面。</p>
 <p>可以看到上面的方法实现了四个快捷键的功能，分别是：全选、复制、粘贴和剪切，都是通过 NSApp 向文本框所在窗口的 <strong>First Responder</strong>(也就是文本框自己) 发起相应行为，而这些行为是 <strong>NStext</strong> 类的基本方法。另外：</p>
-
 <ul>
 <li><code>event.charactersIgnoringModifiers</code>: 除去修饰键剩余的按键</li>
 </ul>
-
 <blockquote>
 <p><strong>charactersIgnoringModifiers</strong>: The characters generated by a key event as if no modifier key (except for Shift) applies</p>
 </blockquote>
-
 <ul>
 <li>修饰键类型为 <code>NSevent:ModifierFlags</code> 类型，是一个集合，有 capsLock、shift、control、option、command、numericPad、help、function 和 deviceIndependentFlagsMask</li>
 </ul>
-
 <p>运行工程，窗口中的 Text Field 支持四个快捷键了！但是此时有一个问题，将 <code>Command</code> 键替换为 <code>Ctrl</code> 按下快捷键也能实现相应文本操作，所以在 <strong>switch</strong> 语句之前加一个判断，如果修饰键不包含 <code>Command</code> 就按照正常响应：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">modifierFlags</span><span class="p">.</span><span class="n">isDisjoint</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-<ul>
+<span class="p">}</span>
+</code></pre></div><ul>
 <li><code>event.modifierFlags.isDisjoint(with: .command)</code>: 判断快捷键中的修饰键(<strong>modifier</strong>)是不是不包含 Command 键，不包含就返回 true</li>
 </ul>
-
 <blockquote>
 <p><strong>isDisjoint</strong>: Returns a Boolean value that indicates whether the set has no members in common with the given set.</p>
 </blockquote>
-
 <p>此时，还是不完美的，如果按下文本操作快捷键的同时按下了其它有效修饰键(比如 <code>Ctrl</code>) 同样可以完成文本操作，目前还没想到其他更好的处理方式！后面有所发现就会更新这里！</p>
-
 <p>不知道您会不会有疑问：怎么不支持撤销和重做两个快捷键？不是不做，<strong>撤销</strong>和<strong>重做</strong> 操作实现是挺大的一块内容，所以放到这个主题的第二篇文章介绍。</p>
-
-<p>本文工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip" target="_blank">TextFieldKeyDemo</a></p>
-
+<p>本文工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip">TextFieldKeyDemo</a></p>
 <h1 id="参考">参考</h1>
-
 <ul>
-<li><a href="https://www.cnblogs.com/kaymin/articles/7232475.html" target="_blank">NSTextField支持Cmd+C/V快捷键复制、粘贴</a></li>
+<li><a href="https://www.cnblogs.com/kaymin/articles/7232475.html">NSTextField支持Cmd+C/V快捷键复制、粘贴</a></li>
 </ul>
 
 			</div>
@@ -229,7 +195,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1981 字
+					1983 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -239,18 +205,10 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#实现平台">实现平台</a></li>
-<li><a href="#键盘事件">键盘事件</a></li>
-<li><a href="#新建-demo-工程">新建 Demo 工程</a></li>
-<li><a href="#运行工程">运行工程</a>
-<ul>
-<li><a href="#运行结果">运行结果</a></li>
-<li><a href="#试验操作">试验操作</a></li>
-</ul></li>
-<li><a href="#快捷键加持">快捷键加持</a></li>
-<li><a href="#参考">参考</a></li>
-</ul>
+  <ul>
+    <li><a href="#运行结果">运行结果</a></li>
+    <li><a href="#试验操作">试验操作</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -301,7 +259,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python3 实现Markdown转html小工具">
 <meta itemprop="description" content="写博客文章一直使用 markdown，markdown 是一个轻量级的标记语言，可以快速创建待格式的简单文档。typra 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 markdown 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。
-
 ">
-
-
 <meta itemprop="datePublished" content="2018-10-16T17:44:29&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-16T17:44:29&#43;08:00" />
-<meta itemprop="wordCount" content="2629">
+<meta itemprop="wordCount" content="2748">
 
 
 
-<meta itemprop="keywords" content="python," />
-<meta property="og:title" content="python3 实现Markdown转html小工具" />
+<meta itemprop="keywords" content="python," /><meta property="og:title" content="python3 实现Markdown转html小工具" />
 <meta property="og:description" content="写博客文章一直使用 markdown，markdown 是一个轻量级的标记语言，可以快速创建待格式的简单文档。typra 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 markdown 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/10/16/md2html_python/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python3 实现Markdown转html小工具"/>
 <meta name="twitter:description" content="写博客文章一直使用 markdown，markdown 是一个轻量级的标记语言，可以快速创建待格式的简单文档。typra 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 markdown 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -89,161 +83,144 @@
 				<h1>python3 实现Markdown转html小工具</h1>
 			</header>
 			<div class="content">
-				<p>写博客文章一直使用 <a href="http://www.markdown.cn" target="_blank">markdown</a>，<a href="http://www.markdown.cn" target="_blank">markdown</a> 是一个轻量级的标记语言，可以快速创建待格式的简单文档。<a href="https://typora.io" target="_blank">typra</a> 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 <a href="http://www.markdown.cn" target="_blank">markdown</a> 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181018153983700396678.png" alt="20181018153983700396678.png" /></p>
-
+				<p>写博客文章一直使用 <a href="http://www.markdown.cn">markdown</a>，<a href="http://www.markdown.cn">markdown</a> 是一个轻量级的标记语言，可以快速创建待格式的简单文档。<a href="https://typora.io">typra</a> 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 <a href="http://www.markdown.cn">markdown</a> 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181018153983700396678.png" alt="20181018153983700396678.png"></p>
 <h2 id="准备工作">准备工作</h2>
-
 <p>在开始之前，要安装一些第三方库。</p>
-
 <h2 id="python3-markdown-库">python3-markdown 库</h2>
-
-<p><a href="https://pypi.org/project/Markdown/" target="_blank"><strong>markdown</strong></a> 库是用来编译渲染 markdown 文件的，这是咱编写转换工具的核心。</p>
-
+<p><a href="https://pypi.org/project/Markdown/"><strong>markdown</strong></a> 库是用来编译渲染 markdown 文件的，这是咱编写转换工具的核心。</p>
 <h3 id="安装">安装</h3>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install markdown</code></pre></div>
-<h3 id="使用">使用</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install markdown
+</code></pre></div><h3 id="使用">使用</h3>
 <p>在这里只使用 markdown 方法，可以将 markdwon 文本转换为 html 格式的文本，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">markdown</span>
 
-<span class="n">markdownText</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;# 测试
-</span><span class="s1">- 无序列表1
-</span><span class="s1">- 无序列表2
-</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="n">markdownText</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1"># 测试</span><span class="s1">
+</span><span class="s1"></span><span class="s1">- 无序列表1</span><span class="s1">
+</span><span class="s1"></span><span class="s1">- 无序列表2</span><span class="s1">
+</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">markdownText</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="s1">&#39;html5&#39;</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extra&#39;</span><span class="p">]))</span></code></pre></div>
-<p>上述代码，会打印转换出来的 html 格式的文本。</p>
-
+<span class="k">print</span><span class="p">(</span><span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">markdownText</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">html5</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">extra</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>上述代码，会打印转换出来的 html 格式的文本。</p>
 <h3 id="注意">注意</h3>
-
 <ol>
 <li>markdwon 方法返回的结果是 html 文本，但不包含头信息 <code>&lt;head&gt;</code>，所以后面如果使用的话应该给结果加上，保证html文本的兼容性；</li>
 <li>markdwon 方法可以指定输出格式，比如按照 <strong>html5</strong> 的格式转换；</li>
-<li>markdwon 方法默认不识别代码高亮语法，可以按照上述演示代码中的方式指定 <code>extensions</code> 为 <code>['extra']</code><sup class="footnote-ref" id="fnref:python3-markdown"><a href="#fn:python3-markdown">1</a></sup>；</li>
+<li>markdwon 方法默认不识别代码高亮语法，可以按照上述演示代码中的方式指定 <code>extensions</code> 为 <code>['extra']</code>^[<a href="https://blog.csdn.net/zrools/article/details/51860533">python3-markdown 解析反引号代码块与代码高亮</a>]；</li>
 </ol>
-
 <h2 id="beautifulsoup4-库和-html5lib-库">beautifulsoup4 库和 html5lib 库</h2>
-
-<p>这里安装 html5lib 库，主要是使用 <a href="https://pypi.org/project/beautifulsoup4/" target="_blank">beautifulsoup4</a> 库的 <code>prettify</code> 方法的时候依赖 html5lib 库。</p>
-
+<p>这里安装 html5lib 库，主要是使用 <a href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a> 库的 <code>prettify</code> 方法的时候依赖 html5lib 库。</p>
 <h3 id="安装-1">安装</h3>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install beautifulsoup4 html5lib</code></pre></div>
-<h3 id="使用-1">使用</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install beautifulsoup4 html5lib
+</code></pre></div><h3 id="使用-1">使用</h3>
 <p>beautifulsoup4 库可以过滤分析 html 文本的节点信息和其它 html 文本的处理，多用于爬虫应用，这里使用到 beautifulsoup4 库的美化 html 文本的方法，按照 <code>html5lib</code> 的方式，简单参考如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
-<span class="n">rawHtml</span> <span class="o">=</span> <span class="s1">&#39;&lt;head&gt;&lt;meta charset=&#34;utf-8&#34; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;p&gt;hello, world!&lt;/p&gt;&lt;/body&gt;&#39;</span>
-<span class="n">prettyHtml</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">rawHtml</span><span class="p">,</span> <span class="s1">&#39;html5lib&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">prettify</span><span class="p">()</span></code></pre></div>
-<p>主要是用于将 html 文本格式化，处理的更美观易读。</p>
-
+<span class="n">rawHtml</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&lt;head&gt;&lt;meta charset=</span><span class="s1">&#34;</span><span class="s1">utf-8</span><span class="s1">&#34;</span><span class="s1"> /&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;p&gt;hello, world!&lt;/p&gt;&lt;/body&gt;</span><span class="s1">&#39;</span>
+<span class="n">prettyHtml</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">rawHtml</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">html5lib</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">prettify</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>主要是用于将 html 文本格式化，处理的更美观易读。</p>
 <h2 id="实现">实现</h2>
-
 <p>有了上面安装的 markdown 库，要实现 markdown 转 html 的小工具就变得简单了许多，就不需要自己编写 markdown 语法解析器了。实现思路很简单，编写一个类 Markdown2Html，然后编写一个python脚本形式的命令脚本调用类方法实现文件转换。</p>
-
 <h3 id="markdown2html-类">Markdown2Html 类</h3>
-
 <ol>
-<li>这个类在文件 markdown2html.py 中实现，所以首先要新建这个文件。</li>
-
-<li><p>导入要用到的库</p>
+<li>
+<p>这个类在文件 markdown2html.py 中实现，所以首先要新建这个文件。</p>
+</li>
+<li>
+<p>导入要用到的库</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">markdown</span>
 <span class="kn">import</span> <span class="nn">os.path</span> <span class="kn">as</span> <span class="nn">op</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> </code></pre></div></li>
-
-<li><p>定义类及初始化函数，因为最终转换要生成 html 文件，那么必然可以使用 css 文件控制样式，所以这里初始化函数可传入一个指定 css 文件配置样式，实现如下：</p>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> 
+</code></pre></div></li>
+<li>
+<p>定义类及初始化函数，因为最终转换要生成 html 文件，那么必然可以使用 css 文件控制样式，所以这里初始化函数可传入一个指定 css 文件配置样式，实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Markdown2Html</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cssfile</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">        初始化 Markdown2Html 类，可传入特定 css 文件作为样式
-</span><span class="s1">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">=</span> <span class="s1">&#39;&lt;head&gt;&lt;meta charset=&#34;utf-8&#34; /&gt;&lt;/head&gt;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cssfile</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
+</span><span class="s1"></span><span class="s1">        初始化 Markdown2Html 类，可传入特定 css 文件作为样式</span><span class="s1">
+</span><span class="s1"></span><span class="s1">        </span><span class="s1">&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&lt;head&gt;&lt;meta charset=</span><span class="s1">&#34;</span><span class="s1">utf-8</span><span class="s1">&#34;</span><span class="s1"> /&gt;&lt;/head&gt;</span><span class="s1">&#39;</span>
         <span class="k">if</span> <span class="n">cssfile</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="n">cssfile</span><span class="p">)</span></code></pre></div>
-<p>初始化中定义的 <code>headTag</code> 主要是用于完善 markdwon 库得到的 html 文本，<code>&lt;head&gt;</code> 中预留了 css 样式文本的位置。<code>setStyle</code> 方法主要处理传入的 css 文件，具体见下一步。</p></li>
-
-<li><p>实现 Markdown2Html 类的 <code>setStyle</code> 方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cssfile</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">    设置样式表文件
-</span><span class="s1">    &#39;&#39;&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="n">cssfile</span><span class="p">)</span>
+</code></pre></div><p>初始化中定义的 <code>headTag</code> 主要是用于完善 markdwon 库得到的 html 文本，<code>&lt;head&gt;</code> 中预留了 css 样式文本的位置。<code>setStyle</code> 方法主要处理传入的 css 文件，具体见下一步。</p>
+</li>
+<li>
+<p>实现 Markdown2Html 类的 <code>setStyle</code> 方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">setStyle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cssfile</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
+</span><span class="s1"></span><span class="s1">    设置样式表文件</span><span class="s1">
+</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">cssfile</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">=</span> <span class="s1">&#39;&lt;head&gt;&lt;meta charset=&#34;utf-8&#34; /&gt;&lt;/head&gt;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&lt;head&gt;&lt;meta charset=</span><span class="s1">&#34;</span><span class="s1">utf-8</span><span class="s1">&#34;</span><span class="s1"> /&gt;&lt;/head&gt;</span><span class="s1">&#39;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cssfile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">css</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span><span class="p">[:</span><span class="o">-</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s1">&#39;&lt;style  type=&#34;text/css&#34;&gt;{css}&lt;/style&gt;&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">:]</span></code></pre></div>
-<p><code>setStyle</code> 方法传入 cssfile 参数，如果为空，说明不指定样式，将 html 文本预留头信息设置为初始化状态，如果设置了 css 文件，那么用 css 文件内容生成新的 <code>head</code> 信息。</p></li>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cssfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">css</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&lt;style  type=</span><span class="s1">&#34;</span><span class="s1">text/css</span><span class="s1">&#34;</span><span class="s1">&gt;{css}&lt;/style&gt;</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">:</span><span class="p">]</span>
 
-<li><p>实现 markdown 转换为 html 的方法 <code>convert</code>，这里设计方法，可以传入三个参数，先看实现，后解释：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">,</span> <span class="n">outfile</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">prettify</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">    转换文件
-</span><span class="s1">    &#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">infile</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;请输入正确的 markdown 文件路径！&#39;</span><span class="p">)</span>
+</code></pre></div><p><code>setStyle</code> 方法传入 cssfile 参数，如果为空，说明不指定样式，将 html 文本预留头信息设置为初始化状态，如果设置了 css 文件，那么用 css 文件内容生成新的 <code>head</code> 信息。</p>
+</li>
+<li>
+<p>实现 markdown 转换为 html 的方法 <code>convert</code>，这里设计方法，可以传入三个参数，先看实现，后解释：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">,</span> <span class="n">outfile</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">prettify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
+</span><span class="s1"></span><span class="s1">    转换文件</span><span class="s1">
+</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">请输入正确的 markdown 文件路径！</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">if</span> <span class="n">outfile</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">outfile</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">infile</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.html&#39;</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.html</span><span class="s1">&#39;</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">markdownText</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf8</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">markdownText</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
 
-    <span class="n">rawhtml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">+</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">markdownText</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="s1">&#39;html5&#39;</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extra&#39;</span><span class="p">])</span>
+    <span class="n">rawhtml</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headTag</span> <span class="o">+</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">markdownText</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">html5</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">extra</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">prettify</span><span class="p">:</span>
-        <span class="n">prettyHtml</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">rawhtml</span><span class="p">,</span> <span class="s1">&#39;html5lib&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">prettify</span><span class="p">()</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">prettyHtml</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">rawhtml</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">html5lib</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">prettify</span><span class="p">(</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf8</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">prettyHtml</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rawhtml</span><span class="p">)</span></code></pre></div>
-<p>这里首先判断指定的输入文件路径对应是不是文件，然后检查输出文件有没有指定，之后读取 markdown 文件获取 markdown 文本，调用 markdown 库的 markdown 方法将 markdown 文本转换为 html5 格式的 html 文本，并添加准备好的头信息，最后判断是否需要美化生成的 html 文本，如果是，就先美化，再写入到指定文件，如果不是，则直接将结果写入到指定输出文件。需要注意的是，上述文件操作中都指明了文件编码为 <code>utf8</code> ，是为了保证跨平台编码统一，提高兼容性。</p></li>
-
-<li><p>编写以下代码进行测试，同级目录下存储的 <code>github.css</code> 文件，所以这里指定 css文件 转换 <code>README.md</code> 文件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">m2h</span> <span class="o">=</span> <span class="n">Markdown2Html</span><span class="p">(</span><span class="s1">&#39;github.css&#39;</span><span class="p">)</span>
-    <span class="n">m2h</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;./README.md&#39;</span><span class="p">,</span> <span class="s1">&#39;./README.html&#39;</span><span class="p">)</span></code></pre></div>
-<p>运行：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">python3 markdown2html.py</code></pre></div>
-<p>结果：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181016153970548190814.png" alt="20181016153970548190814.png" /></p>
-
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf8</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rawhtml</span><span class="p">)</span>
+</code></pre></div><p>这里首先判断指定的输入文件路径对应是不是文件，然后检查输出文件有没有指定，之后读取 markdown 文件获取 markdown 文本，调用 markdown 库的 markdown 方法将 markdown 文本转换为 html5 格式的 html 文本，并添加准备好的头信息，最后判断是否需要美化生成的 html 文本，如果是，就先美化，再写入到指定文件，如果不是，则直接将结果写入到指定输出文件。需要注意的是，上述文件操作中都指明了文件编码为 <code>utf8</code> ，是为了保证跨平台编码统一，提高兼容性。</p>
+</li>
+<li>
+<p>编写以下代码进行测试，同级目录下存储的 <code>github.css</code> 文件，所以这里指定 css文件 转换 <code>README.md</code> 文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">m2h</span> <span class="o">=</span> <span class="n">Markdown2Html</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">github.css</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">m2h</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">./README.md</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">./README.html</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>运行：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">python3 markdown2html.py
+</code></pre></div><p>结果：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181016153970548190814.png" alt="20181016153970548190814.png"></p>
 <p>Markdown2Html 类完成！</p>
-
-<p>完整代码参考：<a href="https://github.com/smslit/tools-with-script/blob/master/m2h/markdown2html.py" target="_blank">tools-with-script/m2h/markdown2html.py</a></p></li>
+<p>完整代码参考：<a href="https://github.com/smslit/tools-with-script/blob/master/m2h/markdown2html.py">tools-with-script/m2h/markdown2html.py</a></p>
+</li>
 </ol>
-
 <h3 id="脚本">脚本</h3>
-
 <p>有了上面的 Markdown2Html 类，现在可以编写脚本命令了。</p>
-
 <h4 id="准备文件">准备文件</h4>
-
 <ol>
-<li><p>新建名为 <code>m2h</code> 的文件，添加以下内容，指明脚本解释器为 <code>python3</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span></code></pre></div></li>
-
-<li><p>执行以下命令，为文件添加运行权限：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chmod +x ./m2h</code></pre></div>
-<p>这样就可以像执行命令一样调用工具了。</p></li>
+<li>
+<p>新建名为 <code>m2h</code> 的文件，添加以下内容，指明脚本解释器为 <code>python3</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+</code></pre></div></li>
+<li>
+<p>执行以下命令，为文件添加运行权限：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chmod +x ./m2h
+</code></pre></div><p>这样就可以像执行命令一样调用工具了。</p>
+</li>
 </ol>
-
 <h4 id="脚本实现">脚本实现</h4>
-
 <h5 id="导入必要库">导入必要库</h5>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">from</span> <span class="nn">markdown2html</span> <span class="kn">import</span> <span class="n">Markdown2Html</span></code></pre></div>
-<h5 id="命令参数">命令参数</h5>
-
+<span class="kn">from</span> <span class="nn">markdown2html</span> <span class="kn">import</span> <span class="n">Markdown2Html</span>
+</code></pre></div><h5 id="命令参数">命令参数</h5>
 <p>作为一个合格的文件转换命令工具，最起码要有一个占位参数，用来指定待转换的 markdown 文件。另外，还要设计一个可选参数用来指定要使用的 css 样式文件，用来指定转换后的主题，有时候需要将所有的转换文件统一放在一个目录中，所以还要有一个参数用来指定这个路径。最终设计的参数如下：</p>
-
 <table>
 <thead>
 <tr>
@@ -251,79 +228,74 @@
 <th>描述</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>infiles</td>
 <td>指定 markdown 文件，可以是多个 md 文件</td>
 </tr>
-
 <tr>
 <td>&ndash;style, -s</td>
 <td>指定要使用的 css 文件</td>
 </tr>
-
 <tr>
 <td>&ndash;outdir, -o</td>
 <td>指定文件输出目录</td>
 </tr>
 </tbody>
 </table>
-
-<p>这里使用 python3 的官方库 <a href="https://docs.python.org/3/library/argparse.html" target="_blank">argparse</a> 来实现命令参数的过滤，可以阅读 <a href="/2018/09/13/python-argparse/" target="_blank">argparse 库的使用</a> 了解这个库的基本使用，将参数过滤封装为函数 <code>getArgs</code> ：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-    <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">    获取命令参数
-</span><span class="s1">    &#39;&#39;&#39;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;--style&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定要使用的 css 样式，css文件路径&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--outdir&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定 html 文件输出目录&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;infiles&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定要转换的 markdown 文件，可以指定多个&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></code></pre></div>
-<p>其中 <code>infiles</code> 参数指定<code>nargs='+'</code>，可以得到的是一个包含大于或等于1个文件路径的列表<sup class="footnote-ref" id="fnref:python-argparse"><a href="#fn:python-argparse">2</a></sup>。函数返回的就是过滤后得到的参数信息。</p>
-
+<p>这里使用 python3 的官方库 <a href="https://docs.python.org/3/library/argparse.html">argparse</a> 来实现命令参数的过滤，可以阅读 <a href="/2018/09/13/python-argparse/">argparse 库的使用</a> 了解这个库的基本使用，将参数过滤封装为函数 <code>getArgs</code> ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_args</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
+</span><span class="s1"></span><span class="s1">    获取命令参数</span><span class="s1">
+</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--style</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定要使用的 css 样式，css文件路径</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--outdir</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定 html 文件输出目录</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">infiles</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">+</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定要转换的 markdown 文件，可以指定多个</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>其中 <code>infiles</code> 参数指定<code>nargs='+'</code>，可以得到的是一个包含大于或等于1个文件路径的列表^[<a href="https://codeday.me/bug/20170705/32423.html">python – argparse选项用于传递列表作为选项</a>]。函数返回的就是过滤后得到的参数信息。</p>
 <h5 id="最终实现过程">最终实现过程</h5>
-
 <p>先贴出代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
-    <span class="n">m2h</span> <span class="o">=</span> <span class="n">Markdown2Html</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">m2h</span> <span class="o">=</span> <span class="n">Markdown2Html</span><span class="p">(</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">style</span><span class="p">:</span>
         <span class="n">m2h</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">mdfile</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">infiles</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">):</span>
-                <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;新建目录 {args.outdir}&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">)</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">新建目录 {args.outdir}</span><span class="s1">&#39;</span><span class="p">)</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">)</span>
-            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">mdfile</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.html&#39;</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">mdfile</span><span class="p">)</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.html</span><span class="s1">&#39;</span>
             <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
             <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">while</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outfile</span><span class="p">):</span>
-                <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">mdfile</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s1">&#39;_{count}.html&#39;</span>
+            <span class="k">while</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">mdfile</span><span class="p">)</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">_{count}.html</span><span class="s1">&#39;</span>
                 <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">mdfile</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.html&#39;</span>
+            <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">mdfile</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.html</span><span class="s1">&#39;</span>
         <span class="n">m2h</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mdfile</span><span class="p">,</span> <span class="n">outfile</span><span class="o">=</span><span class="n">outfile</span><span class="p">,</span> <span class="n">prettify</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{mdfile} 已转换完成，保存为{outfile}&#39;</span><span class="p">)</span></code></pre></div>
-<p><code>m2h</code>文件完整代码，参考<a href="https://github.com/smslit/tools-with-script/blob/master/m2h/m2h" target="_blank">tools-with-script/m2h/m2h</a>。</p>
-
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{mdfile} 已转换完成，保存为{outfile}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p><code>m2h</code>文件完整代码，参考<a href="https://github.com/smslit/tools-with-script/blob/master/m2h/m2h">tools-with-script/m2h/m2h</a>。</p>
 <p>首先获取过滤参数，之后声明 <code>Markdown2Html</code> 类的一个实例 <code>m2h</code>，如果执行命令中指定了样式文件，就为实例设置这个 css 文件。枚举待转换文件列表中的文件，处理文件分以下几步：</p>
-
 <ol>
-<li><p>判断是否指定了统一的输出目录</p>
-
+<li>
+<p>判断是否指定了统一的输出目录</p>
 <ul>
-<li><p>如果指定统一输出目录：检查目录是否存在，若不存在就新建目录；生成 html 文件的路径名称，为了防止输出到统一路径是出现重名而覆盖文件，这里只要发现文件存在就增加后缀序号；</p></li>
-
-<li><p>如果没有指定统一输出目录：直接生成相应的 html 输出文件的路径即可；</p></li>
-</ul></li>
-
-<li><p>调用实例 <code>m2h</code> 的 <code>convert</code> 方法，指定 markdown文件和输出文件，进行转换。</p></li>
+<li>
+<p>如果指定统一输出目录：检查目录是否存在，若不存在就新建目录；生成 html 文件的路径名称，为了防止输出到统一路径是出现重名而覆盖文件，这里只要发现文件存在就增加后缀序号；</p>
+</li>
+<li>
+<p>如果没有指定统一输出目录：直接生成相应的 html 输出文件的路径即可；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>调用实例 <code>m2h</code> 的 <code>convert</code> 方法，指定 markdown文件和输出文件，进行转换。</p>
+</li>
 </ol>
-
 <h5 id="测试">测试</h5>
-
 <p>命令使用帮助信息：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$  ./m2h -h
 usage: m2h <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s STYLE<span class="o">]</span> <span class="o">[</span>-o OUTDIR<span class="o">]</span> infiles <span class="o">[</span>infiles ...<span class="o">]</span>
@@ -336,24 +308,14 @@ optional arguments:
   -s STYLE, --style STYLE
                         指定要使用的 css 样式，css文件路径
   -o OUTDIR, --outdir OUTDIR
-                        指定 html 文件输出目录</code></pre></div>
-<p>我这里同级目录和上一层目录各有一个 <code>README.md</code> 文件，这里尝试转换并输出到同级目录下的 <code>output</code> 目录下，注意现在 <code>output</code> 目录并不存在，并指定 <code>github.css</code> 作为样式文件，执行命令如下：</p>
+                        指定 html 文件输出目录
+</code></pre></div><p>我这里同级目录和上一层目录各有一个 <code>README.md</code> 文件，这里尝试转换并输出到同级目录下的 <code>output</code> 目录下，注意现在 <code>output</code> 目录并不存在，并指定 <code>github.css</code> 作为样式文件，执行命令如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ ./m2h README.md ../README.md -s github.css -o ./output
 新建目录 ./output
 README.md 已转换完成，保存为./output/README.html
-../README.md 已转换完成，保存为./output/README_1.html</code></pre></div>
-<h2 id="总结">总结</h2>
-
-<p>本文学习了 markdown 库的使用，同时练习了类的编写和使用。工具的完整文件见：<a href="https://github.com/smslit/tools-with-script/tree/master/m2h" target="_blank">m2h</a></p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:python3-markdown"><a href="https://blog.csdn.net/zrools/article/details/51860533" target="_blank">python3-markdown 解析反引号代码块与代码高亮</a> <a class="footnote-return" href="#fnref:python3-markdown"><sup>[return]</sup></a></li>
-<li id="fn:python-argparse"><a href="https://codeday.me/bug/20170705/32423.html" target="_blank">python – argparse选项用于传递列表作为选项</a> <a class="footnote-return" href="#fnref:python-argparse"><sup>[return]</sup></a></li>
-</ol>
-</div>
+../README.md 已转换完成，保存为./output/README_1.html
+</code></pre></div><h2 id="总结">总结</h2>
+<p>本文学习了 markdown 库的使用，同时练习了类的编写和使用。工具的完整文件见：<a href="https://github.com/smslit/tools-with-script/tree/master/m2h">m2h</a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -362,7 +324,7 @@ README.md 已转换完成，保存为./output/README.html
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2629 字
+					2748 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -372,39 +334,29 @@ README.md 已转换完成，保存为./output/README.html
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#准备工作">准备工作</a></li>
-<li><a href="#python3-markdown-库">python3-markdown 库</a>
-<ul>
-<li><a href="#安装">安装</a></li>
-<li><a href="#使用">使用</a></li>
-<li><a href="#注意">注意</a></li>
-</ul></li>
-<li><a href="#beautifulsoup4-库和-html5lib-库">beautifulsoup4 库和 html5lib 库</a>
-<ul>
-<li><a href="#安装-1">安装</a></li>
-<li><a href="#使用-1">使用</a></li>
-</ul></li>
-<li><a href="#实现">实现</a>
-<ul>
-<li><a href="#markdown2html-类">Markdown2Html 类</a></li>
-<li><a href="#脚本">脚本</a>
-<ul>
-<li><a href="#准备文件">准备文件</a></li>
-<li><a href="#脚本实现">脚本实现</a>
-<ul>
-<li><a href="#导入必要库">导入必要库</a></li>
-<li><a href="#命令参数">命令参数</a></li>
-<li><a href="#最终实现过程">最终实现过程</a></li>
-<li><a href="#测试">测试</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#python3-markdown-库">python3-markdown 库</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#注意">注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#beautifulsoup4-库和-html5lib-库">beautifulsoup4 库和 html5lib 库</a>
+      <ul>
+        <li><a href="#安装-1">安装</a></li>
+        <li><a href="#使用-1">使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现">实现</a>
+      <ul>
+        <li><a href="#markdown2html-类">Markdown2Html 类</a></li>
+        <li><a href="#脚本">脚本</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -455,7 +407,7 @@ README.md 已转换完成，保存为./output/README.html
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Gem添加软件源时SSl错误解决">
 <meta itemprop="description" content="windows下在用gem添加taobao的软件源时出现了ssl认证错误，是因为ruby没有包含ssl证书，所以需要通过下载和配置证书来解决。">
-
-
 <meta itemprop="datePublished" content="2016-03-21T17:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2016-03-21T17:10:46&#43;08:00" />
 <meta itemprop="wordCount" content="503">
 
 
 
-<meta itemprop="keywords" content="ruby,gem," />
-<meta property="og:title" content="Gem添加软件源时SSl错误解决" />
+<meta itemprop="keywords" content="ruby,gem," /><meta property="og:title" content="Gem添加软件源时SSl错误解决" />
 <meta property="og:description" content="windows下在用gem添加taobao的软件源时出现了ssl认证错误，是因为ruby没有包含ssl证书，所以需要通过下载和配置证书来解决。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/03/21/gem-ssl-error-jekyll/" />
@@ -84,49 +81,29 @@
 			</header>
 			<div class="content">
 				<p>windows下在用gem添加taobao的软件源时出现了ssl认证错误，是因为ruby没有包含ssl证书，所以需要通过下载和配置证书来解决。</p>
-
 <h3 id="问题现象">问题现象</h3>
-
 <p>在命令行下执行下面指令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gem sources -a https://ruby.taobao.org/</code></pre></div>
-<p>出现以下错误提示：</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gem sources -a https://ruby.taobao.org/
+</code></pre></div><p>出现以下错误提示：</p>
 <blockquote>
-<p>Error fetching <a href="https://ruby.taobao.org/:" target="_blank">https://ruby.taobao.org/:</a> SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (<a href="https://api.rubygems.org/latest_specs.4.8.gz" target="_blank">https://api.rubygems.org/latest_specs.4.8.gz</a>)</p>
+<p>Error fetching <a href="https://ruby.taobao.org/:">https://ruby.taobao.org/:</a> SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed (<a href="https://api.rubygems.org/latest_specs.4.8.gz">https://api.rubygems.org/latest_specs.4.8.gz</a>)</p>
 </blockquote>
-
 <h3 id="解决方法">解决方法</h3>
-
 <h4 id="下载证书">下载证书</h4>
-
-<p>点<a href="http://curl.haxx.se/ca/cacert.pem" target="_blank">这里</a>是证书，另存到电脑上，目录自己决定，我是保存到了Ruby的安装目录。</p>
-
+<p>点<a href="http://curl.haxx.se/ca/cacert.pem">这里</a>是证书，另存到电脑上，目录自己决定，我是保存到了Ruby的安装目录。</p>
 <h4 id="设置环境变量">设置环境变量</h4>
-
 <p>需要设置环境变量指向该文件，系统才能找到证书。下面简单说一下步骤（以win10为例）：</p>
-
 <h5 id="系统设置">系统设置</h5>
-
 <p>按下<strong>win键</strong> + <strong>X</strong>，调出快捷选项，选择<strong>系统</strong>，进入系统设置界面：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/t6q6w.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/t6q6w.png" alt="1"></p>
 <p>选择左侧中的<strong>高级系统设置（Advanced System settings）</strong>，进入高级系统设置界面：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/db7yg.png" alt="2" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/db7yg.png" alt="2"></p>
 <p>选择<strong>环境变量（Environment Variables）</strong>，进入环境变量设置界面：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/crakn.png" alt="3" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/crakn.png" alt="3"></p>
 <h5 id="环境变量设置">环境变量设置</h5>
-
 <p>选择<strong>新建（New&hellip;)</strong>，进入新建的界面，并填入变量名<code>SSL_CERT_FILE</code>和刚才的证书的位置（以我的为例）<code>C:\Ruby22-x64\cacert.pem</code>，如下所示：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/y3myc.png" alt="4" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/y3myc.png" alt="4"></p>
 <h5 id="重启命令行">重启命令行</h5>
-
 <p>重启命令行，然后在使用gem添加taobao源，即可成功了，这里要说明的是不一定添加源才出现这问题，只要是访问源的操作缺少证书的话都会出现此文的错误。</p>
 			</div>
 			<hr class="post-end">
@@ -146,25 +123,14 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#问题现象">问题现象</a></li>
-<li><a href="#解决方法">解决方法</a>
-<ul>
-<li><a href="#下载证书">下载证书</a></li>
-<li><a href="#设置环境变量">设置环境变量</a>
-<ul>
-<li><a href="#系统设置">系统设置</a></li>
-<li><a href="#环境变量设置">环境变量设置</a></li>
-<li><a href="#重启命令行">重启命令行</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#问题现象">问题现象</a></li>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -215,7 +181,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

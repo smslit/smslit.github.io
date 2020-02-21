@@ -18,7 +18,7 @@
       <pubDate>Mon, 25 Jun 2018 17:23:57 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/06/25/vim-pack/</guid>
-      <description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&amp;rsquo;壮举&amp;rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
+      <description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&#39;壮举&#39;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Sun, 18 Jun 2017 13:54:31 +0800</pubDate>
       
       <guid>https://www.smslit.top/2017/06/18/embeddedVim/</guid>
-      <description>&lt;p&gt;这几天深入了解了一下vim的神级插件&lt;a href=&#34;https://github.com/Valloric/YouCompleteMe&#34; target=&#34;_blank&#34;&gt;YouCompleteMe&lt;/a&gt;，果然厉害，但是在MCU工程中函数跳转和语义补全就歇菜了，研究了几天也没找到很好的使用方法，最终还是无法在MCU嵌入式工程中跳转函数定义，这是无法忍受的，在PC或mac上的c/c++/clang工程可以完美使用。所以我还是老实的使用cscope和ctags吧，本篇文章就简单说一下，如何为MCU工程建立完整的索引，完成完美跳转！&lt;/p&gt;</description>
+      <description>&lt;p&gt;这几天深入了解了一下vim的神级插件&lt;a href=&#34;https://github.com/Valloric/YouCompleteMe&#34;&gt;YouCompleteMe&lt;/a&gt;，果然厉害，但是在MCU工程中函数跳转和语义补全就歇菜了，研究了几天也没找到很好的使用方法，最终还是无法在MCU嵌入式工程中跳转函数定义，这是无法忍受的，在PC或mac上的c/c++/clang工程可以完美使用。所以我还是老实的使用cscope和ctags吧，本篇文章就简单说一下，如何为MCU工程建立完整的索引，完成完美跳转！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,7 +54,7 @@
       <pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
       
       <guid>https://www.smslit.top/2016/11/27/vim-backspace-invalid/</guid>
-      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;rdquo;duang duang duang&amp;rdquo;，竟然无效！&lt;/p&gt;</description>
+      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;rdquo;，竟然无效！&lt;/p&gt;</description>
     </item>
     
     <item>

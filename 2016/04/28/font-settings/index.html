@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="系统及编辑器的字体设置">
 <meta itemprop="description" content="最近在用Linux，实在是受不了中文字体的显示了，终端里面设置了Source Code Pro字体，这英文字体很棒，适合做编程字体，但显示的中文可以难看到哭。索性在本文说一下怎么能在使用好看的英文字体的同时，可以显示你喜欢的中文字体，另外也整理一下编辑器中字体的设置方法，如Atom、ST等。">
-
-
 <meta itemprop="datePublished" content="2016-04-28T09:20:28&#43;08:00" />
 <meta itemprop="dateModified" content="2016-04-28T09:20:28&#43;08:00" />
-<meta itemprop="wordCount" content="1130">
+<meta itemprop="wordCount" content="1132">
 
 
 
-<meta itemprop="keywords" content="linux," />
-<meta property="og:title" content="系统及编辑器的字体设置" />
+<meta itemprop="keywords" content="linux," /><meta property="og:title" content="系统及编辑器的字体设置" />
 <meta property="og:description" content="最近在用Linux，实在是受不了中文字体的显示了，终端里面设置了Source Code Pro字体，这英文字体很棒，适合做编程字体，但显示的中文可以难看到哭。索性在本文说一下怎么能在使用好看的英文字体的同时，可以显示你喜欢的中文字体，另外也整理一下编辑器中字体的设置方法，如Atom、ST等。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/04/28/font-settings/" />
@@ -84,61 +81,49 @@
 			</header>
 			<div class="content">
 				<p>最近在用Linux，实在是受不了中文字体的显示了，终端里面设置了Source Code Pro字体，这英文字体很棒，适合做编程字体，但显示的中文可以难看到哭。索性在本文说一下怎么能在使用好看的英文字体的同时，可以显示你喜欢的中文字体，另外也整理一下编辑器中字体的设置方法，如Atom、ST等。</p>
-
 <h4 id="linux中设置喜欢的中英文字体混合显示">linux中设置喜欢的中英文字体混合显示</h4>
-
 <p>测试平台是Fedora Linux，要使用的字体是：</p>
-
 <ul>
 <li>英文：Source Code Pro</li>
 <li>中文：思源雅黑（Source Han Sans CN）</li>
 </ul>
-
 <p>为了能够混合使用这两个字体，我们需要编辑<code>/etc/fonts/fonts.conf</code>文件，这里使用vim编辑这个文件，要用sudo提高权限操作：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo vim /etc/fonts/fonts.conf</code></pre></div>
-<p>可以看到文件就是个xml文件，其中很多match标签，只需要在最后一个match标签后加入以下代码就可以，加代码的位置应该只需要与match同级就可以：</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;alias&gt;</span>
-	<span class="nt">&lt;family&gt;</span>Source Code Pro<span class="nt">&lt;/family&gt;</span>
-	<span class="nt">&lt;prefer&gt;</span>
-		<span class="nt">&lt;family&gt;</span>Source Han Sans CN <span class="nt">&lt;/family&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo vim /etc/fonts/fonts.conf
+</code></pre></div><p>可以看到文件就是个xml文件，其中很多match标签，只需要在最后一个match标签后加入以下代码就可以，加代码的位置应该只需要与match同级就可以：</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;alias</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;family</span><span class="nt">&gt;</span>Source Code Pro<span class="nt">&lt;/family&gt;</span>
+	<span class="nt">&lt;prefer</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;family</span><span class="nt">&gt;</span>Source Han Sans CN <span class="nt">&lt;/family&gt;</span>
 	<span class="nt">&lt;/prefer&gt;</span>
-<span class="nt">&lt;/alias&gt;</span></code></pre></div>
-<p>第一个family标签中是英文字体的名称，第二个family的标签中是中文字体的名称，对应修改成你喜欢的字体就可以了，然后去gnome-tweak-tool中设置字体为Source Code Pro就可以了，或者单独设置终端的配置，换成其他字体，然后再换到Source Code Pro（对应你喜欢的英文字体），然后再打开终端，输入一段中英文字符，可以看到，中英文各是你喜欢的样子。</p>
-
+<span class="nt">&lt;/alias&gt;</span>
+</code></pre></div><p>第一个family标签中是英文字体的名称，第二个family的标签中是中文字体的名称，对应修改成你喜欢的字体就可以了，然后去gnome-tweak-tool中设置字体为Source Code Pro就可以了，或者单独设置终端的配置，换成其他字体，然后再换到Source Code Pro（对应你喜欢的英文字体），然后再打开终端，输入一段中英文字符，可以看到，中英文各是你喜欢的样子。</p>
 <h4 id="atom编辑器窗口字体设置">Atom编辑器窗口字体设置</h4>
-
 <p>测试字体：</p>
-
 <ul>
 <li>英文：Source Code Pro</li>
 <li>中文：Source Han Sans CN</li>
 </ul>
-
 <p>打开Atom，<code>CTRL</code>+<code>,</code>，启动到设置界面，向下滚动界面，会找到Editor Settings分组，其中有个font family，在编辑框中输入你喜欢的字体名称，如下的样子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">Source</span> <span class="nt">Code</span> <span class="nt">Pro</span><span class="o">,</span> <span class="nt">Source</span> <span class="nt">Han</span> <span class="nt">Sans</span> <span class="nt">CN</span></code></pre></div>
-<p>重新打开编辑窗口，可以看到字体已设置成功。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">Source</span> <span class="nt">Code</span> <span class="nt">Pro</span><span class="o">,</span> <span class="nt">Source</span> <span class="nt">Han</span> <span class="nt">Sans</span> <span class="nt">CN</span>
+</code></pre></div><p>重新打开编辑窗口，可以看到字体已设置成功。</p>
 <h4 id="iii-atom的markdown预览窗口显示字体设置">III. Atom的markdown预览窗口显示字体设置</h4>
-
 <p>测试字体：</p>
-
 <ul>
 <li>英文：Source Code Pro</li>
 <li>中文：Source Han Sans CN</li>
 </ul>
-
-<p>打开Atom，同样<code>CTRL</code>+<code>,</code>`，打开设置窗口，左边栏选中Package，便会在右侧窗口显示插件列表，滚动页面，找到Markdown-Preview插件，单击进入插件设置页面，滚动页面，呀，咋找不到字体设置的地方呢？怎么办？不要紧，滚动到最下面会发现Customize分组，自定义，在看最下面有段话：</p>
-
+<p>打开Atom，同样<code>CTRL</code>+`,``，打开设置窗口，左边栏选中Package，便会在右侧窗口显示插件列表，滚动页面，找到Markdown-Preview插件，单击进入插件设置页面，滚动页面，呀，咋找不到字体设置的地方呢？怎么办？不要紧，滚动到最下面会发现Customize分组，自定义，在看最下面有段话：</p>
 <blockquote>
 <p>To customize even further, the styling can be overridden in your styles.less file. For example:</p>
 </blockquote>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">markdown-preview</span><span class="p">.</span><span class="nc">markdown-preview</span> <span class="p">{</span>
   <span class="k">background-color</span><span class="p">:</span> <span class="mh">#444</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
-<p>这倒提醒我了，atom其实就是一个本地的网页浏览器，样式是由css配置的，上面的提示中说要修改style.less文件，可以从菜单栏的edit菜单中找到一项StyleSheet&hellip;，单击便打开style.less文件了，在最后加入以下代码，保存，再去打开markdown文件，然后ctrl+shift+m打开预览窗口便会发现字体就是你希望看到的样子了：</p>
+<span class="p">}</span>
+</code></pre></div><p>这倒提醒我了，atom其实就是一个本地的网页浏览器，样式是由css配置的，上面的提示中说要修改style.less文件，可以从菜单栏的edit菜单中找到一项StyleSheet&hellip;，单击便打开style.less文件了，在最后加入以下代码，保存，再去打开markdown文件，然后ctrl+shift+m打开预览窗口便会发现字体就是你希望看到的样子了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">markdown-preview</span><span class="p">.</span><span class="nc">markdown-preview</span> <span class="p">{</span>
   <span class="k">font-family</span><span class="p">:</span> <span class="n">Source</span> <span class="n">Code</span> <span class="n">Pro</span><span class="p">,</span> <span class="n">Source</span> <span class="n">Han</span> <span class="n">Sans</span> <span class="n">CN</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -147,7 +132,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1130 字
+					1132 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -157,20 +142,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#linux中设置喜欢的中英文字体混合显示">linux中设置喜欢的中英文字体混合显示</a></li>
-<li><a href="#atom编辑器窗口字体设置">Atom编辑器窗口字体设置</a></li>
-<li><a href="#iii-atom的markdown预览窗口显示字体设置">III. Atom的markdown预览窗口显示字体设置</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -221,7 +199,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="解决windows下git bash中文乱码问题">
 <meta itemprop="description" content="因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。">
-
-
 <meta itemprop="datePublished" content="2015-10-09T12:14:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-09T12:14:46&#43;08:00" />
 <meta itemprop="wordCount" content="364">
 
 
 
-<meta itemprop="keywords" content="gitbash,git,windows," />
-<meta property="og:title" content="解决windows下git bash中文乱码问题" />
+<meta itemprop="keywords" content="gitbash,git,windows," /><meta property="og:title" content="解决windows下git bash中文乱码问题" />
 <meta property="og:description" content="因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/09/GitBashChineseCodeGarbled-Git/" />
@@ -84,29 +81,25 @@
 			</header>
 			<div class="content">
 				<p>因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。</p>
-
 <h3 id="解决中文输入问题">解决中文输入问题</h3>
-
 <p>在git bash下输入以下两条命令：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">set</span> output-meta on <span class="c1">#bash中可以正常输入中文</span>
-$ <span class="nb">set</span> convert-meta off </code></pre></div>
-<h3 id="git-log中文乱码问题">git log中文乱码问题</h3>
-
+$ <span class="nb">set</span> convert-meta off 
+</code></pre></div><h3 id="git-log中文乱码问题">git log中文乱码问题</h3>
 <p>解决此问题需要设置Git bash支持UTF-8编码，所以在git bash下输入以下命令：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config --global core.quotepath <span class="nb">false</span>          <span class="c1"># 显示 status 编码</span>
 $ git config --global gui.encoding utf-8            <span class="c1"># 图形界面编码</span>
 $ git config --global i18n.commit.encoding utf-8    <span class="c1"># 提交信息编码</span>
 $ git config --global i18n.logoutputencoding utf-8  <span class="c1"># 输出 log 编码</span>
 $ <span class="nb">export</span> <span class="nv">LESSCHARSET</span><span class="o">=</span>utf-8
-<span class="c1"># 最后一条命令是因为 git log 默认使用 less 分页，所以需要 bash 对 less 命令进行 utf-8 编码</span></code></pre></div>
-<h3 id="ls文件列表中文乱码">ls文件列表中文乱码</h3>
-
+<span class="c1"># 最后一条命令是因为 git log 默认使用 less 分页，所以需要 bash 对 less 命令进行 utf-8 编码</span>
+</code></pre></div><h3 id="ls文件列表中文乱码">ls文件列表中文乱码</h3>
 <p>在git bash下输入命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls --show-control-chars --color=auto&#39;</span> <span class="c1">#ls能够正常显示中文&#34;</span></code></pre></div>
-<h3 id="解决git-status中文乱码问题">解决git status中文乱码问题</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls --show-control-chars --color=auto&#39;</span> <span class="c1">#ls能够正常显示中文&#34;</span>
+</code></pre></div><h3 id="解决git-status中文乱码问题">解决git status中文乱码问题</h3>
 <p>git bash下输入以下命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config --global core.quotepath false</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config --global core.quotepath <span class="nb">false</span>
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -170,7 +163,7 @@ $ <span class="nb">export</span> <span class="nv">LESSCHARSET</span><span class=
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

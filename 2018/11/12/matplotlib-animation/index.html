@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="使用 matplotlib 的 animation 让数据动起来">
 <meta itemprop="description" content="最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。
-
 ">
-
-
 <meta itemprop="datePublished" content="2018-11-12T01:22:15&#43;08:00" />
 <meta itemprop="dateModified" content="2018-11-12T01:22:15&#43;08:00" />
-<meta itemprop="wordCount" content="955">
+<meta itemprop="wordCount" content="958">
 
 
 
-<meta itemprop="keywords" content="python,matplotlib," />
-<meta property="og:title" content="使用 matplotlib 的 animation 让数据动起来" />
+<meta itemprop="keywords" content="python,matplotlib," /><meta property="og:title" content="使用 matplotlib 的 animation 让数据动起来" />
 <meta property="og:description" content="最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/11/12/matplotlib-animation/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用 matplotlib 的 animation 让数据动起来"/>
 <meta name="twitter:description" content="最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,31 +84,27 @@
 			</header>
 			<div class="content">
 				<p>最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154195822047625.gif" alt="20181112154195822047625.gif" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154195822047625.gif" alt="20181112154195822047625.gif"></p>
 <h1 id="animated-line-plot">Animated line plot</h1>
-
-<p>废话不多说，以 matplotlib 官方给的 🌰 （<a href="https://matplotlib.org/gallery/animation/simple_anim.html" target="_blank">Animated line plot</a>）说明基本的使用。</p>
-
+<p>废话不多说，以 matplotlib 官方给的 🌰 （<a href="https://matplotlib.org/gallery/animation/simple_anim.html">Animated line plot</a>）说明基本的使用。</p>
 <h2 id="示例代码">示例代码</h2>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="kn">as</span> <span class="nn">animation</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
-<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">init</span><span class="p">():</span>  <span class="c1"># only required for blitting to give a clean slate.</span>
-    <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>  <span class="c1"># only required for blitting to give a clean slate.</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
 
 
-<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-    <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># update the data.</span>
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span><span class="p">)</span>  <span class="c1"># update the data.</span>
     <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
 
 
@@ -131,40 +121,32 @@
 <span class="c1"># writer = FFMpegWriter(fps=15, metadata=dict(artist=&#39;Me&#39;), bitrate=1800)</span>
 <span class="c1"># ani.save(&#34;movie.mp4&#34;, writer=writer)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
-<h2 id="运行结果">运行结果</h2>
-
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/animation/animation.mp4" controls="controls" width="60%">animated line plot</video>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><h2 id="运行结果">运行结果</h2>
+<p><!-- raw HTML omitted -->animated line plot<!-- raw HTML omitted --></p>
 <p>上面的视频是由上面的代码生成，不过需要将以下代码（即30～32行）取消注释：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FFMpegWriter</span>
-<span class="n">writer</span> <span class="o">=</span> <span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">artist</span><span class="o">=</span><span class="s1">&#39;Me&#39;</span><span class="p">),</span> <span class="n">bitrate</span><span class="o">=</span><span class="mi">1800</span><span class="p">)</span>
-<span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;movie.mp4&#34;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">writer</span><span class="p">)</span></code></pre></div>
-<p>如果系统没有安装 <a href="https://www.ffmpeg.org" target="_blank">ffmpeg</a> 运行代码可能会提示以下错误：</p>
-
+<span class="n">writer</span> <span class="o">=</span> <span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">artist</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Me</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span> <span class="n">bitrate</span><span class="o">=</span><span class="mi">1800</span><span class="p">)</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">movie.mp4</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">writer</span><span class="p">)</span>
+</code></pre></div><p>如果系统没有安装 <a href="https://www.ffmpeg.org">ffmpeg</a> 运行代码可能会提示以下错误：</p>
 <blockquote>
 <p>&hellip;
 FileNotFoundError: [Errno 2] No such file or directory: &lsquo;ffmpeg&rsquo;: &lsquo;ffmpeg&rsquo;</p>
 </blockquote>
-
 <p>所以需要安装 ffmpeg，十里使用的是 macOS，所以通过以下命令进行安装：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ brew install ffmpeg</code></pre></div>
-<p>其它系统可以下载 <a href="https://www.ffmpeg.org/download.html" target="_blank">ffmpeg 官网</a> 提供的安装包进行安装。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ brew install ffmpeg
+</code></pre></div><p>其它系统可以下载 <a href="https://www.ffmpeg.org/download.html">ffmpeg 官网</a> 提供的安装包进行安装。</p>
 <h2 id="代码分析">代码分析</h2>
-
 <p>理解代码的关键三点：</p>
-
 <ol>
 <li>获取图像 <code>fig</code> 和 坐标轴对象 <code>ax</code>：<code>fig, ax = plt.subplots()</code></li>
 <li>定义初始化函数 <code>init</code> 和数据更新函数 <code>animate</code>：
-
 <ul>
 <li>初始化函数，用于动画的初始化操作，这个可以不用为可选定义</li>
 <li>数据更新函数，用于告知 animation 更新操作，这个函数的参数默认传入的是帧序号，但是如果 <code>animation.FuncAnimation</code> 方法指定可选参数 <code>frames</code> 为一个列表的话，更新函数调用时传入的值会是相应索引下的元素，此时动画终点就是取完列表元素，如果不指定 <code>frames</code> 则会一直传入帧序号保持下去。</li>
-</ul></li>
+</ul>
+</li>
 <li>调用 <code>animation.FuncAnimation</code> 方法：
-
 <ul>
 <li>第一个参数传入图像对象，这里是 <code>fig</code></li>
 <li>第二个参数默认为更新函数，这里是 <code>animate</code></li>
@@ -174,41 +156,38 @@ FileNotFoundError: [Errno 2] No such file or directory: &lsquo;ffmpeg&rsquo;: &l
 <li>可选参数 <code>save_count</code>，指定保存动画（gif或mp4）的帧数</li>
 <li>可选参数 <code>repeat</code>，指定是否循环动画</li>
 <li>可选参数 <code>blit</code>，指定是否优化绘图</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h2 id="动画保存">动画保存</h2>
-
-<p><a href="#运行结果" target="_blank">运行结果</a> 中说明了保存 mp4 的方法，这里说一下如何保存 gif。</p>
-
+<p><a href="#运行结果">运行结果</a> 中说明了保存 mp4 的方法，这里说一下如何保存 gif。</p>
 <p><code>ani</code> 的 <code>save</code> 方法可以指定 <code>writer</code> ，这里要保存 <code>gif</code> 默认选择的 <code>writer</code> 为 <code>pillow</code> ，所以需要安装 <code>pillow</code> 库：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ pip3 install pillow</code></pre></div>
-<p>按照如下调用方法即可保存动画为 <code>gif</code>，这里保存动画的帧数是受 <code>animation.FuncAnimation</code> 的 <code>frames</code> 和 <code>save_count</code> 影响的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;animation.gif&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s1">&#39;pillow&#39;</span><span class="p">)</span></code></pre></div>
-<h1 id="柱状图动起来">柱状图动起来</h1>
-
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ pip3 install pillow
+</code></pre></div><p>按照如下调用方法即可保存动画为 <code>gif</code>，这里保存动画的帧数是受 <code>animation.FuncAnimation</code> 的 <code>frames</code> 和 <code>save_count</code> 影响的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">animation.gif</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">pillow</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><h1 id="柱状图动起来">柱状图动起来</h1>
 <p>直接上代码，<strong>比着葫芦画瓢</strong> 让你的柱状图舞动起来吧：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="p">]</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">d</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">+</span><span class="n">i</span><span class="o">/</span><span class="mi">50</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
-<span class="n">rects</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">d</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">+</span><span class="n">i</span><span class="o">/</span><span class="mi">50</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="p">]</span>
+<span class="n">rects</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">rect</span><span class="p">,</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rects</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">rect</span><span class="p">,</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rects</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="p">:</span>
         <span class="n">rect</span><span class="o">.</span><span class="n">set_height</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">rects</span>
 
-<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 <span class="c1"># anim.save(&#39;bar.gif&#39;, writer=&#39;pillow&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154200404087645.gif" alt="20181112154200404087645.gif" /></p>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154200404087645.gif" alt="20181112154200404087645.gif"></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -217,7 +196,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &lsquo;ffmpeg&rsquo;: &l
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					955 字
+					958 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -227,16 +206,12 @@ FileNotFoundError: [Errno 2] No such file or directory: &lsquo;ffmpeg&rsquo;: &l
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#animated-line-plot">Animated line plot</a>
-<ul>
-<li><a href="#示例代码">示例代码</a></li>
-<li><a href="#运行结果">运行结果</a></li>
-<li><a href="#代码分析">代码分析</a></li>
-<li><a href="#动画保存">动画保存</a></li>
-</ul></li>
-<li><a href="#柱状图动起来">柱状图动起来</a></li>
-</ul>
+  <ul>
+    <li><a href="#示例代码">示例代码</a></li>
+    <li><a href="#运行结果">运行结果</a></li>
+    <li><a href="#代码分析">代码分析</a></li>
+    <li><a href="#动画保存">动画保存</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -287,7 +262,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &lsquo;ffmpeg&rsquo;: &l
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

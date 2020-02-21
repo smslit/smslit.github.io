@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="BLE开发笔记——遇到的问题及解决方法记录">
 <meta itemprop="description" content="在进行BLE开发的学习中总会遇到一些棘手的问题，开此文就是为了记录在进行CC2541开发中遇到的问题和解决的方法，应该会持续更新。。。">
-
-
 <meta itemprop="datePublished" content="2015-10-30T10:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-30T10:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="643">
 
 
 
-<meta itemprop="keywords" content="ble," />
-<meta property="og:title" content="BLE开发笔记——遇到的问题及解决方法记录" />
+<meta itemprop="keywords" content="ble," /><meta property="og:title" content="BLE开发笔记——遇到的问题及解决方法记录" />
 <meta property="og:description" content="在进行BLE开发的学习中总会遇到一些棘手的问题，开此文就是为了记录在进行CC2541开发中遇到的问题和解决的方法，应该会持续更新。。。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/30/problem-BLE/" />
@@ -84,47 +81,35 @@
 			</header>
 			<div class="content">
 				<p>在进行BLE开发的学习中总会遇到一些棘手的问题，开此文就是为了记录在进行CC2541开发中遇到的问题和解决的方法，应该会持续更新。。。</p>
-
 <h2 id="更新情况">更新情况</h2>
-
 <ul>
 <li>2015-11-05 18:00:00 添加问题2</li>
 <li>2015-10-30 10:00:00 添加问题1</li>
 </ul>
-
 <h2 id="问题1">问题1</h2>
-
 <p>出现以下编译链接错误：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Error<span class="o">[</span>e133<span class="o">]</span>: The output format intel-extended cannot handle multiple address spaces. Use format variants <span class="o">(</span>-y -O<span class="o">)</span> to specify which address space is wanted
-Error <span class="k">while</span> running Linker</code></pre></div>
-<h3 id="解决方法"><strong>解决方法：</strong></h3>
-
+Error <span class="k">while</span> running Linker
+</code></pre></div><h3 id="解决方法"><strong>解决方法：</strong></h3>
 <p>网上说出现此问题的原因是IAR中EEPROM使用设置的问题，调整编译链接设置可以解决，但不适用于我出现此问题的解决，分析出现此链接错误原因可能有好多，目前经过查找找到了原因：在调用函数传递float类型的数据的时候，不能直接写浮点数，类似这样</p>
-
 <p><code>printFloat(1.02);</code></p>
-
 <p>必须传递一个变量，例如</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">test</span> <span class="o">=</span> <span class="mf">1.02</span><span class="p">;</span>
-<span class="n">printFloat</span><span class="p">(</span><span class="n">test</span><span class="p">);</span></code></pre></div>
-<p>找到了根本一点的解决方法，右击工程，选择<code>Options</code>-&gt;<code>Linker</code>，在<code>Config</code>标签页下找到<code>Linker configuration file</code>，勾选<code>Override default</code>，选择安装的TI蓝牙协议栈工程例程里common文件夹下的<code>ti_51ew_cc2540b.xcl</code>，ok，编译链接就可以通过了。</p>
-
+<span class="n">printFloat</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>找到了根本一点的解决方法，右击工程，选择<code>Options</code>-&gt;<code>Linker</code>，在<code>Config</code>标签页下找到<code>Linker configuration file</code>，勾选<code>Override default</code>，选择安装的TI蓝牙协议栈工程例程里common文件夹下的<code>ti_51ew_cc2540b.xcl</code>，ok，编译链接就可以通过了。</p>
 <h2 id="问题2">问题2</h2>
-
 <p>出现编译连接错误：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Error<span class="o">[</span>e104<span class="o">]</span>: Failed to fit all segments into specified ranges. Problem discovered in segment XDATA_N. Unable to  
 place <span class="m">2</span> block<span class="o">(</span>s<span class="o">)</span> <span class="o">(</span>0xbba byte<span class="o">(</span>s<span class="o">)</span> total<span class="o">)</span> in 0x664 byte<span class="o">(</span>s<span class="o">)</span> of memory. The problem occurred <span class="k">while</span> processing the  
 segment placement <span class="nb">command</span> <span class="s2">&#34;-P(XDATA)XDATA_N=_XDATA_START-_XDATA_END&#34;</span>, where at the moment of placement the  
 available memory ranges were <span class="s2">&#34;XDATA:189c-1eff&#34;</span>
-Error <span class="k">while</span> running Linker</code></pre></div>
-<h3 id="解决方法-1"><strong>解决方法：</strong></h3>
-
+Error <span class="k">while</span> running Linker
+</code></pre></div><h3 id="解决方法-1"><strong>解决方法：</strong></h3>
 <p>右击工程，选择<code>Options</code>-&gt;<code>C/C++ Compiler</code>，在<code>Preprocessor</code>标签页下找到<code>Define symbols:(one per line)</code>，更改其中的<code>INT_HEAP_LEN</code>的值，默认值是3000，改到一个小一点的值，点击OK，重新编译，直到成功，我的改到了1500，就可以解决了。</p>
-
 <h3 id="参考">参考：</h3>
-
 <ul>
-<li><a href="http://e2e.ti.com/support/wireless_connectivity/f/538/t/95098" target="_blank">CC2540 flash memory size</a></li>
-<li><a href="http://www.xuebuyuan.com/2053073.html" target="_blank">解决CC2540 XDATA内存不足</a></li>
+<li><a href="http://e2e.ti.com/support/wireless_connectivity/f/538/t/95098">CC2540 flash memory size</a></li>
+<li><a href="http://www.xuebuyuan.com/2053073.html">解决CC2540 XDATA内存不足</a></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -144,21 +129,20 @@ Error <span class="k">while</span> running Linker</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#更新情况">更新情况</a></li>
-<li><a href="#问题1">问题1</a>
-<ul>
-<li><a href="#解决方法"><strong>解决方法：</strong></a></li>
-</ul></li>
-<li><a href="#问题2">问题2</a>
-<ul>
-<li><a href="#解决方法-1"><strong>解决方法：</strong></a></li>
-<li><a href="#参考">参考：</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#更新情况">更新情况</a></li>
+    <li><a href="#问题1">问题1</a>
+      <ul>
+        <li><a href="#解决方法">解决方法：</a></li>
+      </ul>
+    </li>
+    <li><a href="#问题2">问题2</a>
+      <ul>
+        <li><a href="#解决方法-1">解决方法：</a></li>
+        <li><a href="#参考">参考：</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -209,7 +193,7 @@ Error <span class="k">while</span> running Linker</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

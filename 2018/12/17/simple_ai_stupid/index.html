@@ -7,21 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="最简单的人工智能(皮一下)">
-<meta itemprop="description" content="有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿1！
-
+<meta itemprop="description" content="有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[图片：估值一个亿的代码]！
 ">
-
-
 <meta itemprop="datePublished" content="2018-12-17T16:35:58&#43;08:00" />
 <meta itemprop="dateModified" content="2018-12-17T16:35:58&#43;08:00" />
-<meta itemprop="wordCount" content="266">
+<meta itemprop="wordCount" content="267">
 
 
 
-<meta itemprop="keywords" content="python,ai," />
-<meta property="og:title" content="最简单的人工智能(皮一下)" />
-<meta property="og:description" content="有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿1！
-
+<meta itemprop="keywords" content="python,ai," /><meta property="og:title" content="最简单的人工智能(皮一下)" />
+<meta property="og:description" content="有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[图片：估值一个亿的代码]！
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/12/17/simple_ai_stupid/" />
@@ -29,8 +24,7 @@
 <meta property="article:modified_time" content="2018-12-17T16:35:58+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="最简单的人工智能(皮一下)"/>
-<meta name="twitter:description" content="有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿1！
-
+<meta name="twitter:description" content="有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[图片：估值一个亿的代码]！
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -89,18 +83,16 @@
 				<h1>最简单的人工智能(皮一下)</h1>
 			</header>
 			<div class="content">
-				<p>有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿<sup class="footnote-ref" id="fnref:https-github-com"><a href="#fn:https-github-com">1</a></sup>！</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png" alt="" /></p>
-
+				<p>有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[<a href="https://github.com/ruanyf/weekly/issues/158">图片：估值一个亿的代码</a>]！</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png" alt=""></p>
 <p>新建文件 <code>chatbot.py</code> ，内容如下:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="n">chat_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
-    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;吗&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;?&#34;</span><span class="p">,</span> <span class="s2">&#34;!&#34;</span><span class="p">)</span>
-    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;? &#34;</span><span class="p">,</span> <span class="s2">&#34;! &#34;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;小爱:&#34;</span><span class="p">,</span> <span class="n">chat_str</span><span class="p">)</span></code></pre></div>
-<p>大功告成！运行文件进行玩耍:</p>
+    <span class="n">chat_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">吗</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">?</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">!</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">? </span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">! </span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">小爱:</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">chat_str</span><span class="p">)</span>
+</code></pre></div><p>大功告成！运行文件进行玩耍:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 chatbot.py
 您好
 小爱: 您好
@@ -109,16 +101,8 @@
 会说中文吗
 小爱: 会说中文
 真的吗?
-小爱: 真的!</code></pre></div>
-<p>怎么样，有没有一种被侮辱的感觉？不管怎样，十里就将这个估值一亿的项目交给你了！好好发挥！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:https-github-com"><a href="https://github.com/ruanyf/weekly/issues/158" target="_blank">图片：估值一个亿的代码</a> <a class="footnote-return" href="#fnref:https-github-com"><sup>[return]</sup></a></li>
-</ol>
-</div>
+小爱: 真的!
+</code></pre></div><p>怎么样，有没有一种被侮辱的感觉？不管怎样，十里就将这个估值一亿的项目交给你了！好好发挥！</p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -127,7 +111,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					266 字
+					267 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -182,7 +166,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

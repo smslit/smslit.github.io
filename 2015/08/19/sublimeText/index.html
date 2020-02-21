@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Sublime Text 3安装及简单配置">
 <meta itemprop="description" content="本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。">
-
-
 <meta itemprop="datePublished" content="2015-08-19T14:14:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-08-19T14:14:46&#43;08:00" />
-<meta itemprop="wordCount" content="1540">
+<meta itemprop="wordCount" content="1537">
 
 
 
-<meta itemprop="keywords" content="sublime text,macOS,linux," />
-<meta property="og:title" content="Sublime Text 3安装及简单配置" />
+<meta itemprop="keywords" content="sublime text,macOS,linux," /><meta property="og:title" content="Sublime Text 3安装及简单配置" />
 <meta property="og:description" content="本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/08/19/sublimeText/" />
@@ -84,82 +81,65 @@
 			</header>
 			<div class="content">
 				<p>本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。</p>
-
 <h3 id="前言"><strong>前言</strong></h3>
-
 <p>记得第一次安装sublime text3应该是两年前，当时是因为觉得Arduino IDE太丑还不能输入中文，就决定找个它的替代品，不经意间找到了ST3，它最吸引我的应该是界面了，但之后其功能及扩展性更是吸引我，目前它已成为我经常用的代码及文本的编辑器。每次安装系统，都会安装ST3，本文就说一下安装Sublime Text3，以及安装成功后我会做的一些事情。</p>
-
 <h3 id="简介"><strong>简介</strong></h3>
-
-<p><a href="http://baike.baidu.com/link?url=vGvQYJCEabAC4iUDhw80qloKPvCSenPEm_u1iaLs5VlQqwyjN3sKIuIAESK7FRQvJOYDEG77mOn2dKW-7yKgy_z-ioUQqWO98MYEyeJprTZ7sTp4o3U36OPes-wH8nLlQ_I9BlJy_v85CYS_hg1sVK" target="_blank">Sublime Text 3</a>是一个代码编辑器（Sublime Text是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim，含有丰富的插件。</p>
-
+<p><a href="http://baike.baidu.com/link?url=vGvQYJCEabAC4iUDhw80qloKPvCSenPEm_u1iaLs5VlQqwyjN3sKIuIAESK7FRQvJOYDEG77mOn2dKW-7yKgy_z-ioUQqWO98MYEyeJprTZ7sTp4o3U36OPes-wH8nLlQ_I9BlJy_v85CYS_hg1sVK">Sublime Text 3</a>是一个代码编辑器（Sublime Text是收费软件，但可以无限期试用），也是HTML和散文先进的文本编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim，含有丰富的插件。</p>
 <h3 id="正文"><strong>正文</strong></h3>
-
 <h4 id="安装sublime-text-3">安装Sublime text 3</h4>
-
 <ol>
-<li>到Sublime Text 3官网下载这个跨平台的代码编辑器，<a href="http://www.sublimetext.com/3" target="_blank"><strong>点我下载</strong></a>，下载对应平台的安装包，最新版本号目前是3083。
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/0j96u.png" alt="1" /></li>
+<li>到Sublime Text 3官网下载这个跨平台的代码编辑器，<a href="http://www.sublimetext.com/3"><strong>点我下载</strong></a>，下载对应平台的安装包，最新版本号目前是3083。
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/0j96u.png" alt="1"></li>
 <li>安装:
-
 <ul>
 <li>windows:双击运行exe文件安装即可。</li>
 <li>macosx：打开dmg镜像文件，将软件包拖到Applications文件夹里，就算装完毕了。</li>
 <li>ubuntu：下载下来是deb安装包，打开命令行，以deb文件下载到了【下载】目录下为例，先执行<code>cd ~/Download</code>，再执行<code>sudo dpkg -i xxxxx.deb</code>即可。</li>
-</ul></li>
-</ol>
-
-<h4 id="插件管理工具">插件管理工具</h4>
-
-<p>为了更方便使用，还需要安装一些自己需要的插件，这得需要安装插件管理工具Package Control，以及进行简单用户配置。</p>
-
-<ul>
-<li><p>安装Package Control，按下快捷键 <code>CTRL</code>+ ` ，复制粘贴以下命令，并回车就会自动安装，稍等即可，会有提示重启软件，重新启动Sublime就行了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">import urllib.request,os<span class="p">;</span> <span class="nv">pf</span> <span class="o">=</span> <span class="s1">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="nv">ipp</span> <span class="o">=</span> sublime.installed_packages_path<span class="o">()</span><span class="p">;</span> urllib.request.install_opener<span class="o">(</span> urllib.request.build_opener<span class="o">(</span> urllib.request.ProxyHandler<span class="o">())</span> <span class="o">)</span><span class="p">;</span> open<span class="o">(</span>os.path.join<span class="o">(</span>ipp, pf<span class="o">)</span>, <span class="s1">&#39;wb&#39;</span><span class="o">)</span>.write<span class="o">(</span>urllib.request.urlopen<span class="o">(</span> <span class="s1">&#39;http://sublime.wbond.net/&#39;</span> + pf.replace<span class="o">(</span><span class="s1">&#39; &#39;</span>,<span class="s1">&#39;%20&#39;</span><span class="o">))</span>.read<span class="o">())</span></code></pre></div>
-<p>验证安装：按下快捷键【SHIFT+CTRL+P】，输入package的字样就会出现下图样子：
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/u57ni.png" alt="2" /></p></li>
-
-<li><p>简单配置用户配置文件，菜单栏【Preferences-&gt;Settings-User】,即可打开用户配置文件</p>
-
-<ul>
-<li>关闭检查更新，加入&rdquo;update_check&rdquo;:&ldquo;false&rdquo;。</li>
-<li>设置字体，其中xxxxxx是你要设置的字体，我一般用Consolas，加入&rdquo;font_face&rdquo;:&ldquo;xxxxxx&rdquo;。</li>
-<li>设置字体大小，加入&rdquo;font_size&rdquo;:11。
-<strong>每个设置项之间要以逗号隔开，如下的样子：</strong>
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/z40jx.png" alt="3" /></li>
-</ul></li>
 </ul>
-
+</li>
+</ol>
+<h4 id="插件管理工具">插件管理工具</h4>
+<p>为了更方便使用，还需要安装一些自己需要的插件，这得需要安装插件管理工具Package Control，以及进行简单用户配置。</p>
+<ul>
+<li>
+<p>安装Package Control，按下快捷键 <code>CTRL</code>+ ` ，复制粘贴以下命令，并回车就会自动安装，稍等即可，会有提示重启软件，重新启动Sublime就行了。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">import urllib.request,os<span class="p">;</span> <span class="nv">pf</span> <span class="o">=</span> <span class="s1">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="nv">ipp</span> <span class="o">=</span> sublime.installed_packages_path<span class="o">(</span><span class="o">)</span><span class="p">;</span> urllib.request.install_opener<span class="o">(</span> urllib.request.build_opener<span class="o">(</span> urllib.request.ProxyHandler<span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">)</span><span class="p">;</span> open<span class="o">(</span>os.path.join<span class="o">(</span>ipp, pf<span class="o">)</span>, <span class="s1">&#39;wb&#39;</span><span class="o">)</span>.write<span class="o">(</span>urllib.request.urlopen<span class="o">(</span> <span class="s1">&#39;http://sublime.wbond.net/&#39;</span> + pf.replace<span class="o">(</span><span class="s1">&#39; &#39;</span>,<span class="s1">&#39;%20&#39;</span><span class="o">)</span><span class="o">)</span>.read<span class="o">(</span><span class="o">)</span><span class="o">)</span>
+</code></pre></div><p>验证安装：按下快捷键【SHIFT+CTRL+P】，输入package的字样就会出现下图样子：
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/u57ni.png" alt="2"></p>
+</li>
+<li>
+<p>简单配置用户配置文件，菜单栏【Preferences-&gt;Settings-User】,即可打开用户配置文件</p>
+<ul>
+<li>关闭检查更新，加入&quot;update_check&rdquo;:&ldquo;false&rdquo;。</li>
+<li>设置字体，其中xxxxxx是你要设置的字体，我一般用Consolas，加入&quot;font_face&rdquo;:&ldquo;xxxxxx&rdquo;。</li>
+<li>设置字体大小，加入&quot;font_size&rdquo;:11。
+<strong>每个设置项之间要以逗号隔开，如下的样子：</strong>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/z40jx.png" alt="3"></li>
+</ul>
+</li>
+</ul>
 <h4 id="安装插件">安装插件</h4>
-
 <p>我只安装了几个必须的插件，按下快捷键【SHIFT+CTRL+P】输入install，一般会选中【Package control:install package】敲回车，需要联网，等一会儿就会出现插件列表，找到对应插件选中安装即可。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5cufb.png" alt="4" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5cufb.png" alt="4"></p>
 <ol>
 <li>ConvertToUTF8:这是一个解决代码文件中文乱码问题的，这个是非常有必要安装的，可能还得需要安装依赖包codec33，同样的安装方法。</li>
-<li>ctags：这是一个强大的插件，可以实现代码中函数跳转，非常有用，还得安装ctags58执行文件，具体安装，见外链&ndash;<a href="http://jingyan.baidu.com/article/63acb44afb532561fcc17ef4.html" target="_blank"><strong>sublime text2/3怎样在windows中配置ctags插件</strong></a></li>
+<li>ctags：这是一个强大的插件，可以实现代码中函数跳转，非常有用，还得安装ctags58执行文件，具体安装，见外链&ndash;<a href="http://jingyan.baidu.com/article/63acb44afb532561fcc17ef4.html"><strong>sublime text2/3怎样在windows中配置ctags插件</strong></a></li>
 <li>Alignment：这是一款对齐插件，比如等号对齐什么的。</li>
 </ol>
-
 <h4 id="配置主题">配置主题</h4>
-
 <p>个人比较喜欢两款主题：flatland和Brogrammer。主题也是以插件的安装方式来安装的。下面以Brogrammer为例说一下安装及配置：</p>
-
 <ol>
 <li>安装，通过【package control】找到【Theme-Brogrammer】选中安装即可。</li>
 <li>用户配置文件配置，加入下面两条保存即可完成主题配置：
-
 <ul>
 <li><code>&quot;theme&quot;: &quot;Brogrammer.sublime-theme&quot;</code></li>
 <li><code>&quot;color_scheme&quot;: &quot;Packages/Theme - Brogrammer/brogrammer.tmTheme&quot;</code></li>
-</ul></li>
+</ul>
+</li>
 <li>效果如下：
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/aiaa0.png" alt="5" /></li>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/aiaa0.png" alt="5"></li>
 </ol>
-
 <h3 id="总结">总结</h3>
-
 <p>Sublime Text 3是一款相当优秀的文本编辑器，如果经常跟代码打交道这绝对是一个很好的选择，偶然的收获带来想不到的惊喜！</p>
 			</div>
 			<hr class="post-end">
@@ -169,7 +149,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1540 字
+					1537 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -179,24 +159,16 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#前言"><strong>前言</strong></a></li>
-<li><a href="#简介"><strong>简介</strong></a></li>
-<li><a href="#正文"><strong>正文</strong></a>
-<ul>
-<li><a href="#安装sublime-text-3">安装Sublime text 3</a></li>
-<li><a href="#插件管理工具">插件管理工具</a></li>
-<li><a href="#安装插件">安装插件</a></li>
-<li><a href="#配置主题">配置主题</a></li>
-</ul></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#正文">正文</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -247,7 +219,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

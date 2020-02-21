@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="解决macOS下vim不能访问系统剪切板的问题">
 <meta itemprop="description" content="又好久没写博文了，最近忙工作的事情，焦头烂额，最近总算有些时间来干点自己的事情了，本文就说一下一直困扰我很久的问题，macOS下系统自带的vim不支持访问系统剪切板的问题，即不支持寄存器 &#43; 和 * 的问题。">
-
-
 <meta itemprop="datePublished" content="2016-11-17T22:25:42&#43;08:00" />
 <meta itemprop="dateModified" content="2016-11-17T22:25:42&#43;08:00" />
 <meta itemprop="wordCount" content="332">
 
 
 
-<meta itemprop="keywords" content="vim," />
-<meta property="og:title" content="解决macOS下vim不能访问系统剪切板的问题" />
+<meta itemprop="keywords" content="vim," /><meta property="og:title" content="解决macOS下vim不能访问系统剪切板的问题" />
 <meta property="og:description" content="又好久没写博文了，最近忙工作的事情，焦头烂额，最近总算有些时间来干点自己的事情了，本文就说一下一直困扰我很久的问题，macOS下系统自带的vim不支持访问系统剪切板的问题，即不支持寄存器 &#43; 和 * 的问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/11/17/vim-clipboard-macos/" />
@@ -84,13 +81,10 @@
 			</header>
 			<div class="content">
 				<p>又好久没写博文了，最近忙工作的事情，焦头烂额，最近总算有些时间来干点自己的事情了，本文就说一下一直困扰我很久的问题，macOS下系统自带的vim不支持访问系统剪切板的问题，即不支持寄存器 <strong>+</strong> 和 * 的问题。</p>
-
 <p>网上了解到用homebrew安装的vim是支持的，所以通过以下命令安装vim即可：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install vim --override-system-vim</code></pre></div>
-<p>顺利的话就会安装成功！</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install vim --override-system-vim
+</code></pre></div><p>顺利的话就会安装成功！</p>
 <p>但是执行which vim，你会发现还是指向系统自带的vim目录<code>/usr/bin/vim</code>，不要紧只需要重新开启一个终端窗口即可，再执行which vim，就会发现变成了<code>/usr/local/bin/vim</code>。</p>
-
 <p>然后再重新打开的终端里，用vim打开一个文件就可以用 + 和 * 寄存器了，从而完成vim向系统其其他GUI软件中粘贴文本和将剪切板里的内容粘贴到vim里了。</p>
 			</div>
 			<hr class="post-end">
@@ -155,7 +149,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

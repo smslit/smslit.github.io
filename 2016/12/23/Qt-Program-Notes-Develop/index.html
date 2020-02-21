@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Qt开发学习问题解决笔记">
 <meta itemprop="description" content="本文主要用来整理学习Qt开发过程中遇到的问题及解决办法，会持续更新。">
-
-
 <meta itemprop="datePublished" content="2016-12-23T21:23:00&#43;08:00" />
 <meta itemprop="dateModified" content="2016-12-23T21:23:00&#43;08:00" />
 <meta itemprop="wordCount" content="1551">
 
 
 
-<meta itemprop="keywords" content="qt," />
-<meta property="og:title" content="Qt开发学习问题解决笔记" />
+<meta itemprop="keywords" content="qt," /><meta property="og:title" content="Qt开发学习问题解决笔记" />
 <meta property="og:description" content="本文主要用来整理学习Qt开发过程中遇到的问题及解决办法，会持续更新。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/12/23/Qt-Program-Notes-Develop/" />
@@ -84,9 +81,7 @@
 			</header>
 			<div class="content">
 				<p>本文主要用来整理学习Qt开发过程中遇到的问题及解决办法，会持续更新。</p>
-
 <p>更新表：</p>
-
 <table>
 <thead>
 <tr>
@@ -94,142 +89,119 @@
 <th>更新内容</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>2016-02-27</td>
 <td>QtSerialport库使用时编译错误</td>
 </tr>
-
 <tr>
 <td>&hellip;</td>
 <td>macOS下程序图标设置问题</td>
 </tr>
-
 <tr>
 <td></td>
 <td>Linux下Qt的<code>can't find lGL问题</code></td>
 </tr>
-
 <tr>
 <td></td>
 <td>Linux下无法启动Qt帮助问题</td>
 </tr>
-
 <tr>
 <td>2016-12-27</td>
 <td>Linux下Qt添加中文Fctix输入法支持</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="qtserialport库编译错误">QtSerialport库编译错误</h3>
-
 <h4 id="现象">现象</h4>
-
 <p>QtSerialport使用时，虽然包含了头文件，但仍然会爆出错误，linux和macOS下都会这样。</p>
-
 <h5 id="linux下">linux下</h5>
-
 <p>QtSerialport库编译错误undefined reference</p>
-
 <p>编译错误提示类似如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">C:<span class="se">\U</span>sers<span class="se">\s</span>mslit<span class="se">\D</span>ocuments<span class="se">\w</span>orkspace<span class="se">\Q</span>t<span class="se">\b</span>uild-teatSerial-Desktop_Qt_5_5_0_MinGW_32bit-Debug/../teatSerial/mainwindow.cpp:
-<span class="m">24</span>: undefined reference to <span class="sb">`</span> _imp___ZN11QSerialPort11setPortNameERK7QString<span class="s1">&#39;
+24: undefined reference to <span class="sb">`</span> _imp___ZN11QSerialPort11setPortNameERK7QString<span class="s1">&#39;
 </span><span class="s1">C:\Users\smslit\Documents\workspace\Qt\build-teatSerial-Desktop_Qt_5_5_0_MinGW_32bit-Debug/../teatSerial/mainwindow.cpp:
 </span><span class="s1">25: undefined reference to ` _imp___ZN11QSerialPort9setParityENS_6ParityE&#39;</span>
 C:<span class="se">\U</span>sers<span class="se">\s</span>mslit<span class="se">\D</span>ocuments<span class="se">\w</span>orkspace<span class="se">\Q</span>t<span class="se">\b</span>uild-teatSerial-Desktop_Qt_5_5_0_MinGW_32bit-Debug/../teatSerial/mainwindow.cpp:
-<span class="m">26</span>: undefined reference to <span class="sb">`</span> _imp___ZN11QSerialPort11setDataBitsENS_8DataBitsE<span class="s1">&#39;
+26: undefined reference to <span class="sb">`</span> _imp___ZN11QSerialPort11setDataBitsENS_8DataBitsE<span class="s1">&#39;
 </span><span class="s1">C:\Users\smslit\Documents\workspace\Qt\build-teatSerial-Desktop_Qt_5_5_0_MinGW_32bit-Debug/../teatSerial/mainwindow.cpp:
 </span><span class="s1">27: undefined reference to ` _imp___ZN11QSerialPort11setStopBitsENS_8StopBitsE&#39;</span>
 C:<span class="se">\U</span>sers<span class="se">\s</span>mslit<span class="se">\D</span>ocuments<span class="se">\w</span>orkspace<span class="se">\Q</span>t<span class="se">\b</span>uild-teatSerial-Desktop_Qt_5_5_0_MinGW_32bit-Debug/../teatSerial/mainwindow.cpp:
-<span class="m">28</span>: undefined reference to <span class="sb">`</span> _imp___ZN11QSerialPort17setReadBufferSizeEx<span class="s1">&#39;
+28: undefined reference to <span class="sb">`</span> _imp___ZN11QSerialPort17setReadBufferSizeEx<span class="s1">&#39;
 </span><span class="s1">C:\Users\smslit\Documents\workspace\Qt\build-teatSerial-Desktop_Qt_5_5_0_MinGW_32bit-Debug/../teatSerial/mainwindow.cpp:
-</span><span class="s1">29: undefined reference to ` _imp___ZN11QSerialPort14setFlowControlENS_11FlowControlE&#39;</span></code></pre></div>
-<h5 id="macos下">macOS下</h5>
-
+</span><span class="s1">29: undefined reference to ` _imp___ZN11QSerialPort14setFlowControlENS_11FlowControlE&#39;</span>
+</code></pre></div><h5 id="macos下">macOS下</h5>
 <p>编译会有类似提示如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Undefined symbols <span class="k">for</span> architecture x86_64:
   <span class="s2">&#34;QSerialPort::setBaudRate(int, QFlags&lt;QSerialPort::Direction&gt;)&#34;</span>, referenced from:
-      MainWindow::on_openPortButton_clicked<span class="o">()</span> in mainwindow.o
+      MainWindow::on_openPortButton_clicked<span class="o">(</span><span class="o">)</span> in mainwindow.o
   <span class="s2">&#34;QSerialPort::setDataBits(QSerialPort::DataBits)&#34;</span>, referenced from:
-      MainWindow::on_openPortButton_clicked<span class="o">()</span> in mainwindow.o
+      MainWindow::on_openPortButton_clicked<span class="o">(</span><span class="o">)</span> in mainwindow.o
   .
   .
   .
   <span class="s2">&#34;QSerialPortInfo::portName() const&#34;</span>, referenced from:
-      MainWindow::fillPortsInfo<span class="o">()</span> in mainwindow.o
+      MainWindow::fillPortsInfo<span class="o">(</span><span class="o">)</span> in mainwindow.o
 ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span class="k">for</span> architecture x86_64
-clang: error: linker <span class="nb">command</span> failed with <span class="nb">exit</span> code <span class="m">1</span> <span class="o">(</span>use -v to see invocation<span class="o">)</span></code></pre></div>
-<h4 id="解决办法"><strong>解决办法</strong></h4>
-
+clang: error: linker <span class="nb">command</span> failed with <span class="nb">exit</span> code <span class="m">1</span> <span class="o">(</span>use -v to see invocation<span class="o">)</span>
+</code></pre></div><h4 id="解决办法"><strong>解决办法</strong></h4>
 <p>在工程的pro文件中的第一行加入以下内容，再次编译即可通过：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">QT</span>  <span class="o">+=</span> <span class="n">serialport</span></code></pre></div>
-<h3 id="mac-osx下qt设置程序的图标">Mac OSX下QT设置程序的图标</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">QT</span>  <span class="o">+</span><span class="o">=</span> <span class="n">serialport</span>
+</code></pre></div><h3 id="mac-osx下qt设置程序的图标">Mac OSX下QT设置程序的图标</h3>
 <ul>
-<li><p>第一步，设计好自己想要的icns图标，比如图标命名时app.icns，放到工程根目录，如下图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/xnnv2.png" alt="1" /></p></li>
-
-<li><p>第二步，在pro文件中，加入新的一行，内容为  <strong>ICON = app.icns</strong>，其中app.icns为你的图标文件名。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/95srw.png" alt="2" /></p></li>
-
-<li><p>第三步，选择release，编译即可生成APP，app效果如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gwrag.png" alt="3" /></p></li>
+<li>
+<p>第一步，设计好自己想要的icns图标，比如图标命名时app.icns，放到工程根目录，如下图：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/xnnv2.png" alt="1"></p>
+</li>
+<li>
+<p>第二步，在pro文件中，加入新的一行，内容为  <strong>ICON = app.icns</strong>，其中app.icns为你的图标文件名。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/95srw.png" alt="2"></p>
+</li>
+<li>
+<p>第三步，选择release，编译即可生成APP，app效果如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gwrag.png" alt="3"></p>
+</li>
 </ul>
-
-<h3 id="cannot-find-lgl">cannot find -lGL</h3>
-
+<h3 id="cannot-find--lgl">cannot find -lGL</h3>
 <p>Ubuntu下Qt编译错误：cannot find -lGL</p>
-
 <p>在编译之前常见的一个小工程（在mac下创建的）的时候，出现lGL错误，我以为是不兼容，但又新建了一个项目，编译出错：</p>
-
 <blockquote>
 <p>cannot find -lGL。</p>
 </blockquote>
-
 <p>经过了解是因为缺少文件导致，需要安装部分文件，网上找到的解决方案是：安装<code>libqt4-dev</code>或者<code>libgl1-mesa-dev</code>或者<code>libgl1-mesa-dev</code>或者<code>libglu1-mesa-dev</code></p>
-
 <p>我只尝试了安装<code>libqt4-dev</code>，在Teminal中执行一下命令安装相关库文件，然后编译就成功了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get isntall libqt4-dev</code></pre></div>
-<h3 id="无法启动help插件">无法启动help插件</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get isntall libqt4-dev
+</code></pre></div><h3 id="无法启动help插件">无法启动help插件</h3>
 <p>Ubuntu下qtceator后无法启动help插件</p>
-
 <p>安装好qt5.5后启动qtceator时提示：</p>
-
 <blockquote>
 <p>/opt/Qt5.5.1/Tools/QtCreator/lib/qtcreator/plugins/libHelp.so: 无法加载库/opt/Qt5.5.1/Tools/QtCreator/lib/qtcreator/plugins/libHelp.so：(libgstapp-0.10.so.0: 无法打开共享对象文件: 没有那个文件或目录)</p>
 </blockquote>
-
 <p>一定时缺少库造成的，可能是因为Qt帮助是采用流媒体的方式加载，尝试安装流媒体库文件，来解决，如下来安装：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get  install libgstreamer0.10-dev
-sudo apt-get  install libgstreamer-plugins-base0.10-dev</code></pre></div>
-<h3 id="linux下添加qt的中文输入支持">Linux下添加Qt的中文输入支持</h3>
-
+sudo apt-get  install libgstreamer-plugins-base0.10-dev
+</code></pre></div><h3 id="linux下添加qt的中文输入支持">Linux下添加Qt的中文输入支持</h3>
 <h4 id="现象-1">现象</h4>
-
 <p>在linux下用Qt在写一个小工具，想在使用过程中输入中文，发现怎么也不行，后来发现Qt编译后的程序也不支持中文输入，最终定位原因在未安装fctix输入法的支持，我的输入法是搜狗，其基于fctix，所以不支持，只需安装相应库并放倒两个目录下解决。</p>
-
 <h4 id="解决方法">解决方法</h4>
-
 <ul>
-<li><p>首先得安装fcitx-libs-qt和fcitx-libs-qt5这两个库：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install fcitx-libs-qt fcitx-libs-qt5</code></pre></div></li>
-
-<li><p>在<code>/usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/</code>目录下找到<code>libfcitxplatforminputcontextplugin.so</code>，将其拷贝到随便一个目录，比如Downloads，然后加运行权限：</p>
+<li>
+<p>首先得安装fcitx-libs-qt和fcitx-libs-qt5这两个库：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install fcitx-libs-qt fcitx-libs-qt5
+</code></pre></div></li>
+<li>
+<p>在<code>/usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/</code>目录下找到<code>libfcitxplatforminputcontextplugin.so</code>，将其拷贝到随便一个目录，比如Downloads，然后加运行权限：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so ~/Downloads
 <span class="nb">cd</span> ~/Downloads
-chmod +x libfcitxplatforminputcontextplugin.so</code></pre></div></li>
-
-<li><p>然后将这个库文件分别放到两个目录下，下面命令中<code>QT安装目录</code>替换为QT的安装目录，比如我的<code>/opt/Qt5.7／</code>：</p>
+chmod +x libfcitxplatforminputcontextplugin.so
+</code></pre></div></li>
+<li>
+<p>然后将这个库文件分别放到两个目录下，下面命令中<code>QT安装目录</code>替换为QT的安装目录，比如我的<code>/opt/Qt5.7／</code>：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 解决Qt中不能输入中文的问题</span>
 cp libfcitxplatforminputcontextplugin.so QT安装目录/Tools/QtCreator/lib/Qt/plugins/platforminputcontexts/
 <span class="c1"># 解决Qt编译出的程序不支持中文输入的问题</span>
-cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platforminputcontexts/</code></pre></div></li>
+cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platforminputcontexts/
+</code></pre></div></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -249,31 +221,17 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#qtserialport库编译错误">QtSerialport库编译错误</a>
-<ul>
-<li><a href="#现象">现象</a>
-<ul>
-<li><a href="#linux下">linux下</a></li>
-<li><a href="#macos下">macOS下</a></li>
-</ul></li>
-<li><a href="#解决办法"><strong>解决办法</strong></a></li>
-</ul></li>
-<li><a href="#mac-osx下qt设置程序的图标">Mac OSX下QT设置程序的图标</a></li>
-<li><a href="#cannot-find-lgl">cannot find -lGL</a></li>
-<li><a href="#无法启动help插件">无法启动help插件</a></li>
-<li><a href="#linux下添加qt的中文输入支持">Linux下添加Qt的中文输入支持</a>
-<ul>
-<li><a href="#现象-1">现象</a></li>
-<li><a href="#解决方法">解决方法</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#qtserialport库编译错误">QtSerialport库编译错误</a></li>
+        <li><a href="#mac-osx下qt设置程序的图标">Mac OSX下QT设置程序的图标</a></li>
+        <li><a href="#cannot-find--lgl">cannot find -lGL</a></li>
+        <li><a href="#无法启动help插件">无法启动help插件</a></li>
+        <li><a href="#linux下添加qt的中文输入支持">Linux下添加Qt的中文输入支持</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -324,7 +282,7 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

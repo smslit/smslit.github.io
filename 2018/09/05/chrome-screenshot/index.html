@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="chrome网页长截图神技">
 <meta itemprop="description" content="相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 爬虫实践之网页长截图。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！">
-
-
 <meta itemprop="datePublished" content="2018-09-05T16:48:03&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-05T16:48:03&#43;08:00" />
 <meta itemprop="wordCount" content="732">
 
 
 
-<meta itemprop="keywords" content="life," />
-<meta property="og:title" content="chrome网页长截图神技" />
+<meta itemprop="keywords" content="life," /><meta property="og:title" content="chrome网页长截图神技" />
 <meta property="og:description" content="相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 爬虫实践之网页长截图。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/09/05/chrome-screenshot/" />
@@ -83,80 +80,69 @@
 				<h1>chrome网页长截图神技</h1>
 			</header>
 			<div class="content">
-				<p>相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 <a href="/2018/06/27/spider-practice-page-screenshot/" target="_blank">爬虫实践之网页长截图</a>。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！</p>
-
+				<p>相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 <a href="/2018/06/27/spider-practice-page-screenshot/">爬虫实践之网页长截图</a>。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！</p>
 <h2 id="初探">初探</h2>
-
-<p>先简单通过一个例子介绍这个功能的使用，比如截取本博客首页<a href="https://www.smslit.top" target="_blank">https://www.smslit.top</a>。用chrome打开这个网页，下面只需简单的三部就可以得到长截图：</p>
-
+<p>先简单通过一个例子介绍这个功能的使用，比如截取本博客首页<a href="https://www.smslit.top">https://www.smslit.top</a>。用chrome打开这个网页，下面只需简单的三部就可以得到长截图：</p>
 <ol>
-<li><p>调出 <strong>检查</strong> 窗口，如下橙色覆盖区：
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153613901782059.jpg" alt="20180905153613901782059.jpg" /></p>
-
+<li>
+<p>调出 <strong>检查</strong> 窗口，如下橙色覆盖区：
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153613901782059.jpg" alt="20180905153613901782059.jpg"></p>
 <p>调出方式有两种：</p>
-
 <ul>
 <li>右击网页空白处，点击 <strong>检查</strong></li>
 <li>快捷键调出
-
 <ul>
 <li>如果您使用 <strong>windows</strong>，按下 <code>ctrl</code> + <code>alt</code> + <code>i</code>;</li>
 <li>如果您使用 <strong>macOS</strong>，按下  <code>command</code> + <code>option</code> + <code>i</code>;</li>
-</ul></li>
-</ul></li>
-
-<li><p>调出命令入口：</p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>调出命令入口：</p>
 <ul>
 <li>如果您使用 <strong>windows</strong>，按下 <code>ctrl</code> + <code>shift</code> + <code>p</code>;</li>
-<li>如果您使用 <strong>mac</strong>，按下 <code>command</code> + <code>shift</code> + <code>p</code>;
-<br /></li>
+<li>如果您使用 <strong>mac</strong>，按下 <code>command</code> + <code>shift</code> + <code>p</code>;</li>
 </ul>
-
 <p>如下：
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153613951944214.png" alt="20180905153613951944214.png" /></p></li>
-
-<li><p>输入命令 <code>screenshot</code>，你会发现有三个截图方式，长截图就是 <code>Capture full size screenshot</code>：</p>
-
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153613951944214.png" alt="20180905153613951944214.png"></p>
+</li>
+<li>
+<p>输入命令 <code>screenshot</code>，你会发现有三个截图方式，长截图就是 <code>Capture full size screenshot</code>：</p>
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153613971810921.png"
          alt="20180905153613971810921.png" width="480px"/> 
 </figure>
 
-
-<p>单击 <code>capture fullsize screenshot</code> 就可以得到长截图了。</p></li>
+<p>单击 <code>capture fullsize screenshot</code> 就可以得到长截图了。</p>
+</li>
 </ol>
-
 <h2 id="定制尺寸截图">定制尺寸截图</h2>
-
 <p>上一节中有没有感受到chrome截图的便捷性呢？如果您想更进一步得到不同的显示尺寸的页面，请您继续阅读下面的内容，如果上面的操作已经满足您的需要，本节可略过。</p>
-
-<p>还是以<a href="https://www.smslit.top" target="_blank">https://www.smslit.top</a>为例，先使用chrome打开页面。</p>
-
+<p>还是以<a href="https://www.smslit.top">https://www.smslit.top</a>为例，先使用chrome打开页面。</p>
 <ol>
-<li>调出 <strong>检查</strong> 窗口，如上。</li>
-
-<li><p>点击下图橙色标注的按钮，</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614043330795.png" alt="20180905153614043330795.png" /></p>
-
+<li>
+<p>调出 <strong>检查</strong> 窗口，如上。</p>
+</li>
+<li>
+<p>点击下图橙色标注的按钮，</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614043330795.png" alt="20180905153614043330795.png"></p>
 <p>可以看到页面尺寸变化，同时页面上方多出一个工具栏：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614054638208.png" alt="20180905153614054638208.png" /></p></li>
-
-<li><p>单击新出现工具栏最左侧的下拉列表，选择满意的设备尺寸，或者自定义，比如我选择 <strong>iphone X</strong>，页面会有所变化：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614074799871.png" alt="20180905153614074799871.png" /></p></li>
-
-<li><p>此时单击新出现工具栏最右侧的菜单按钮，就会出现一个功能菜单：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614104986640.png" alt="20180905153614104986640.png" /></p></li>
-
-<li><p>选择其中的 <code>Capture full size screenshot</code> 就可以得到想要的长截图了。</p></li>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614054638208.png" alt="20180905153614054638208.png"></p>
+</li>
+<li>
+<p>单击新出现工具栏最左侧的下拉列表，选择满意的设备尺寸，或者自定义，比如我选择 <strong>iphone X</strong>，页面会有所变化：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614074799871.png" alt="20180905153614074799871.png"></p>
+</li>
+<li>
+<p>此时单击新出现工具栏最右侧的菜单按钮，就会出现一个功能菜单：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180905153614104986640.png" alt="20180905153614104986640.png"></p>
+</li>
+<li>
+<p>选择其中的 <code>Capture full size screenshot</code> 就可以得到想要的长截图了。</p>
+</li>
 </ol>
-
 <h2 id="总结">总结</h2>
-
 <p>经过本文想必您已经掌握长截图这一神技，如果您一直习惯使用chrome，这应该是您需要的。</p>
 			</div>
 			<hr class="post-end">
@@ -176,14 +162,11 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#初探">初探</a></li>
-<li><a href="#定制尺寸截图">定制尺寸截图</a></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#初探">初探</a></li>
+    <li><a href="#定制尺寸截图">定制尺寸截图</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -234,7 +217,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

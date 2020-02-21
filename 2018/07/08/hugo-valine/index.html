@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="hugo博客添加评论系统Valine">
 <meta itemprop="description" content="博客已经基本从 hexo 迁移到 hugo ，对使用的 Even 主题非常满意，虽自带了评论系统 gitment 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 valine，本文就讲一下如何在 Even 中添加 Valine 的支持。">
-
-
 <meta itemprop="datePublished" content="2018-07-08T17:01:05&#43;08:00" />
 <meta itemprop="dateModified" content="2018-07-08T17:01:05&#43;08:00" />
-<meta itemprop="wordCount" content="2250">
+<meta itemprop="wordCount" content="2247">
 
 
 
-<meta itemprop="keywords" content="hugo,comment," />
-<meta property="og:title" content="hugo博客添加评论系统Valine" />
+<meta itemprop="keywords" content="hugo,comment," /><meta property="og:title" content="hugo博客添加评论系统Valine" />
 <meta property="og:description" content="博客已经基本从 hexo 迁移到 hugo ，对使用的 Even 主题非常满意，虽自带了评论系统 gitment 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 valine，本文就讲一下如何在 Even 中添加 Valine 的支持。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/07/08/hugo-valine/" />
@@ -83,20 +80,20 @@
 				<h1>hugo博客添加评论系统Valine</h1>
 			</header>
 			<div class="content">
-				<p>博客已经基本从 <a href="https://hexo.io" target="_blank">hexo</a> 迁移到 <a href="https://gohugo.io/" target="_blank">hugo</a> ，对使用的 <a href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a> 主题非常满意，虽自带了评论系统 <a href="https://github.com/imsun/gitment" target="_blank">gitment</a> 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 <a href="https://valine.js.org/" target="_blank">valine</a>，本文就讲一下如何在 <a href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a> 中添加 <a href="https://valine.js.org/" target="_blank">Valine</a> 的支持。</p>
-
+				<p>博客已经基本从 <a href="https://hexo.io">hexo</a> 迁移到 <a href="https://gohugo.io/">hugo</a> ，对使用的 <a href="https://github.com/olOwOlo/hugo-theme-even">Even</a> 主题非常满意，虽自带了评论系统 <a href="https://github.com/imsun/gitment">gitment</a> 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 <a href="https://valine.js.org/">valine</a>，本文就讲一下如何在 <a href="https://github.com/olOwOlo/hugo-theme-even">Even</a> 中添加 <a href="https://valine.js.org/">Valine</a> 的支持。</p>
 <blockquote>
 <p>Valine - 一款快速、简洁且高效的无后端评论系统。</p>
-
-<p>Valine 诞生于2017年8月7日，是一款基于Leancloud的快速、简洁且高效的无后端评论系统。</p>
-
-<p>理论上支持但不限于静态博客，目前已有Hexo、Jekyll、Typecho等博客程序在使用Valine。</p>
-
-<p><a href="https://valine.js.org" target="_blank">@Valine</a></p>
 </blockquote>
-
+<blockquote>
+<p>Valine 诞生于2017年8月7日，是一款基于Leancloud的快速、简洁且高效的无后端评论系统。</p>
+</blockquote>
+<blockquote>
+<p>理论上支持但不限于静态博客，目前已有Hexo、Jekyll、Typecho等博客程序在使用Valine。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://valine.js.org">@Valine</a></p>
+</blockquote>
 <p>所以，理论上它也是支持 <strong>Hugo</strong> 的， 实践证明，确实如此。其特性如下：</p>
-
 <ul>
 <li>快速</li>
 <li>安全</li>
@@ -106,22 +103,16 @@
 <li>轻量易用(~15kb gzipped)</li>
 <li>文章阅读量统计 v1.2.0-beta1+</li>
 </ul>
-
-<p>这么好的评论系统，值得宣传，希望看到此文章的童鞋，也支持一下 <a href="https://valine.js.org/#捐赠" target="_blank">Valine</a>。下面就讲一下我是如何一步步添加 <a href="https://valine.js.org" target="_blank">Valine</a> 支持的。</p>
-
+<p>这么好的评论系统，值得宣传，希望看到此文章的童鞋，也支持一下 <a href="https://valine.js.org/#%E6%8D%90%E8%B5%A0">Valine</a>。下面就讲一下我是如何一步步添加 <a href="https://valine.js.org">Valine</a> 支持的。</p>
 <p><strong>Tips:</strong></p>
-
 <ul>
 <li>整个过程，是以<strong>Even</strong>主题为例的，其它主题操作大同小异。</li>
-<li>配置之前应该先阅读<a href="https://valine.js.org/quickstart.html" target="_blank">Valine快速开始</a></li>
+<li>配置之前应该先阅读<a href="https://valine.js.org/quickstart.html">Valine快速开始</a></li>
 </ul>
-
 <h2 id="leancloud相关配置">Leancloud相关配置</h2>
-
 <p>评论系统依赖于leancloud，所以需要先在leancloud中进行相关的准备工作。</p>
-
 <ul>
-<li><a href="https://leancloud.cn/dashboard/login.html#/signin" target="_blank">登录</a> 或 <a href="https://leancloud.cn/dashboard/login.html#/signup" target="_blank">注册</a> LeanCloud</li>
+<li><a href="https://leancloud.cn/dashboard/login.html#/signin">登录</a> 或 <a href="https://leancloud.cn/dashboard/login.html#/signup">注册</a> LeanCloud</li>
 <li>登录成功后，进入后台点击左上角的创建应用：
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180708153104380829479.png" width="80%"/> 
@@ -144,9 +135,7 @@
 </figure>
 </li>
 </ul>
-
-<h2 id="config-toml添加参数">config.toml添加参数</h2>
-
+<h2 id="configtoml添加参数">config.toml添加参数</h2>
 <p>为了使配置更灵活，将 <strong>Valine</strong> 中大部分初始化参数项均设置为配置文件中的参数项，在 <strong>config.toml</strong> 的适当位置，比如我的文件中 <strong>[params.gitment]</strong> 的下面：</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">gitment</span><span class="p">]</span>          <span class="c"># Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment</span>
     <span class="nx">owner</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>              <span class="c"># Your GitHub ID</span>
@@ -154,8 +143,9 @@
     <span class="nx">clientId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>           <span class="c"># Your client ID</span>
     <span class="nx">clientSecret</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>       <span class="c"># Your client secret</span>
 
-  <span class="c"># 这里添加Valine的相关参数</span></code></pre></div>
-<p>添加 <strong>Valine</strong> 参数项：</p>
+  <span class="c"># 这里添加Valine的相关参数</span>
+
+</code></pre></div><p>添加 <strong>Valine</strong> 参数项：</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml">  <span class="c"># Valine.</span>
   <span class="c"># You can get your appid and appkey from https://leancloud.cn</span>
   <span class="c"># more info please open https://valine.js.org</span>
@@ -167,9 +157,8 @@
     <span class="nx">verify</span> <span class="p">=</span> <span class="kc">false</span> <span class="c"># Verification code</span>
     <span class="nx">avatar</span> <span class="p">=</span> <span class="s1">&#39;mm&#39;</span> 
     <span class="nx">placeholder</span> <span class="p">=</span> <span class="s1">&#39;说点什么吧...&#39;</span>
-    <span class="nx">visitor</span> <span class="p">=</span> <span class="kc">true</span></code></pre></div>
-<p>上面几项内容的含义，这里简单一说，具体还是要看 <a href="https://valine.js.org/configuration.html" target="_blank">Valine官网中配置相关的内容</a>：</p>
-
+    <span class="nx">visitor</span> <span class="p">=</span> <span class="kc">true</span>
+</code></pre></div><p>上面几项内容的含义，这里简单一说，具体还是要看 <a href="https://valine.js.org/configuration.html">Valine官网中配置相关的内容</a>：</p>
 <table>
 <thead>
 <tr>
@@ -177,134 +166,110 @@
 <th align="left">用途</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">enable</td>
 <td align="left">这是用于主题中配置的，不是官方Valine的参数，<strong>true</strong>时控制开启此评论系统</td>
 </tr>
-
 <tr>
 <td align="center">appId</td>
-<td align="left">这是在 <a href="https://leancloud.cn/" target="_blank">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App ID</strong></td>
+<td align="left">这是在 <a href="https://leancloud.cn/">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App ID</strong></td>
 </tr>
-
 <tr>
 <td align="center">appKey</td>
-<td align="left">这是在 <a href="https://leancloud.cn/" target="_blank">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App Key</strong></td>
+<td align="left">这是在 <a href="https://leancloud.cn/">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App Key</strong></td>
 </tr>
-
 <tr>
 <td align="center">notify</td>
-<td align="left">用于控制是否开启邮件通知功能，具体参考<a href="https://github.com/xCss/Valine/wiki/Valine-评论系统中的邮件提醒设置" target="_blank">邮件提醒配置</a></td>
+<td align="left">用于控制是否开启邮件通知功能，具体参考<a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE">邮件提醒配置</a></td>
 </tr>
-
 <tr>
 <td align="center">verify</td>
 <td align="left">用于控制是否开启评论验证码功能</td>
 </tr>
-
 <tr>
 <td align="center">avatar</td>
-<td align="left">用于配置评论项中用户头像样式，有多种选择：mm, identicon, monsterid, wavatar, retro, hide。详细参考：<a href="https://valine.js.org/avatar.html" target="_blank">头像配置</a></td>
+<td align="left">用于配置评论项中用户头像样式，有多种选择：mm, identicon, monsterid, wavatar, retro, hide。详细参考：<a href="https://valine.js.org/avatar.html">头像配置</a></td>
 </tr>
-
 <tr>
 <td align="center">placehoder</td>
 <td align="left">评论框的提示符</td>
 </tr>
-
 <tr>
 <td align="center">visitor</td>
-<td align="left">控制是否开启文章阅读数的统计功能i, 详情阅读<a href="https://valine.js.org/visitor.html" target="_blank">文章阅读数统计</a></td>
+<td align="left">控制是否开启文章阅读数的统计功能i, 详情阅读<a href="https://valine.js.org/visitor.html">文章阅读数统计</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="修改主题文件">修改主题文件</h2>
-
-<p>主要是修改主题中评论相关的布局文件 <code>themes/even/layouts/partials/comments.html</code>，按照 <a href="https://valine.js.org/quickstart.html" target="_blank">Valine快速开始</a> 添加 <strong>Valine</strong> 相关代码，找到以下位置，大概55～81行的位置：</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="c">&lt;!-- gitment --&gt;</span>
+<p>主要是修改主题中评论相关的布局文件 <code>themes/even/layouts/partials/comments.html</code>，按照 <a href="https://valine.js.org/quickstart.html">Valine快速开始</a> 添加 <strong>Valine</strong> 相关代码，找到以下位置，大概55～81行的位置：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="c">&lt;!--</span><span class="c"> gitment </span><span class="c">--&gt;</span>
   {{- if .Site.Params.gitment.enable -}}
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;comments-gitment&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="c">&lt;!--这里省略了部分代码--&gt;</span>
-  <span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>Please enable JavaScript to view the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/imsun/gitment&#34;</span><span class="p">&gt;</span>comments powered by gitment.<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;comments-gitment&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="c">&lt;!--</span><span class="c">这里省略了部分代码</span><span class="c">--&gt;</span>
+  <span class="p">&lt;</span><span class="nt">noscript</span><span class="p"></span><span class="p">&gt;</span>Please enable JavaScript to view the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://github.com/imsun/gitment&#34;</span><span class="p"></span><span class="p">&gt;</span>comments powered by gitment.<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">noscript</span><span class="p">&gt;</span>
   {{- end }}
 
-  <span class="c">&lt;!--这个位置添加Valine相关代码--&gt;</span></code></pre></div>
-<p>添加的 <strong>Valine</strong> 评论的代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="c">&lt;!-- valine --&gt;</span>
+  <span class="c">&lt;!--</span><span class="c">这个位置添加Valine相关代码</span><span class="c">--&gt;</span>
+</code></pre></div><p>添加的 <strong>Valine</strong> 评论的代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="c">&lt;!--</span><span class="c"> valine </span><span class="c">--&gt;</span>
   {{- if .Site.Params.valine.enable -}}
-  <span class="c">&lt;!-- id 将作为查询条件 --&gt;</span>
-  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;{{ .URL | relURL }}&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leancloud_visitors&#34;</span> <span class="na">data-flag-title</span><span class="o">=</span><span class="s">&#34;{{ .Title }}&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta-item-text&#34;</span><span class="p">&gt;</span>文章阅读量 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leancloud-visitors-count&#34;</span><span class="p">&gt;</span>1000000<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;vcomments&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;//cdn1.lncld.net/static/js/3.0.4/av-min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#39;//unpkg.com/valine/dist/Valine.min.js&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
-    <span class="k">new</span> <span class="nx">Valine</span><span class="p">({</span>
+  <span class="c">&lt;!--</span><span class="c"> id 将作为查询条件 </span><span class="c">--&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;{{ .URL | relURL }}&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leancloud_visitors&#34;</span> <span class="na">data-flag-title</span><span class="o">=</span><span class="s">&#34;{{ .Title }}&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta-item-text&#34;</span><span class="p"></span><span class="p">&gt;</span>文章阅读量 <span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leancloud-visitors-count&#34;</span><span class="p"></span><span class="p">&gt;</span>1000000<span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;vcomments&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;//cdn1.lncld.net/static/js/3.0.4/av-min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#39;//unpkg.com/valine/dist/Valine.min.js&#39;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="k">new</span> <span class="nx">Valine</span><span class="p">(</span><span class="p">{</span>
         <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#vcomments&#39;</span> <span class="p">,</span>
         <span class="nx">appId</span><span class="o">:</span> <span class="s1">&#39;{{ .Site.Params.valine.appId }}&#39;</span><span class="p">,</span>
         <span class="nx">appKey</span><span class="o">:</span> <span class="s1">&#39;{{ .Site.Params.valine.appKey }}&#39;</span><span class="p">,</span>
-        <span class="nx">notify</span><span class="o">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">valine</span><span class="p">.</span><span class="nx">notify</span> <span class="p">}},</span> 
-        <span class="nx">verify</span><span class="o">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">valine</span><span class="p">.</span><span class="nx">verify</span> <span class="p">}},</span> 
+        <span class="nx">notify</span><span class="o">:</span> <span class="p">{</span><span class="p">{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">valine</span><span class="p">.</span><span class="nx">notify</span> <span class="p">}</span><span class="p">}</span><span class="p">,</span> 
+        <span class="nx">verify</span><span class="o">:</span> <span class="p">{</span><span class="p">{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">valine</span><span class="p">.</span><span class="nx">verify</span> <span class="p">}</span><span class="p">}</span><span class="p">,</span> 
         <span class="nx">avatar</span><span class="o">:</span><span class="s1">&#39;{{ .Site.Params.valine.avatar }}&#39;</span><span class="p">,</span> 
         <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">&#39;{{ .Site.Params.valine.placeholder }}&#39;</span><span class="p">,</span>
-        <span class="nx">visitor</span><span class="o">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">valine</span><span class="p">.</span><span class="nx">visitor</span> <span class="p">}}</span>
-    <span class="p">});</span>
-  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  {{- end }}</code></pre></div>
-<p>可以看到上述代码中引用了配置文件中的相关参数，这样以后修改配置就不用修改代码了，只需要改配置文件 <code>config.toml</code>，另外注意到的是，我也添加了文章阅读数统计的显示内容。将配置文件中 <strong>valine</strong> 配置的 <code>eanble</code> 设置为 <code>true</code> ，本地测试一下，正常的话，打开一篇文章会看到：</p>
-
+        <span class="nx">visitor</span><span class="o">:</span> <span class="p">{</span><span class="p">{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">valine</span><span class="p">.</span><span class="nx">visitor</span> <span class="p">}</span><span class="p">}</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+  {{- end }}
+</code></pre></div><p>可以看到上述代码中引用了配置文件中的相关参数，这样以后修改配置就不用修改代码了，只需要改配置文件 <code>config.toml</code>，另外注意到的是，我也添加了文章阅读数统计的显示内容。将配置文件中 <strong>valine</strong> 配置的 <code>eanble</code> 设置为 <code>true</code> ，本地测试一下，正常的话，打开一篇文章会看到：</p>
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180708153104555886981.png"/> 
 </figure>
 
-
 <p>此时，生成静态博客文件，部署到自己的托管平台，正常的话打开博客中的一篇文章，就可以看到正常的文章计数和评论框了，此时随便评论一条，验证一下，评论如果成功，可以去leancloud后台看一下 <code>Comment</code> 和 <code>Counter</code>存储中新加了相应网址的条目。</p>
-
 <h2 id="完善评论通知">完善评论通知</h2>
-
-<p><strong>Valine</strong> 评论邮件提醒功能不太健全，通知邮件中没有文章直达链接，<strong>Valine</strong> 官网中提供了评论系统第三方功能扩展<a href="https://github.com/zhaojun1998/Valine-Admin" target="_blank">Valine</a>链接，按照链接中的说明，非常详细的步骤，一步步很容易实现完备的评论系统后台管理以及邮件提醒功能，部分高级配置<a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/高级配置.md#自定义邮件服务器" target="_blank">点我</a>了解，这里简单列举步骤如下：</p>
-
+<p><strong>Valine</strong> 评论邮件提醒功能不太健全，通知邮件中没有文章直达链接，<strong>Valine</strong> 官网中提供了评论系统第三方功能扩展<a href="https://github.com/zhaojun1998/Valine-Admin">Valine</a>链接，按照链接中的说明，非常详细的步骤，一步步很容易实现完备的评论系统后台管理以及邮件提醒功能，部分高级配置<a href="https://github.com/zhaojun1998/Valine-Admin/blob/master/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8">点我</a>了解，这里简单列举步骤如下：</p>
 <ul>
 <li>进入leancloud后台相关应用，<strong>云引擎</strong> 中部署链接中对应的代码；</li>
 <li>添加环境变量，此时就可以使用；</li>
 <li><strong>云引擎</strong> —— <strong>设置</strong> —— <strong>Web主机域名</strong>，然后进入 <strong>存储</strong> —— <strong>_User</strong> 添加一个用户，只需 User，password，email 三个信息即可，为了安全email必须是第二步中设置的发送邮箱 <strong>SMTP_USER</strong> 或站长邮箱 <strong>TO_EMAIL</strong>;此时可以使用定义的主机域名登录后台管理系统了，用户名为刚设置的邮箱；</li>
 <li>LeanCloud 休眠策略的话，我自己有一个VPS，所以在VPS中设置了定时任务去唤醒我的leancloud应用，远程登录VPS系统，执行命令<code>crontab -e</code> 即可使用vim编辑任务，填入内容<code>*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn</code>，任务中替换自己的主机域名，保存即可生效；</li>
 </ul>
-
 <p>登录上面主机域名进入后台瞅一瞅：</p>
-
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018070815310476526255.png" width="480"/> 
 </figure>
 
-
 <p>我自己沙发了一条评论，进入后台后可以看到：</p>
-
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180708153104781462098.png"/> 
 </figure>
 
-
 <p>同时，我也收到了通知邮件：</p>
-
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180708153104796086245.png"/> 
 </figure>
 
-
 <p>至此完成了 <strong>Valine</strong> 评论系统的添加和完善，喝杯咖啡☕️庆祝一下！</p>
-
 <h2 id="参考">参考</h2>
-
 <ul>
-<li><a href="https://valine.js.org" target="_blank">Valine</a></li>
-<li><a href="https://github.com/zhaojun1998/Valine-Admin" target="_blank">Valine-Admin</a></li>
+<li><a href="https://valine.js.org">Valine</a></li>
+<li><a href="https://github.com/zhaojun1998/Valine-Admin">Valine-Admin</a></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -314,7 +279,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2250 字
+					2247 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -324,16 +289,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#leancloud相关配置">Leancloud相关配置</a></li>
-<li><a href="#config-toml添加参数">config.toml添加参数</a></li>
-<li><a href="#修改主题文件">修改主题文件</a></li>
-<li><a href="#完善评论通知">完善评论通知</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#leancloud相关配置">Leancloud相关配置</a></li>
+    <li><a href="#configtoml添加参数">config.toml添加参数</a></li>
+    <li><a href="#修改主题文件">修改主题文件</a></li>
+    <li><a href="#完善评论通知">完善评论通知</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -384,7 +346,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

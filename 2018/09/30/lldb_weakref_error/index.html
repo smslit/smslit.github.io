@@ -17,17 +17,15 @@ Traceback (most recent call last):
   File &#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&#34;, line 14, in &lt;module&gt;
     from _weakref import (
 ImportError: cannot import name _remove_dead_weakref
-Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39; or Ctrl-D.">
-
-
+Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39; or Ctrl-D.
+">
 <meta itemprop="datePublished" content="2018-09-30T12:01:47&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-30T12:01:47&#43;08:00" />
-<meta itemprop="wordCount" content="548">
+<meta itemprop="wordCount" content="552">
 
 
 
-<meta itemprop="keywords" content="develop," />
-<meta property="og:title" content="macOS下lldb遇到_remove_dead_weakref的Import_Error" />
+<meta itemprop="keywords" content="develop," /><meta property="og:title" content="macOS下lldb遇到_remove_dead_weakref的Import_Error" />
 <meta property="og:description" content="今天使用lldb遇到了_weakref的Import_Error问题，找了很久才找到合适的解决方法，开此文分享一下。
 $ lldb
 (lldb) script
@@ -38,7 +36,8 @@ Traceback (most recent call last):
   File &#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&#34;, line 14, in &lt;module&gt;
     from _weakref import (
 ImportError: cannot import name _remove_dead_weakref
-Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39; or Ctrl-D." />
+Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39; or Ctrl-D.
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/09/30/lldb_weakref_error/" />
 <meta property="article:published_time" content="2018-09-30T12:01:47+08:00" />
@@ -55,7 +54,8 @@ Traceback (most recent call last):
   File &#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&#34;, line 14, in &lt;module&gt;
     from _weakref import (
 ImportError: cannot import name _remove_dead_weakref
-Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39; or Ctrl-D."/>
+Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39; or Ctrl-D.
+"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -117,42 +117,30 @@ Python Interactive Interpreter. To exit, type &#39;quit()&#39;, &#39;exit()&#39;
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ lldb
 <span class="o">(</span>lldb<span class="o">)</span> script
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">&#34;&lt;input&gt;&#34;</span>, line <span class="m">1</span>, in &lt;module&gt;
-  File <span class="s2">&#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/copy.py&#34;</span>, line <span class="m">52</span>, in &lt;module&gt;
+  File <span class="s2">&#34;&lt;input&gt;&#34;</span>, line 1, in &lt;module&gt;
+  File <span class="s2">&#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/copy.py&#34;</span>, line 52, in &lt;module&gt;
     import weakref
-  File <span class="s2">&#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&#34;</span>, line <span class="m">14</span>, in &lt;module&gt;
+  File <span class="s2">&#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&#34;</span>, line 14, in &lt;module&gt;
     from _weakref import <span class="o">(</span>
 ImportError: cannot import name _remove_dead_weakref
-Python Interactive Interpreter. To exit, <span class="nb">type</span> <span class="s1">&#39;quit()&#39;</span>, <span class="s1">&#39;exit()&#39;</span> or Ctrl-D.</code></pre></div>
-<p>看到错误提示中有个关键字段 <code>/usr/local/Cellar/python/2.7.15</code> ，我们知道macOS下 <strong>homebrew</strong> 安装软件到 <code>/usr/local/Cellar</code> 目录下，所以猜测是不是自己安装的 <strong>python2.7.15</strong> 的问题。</p>
-
+Python Interactive Interpreter. To exit, <span class="nb">type</span> <span class="s1">&#39;quit()&#39;</span>, <span class="s1">&#39;exit()&#39;</span> or Ctrl-D.
+</code></pre></div><p>看到错误提示中有个关键字段 <code>/usr/local/Cellar/python/2.7.15</code> ，我们知道macOS下 <strong>homebrew</strong> 安装软件到 <code>/usr/local/Cellar</code> 目录下，所以猜测是不是自己安装的 <strong>python2.7.15</strong> 的问题。</p>
 <p>那尝试卸载已安装的 <strong>python2.7.15</strong>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">brew uninstall python@2</code></pre></div>
-<p>结果得到提醒：</p>
-<div class="highlight"><pre class="chroma">Error: Refusing to uninstall /usr/local/Cellar/python@2/2.7.15_1
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">brew uninstall python@2
+</code></pre></div><p>结果得到提醒：</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Error: Refusing to uninstall /usr/local/Cellar/python@2/2.7.15_1
 because it is required by mongodb, which is currently installed.
 You can override this and force removal with:
-  brew uninstall --ignore-dependencies python@2</pre></div>
-<p>哎呀，得到提示有依赖问题，没事儿！先按照 <code>brew uninstall --ignore-dependencies python@2</code> 强制卸载看看是不是这个版本python与lldb不兼容，卸载后，运行lldb，果然没有错误了！</p>
-
+  brew uninstall --ignore-dependencies python@2
+</code></pre></div><p>哎呀，得到提示有依赖问题，没事儿！先按照 <code>brew uninstall --ignore-dependencies python@2</code> 强制卸载看看是不是这个版本python与lldb不兼容，卸载后，运行lldb，果然没有错误了！</p>
 <p>看来真的是版本不兼容的问题，但是我还必须安装 <strong>python2.7.15</strong>，因为 <strong>mongodb</strong> 依赖最新的这个版本的python，还必须安装这个版本python，怎么办？</p>
-
-<p>求助google，找到方法，强制 <strong>lldb</strong> 按照系统的 bin 环境运行——<code>PATH=/usr/bin /usr/bin/lldb</code><sup class="footnote-ref" id="fnref:homebrew-Python"><a href="#fn:homebrew-Python">1</a></sup>，就不会出现问题了。</p>
-
+<p>求助google，找到方法，强制 <strong>lldb</strong> 按照系统的 bin 环境运行——<code>PATH=/usr/bin /usr/bin/lldb</code>^[<a href="http://qaru.site/questions/1690278/strange-mixing-of-system-homebrew-python-with-lldb">Странное смешивание системы + homebrew Python с LLDB</a>]，就不会出现问题了。</p>
 <p>每次这样运行 <strong>lldb</strong> 太麻烦了，何不 <strong>alias</strong> 一下，在终端下执行：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 如果您使用bash，执行：</span>
 <span class="c1"># echo &#39;alias lldb=&#34;PATH=/usr/bin /usr/bin/lldb&#34;&#39; &gt;&gt; ~/.bashrc</span>
 <span class="c1"># 如果您使用zsh，执行：</span>
-<span class="nb">echo</span> <span class="s1">&#39;alias lldb=&#34;PATH=/usr/bin /usr/bin/lldb&#34;&#39;</span> &gt;&gt; ~/.zshrc</code></pre></div>
-<p>开启一个新的终端，运行 <code>lldb</code> 没有异常，Done！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:homebrew-Python"><a href="http://qaru.site/questions/1690278/strange-mixing-of-system-homebrew-python-with-lldb" target="_blank">Странное смешивание системы + homebrew Python с LLDB</a> <a class="footnote-return" href="#fnref:homebrew-Python"><sup>[return]</sup></a></li>
-</ol>
-</div>
+<span class="nb">echo</span> <span class="s1">&#39;alias lldb=&#34;PATH=/usr/bin /usr/bin/lldb&#34;&#39;</span> &gt;&gt; ~/.zshrc
+</code></pre></div><p>开启一个新的终端，运行 <code>lldb</code> 没有异常，Done！</p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -161,7 +149,7 @@ You can override this and force removal with:
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					548 字
+					552 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -216,7 +204,7 @@ You can override this and force removal with:
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

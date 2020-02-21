@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="argparse 库的使用">
 <meta itemprop="description" content="如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：ls -l。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 sys.argv 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 argparse 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！">
-
-
 <meta itemprop="datePublished" content="2018-09-13T15:16:37&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-13T15:16:37&#43;08:00" />
 <meta itemprop="wordCount" content="5014">
 
 
 
-<meta itemprop="keywords" content="develop,python," />
-<meta property="og:title" content="argparse 库的使用" />
+<meta itemprop="keywords" content="develop,python," /><meta property="og:title" content="argparse 库的使用" />
 <meta property="og:description" content="如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：ls -l。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 sys.argv 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 argparse 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/09/13/python-argparse/" />
@@ -84,16 +81,13 @@
 			</header>
 			<div class="content">
 				<p>如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：<code>ls -l</code>。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 <code>sys.argv</code> 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 <strong>argparse</strong> 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！</p>
-
 <p>本文就不用解释这个参数的概念了吧，相信您对参数这个概念有了自己的感受，开发一个属于自己的命令工具一定很酷，Let&rsquo;s do it!</p>
-
 <h2 id="初步感受">初步感受</h2>
-
 <p>本文以python3开发为例，以一个简单的示例开始，创建文件 <strong>pug.py</strong> ，代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></code></pre></div>
-<p>我们运行初步感受一下：</p>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>我们运行初步感受一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py
 $ python3 pug.py --help
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span>
@@ -105,28 +99,23 @@ usage: pug.py <span class="o">[</span>-h<span class="o">]</span>
 pug.py: error: unrecognized arguments: --verbose
 $ python3 pug.py foo
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span>
-pug.py: error: unrecognized arguments: foo</code></pre></div>
-<p>看看发生了什么：</p>
-
+pug.py: error: unrecognized arguments: foo
+</code></pre></div><p>看看发生了什么：</p>
 <ul>
 <li>直接运行文件，不加任何参数，没有任何处理；</li>
 <li>第二次执行加了参数 <strong>&ndash;help</strong> 会打印一定的帮助信息，这个帮助信息中可以看到 <strong>&ndash;help</strong>可以简写为 <strong>-h</strong>；</li>
 <li>第三次和第四次执行使用了不支持的参数，打印了错误提醒；</li>
 </ul>
-
 <p><strong>parser.parse_args()</strong> 就是参数解析的过程。</p>
-
 <h2 id="positional-arguments-的使用">Positional arguments 的使用</h2>
-
 <p><strong>Positional arguments</strong> 怎么翻译比较好呢？看到网上有人叫它 <strong>定位参数</strong>，我咋觉得叫它 <strong>占位参数</strong> 会比较贴切呢，无所谓了，还是用它本名 <strong>Positional arguments</strong> 吧！</p>
-
 <p>更改pug.py代码为：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;echo&#34;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">echo</span><span class="p">)</span></code></pre></div>
-<p>执行看看：</p>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">echo</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">echo</span><span class="p">)</span>
+</code></pre></div><p>执行看看：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="nb">echo</span>
 pug.py: error: the following arguments are required: <span class="nb">echo</span>
@@ -139,14 +128,14 @@ positional arguments:
 optional arguments:
   -h, --help  show this <span class="nb">help</span> message and <span class="nb">exit</span>
 $ python3 pug.py yeah
-yeah</code></pre></div>
-<p>可以看到在方法 <strong>add_argument</strong> 的帮助下 <strong>echo</strong> 成功上位，使用命令时必须为echo位置上输上点什么，它才罢休，这里可以简单地认为echo是一个必须赋值的变量。似乎少了点这个参数的帮助信息，不要紧！有方法 <strong>add_argument</strong> 的加持啥都不怕，此方法有个参数 <strong>help</strong>，为其指定内容就可以填充帮助信息了，比如这样：</p>
+yeah
+</code></pre></div><p>可以看到在方法 <strong>add_argument</strong> 的帮助下 <strong>echo</strong> 成功上位，使用命令时必须为echo位置上输上点什么，它才罢休，这里可以简单地认为echo是一个必须赋值的变量。似乎少了点这个参数的帮助信息，不要紧！有方法 <strong>add_argument</strong> 的加持啥都不怕，此方法有个参数 <strong>help</strong>，为其指定内容就可以填充帮助信息了，比如这样：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;echo&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;学您说话！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">echo</span><span class="p">)</span></code></pre></div>
-<p>运行看看：</p>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">echo</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">学您说话！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">echo</span><span class="p">)</span>
+</code></pre></div><p>运行看看：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -h
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="nb">echo</span>
 
@@ -154,26 +143,26 @@ positional arguments:
   <span class="nb">echo</span>        学您说话！
 
 optional arguments:
-  -h, --help  show this <span class="nb">help</span> message and exit</code></pre></div>
-<p>下面，我们不能让pug太调皮，得干点实用的事，比如让它算数，那就让它算一个指定整数的平方吧，修改代码如下：</p>
+  -h, --help  show this <span class="nb">help</span> message and <span class="nb">exit</span>
+</code></pre></div><p>下面，我们不能让pug太调皮，得干点实用的事，比如让它算数，那就让它算一个指定整数的平方吧，修改代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></code></pre></div>
-<p>执行一下：</p>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><p>执行一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">2</span>
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">&#34;pug.py&#34;</span>, line <span class="m">5</span>, in &lt;module&gt;
+  File <span class="s2">&#34;pug.py&#34;</span>, line 5, in &lt;module&gt;
     print<span class="o">(</span>args.square**2<span class="o">)</span>
-TypeError: unsupported operand type<span class="o">(</span>s<span class="o">)</span> <span class="k">for</span> ** or pow<span class="o">()</span>: <span class="s1">&#39;str&#39;</span> and <span class="s1">&#39;int&#39;</span></code></pre></div>
-<p>出错啦！为什么？因为参数默认都是字符串，小狗子pug肯定不会计算字符串的平方吧！<strong>add_argument</strong> 方法此时笑了，不用担心，它可以为您按类型解析这个参数的值，只需指定方法的参数 <strong>type</strong> 就可以了：</p>
+TypeError: unsupported operand type<span class="o">(</span>s<span class="o">)</span> <span class="k">for</span> ** or pow<span class="o">(</span><span class="o">)</span>: <span class="s1">&#39;str&#39;</span> and <span class="s1">&#39;int&#39;</span>
+</code></pre></div><p>出错啦！为什么？因为参数默认都是字符串，小狗子pug肯定不会计算字符串的平方吧！<strong>add_argument</strong> 方法此时笑了，不用担心，它可以为您按类型解析这个参数的值，只需指定方法的参数 <strong>type</strong> 就可以了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></code></pre></div>
-<p>试一下效果：</p>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><p>试一下效果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">2</span>
 <span class="m">4</span>
 $ python3 pug.py -h
@@ -183,21 +172,18 @@ positional arguments:
   square      您说个数，我就能告诉您这个数的平方！
 
 optional arguments:
-  -h, --help  show this <span class="nb">help</span> message and exit</code></pre></div>
-<p>小狗子pug可以的！</p>
-
+  -h, --help  show this <span class="nb">help</span> message and <span class="nb">exit</span>
+</code></pre></div><p>小狗子pug可以的！</p>
 <h2 id="optional-arguments-的使用">Optional arguments 的使用</h2>
-
 <p>下面一起看一下可选参数（<strong>Optional arguments</strong>）的使用。</p>
-
 <p>代码更改为：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;我睡着了(-_-)zzz，别打搅我！&#39;</span><span class="p">)</span></code></pre></div>
-<p>看一下小狗子有多懒：</p>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我睡着了(-_-)zzz，别打搅我！</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>看一下小狗子有多懒：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -h
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>--sleep SLEEP<span class="o">]</span>
 
@@ -205,17 +191,17 @@ optional arguments:
   -h, --help     show this <span class="nb">help</span> message and <span class="nb">exit</span>
   --sleep SLEEP  让我睡会儿，困死了！
 $ python3 pug.py --sleep <span class="m">1</span>
-我睡着了<span class="o">(</span>-_-<span class="o">)</span>zzz，别打搅我！</code></pre></div>
-<p>简单来说，对于睡觉，要么睡着要么没睡，应该是二值，那可以限制这个参数 <strong>&ndash;sleep</strong> 要么 <strong>True</strong> 要么 <strong>False</strong>，方法 <strong>add_argument</strong> 提供了设置参数 <strong>action</strong> ，设置其为 <strong>store_true</strong> 即可：</p>
+我睡着了<span class="o">(</span>-_-<span class="o">)</span>zzz，别打搅我！
+</code></pre></div><p>简单来说，对于睡觉，要么睡着要么没睡，应该是二值，那可以限制这个参数 <strong>&ndash;sleep</strong> 要么 <strong>True</strong> 要么 <strong>False</strong>，方法 <strong>add_argument</strong> 提供了设置参数 <strong>action</strong> ，设置其为 <strong>store_true</strong> 即可：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;我睡着了(-_-)zzz，别打搅我！&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我睡着了(-_-)zzz，别打搅我！</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;我很清醒，不想睡觉！&#39;</span><span class="p">)</span></code></pre></div>
-<p>逗一下小狗子pug：</p>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，不想睡觉！</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>逗一下小狗子pug：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -h
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>--sleep<span class="o">]</span>
 
@@ -228,17 +214,17 @@ pug.py: error: unrecognized arguments: <span class="m">1</span>
 $ python3 pug.py --sleep
 我睡着了<span class="o">(</span>-_-<span class="o">)</span>zzz，别打搅我！
 $ python3 pug.py
-我很清醒，不想睡觉！</code></pre></div>
-<p>可以看到，运行命令时，如果指定参数 <strong>&ndash;sleep</strong>，那么这个参数值就为 <strong>True</strong>， 如果没有，那么参数值为 <strong>False</strong>。如果您了解命令行工具的使用一定会问：短参数的实现会是怎样的？其实很简单：</p>
+我很清醒，不想睡觉！
+</code></pre></div><p>可以看到，运行命令时，如果指定参数 <strong>&ndash;sleep</strong>，那么这个参数值就为 <strong>True</strong>， 如果没有，那么参数值为 <strong>False</strong>。如果您了解命令行工具的使用一定会问：短参数的实现会是怎样的？其实很简单：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;我睡着了(-_-)zzz，别打搅我！&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我睡着了(-_-)zzz，别打搅我！</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;我很清醒，不想睡觉！&#39;</span><span class="p">)</span></code></pre></div>
-<p>叫小狗子pug试一下：</p>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，不想睡觉！</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>叫小狗子pug试一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -h
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s<span class="o">]</span>
 
@@ -246,21 +232,20 @@ optional arguments:
   -h, --help   show this <span class="nb">help</span> message and <span class="nb">exit</span>
   -s, --sleep  让我睡会儿，困死了！
 $ python3 pug.py -s
-我睡着了<span class="o">(</span>-_-<span class="o">)</span>zzz，别打搅我！</code></pre></div>
-<h2 id="positional-arguments-和-optional-arguments-结合使用">Positional arguments 和 Optional arguments 结合使用</h2>
-
+我睡着了<span class="o">(</span>-_-<span class="o">)</span>zzz，别打搅我！
+</code></pre></div><h2 id="positional-arguments-和-optional-arguments-结合使用">Positional arguments 和 Optional arguments 结合使用</h2>
 <p>让小狗子睡着觉算数会是咋样的，试一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我睡着了(-_-)zzz都能算数：{answer}！&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我睡着了(-_-)zzz都能算数：{answer}！</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我很清醒，结果是：{answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>让小狗子嚣张嚣张：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，结果是：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>让小狗子嚣张嚣张：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -s <span class="m">3</span>
 我睡着了<span class="o">(</span>-_-<span class="o">)</span>zzz都能算数：9！
 $ python3 pug.py <span class="m">3</span>
@@ -273,21 +258,21 @@ positional arguments:
 
 optional arguments:
   -h, --help   show this <span class="nb">help</span> message and <span class="nb">exit</span>
-  -s, --sleep  让我睡会儿，困死了！</code></pre></div>
-<p>小狗子很厉害呀，睡着觉都给算出结果来了，那小狗子睡觉也分状态的吧，熟睡和半睡半醒状态应该会不一样，看一下会怎么样：</p>
+  -s, --sleep  让我睡会儿，困死了！
+</code></pre></div><p>小狗子很厉害呀，睡着觉都给算出结果来了，那小狗子睡觉也分状态的吧，熟睡和半睡半醒状态应该会不一样，看一下会怎么样：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我很清醒，结果是：{answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>那我们考一下小狗子：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，结果是：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>那我们考一下小狗子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">3</span> -s
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s SLEEP<span class="o">]</span> square
 pug.py: error: argument -s/--sleep: expected one argument
@@ -308,48 +293,48 @@ optional arguments:
   -s SLEEP, --sleep SLEEP
                         让我睡会儿，困死了！
 $ python3 pug.py <span class="m">3</span>
-我很清醒，结果是：9!</code></pre></div>
-<p>简直了，但是这里有个问题，pug睡觉状态并不是很多，如果我们指定其它可能没有必要嘛，能不能对值进行限制呢？当然可以啦，添加参数时给定 <strong>choices</strong> 就可以啦：</p>
+我很清醒，结果是：9!
+</code></pre></div><p>简直了，但是这里有个问题，pug睡觉状态并不是很多，如果我们指定其它可能没有必要嘛，能不能对值进行限制呢？当然可以啦，添加参数时给定 <strong>choices</strong> 就可以啦：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我很清醒，结果是：{answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>看一下效果：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，结果是：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>看一下效果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">3</span> -s <span class="m">0</span>
-usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="o">{</span><span class="m">1</span>,2<span class="o">}]</span> square
-pug.py: error: argument -s/--sleep: invalid choice: <span class="m">0</span> <span class="o">(</span>choose from <span class="m">1</span>, <span class="m">2</span><span class="o">)</span>
+usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="o">{</span>1,2<span class="o">}</span><span class="o">]</span> square
+pug.py: error: argument -s/--sleep: invalid choice: <span class="m">0</span> <span class="o">(</span>choose from 1, 2<span class="o">)</span>
 $ python3 pug.py -h
-usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="o">{</span><span class="m">1</span>,2<span class="o">}]</span> square
+usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="o">{</span>1,2<span class="o">}</span><span class="o">]</span> square
 
 positional arguments:
   square                您说个数，我就能告诉您这个数的平方！
 
 optional arguments:
   -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
-  -s <span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>, --sleep <span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>
-                        让我睡会儿，困死了！</code></pre></div>
-<p>效果还可以，现在尝试另一种玩法，先看代码：</p>
+  -s <span class="o">{</span>1,2<span class="o">}</span>, --sleep <span class="o">{</span>1,2<span class="o">}</span>
+                        让我睡会儿，困死了！
+</code></pre></div><p>效果还可以，现在尝试另一种玩法，先看代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我很清醒，结果是：{answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>再看一下结果：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，结果是：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>再看一下结果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">3</span> -s
 半睡半醒的我当然听得清你说什么，很简单的题嘛：9!
 $ python3 pug.py <span class="m">3</span> -ss
@@ -357,21 +342,21 @@ $ python3 pug.py <span class="m">3</span> -ss
 $ python3 pug.py <span class="m">3</span> -sss
 我很清醒，结果是：9!
 $ python3 pug.py <span class="m">3</span>
-我很清醒，结果是：9!</code></pre></div>
-<p>好像第三条有点问题哈，修复一下这个bug：</p>
+我很清醒，结果是：9!
+</code></pre></div><p>好像第三条有点问题哈，修复一下这个bug：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!&#39;</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我很清醒，结果是：{answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>再看一下这次是不是更好了：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，结果是：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>再看一下这次是不是更好了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">3</span> -s
 半睡半醒的我当然听得清你说什么，很简单的题嘛：9!
 $ python3 pug.py <span class="m">3</span> -ss
@@ -380,48 +365,45 @@ $ python3 pug.py <span class="m">3</span> -sss
 虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：9！
 $ python3 pug.py <span class="m">3</span>
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">&#34;pug.py&#34;</span>, line <span class="m">7</span>, in &lt;module&gt;
-    <span class="k">if</span> args.sleep &gt;<span class="o">=</span> <span class="m">2</span>:
-TypeError: <span class="s1">&#39;&gt;=&#39;</span> not supported between instances of <span class="s1">&#39;NoneType&#39;</span> and <span class="s1">&#39;int&#39;</span></code></pre></div>
-<p>哎呀，好像最后一个让小狗子炸锅了，稍微修理一下它（给参数指定默认值）：</p>
+  File <span class="s2">&#34;pug.py&#34;</span>, line 7, in &lt;module&gt;
+    <span class="k">if</span> args.sleep &gt;<span class="o">=</span> 2:
+TypeError: <span class="s1">&#39;&gt;=&#39;</span> not supported between instances of <span class="s1">&#39;NoneType&#39;</span> and <span class="s1">&#39;int&#39;</span>
+</code></pre></div><p>哎呀，好像最后一个让小狗子炸锅了，稍微修理一下它（给参数指定默认值）：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!&#39;</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">虽然我睡的很死，但我的耳朵好像还挺好使的的，用耳朵都能算的：{answer}！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">半睡半醒的我当然听得清你说什么，很简单的题嘛：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;我很清醒，结果是：{answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>看一下是否正常了：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我很清醒，结果是：{answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>看一下是否正常了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py <span class="m">3</span>
-我很清醒，结果是：9!</code></pre></div>
-<p>OKay! 效果不错，小狗子修炼得不错了！</p>
-
+我很清醒，结果是：9!
+</code></pre></div><p>OKay! 效果不错，小狗子修炼得不错了！</p>
 <h2 id="互斥参数">互斥参数</h2>
-
 <p>有的时候小狗子的行为是互斥的，比如睡着觉的时候不能跳舞，跳舞的时候没有在睡觉，所以呀，有的时候还需要互斥参数的使用。</p>
-
 <p>使用起来并不复杂，丰富一下我们的小狗子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-<span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">()</span>
-<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--dance&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;好开心，让我跳会儿舞！&#39;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">(</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--dance</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">好开心，让我跳会儿舞！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
 
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;睡觉的我依然给力，{args.square} 的平方是 {answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">睡觉的我依然给力，{args.square} 的平方是 {answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">dance</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;跳舞的时候，我的大脑非常活跃，所以，{args.square} 的平方是 {answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">跳舞的时候，我的大脑非常活跃，所以，{args.square} 的平方是 {answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{args.square} 的平方是 {answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>现在小狗子点了新技能，展示一下：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{args.square} 的平方是 {answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>现在小狗子点了新技能，展示一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -h
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="p">|</span> -d<span class="o">]</span> square
 
@@ -433,31 +415,31 @@ optional arguments:
   -s, --sleep  让我睡会儿，困死了！
   -d, --dance  好开心，让我跳会儿舞！
 $ python3 pug.py <span class="m">5</span>
-<span class="m">5</span> 的平方是 <span class="m">25</span>!
+<span class="m">5</span> 的平方是 25!
 $ python3 pug.py -s <span class="m">5</span>
-睡觉的我依然给力，5 的平方是 <span class="m">25</span>!
+睡觉的我依然给力，5 的平方是 25!
 $ python3 pug.py -d <span class="m">5</span>
-跳舞的时候，我的大脑非常活跃，所以，5 的平方是 <span class="m">25</span>!
+跳舞的时候，我的大脑非常活跃，所以，5 的平方是 25!
 $ python3 pug.py -d -s <span class="m">5</span>
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="p">|</span> -d<span class="o">]</span> square
-pug.py: error: argument -s/--sleep: not allowed with argument -d/--dance</code></pre></div>
-<p>对了，我们应该让小狗子可以自我介绍，在初始化参数分析器的时候添加描述就好了：</p>
+pug.py: error: argument -s/--sleep: not allowed with argument -d/--dance
+</code></pre></div><p>对了，我们应该让小狗子可以自我介绍，在初始化参数分析器的时候添加描述就好了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;我是一只快乐的哈巴狗，我会算整数的平方哦！而且跳着舞或者睡着觉的时候我依然可以呢！&#39;</span><span class="p">)</span>
-<span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">()</span>
-<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s2">&#34;--sleep&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;让我睡会儿，困死了！&#39;</span><span class="p">)</span>
-<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--dance&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;好开心，让我跳会儿舞！&#39;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;square&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;您说个数，我就能告诉您这个数的平方！&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">我是一只快乐的哈巴狗，我会算整数的平方哦！而且跳着舞或者睡着觉的时候我依然可以呢！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_mutually_exclusive_group</span><span class="p">(</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--sleep</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">让我睡会儿，困死了！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--dance</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">store_true</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">好开心，让我跳会儿舞！</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">您说个数，我就能告诉您这个数的平方！</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span> <span class="o">*</span><span class="o">*</span> <span class="mi">2</span>
 
 <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sleep</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;睡觉的我依然给力，{args.square} 的平方是 {answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">睡觉的我依然给力，{args.square} 的平方是 {answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">dance</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;跳舞的时候，我的大脑非常活跃，所以，{args.square} 的平方是 {answer}!&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">跳舞的时候，我的大脑非常活跃，所以，{args.square} 的平方是 {answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{args.square} 的平方是 {answer}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>让它好好的自我介绍一下自己吧：</p>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{args.square} 的平方是 {answer}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>让它好好的自我介绍一下自己吧：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python3 pug.py -h
 usage: pug.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-s <span class="p">|</span> -d<span class="o">]</span> square
 
@@ -469,16 +451,13 @@ positional arguments:
 optional arguments:
   -h, --help   show this <span class="nb">help</span> message and <span class="nb">exit</span>
   -s, --sleep  让我睡会儿，困死了！
-  -d, --dance  好开心，让我跳会儿舞！</code></pre></div>
-<h2 id="总结">总结</h2>
-
+  -d, --dance  好开心，让我跳会儿舞！
+</code></pre></div><h2 id="总结">总结</h2>
 <p>作者希望您通过与小哈巴狗的玩耍，很快学会 <strong>argparse</strong> 库的使用，我们也要像它一样快乐才好！(◐‿◑)</p>
-
 <h2 id="参考">参考</h2>
-
 <ul>
-<li><a href="https://docs.python.org/3.7/howto/argparse.html" target="_blank">Argparse Tutorial</a></li>
-<li><a href="http://blog.xiayf.cn/2013/03/30/argparse/" target="_blank">argparse - 命令行选项与参数解析（译）</a></li>
+<li><a href="https://docs.python.org/3.7/howto/argparse.html">Argparse Tutorial</a></li>
+<li><a href="http://blog.xiayf.cn/2013/03/30/argparse/">argparse - 命令行选项与参数解析（译）</a></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -498,18 +477,15 @@ optional arguments:
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#初步感受">初步感受</a></li>
-<li><a href="#positional-arguments-的使用">Positional arguments 的使用</a></li>
-<li><a href="#optional-arguments-的使用">Optional arguments 的使用</a></li>
-<li><a href="#positional-arguments-和-optional-arguments-结合使用">Positional arguments 和 Optional arguments 结合使用</a></li>
-<li><a href="#互斥参数">互斥参数</a></li>
-<li><a href="#总结">总结</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#初步感受">初步感受</a></li>
+    <li><a href="#positional-arguments-的使用">Positional arguments 的使用</a></li>
+    <li><a href="#optional-arguments-的使用">Optional arguments 的使用</a></li>
+    <li><a href="#positional-arguments-和-optional-arguments-结合使用">Positional arguments 和 Optional arguments 结合使用</a></li>
+    <li><a href="#互斥参数">互斥参数</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -560,7 +536,7 @@ optional arguments:
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

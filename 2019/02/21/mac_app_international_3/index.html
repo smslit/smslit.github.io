@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之代码字符串的本地化">
 <meta itemprop="description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代">
-
-
 <meta itemprop="datePublished" content="2019-02-21T18:02:47&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-21T18:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="2130">
+<meta itemprop="wordCount" content="2124">
 
 
 
-<meta itemprop="keywords" content="macOS 开发," />
-<meta property="og:title" content="macOS 开发之代码字符串的本地化" />
+<meta itemprop="keywords" content="macOS 开发," /><meta property="og:title" content="macOS 开发之代码字符串的本地化" />
 <meta property="og:description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/21/mac_app_international_3/" />
@@ -83,63 +80,49 @@
 				<h1>macOS 开发之代码字符串的本地化</h1>
 			</header>
 			<div class="content">
-				
-
-<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代码字符串本地化。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221212506.jpg" alt="" /></p>
-
-<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a></p>
-
-<p>第二部传送门：<a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a></p>
-
+				<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代码字符串本地化。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221212506.jpg" alt=""></p>
+<p>第一部传送门：<a href="/2019/02/18/mac_app_international_1/">macOS 开发之 APP 名称本地化</a></p>
+<p>第二部传送门：<a href="/2019/02/19/mac_app_international_2/">macOS 开发之 storyboard 或 xib 本地化</a></p>
 <h1 id="实现平台">实现平台</h1>
-
 <ul>
 <li>macOS 10.14.3</li>
 <li>swift 4.2.1</li>
 <li>xcode 10.1</li>
 </ul>
-
 <h1 id="准备工程">准备工程</h1>
-
-<p>本文直接使用上一篇文章<a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip" target="_blank">点我</a>下载！</p>
-
+<p>本文直接使用上一篇文章<a href="/2019/02/19/mac_app_international_2/">macOS 开发之 storyboard 或 xib 本地化</a>的工程，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip">点我</a>下载！</p>
 <p>为了展示本文要讲的内容，这里利用已有的 label，另外添加两个按钮来切换 label 的内容。</p>
-
 <h2 id="添加按钮">添加按钮</h2>
-
 <p>打开上面下载的工程，打开 <code>Main.storyboard</code> 可以看到 View controller 中已经有一个 label ，本小节添加两个按钮，并添加相应的点击 action。</p>
-
 <ol>
-<li><p>按下快件键 <code>Shift</code> + <code>Command</code> + <code>l</code> 键，打开控件选择器，搜索框输入 <code>button</code> 就会筛选出所有的按钮控件，将其中的 <code>Gradient Button</code> 拖入 View Controller，调整其大小为 50 * 232，靠左放置到合适位置，打开 Attributes Inspector(选中按钮，按组合键 <code>Option</code> + <code>Command</code> + 4)，其中勾选 <code>Transparent</code> ，Image 选择 <code>NSGoForwardTemplate</code>，然后勾选 <code>Refuse First Responder</code></p></li>
-
-<li><p>同样的方法添加第二个按钮(或者直接复制第一个按钮)，不过是靠右放置，Attributes Inspector 中更改 Image 为 <code>NSGoBackTemplate</code>，其它设置与第一个按钮一致</p></li>
-
-<li><p>按下快捷键 <code>Option</code> + <code>Command</code> + 回车键会显示 <code>Main.storyboard</code> 中 view controller 对应的 Assitant Editor 并打开对应的 swift 文件</p></li>
-
-<li><p>选中第一个按钮，按住 <code>Ctrl</code> 键，鼠标左键按住拖动至 Assitant Editor 中松手添加一个 Action ，名称为 <code>previousLabel</code></p></li>
-
-<li><p>选中第二个按钮，按住 <code>Ctrl</code> 键，鼠标左键按住拖动至 Assitant Editor 中松手添加一个 Action ，名称为 <code>nextLabel</code></p></li>
+<li>
+<p>按下快件键 <code>Shift</code> + <code>Command</code> + <code>l</code> 键，打开控件选择器，搜索框输入 <code>button</code> 就会筛选出所有的按钮控件，将其中的 <code>Gradient Button</code> 拖入 View Controller，调整其大小为 50 * 232，靠左放置到合适位置，打开 Attributes Inspector(选中按钮，按组合键 <code>Option</code> + <code>Command</code> + 4)，其中勾选 <code>Transparent</code> ，Image 选择 <code>NSGoForwardTemplate</code>，然后勾选 <code>Refuse First Responder</code></p>
+</li>
+<li>
+<p>同样的方法添加第二个按钮(或者直接复制第一个按钮)，不过是靠右放置，Attributes Inspector 中更改 Image 为 <code>NSGoBackTemplate</code>，其它设置与第一个按钮一致</p>
+</li>
+<li>
+<p>按下快捷键 <code>Option</code> + <code>Command</code> + 回车键会显示 <code>Main.storyboard</code> 中 view controller 对应的 Assitant Editor 并打开对应的 swift 文件</p>
+</li>
+<li>
+<p>选中第一个按钮，按住 <code>Ctrl</code> 键，鼠标左键按住拖动至 Assitant Editor 中松手添加一个 Action ，名称为 <code>previousLabel</code></p>
+</li>
+<li>
+<p>选中第二个按钮，按住 <code>Ctrl</code> 键，鼠标左键按住拖动至 Assitant Editor 中松手添加一个 Action ，名称为 <code>nextLabel</code></p>
+</li>
 </ol>
-
 <p>上述五步操作，可参考如下视频进行：</p>
-
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/mac_international_add_button.mp4" controls="controls" width="720"></video>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="添加-label-的-outlet">添加 Label 的 outlet</h2>
-
 <p>打开 Main.storyboard ，选中 view controller 中的 label，按下快捷键 <code>Option</code> + <code>Command</code> + 回车键会显示 <code>Main.storyboard</code> 中 view controller 对应的 Assitant Editor 并打开对应的 swift 文件，按住 <code>Ctrl</code> 键，在 label 上按住鼠标左键拖动到 Assitant Editor 中松手添加一个 outlet ，名称为 <code>movieLabel</code>。</p>
-
 <h2 id="添加标签内容">添加标签内容</h2>
-
 <p>在 ViewController.swift 的 ViewController 类中添加以下定义：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;天空之城&#34;</span><span class="p">,</span> <span class="s">&#34;幽灵公主&#34;</span><span class="p">,</span> <span class="s">&#34;风之谷&#34;</span><span class="p">]</span>
-<span class="kd">var</span> <span class="nv">movieIndex</span> <span class="p">=</span> <span class="mi">0</span></code></pre></div>
-<p>在 ViewDidLoad 方法的 <code>super.viewDidLoad()</code> 后面添加：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span></code></pre></div>
-<h2 id="完善按钮的-action">完善按钮的 action</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;</span><span class="s">天空之城</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;</span><span class="s">幽灵公主</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;</span><span class="s">风之谷</span><span class="s">&#34;</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nv">movieIndex</span> <span class="p">=</span> <span class="mi">0</span>
+</code></pre></div><p>在 ViewDidLoad 方法的 <code>super.viewDidLoad()</code> 后面添加：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span>
+</code></pre></div><h2 id="完善按钮的-action">完善按钮的 action</h2>
 <p>补充 <code>previousLabel</code> 和 <code>nextLabel</code> 的实现：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">previousLabel</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">movieIndex</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -155,113 +138,99 @@
         <span class="n">movieIndex</span> <span class="p">=</span> <span class="mi">0</span>
     <span class="p">}</span>
     <span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span>
-<span class="p">}</span></code></pre></div>
-<h1 id="代码本地化">代码本地化</h1>
-
-<p>代码中字符串的本地化需要新建一个名为 <code>Localizable.strings</code> 的文件，新建过程类似于<a href="/2019/02/18/mac_app_international_1/" target="_blank">macOS 开发之 APP 名称本地化</a> 中 <code>InfoPlist.strings</code>的过程，代码中的字符串如果需要本地化必须在这个文件中定义。</p>
-
+<span class="p">}</span>
+</code></pre></div><h1 id="代码本地化">代码本地化</h1>
+<p>代码中字符串的本地化需要新建一个名为 <code>Localizable.strings</code> 的文件，新建过程类似于<a href="/2019/02/18/mac_app_international_1/">macOS 开发之 APP 名称本地化</a> 中 <code>InfoPlist.strings</code>的过程，代码中的字符串如果需要本地化必须在这个文件中定义。</p>
 <h2 id="添加本地化文件">添加本地化文件</h2>
-
 <ol>
-<li><p>按下快捷键 <code>Command</code> + <code>n</code> 打开新建文件的导航窗口，选中 macOS - Resources - Strings file，next， 更改名称为 <code>Localizable.strings</code></p></li>
-
-<li><p>此时会打开文件，按下快捷键 <code>Option</code> + <code>Command</code> + <code>1</code> 就会打开其 file Inspector，可以看到分组 <code>Localization</code> 中的 <code>Localize...</code> 按钮，点击这个按钮就会跳出弹窗：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114200.png" alt="" /></p></li>
-
-<li><p>选择 <code>English</code> 选项，点击 <code>Localize</code> 就会发现 <code>InfoPlist.strings</code> Inspector 中的 <code>Localizations</code> 分组变成了三个勾选框，其中 <code>English</code> 是勾选的，这里也把 Chinese 和 Japanese 勾选上，此时你会发现 Xcode 左侧工程导航栏 <code>InfoPlist.strings</code> 左侧出现了一个小三角，点开就会发现其变成了与三种语言对应的三个 Strings 文件：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221201935.png" alt="" /></p></li>
+<li>
+<p>按下快捷键 <code>Command</code> + <code>n</code> 打开新建文件的导航窗口，选中 macOS - Resources - Strings file，next， 更改名称为 <code>Localizable.strings</code></p>
+</li>
+<li>
+<p>此时会打开文件，按下快捷键 <code>Option</code> + <code>Command</code> + <code>1</code> 就会打开其 file Inspector，可以看到分组 <code>Localization</code> 中的 <code>Localize...</code> 按钮，点击这个按钮就会跳出弹窗：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114200.png" alt=""></p>
+</li>
+<li>
+<p>选择 <code>English</code> 选项，点击 <code>Localize</code> 就会发现 <code>InfoPlist.strings</code> Inspector 中的 <code>Localizations</code> 分组变成了三个勾选框，其中 <code>English</code> 是勾选的，这里也把 Chinese 和 Japanese 勾选上，此时你会发现 Xcode 左侧工程导航栏 <code>InfoPlist.strings</code> 左侧出现了一个小三角，点开就会发现其变成了与三种语言对应的三个 Strings 文件：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221201935.png" alt=""></p>
+</li>
 </ol>
-
 <h2 id="代码字符串的本地化">代码字符串的本地化</h2>
-
 <p>代码中字符串的本地化需要两步，一是在刚新建的 String 文件中添加字符串定义，二是调用方法 <code>NSLocalizedString(forKey:, comment:)</code> 根据字符串定义的键获取字符串。</p>
-
 <h3 id="添加本地化字符串定义">添加本地化字符串定义</h3>
-
 <p>因为代码中只在 <code>movies</code> 初始化中使用了字符串，所以对应要定义一下它们，分别在三个 Strings 文件中定义。</p>
-
 <ul>
-<li><p>Localizable.strings (English):</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Laputa Castle in the Sky&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Princess Mononoke&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Nausicaa Of The Valley Of The Wind &#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p>Localizable.strings (Chinese(Simplified)):</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;天空之城&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;幽灵公主&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;风之谷&#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p>Localizable.strings (Japanese):</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;天空の城ラピュタ&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;もののけ姫&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;風の谷のナウシカ&#34;</span><span class="p">;</span></code></pre></div></li>
+<li>Localizable.strings (English):</li>
 </ul>
-
-<h3 id="更新代码">更新代码</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Laputa Castle in the Sky</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Princess Mononoke</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Nausicaa Of The Valley Of The Wind </span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>Localizable.strings (Chinese(Simplified)):</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">天空之城</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">幽灵公主</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">风之谷</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>Localizable.strings (Japanese):</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">天空の城ラピュタ</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">もののけ姫</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">風の谷のナウシカ</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><h3 id="更新代码">更新代码</h3>
 <p>修改添加本地化字符串对应的地方，也就是 <code>movies</code> 初始化的地方，修改为：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-1.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-2.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-3.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)]</span></code></pre></div>
-<h3 id="效果展示">效果展示</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">]</span>
+</code></pre></div><h3 id="效果展示">效果展示</h3>
 <p>更改系统语言查看各语言的效果。</p>
-
 <ul>
-<li><p>English</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204958.png" alt="" /></p></li>
-
-<li><p>Chinese(Simplified)</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204943.png" alt="" /></p></li>
-
-<li><p>Japanese</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204925.png" alt="" /></p></li>
+<li>
+<p>English</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204958.png" alt=""></p>
+</li>
+<li>
+<p>Chinese(Simplified)</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204943.png" alt=""></p>
+</li>
+<li>
+<p>Japanese</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221204925.png" alt=""></p>
+</li>
 </ul>
-
 <h2 id="添加新的本地化字符串">添加新的本地化字符串</h2>
-
-<p>在 <a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a> 中提到了一个工具 <a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a>，它的子命令 <code>code</code> 可以帮助我们自动扫描代码中调用 <code>NSLocalizedString(forKey:, comment:)</code> 的地方，如果 <code>Localizable.strings</code> 中没有的字符串键会自动追加，非常方便！</p>
-
+<p>在 <a href="/2019/02/19/mac_app_international_2/">macOS 开发之 storyboard 或 xib 本地化</a> 中提到了一个工具 <a href="https://github.com/Flinesoft/BartyCrouch">BartyCrouch</a>，它的子命令 <code>code</code> 可以帮助我们自动扫描代码中调用 <code>NSLocalizedString(forKey:, comment:)</code> 的地方，如果 <code>Localizable.strings</code> 中没有的字符串键会自动追加，非常方便！</p>
 <p>⚠️：</p>
-
-<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top" target="_blank">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640" target="_blank">macOS 开发</a>。</p>
-
+<p>bartycrouch 已经发布了 <strong>4.0.0</strong>，使用方法不同，这里展示的方法只适用于 bartycrouch <strong>v3.x.x</strong> 版本，后续十里会出一篇关于 bartycrouch v4.0.0 的使用教程，请持续关注<a href="https://www.smslit.top">博客</a> 和 知乎专栏 <a href="https://zhuanlan.zhihu.com/c_1079349488673648640">macOS 开发</a>。</p>
 <p>所以我们在之后若要将要使用的字符串本地化，直接使用 <code>NSLocalizedString(forKey:, comment:)</code> 方法，同时定义一个新的 key 先用上，之后去命令行使用 <code>bartycrouch code</code> 就可以添加新的字符串定义，只需要再修改 Strings 文件中新加键的值就可以了。</p>
-
 <h3 id="举例说明">举例说明</h3>
-
 <ul>
-<li><p>比如再在 <code>movies</code> 初始化中新加一个元素，代码可写为：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-1.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
-          <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-2.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
-          <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-3.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
-          <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-4.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)]</span></code></pre></div></li>
-
-<li><p>命令行下切换至工程文根目录，执行命令：</p>
+<li>比如再在 <code>movies</code> 初始化中新加一个元素，代码可写为：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">]</span>
+</code></pre></div><ul>
+<li>命令行下切换至工程文根目录，执行命令：</li>
+</ul>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># -p 指定包含工程代码文件的目录 ，-l 指定可以搜到 Localizable.strings 文件的代码目录</span>
 $ bartycrouch code -p InternationalDemo -l InternationalDemo
-ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Code files.</code></pre></div></li>
-
-<li><p>打开三个 <code>Localizable.strings</code> 文件会发现新添加了一项，并且为每一个添加了预置注释：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* No comment provided by engineer. */</span>
-<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p>分别为三个 Strings 文件修改对应新加项的值：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Howl&#39;s Moving Castle&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;哈尔的移动城堡&#34;</span><span class="p">;</span>
-<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;ハウルの動く城&#34;</span><span class="p">;</span></code></pre></div></li>
+ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Code files.
+</code></pre></div><ul>
+<li>打开三个 <code>Localizable.strings</code> 文件会发现新添加了一项，并且为每一个添加了预置注释：</li>
 </ul>
-
-<p>运行程序，可以看到不同语言下，第四个电影就出现了！</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">N</span><span class="cm">o</span><span class="cm"> </span><span class="cm">c</span><span class="cm">o</span><span class="cm">m</span><span class="cm">m</span><span class="cm">e</span><span class="cm">n</span><span class="cm">t</span><span class="cm"> </span><span class="cm">p</span><span class="cm">r</span><span class="cm">o</span><span class="cm">v</span><span class="cm">i</span><span class="cm">d</span><span class="cm">e</span><span class="cm">d</span><span class="cm"> </span><span class="cm">b</span><span class="cm">y</span><span class="cm"> </span><span class="cm">e</span><span class="cm">n</span><span class="cm">g</span><span class="cm">i</span><span class="cm">n</span><span class="cm">e</span><span class="cm">e</span><span class="cm">r</span><span class="cm">.</span><span class="cm"> </span><span class="cm">*/</span>
+<span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>分别为三个 Strings 文件修改对应新加项的值：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Howl&#39;s Moving Castle</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">哈尔的移动城堡</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ハウルの動く城</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><p>运行程序，可以看到不同语言下，第四个电影就出现了！</p>
 <h3 id="编译时更新">编译时更新</h3>
-
-<p><a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a> 中在工程中创建了 build phase 运行脚本，脚本中添加代码字符串本地化要执行的命令即可：</p>
+<p><a href="/2019/02/19/mac_app_international_2/">macOS 开发之 storyboard 或 xib 本地化</a> 中在工程中创建了 build phase 运行脚本，脚本中添加代码字符串本地化要执行的命令即可：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Type a script or drag a script file from your workspace to insert its path.</span>
 <span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
     bartycrouch interfaces -p .
@@ -269,10 +238,9 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
     bartycrouch lint -e -d -p .
 <span class="k">else</span>
     <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
-<span class="k">fi</span></code></pre></div>
-<p>至此，您应该学会如何对代码中字符串本地化了吧！</p>
-
-<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo3.zip" target="_blank">InternationalDemo3</a></p>
+<span class="k">fi</span>
+</code></pre></div><p>至此，您应该学会如何对代码中字符串本地化了吧！</p>
+<p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo3.zip">InternationalDemo3</a></p>
 
 			</div>
 			<hr class="post-end">
@@ -282,7 +250,7 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2130 字
+					2124 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -292,31 +260,29 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#实现平台">实现平台</a></li>
-<li><a href="#准备工程">准备工程</a>
-<ul>
-<li><a href="#添加按钮">添加按钮</a></li>
-<li><a href="#添加-label-的-outlet">添加 Label 的 outlet</a></li>
-<li><a href="#添加标签内容">添加标签内容</a></li>
-<li><a href="#完善按钮的-action">完善按钮的 action</a></li>
-</ul></li>
-<li><a href="#代码本地化">代码本地化</a>
-<ul>
-<li><a href="#添加本地化文件">添加本地化文件</a></li>
-<li><a href="#代码字符串的本地化">代码字符串的本地化</a>
-<ul>
-<li><a href="#添加本地化字符串定义">添加本地化字符串定义</a></li>
-<li><a href="#更新代码">更新代码</a></li>
-<li><a href="#效果展示">效果展示</a></li>
-</ul></li>
-<li><a href="#添加新的本地化字符串">添加新的本地化字符串</a>
-<ul>
-<li><a href="#举例说明">举例说明</a></li>
-<li><a href="#编译时更新">编译时更新</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#添加按钮">添加按钮</a></li>
+    <li><a href="#添加-label-的-outlet">添加 Label 的 outlet</a></li>
+    <li><a href="#添加标签内容">添加标签内容</a></li>
+    <li><a href="#完善按钮的-action">完善按钮的 action</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#添加本地化文件">添加本地化文件</a></li>
+    <li><a href="#代码字符串的本地化">代码字符串的本地化</a>
+      <ul>
+        <li><a href="#添加本地化字符串定义">添加本地化字符串定义</a></li>
+        <li><a href="#更新代码">更新代码</a></li>
+        <li><a href="#效果展示">效果展示</a></li>
+      </ul>
+    </li>
+    <li><a href="#添加新的本地化字符串">添加新的本地化字符串</a>
+      <ul>
+        <li><a href="#举例说明">举例说明</a></li>
+        <li><a href="#编译时更新">编译时更新</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -367,7 +333,7 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

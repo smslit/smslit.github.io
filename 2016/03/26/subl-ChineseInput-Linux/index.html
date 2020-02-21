@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Linux下Sublime Text支持中文输入">
 <meta itemprop="description" content="sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。">
-
-
 <meta itemprop="datePublished" content="2016-03-26T09:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2016-03-26T09:10:46&#43;08:00" />
-<meta itemprop="wordCount" content="716">
+<meta itemprop="wordCount" content="728">
 
 
 
-<meta itemprop="keywords" content="linux,sublime text," />
-<meta property="og:title" content="Linux下Sublime Text支持中文输入" />
+<meta itemprop="keywords" content="linux,sublime text," /><meta property="og:title" content="Linux下Sublime Text支持中文输入" />
 <meta property="og:description" content="sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/03/26/subl-ChineseInput-Linux/" />
@@ -84,15 +81,12 @@
 			</header>
 			<div class="content">
 				<p>sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。</p>
-
 <h3 id="平台">平台</h3>
-
 <ol>
 <li>Ubuntu 15.10</li>
 <li>sublime text 3</li>
 <li>fcitx输入法</li>
 </ol>
-
 <h3 id="操作">操作</h3>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 获取Github文件</span>
 git clone https://github.com/smslit/SublimeText-IM-Fix.git <span class="o">&amp;&amp;</span> <span class="nb">cd</span> SublimeText-IM-Fix
@@ -101,30 +95,24 @@ sudo cp lib/libsublime-imfix.so /opt/sublime_text
 <span class="c1"># 拷贝软件链接</span>
 sudo cp bin/subl /usr/bin
 <span class="c1"># 拷贝启动器快捷方式</span>
-sudo cp applications/sublime_text.desktop /usr/share/applications/</code></pre></div>
-<p>命令行：subl或者Launcher启动运行软件，如果顺利的话应该支持中文输入了。</p>
-
+sudo cp applications/sublime_text.desktop /usr/share/applications/
+</code></pre></div><p>命令行：subl或者Launcher启动运行软件，如果顺利的话应该支持中文输入了。</p>
 <h3 id="详解">详解</h3>
-
-<p>其实安装完<strong>Sublime text</strong>后，会在<strong>/usr/bin/</strong>下生成subl文件，在<strong>/usr/share/applications/</strong>下生成sublime_text.desktop，为了使sublime text支持中文输入，在启动软件的时候需要调用<strong>libsublime-imfix.so</strong>，在上述操作中拷贝的文件就是修改之后的subl和sublime_text.desktop。下面主要说明一下修改的地方。</p>
-
+<p>其实安装完<strong>Sublime text</strong>后，会在**/usr/bin/**下生成subl文件，在**/usr/share/applications/**下生成sublime_text.desktop，为了使sublime text支持中文输入，在启动软件的时候需要调用**libsublime-imfix.so**，在上述操作中拷贝的文件就是修改之后的subl和sublime_text.desktop。下面主要说明一下修改的地方。</p>
 <h4 id="subl文件">subl文件</h4>
-
 <p>原文件内容：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
-</span><span class="cp"></span><span class="nb">exec</span> /opt/sublime_text/sublime_text <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span></code></pre></div>
-<p>修改后的文件内容：</p>
+</span><span class="cp"></span><span class="nb">exec</span> /opt/sublime_text/sublime_text <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</code></pre></div><p>修改后的文件内容：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
-</span><span class="cp"></span><span class="nv">LD_PRELOAD</span><span class="o">=</span>/opt/sublime_text/libsublime-imfix.so <span class="nb">exec</span> /opt/sublime_text/sublime_text <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span></code></pre></div>
-<p>对比可发现，是在原来的语句前加了调用修复库libsublime-imfix.so的语句</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">LD_PRELOAD</span><span class="o">=</span>/opt/sublime_text/libsublime-imfix.so</code></pre></div>
-<h4 id="sublime-text-desktop文件">sublime_text.desktop文件</h4>
-
+</span><span class="cp"></span><span class="nv">LD_PRELOAD</span><span class="o">=</span>/opt/sublime_text/libsublime-imfix.so <span class="nb">exec</span> /opt/sublime_text/sublime_text <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</code></pre></div><p>对比可发现，是在原来的语句前加了调用修复库libsublime-imfix.so的语句</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">LD_PRELOAD</span><span class="o">=</span>/opt/sublime_text/libsublime-imfix.so
+</code></pre></div><h4 id="sublime_textdesktop文件">sublime_text.desktop文件</h4>
 <p>修改的地方有三点，均在<strong>Exec</strong>的位置，也是在运行软件的语句前加了调用修复库libsublime-imfix.so的语句。</p>
-
 <p>原文件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>Desktop Entry<span class="o">]</span>
-<span class="nv">Version</span><span class="o">=</span><span class="m">1</span>.0
+<span class="nv">Version</span><span class="o">=</span>1.0
 <span class="nv">Type</span><span class="o">=</span>Application
 <span class="nv">Name</span><span class="o">=</span>Sublime Text
 <span class="nv">GenericName</span><span class="o">=</span>Text Editor
@@ -145,10 +133,10 @@ sudo cp applications/sublime_text.desktop /usr/share/applications/</code></pre><
 <span class="o">[</span>Desktop Action Document<span class="o">]</span>
 <span class="nv">Name</span><span class="o">=</span>New File
 <span class="nv">Exec</span><span class="o">=</span>/opt/sublime_text/sublime_text --command new_file
-<span class="nv">OnlyShowIn</span><span class="o">=</span>Unity<span class="p">;</span></code></pre></div>
-<p>修改后的文件：</p>
+<span class="nv">OnlyShowIn</span><span class="o">=</span>Unity<span class="p">;</span>
+</code></pre></div><p>修改后的文件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>Desktop Entry<span class="o">]</span>
-<span class="nv">Version</span><span class="o">=</span><span class="m">1</span>.0
+<span class="nv">Version</span><span class="o">=</span>1.0
 <span class="nv">Type</span><span class="o">=</span>Application
 <span class="nv">Name</span><span class="o">=</span>Sublime Text
 <span class="nv">GenericName</span><span class="o">=</span>Text Editor
@@ -169,12 +157,11 @@ sudo cp applications/sublime_text.desktop /usr/share/applications/</code></pre><
 <span class="o">[</span>Desktop Action Document<span class="o">]</span>
 <span class="nv">Name</span><span class="o">=</span>New File
 <span class="nv">Exec</span><span class="o">=</span>bash -c <span class="s2">&#34;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text --command new_file&#34;</span>
-<span class="nv">OnlyShowIn</span><span class="o">=</span>Unity<span class="p">;</span></code></pre></div>
-<h3 id="参考">参考</h3>
-
+<span class="nv">OnlyShowIn</span><span class="o">=</span>Unity<span class="p">;</span>
+</code></pre></div><h3 id="参考">参考</h3>
 <ol>
-<li><a href="http://jingyan.baidu.com/article/f3ad7d0ff8731609c3345b3b.html" target="_blank">Ubuntu下Sublime Text 3解决无法输入中文的方法</a></li>
-<li><a href="http://www.jianshu.com/p/bf05fb3a4709" target="_blank">解决Ubuntu下Sublime Text 3无法输入中文</a></li>
+<li><a href="http://jingyan.baidu.com/article/f3ad7d0ff8731609c3345b3b.html">Ubuntu下Sublime Text 3解决无法输入中文的方法</a></li>
+<li><a href="http://www.jianshu.com/p/bf05fb3a4709">解决Ubuntu下Sublime Text 3无法输入中文</a></li>
 </ol>
 			</div>
 			<hr class="post-end">
@@ -184,7 +171,7 @@ sudo cp applications/sublime_text.desktop /usr/share/applications/</code></pre><
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					716 字
+					728 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -194,22 +181,16 @@ sudo cp applications/sublime_text.desktop /usr/share/applications/</code></pre><
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#平台">平台</a></li>
-<li><a href="#操作">操作</a></li>
-<li><a href="#详解">详解</a>
-<ul>
-<li><a href="#subl文件">subl文件</a></li>
-<li><a href="#sublime-text-desktop文件">sublime_text.desktop文件</a></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#平台">平台</a></li>
+        <li><a href="#操作">操作</a></li>
+        <li><a href="#详解">详解</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -260,7 +241,7 @@ sudo cp applications/sublime_text.desktop /usr/share/applications/</code></pre><
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

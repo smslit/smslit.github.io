@@ -18,9 +18,8 @@
       <pubDate>Wed, 24 Oct 2018 17:58:19 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/10/24/tee-Python/</guid>
-      <description>&lt;p&gt;最近，朋友 &lt;a href=&#34;http://www.litreily.top&#34; target=&#34;_blank&#34;&gt;Litreily&lt;/a&gt; 发表了文章&lt;a href=&#34;http://www.litreily.top/2018/09/27/tee/&#34; target=&#34;_blank&#34;&gt;Linux指令 - tee的实现&lt;/a&gt; ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png&#34; alt=&#34;20181025154039778364827.png&#34; /&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近，朋友 &lt;a href=&#34;http://www.litreily.top&#34;&gt;Litreily&lt;/a&gt; 发表了文章&lt;a href=&#34;http://www.litreily.top/2018/09/27/tee/&#34;&gt;Linux指令 - tee的实现&lt;/a&gt; ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png&#34; alt=&#34;20181025154039778364827.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之本地化工具 bartycrouch 4 使用教程">
 <meta itemprop="description" content="前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方">
-
-
 <meta itemprop="datePublished" content="2019-03-01T08:59:33&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-01T08:59:33&#43;08:00" />
-<meta itemprop="wordCount" content="2818">
+<meta itemprop="wordCount" content="2713">
 
 
 
-<meta itemprop="keywords" content="macOS 开发," />
-<meta property="og:title" content="macOS 开发之本地化工具 bartycrouch 4 使用教程" />
+<meta itemprop="keywords" content="macOS 开发," /><meta property="og:title" content="macOS 开发之本地化工具 bartycrouch 4 使用教程" />
 <meta property="og:description" content="前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/03/01/macOS-dev-bartycrouch4-tutorial/" />
@@ -84,60 +81,39 @@
 				<h1>macOS 开发之本地化工具 bartycrouch 4 使用教程</h1>
 			</header>
 			<div class="content">
-				
-
-<p>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方法变化还挺大，所以赶快在前面三篇文章中标注了一下版本使用问题，本文简单介绍一下 bartycrouch 4 的使用。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301092140.png" alt="" /></p>
-
+				<p>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方法变化还挺大，所以赶快在前面三篇文章中标注了一下版本使用问题，本文简单介绍一下 bartycrouch 4 的使用。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301092140.png" alt=""></p>
 <h2 id="开发平台">开发平台</h2>
-
 <ul>
 <li>macOS 10.14.3</li>
 <li>swift 4.2.1</li>
 <li>xcode 10.1</li>
 </ul>
-
 <h2 id="bartycrouch-准备">bartycrouch 准备</h2>
-
 <blockquote>
 <p>BartyCrouch incrementally updates your Strings files from your Code and from Interface Builder files. &ldquo;Incrementally&rdquo; means that BartyCrouch will by default keep both your already translated values and even your altered comments. Additionally you can also use BartyCrouch for machine translating from one language to 60+ other languages. Using BartyCrouch is as easy as running a few simple commands from the command line what can even be automated using a build script within your project.</p>
 </blockquote>
-
-<p><a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">BartyCrouch</a></p>
-
+<p><a href="https://github.com/Flinesoft/BartyCrouch">BartyCrouch</a></p>
 <p>bartycrouch 可以依据 interfaces 文件( xib 文件) 和代码(swift 、m、h 文件)来增量更新 strings 文件。在这里 <strong>增量</strong> 是指 bartycrouch 会默认保留已经翻译的值及改变了的注释。另外您也可使用 bartycrouch 借助微软的服务从一种语言机器翻译成超过 60+ 种语言。在命令行调用几个简单的命令您就可以轻而易举的使用 bartycrouch，另外您也可以在 xcode 的工程配置中添加运行脚本自动化使用 bartycrouch 完成您期望的任务。</p>
-
 <h3 id="依赖">依赖</h3>
-
 <ul>
 <li>Xcode 10.1+</li>
 <li>Swift 4.2+</li>
-<li>Xcode Command Line Tools (详见：<a href="http://stackoverflow.com/a/9329325/3451975" target="_blank">点我</a>)</li>
+<li>Xcode Command Line Tools (详见：<a href="http://stackoverflow.com/a/9329325/3451975">点我</a>)</li>
 </ul>
-
 <h3 id="安装方法">安装方法</h3>
-
-<p><details>
-<summary>使用 <a href="https://brew.sh/" target="_blank">Homebrew</a> 安装</summary></p>
-
+<!-- raw HTML omitted -->
 <p>通过下面的命令可以很容易安装 bartycrouch:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install bartycrouch</code></pre></div>
-<p>另外可以通过下面的命令更新 bartycrouch，保证一直使用最新保本:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew upgrade bartycrouch</code></pre></div>
-<p></details></p>
-
-<p><details>
-<summary>通过 <a href="https://github.com/yonaskolb/Mint" target="_blank">Mint</a> 安装</summary></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install bartycrouch
+</code></pre></div><p>另外可以通过下面的命令更新 bartycrouch，保证一直使用最新保本:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew upgrade bartycrouch
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>通过以下命令就可以安装 bartycrouch（目前通过这种方式会出现缺少动态库的问题，估计很快就会修复了，所以建议使用 homebrew 安装的方式）:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mint install Flinesoft/BartyCrouch</code></pre></div>
-<p></details></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mint install Flinesoft/BartyCrouch
+</code></pre></div><!-- raw HTML omitted -->
 <h2 id="bartycrouch-使用">bartycrouch 使用</h2>
-
-<p>这里提醒一下，如果您直接用一个现有的工程尝试这个工具的话，以防万一请先用 git <em>提交</em> 一下您的代码，尽量保证安全，另外这里强烈建议如果研究明白怎么用了后使用为 xcode <a href="#创建编译脚本">创建编译脚本</a> 的方式使用 bartycrouch。</p>
-
+<p>这里提醒一下，如果您直接用一个现有的工程尝试这个工具的话，以防万一请先用 git <em>提交</em> 一下您的代码，尽量保证安全，另外这里强烈建议如果研究明白怎么用了后使用为 xcode <a href="#%E5%88%9B%E5%BB%BA%E7%BC%96%E8%AF%91%E8%84%9A%E6%9C%AC">创建编译脚本</a> 的方式使用 bartycrouch。</p>
 <p>在命令行下，先执行一下 <code>bartycrouch -h</code>：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">$ bartycrouch -h
 
@@ -150,21 +126,17 @@ Commands:
   update          Update your .strings file contents with the configured tasks <span class="o">(</span>default: interfaces, code, normalize<span class="o">)</span>
   lint            Lints your .strings file contents
   <span class="nb">help</span>            Prints <span class="nb">help</span> information
-  version         Prints the current version of this app</code></pre></div>
-<ul>
+  version         Prints the current version of this app
+</code></pre></div><ul>
 <li><code>help</code>: 打印帮助信息，也就是上面，<code>bartycrouch -h</code> 等同于 <code>bartycrouch help</code></li>
 <li><code>version</code>: 打印当前 bartycrouch 的版本号</li>
 </ul>
-
 <p>下面以 bartycrouch 正常的使用流程分别讲一下 <code>init</code> <code>update</code> 和 <code>lint</code> 三个命令。</p>
-
 <h3 id="init-命令">init 命令</h3>
-
 <p>这个命令用于生成针对 Xcode 工程的 bartycrouch 配置文件。进入到 xcode 的根目录，执行以下命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">bartycrouch init</code></pre></div>
-<p>工程根目录下会出现名为 <code>.bartycrouch.toml</code> 的文件。</p>
-
-<p><details><summary><code>.bartycrouch.toml</code> 默认内容</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">bartycrouch init
+</code></pre></div><p>工程根目录下会出现名为 <code>.bartycrouch.toml</code> 的文件。</p>
+<!-- raw HTML omitted -->
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
 <span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span>
 
@@ -198,85 +170,88 @@ Commands:
 <span class="p">[</span><span class="nx">lint</span><span class="p">]</span>
 <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
 <span class="nx">duplicateKeys</span> <span class="p">=</span> <span class="kc">true</span>
-<span class="nx">emptyValues</span> <span class="p">=</span> <span class="kc">true</span></code></pre></div>
-<p></details></p>
-
+<span class="nx">emptyValues</span> <span class="p">=</span> <span class="kc">true</span>
+</code></pre></div><!-- raw HTML omitted -->
 <p>在这个配置文件中包含了另外两个命令( update 和 lint )的相关配置，这是 bartycrouch 的默认配置，应该可以在绝大多数工程中使用，但是这里需要注意以下几点：</p>
-
 <ul>
-<li><p><code>[update]</code> 的值就代表了，执行 <code>bartycrouch update</code> 时要完成的任务，不想执行某个任务可以直接删除，比如不执行 <code>code</code> 任务，可以写成：</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
-<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span></code></pre></div></li>
-
-<li><p>每个任务子项中都包含了对应的配置信息，可依据工程需要进行调整，具体含义可以参考后面任务的介绍</p></li>
-
-<li><p>尽可能为包含关键字的 <code>path</code> 键提供具体的路径名称 (例如：<code>codePath</code> 设置为包含 swift 代码文件的目录)</p></li>
-
-<li><p>如果您的工程是纯 swift 实现并且使用了 update 命令的的 <a href="#transform-任务"><code>tranform</code> 任务</a>，可以删除 <code>code</code> 任务</p></li>
-
-<li><p>如果您正在使用支持 <code>structured-swift4</code> 模板的 <a href="https://github.com/SwiftGen/SwiftGen#strings" target="_blank">SwiftGen</a> ，您需要将 <code>[update.transform]</code> 的 <code>transformer</code> 从 <code>foundation</code> 改为 <code>swiftgenStructured</code></p></li>
-
-<li><p>如果您要使用 <code>transform</code> 任务，需要在工程中创建一个新文件，命名为 <code>BartyCrouch.swift</code>，内容如下：</p></li>
+<li><code>[update]</code> 的值就代表了，执行 <code>bartycrouch update</code> 时要完成的任务，不想执行某个任务可以直接删除，比如不执行 <code>code</code> 任务，可以写成：</li>
 </ul>
-
-<p><details><summary><code>BartyCrouch.swift</code> 代码</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
+<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span>
+</code></pre></div><ul>
+<li>
+<p>每个任务子项中都包含了对应的配置信息，可依据工程需要进行调整，具体含义可以参考后面任务的介绍</p>
+</li>
+<li>
+<p>尽可能为包含关键字的 <code>path</code> 键提供具体的路径名称 (例如：<code>codePath</code> 设置为包含 swift 代码文件的目录)</p>
+</li>
+<li>
+<p>如果您的工程是纯 swift 实现并且使用了 update 命令的的 <a href="#transform-%E4%BB%BB%E5%8A%A1"><code>tranform</code> 任务</a>，可以删除 <code>code</code> 任务</p>
+</li>
+<li>
+<p>如果您正在使用支持 <code>structured-swift4</code> 模板的 <a href="https://github.com/SwiftGen/SwiftGen#strings">SwiftGen</a> ，您需要将 <code>[update.transform]</code> 的 <code>transformer</code> 从 <code>foundation</code> 改为 <code>swiftgenStructured</code></p>
+</li>
+<li>
+<p>如果您要使用 <code>transform</code> 任务，需要在工程中创建一个新文件，命名为 <code>BartyCrouch.swift</code>，内容如下：</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//</span>
-<span class="c1">//  This file is required in order for the `transform` task of the translation helper tool BartyCrouch to work.</span>
-<span class="c1">//  See here for more details: https://github.com/Flinesoft/BartyCrouch</span>
+<span class="c1">//</span><span class="c1"> </span><span class="c1"> </span><span class="c1">T</span><span class="c1">h</span><span class="c1">i</span><span class="c1">s</span><span class="c1"> </span><span class="c1">f</span><span class="c1">i</span><span class="c1">l</span><span class="c1">e</span><span class="c1"> </span><span class="c1">i</span><span class="c1">s</span><span class="c1"> </span><span class="c1">r</span><span class="c1">e</span><span class="c1">q</span><span class="c1">u</span><span class="c1">i</span><span class="c1">r</span><span class="c1">e</span><span class="c1">d</span><span class="c1"> </span><span class="c1">i</span><span class="c1">n</span><span class="c1"> </span><span class="c1">o</span><span class="c1">r</span><span class="c1">d</span><span class="c1">e</span><span class="c1">r</span><span class="c1"> </span><span class="c1">f</span><span class="c1">o</span><span class="c1">r</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">`</span><span class="c1">t</span><span class="c1">r</span><span class="c1">a</span><span class="c1">n</span><span class="c1">s</span><span class="c1">f</span><span class="c1">o</span><span class="c1">r</span><span class="c1">m</span><span class="c1">`</span><span class="c1"> </span><span class="c1">t</span><span class="c1">a</span><span class="c1">s</span><span class="c1">k</span><span class="c1"> </span><span class="c1">o</span><span class="c1">f</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">t</span><span class="c1">r</span><span class="c1">a</span><span class="c1">n</span><span class="c1">s</span><span class="c1">l</span><span class="c1">a</span><span class="c1">t</span><span class="c1">i</span><span class="c1">o</span><span class="c1">n</span><span class="c1"> </span><span class="c1">h</span><span class="c1">e</span><span class="c1">l</span><span class="c1">p</span><span class="c1">e</span><span class="c1">r</span><span class="c1"> </span><span class="c1">t</span><span class="c1">o</span><span class="c1">o</span><span class="c1">l</span><span class="c1"> </span><span class="c1">B</span><span class="c1">a</span><span class="c1">r</span><span class="c1">t</span><span class="c1">y</span><span class="c1">C</span><span class="c1">r</span><span class="c1">o</span><span class="c1">u</span><span class="c1">c</span><span class="c1">h</span><span class="c1"> </span><span class="c1">t</span><span class="c1">o</span><span class="c1"> </span><span class="c1">w</span><span class="c1">o</span><span class="c1">r</span><span class="c1">k</span><span class="c1">.</span>
+<span class="c1">//</span><span class="c1"> </span><span class="c1"> </span><span class="c1">S</span><span class="c1">e</span><span class="c1">e</span><span class="c1"> </span><span class="c1">h</span><span class="c1">e</span><span class="c1">r</span><span class="c1">e</span><span class="c1"> </span><span class="c1">f</span><span class="c1">o</span><span class="c1">r</span><span class="c1"> </span><span class="c1">m</span><span class="c1">o</span><span class="c1">r</span><span class="c1">e</span><span class="c1"> </span><span class="c1">d</span><span class="c1">e</span><span class="c1">t</span><span class="c1">a</span><span class="c1">i</span><span class="c1">l</span><span class="c1">s</span><span class="c1">:</span><span class="c1"> </span><span class="c1">h</span><span class="c1">t</span><span class="c1">t</span><span class="c1">p</span><span class="c1">s</span><span class="c1">:</span><span class="c1">/</span><span class="c1">/</span><span class="c1">g</span><span class="c1">i</span><span class="c1">t</span><span class="c1">h</span><span class="c1">u</span><span class="c1">b</span><span class="c1">.</span><span class="c1">c</span><span class="c1">o</span><span class="c1">m</span><span class="c1">/</span><span class="c1">F</span><span class="c1">l</span><span class="c1">i</span><span class="c1">n</span><span class="c1">e</span><span class="c1">s</span><span class="c1">o</span><span class="c1">f</span><span class="c1">t</span><span class="c1">/</span><span class="c1">B</span><span class="c1">a</span><span class="c1">r</span><span class="c1">t</span><span class="c1">y</span><span class="c1">C</span><span class="c1">r</span><span class="c1">o</span><span class="c1">u</span><span class="c1">c</span><span class="c1">h</span>
 <span class="c1">//</span>
 
 <span class="kd">import</span> <span class="nc">Foundation</span>
 
 <span class="kd">enum</span> <span class="nc">BartyCrouch</span> <span class="p">{</span>
     <span class="kd">enum</span> <span class="nc">SupportedLanguage</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
-        <span class="c1">// </span><span class="cs">TODO:</span><span class="c1"> remove unsupported languages from the following cases list &amp; add any missing languages</span>
-        <span class="k">case</span> <span class="n">arabic</span> <span class="p">=</span> <span class="s">&#34;ar&#34;</span>
-        <span class="k">case</span> <span class="n">chineseSimplified</span> <span class="p">=</span> <span class="s">&#34;zh-Hans&#34;</span>
-        <span class="k">case</span> <span class="n">chineseTraditional</span> <span class="p">=</span> <span class="s">&#34;zh-Hant&#34;</span>
-        <span class="k">case</span> <span class="n">english</span> <span class="p">=</span> <span class="s">&#34;en&#34;</span>
-        <span class="k">case</span> <span class="n">french</span> <span class="p">=</span> <span class="s">&#34;fr&#34;</span>
-        <span class="k">case</span> <span class="n">german</span> <span class="p">=</span> <span class="s">&#34;de&#34;</span>
-        <span class="k">case</span> <span class="n">hindi</span> <span class="p">=</span> <span class="s">&#34;hi&#34;</span>
-        <span class="k">case</span> <span class="n">italian</span> <span class="p">=</span> <span class="s">&#34;it&#34;</span>
-        <span class="k">case</span> <span class="n">japanese</span> <span class="p">=</span> <span class="s">&#34;ja&#34;</span>
-        <span class="k">case</span> <span class="n">korean</span> <span class="p">=</span> <span class="s">&#34;ko&#34;</span>
-        <span class="k">case</span> <span class="n">malay</span> <span class="p">=</span> <span class="s">&#34;ms&#34;</span>
-        <span class="k">case</span> <span class="n">portuguese</span> <span class="p">=</span> <span class="s">&#34;pt-BR&#34;</span>
-        <span class="k">case</span> <span class="n">russian</span> <span class="p">=</span> <span class="s">&#34;ru&#34;</span>
-        <span class="k">case</span> <span class="n">spanish</span> <span class="p">=</span> <span class="s">&#34;es&#34;</span>
-        <span class="k">case</span> <span class="n">turkish</span> <span class="p">=</span> <span class="s">&#34;tr&#34;</span>
+        <span class="c1">//</span><span class="c1"> </span><span class="cs">TODO:</span><span class="c1"> </span><span class="c1">r</span><span class="c1">e</span><span class="c1">m</span><span class="c1">o</span><span class="c1">v</span><span class="c1">e</span><span class="c1"> </span><span class="c1">u</span><span class="c1">n</span><span class="c1">s</span><span class="c1">u</span><span class="c1">p</span><span class="c1">p</span><span class="c1">o</span><span class="c1">r</span><span class="c1">t</span><span class="c1">e</span><span class="c1">d</span><span class="c1"> </span><span class="c1">l</span><span class="c1">a</span><span class="c1">n</span><span class="c1">g</span><span class="c1">u</span><span class="c1">a</span><span class="c1">g</span><span class="c1">e</span><span class="c1">s</span><span class="c1"> </span><span class="c1">f</span><span class="c1">r</span><span class="c1">o</span><span class="c1">m</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">f</span><span class="c1">o</span><span class="c1">l</span><span class="c1">l</span><span class="c1">o</span><span class="c1">w</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1"> </span><span class="c1">c</span><span class="c1">a</span><span class="c1">s</span><span class="c1">e</span><span class="c1">s</span><span class="c1"> </span><span class="c1">l</span><span class="c1">i</span><span class="c1">s</span><span class="c1">t</span><span class="c1"> </span><span class="c1">&amp;</span><span class="c1"> </span><span class="c1">a</span><span class="c1">d</span><span class="c1">d</span><span class="c1"> </span><span class="c1">a</span><span class="c1">n</span><span class="c1">y</span><span class="c1"> </span><span class="c1">m</span><span class="c1">i</span><span class="c1">s</span><span class="c1">s</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1"> </span><span class="c1">l</span><span class="c1">a</span><span class="c1">n</span><span class="c1">g</span><span class="c1">u</span><span class="c1">a</span><span class="c1">g</span><span class="c1">e</span><span class="c1">s</span>
+        <span class="k">case</span> <span class="n">arabic</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ar</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">chineseSimplified</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">zh-Hans</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">chineseTraditional</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">zh-Hant</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">english</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">en</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">french</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">fr</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">german</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">de</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">hindi</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">hi</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">italian</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">it</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">japanese</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ja</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">korean</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ko</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">malay</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ms</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">portuguese</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">pt-BR</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">russian</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ru</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">spanish</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">es</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">turkish</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">tr</span><span class="s">&#34;</span>
     <span class="p">}</span>
 
-    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">translations</span><span class="p">:</span> <span class="p">[</span><span class="n">SupportedLanguage</span><span class="p">:</span> <span class="nb">String</span><span class="p">],</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">translations</span><span class="p">:</span> <span class="p">[</span><span class="n">SupportedLanguage</span><span class="p">:</span> <span class="nb">String</span><span class="p">]</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">typeName</span> <span class="p">=</span> <span class="nb">String</span><span class="p">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span>
         <span class="kd">let</span> <span class="nv">methodName</span> <span class="p">=</span> <span class="kc">#function</span>
 
         <span class="bp">print</span><span class="p">(</span>
-            <span class="s">&#34;Warning: [BartyCrouch]&#34;</span><span class="p">,</span>
-            <span class="s">&#34;Untransformed </span><span class="si">\(</span><span class="n">typeName</span><span class="si">)</span><span class="s">.</span><span class="si">\(</span><span class="n">methodName</span><span class="si">)</span><span class="s"> method call found with key &#39;</span><span class="si">\(</span><span class="n">key</span><span class="si">)</span><span class="s">&#39; and base translations &#39;</span><span class="si">\(</span><span class="n">translations</span><span class="si">)</span><span class="s">&#39;.&#34;</span><span class="p">,</span>
-            <span class="s">&#34;Please ensure that BartyCrouch is installed and configured correctly.&#34;</span>
+            <span class="s">&#34;</span><span class="s">Warning: [BartyCrouch]</span><span class="s">&#34;</span><span class="p">,</span>
+            <span class="s">&#34;</span><span class="s">Untransformed </span><span class="si">\(</span><span class="n">typeName</span><span class="si">)</span><span class="s">.</span><span class="si">\(</span><span class="n">methodName</span><span class="si">)</span><span class="s"> method call found with key &#39;</span><span class="si">\(</span><span class="n">key</span><span class="si">)</span><span class="s">&#39; and base translations &#39;</span><span class="si">\(</span><span class="n">translations</span><span class="si">)</span><span class="s">&#39;.</span><span class="s">&#34;</span><span class="p">,</span>
+            <span class="s">&#34;</span><span class="s">Please ensure that BartyCrouch is installed and configured correctly.</span><span class="s">&#34;</span>
         <span class="p">)</span>
 
-        <span class="c1">// fall back in case something goes wrong with BartyCrouch transformation</span>
-        <span class="k">return</span> <span class="s">&#34;BC: TRANSFORMATION FAILED!&#34;</span>
+        <span class="c1">//</span><span class="c1"> </span><span class="c1">f</span><span class="c1">a</span><span class="c1">l</span><span class="c1">l</span><span class="c1"> </span><span class="c1">b</span><span class="c1">a</span><span class="c1">c</span><span class="c1">k</span><span class="c1"> </span><span class="c1">i</span><span class="c1">n</span><span class="c1"> </span><span class="c1">c</span><span class="c1">a</span><span class="c1">s</span><span class="c1">e</span><span class="c1"> </span><span class="c1">s</span><span class="c1">o</span><span class="c1">m</span><span class="c1">e</span><span class="c1">t</span><span class="c1">h</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1"> </span><span class="c1">g</span><span class="c1">o</span><span class="c1">e</span><span class="c1">s</span><span class="c1"> </span><span class="c1">w</span><span class="c1">r</span><span class="c1">o</span><span class="c1">n</span><span class="c1">g</span><span class="c1"> </span><span class="c1">w</span><span class="c1">i</span><span class="c1">t</span><span class="c1">h</span><span class="c1"> </span><span class="c1">B</span><span class="c1">a</span><span class="c1">r</span><span class="c1">t</span><span class="c1">y</span><span class="c1">C</span><span class="c1">r</span><span class="c1">o</span><span class="c1">u</span><span class="c1">c</span><span class="c1">h</span><span class="c1"> </span><span class="c1">t</span><span class="c1">r</span><span class="c1">a</span><span class="c1">n</span><span class="c1">s</span><span class="c1">f</span><span class="c1">o</span><span class="c1">r</span><span class="c1">m</span><span class="c1">a</span><span class="c1">t</span><span class="c1">i</span><span class="c1">o</span><span class="c1">n</span>
+        <span class="k">return</span> <span class="s">&#34;</span><span class="s">BC: TRANSFORMATION FAILED!</span><span class="s">&#34;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p></details></p>
-
+<span class="p">}</span>
+</code></pre></div><!-- raw HTML omitted -->
 <ul>
-<li><p>如果您的第一语言不是英语, 您需要将 <code>normalize</code> 任务的 <code>sourceLocale</code> 改为您的第一语言，值参考上面代码中的枚举 <code>SupportedLanguage</code> 的元素</p></li>
-
-<li><p>如果您想使用 bartycrouch 的翻译功能，需要将如下的配置添加到 <code>.bartycrouch.toml</code> 中，并且将 <code>translate</code> 添加到任务列表中，其中您需要将 <code>secret</code> 的值替换成您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key" target="_blank">Microsoft Translator Text API Subscription Key</a>:</p>
+<li>
+<p>如果您的第一语言不是英语, 您需要将 <code>normalize</code> 任务的 <code>sourceLocale</code> 改为您的第一语言，值参考上面代码中的枚举 <code>SupportedLanguage</code> 的元素</p>
+</li>
+<li>
+<p>如果您想使用 bartycrouch 的翻译功能，需要将如下的配置添加到 <code>.bartycrouch.toml</code> 中，并且将 <code>translate</code> 添加到任务列表中，其中您需要将 <code>secret</code> 的值替换成您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key">Microsoft Translator Text API Subscription Key</a>:</p>
+</li>
+</ul>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">.</span><span class="nx">translate</span><span class="p">]</span>
 <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
 <span class="nx">secret</span> <span class="p">=</span> <span class="s2">&#34;&lt;#Subscription Key#&gt;&#34;</span>
-<span class="nx">sourceLocale</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span></code></pre></div></li>
-</ul>
-
-<h3 id="update-命令">update 命令</h3>
-
+<span class="nx">sourceLocale</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+</code></pre></div><h3 id="update-命令">update 命令</h3>
 <p>update 命令可以执行以下几个任务：</p>
-
 <ul>
 <li><code>interfaces</code>: 从 Storyboards &amp; XIBs 更新 <code>.strings</code> 文件</li>
 <li><code>code</code>: 根据代码中的 <code>NSLocalizedString</code> 调用更新 <code>Localizable.strings</code></li>
@@ -284,25 +259,19 @@ Commands:
 <li><code>translate</code>: 从指定语言翻译成多种语言并替换结果到 strings 文件中</li>
 <li><code>normalize</code>: 格式化 <code>.strings</code> 文件内容：排序或者清楚多余内容</li>
 </ul>
-
 <p>上面已经提到过的，可以通过 <code>.bartycrouch.toml</code> 的 <code>task</code> 配置要执行的任务：</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">update</span><span class="p">]</span>
-<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span></code></pre></div>
-<h4 id="任务配置项介绍">任务配置项介绍</h4>
-
-<p><details><summary><code>interfaces</code> 配置项含义</summary></p>
-
+<span class="nx">tasks</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;interfaces&#34;</span><span class="p">,</span> <span class="s2">&#34;code&#34;</span><span class="p">,</span> <span class="s2">&#34;transform&#34;</span><span class="p">,</span> <span class="s2">&#34;normalize&#34;</span><span class="p">]</span>
+</code></pre></div><h4 id="任务配置项介绍">任务配置项介绍</h4>
+<!-- raw HTML omitted -->
 <ul>
 <li><code>path</code>: 查找 Storyboards &amp; XIB 文件的路径</li>
 <li><code>defaultToBase</code>: 添加 Base translation 作为新键的值</li>
 <li><code>ignoreEmptyStrings</code>: 不添加 views 中是空值的项</li>
 <li><code>unstripped</code>: 保留 Strings 文件开始和结尾的空白字符串</li>
 </ul>
-
-<p></details></p>
-
-<p><details><summary><code>code</code> 配置项含义</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
 <li><code>codePath</code>: 查找 Swift 代码文件的路径</li>
 <li><code>localizablePath</code>: 包含 <code>Localizable.strings</code> 文件的目录的父目录</li>
@@ -312,11 +281,8 @@ Commands:
 <li><code>customLocalizableName</code>: 替代 <code>Localizable.strings</code> 的文件的名称</li>
 <li><code>unstripped</code>: 保留 Strings 文件开始和结尾的空白字符串</li>
 </ul>
-
-<p></details></p>
-
-<p><details><summary><code>transform</code> 配置项含义</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
 <li><code>codePath</code>: 查找 Swift 代码文件的路径</li>
 <li><code>localizablePath</code>:  包含 <code>Localizable.strings</code> 文件的目录的父目录</li>
@@ -326,105 +292,83 @@ Commands:
 <li><code>translateMethodName</code>: 翻译方法的名称</li>
 <li><code>customLocalizableName</code>: 替代 <code>Localizable.strings</code> 的文件的名称</li>
 </ul>
-
-<p></details></p>
-
-<p><details><summary><code>translate</code>  配置项含义</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
 <li><code>path</code>: 查找 <code>.strings</code> 文件的路径</li>
-<li><code>secret</code>: 您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key" target="_blank">Microsoft Translator Text API Subscription Key</a>.</li>
+<li><code>secret</code>: 您的 <a href="https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup#authentication-key">Microsoft Translator Text API Subscription Key</a>.</li>
 <li><code>sourceLocale</code>: 指定从哪种语言翻译成其他语言</li>
 </ul>
-
-<p></details></p>
-
-<p><details><summary><code>normalize</code>  配置项含义</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
 <li><code>path</code>: 查找 <code>.strings</code> 文件的路径</li>
 <li><code>sourceLocale</code>: 指定依照哪种语言对其他语言的 string 文件进行格式化</li>
 <li><code>harmonizeWithSource</code>: 同步键值对的源语言</li>
 <li><code>sortByKeys</code>: 按照字母顺序对键进行排序</li>
 </ul>
-
-<p></details></p>
-
+<!-- raw HTML omitted -->
 <h4 id="transform-任务">transform 任务</h4>
-
-<p>如果配置文件中配置了 <code>transform</code> 任务(详见 <a href="#init-命令">init 命令</a>)并且已经在 xcode 中<a href="#创建编译脚本">创建编译脚本</a>, 在开发中您可以使用下面简化的流程编写本地化代码:</p>
-
+<p>如果配置文件中配置了 <code>transform</code> 任务(详见 <a href="#init-%E5%91%BD%E4%BB%A4">init 命令</a>)并且已经在 xcode 中<a href="#%E5%88%9B%E5%BB%BA%E7%BC%96%E8%AF%91%E8%84%9A%E6%9C%AC">创建编译脚本</a>, 在开发中您可以使用下面简化的流程编写本地化代码:</p>
 <ul>
-<li><p>您可以使用 <code>BartyCrouch.translate</code> 替代 <code>NSLocalizedString</code> 指定键、翻译方法和注释，例如:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="s">&#34;onboarding.first-page.header-title&#34;</span><span class="p">,</span>  <span class="n">translations</span><span class="p">:</span> <span class="p">[.</span><span class="n">english</span><span class="p">:</span> <span class="s">&#34;Welcome!&#34;</span><span class="p">])</span></code></pre></div></li>
-
-<li><p>编译应用的时候, BartyCrouch 会自动向所有的 <code>Localizable.strings</code> 文件中添加您指定的键，并且为指定语言的键添加指定语言翻译结果</p></li>
-
-<li><p>同时 BartyCrouch 会自动依据配置中指定的 <code>transformer</code> 替换上面 <code>BartyCrouch.translate</code> 的调用为对应的方法</p>
-
-<ul>
-<li><p>当 <code>transformer</code> 设置为 <code>foundation</code>, 上面 <code>BartyCrouch.translate</code> 的调用会替换为如下的结果:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;onboarding.first-page.header-title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)</span></code></pre></div></li>
-
-<li><p>当 <code>transformer</code> 设置为 <code>swiftgenStructured</code>, 上面 <code>BartyCrouch.translate</code> 的调用会替换为如下的结果:</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">L10n</span><span class="p">.</span><span class="n">Onboarding</span><span class="p">.</span><span class="n">FirstPage</span><span class="p">.</span><span class="n">headerTitle</span></code></pre></div></li>
-</ul></li>
+<li>您可以使用 <code>BartyCrouch.translate</code> 替代 <code>NSLocalizedString</code> 指定键、翻译方法和注释，例如:</li>
 </ul>
-
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">BartyCrouch</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">onboarding.first-page.header-title</span><span class="s">&#34;</span><span class="p">,</span>  <span class="n">translations</span><span class="p">:</span> <span class="p">[</span><span class="p">.</span><span class="n">english</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">Welcome!</span><span class="s">&#34;</span><span class="p">]</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>
+<p>编译应用的时候, BartyCrouch 会自动向所有的 <code>Localizable.strings</code> 文件中添加您指定的键，并且为指定语言的键添加指定语言翻译结果</p>
+</li>
+<li>
+<p>同时 BartyCrouch 会自动依据配置中指定的 <code>transformer</code> 替换上面 <code>BartyCrouch.translate</code> 的调用为对应的方法</p>
+<ul>
+<li>
+<p>当 <code>transformer</code> 设置为 <code>foundation</code>, 上面 <code>BartyCrouch.translate</code> 的调用会替换为如下的结果:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">onboarding.first-page.header-title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span>
+</code></pre></div></li>
+<li>
+<p>当 <code>transformer</code> 设置为 <code>swiftgenStructured</code>, 上面 <code>BartyCrouch.translate</code> 的调用会替换为如下的结果:</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kc">self</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">L10n</span><span class="p">.</span><span class="n">Onboarding</span><span class="p">.</span><span class="n">FirstPage</span><span class="p">.</span><span class="n">headerTitle</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
 <h5 id="使用-transform-的优点">使用 <code>transform</code> 的优点:</h5>
-
 <ul>
 <li>不用为了添加翻译的键值而不断的切换不同语言的 Strings 文件</li>
 <li>一旦使用了 SwiftGen, 不需要手动替换 <code>NSLocalizedString</code> 为 <code>L10n</code> 的调用了</li>
 <li>与机器翻译配合使得只需在代码中使用一行代码就可以实现所有语言的翻译和值的替换</li>
 </ul>
-
 <h5 id="使用-transform-的缺点">使用 <code>transform</code> 的缺点:</h5>
-
 <ul>
 <li>只支持 swift 代码而不支持 Objective-C</li>
 <li>在下次编译之前，xcode 会有一些错误提示，但是一编译就会没有了错误提示</li>
-<li>由于 <a href="https://github.com/apple/swift-syntax" target="_blank">SwiftSyntax</a> 当前<a href="https://www.jpsim.com/evaluating-swiftsyntax-for-use-in-swiftlint/" target="_blank">运行不是特别快</a>所以看上去不如 <code>code</code> 任务快速. (但是这个会随着时间改善！)</li>
+<li>由于 <a href="https://github.com/apple/swift-syntax">SwiftSyntax</a> 当前<a href="https://www.jpsim.com/evaluating-swiftsyntax-for-use-in-swiftlint/">运行不是特别快</a>所以看上去不如 <code>code</code> 任务快速. (但是这个会随着时间改善！)</li>
 </ul>
-
 <h3 id="lint-命令">lint 命令</h3>
-
 <p>lint 命令可以检查 <code>.strings</code> 文件，主要有下面两个检查项:</p>
-
 <ul>
 <li><code>duplicateKeys</code>: 查找同一个文件中重复的键值对</li>
 <li><code>emptyValues</code>: 查找空值的键值对</li>
 </ul>
-
 <h3 id="创建编译脚本">创建编译脚本</h3>
-
 <p>为了让 xcode 可以使用 bartycrouch 来更新和检查您的 <code>.strings</code> 文件，您可以添加一个编译脚本实现。</p>
-
 <p>按照下图所示步骤添加脚本：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301131243.jpg" alt="" /></p>
-
-<p><details><summary>脚本内容(点我查看)</summary></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301131243.jpg" alt=""></p>
+<!-- raw HTML omitted -->
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="k">if</span> which bartycrouch &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
     bartycrouch update -x
     bartycrouch lint -x
 <span class="k">else</span>
     <span class="nb">echo</span> <span class="s2">&#34;warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch&#34;</span>
-<span class="k">fi</span></code></pre></div>
-<p></details></p>
-
+<span class="k">fi</span>
+</code></pre></div><!-- raw HTML omitted -->
 <p>下一步确保这个运行脚本在 <code>Compiling Sources</code> 和 <code>SwiftGen</code>(如果使用了的话) 之前运行，比如在 <code>Target Dependencies</code> 后面，像下图这样：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301131815.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301131815.png" alt=""></p>
 <p>现在每次运行工程，都会自动的更新和检查 <code>.strings</code> 文件，而不用手动处理了。另外如果工程的成员如果没有安装 bartycrouch 的脚本会产生警告：</p>
-
 <blockquote>
-<p>warning: BartyCrouch not installed, download it from <a href="https://github.com/Flinesoft/BartyCrouch" target="_blank">https://github.com/Flinesoft/BartyCrouch</a></p>
+<p>warning: BartyCrouch not installed, download it from <a href="https://github.com/Flinesoft/BartyCrouch">https://github.com/Flinesoft/BartyCrouch</a></p>
 </blockquote>
-
 <p>另外补充的是，lint 和 update 有以下三个参数可用：</p>
-
 <ul>
 <li><strong><code>-v</code>, <code>--verbose</code></strong>: 打印更多的执行信息</li>
 <li><strong><code>-x</code>, <code>--xcode-output</code></strong>: 以 xcode 兼容的形式呈现错误和提醒，在 xcode 中的运行脚本中添加以后，一旦检查出错误或警告会在 xcode 的 issue 导航栏中呈现</li>
@@ -439,7 +383,7 @@ Commands:
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2818 字
+					2713 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -449,32 +393,23 @@ Commands:
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#开发平台">开发平台</a></li>
-<li><a href="#bartycrouch-准备">bartycrouch 准备</a>
-<ul>
-<li><a href="#依赖">依赖</a></li>
-<li><a href="#安装方法">安装方法</a></li>
-</ul></li>
-<li><a href="#bartycrouch-使用">bartycrouch 使用</a>
-<ul>
-<li><a href="#init-命令">init 命令</a></li>
-<li><a href="#update-命令">update 命令</a>
-<ul>
-<li><a href="#任务配置项介绍">任务配置项介绍</a></li>
-<li><a href="#transform-任务">transform 任务</a>
-<ul>
-<li><a href="#使用-transform-的优点">使用 <code>transform</code> 的优点:</a></li>
-<li><a href="#使用-transform-的缺点">使用 <code>transform</code> 的缺点:</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#lint-命令">lint 命令</a></li>
-<li><a href="#创建编译脚本">创建编译脚本</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#开发平台">开发平台</a></li>
+    <li><a href="#bartycrouch-准备">bartycrouch 准备</a>
+      <ul>
+        <li><a href="#依赖">依赖</a></li>
+        <li><a href="#安装方法">安装方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#bartycrouch-使用">bartycrouch 使用</a>
+      <ul>
+        <li><a href="#init-命令">init 命令</a></li>
+        <li><a href="#update-命令">update 命令</a></li>
+        <li><a href="#lint-命令">lint 命令</a></li>
+        <li><a href="#创建编译脚本">创建编译脚本</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -525,7 +460,7 @@ Commands:
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

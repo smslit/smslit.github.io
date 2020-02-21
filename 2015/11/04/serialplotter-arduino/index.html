@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Arduino IDE 1.6.6新特性之Serial Plotter">
 <meta itemprop="description" content="今天去Arduino官网看了一下，发现发布了Arduino IDE1.6.6，看介绍发现增添了好多新特性，于是乎下载下来玩耍了一番，觉得比较有意思的是Serial Plotter，感觉这一功能的增加对于看数据变化曲线方便了好多，不用开其他软件直接用Serial Plotter就可以实现。">
-
-
 <meta itemprop="datePublished" content="2015-11-04T22:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-11-04T22:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1065">
 
 
 
-<meta itemprop="keywords" content="arduino," />
-<meta property="og:title" content="Arduino IDE 1.6.6新特性之Serial Plotter" />
+<meta itemprop="keywords" content="arduino," /><meta property="og:title" content="Arduino IDE 1.6.6新特性之Serial Plotter" />
 <meta property="og:description" content="今天去Arduino官网看了一下，发现发布了Arduino IDE1.6.6，看介绍发现增添了好多新特性，于是乎下载下来玩耍了一番，觉得比较有意思的是Serial Plotter，感觉这一功能的增加对于看数据变化曲线方便了好多，不用开其他软件直接用Serial Plotter就可以实现。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/11/04/serialplotter-arduino/" />
@@ -84,86 +81,61 @@
 			</header>
 			<div class="content">
 				<p>今天去Arduino官网看了一下，发现发布了Arduino IDE1.6.6，看介绍发现增添了好多新特性，于是乎下载下来玩耍了一番，觉得比较有意思的是Serial Plotter，感觉这一功能的增加对于看数据变化曲线方便了好多，不用开其他软件直接用Serial Plotter就可以实现。</p>
-
 <h3 id="serial-plotter">Serial Plotter</h3>
-
 <h4 id="硬件">硬件：</h4>
-
 <ul>
 <li>Arduino Pro Mini</li>
 <li>USB to TTL（PL2303的）</li>
 </ul>
-
 <p>说明：</p>
-
 <p>USB转TTL用来为Arduino Pro Mini下载程序.</p>
-
 <h4 id="测试sketch">测试sketch</h4>
-
 <p>官方的介绍中是下面的描述：</p>
-
 <blockquote>
 <p>Serial plotter: you can now plot your data in realtime, as easy as writing Serial.println(analogRead(A0)) inside your loop</p>
 </blockquote>
-
 <p>大概的意思是说：现在可以实时绘制数据了，只需要在Loop中加入Serial.println()就可以。</p>
-
 <h5 id="实现正弦函数">实现正弦函数</h5>
-
 <p>所以我编写一个测试sketch，实现正弦函数数据的绘制：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<h4 id="设置arduino">设置Arduino</h4>
-
+<span class="p">}</span>
+</code></pre></div><h4 id="设置arduino">设置Arduino</h4>
 <p>板子选<code>Arduino Pro Mini</code>，处理器选择<code>ATmega328（5v，16MHz）</code>，串口选择<code>/dev/cu.usbserial</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/lr7ad.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/lr7ad.png" alt="1"></p>
 <h4 id="serial-plotter-1">Serial Plotter</h4>
-
 <p>编译下载，打开<code>Tools</code>-&gt;<code>Serial Plotter</code>。</p>
-
 <p>编译sketch并下载到板子上后，可以通过菜单栏Tools找到Serial Plotter，点击打开：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yr9hv.png" alt="2" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yr9hv.png" alt="2"></p>
 <p>选择对应sketch的波特率，就会看到下面的样子：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/1kkw0.gif" alt="3" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/1kkw0.gif" alt="3"></p>
 <h4 id="绘制多值曲线">绘制多值曲线</h4>
-
 <p>上面的例子是利用Serial Plotter工具绘制单值曲线的，其实这个工具还支持多个值绘制多条曲线，只需在每个值之间加上逗号，这里要注意的是，只有最后一个值用<strong>println</strong>函数，前面的值用<strong>print</strong>函数。</p>
-
 <p>测试代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sc">&#39;,&#39;</span><span class="p">);</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">,</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>然后下载程序到Arduino，用Serial  Plotter查看可以看到两条三角函数曲线。</p>
-
+<span class="p">}</span>
+</code></pre></div><p>然后下载程序到Arduino，用Serial  Plotter查看可以看到两条三角函数曲线。</p>
 <h3 id="增加的新特性">增加的新特性</h3>
-
-<p>可以看官网上的介绍<a href="https://blog.arduino.cc/2015/11/03/arduino-ide-1-6-6-released-and-available-for-download/" target="_blank"><strong>ARDUINO IDE 1.6.6 RELEASED AND AVAILABLE FOR DOWNLOAD</strong></a></p>
-
+<p>可以看官网上的介绍<a href="https://blog.arduino.cc/2015/11/03/arduino-ide-1-6-6-released-and-available-for-download/"><strong>ARDUINO IDE 1.6.6 RELEASED AND AVAILABLE FOR DOWNLOAD</strong></a></p>
 <ol>
 <li><strong>久等全新的Arduino-builder</strong>这是一个纯命令行的工具，它用于处理代码、解决库依赖和设置编译单元。它也可以作为一个独立与IDE的程序进行使用。</li>
 <li><strong>Pluggable USB core</strong>在不需要改变内核的情况下，你的Arduino可以变成各式各样的USB设备，这得力于新的模块架构。同时基于新的子系统的库已经诞生。</li>
@@ -191,26 +163,14 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#serial-plotter">Serial Plotter</a>
-<ul>
-<li><a href="#硬件">硬件：</a></li>
-<li><a href="#测试sketch">测试sketch</a>
-<ul>
-<li><a href="#实现正弦函数">实现正弦函数</a></li>
-</ul></li>
-<li><a href="#设置arduino">设置Arduino</a></li>
-<li><a href="#serial-plotter-1">Serial Plotter</a></li>
-<li><a href="#绘制多值曲线">绘制多值曲线</a></li>
-</ul></li>
-<li><a href="#增加的新特性">增加的新特性</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#serial-plotter">Serial Plotter</a></li>
+        <li><a href="#增加的新特性">增加的新特性</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -261,7 +221,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

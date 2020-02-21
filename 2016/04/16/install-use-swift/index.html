@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Linux下配置Swift开发环境和初步使用">
 <meta itemprop="description" content="不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者点我吧或者戳我！）。">
-
-
 <meta itemprop="datePublished" content="2016-04-16T16:13:36&#43;08:00" />
 <meta itemprop="dateModified" content="2016-04-16T16:13:36&#43;08:00" />
-<meta itemprop="wordCount" content="2578">
+<meta itemprop="wordCount" content="2582">
 
 
 
-<meta itemprop="keywords" content="linux,swift," />
-<meta property="og:title" content="Linux下配置Swift开发环境和初步使用" />
+<meta itemprop="keywords" content="linux,swift," /><meta property="og:title" content="Linux下配置Swift开发环境和初步使用" />
 <meta property="og:description" content="不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者点我吧或者戳我！）。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/04/16/install-use-swift/" />
@@ -83,196 +80,167 @@
 				<h1>Linux下配置Swift开发环境和初步使用</h1>
 			</header>
 			<div class="content">
-				<p>不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者<a href="https://swift.org/about/#swiftorg-and-open-source" target="_blank">点我</a>吧或者<a href="http://wiki.jikexueyuan.com/project/swift/chapter1/01_swift.html" target="_blank">戳我</a>！）。</p>
-
+				<p>不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者<a href="https://swift.org/about/#swiftorg-and-open-source">点我</a>吧或者<a href="http://wiki.jikexueyuan.com/project/swift/chapter1/01_swift.html">戳我</a>！）。</p>
 <h2 id="测试平台">测试平台</h2>
-
 <p>Ubuntu15.10</p>
-
 <h2 id="搭建开发环境">搭建开发环境</h2>
-
 <p>安装相应依赖包和下载安装Swift包，做相应环境配置。</p>
-
 <h3 id="安装依赖包">安装依赖包</h3>
-
 <p>swift的使用和开发会依赖<code>clang</code>和<code>libicu-dev</code>开发包，所以在使用Swift之前先安装一下，终端下执行命令安装即可：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install clang libicu-dev</code></pre></div>
-<h3 id="下载最新swift包">下载最新Swift包</h3>
-
-<p><a href="https://swift.org/download/#using-downloads" target="_blank">点我</a>可以跳转到下载页面，页面最顶部就是最新的发行包，其中格式为<code>swift-&lt;VERSION&gt;-&lt;PLATFORM&gt;.tar.gz</code>的文件便是Swift开发要用到的工具链，<code>.sig</code>文件是数字签名文件。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt-get install clang libicu-dev
+</code></pre></div><h3 id="下载最新swift包">下载最新Swift包</h3>
+<p><a href="https://swift.org/download/#using-downloads">点我</a>可以跳转到下载页面，页面最顶部就是最新的发行包，其中格式为<code>swift-&lt;VERSION&gt;-&lt;PLATFORM&gt;.tar.gz</code>的文件便是Swift开发要用到的工具链，<code>.sig</code>文件是数字签名文件。</p>
 <h3 id="导入pgp密钥">导入PGP密钥</h3>
-
 <p>如果是第一次下载Swift包，需要将导入GPG密钥导入到你的密钥环中，两种方式：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpg --keyserver hkp://pool.sks-keyservers.net <span class="se">\
 </span><span class="se"></span>      --recv-keys <span class="se">\
 </span><span class="se"></span>      <span class="s1">&#39;7463 A81A 4B2E EA1B 551F  FBCF D441 C977 412B 37AD&#39;</span> <span class="se">\
-</span><span class="se"></span>      <span class="s1">&#39;1BE1 E29A 084C B305 F397  D62A 9F59 7F4D 21A5 6D5F&#39;</span></code></pre></div>
-<p>或者</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget -q -O - https://swift.org/keys/all-keys.asc <span class="p">|</span> gpg --import -</code></pre></div>
-<h3 id="验证gpg签名">验证GPG签名</h3>
-
+</span><span class="se"></span>      <span class="s1">&#39;1BE1 E29A 084C B305 F397  D62A 9F59 7F4D 21A5 6D5F&#39;</span>
+</code></pre></div><p>或者</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget -q -O - https://swift.org/keys/all-keys.asc <span class="p">|</span> gpg --import -
+</code></pre></div><h3 id="验证gpg签名">验证GPG签名</h3>
 <p>linux的<code>.tar.gz</code>压缩包都是使用Swift开源项目的密钥通过<strong>GnuPG</strong>签名了的，苹果建议和鼓励每个将要使用Swift软件包的人都进行签名验证，此步可以省略（不验证不影响使用），但还是按照他们的建议进行验证吧。</p>
-
 <h3 id="更新密钥">更新密钥</h3>
-
 <p>首先，如果需要的话，可以更新密钥使原来的证书作废：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift</code></pre></div>
-<h3 id="验证">验证</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift
+</code></pre></div><h3 id="验证">验证</h3>
 <p>然后，使用签名文件验证关联的Swift压缩包：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpg --verify swift-&lt;VERSION&gt;-&lt;PLATFORM&gt;.tar.gz.sig
 ...
-gpg: Good signature from <span class="s2">&#34;Swift Automatic Signing Key #1 &lt;swift-infrastructure@swift.org&gt;&#34;</span></code></pre></div>
-<p>如果验证失败，可能是因为没有公共密钥(<code>gpg: Can't check signature: No public key</code>)，可以按照<a href="#activeKey">激活签名密钥</a>的方法导入密钥。</p>
-
+gpg: Good signature from <span class="s2">&#34;Swift Automatic Signing Key #1 &lt;swift-infrastructure@swift.org&gt;&#34;</span>
+</code></pre></div><p>如果验证失败，可能是因为没有公共密钥(<code>gpg: Can't check signature: No public key</code>)，可以按照<a href="#activeKey">激活签名密钥</a>的方法导入密钥。</p>
 <p>不顺利的话，还有可能会看到一个警告，汗!!!：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.</code></pre></div>
-<p>这个警告说明在密钥与系统间没有可信的网络路径，只要是按照上面的步骤从可信的的来源获取的密钥，警告几乎没有影响。</p>
-
+gpg:          There is no indication that the signature belongs to the owner.
+</code></pre></div><p>这个警告说明在密钥与系统间没有可信的网络路径，只要是按照上面的步骤从可信的的来源获取的密钥，警告几乎没有影响。</p>
 <h3 id="解压压缩包">解压压缩包</h3>
-
 <p>按照下面命令解压下载的压缩包，需要将下面命令中压缩包的名字改成下载的，解压后的文件目录里有<code>usr/</code>目录。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tar xzf swift-&lt;VERSION&gt;-&lt;PLATFORM&gt;.tar.gz</code></pre></div>
-<h3 id="添加路径">添加路径</h3>
-
-<p>需要将解压出来的Swift工具链添加到PATH变量里，可以执行下面的命令(<strong>注：</strong>需要将<code>/path/to/</code>换成解压后Swift工具链的目录)：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/usr/bin:<span class="s2">&#34;</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">&#34;</span></code></pre></div>
-<h3 id="激活签名密钥">激活签名密钥</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tar xzf swift-&lt;VERSION&gt;-&lt;PLATFORM&gt;.tar.gz
+</code></pre></div><h3 id="添加路径">添加路径</h3>
+<p>需要将解压出来的Swift工具链添加到PATH变量里，可以执行下面的命令(**注：**需要将<code>/path/to/</code>换成解压后Swift工具链的目录)：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/usr/bin:<span class="s2">&#34;</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">&#34;</span>
+</code></pre></div><h3 id="激活签名密钥">激活签名密钥</h3>
 <p>Swift工程为开发版的使用一个密钥集，为每个官方发行版的提供独立的密钥，都是使用4096-bit RSA密钥。</p>
-
 <p>下面是获取签名工具链密钥的两种方法：</p>
-
 <ul>
-<li><p><code>Swift自动签名密钥 #1 &lt;swift-infrastructure@swift.org&gt;</code></p>
-
+<li>
+<p><code>Swift自动签名密钥 #1 &lt;swift-infrastructure@swift.org&gt;</code></p>
 <blockquote>
-<p>Download: <a href="https://swift.org/keys/automatic-signing-key-1.asc" target="_blank">https://swift.org/keys/automatic-signing-key-1.asc</a></p>
-
+<p>Download: <a href="https://swift.org/keys/automatic-signing-key-1.asc">https://swift.org/keys/automatic-signing-key-1.asc</a></p>
+</blockquote>
+<blockquote>
 <p>Fingerprint: 7463 A81A 4B2E EA1B 551F FBCF D441 C977 412B 37AD</p>
-
+</blockquote>
+<blockquote>
 <p>Long ID: D441C977412B37AD</p>
 </blockquote>
-
 <p>执行下面命令导入密钥：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpg --keyserver hkp://pool.sks-keyservers.net <span class="se">\
 </span><span class="se"></span>      --recv-keys <span class="se">\
-</span><span class="se"></span>    <span class="s1">&#39;7463 A81A 4B2E EA1B 551F  FBCF D441 C977 412B 37AD&#39;</span></code></pre></div>
-<p>或者：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget -q -O - https://swift.org/keys/automatic-signing-key-1.asc <span class="p">|</span> gpg --import -</code></pre></div></li>
-
-<li><p><code>Swift 2.2 发行版签名密钥 &lt;swift-infrastructure@swift.org&gt;</code></p>
-
+</span><span class="se"></span>    <span class="s1">&#39;7463 A81A 4B2E EA1B 551F  FBCF D441 C977 412B 37AD&#39;</span>
+</code></pre></div><p>或者：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget -q -O - https://swift.org/keys/automatic-signing-key-1.asc <span class="p">|</span> gpg --import -
+</code></pre></div></li>
+<li>
+<p><code>Swift 2.2 发行版签名密钥 &lt;swift-infrastructure@swift.org&gt;</code></p>
 <blockquote>
-<p>Download: <a href="https://swift.org/keys/release-key-swift-2.2.asc" target="_blank">https://swift.org/keys/release-key-swift-2.2.asc</a>
+<p>Download: <a href="https://swift.org/keys/release-key-swift-2.2.asc">https://swift.org/keys/release-key-swift-2.2.asc</a>
 Fingerprint: 1BE1 E29A 084C B305 F397 D62A 9F59 7F4D 21A5 6D5F
 Long ID: 9F597F4D21A56D5F</p>
 </blockquote>
-
 <p>执行下面命令导入密钥：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gpg --keyserver hkp://pool.sks-keyservers.net <span class="se">\
 </span><span class="se"></span>      --recv-keys <span class="se">\
-</span><span class="se"></span>    <span class="s1">&#39;1BE1 E29A 084C B305 F397  D62A 9F59 7F4D 21A5 6D5F&#39;</span></code></pre></div>
-<p>或者：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget -q -O - https://swift.org/keys/release-key-swift-2.2.asc <span class="p">|</span> gpg --import -</code></pre></div></li>
+</span><span class="se"></span>    <span class="s1">&#39;1BE1 E29A 084C B305 F397  D62A 9F59 7F4D 21A5 6D5F&#39;</span>
+</code></pre></div><p>或者：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ wget -q -O - https://swift.org/keys/release-key-swift-2.2.asc <span class="p">|</span> gpg --import -
+</code></pre></div></li>
 </ul>
-
 <h2 id="使用repl">使用REPL</h2>
-
 <p>如果在命令行中执行swift命令，就会启动<strong>REPL</strong>，它是一个可交互的Shell窗口，可以读取、计算和打印你所输入的Swift代码。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ swift
-Welcome to Apple Swift version <span class="m">2</span>.2. Type :help <span class="k">for</span> assistance.
-  <span class="m">1</span>&gt;</code></pre></div>
-<p>与REPL交互是探索Swift极好的方式，比如输入表达式<code>1 + 2</code>，敲回车便会计算出结果，<code>3</code>，在下一行中打印出来：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  <span class="m">1</span>&gt; <span class="m">1</span> + <span class="m">2</span>
-<span class="nv">$R0</span>: <span class="nv">Int</span> <span class="o">=</span> <span class="m">3</span></code></pre></div>
-<p>可以为变量和常量赋值，后续可以使用它们。比如将<code>String</code>类型的<code>Hello, world!</code>赋值给<code>greeting</code>常量，然后可以使用<code>print(_:)</code>函数进行打印：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  <span class="m">2</span>&gt; <span class="nb">let</span> <span class="nv">greeting</span> <span class="o">=</span> <span class="s2">&#34;hello!&#34;</span>
+Welcome to Apple Swift version 2.2. Type :help <span class="k">for</span> assistance.
+  1&gt;
+</code></pre></div><p>与REPL交互是探索Swift极好的方式，比如输入表达式<code>1 + 2</code>，敲回车便会计算出结果，<code>3</code>，在下一行中打印出来：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  1&gt; <span class="m">1</span> + <span class="m">2</span>
+<span class="nv">$R0</span>: <span class="nv">Int</span> <span class="o">=</span> <span class="m">3</span>
+</code></pre></div><p>可以为变量和常量赋值，后续可以使用它们。比如将<code>String</code>类型的<code>Hello, world!</code>赋值给<code>greeting</code>常量，然后可以使用<code>print(_:)</code>函数进行打印：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  2&gt; <span class="nb">let</span> <span class="nv">greeting</span> <span class="o">=</span> <span class="s2">&#34;hello!&#34;</span>
 greeting: <span class="nv">String</span> <span class="o">=</span> <span class="s2">&#34;Hello!&#34;</span>
-  <span class="m">3</span>&gt; print<span class="o">(</span>greeting<span class="o">)</span>
-Hello!</code></pre></div>
-<p>如果输入一个无效的表达式，<strong>REPL</strong>会打印出错误并标明出错的位置，就像下面：</p>
+  3&gt; print<span class="o">(</span>greeting<span class="o">)</span>
+Hello!
+</code></pre></div><p>如果输入一个无效的表达式，<strong>REPL</strong>会打印出错误并标明出错的位置，就像下面：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">let</span> <span class="nv">answer</span> <span class="o">=</span> <span class="s2">&#34;fourty&#34;</span>-<span class="s2">&#34;two&#34;</span>
 error: binary operator <span class="s1">&#39;-&#39;</span> cannot be applied to two <span class="s1">&#39;String&#39;</span> operands
 <span class="nb">let</span> <span class="nv">answer</span> <span class="o">=</span> <span class="s2">&#34;fourty&#34;</span>-<span class="s2">&#34;two&#34;</span>
-             ~~~~~~~~^~~~~~</code></pre></div>
-<p>可以使用<code>UP</code>键和<code>DOWN</code>键循环查看之前在<strong>REPL</strong>中输入过的文本行。这让你可以稍微修改过去输入过的文本而不用输入全部内容，比如对于修改上面例子中错误就很方便：</p>
+             ~~~~~~~~^~~~~~
+</code></pre></div><p>可以使用<code>UP</code>键和<code>DOWN</code>键循环查看之前在<strong>REPL</strong>中输入过的文本行。这让你可以稍微修改过去输入过的文本而不用输入全部内容，比如对于修改上面例子中错误就很方便：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">let</span> <span class="nv">answer</span> <span class="o">=</span> <span class="s2">&#34;fourty-two&#34;</span>
-answer: <span class="nv">String</span> <span class="o">=</span> <span class="s2">&#34;fourty-two&#34;</span></code></pre></div>
-<p><strong>REPL</strong>还有一个很有用的特性：在输入特定文本后可以提示函数和方法。比如，在一个<code>String</code>后输入<code>re</code>在按下<code>TAB</code>键，便会给出一个提示可用函数和方法的列表，就像下面那样：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="m">5</span>&gt; <span class="s2">&#34;Hi!&#34;</span>.re⇥
+answer: <span class="nv">String</span> <span class="o">=</span> <span class="s2">&#34;fourty-two&#34;</span>
+</code></pre></div><p><strong>REPL</strong>还有一个很有用的特性：在输入特定文本后可以提示函数和方法。比如，在一个<code>String</code>后输入<code>re</code>在按下<code>TAB</code>键，便会给出一个提示可用函数和方法的列表，就像下面那样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">5&gt; <span class="s2">&#34;Hi!&#34;</span>.re⇥
 Available completions:
-	removeAll<span class="o">()</span> -&gt; Void
+	removeAll<span class="o">(</span><span class="o">)</span> -&gt; Void
 	removeAll<span class="o">(</span>keepCapacity: Bool<span class="o">)</span> -&gt; Void
 	removeAtIndex<span class="o">(</span>i: Index<span class="o">)</span> -&gt; Character
 	removeRange<span class="o">(</span>subRange: Range&lt;Index&gt;<span class="o">)</span> -&gt; Void
 	replaceRange<span class="o">(</span>subRange: Range&lt;Index&gt;, with: C<span class="o">)</span> -&gt; Void
 	replaceRange<span class="o">(</span>subRange: Range&lt;Index&gt;, with: String<span class="o">)</span> -&gt; Void
-	reserveCapacity<span class="o">(</span>n: Int<span class="o">)</span> -&gt; Void</code></pre></div>
-<p>当开始编写一个代码块的时候，比如用<code>for-in</code>轮询数组时，<strong>REPL</strong>会在下一行自动缩进，此时行首的提示符会由<code>&gt;</code>变为<code>.</code>，表明代码还未输入完整需要输入完整后在进行评估：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  <span class="m">6</span>&gt; <span class="nb">let</span> <span class="nv">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="m">1</span>,2,3<span class="o">]</span>
+	reserveCapacity<span class="o">(</span>n: Int<span class="o">)</span> -&gt; Void
+</code></pre></div><p>当开始编写一个代码块的时候，比如用<code>for-in</code>轮询数组时，<strong>REPL</strong>会在下一行自动缩进，此时行首的提示符会由<code>&gt;</code>变为<code>.</code>，表明代码还未输入完整需要输入完整后在进行评估：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  6&gt; <span class="nb">let</span> <span class="nv">numbers</span> <span class="o">=</span> <span class="o">[</span>1,2,3<span class="o">]</span>
 numbers: <span class="o">[</span>Int<span class="o">]</span> <span class="o">=</span> <span class="m">3</span> values <span class="o">{</span>
-  <span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="m">1</span>
-  <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="m">2</span>
-  <span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="o">=</span> <span class="m">3</span>
+  <span class="o">[</span>0<span class="o">]</span> <span class="o">=</span> <span class="m">1</span>
+  <span class="o">[</span>1<span class="o">]</span> <span class="o">=</span> <span class="m">2</span>
+  <span class="o">[</span>2<span class="o">]</span> <span class="o">=</span> <span class="m">3</span>
 <span class="o">}</span>
-  <span class="m">7</span>&gt; <span class="k">for</span> n in numbers.reverse<span class="o">()</span> <span class="o">{</span>
-  <span class="m">8</span>.     print<span class="o">(</span>n<span class="o">)</span>
-  <span class="m">9</span>. <span class="o">}</span>
+  7&gt; <span class="k">for</span> n in numbers.reverse<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+  8.     print<span class="o">(</span>n<span class="o">)</span>
+  9. <span class="o">}</span>
 <span class="m">3</span>
 <span class="m">2</span>
-<span class="m">1</span></code></pre></div>
-<p>Swift的所有函数在<strong>REPL</strong>中都是可以调用的，从编写控制流到声明和实例化结构体和类都是可以的。另外可以导入可用的系统模块，比如OSX下的<code>Darwin</code>和Linux下的<code>Glibc</code>：</p>
-
+<span class="m">1</span>
+</code></pre></div><p>Swift的所有函数在<strong>REPL</strong>中都是可以调用的，从编写控制流到声明和实例化结构体和类都是可以的。另外可以导入可用的系统模块，比如OSX下的<code>Darwin</code>和Linux下的<code>Glibc</code>：</p>
 <p>OSX下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="m">1</span>&gt; import Darwin
-<span class="m">2</span>&gt; arc4random_uniform<span class="o">(</span><span class="m">10</span><span class="o">)</span>
-<span class="nv">$R0</span>: <span class="nv">UInt32</span> <span class="o">=</span> <span class="m">4</span></code></pre></div>
-<p>Linux下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="m">1</span>&gt; import Glibc
-<span class="m">2</span>&gt; random<span class="o">()</span> % <span class="m">10</span>
-<span class="nv">$R0</span>: <span class="nv">Int32</span> <span class="o">=</span> <span class="m">4</span></code></pre></div>
-<h2 id="使用编译系统">使用编译系统</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">1&gt; import Darwin
+2&gt; arc4random_uniform<span class="o">(</span>10<span class="o">)</span>
+<span class="nv">$R0</span>: <span class="nv">UInt32</span> <span class="o">=</span> <span class="m">4</span>
+</code></pre></div><p>Linux下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">1&gt; import Glibc
+2&gt; random<span class="o">(</span><span class="o">)</span> % <span class="m">10</span>
+<span class="nv">$R0</span>: <span class="nv">Int32</span> <span class="o">=</span> <span class="m">4</span>
+</code></pre></div><h2 id="使用编译系统">使用编译系统</h2>
 <p>Swift的编译系统可以用来编译库、可执行程序和在不同工程之间分享代码。</p>
-
 <p>在官方文档中，使用<code>swift build</code>来讲解的，但我安装了Swift 2.2后发现按照他们的教程操作发现，竟然没有了swift build工具，简直想骂娘，但我还是忍住了，经过本菜鸟探索了一下，用<code>swiftc</code>可以用来编译生成可执行程序。</p>
-
 <p>可以调用<code>swift build --help</code>来看一下，结果会有以下提示：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ swift build --help
-error: unable to invoke subcommand: /home/smslit/Applications/swift/usr/bin/swift-build <span class="o">(</span>No such file or directory<span class="o">)</span></code></pre></div>
-<p>后来，我有重新安装了开发版的Swift，里面有build命令，所以如果用的是开发版的可以将下面的swiftc 换成swift build。</p>
-
+error: unable to invoke subcommand: /home/smslit/Applications/swift/usr/bin/swift-build <span class="o">(</span>No such file or directory<span class="o">)</span>
+</code></pre></div><p>后来，我有重新安装了开发版的Swift，里面有build命令，所以如果用的是开发版的可以将下面的swiftc 换成swift build。</p>
 <p>可以使用官方例程，来尝试一下<code>swiftc</code>，可以执行命令<code>swiftc -h</code>查看swiftc的使用方法。</p>
-
 <h3 id="创建代码包">创建代码包</h3>
-
 <ul>
-<li><p>创建<code>hello/Sources</code>目录，并进入<code>hello</code>目录下：</p>
+<li>
+<p>创建<code>hello/Sources</code>目录，并进入<code>hello</code>目录下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p hello/Sources
-$ <span class="nb">cd</span> hello</code></pre></div></li>
-
-<li><p>创建包管理文件<code>Package.swift</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ touch Package.swift</code></pre></div></li>
+$ <span class="nb">cd</span> hello
+</code></pre></div></li>
+<li>
+<p>创建包管理文件<code>Package.swift</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ touch Package.swift
+</code></pre></div></li>
 </ul>
-
 <h3 id="编辑代码">编辑代码</h3>
-
 <p>在<code>Sources</code>目录下新建<code>main.swift</code>文件，并输入代码<code>print(&quot;Hello, Monkey!&quot;)</code>：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ touch Sources/main.swift
-$ <span class="nb">echo</span> <span class="s2">&#34;print(\&#34;Hello, Monkey!\&#34;)&#34;</span> &gt; Sources/main.swift</code></pre></div>
-<h3 id="编译生成可执行文件">编译生成可执行文件</h3>
-
+$ <span class="nb">echo</span> <span class="s2">&#34;print(\&#34;Hello, Monkey!\&#34;)&#34;</span> &gt; Sources/main.swift
+</code></pre></div><h3 id="编译生成可执行文件">编译生成可执行文件</h3>
 <p>使用<code>swiftc</code>进行编译，在包根目录下生成名为<code>hello</code>的可执行文件，使用<code>swiftc</code>命令的<code>-o</code>参数。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ swiftc Sources/main.swift -o hello</code></pre></div>
-<h3 id="测试执行">测试执行</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ swiftc Sources/main.swift -o hello
+</code></pre></div><h3 id="测试执行">测试执行</h3>
 <p>一切顺利的话，应该已经生成<code>hello</code>可执行文件，可以执行测试一下，正常的话应该是如下的结果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ./hello
-Hello, Monkey!</code></pre></div>
-<p>虽然已经学习过Swift语言的语法和规则，但实践很少，所以想在linux平台好进一步通过一定实践进一步学习swift，路慢慢其修远兮呀！</p>
+Hello, Monkey!
+</code></pre></div><p>虽然已经学习过Swift语言的语法和规则，但实践很少，所以想在linux平台好进一步通过一定实践进一步学习swift，路慢慢其修远兮呀！</p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -281,7 +249,7 @@ Hello, Monkey!</code></pre></div>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2578 字
+					2582 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -291,32 +259,31 @@ Hello, Monkey!</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#测试平台">测试平台</a></li>
-<li><a href="#搭建开发环境">搭建开发环境</a>
-<ul>
-<li><a href="#安装依赖包">安装依赖包</a></li>
-<li><a href="#下载最新swift包">下载最新Swift包</a></li>
-<li><a href="#导入pgp密钥">导入PGP密钥</a></li>
-<li><a href="#验证gpg签名">验证GPG签名</a></li>
-<li><a href="#更新密钥">更新密钥</a></li>
-<li><a href="#验证">验证</a></li>
-<li><a href="#解压压缩包">解压压缩包</a></li>
-<li><a href="#添加路径">添加路径</a></li>
-<li><a href="#激活签名密钥">激活签名密钥</a></li>
-</ul></li>
-<li><a href="#使用repl">使用REPL</a></li>
-<li><a href="#使用编译系统">使用编译系统</a>
-<ul>
-<li><a href="#创建代码包">创建代码包</a></li>
-<li><a href="#编辑代码">编辑代码</a></li>
-<li><a href="#编译生成可执行文件">编译生成可执行文件</a></li>
-<li><a href="#测试执行">测试执行</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#测试平台">测试平台</a></li>
+    <li><a href="#搭建开发环境">搭建开发环境</a>
+      <ul>
+        <li><a href="#安装依赖包">安装依赖包</a></li>
+        <li><a href="#下载最新swift包">下载最新Swift包</a></li>
+        <li><a href="#导入pgp密钥">导入PGP密钥</a></li>
+        <li><a href="#验证gpg签名">验证GPG签名</a></li>
+        <li><a href="#更新密钥">更新密钥</a></li>
+        <li><a href="#验证">验证</a></li>
+        <li><a href="#解压压缩包">解压压缩包</a></li>
+        <li><a href="#添加路径">添加路径</a></li>
+        <li><a href="#激活签名密钥">激活签名密钥</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用repl">使用REPL</a></li>
+    <li><a href="#使用编译系统">使用编译系统</a>
+      <ul>
+        <li><a href="#创建代码包">创建代码包</a></li>
+        <li><a href="#编辑代码">编辑代码</a></li>
+        <li><a href="#编译生成可执行文件">编译生成可执行文件</a></li>
+        <li><a href="#测试执行">测试执行</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -367,7 +334,7 @@ Hello, Monkey!</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

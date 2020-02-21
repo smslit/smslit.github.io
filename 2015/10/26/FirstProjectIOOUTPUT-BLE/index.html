@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="BLE开发笔记——第一个工程,IO的输出">
 <meta itemprop="description" content="CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。">
-
-
 <meta itemprop="datePublished" content="2015-10-26T17:34:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-26T17:34:46&#43;08:00" />
-<meta itemprop="wordCount" content="1369">
+<meta itemprop="wordCount" content="1373">
 
 
 
-<meta itemprop="keywords" content="ble," />
-<meta property="og:title" content="BLE开发笔记——第一个工程,IO的输出" />
+<meta itemprop="keywords" content="ble," /><meta property="og:title" content="BLE开发笔记——第一个工程,IO的输出" />
 <meta property="og:description" content="CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/26/FirstProjectIOOUTPUT-BLE/" />
@@ -84,135 +81,131 @@
 			</header>
 			<div class="content">
 				<p>CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。</p>
-
 <p>开发环境配置好了，CC Debugger程序下载调试也弄好了，那就新建一个IAR工程试一下IO。</p>
-
 <h4 id="新建iar工程">新建IAR工程</h4>
-
 <ul>
-<li><p>创建工程：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/o590b.png" alt="1" /></p></li>
-
-<li><p>在新出现的对话框中，Tool chain选择8051，Project Template选择Empty Project：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/1dcnh.png" alt="2" /></p></li>
-
-<li><p>选择保存目录，输入工程名称，保存</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/fspcl.png" alt="3" /></p></li>
-
-<li><p>保存WorkSpace，在IAR中每个工程都必须有一个Workspace，而一个Workspace中可以有多个工程，这里我必须要保存一个Workspace，file-&gt;save Workspace As就会弹出如下对话框，这里同样取名为LED：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2igii.png" alt="4" /></p></li>
+<li>
+<p>创建工程：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/o590b.png" alt="1"></p>
+</li>
+<li>
+<p>在新出现的对话框中，Tool chain选择8051，Project Template选择Empty Project：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/1dcnh.png" alt="2"></p>
+</li>
+<li>
+<p>选择保存目录，输入工程名称，保存</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/fspcl.png" alt="3"></p>
+</li>
+<li>
+<p>保存WorkSpace，在IAR中每个工程都必须有一个Workspace，而一个Workspace中可以有多个工程，这里我必须要保存一个Workspace，file-&gt;save Workspace As就会弹出如下对话框，这里同样取名为LED：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2igii.png" alt="4"></p>
+</li>
 </ul>
-
 <h4 id="配置工程">配置工程</h4>
-
 <ul>
-<li><p>右击工程，点击Options&hellip;进入配置界面：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/tbo5m.png" alt="5" /></p></li>
-
-<li><p>在弹出的对话框中进行Target配置，Device选择CC2541F256（根据板上芯片型号决定），Data Model选择large，Number of virtual选择16，Location for constants and strings选择ROM mapped as data。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/qwb2y.png" alt="6" /></p></li>
-
-<li><p>进行linker设置，选中Output标签页，Format区勾选Allow C-SPY-specific extra output file：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/mx7qf.png" alt="7" /></p></li>
-
-<li><p>Extra Output标签页，勾选Generate extra output file，勾选Override default，更名为LED.hex，选择Out format为intel-extended：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gw29r.png" alt="8" /></p></li>
-
-<li><p>进行Debugger设置，Setup标签页中Driver选择Texas Instruments：</p></li>
+<li>
+<p>右击工程，点击Options&hellip;进入配置界面：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/tbo5m.png" alt="5"></p>
+</li>
+<li>
+<p>在弹出的对话框中进行Target配置，Device选择CC2541F256（根据板上芯片型号决定），Data Model选择large，Number of virtual选择16，Location for constants and strings选择ROM mapped as data。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/qwb2y.png" alt="6"></p>
+</li>
+<li>
+<p>进行linker设置，选中Output标签页，Format区勾选Allow C-SPY-specific extra output file：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/mx7qf.png" alt="7"></p>
+</li>
+<li>
+<p>Extra Output标签页，勾选Generate extra output file，勾选Override default，更名为LED.hex，选择Out format为intel-extended：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gw29r.png" alt="8"></p>
+</li>
+<li>
+<p>进行Debugger设置，Setup标签页中Driver选择Texas Instruments：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/doi47.png" alt="9"></p>
+</li>
+<li>
+<p>配置Debugger的Texas Instruments，Download标签页中勾选Erase flash，然后点击OK，至此项目配置工作就完成了：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/7fj76.png" alt="10"></p>
+</li>
 </ul>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/doi47.png" alt="9" /></p>
-
-<ul>
-<li><p>配置Debugger的Texas Instruments，Download标签页中勾选Erase flash，然后点击OK，至此项目配置工作就完成了：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/7fj76.png" alt="10" /></p></li>
-</ul>
-
 <h4 id="添加源文件">添加源文件</h4>
-
 <ul>
-<li><p>单击工具栏<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/qxped.png" alt="11" />新建按钮，新建文件，输入以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
+<li>
+<p>单击工具栏<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/qxped.png" alt="11">新建按钮，新建文件，输入以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">P1SEL</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
-</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置IO，P1.0为输出
-</span><span class="c1"></span>        
-    <span class="n">P1</span> <span class="o">|=</span> <span class="mh">0x01</span><span class="p">;</span>             <span class="c1">// 配置P1.0管脚输出高电平
-</span><span class="c1"></span>        
+    <span class="n">P1SEL</span> <span class="o">&amp;</span><span class="o">=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
+</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置IO，P1.0为输出
+</span><span class="c1"></span>      
+    <span class="n">P1</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>             <span class="c1">// 配置P1.0管脚输出高电平
+</span><span class="c1"></span>      
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            
+          
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>保存源文件为LED.c:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/z7hiq.png" alt="12" /></p></li>
-
-<li><p>将LED.c源文件添加到工程，如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/6ljb2.png" alt="13" /></p></li>
-
-<li><p>保存工程，单击工具栏的<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ybgku.png" alt="14" />编译按钮进行编译，保存工程为LED.eww，在确认另存为的对话框中选择<code>是</code>：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yj4uy.png" alt="15" /></p></li>
-
-<li><p>编译结果类似一下，说明白编译成功：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5nzjl.png" alt="16" /></p></li>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>保存源文件为LED.c:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/z7hiq.png" alt="12"></p>
+</li>
+<li>
+<p>将LED.c源文件添加到工程，如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/6ljb2.png" alt="13"></p>
+</li>
+<li>
+<p>保存工程，单击工具栏的<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ybgku.png" alt="14">编译按钮进行编译，保存工程为LED.eww，在确认另存为的对话框中选择<code>是</code>：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yj4uy.png" alt="15"></p>
+</li>
+<li>
+<p>编译结果类似一下，说明白编译成功：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5nzjl.png" alt="16"></p>
+</li>
 </ul>
-
 <h4 id="测试">测试</h4>
-
 <ul>
-<li><p>连接好电脑、CC Debugger和CC2541板，确认CC Debugger指示为绿灯（保证CC Debugger已经识别到CC2541芯片），然后点击工具栏<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/10f23.png" alt="7" />下载和调试按钮，正常的话就会进入调试界面，然后点击工具栏的<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/93zdz.png" alt="17" />GO按钮，使程序全速运行，测试芯片的P1.0管脚的电平，如果为3.3V左右的高电平，说明成功搞定IO输出。下面给出CC2541管脚MAP图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/e2gj1.png" alt="18" /></p></li>
-
-<li><p>编写简单的延时函数，测试IO的高低电平间隔输出，分别新建编写delay.c和delay.h文件，按照3中的方式添加到工程之中。</p>
-
+<li>
+<p>连接好电脑、CC Debugger和CC2541板，确认CC Debugger指示为绿灯（保证CC Debugger已经识别到CC2541芯片），然后点击工具栏<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/10f23.png" alt="7">下载和调试按钮，正常的话就会进入调试界面，然后点击工具栏的<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/93zdz.png" alt="17">GO按钮，使程序全速运行，测试芯片的P1.0管脚的电平，如果为3.3V左右的高电平，说明成功搞定IO输出。下面给出CC2541管脚MAP图：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/e2gj1.png" alt="18"></p>
+</li>
+<li>
+<p>编写简单的延时函数，测试IO的高低电平间隔输出，分别新建编写delay.c和delay.h文件，按照3中的方式添加到工程之中。</p>
 <p>delay.h代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#ifndef __DELAY_H__
-</span><span class="cp">#define __DELAY_H__
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">ifndef __DELAY_H__</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define __DELAY_H__</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">timeDelay</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">timeDelay</span><span class="p">)</span><span class="p">;</span>
 
-<span class="cp">#endif</span></code></pre></div>
-<p>delay.c代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
+<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+</span></code></pre></div><p>delay.c代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">timeDelay</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">timeDelay</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">320</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">);</span>       <span class="c1">// 执行空命令模拟延时1ms
+    <span class="k">while</span><span class="p">(</span><span class="n">timeDelay</span><span class="o">-</span><span class="o">-</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">320</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>       <span class="c1">// 执行空命令模拟延时1ms
 </span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>然后更改LED.c文件的代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>然后更改LED.c文件的代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">P1SEL</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
-</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置P1.0为输出
-</span><span class="c1"></span>        
+    <span class="n">P1SEL</span> <span class="o">&amp;</span><span class="o">=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
+</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置P1.0为输出
+</span><span class="c1"></span>      
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">P1</span> <span class="o">|=</span> <span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置P1.0输出高电平
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>        <span class="c1">// 延时1000ms
-</span><span class="c1"></span>        <span class="n">P1</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="o">~</span><span class="mh">0x01</span><span class="p">);</span>      <span class="c1">// 配置P1.0输出高电平
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>        <span class="c1">// 延时1000ms
+        <span class="n">P1</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置P1.0输出高电平
+</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>        <span class="c1">// 延时1000ms
+</span><span class="c1"></span>        <span class="n">P1</span> <span class="o">&amp;</span><span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="mh">0x01</span><span class="p">)</span><span class="p">;</span>      <span class="c1">// 配置P1.0输出高电平
+</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>        <span class="c1">// 延时1000ms
 </span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>然后编译并下载，GO运行，万用表测量P1.0管脚电平，大约经过1s电平便切换一次，说明可用。</p></li>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>然后编译并下载，GO运行，万用表测量P1.0管脚电平，大约经过1s电平便切换一次，说明可用。</p>
+</li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -222,7 +215,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1369 字
+					1373 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -232,21 +225,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#新建iar工程">新建IAR工程</a></li>
-<li><a href="#配置工程">配置工程</a></li>
-<li><a href="#添加源文件">添加源文件</a></li>
-<li><a href="#测试">测试</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -297,7 +282,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

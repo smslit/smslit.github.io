@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="用KiCAD设计使用CH340G的USB转串口的模块">
 <meta itemprop="description" content="近期学习了KiCAD的使用，就决定设计一款USB转串口模块来练习一下，设计中使用性价比很高的CH340的USB转串口芯片。">
-
-
 <meta itemprop="datePublished" content="2016-06-15T16:47:31&#43;08:00" />
 <meta itemprop="dateModified" content="2016-06-15T16:47:31&#43;08:00" />
 <meta itemprop="wordCount" content="744">
 
 
 
-<meta itemprop="keywords" content="usb," />
-<meta property="og:title" content="用KiCAD设计使用CH340G的USB转串口的模块" />
+<meta itemprop="keywords" content="usb," /><meta property="og:title" content="用KiCAD设计使用CH340G的USB转串口的模块" />
 <meta property="og:description" content="近期学习了KiCAD的使用，就决定设计一款USB转串口模块来练习一下，设计中使用性价比很高的CH340的USB转串口芯片。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/06/15/usb2ttl_ch340-elec/" />
@@ -84,23 +81,16 @@
 			</header>
 			<div class="content">
 				<p>近期学习了KiCAD的使用，就决定设计一款USB转串口模块来练习一下，设计中使用性价比很高的CH340的USB转串口芯片。</p>
-
 <p>KiCad - 是一个GPL的EDA（Electronic Design Automation - 电子设计自动化）软件包，我看中KiCAD的几个优点：</p>
-
 <ul>
 <li>开源，意味着免费使用全部功能，这对于我这种穷渣学生党简直是天大的福音。</li>
 <li>跨平台，这很重要，我更喜欢用macOS或者linux，一般EDA软件只有windows版本，一提到跨平台，也就有支持我钟爱的macOS的版本了。</li>
 <li>相对更好入门，功能很强大，目前中文资料较少。</li>
 </ul>
-
-<p>我参与了<a href="https://github.com/" target="_blank">guthub</a>上<a href="https://github.com/ocrobot" target="_blank">ocrobot</a>发起的KiCAD汉化工作，目前基本完成，项目是<a href="https://github.com/ocrobot/kicad-i18n" target="_blank">kicad-i18n</a>，如果您有兴趣可以一起加入到汉化工作中，其中肯定还有很多翻译不合适的地方。</p>
-
+<p>我参与了<a href="https://github.com/">guthub</a>上<a href="https://github.com/ocrobot">ocrobot</a>发起的KiCAD汉化工作，目前基本完成，项目是<a href="https://github.com/ocrobot/kicad-i18n">kicad-i18n</a>，如果您有兴趣可以一起加入到汉化工作中，其中肯定还有很多翻译不合适的地方。</p>
 <p>为了练手，用Kicad做了一款以CH340G为核心的USB转USART的模块，废话不多说了，下面就展示一下版本v0.1.2（右）和v0.1（左）的模块的实物照片：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/t43zd.jpg" alt="module.jpg" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/t43zd.jpg" alt="module.jpg"></p>
 <p>我已经将工程文件托管到github上了，有兴趣的可以任意使用和修改。现在是版本v0.1.2！</p>
-
 <table>
 <thead>
 <tr>
@@ -108,50 +98,35 @@
 <th align="left">项目地址</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">github</td>
-<td align="left">usb2serial-CH340G:<a href="https://github.com/smslit/usb2serial-CH340G" target="_blank">https://github.com/smslit/usb2serial-CH340G</a></td>
+<td align="left">usb2serial-CH340G:<a href="https://github.com/smslit/usb2serial-CH340G">https://github.com/smslit/usb2serial-CH340G</a></td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="目标功能">目标功能</h4>
-
 <ol>
 <li>通用的usb转uart功能</li>
 <li>为Arduino下载程序</li>
 <li>自由选择3.3V或5V供电，并可输出。</li>
 <li>电源LED指示、TX和RX的LED指示</li>
 </ol>
-
 <h4 id="原理图">原理图</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rjbiq.png" alt="sch" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rjbiq.png" alt="sch"></p>
 <h4 id="pcb">PCB</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/hsc46.png" alt="pcb" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/hsc46.png" alt="pcb"></p>
 <h4 id="pcb的3d预览">PCB的3D预览</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/iew84.png" alt="sch" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/iew84.png" alt="sch"></p>
 <h4 id="附">附：</h4>
-
-<p><a href="http://www.wch.cn/product/CH340.html" target="_blank">CH340</a> 是一个 USB 总线的转接芯片,实现 USB 转串口、USB 转 IrDA 红外或者 USB 转打印口，其中设计中采用的CH340G是一款只有USB转串口功能的芯片。</p>
-
+<p><a href="http://www.wch.cn/product/CH340.html">CH340</a> 是一个 USB 总线的转接芯片,实现 USB 转串口、USB 转 IrDA 红外或者 USB 转打印口，其中设计中采用的CH340G是一款只有USB转串口功能的芯片。</p>
 <h5 id="芯片驱动">芯片驱动</h5>
-
 <ol>
-<li><a href="http://www.wch.cn/download/CH341SER_ZIP.html" target="_blank">windows驱动</a></li>
-<li><a href="http://www.wch.cn/download/CH341SER_MAC_ZIP.html" target="_blank">Mac OSX驱动</a></li>
-<li><a href="http://www.wch.cn/download/CH341SER_LINUX_ZIP.html" target="_blank">Linux驱动</a></li>
+<li><a href="http://www.wch.cn/download/CH341SER_ZIP.html">windows驱动</a></li>
+<li><a href="http://www.wch.cn/download/CH341SER_MAC_ZIP.html">Mac OSX驱动</a></li>
+<li><a href="http://www.wch.cn/download/CH341SER_LINUX_ZIP.html">Linux驱动</a></li>
 </ol>
-
 <h5 id="注意">注意</h5>
-
 <p>电路完成焊接后，因为稳压二极管的性能误差，可能会造成输出的3.3V不准，电压低于3.2V时可能会造成Mac电脑在使用3.3V的工作模式时UART通信有问题。可以通过更换稳压二极管或者更小阻值的电阻R3来解决。</p>
 			</div>
 			<hr class="post-end">
@@ -171,26 +146,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#目标功能">目标功能</a></li>
-<li><a href="#原理图">原理图</a></li>
-<li><a href="#pcb">PCB</a></li>
-<li><a href="#pcb的3d预览">PCB的3D预览</a></li>
-<li><a href="#附">附：</a>
-<ul>
-<li><a href="#芯片驱动">芯片驱动</a></li>
-<li><a href="#注意">注意</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -241,7 +203,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

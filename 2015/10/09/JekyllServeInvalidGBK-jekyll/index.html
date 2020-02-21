@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Jekyll编译出现ivalid GBK问题">
 <meta itemprop="description" content="不知什么原因，在用jekyll serve生成本地网页时出现了ivalid GBK问题，因为jekyll利用的是ruby，应该是ruby的编译错误。">
-
-
 <meta itemprop="datePublished" content="2015-10-09T12:34:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-09T12:34:46&#43;08:00" />
 <meta itemprop="wordCount" content="421">
 
 
 
-<meta itemprop="keywords" content="jekyll," />
-<meta property="og:title" content="Jekyll编译出现ivalid GBK问题" />
+<meta itemprop="keywords" content="jekyll," /><meta property="og:title" content="Jekyll编译出现ivalid GBK问题" />
 <meta property="og:description" content="不知什么原因，在用jekyll serve生成本地网页时出现了ivalid GBK问题，因为jekyll利用的是ruby，应该是ruby的编译错误。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/09/JekyllServeInvalidGBK-jekyll/" />
@@ -84,14 +81,11 @@
 			</header>
 			<div class="content">
 				<p>不知什么原因，在用jekyll serve生成本地网页时出现了ivalid GBK问题，因为jekyll利用的是ruby，应该是ruby的编译错误。</p>
-
 <h4 id="现象">现象</h4>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Conversion</span> <span class="ss">error</span><span class="p">:</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">Converters</span><span class="o">::</span><span class="no">Scss</span> <span class="n">encountered</span> <span class="n">an</span> <span class="n">error</span> <span class="k">while</span> <span class="n">converting</span> <span class="s1">&#39;css/main.scss&#39;</span><span class="p">:</span>
-                    <span class="no">Invalid</span> <span class="no">GBK</span> <span class="n">character</span> <span class="s2">&#34;</span><span class="se">\xE5</span><span class="s2">&#34;</span> <span class="n">on</span> <span class="n">line</span> <span class="mi">368</span></code></pre></div>
-<p>搜索网上，果然发现有人也遇到了此问题，分析:<code>Invalid GBK character &quot;\xE5&quot; on line 368</code>提示的倒很清楚，但我的jekyll博客文件夹css的main.scss没有第368行呀，应该是编译时调用了其他文件，而这些文件包含了中文编码。</p>
-
+                    <span class="no">Invalid</span> <span class="no">GBK</span> <span class="n">character</span> <span class="s2">&#34;</span><span class="se">\xE5</span><span class="s2">&#34;</span> <span class="n">on</span> <span class="n">line</span> <span class="mi">368</span>
+<span class="o"></span></code></pre></div><p>搜索网上，果然发现有人也遇到了此问题，分析:<code>Invalid GBK character &quot;\xE5&quot; on line 368</code>提示的倒很清楚，但我的jekyll博客文件夹css的main.scss没有第368行呀，应该是编译时调用了其他文件，而这些文件包含了中文编码。</p>
 <h4 id="解决">解决</h4>
-
 <p>修改编译引擎文件设置外部默认编码是utf-8就可以了，所以修改ruby文件，根据自己的安装目录找到此文件,在<code>module Sass</code>之后添加<code>Encoding.default_external = Encoding.find('utf-8')</code>一行即可，我的是<code>C:\Ruby22-x64\lib\ruby\gems\2.2.0\gems\sass-3.4.18\lib\sass\engine.rb</code>，如下的样子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sass/script&#39;</span>
 <span class="nb">require</span> <span class="s1">&#39;sass/scss&#39;</span>
@@ -104,7 +98,8 @@
 
 <span class="k">module</span> <span class="nn">Sass</span>
 
-<span class="no">Encoding</span><span class="o">.</span><span class="n">default_external</span> <span class="o">=</span> <span class="no">Encoding</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></code></pre></div>
+<span class="no">Encoding</span><span class="o">.</span><span class="n">default_external</span> <span class="o">=</span> <span class="no">Encoding</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -168,7 +163,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

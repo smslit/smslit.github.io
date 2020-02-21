@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Linux下Arduino USB to TTL 权限问题解决">
 <meta itemprop="description" content="在Linux中高高兴兴的安装完了Arduino，结果编译下载程序时发现竟然出错，不能下载程序，本文就来说一下这个问题。">
-
-
 <meta itemprop="datePublished" content="2015-12-04T10:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-12-04T10:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="707">
+<meta itemprop="wordCount" content="709">
 
 
 
-<meta itemprop="keywords" content="arduino,linux,usb," />
-<meta property="og:title" content="Linux下Arduino USB to TTL 权限问题解决" />
+<meta itemprop="keywords" content="arduino,linux,usb," /><meta property="og:title" content="Linux下Arduino USB to TTL 权限问题解决" />
 <meta property="og:description" content="在Linux中高高兴兴的安装完了Arduino，结果编译下载程序时发现竟然出错，不能下载程序，本文就来说一下这个问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/12/04/usbttlInLinux-Arduino/" />
@@ -84,55 +81,48 @@
 			</header>
 			<div class="content">
 				<p>在Linux中高高兴兴的安装完了Arduino，结果编译下载程序时发现竟然出错，不能下载程序，本文就来说一下这个问题。</p>
-
 <p>在linux下使用usbttl均会出现usb使用权限问题，下图是我在Ubuntu15.04中的问题截图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ivqks.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ivqks.png" alt="1"></p>
 <p>可以看到问题是：<code>avrdude:ser_open():can't open device &quot;/dev/ttyUSB0&quot;:Permission denied</code></p>
-
 <h3 id="解决方法">解决方法</h3>
-
-<p>解决方法，我找到了两种，一个来自Arduino官网labs的<a href="http://labs.arduino.org/Arduino%20IDE%20on%20Linux-based%20OS" target="_blank">ARDUINO IDE ON LINUX-BASED OS</a>，一个来自文章<a href="http://blog.csdn.net/mtofum/article/details/50070543" target="_blank">让ubuntu串口和USB设备不用root权限访问</a>，经尝试均可解决，更喜欢用Arduino官网的解决方案。</p>
-
+<p>解决方法，我找到了两种，一个来自Arduino官网labs的<a href="http://labs.arduino.org/Arduino%20IDE%20on%20Linux-based%20OS">ARDUINO IDE ON LINUX-BASED OS</a>，一个来自文章<a href="http://blog.csdn.net/mtofum/article/details/50070543">让ubuntu串口和USB设备不用root权限访问</a>，经尝试均可解决，更喜欢用Arduino官网的解决方案。</p>
 <h4 id="方法一">方法一</h4>
-
 <ol>
-<li><p>创建文件90-extraacl.rules，放到目录<code>/etc/udev/rulse.d/</code>下</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/udev/rules.d/90-etreacl.rules</code></pre></div></li>
-
-<li><p>粘贴以下内容：</p>
+<li>
+<p>创建文件90-extraacl.rules，放到目录<code>/etc/udev/rulse.d/</code>下</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/udev/rules.d/90-etreacl.rules
+</code></pre></div></li>
+<li>
+<p>粘贴以下内容：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&#34;ttyUSB[0-9]*&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;udev-acl&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;uaccess&#34;</span>, <span class="nv">OWNER</span><span class="o">=</span><span class="s2">&#34;&amp;lt;your_username&amp;gt;&#34;</span> 
-<span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&#34;ttyACM[0-9]*&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;udev-acl&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;uaccess&#34;</span>, <span class="nv">OWNER</span><span class="o">=</span><span class="s2">&#34;&amp;lt;your_username&amp;gt;&#34;</span></code></pre></div>
-<p>其中OWNER的值是用户名，比如我的linux用户名是smslit，我就可以是下面的样子：</p>
+<span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&#34;ttyACM[0-9]*&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;udev-acl&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;uaccess&#34;</span>, <span class="nv">OWNER</span><span class="o">=</span><span class="s2">&#34;&amp;lt;your_username&amp;gt;&#34;</span>
+</code></pre></div><p>其中OWNER的值是用户名，比如我的linux用户名是smslit，我就可以是下面的样子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&#34;ttyUSB[0-9]*&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;udev-acl&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;uaccess&#34;</span>, <span class="nv">OWNER</span><span class="o">=</span><span class="s2">&#34;smslit&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&#34;ttyACM[0-9]*&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;udev-acl&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;uaccess&#34;</span>, <span class="nv">OWNER</span><span class="o">=</span><span class="s2">&#34;smslit&#34;</span></code></pre></div></li>
-
-<li><p>开启权限，注销后有效，可执行下面命令：</p>
+<span class="nv">KERNEL</span><span class="o">=</span><span class="s2">&#34;ttyACM[0-9]*&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;udev-acl&#34;</span>, <span class="nv">TAG</span><span class="o">+=</span><span class="s2">&#34;uaccess&#34;</span>, <span class="nv">OWNER</span><span class="o">=</span><span class="s2">&#34;smslit&#34;</span>
+</code></pre></div></li>
+<li>
+<p>开启权限，注销后有效，可执行下面命令：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo usermod -a -G tty smslit
-sudo usermod -a -G dialout smslit</code></pre></div>
-<p><strong>注：</strong>smslit替换为你当前的用户名。</p></li>
+sudo usermod -a -G dialout smslit
+</code></pre></div><p>**注：**smslit替换为你当前的用户名。</p>
+</li>
 </ol>
-
 <h4 id="方法二">方法二</h4>
-
 <p>从文章中我们知道ubuntu采用udev管理设备，因而插入设备的权限可以由udev的rules文件来定义，其实linux都是如此的。这里Arduino访问的硬件是USB转TTL串口，所以可以创建rules文件来解决，做法如下：</p>
-
 <ul>
-<li><p>在/etc/udev/rules.d/目录下新建一个文件，取名可以是90-tofu.rules
+<li>
+<p>在/etc/udev/rules.d/目录下新建一个文件，取名可以是90-tofu.rules
 用vim创建文件，命令如下（需要用sudo的）：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /etc/udev/rules.d/
-sudo vim <span class="m">90</span>-tofu.rules</code></pre></div></li>
+sudo vim 90-tofu.rules
+</code></pre></div><p>这样我们就进入vim，按下<em>i</em>，进入编辑插入状态。</p>
+</li>
+<li>
+<p>添加内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SUBSYSTEMS</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;usb-serial&#34;</span>, <span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;ttyUSB?&#34;</span>, <span class="nv">GROUP</span><span class="o">=</span><span class="s2">&#34;tofu&#34;</span>, <span class="nv">MODE</span><span class="o">=</span><span class="s2">&#34;0666&#34;</span>
+</code></pre></div><p>按下 <em>ESC</em> 键，输入<code>:wq</code>，保存并退出。重新插拔Arduino或下载线。</p>
+</li>
 </ul>
-
-<p>这样我们就进入vim，按下*i*，进入编辑插入状态。</p>
-
-<ul>
-<li><p>添加内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&#34;usb-serial&#34;</span>, <span class="nv">KERNEL</span><span class="o">==</span><span class="s2">&#34;ttyUSB?&#34;</span>, <span class="nv">GROUP</span><span class="o">=</span><span class="s2">&#34;tofu&#34;</span>, <span class="nv">MODE</span><span class="o">=</span><span class="s2">&#34;0666&#34;</span></code></pre></div>
-<p>按下 <em>ESC</em> 键，输入<code>:wq</code>，保存并退出。重新插拔Arduino或下载线。</p></li>
-</ul>
-
 <p>Arduino此时就有权限使用设备下载程序了。</p>
 			</div>
 			<hr class="post-end">
@@ -142,7 +132,7 @@ sudo vim <span class="m">90</span>-tofu.rules</code></pre></div></li>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					707 字
+					709 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -152,19 +142,13 @@ sudo vim <span class="m">90</span>-tofu.rules</code></pre></div></li>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#解决方法">解决方法</a>
-<ul>
-<li><a href="#方法一">方法一</a></li>
-<li><a href="#方法二">方法二</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -215,7 +199,7 @@ sudo vim <span class="m">90</span>-tofu.rules</code></pre></div></li>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="hexo博客迁移到hugo">
 <meta itemprop="description" content="前段时间了解了一下 hugo，发现了其一个非常突出的优点，那就是快，据说5000篇文章渲染只需要6s的时间。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90&#43;篇文章，hexo渲染一遍竟然需要8s&#43;，叔能忍，哥不能忍！">
-
-
 <meta itemprop="datePublished" content="2018-07-07T21:31:38&#43;08:00" />
 <meta itemprop="dateModified" content="2018-07-07T21:31:38&#43;08:00" />
 <meta itemprop="wordCount" content="2511">
 
 
 
-<meta itemprop="keywords" content="hugo,hexo," />
-<meta property="og:title" content="hexo博客迁移到hugo" />
+<meta itemprop="keywords" content="hugo,hexo," /><meta property="og:title" content="hexo博客迁移到hugo" />
 <meta property="og:description" content="前段时间了解了一下 hugo，发现了其一个非常突出的优点，那就是快，据说5000篇文章渲染只需要6s的时间。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90&#43;篇文章，hexo渲染一遍竟然需要8s&#43;，叔能忍，哥不能忍！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/07/07/hexo2hugo/" />
@@ -83,38 +80,29 @@
 				<h1>hexo博客迁移到hugo</h1>
 			</header>
 			<div class="content">
-				<p>前段时间了解了一下 <a href="https://gohugo.io" target="_blank">hugo</a>，发现了其一个非常突出的优点，那就是快，据说<strong>5000篇文章渲染只需要6s的时间</strong>。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90+篇文章，hexo渲染一遍竟然需要8s+，叔能忍，哥不能忍！</p>
-
+				<p>前段时间了解了一下 <a href="https://gohugo.io">hugo</a>，发现了其一个非常突出的优点，那就是快，据说<strong>5000篇文章渲染只需要6s的时间</strong>。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90+篇文章，hexo渲染一遍竟然需要8s+，叔能忍，哥不能忍！</p>
 <p>本文不是教程，只是记录过程！是的，这就是一水文，xx的流水账！</p>
-
 <h2 id="hugo">Hugo</h2>
-
 <blockquote>
 <p>Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.</p>
-
-<p>@Hugo <a href="https://gohugo.io/about/what-is-hugo/" target="_blank">What is Hugo</a></p>
 </blockquote>
-
+<blockquote>
+<p>@Hugo <a href="https://gohugo.io/about/what-is-hugo/">What is Hugo</a></p>
+</blockquote>
 <p>Hugo是Go语言实现的，这可能就是其做到神速的原因。</p>
-
 <h3 id="安装">安装</h3>
-
 <p>Hugo不依赖任何运行库和程序，是一个完整独立的运行程序。在macOS下安装很简单，使用homebrew就可以轻松安装：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">brew install hugo</code></pre></div>
-<p>安装完成可以查看一下版本号：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">hugo version</code></pre></div>
-<h3 id="创建站点">创建站点</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">brew install hugo
+</code></pre></div><p>安装完成可以查看一下版本号：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">hugo version
+</code></pre></div><h3 id="创建站点">创建站点</h3>
 <p>下面可以创建一个新的博客站点，我继续叫smslit：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">hugo new site smslit
 <span class="nb">cd</span> smslit
-ls -l</code></pre></div>
-<p>此时会看到出现新的目录 <code>smslit</code> ，进入此目录会看到如下文件结构：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180707153097244537665.png" alt="20180707153097244537665.png" /></p>
-
+ls -l
+</code></pre></div><p>此时会看到出现新的目录 <code>smslit</code> ，进入此目录会看到如下文件结构：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180707153097244537665.png" alt="20180707153097244537665.png"></p>
 <p>上面文件及目录与hexo博客的对应关系是：</p>
-
 <table>
 <thead>
 <tr>
@@ -123,38 +111,32 @@ ls -l</code></pre></div>
 <th align="left">作用</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">content</td>
 <td align="center">source</td>
 <td align="left">存储博文的md文件，hexo中的_post,_draft,各自定义的页面目录其实对应到hugo中的话，都是在content下的</td>
 </tr>
-
 <tr>
 <td align="center">config.toml</td>
 <td align="center"><strong>_config.yaml</strong></td>
 <td align="left">用于配置站点中各项参数</td>
 </tr>
-
 <tr>
 <td align="center">themes</td>
 <td align="center">themes</td>
 <td align="left">存放主题</td>
 </tr>
-
 <tr>
 <td align="center">static</td>
 <td align="center">source</td>
 <td align="left">hugo中的static目录中存放一些常规静态文件，可以是博客中引用的图片、文件也可以是自添加的任意文件，最终渲染都会放到站点的根目录</td>
 </tr>
-
 <tr>
 <td align="center">public</td>
 <td align="center">public</td>
 <td align="left">存放渲染后的站点静态文件</td>
 </tr>
-
 <tr>
 <td align="center">layout</td>
 <td align="center">无</td>
@@ -162,85 +144,67 @@ ls -l</code></pre></div>
 </tr>
 </tbody>
 </table>
-
 <h4 id="主题">主题</h4>
-
-<p>我选择了 <a href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>主题，安装很简单：</p>
+<p>我选择了 <a href="https://github.com/olOwOlo/hugo-theme-even">Even</a>主题，安装很简单：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">git clone https://github.com/olOwOlo/hugo-theme-even themes/even
-cp themes/even/exampleSite/config.toml .</code></pre></div>
-<p>修改配置文件，这里主要是根据自己需要进行定制和修改：</p>
-
+cp themes/even/exampleSite/config.toml .
+</code></pre></div><p>修改配置文件，这里主要是根据自己需要进行定制和修改：</p>
 <ul>
-<li>修改菜单栏项与原hexo博客中的一致；</li>
-<li>修改相应的社交网络链接；</li>
-<li>使能gitment</li>
-</ul>
-
+<li>
+<p>修改菜单栏项与原hexo博客中的一致；</p>
+</li>
+<li>
+<p>修改相应的社交网络链接；</p>
+</li>
+<li>
+<p>使能gitment</p>
 <p>&hellip;</p>
-
+</li>
+</ul>
 <p>执行命令，渲染站点并在本地部署：</p>
-<div class="highlight"><pre class="chroma">hugo server</pre></div>
-<p>打开链接 <a href="127.0.0.1:1313" target="_blank">127.0.0.1:1313</a>，看到了静态博客的样子，点点各项链接，不正确的相应调整。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">hugo server
+</code></pre></div><p>打开链接 <a href="127.0.0.1:1313">127.0.0.1:1313</a>，看到了静态博客的样子，点点各项链接，不正确的相应调整。</p>
 <h4 id="新建文章">新建文章</h4>
-
 <p>使用主题一定要看一下主题中的样例站点，文章内容管理方式要与样例一致，所以查看 <code>themes/even/exampleSite/content</code>中的目录，我是直接cp过来的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cp -r themes/even/exampleSite/content/* content</code></pre></div>
-<p>删掉post中的文章，然后新建了与配置文件中菜单栏一致的目录，并添加相应的index.md文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cp -r themes/even/exampleSite/content/* content
+</code></pre></div><p>删掉post中的文章，然后新建了与配置文件中菜单栏一致的目录，并添加相应的index.md文件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  smslit tree content
 content
 ├── about
 │   └── index.md
 ├── drip
 │   └── index.md
-└── post</code></pre></div>
-<p>将 <code>about/index.md</code>(对应菜单项——关于) 和 <code>drip/index.md</code>(对应菜单项——札记) 内容更改为hexo博客中相应文件的内容，调整内容中的不兼容标签项。</p>
-
+└── post
+</code></pre></div><p>将 <code>about/index.md</code>(对应菜单项——关于) 和 <code>drip/index.md</code>(对应菜单项——札记) 内容更改为hexo博客中相应文件的内容，调整内容中的不兼容标签项。</p>
 <p>使用命令新建一篇博文：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  smslit hugo new post/hello.md</code></pre></div>
-<p>此时，本地部署查看博客，发现菜单项<strong>关于</strong>和<strong>札记</strong>正常显示内容，但是没有发现新加的文章。</p>
-
-<p>打开文件，会发现头信息中有一项 <code>draft</code> 值为 <code>true</code>，说明新建的文件归为草稿，原来是hugo部署和生成静态站点文件的时候会根据md文件中的 <code>draft</code> 值来判断是否渲染，没有此项内容认为是 <code>false</code> ,也就是添加渲染，所以这里可以将 <code>draft</code>项的值改为 <code>false</code> 或者直接删掉，再次尝试部署，可以在 <a href="127.0.0.1:1313" target="_blank">127.0.0.1:1313</a>中看到新加的文章。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  smslit hugo new post/hello.md
+</code></pre></div><p>此时，本地部署查看博客，发现菜单项<strong>关于</strong>和<strong>札记</strong>正常显示内容，但是没有发现新加的文章。</p>
+<p>打开文件，会发现头信息中有一项 <code>draft</code> 值为 <code>true</code>，说明新建的文件归为草稿，原来是hugo部署和生成静态站点文件的时候会根据md文件中的 <code>draft</code> 值来判断是否渲染，没有此项内容认为是 <code>false</code> ,也就是添加渲染，所以这里可以将 <code>draft</code>项的值改为 <code>false</code> 或者直接删掉，再次尝试部署，可以在 <a href="127.0.0.1:1313">127.0.0.1:1313</a>中看到新加的文章。</p>
 <h2 id="迁移博文">迁移博文</h2>
-
 <p>迁移博文主要面临两个问题：</p>
-
 <ul>
 <li>md文件头信息(Front Matter)格式有区别；</li>
 <li>hexo和hugo的部分标签语言不兼容，比如hexo的<code>{% image %}</code>；</li>
 </ul>
-
 <h3 id="文章头信息">文章头信息</h3>
-
 <p>在hugo中文件的头信息有三种格式可选：yaml、toml和json。这个可以在 <code>config.toml</code>中配置，为了迁移方便，所以选择了hexo中博文使用的yaml格式。总结博文不兼容点如下：</p>
-
 <ul>
 <li>文件名，在hugo中不用包含日期；</li>
 <li>不包含<strong>layout</strong>项；</li>
 <li>hugo中<strong>date</strong>项的格式是：<strong>2018-07-05T00:00:00+08:00</strong></li>
 <li>hugo中<strong>tags</strong>和<strong>categories</strong>的格式有两种，不兼容hexo中多标签时只使用<code>,</code>分隔的方式；</li>
 </ul>
-
-<p>根据上述四项的不同，编写了python脚本批量处理文章：<a href="https://github.com/smslit/tools-with-script/blob/master/hexo2hugo/hexo2hugo.py" target="_blank">hexo2hugo.py</a></p>
-
+<p>根据上述四项的不同，编写了python脚本批量处理文章：<a href="https://github.com/smslit/tools-with-script/blob/master/hexo2hugo/hexo2hugo.py">hexo2hugo.py</a></p>
 <h3 id="标签语言不兼容">标签语言不兼容</h3>
-
 <p>这个问题，用python脚本批处理的话比较不值得了，比较使用特殊的hexo标签的地方并不是很多，所以，可以使用grep命令帮助寻找包含 <code>{%</code>的md文件，然后打开相应文件修改为hugo下对应格式就可以了。</p>
-
 <h3 id="其它问题">其它问题</h3>
-
-<p>上面两个问题解决后，将文章放到 <code>content/post</code>下，本地部署查看，所有的文章均正常出现了，但是会发现一个问题是，文章列表中的预览内容并没有按照 <code>&lt;!--more--&gt;</code> 标记分界显示，后来发现原来是标记的格式不对，文章中的标记为 <code>&lt;!-- more --&gt;</code>，<strong>more</strong> 两边多了两个空格，hugo只识别不带空格的 <strong>more</strong> 标记，为此编写了python脚本<a href="https://github.com/smslit/tools-with-script/blob/master/hexo2hugo/format_more_tag.py" target="_blank">format_more_tag.py</a>进行批处理，解决！</p>
-
+<p>上面两个问题解决后，将文章放到 <code>content/post</code>下，本地部署查看，所有的文章均正常出现了，但是会发现一个问题是，文章列表中的预览内容并没有按照 <code>&lt;!--more--&gt;</code> 标记分界显示，后来发现原来是标记的格式不对，文章中的标记为 <code>&lt;!-- more --&gt;</code>，<strong>more</strong> 两边多了两个空格，hugo只识别不带空格的 <strong>more</strong> 标记，为此编写了python脚本<a href="https://github.com/smslit/tools-with-script/blob/master/hexo2hugo/format_more_tag.py">format_more_tag.py</a>进行批处理，解决！</p>
 <h2 id="发布">发布</h2>
-
-<p>我的博客是部署到<a href="https://coding.net" target="_blank">coding</a>的，国内访问比较快，与部署到github无异，不过比较好的是，coding中的pages服务可以强制使用<code>https</code>，😁！hugo没有像hexo一样专门的部署命令，所以我编写了一个部署脚本，在使用脚本前需要做以下工作：</p>
-
+<p>我的博客是部署到<a href="https://coding.net">coding</a>的，国内访问比较快，与部署到github无异，不过比较好的是，coding中的pages服务可以强制使用<code>https</code>，😁！hugo没有像hexo一样专门的部署命令，所以我编写了一个部署脚本，在使用脚本前需要做以下工作：</p>
 <ul>
 <li>将静态文件的仓库clone到本地，比如到<code>~/Downloads</code>目录，仓库目录最好是设置成隐藏目录，目录名加个.即可；</li>
-<li>进入<code>~/Downloads/.smslit</code>中，删掉所有除了.git的文件，将hugo博客中public目录下所有文件cp到<code>~/Downloads/.smslit</code>下，提交一下修改，并推到coding中，等到coding的pages服务完成渲染，访问<a href="https://www.smslit.top" target="_blank">https://www.smslit.top </a>，已经成为本地hugo渲染的样子，说明已经打通通道；</li>
-
-<li><p>在目录<code>/usr/local/bin</code>下创建脚本文件 <code>deploy</code>，内容如下：</p>
+<li>进入<code>~/Downloads/.smslit</code>中，删掉所有除了.git的文件，将hugo博客中public目录下所有文件cp到<code>~/Downloads/.smslit</code>下，提交一下修改，并推到coding中，等到coding的pages服务完成渲染，访问<a href="https://www.smslit.top">https://www.smslit.top </a>，已经成为本地hugo渲染的样子，说明已经打通通道；</li>
+<li>在目录<code>/usr/local/bin</code>下创建脚本文件 <code>deploy</code>，内容如下：
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="c1"># ~/smslit目录为hugo站点目录</span>
 <span class="nb">cd</span> ~/smslit
@@ -261,14 +225,13 @@ git push
 rm -rf ~/Downloads/.hugo/
 mkdir ~/Downloads/.hugo
 mv ~/smslit/public/.git ~/Downloads/.hugo/
-<span class="nb">echo</span> <span class="s1">&#39;Done, have a good time!&#39;</span></code></pre></div></li>
-
-<li><p>为脚本<code>/usr/local/bin/deploy</code>添加执行权限：<code>chmod +x /usr/local/bin/deploy</code></p></li>
+<span class="nb">echo</span> <span class="s1">&#39;Done, have a good time!&#39;</span>
+</code></pre></div></li>
+<li>为脚本<code>/usr/local/bin/deploy</code>添加执行权限：<code>chmod +x /usr/local/bin/deploy</code></li>
 </ul>
-
 <p>完成上述工作，重新开启一个终端，执行命令就可以自动渲染并提交静态文件修改了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">deploy</code></pre></div>
-<p>可以看到，静态站点文件生成速度很快，原来hexo需要8s+，现在只需要300+ms:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">deploy
+</code></pre></div><p>可以看到，静态站点文件生成速度很快，原来hexo需要8s+，现在只需要300+ms:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">                   <span class="p">|</span> ZH-CN
 +------------------+-------+
   Pages            <span class="p">|</span>   <span class="m">254</span>
@@ -280,10 +243,9 @@ mv ~/smslit/public/.git ~/Downloads/.hugo/
   Sitemaps         <span class="p">|</span>     <span class="m">1</span>
   Cleaned          <span class="p">|</span>     <span class="m">0</span>
 
-Total in <span class="m">376</span> ms</code></pre></div>
-<h2 id="参考">参考</h2>
-
-<p><a href="https://gohugo.io/documentation/" target="_blank">Hugo Documentation</a></p>
+Total in <span class="m">376</span> ms
+</code></pre></div><h2 id="参考">参考</h2>
+<p><a href="https://gohugo.io/documentation/">Hugo Documentation</a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -302,28 +264,23 @@ Total in <span class="m">376</span> ms</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#hugo">Hugo</a>
-<ul>
-<li><a href="#安装">安装</a></li>
-<li><a href="#创建站点">创建站点</a>
-<ul>
-<li><a href="#主题">主题</a></li>
-<li><a href="#新建文章">新建文章</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#迁移博文">迁移博文</a>
-<ul>
-<li><a href="#文章头信息">文章头信息</a></li>
-<li><a href="#标签语言不兼容">标签语言不兼容</a></li>
-<li><a href="#其它问题">其它问题</a></li>
-</ul></li>
-<li><a href="#发布">发布</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#hugo">Hugo</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#创建站点">创建站点</a></li>
+      </ul>
+    </li>
+    <li><a href="#迁移博文">迁移博文</a>
+      <ul>
+        <li><a href="#文章头信息">文章头信息</a></li>
+        <li><a href="#标签语言不兼容">标签语言不兼容</a></li>
+        <li><a href="#其它问题">其它问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#发布">发布</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -374,7 +331,7 @@ Total in <span class="m">376</span> ms</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

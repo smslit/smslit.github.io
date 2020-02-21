@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="欧几里得算法">
 <meta itemprop="description" content="天杀的，原来我现在都蠢到连最大公约数的求解算法理解都这么费劲，欧几里得算法又称辗转相除法，用于计算两个数的最大公约数。">
-
-
 <meta itemprop="datePublished" content="2017-10-22T20:47:49&#43;08:00" />
 <meta itemprop="dateModified" content="2017-10-22T20:47:49&#43;08:00" />
 <meta itemprop="wordCount" content="802">
 
 
 
-<meta itemprop="keywords" content="algorithm," />
-<meta property="og:title" content="欧几里得算法" />
+<meta itemprop="keywords" content="algorithm," /><meta property="og:title" content="欧几里得算法" />
 <meta property="og:description" content="天杀的，原来我现在都蠢到连最大公约数的求解算法理解都这么费劲，欧几里得算法又称辗转相除法，用于计算两个数的最大公约数。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/10/22/gcd/" />
@@ -84,132 +81,96 @@
 			</header>
 			<div class="content">
 				<p>天杀的，原来我现在都蠢到连最大公约数的求解算法理解都这么费劲，欧几里得算法又称辗转相除法，用于计算两个数的最大公约数。</p>
-
 <h2 id="简介">简介</h2>
-
 <p>多应用领域在计算机和数学两个领域，计算公式为：</p>
-
 <p>$$
 gcd(a, b) = gcd(b, mod(a, b)), a &gt; b且a和b为正整数
 $$</p>
-
 <p>古希腊数学家欧几里德在其著作《The Elements》中最早描述了这种算法, 所以被命名为欧几里德算法。算法依赖于下面的定理：</p>
-
 <blockquote>
 <p>两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数。最大公约数（Greatest Common Divisor）缩写为GCD。</p>
 </blockquote>
-
 <h2 id="证明">证明</h2>
-
 <p>两种证明定理的思路。</p>
-
 <p>若整数 $d$  整除整数 $a$ ，记作 $d\vert a$。</p>
-
 <h3 id="方法1">方法1</h3>
-
 <p>设:</p>
-
 <p>$$
 \begin{aligned}
-&amp; r = \ a\ \boldsymbol{\mathrm{mod}}\ b, 有r = a - kb\<br />
+&amp; r = \ a\ \boldsymbol{\mathrm{mod}}\ b, 有r = a - kb\\<br>
 &amp; d 是 a和b 的公约数, 记: d \vert a, d \vert b
 \end{aligned}
 $$</p>
-
 <p>那么，</p>
-
 <p>$$
 \begin{aligned}
-&amp; r = a - kb, 等式两边同时除以d \Longrightarrow \frac{r}{d}=\frac{a}{d}-\frac{kb}{d}\<br />
-&amp; \because d \vert a且 d \vert b\<br />
+&amp; r = a - kb, 等式两边同时除以d \Longrightarrow \frac{r}{d}=\frac{a}{d}-\frac{kb}{d}\\<br>
+&amp; \because d \vert a且 d \vert b\\<br>
 &amp; \therefore d \vert r
 \end{aligned}
 $$</p>
-
 <p>所以，$d$ 也是 $b$ 和 $a\ \boldsymbol{\mathrm{mod}}\ b$ 的公约数。</p>
-
 <p>设:</p>
-
 <p>$$
 \begin{aligned}
-&amp; r = \ a\ \boldsymbol{\mathrm{mod}}\ b, 有r = a - kb\<br />
+&amp; r = \ a\ \boldsymbol{\mathrm{mod}}\ b, 有r = a - kb\\<br>
 &amp; d 是 a和a\ \boldsymbol{\mathrm{mod}}\ b的公约数, 记: d \vert a, d \vert (a-kb)
 \end{aligned}
 $$</p>
-
 <p>那么，</p>
-
 <p>$$
 d \vert a即，d也是a的约数
 $$</p>
-
 <p>综上，$a$ 和 $b$ 的公约数与b和 $a\ \boldsymbol{\mathrm{mod}}\ b$ 的公约数是一致的，那么最大公约数也是一样。</p>
-
 <h3 id="方法2">方法2</h3>
-
 <p>令:</p>
-
 <p>$$
 c = gcd(a, b) \xrightarrow[]{m,n为整数} \begin{cases}a=mc\\b=nc\end{cases}
 $$</p>
-
 <p>有,</p>
-
 <p>$$
 \begin{aligned}
-r&amp;=a-kb\<br />
-&amp;=mc-knc\<br />
+r&amp;=a-kb\\<br>
+&amp;=mc-knc\\<br>
 &amp;=(m-kn)c
 \end{aligned}
 $$</p>
-
 <p>$(m-kn)$ 为整数，那么有c整除余数r，即:</p>
-
 <p>$$
 c \vert r
 $$</p>
-
 <p>下面证明 $c = gcd(b, r)$:</p>
-
 <p>设$m-kn$ 和 $n$ 有大于1的公约数$d$，即</p>
-
 <p>$$
 \begin{cases}m-kn&amp;=xd\\n&amp;=yd\end{cases} \Longrightarrow \begin{aligned}m&amp;=kn+xd\\&amp;=kyd+xd\\&amp;=(ky+x)d\end{aligned}
 $$</p>
-
 <p>$$
 \therefore
 \begin{cases}
-a&amp;=mc=(ky+x)cd\<br />
+a&amp;=mc=(ky+x)cd\\<br>
 b&amp;=nc=ycd
 \end{cases}
 $$</p>
-
 <p>那么有$cd \vert a 且 cd \vert b$，这与$c$ 是 $a$ 和 $b$ 的最大公约数是矛盾的。也就是说不存在 $d&gt;1$ 满足上述过程，也就是说有：</p>
-
 <p>$$
 c=gcd(b, r)
 $$</p>
-
 <p>综上可得：</p>
-
 <p>$$
 c=gcd(a, b)=gcd(b, r)
 $$</p>
-
 <h2 id="实现思路">实现思路</h2>
-
 <p>实现思路就是，不断的取模求最大公约数，直到整除为止就能得到最终要求解最大公约数。</p>
-
 <ol>
-<li><p>令 $r = a\ \boldsymbol{\mathrm{mod}}\ b, (0 \le r &lt; b )$
-若 $r=0$ 算法结束, $b$ 就是最终结果</p></li>
-
-<li><p>算法过程: $a \leftarrow b, b \leftarrow r$，返回步骤1</p></li>
+<li>
+<p>令 $r = a\ \boldsymbol{\mathrm{mod}}\ b, (0 \le r &lt; b )$
+若 $r=0$ 算法结束, $b$ 就是最终结果</p>
+</li>
+<li>
+<p>算法过程: $a \leftarrow b, b \leftarrow r$，返回步骤1</p>
+</li>
 </ol>
-
 <h2 id="具体实现">具体实现</h2>
-
 <h3 id="c版本">c版本</h3>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
@@ -221,19 +182,19 @@ $$</p>
         <span class="n">b</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
-<h3 id="c-版本">c++版本</h3>
+<span class="p">}</span>
+</code></pre></div><h3 id="c版本-1">c++版本</h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">b</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<h3 id="python版本">python版本</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</code></pre></div><h3 id="python版本">python版本</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">:</span>
     <span class="k">while</span> <span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">%</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span>
-    <span class="k">return</span> <span class="n">b</span></code></pre></div>
+    <span class="k">return</span> <span class="n">b</span>
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -252,24 +213,23 @@ $$</p>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#简介">简介</a></li>
-<li><a href="#证明">证明</a>
-<ul>
-<li><a href="#方法1">方法1</a></li>
-<li><a href="#方法2">方法2</a></li>
-</ul></li>
-<li><a href="#实现思路">实现思路</a></li>
-<li><a href="#具体实现">具体实现</a>
-<ul>
-<li><a href="#c版本">c版本</a></li>
-<li><a href="#c-版本">c++版本</a></li>
-<li><a href="#python版本">python版本</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#证明">证明</a>
+      <ul>
+        <li><a href="#方法1">方法1</a></li>
+        <li><a href="#方法2">方法2</a></li>
+      </ul>
+    </li>
+    <li><a href="#实现思路">实现思路</a></li>
+    <li><a href="#具体实现">具体实现</a>
+      <ul>
+        <li><a href="#c版本">c版本</a></li>
+        <li><a href="#c版本-1">c++版本</a></li>
+        <li><a href="#python版本">python版本</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -320,7 +280,7 @@ $$</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之 APP 名称本地化">
 <meta itemprop="description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a">
-
-
 <meta itemprop="datePublished" content="2019-02-18T09:10:02&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-18T09:10:02&#43;08:00" />
 <meta itemprop="wordCount" content="1240">
 
 
 
-<meta itemprop="keywords" content="macOS 开发," />
-<meta property="og:title" content="macOS 开发之 APP 名称本地化" />
+<meta itemprop="keywords" content="macOS 开发," /><meta property="og:title" content="macOS 开发之 APP 名称本地化" />
 <meta property="og:description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/18/mac_app_international_1/" />
@@ -83,159 +80,140 @@
 				<h1>macOS 开发之 APP 名称本地化</h1>
 			</header>
 			<div class="content">
-				
-
-<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：app 名称的本地化。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218102516.jpg" alt="" /></p>
-
-<p>第二部传送门：<a href="/2019/02/19/mac_app_international_2/" target="_blank">macOS 开发之 storyboard 或 xib 本地化</a></p>
-
-<p>第三部传送门：<a href="/2019/02/21/mac_app_international_3/" target="_blank">macOS 开发之代码字符串的本地化</a></p>
-
+				<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：app 名称的本地化。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218102516.jpg" alt=""></p>
+<p>第二部传送门：<a href="/2019/02/19/mac_app_international_2/">macOS 开发之 storyboard 或 xib 本地化</a></p>
+<p>第三部传送门：<a href="/2019/02/21/mac_app_international_3/">macOS 开发之代码字符串的本地化</a></p>
 <h1 id="实现平台">实现平台</h1>
-
 <ul>
 <li>macOS 10.14.3</li>
 <li>swift 4.2.1</li>
 <li>xcode 10.1</li>
 </ul>
-
 <h1 id="新建一个空的工程">新建一个空的工程</h1>
-
 <p>为了更好地讲述本地化 APP 名称，以一个 Cocoa App 新工程为例进行说明。</p>
-
 <ol>
-<li><p>打开 Xcode，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>N</code> 就会触发新建工程的导航窗口</p></li>
-
-<li><p>选择 macOS -&gt; Cocoa App，点击 <code>Next</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217102918.png" alt="" /></p></li>
-
-<li><p>工程取名为 InternationalDemo，勾选 <code>Use Storyboards</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218103302.jpg" alt="" /></p></li>
+<li>
+<p>打开 Xcode，按下快捷键 <code>Shift</code> + <code>Command</code> + <code>N</code> 就会触发新建工程的导航窗口</p>
+</li>
+<li>
+<p>选择 macOS -&gt; Cocoa App，点击 <code>Next</code></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217102918.png" alt=""></p>
+</li>
+<li>
+<p>工程取名为 InternationalDemo，勾选 <code>Use Storyboards</code></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218103302.jpg" alt=""></p>
+</li>
 </ol>
-
 <h1 id="添加语言支持">添加语言支持</h1>
-
 <p>工程的国际化和本地化依托于各国语言的支持，所以需要先为工程添加语言支持。</p>
-
 <ol>
-<li>Xcode 左侧工程导航栏，点击工程，会看到右侧工程配置信息，点击 <strong>PROJECT</strong> 下的 <code>InternationalDemo</code></li>
-
-<li><p>在出现的配置项中有 <code>Localizations</code>，可以看到默认是有一个 <code>English</code> 的，点击 <code>+</code> 号会出现选择语言的下拉菜单，如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218110626.png" alt="" /></p></li>
-
-<li><p>选择 <code>Chinese(Simplified)(zh-Hans)</code> 即可出现添加简体中文的窗口，点击 <code>Finish</code> 即可完成添加：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218110922.png" alt="" /></p></li>
-
-<li><p>为了更好的演示，按照上面的操作再添加 <code>Janpanese(ja)</code> 的支持，最终 <code>Localizations</code> 语言如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218111319.png" alt="" /></p></li>
+<li>
+<p>Xcode 左侧工程导航栏，点击工程，会看到右侧工程配置信息，点击 <strong>PROJECT</strong> 下的 <code>InternationalDemo</code></p>
+</li>
+<li>
+<p>在出现的配置项中有 <code>Localizations</code>，可以看到默认是有一个 <code>English</code> 的，点击 <code>+</code> 号会出现选择语言的下拉菜单，如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218110626.png" alt=""></p>
+</li>
+<li>
+<p>选择 <code>Chinese(Simplified)(zh-Hans)</code> 即可出现添加简体中文的窗口，点击 <code>Finish</code> 即可完成添加：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218110922.png" alt=""></p>
+</li>
+<li>
+<p>为了更好的演示，按照上面的操作再添加 <code>Janpanese(ja)</code> 的支持，最终 <code>Localizations</code> 语言如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218111319.png" alt=""></p>
+</li>
 </ol>
-
 <h1 id="添加相关本地化文件">添加相关本地化文件</h1>
-
 <p>为了实现 macOS 系统下 Dock 栏、全局菜单栏和 Finder 中 app 的名称均可以跟随系统语言的设置显示对应语言的名称，需要在工程中添加一个名为 <code>InfoPlist.strings</code> 的文件，并进行本地化！</p>
-
-<h2 id="添加-infoplist-strings">添加 <code>InfoPlist.strings</code></h2>
-
+<h2 id="添加-infopliststrings">添加 <code>InfoPlist.strings</code></h2>
 <ol>
-<li><p>按下组合键 <code>Command</code> + <code>n</code> 调出新建文件的导航窗口，找到 <code>macOS</code> -&gt; <code>Resources</code> -&gt; <code>Strings File</code>：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218112203.png" alt="" /></p></li>
-
-<li><p>点击 <code>Next</code>，更改名称为 <code>InfoPlist.strings</code>，<code>Group</code> 选择 <code>InternationalDemo</code> 文件夹，其它默认，点击 <code>Create</code> 完成文件的添加。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218112829.png" alt="" /></p></li>
+<li>
+<p>按下组合键 <code>Command</code> + <code>n</code> 调出新建文件的导航窗口，找到 <code>macOS</code> -&gt; <code>Resources</code> -&gt; <code>Strings File</code>：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218112203.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>Next</code>，更改名称为 <code>InfoPlist.strings</code>，<code>Group</code> 选择 <code>InternationalDemo</code> 文件夹，其它默认，点击 <code>Create</code> 完成文件的添加。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218112829.png" alt=""></p>
+</li>
 </ol>
-
-<h2 id="infoplist-strings-添加本地化支持"><code>InfoPlist.strings</code> 添加本地化支持</h2>
-
+<h2 id="infopliststrings-添加本地化支持"><code>InfoPlist.strings</code> 添加本地化支持</h2>
 <ol>
-<li><p>选中导航栏中的 <code>InfoPlist.strings</code> ，按下组合键 <code>Option</code> + <code>Command</code> + <code>1</code> 就会显示 <code>InfoPlist.strings</code> 的 Inspector</p></li>
-
-<li><p>会看到有一项是 <code>Localizations</code> 其中有个 <code>Localize...</code> 按钮：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218113743.png" alt="" /></p></li>
-
-<li><p>点击这个按钮，会弹出一个窗口，其中有个下拉菜单控件，其中包含了上面添加的三个语言支持：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114200.png" alt="" /></p></li>
-
-<li><p>选择 <code>English</code> 选项，点击 <code>Localize</code> 就会发现 <code>InfoPlist.strings</code> Inspector 中的 <code>Localizations</code> 分组变成了三个勾选框，其中 <code>English</code> 是勾选的，这里也把 Chinese 和 Japanese 勾选上，此时你会发现 Xcode 左侧工程导航栏 <code>InfoPlist.strings</code> 左侧出现了一个小三角，点开就会发现其变成了与三种语言对应的三个 Strings 文件：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114842.png" alt="" /></p></li>
+<li>
+<p>选中导航栏中的 <code>InfoPlist.strings</code> ，按下组合键 <code>Option</code> + <code>Command</code> + <code>1</code> 就会显示 <code>InfoPlist.strings</code> 的 Inspector</p>
+</li>
+<li>
+<p>会看到有一项是 <code>Localizations</code> 其中有个 <code>Localize...</code> 按钮：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218113743.png" alt=""></p>
+</li>
+<li>
+<p>点击这个按钮，会弹出一个窗口，其中有个下拉菜单控件，其中包含了上面添加的三个语言支持：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114200.png" alt=""></p>
+</li>
+<li>
+<p>选择 <code>English</code> 选项，点击 <code>Localize</code> 就会发现 <code>InfoPlist.strings</code> Inspector 中的 <code>Localizations</code> 分组变成了三个勾选框，其中 <code>English</code> 是勾选的，这里也把 Chinese 和 Japanese 勾选上，此时你会发现 Xcode 左侧工程导航栏 <code>InfoPlist.strings</code> 左侧出现了一个小三角，点开就会发现其变成了与三种语言对应的三个 Strings 文件：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218114842.png" alt=""></p>
+</li>
 </ol>
-
 <h1 id="添加-app-名称配置">添加 App 名称配置</h1>
-
 <h2 id="菜单栏-app-名称本地化">菜单栏 App 名称本地化</h2>
-
 <p>要实现菜单栏 App 名称本地化需要在上面添加的三个文件中添加 <code>CFBundleName</code> 字符串。</p>
-
 <ul>
-<li><p><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;International Demo&#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;国际化演示&#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;国際デモ&#34;</span><span class="p">;</span></code></pre></div></li>
+<li><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</li>
 </ul>
-
-<blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">International Demo</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">国际化演示</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleName</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">国際デモ</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><blockquote>
 <p>更改系统语言设置，可以查看不同语言设置下的运行效果，在系统语言设置中更改了语言是大部分生效的，不要关闭设置窗口，否则关闭的话会提示重启，各类语言设置检查之后在改回原来的语言即可!</p>
 </blockquote>
-
 <ul>
-<li><p>英文:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218121003.png" alt="" /></p></li>
-
-<li><p>简体中文：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218121058.png" alt="" /></p></li>
-
-<li><p>日文：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218121128.png" alt="" /></p></li>
+<li>
+<p>英文:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218121003.png" alt=""></p>
+</li>
+<li>
+<p>简体中文：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218121058.png" alt=""></p>
+</li>
+<li>
+<p>日文：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218121128.png" alt=""></p>
+</li>
 </ul>
-
 <h2 id="dock-栏和-finder-中-app-名称本地化">Dock 栏和 Finder 中 App 名称本地化</h2>
-
 <p>如上在三个文件中添加 <code>CFBundleDisplayName</code> 字符串。</p>
-
 <ul>
-<li><p><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;International Demo&#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;国际化演示&#34;</span><span class="p">;</span></code></pre></div></li>
-
-<li><p><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;国際デモ&#34;</span><span class="p">;</span></code></pre></div></li>
+<li><code>InfoPlist.strings (English)</code> 文件中添加以下代码：</li>
 </ul>
-
-<p>还差一步，需要在工程的 Info 配置中添加 <code>Bundle display name</code> 项：</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">International Demo</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li><code>InfoPlist.strings (Chinese(Simplified))</code> 文件中添加以下代码：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">国际化演示</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li><code>InfoPlist.strings (Japanese)</code> 文件中添加以下代码：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">CFBundleDisplayName</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">国際デモ</span><span class="s">&#34;</span><span class="p">;</span>
+</code></pre></div><p>还差一步，需要在工程的 Info 配置中添加 <code>Bundle display name</code> 项：</p>
 <ol>
-<li>打开 <code>Info.plist</code> 文件</li>
-
-<li><p>在 <code>Bundle name</code> 下添加 <code>Bundle display name</code> ，值设置为 <code>$(PRODUCT_NAME)</code></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218124130.png" alt="" /></p></li>
+<li>
+<p>打开 <code>Info.plist</code> 文件</p>
+</li>
+<li>
+<p>在 <code>Bundle name</code> 下添加 <code>Bundle display name</code> ，值设置为 <code>$(PRODUCT_NAME)</code></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218124130.png" alt=""></p>
+</li>
 </ol>
-
 <p>如果要检验效果的话，更改系统语言设置后需要重启才能看到 Dock 栏和 Finder 中 App 名称的本地化适应。</p>
-
 <p>至此 App 名称的本地化就实现了！</p>
-
-<p>本例程可从这里下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo.zip" target="_blank">InternationalDemo</a></p>
+<p>本例程可从这里下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo.zip">InternationalDemo</a></p>
 
 			</div>
 			<hr class="post-end">
@@ -255,21 +233,15 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#实现平台">实现平台</a></li>
-<li><a href="#新建一个空的工程">新建一个空的工程</a></li>
-<li><a href="#添加语言支持">添加语言支持</a></li>
-<li><a href="#添加相关本地化文件">添加相关本地化文件</a>
-<ul>
-<li><a href="#添加-infoplist-strings">添加 <code>InfoPlist.strings</code></a></li>
-<li><a href="#infoplist-strings-添加本地化支持"><code>InfoPlist.strings</code> 添加本地化支持</a></li>
-</ul></li>
-<li><a href="#添加-app-名称配置">添加 App 名称配置</a>
-<ul>
-<li><a href="#菜单栏-app-名称本地化">菜单栏 App 名称本地化</a></li>
-<li><a href="#dock-栏和-finder-中-app-名称本地化">Dock 栏和 Finder 中 App 名称本地化</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#添加-infopliststrings">添加 InfoPlist.strings</a></li>
+    <li><a href="#infopliststrings-添加本地化支持">InfoPlist.strings 添加本地化支持</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#菜单栏-app-名称本地化">菜单栏 App 名称本地化</a></li>
+    <li><a href="#dock-栏和-finder-中-app-名称本地化">Dock 栏和 Finder 中 App 名称本地化</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -320,7 +292,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

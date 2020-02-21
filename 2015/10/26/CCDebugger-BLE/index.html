@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="BLE开发笔记——CC Debugger的使用">
 <meta itemprop="description" content="配置好开发环境，话说那得要试一下下载程序，CC2541的BLE开发要用CC Debugger，这里就说一下它的使用。">
-
-
 <meta itemprop="datePublished" content="2015-10-26T10:34:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-26T10:34:46&#43;08:00" />
 <meta itemprop="wordCount" content="938">
 
 
 
-<meta itemprop="keywords" content="ble," />
-<meta property="og:title" content="BLE开发笔记——CC Debugger的使用" />
+<meta itemprop="keywords" content="ble," /><meta property="og:title" content="BLE开发笔记——CC Debugger的使用" />
 <meta property="og:description" content="配置好开发环境，话说那得要试一下下载程序，CC2541的BLE开发要用CC Debugger，这里就说一下它的使用。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/26/CCDebugger-BLE/" />
@@ -84,23 +81,14 @@
 			</header>
 			<div class="content">
 				<p>配置好开发环境，话说那得要试一下下载程序，CC2541的BLE开发要用CC Debugger，这里就说一下它的使用。</p>
-
 <h2 id="接口说明">接口说明</h2>
-
 <p>这一部分内容取自官方CC Debugger的使用说明。可以从我网盘里下载</p>
-
-<p>链接: <a href="http://pan.baidu.com/s/1x9jMA" target="_blank">http://pan.baidu.com/s/1x9jMA </a> 密码: aefk</p>
-
+<p>链接: <a href="http://pan.baidu.com/s/1x9jMA">http://pan.baidu.com/s/1x9jMA </a> 密码: aefk</p>
 <h3 id="接口示意图">接口示意图</h3>
-
 <p>CCdebugger的接口示意图如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/og1zy.jpg" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/og1zy.jpg" alt="1"></p>
 <h3 id="接口说明-1">接口说明</h3>
-
 <p>详表如下：</p>
-
 <table>
 <thead>
 <tr>
@@ -109,62 +97,52 @@
 <th>说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>1</td>
 <td>GND</td>
 <td>地线</td>
 </tr>
-
 <tr>
 <td>2</td>
 <td>VDD</td>
 <td>目标板的正电源</td>
 </tr>
-
 <tr>
 <td>3</td>
 <td>DC</td>
 <td>调试接口时钟线</td>
 </tr>
-
 <tr>
 <td>4</td>
 <td>DD</td>
 <td>调试接口数据线</td>
 </tr>
-
 <tr>
 <td>5</td>
 <td>CSn</td>
 <td>下载串口片选线（低电平有效）</td>
 </tr>
-
 <tr>
 <td>6</td>
 <td>SCLK</td>
 <td>下载串口时钟线</td>
 </tr>
-
 <tr>
 <td>7</td>
 <td>RESETn</td>
 <td>调试器复位接口</td>
 </tr>
-
 <tr>
 <td>8</td>
 <td>MOSI</td>
 <td>下载串口数据输出线</td>
 </tr>
-
 <tr>
 <td>9</td>
 <td>3.3V</td>
 <td>仿真器3.3V电源输出</td>
 </tr>
-
 <tr>
 <td>10</td>
 <td>MISO</td>
@@ -172,66 +150,56 @@
 </tr>
 </tbody>
 </table>
-
 <h2 id="使用">使用</h2>
-
 <p><strong>调试器接口下载调试根据使用环境所需可以用两种接线方式</strong></p>
-
 <ul>
-<li><p>IAR、SmartRF Flash Programmer/Studio环境的连接</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/t5d8v.jpg" alt="2" /></p></li>
-
-<li><p>SmartRF Packet Sniffer环境下的连接</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/c3iwg.jpg" alt="3" /></p></li>
+<li>
+<p>IAR、SmartRF Flash Programmer/Studio环境的连接</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/t5d8v.jpg" alt="2"></p>
+</li>
+<li>
+<p>SmartRF Packet Sniffer环境下的连接</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/c3iwg.jpg" alt="3"></p>
+</li>
 </ul>
-
 <h3 id="注意">注意：</h3>
-
 <ul>
 <li>可以用管脚9来给目标板提供3.3V电源</li>
 <li>第一个接线图中NOTE1:
-
 <ul>
 <li>早期版本的部分SOC（如：CC2430、CC2510、CC1110）需增加一个外部上拉电阻。</li>
 <li>最新版本的所有SOC内部均有上拉电阻，所以，不需要该上拉电阻。</li>
-</ul></li>
+</ul>
+</li>
 <li>第一个接线图中NOTE2：复位线对噪声敏感，这会导致无故复位芯片。（尤其当连接线较长的时候）建议增加一个外部RC滤波器。</li>
 </ul>
-
 <h2 id="测试">测试</h2>
-
 <h3 id="我的测试条件">我的测试条件</h3>
-
 <ul>
 <li>IAR的BLE开发环境</li>
 <li>CC Debugger</li>
 <li>留有DD、DC、RST接口的CC2541最小系统（在一个东西的主板上）</li>
 </ul>
-
 <h3 id="连线">连线</h3>
-
 <ul>
-<li><p>按照上述第一个接线图，将CC Debugger的DD、DC、RST分别连接到板上的对应接口。我选择的是调试器给CC2541板供电，所以还应该将CC Debugger的9号管脚接到板上vcc，然后接地线共地，如下图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/c7fek.jpg" alt="4" /></p></li>
-
-<li><p>但会发现，CC Debugger不能识别芯片，现象是CC Debugger的指示灯是红色的，如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/nufej.jpg" alt="5" /></p></li>
-
-<li><p>经过排查发现，原来说明里说明了，CC Debugger的2号管脚需要与目标板共电源，连接好线，按一下调试器的复位按钮，就可以识别芯片了，现象是指示灯变成绿色，如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/8gas0.jpg" alt="6" /></p></li>
-
-<li><p>检验一下：IAR打开一个CC2541的例程工程，编译，连接CC Debugger到电脑，然后点击一下<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ixjuw.png" alt="7" />，Download and Debug按钮，下载调试，一般就顺利进入调试界面了。</p></li>
+<li>
+<p>按照上述第一个接线图，将CC Debugger的DD、DC、RST分别连接到板上的对应接口。我选择的是调试器给CC2541板供电，所以还应该将CC Debugger的9号管脚接到板上vcc，然后接地线共地，如下图：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/c7fek.jpg" alt="4"></p>
+</li>
+<li>
+<p>但会发现，CC Debugger不能识别芯片，现象是CC Debugger的指示灯是红色的，如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/nufej.jpg" alt="5"></p>
+</li>
+<li>
+<p>经过排查发现，原来说明里说明了，CC Debugger的2号管脚需要与目标板共电源，连接好线，按一下调试器的复位按钮，就可以识别芯片了，现象是指示灯变成绿色，如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/8gas0.jpg" alt="6"></p>
+</li>
+<li>
+<p>检验一下：IAR打开一个CC2541的例程工程，编译，连接CC Debugger到电脑，然后点击一下<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ixjuw.png" alt="7">，Download and Debug按钮，下载调试，一般就顺利进入调试界面了。</p>
+</li>
 </ul>
-
 <h2 id="tip">Tip：</h2>
-
 <p>杜邦线害死人，在使用CC Debugger时最好是处理一下杜邦线，保证两点：</p>
-
 <ol>
 <li>尽量保证连接线是紧连的。</li>
 <li>做的短一些，否则影响信号。</li>
@@ -254,26 +222,26 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#接口说明">接口说明</a>
-<ul>
-<li><a href="#接口示意图">接口示意图</a></li>
-<li><a href="#接口说明-1">接口说明</a></li>
-</ul></li>
-<li><a href="#使用">使用</a>
-<ul>
-<li><a href="#注意">注意：</a></li>
-</ul></li>
-<li><a href="#测试">测试</a>
-<ul>
-<li><a href="#我的测试条件">我的测试条件</a></li>
-<li><a href="#连线">连线</a></li>
-</ul></li>
-<li><a href="#tip">Tip：</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#接口说明">接口说明</a>
+      <ul>
+        <li><a href="#接口示意图">接口示意图</a></li>
+        <li><a href="#接口说明-1">接口说明</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#注意">注意：</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试">测试</a>
+      <ul>
+        <li><a href="#我的测试条件">我的测试条件</a></li>
+        <li><a href="#连线">连线</a></li>
+      </ul>
+    </li>
+    <li><a href="#tip">Tip：</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -324,7 +292,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

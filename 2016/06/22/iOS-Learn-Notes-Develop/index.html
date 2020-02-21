@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="iOS开发学习问题解决笔记">
 <meta itemprop="description" content="本文主要用来整理学习iOS开发过程中遇到的问题及解决办法，会持续更新。">
-
-
 <meta itemprop="datePublished" content="2016-06-22T14:44:00&#43;08:00" />
 <meta itemprop="dateModified" content="2016-06-22T14:44:00&#43;08:00" />
 <meta itemprop="wordCount" content="314">
 
 
 
-<meta itemprop="keywords" content="iOS,xcode," />
-<meta property="og:title" content="iOS开发学习问题解决笔记" />
+<meta itemprop="keywords" content="iOS,xcode," /><meta property="og:title" content="iOS开发学习问题解决笔记" />
 <meta property="og:description" content="本文主要用来整理学习iOS开发过程中遇到的问题及解决办法，会持续更新。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/06/22/iOS-Learn-Notes-Develop/" />
@@ -84,41 +81,27 @@
 			</header>
 			<div class="content">
 				<p>本文主要用来整理学习iOS开发过程中遇到的问题及解决办法，会持续更新。</p>
-
 <h3 id="内容"><strong>内容</strong></h3>
-
 <h4 id="xcode7中nsurl方法无法访问网络问题">Xcode7中NSURL方法无法访问网络问题</h4>
-
 <p>date:   2016-02-25 08:00:00 +0800</p>
-
 <p>在UIWebView调用LoadRequest方法时出现网络访问阻断问题，控制台提示如下：</p>
-
 <blockquote>
 <p>Application Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.</p>
 </blockquote>
-
 <h5 id="解决办法"><strong>解决办法</strong></h5>
-
 <p>在info.plist中添加如下图红框中的键值对:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ptm8l.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ptm8l.png" alt="1"></p>
 <p>plist代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="o">&lt;</span><span class="n">dict</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSAllowsArbitraryLoads</span><span class="o">&lt;/</span><span class="n">key</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="nb">true</span><span class="o">/&gt;</span>
-<span class="o">&lt;/</span><span class="n">dict</span><span class="o">&gt;</span></code></pre></div>
-<h4 id="清空xcode启动欢迎界面的最近打开工程的列表">清空Xcode启动欢迎界面的最近打开工程的列表</h4>
-
+	<span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="n">NSAllowsArbitraryLoads</span><span class="o">&lt;</span><span class="o">/</span><span class="n">key</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nb">true</span><span class="o">/</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="o">/</span><span class="n">dict</span><span class="o">&gt;</span>
+</code></pre></div><h4 id="清空xcode启动欢迎界面的最近打开工程的列表">清空Xcode启动欢迎界面的最近打开工程的列表</h4>
 <p>date:   2016-06-22 14:44:00 +0800</p>
-
 <p>有时曾经打开一些乱七八糟的xcode工程，依然会出现在欢迎界面最近工程列表中，这对于强迫症来说太折磨了。</p>
-
 <h5 id="解决方法">解决方法</h5>
-
 <p>唯有清除，才能变得和谐，很简单，打开xcode，菜单栏<strong>File</strong>-&gt;<strong>Open Recent</strong>-&gt;<strong>Clear Menu</strong>，就像下面图片所示：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/cgwi4.jpg" alt="clearRecent" /></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/cgwi4.jpg" alt="clearRecent"></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -137,25 +120,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#内容"><strong>内容</strong></a>
-<ul>
-<li><a href="#xcode7中nsurl方法无法访问网络问题">Xcode7中NSURL方法无法访问网络问题</a>
-<ul>
-<li><a href="#解决办法"><strong>解决办法</strong></a></li>
-</ul></li>
-<li><a href="#清空xcode启动欢迎界面的最近打开工程的列表">清空Xcode启动欢迎界面的最近打开工程的列表</a>
-<ul>
-<li><a href="#解决方法">解决方法</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#内容">内容</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -206,7 +177,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

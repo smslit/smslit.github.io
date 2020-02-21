@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="BLE开发笔记——简单新建属于自己的协议栈工程">
 <meta itemprop="description" content="本文主要讲一下新建TI的CC2541协议栈的工程。">
-
-
 <meta itemprop="datePublished" content="2016-03-21T10:10:46&#43;08:00" />
 <meta itemprop="dateModified" content="2016-03-21T10:10:46&#43;08:00" />
 <meta itemprop="wordCount" content="1553">
 
 
 
-<meta itemprop="keywords" content="ble," />
-<meta property="og:title" content="BLE开发笔记——简单新建属于自己的协议栈工程" />
+<meta itemprop="keywords" content="ble," /><meta property="og:title" content="BLE开发笔记——简单新建属于自己的协议栈工程" />
 <meta property="og:description" content="本文主要讲一下新建TI的CC2541协议栈的工程。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/03/21/newProject-BLE/" />
@@ -84,69 +81,51 @@
 			</header>
 			<div class="content">
 				<p>本文主要讲一下新建TI的CC2541协议栈的工程。</p>
-
 <h3 id="前言">前言</h3>
-
 <p>通过阅读BLE协议栈的开发手册，能够大体了解到协议栈的组成架构，并对每一层（PHY、LL、HCI、L2CAP、SM、ATT、GATT和GAP）具体是做什么也有了一定认识和理解，接下来通过一定的工程实践慢慢去深入学习，手册中也讲了内部的操作系统抽象层（OSAL），主要实现了轮询任务事件触发机制，是一个较简单的嵌入式系统，所以要做TI的蓝牙开发还要对OSAL的工作原理有一定理解，所有这些可以参考学习TI提供的官方手册。</p>
-
 <h3 id="正文">正文</h3>
-
 <p>言归正传，本文主要讲的是利用TI协议栈工程新建属于自己定制的工程。首先说明的是，我讲的这种方式比较粗暴，哈哈。</p>
-
 <h4 id="简单说明工程结构">简单说明工程结构</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/mqr4n.png" alt="0" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/mqr4n.png" alt="0"></p>
 <p>可以看到，一般情况下按照官方例程的工程来说就是上面的一种结构，根目录下有<strong>Components</strong>和<strong>Projects</strong>两个文件夹，<strong>Projects</strong>文件夹下又有<strong>common</strong>、<strong>config</strong>、<strong>Include</strong>、<strong>Libraries</strong>、<strong>Profiles</strong>和<strong>SimpleBLEPeripheral</strong>，<strong>SimpleBLEPeripheral</strong>文件夹下有<strong>CC2541DB</strong>和<strong>Source</strong>，根据这个结构，我们就可以通过复制粘贴来完成工程的复制新建了。</p>
-
 <p><strong>CC2541DB</strong>文件夹下放的就是工程文件，<strong>Source</strong>文件夹下放的是自己编写的源文件。</p>
-
 <h4 id="新建工程">新建工程</h4>
-
 <h5 id="新建文件夹">新建文件夹</h5>
-
 <p>自己选择合适的目录，然后在其下建立文件夹，比如<strong>TestLED</strong>，在<strong>TestLED</strong>下新建文件夹<strong>Projects</strong>，再在<strong>Projects</strong>文件夹下建立<strong>ble</strong>文件夹。</p>
-
 <h5 id="拷贝文件夹">拷贝文件夹</h5>
-
 <p>找到协议栈的安装目录，我的是<code>C:\Texas Instruments\BLE-CC254x-1.4.0</code>，将整个文件夹<strong>Components</strong>拷贝到<strong>TestLED</strong>中，然后进入协议栈的<strong>Projects</strong>下的<strong>ble</strong>，将<strong>common</strong>、<strong>config</strong>、<strong>Include</strong>、<strong>Libraries</strong>、<strong>Profiles</strong>和<strong>SimpleBLEPeripheral</strong>六个文件夹放到<strong>TestLED</strong>&ndash;<strong>Projects</strong>&ndash;<strong>ble</strong>目录下，完成后的文件结构如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/aegf9.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/aegf9.png" alt="1"></p>
 <p>可以将<strong>SimplePeripheral</strong>文件夹修改为自己想要的名字，如<strong>TestLED</strong>。</p>
-
 <h5 id="验证工程">验证工程</h5>
-
 <p>打开<strong>SimplePeripheral</strong>目录下的工程文件，进入IAR编译测试，一般是可以编译通过的。</p>
-
 <h4 id="工程配置">工程配置</h4>
-
 <ul>
-<li><p>先清楚配置文件选择的位置，如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/m15za.png" alt="2" /></p></li>
-
-<li><p>可以看到默认的配置选择的是<code>CC2541DK-MINI Keyfob</code>，为了保证原配置文件的安全，我们可以新建自己的配置，点击菜单栏<code>Projects</code>-&gt;<code>Edit Configurations...</code>，就会跳出以下窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/psxu1.png" alt="3" /></p></li>
-
-<li><p>选择<code>New...</code>，可以调出新建配置窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/j1al4.png" alt="4" /></p></li>
-
-<li><p>可以填入自己想要的配置名称，比如这里是<strong>TestLED</strong>，Toolchain当然是选8051，还有就是Based on configuration，这个我们要选择合适的，我选的是<strong>CC2541</strong>，点击OK完成，就可以看到工程配置就是<strong>TestLED</strong>了。</p></li>
+<li>
+<p>先清楚配置文件选择的位置，如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/m15za.png" alt="2"></p>
+</li>
+<li>
+<p>可以看到默认的配置选择的是<code>CC2541DK-MINI Keyfob</code>，为了保证原配置文件的安全，我们可以新建自己的配置，点击菜单栏<code>Projects</code>-&gt;<code>Edit Configurations...</code>，就会跳出以下窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/psxu1.png" alt="3"></p>
+</li>
+<li>
+<p>选择<code>New...</code>，可以调出新建配置窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/j1al4.png" alt="4"></p>
+</li>
+<li>
+<p>可以填入自己想要的配置名称，比如这里是<strong>TestLED</strong>，Toolchain当然是选8051，还有就是Based on configuration，这个我们要选择合适的，我选的是<strong>CC2541</strong>，点击OK完成，就可以看到工程配置就是<strong>TestLED</strong>了。</p>
+</li>
 </ul>
-
 <h4 id="简单看一下options">简单看一下Options</h4>
-
 <p>右击工程<strong>SimpleBLEPeripheral</strong>，选择<strong>options</strong>调出配置窗口，选择左边栏<code>General Options</code>下的<code>C/C++ Compiler</code>，然后在右侧选择<code>Preprocessor</code>选项卡，如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/jb37x.png" alt="5" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/jb37x.png" alt="5"></p>
 <ul>
-<li><p>看到<strong>Additional include directiories:(one per line)</strong>，仔细观察每一行都有个<code>$PROJ_DIR$</code>，这代表的是工程文件所在的目录<strong>SimpleBLEPeripheral</strong>下的<strong>CC2541DB</strong>，再看就是还有<code>..\</code>，代表的是上一层目录，所以就明白了之前为什么复制那些文件夹到相应目录了吧。</p></li>
-
-<li><p>再看<strong>Defined symbols:(one per line)</strong>，在这里编辑相应宏定义可以使用相应的HAL驱动和协议栈功能，比如其中的<code>HAL_LED=FALSE</code>，这就是说明不使用HAL的led灯控制功能，即IO输出。</p></li>
+<li>
+<p>看到<strong>Additional include directiories:(one per line)</strong>，仔细观察每一行都有个<code>$PROJ_DIR$</code>，这代表的是工程文件所在的目录<strong>SimpleBLEPeripheral</strong>下的<strong>CC2541DB</strong>，再看就是还有<code>..\</code>，代表的是上一层目录，所以就明白了之前为什么复制那些文件夹到相应目录了吧。</p>
+</li>
+<li>
+<p>再看<strong>Defined symbols:(one per line)</strong>，在这里编辑相应宏定义可以使用相应的HAL驱动和协议栈功能，比如其中的<code>HAL_LED=FALSE</code>，这就是说明不使用HAL的led灯控制功能，即IO输出。</p>
+</li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -166,27 +145,14 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#前言">前言</a></li>
-<li><a href="#正文">正文</a>
-<ul>
-<li><a href="#简单说明工程结构">简单说明工程结构</a></li>
-<li><a href="#新建工程">新建工程</a>
-<ul>
-<li><a href="#新建文件夹">新建文件夹</a></li>
-<li><a href="#拷贝文件夹">拷贝文件夹</a></li>
-<li><a href="#验证工程">验证工程</a></li>
-</ul></li>
-<li><a href="#工程配置">工程配置</a></li>
-<li><a href="#简单看一下options">简单看一下Options</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#正文">正文</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -237,7 +203,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

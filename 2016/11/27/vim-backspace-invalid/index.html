@@ -7,25 +7,22 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="vim中delete（backspace）键不能向左删除">
-<meta itemprop="description" content="MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下delete键删除它们，万万没想到呀！只听到&rdquo;duang duang duang&rdquo;，竟然无效！">
-
-
+<meta itemprop="description" content="MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下delete键删除它们，万万没想到呀！只听到&quot;duang duang duang&rdquo;，竟然无效！">
 <meta itemprop="datePublished" content="2016-11-27T16:43:01&#43;08:00" />
 <meta itemprop="dateModified" content="2016-11-27T16:43:01&#43;08:00" />
-<meta itemprop="wordCount" content="652">
+<meta itemprop="wordCount" content="655">
 
 
 
-<meta itemprop="keywords" content="vim,macOS,develop," />
-<meta property="og:title" content="vim中delete（backspace）键不能向左删除" />
-<meta property="og:description" content="MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下delete键删除它们，万万没想到呀！只听到&rdquo;duang duang duang&rdquo;，竟然无效！" />
+<meta itemprop="keywords" content="vim,macOS,develop," /><meta property="og:title" content="vim中delete（backspace）键不能向左删除" />
+<meta property="og:description" content="MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下delete键删除它们，万万没想到呀！只听到&quot;duang duang duang&rdquo;，竟然无效！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/11/27/vim-backspace-invalid/" />
 <meta property="article:published_time" content="2016-11-27T16:43:01+08:00" />
 <meta property="article:modified_time" content="2016-11-27T16:43:01+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="vim中delete（backspace）键不能向左删除"/>
-<meta name="twitter:description" content="MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下delete键删除它们，万万没想到呀！只听到&rdquo;duang duang duang&rdquo;，竟然无效！"/>
+<meta name="twitter:description" content="MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下delete键删除它们，万万没想到呀！只听到&quot;duang duang duang&rdquo;，竟然无效！"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -83,36 +80,27 @@
 				<h1>vim中delete（backspace）键不能向左删除</h1>
 			</header>
 			<div class="content">
-				<p>MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下<strong>delete</strong>键删除它们，万万没想到呀！只听到&rdquo;duang duang duang&rdquo;，竟然无效！</p>
-
+				<p>MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下<strong>delete</strong>键删除它们，万万没想到呀！只听到&quot;duang duang duang&rdquo;，竟然无效！</p>
 <p>有一点先明确一下，在mac的键盘中没有backspace键，有个键叫delete，其实相当于window下的backspace键，编辑文本时按下都具有向左删除字符的功能。</p>
-
 <h3 id="原因">原因</h3>
-
 <p>网上搜索得知，出现开头说的令人恼火的问题的原因是：</p>
-
 <blockquote>
 <p>VIM使用了 compatible 模式，或者把 backspace 变量设置为空了&hellip;其实compatible模式是VIM为了兼容vi而出现的配置，它的作用是使VIM的操作行为和规范和vi一致，而这种模式下backspace配置是空的。即意味着backspace无法删除 indent ， end of line ， start 这三种字符。</p>
 </blockquote>
-
 <p>在默认状态下，delete（backspace）按下只会删除本次插入模式下插入的文本，这跟backspace的模式设置有关，其模式可以设置为以下三种模式：</p>
-
 <ul>
 <li>0 same as “:set backspace=” (Vi compatible)</li>
 <li>1 same as “:set backspace=indent,eol”</li>
 <li>2 same as “:set backspace=indent,eol,start”</li>
 </ul>
-
 <h3 id="解决">解决</h3>
-
 <p>知道了原因，就好解决了，只需要将backspace的模式设置成2就可以了，在<code>~/.vimrc</code>中添加了一下内容，保存，下次进入vim就可以在插入模式下任意使用delete（backspace）键了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="s2">&#34; 解决插入模式下delete/backspce键失效问题
-</span><span class="s2">set backspace=2</span></code></pre></div>
-<h3 id="参考">参考</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="s2">&#34;</span><span class="s2"> 解决插入模式下delete/backspce键失效问题
+</span><span class="s2">set backspace=2
+</span></code></pre></div><h3 id="参考">参考</h3>
 <ol>
-<li><a href="http://blog.csdn.net/jiang314/article/details/51941479" target="_blank">Mac 的 Vim 中 delete 键失效的原因和解决方案</a></li>
-<li><a href="http://www.vim.org/" target="_blank">Vim</a></li>
+<li><a href="http://blog.csdn.net/jiang314/article/details/51941479">Mac 的 Vim 中 delete 键失效的原因和解决方案</a></li>
+<li><a href="http://www.vim.org/">Vim</a></li>
 </ol>
 			</div>
 			<hr class="post-end">
@@ -122,7 +110,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					652 字
+					655 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -177,7 +165,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

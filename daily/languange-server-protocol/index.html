@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="意外的惊喜: vim 有 lsp 加持">
 <meta itemprop="description" content="昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为">
-
-
 <meta itemprop="datePublished" content="2019-03-21T23:22:56&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-21T23:22:56&#43;08:00" />
 <meta itemprop="wordCount" content="563">
 
 
 
-<meta itemprop="keywords" content="daily," />
-<meta property="og:title" content="意外的惊喜: vim 有 lsp 加持" />
+<meta itemprop="keywords" content="daily," /><meta property="og:title" content="意外的惊喜: vim 有 lsp 加持" />
 <meta property="og:description" content="昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？ The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool. 为" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/daily/languange-server-protocol/" />
@@ -84,28 +81,21 @@
 			</header>
 			<div class="content">
 				<p>昨天朋友邮件分享给十里一个链接，不要太优秀，那就是 LSP ，什么是 LSP？</p>
-
 <blockquote>
 <p>The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool.</p>
 </blockquote>
-
-<p>为什么会存在这个东西，算了，我也不搬运别人的话了，这里是<a href="https://langserver.org/" target="_blank">传送门</a>。简单来说，有了它，能实现语言服务和编辑器之间协作的大一统，LSP 打通了 LS 与编辑器，那么像上古神器 vim 以及神的编辑器 emacs&hellip;..只要是编辑器有 LSP 的加持都能轻松实现代码补全、定义和声明跳转、语法检查、代码格式化、重命名(用于重构)以及查看引用等，简直不要太 high！因为朋友和我都是使用 vim，所以花了一早上便研究了一下 python 和 swift 的 LSP 配置和使用。</p>
-
+<p>为什么会存在这个东西，算了，我也不搬运别人的话了，这里是<a href="https://langserver.org/">传送门</a>。简单来说，有了它，能实现语言服务和编辑器之间协作的大一统，LSP 打通了 LS 与编辑器，那么像上古神器 vim 以及神的编辑器 emacs&hellip;..只要是编辑器有 LSP 的加持都能轻松实现代码补全、定义和声明跳转、语法检查、代码格式化、重命名(用于重构)以及查看引用等，简直不要太 high！因为朋友和我都是使用 vim，所以花了一早上便研究了一下 python 和 swift 的 LSP 配置和使用。</p>
 <ul>
-<li><a href="https://github.com/prabirshrestha/vim-lsp" target="_blank">vim-lsp</a></li>
+<li><a href="https://github.com/prabirshrestha/vim-lsp">vim-lsp</a></li>
 </ul>
-
 <p>vim 的 LSP 配置看上面这个 vim-lsp 就够了， README 和 wiki 中一定可以找到常用编程语言的支持。</p>
-
 <p>不过，还是存在一些问题的，我配置了 python 和 swift 两种语言的 LSP，各种跳转很优秀，语法检查也不错，就是代码补全和代码格式化有些问题！不知道是不是我的 vim 的问题还是什么，补全弹窗出现的慢，尤其是 swift 的补全，竟然会卡代码，我晕～ python 的代码格式化简直不要太迷幻，总之套路不详！python 的代码补全、语法检查和代码格式化又退回到了原来的插件组合和配置，有时间再研究一下 vim-lsp &hellip;</p>
-
 <ul>
-<li>python 补全: <a href="https://github.com/maralla/completor.vim" target="_blank">completor</a> + jedi</li>
-<li>python 语法检查和代码格式化: <a href="https://github.com/w0rp/ale" target="_blank">ale</a> + pylint 和 autopep8</li>
-<li>python 代码跳转、查看引用和重构: <a href="https://github.com/prabirshrestha/vim-lsp" target="_blank">vim-lsp</a> 和 <a href="https://github.com/prabirshrestha/async.vim" target="_blank">async.vim</a> + <a href="https://github.com/palantir/python-language-server" target="_blank">python language server</a></li>
+<li>python 补全: <a href="https://github.com/maralla/completor.vim">completor</a> + jedi</li>
+<li>python 语法检查和代码格式化: <a href="https://github.com/w0rp/ale">ale</a> + pylint 和 autopep8</li>
+<li>python 代码跳转、查看引用和重构: <a href="https://github.com/prabirshrestha/vim-lsp">vim-lsp</a> 和 <a href="https://github.com/prabirshrestha/async.vim">async.vim</a> + <a href="https://github.com/palantir/python-language-server">python language server</a></li>
 </ul>
-
-<p>感觉也有可能是 python 的 LS 工具的原因，后面尝试一下微软的 <a href="ihttps://github.com/Microsoft/python-language-server" target="_blank">python language server</a>!</p>
+<p>感觉也有可能是 python 的 LS 工具的原因，后面尝试一下微软的 <a href="ihttps://github.com/Microsoft/python-language-server">python language server</a>!</p>
 
 			</div>
 			<hr class="post-end">
@@ -170,7 +160,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

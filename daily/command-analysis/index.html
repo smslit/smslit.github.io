@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="常用命令知多少">
 <meta itemprop="description" content="今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &#39;{CMD[$2]&#43;&#43;;count&#43;&#43;;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39; | grep -v &#34;./&#34; | column -c3 -s &#34; &#34; -t |sort -nr | nl">
-
-
 <meta itemprop="datePublished" content="2019-03-22T22:51:30&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-22T22:51:30&#43;08:00" />
 <meta itemprop="wordCount" content="195">
 
 
 
-<meta itemprop="keywords" content="daily," />
-<meta property="og:title" content="常用命令知多少" />
+<meta itemprop="keywords" content="daily," /><meta property="og:title" content="常用命令知多少" />
 <meta property="og:description" content="今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下： history | awk &#39;{CMD[$2]&#43;&#43;;count&#43;&#43;;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39; | grep -v &#34;./&#34; | column -c3 -s &#34; &#34; -t |sort -nr | nl" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/daily/command-analysis/" />
@@ -84,20 +81,20 @@
 			</header>
 			<div class="content">
 				<p>今天看到一个好玩的命令，可以统计使用命令历史中次数前十的，命令如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10</code></pre></div>
-<p>十里的运行结果是：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10
+</code></pre></div><p>十里的运行结果是：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">➜  <span class="nb">history</span> <span class="p">|</span> awk <span class="s1">&#39;{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&#34; &#34;CMD[ a ]/count*100 &#34;% &#34; a }&#39;</span> <span class="p">|</span> grep -v <span class="s2">&#34;./&#34;</span> <span class="p">|</span> column -c3 -s <span class="s2">&#34; &#34;</span> -t <span class="p">|</span>sort -nr <span class="p">|</span> nl <span class="p">|</span> head -n10
-     <span class="m">1</span>	<span class="m">1645</span>  <span class="m">16</span>.4451%   vim
-     <span class="m">2</span>	<span class="m">1061</span>  <span class="m">10</span>.6068%   git
-     <span class="m">3</span>	<span class="m">904</span>   <span class="m">9</span>.03729%   <span class="nb">cd</span>
-     <span class="m">4</span>	<span class="m">623</span>   <span class="m">6</span>.22813%   pack
-     <span class="m">5</span>	<span class="m">346</span>   <span class="m">3</span>.45896%   pipenv
-     <span class="m">6</span>	<span class="m">343</span>   <span class="m">3</span>.42897%   ll
-     <span class="m">7</span>	<span class="m">340</span>   <span class="m">3</span>.39898%   hugo
-     <span class="m">8</span>	<span class="m">316</span>   <span class="m">3</span>.15905%   rm
-     <span class="m">9</span>	<span class="m">257</span>   <span class="m">2</span>.56923%   brew
-    <span class="m">10</span>	<span class="m">208</span>   <span class="m">2</span>.07938%   python3</code></pre></div>
-<p>使用最多的是 vim，可以看出对 vim 是真爱呀，不知您的结果是什么样的！</p>
+     1	<span class="m">1645</span>  16.4451%   vim
+     2	<span class="m">1061</span>  10.6068%   git
+     3	<span class="m">904</span>   9.03729%   <span class="nb">cd</span>
+     4	<span class="m">623</span>   6.22813%   pack
+     5	<span class="m">346</span>   3.45896%   pipenv
+     6	<span class="m">343</span>   3.42897%   ll
+     7	<span class="m">340</span>   3.39898%   hugo
+     8	<span class="m">316</span>   3.15905%   rm
+     9	<span class="m">257</span>   2.56923%   brew
+    10	<span class="m">208</span>   2.07938%   python3
+</code></pre></div><p>使用最多的是 vim，可以看出对 vim 是真爱呀，不知您的结果是什么样的！</p>
 
 			</div>
 			<hr class="post-end">
@@ -162,7 +159,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

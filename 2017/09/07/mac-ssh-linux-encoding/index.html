@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="解决mac终端ssh登录linux中文乱码问题">
 <meta itemprop="description" content="mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。">
-
-
 <meta itemprop="datePublished" content="2017-09-07T16:34:12&#43;08:00" />
 <meta itemprop="dateModified" content="2017-09-07T16:34:12&#43;08:00" />
 <meta itemprop="wordCount" content="152">
 
 
 
-<meta itemprop="keywords" content="macOS,terminal," />
-<meta property="og:title" content="解决mac终端ssh登录linux中文乱码问题" />
+<meta itemprop="keywords" content="macOS,terminal," /><meta property="og:title" content="解决mac终端ssh登录linux中文乱码问题" />
 <meta property="og:description" content="mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/09/07/mac-ssh-linux-encoding/" />
@@ -84,9 +81,8 @@
 			</header>
 			<div class="content">
 				<p>mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。</p>
-
 <h4 id="在linux下查看编码">在linux下查看编码：</h4>
-<div class="highlight"><pre class="chroma"># root @ vps in ~ [4:29:47]
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># root @ vps in ~ [4:29:47]
 $ locale
 LANG=C
 LC_CTYPE=C
@@ -101,9 +97,9 @@ LC_ADDRESS=&#34;C&#34;
 LC_TELEPHONE=&#34;C&#34;
 LC_MEASUREMENT=&#34;C&#34;
 LC_IDENTIFICATION=&#34;C&#34;
-LC_ALL=</pre></div>
-<h4 id="在macos下查看编码">在macOS下查看编码</h4>
-<div class="highlight"><pre class="chroma">➜  smslit locale
+LC_ALL=
+</code></pre></div><h4 id="在macos下查看编码">在macOS下查看编码</h4>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  smslit locale
 LANG=&#34;zh_CN.UTF-8&#34;
 LC_COLLATE=&#34;zh_CN.UTF-8&#34;
 LC_CTYPE=&#34;zh_CN.UTF-8&#34;
@@ -111,9 +107,8 @@ LC_MESSAGES=&#34;zh_CN.UTF-8&#34;
 LC_MONETARY=&#34;zh_CN.UTF-8&#34;
 LC_NUMERIC=&#34;zh_CN.UTF-8&#34;
 LC_TIME=&#34;zh_CN.UTF-8&#34;
-LC_ALL=</pre></div>
-<h4 id="解决">解决</h4>
-
+LC_ALL=
+</code></pre></div><h4 id="解决">解决</h4>
 <ol>
 <li>远程登录VPS；</li>
 <li>编辑.zshrc，添加如下内容:
@@ -184,7 +179,7 @@ export LANG=zh_CN.UTF-8</li>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

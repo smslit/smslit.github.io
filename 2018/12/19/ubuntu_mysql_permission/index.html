@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="ubuntu 下 mysql 拒绝访问问题">
 <meta itemprop="description" content="今天在 ubuntu 中安装 mysql 后出现 Access denied for user &#39;root&#39;@&#39;localhost&#39; 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！">
-
-
 <meta itemprop="datePublished" content="2018-12-19T20:45:52&#43;08:00" />
 <meta itemprop="dateModified" content="2018-12-19T20:45:52&#43;08:00" />
 <meta itemprop="wordCount" content="612">
 
 
 
-<meta itemprop="keywords" content="database,linux," />
-<meta property="og:title" content="ubuntu 下 mysql 拒绝访问问题" />
+<meta itemprop="keywords" content="database,linux," /><meta property="og:title" content="ubuntu 下 mysql 拒绝访问问题" />
 <meta property="og:description" content="今天在 ubuntu 中安装 mysql 后出现 Access denied for user &#39;root&#39;@&#39;localhost&#39; 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/12/19/ubuntu_mysql_permission/" />
@@ -84,74 +81,75 @@
 			</header>
 			<div class="content">
 				<p>今天在 ubuntu 中安装 mysql 后出现 <code>Access denied for user 'root'@'localhost'</code> 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！</p>
-
 <h1 id="问题分析">问题分析</h1>
-
 <p>mysql 具有用户密码访问机制，其实 mysql 安装后默认有用户 <code>root</code> ，那拒绝访问，那就是没有输入正确的密码，所以我们能想到的一种解决方案就是修改密码。</p>
-
 <h1 id="问题解决">问题解决</h1>
-
 <h2 id="越过访问限制">越过访问限制</h2>
-
 <p>连接上 mysql 后我们才能修改密码，所以有没有一种可以临时越过访问限制的方法呢？当然有，要不接下来我们还写啥！</p>
-
 <ol>
-<li>管理员权限编辑文件 <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>;</li>
-
-<li><p>找到其中的 <code>[mysqld]</code> 配置段，大概从 27 行开始，在 <code>skip-external-locking</code> (大概在39行) 下面加入一行内容 <code>skip-grant-tables</code>，最终如下：</p>
+<li>
+<p>管理员权限编辑文件 <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>;</p>
+</li>
+<li>
+<p>找到其中的 <code>[mysqld]</code> 配置段，大概从 27 行开始，在 <code>skip-external-locking</code> (大概在39行) 下面加入一行内容 <code>skip-grant-tables</code>，最终如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">...</span>
 <span class="k">[mysqld]</span>
 <span class="c1">#</span>
 <span class="c1"># * Basic Settings</span>
 <span class="c1">#</span>
-<span class="na">user</span>        <span class="o">=</span> <span class="s">mysql</span>
-<span class="na">pid-file</span>    <span class="o">=</span> <span class="s">/var/run/mysqld/mysqld.pid</span>
-<span class="na">socket</span>      <span class="o">=</span> <span class="s">/var/run/mysqld/mysqld.sock</span>
-<span class="na">port</span>        <span class="o">=</span> <span class="s">3306</span>
-<span class="na">basedir</span>     <span class="o">=</span> <span class="s">/usr</span>
-<span class="na">datadir</span>     <span class="o">=</span> <span class="s">/var/lib/mysql</span>
-<span class="na">tmpdir</span>      <span class="o">=</span> <span class="s">/tmp</span>
-<span class="na">lc-messages-dir</span> <span class="o">=</span> <span class="s">/usr/share/mysql</span>
+<span class="na">user</span>		<span class="o">=</span> <span class="s">mysql</span>
+<span class="na">pid-file</span>	<span class="o">=</span> <span class="s">/var/run/mysqld/mysqld.pid</span>
+<span class="na">socket</span>		<span class="o">=</span> <span class="s">/var/run/mysqld/mysqld.sock</span>
+<span class="na">port</span>		<span class="o">=</span> <span class="s">3306</span>
+<span class="na">basedir</span>		<span class="o">=</span> <span class="s">/usr</span>
+<span class="na">datadir</span>		<span class="o">=</span> <span class="s">/var/lib/mysql</span>
+<span class="na">tmpdir</span>		<span class="o">=</span> <span class="s">/tmp</span>
+<span class="na">lc-messages-dir</span>	<span class="o">=</span> <span class="s">/usr/share/mysql</span>
 <span class="na">skip-external-locking</span>
 <span class="na">skip-grant-tables</span>
-<span class="na">...</span></code></pre></div></li>
-
-<li><p>重启 mysql 服务，一般可通过以下命名完成</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo service mysql restart</code></pre></div></li>
-
-<li><p>此时可以通过 <code>mysql</code> 命令就可以连接数据库了</p></li>
+<span class="na">...</span>
+</code></pre></div></li>
+<li>
+<p>重启 mysql 服务，一般可通过以下命名完成</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo service mysql restart
+</code></pre></div></li>
+<li>
+<p>此时可以通过 <code>mysql</code> 命令就可以连接数据库了</p>
+</li>
 </ol>
-
 <h2 id="修改-root-用户密码">修改 root 用户密码</h2>
-
-<p>在小节<a href="#越过访问限制" target="_blank">越过访问限制</a>中已经可以越过访问限制连接数据库了，下面连接数据库，由于操作命令比较多，所以先准备一个 <code>sql</code> 文件，最后执行文件中 sql 命令。</p>
-
+<p>在小节<a href="#越过访问限制">越过访问限制</a>中已经可以越过访问限制连接数据库了，下面连接数据库，由于操作命令比较多，所以先准备一个 <code>sql</code> 文件，最后执行文件中 sql 命令。</p>
 <ol>
-<li><p>准备用于修改 root 密码的 <code>setpw.sql</code> 文件：</p>
+<li>
+<p>准备用于修改 root 密码的 <code>setpw.sql</code> 文件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
-<span class="k">update</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">set</span> <span class="n">authentication_string</span><span class="o">=</span><span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456&#39;</span><span class="p">)</span> <span class="k">where</span> <span class="k">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span> <span class="k">and</span> <span class="k">Host</span> <span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-<span class="k">update</span> <span class="k">user</span> <span class="k">set</span> <span class="n">plugin</span><span class="o">=</span><span class="s2">&#34;mysql_native_password&#34;</span><span class="p">;</span>
-<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre></div>
-<blockquote>
+<span class="k">update</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">set</span> <span class="n">authentication_string</span><span class="o">=</span><span class="n">password</span><span class="p">(</span><span class="s1">&#39;</span><span class="s1">123456</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">where</span> <span class="k">user</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">root</span><span class="s1">&#39;</span> <span class="k">and</span> <span class="k">Host</span> <span class="o">=</span><span class="s1">&#39;</span><span class="s1">localhost</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="k">update</span> <span class="k">user</span> <span class="k">set</span> <span class="n">plugin</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">mysql_native_password</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</code></pre></div><blockquote>
 <p>上面代码第二行中的 <code>123456</code> 就是要修改的密码，密码修改为您想使用的密码即可</p>
-</blockquote></li>
-
-<li><p>执行命令 <code>mysql</code> 连接数据库，然后执行 mysql 命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">source</span> <span class="n">setpw</span><span class="p">.</span><span class="k">sql</span></code></pre></div></li>
-
-<li><p>（CTRL+D 或者 执行命令 quit;）断开 mysql 连接；</p></li>
+</blockquote>
+</li>
+<li>
+<p>执行命令 <code>mysql</code> 连接数据库，然后执行 mysql 命令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">source</span> <span class="n">setpw</span><span class="p">.</span><span class="k">sql</span>
+</code></pre></div></li>
+<li>
+<p>（CTRL+D 或者 执行命令 quit;）断开 mysql 连接；</p>
+</li>
 </ol>
-
 <h2 id="恢复访问限制">恢复访问限制</h2>
-
 <ol>
-<li><p>编辑文件 <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>，删除上面小节中加上的 <code>skip-grant-tables</code>;</p></li>
-
-<li><p>重启 mysql 服务</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo service mysql restart</code></pre></div>
-<blockquote>
+<li>
+<p>编辑文件 <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>，删除上面小节中加上的 <code>skip-grant-tables</code>;</p>
+</li>
+<li>
+<p>重启 mysql 服务</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo service mysql restart
+</code></pre></div><blockquote>
 <p>执行命令 <code>mysql -uroot -p</code> 连接数据库，输入自己的密码即可连接数据库！</p>
-</blockquote></li>
+</blockquote>
+</li>
 </ol>
 			</div>
 			<hr class="post-end">
@@ -171,15 +169,11 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#问题分析">问题分析</a></li>
-<li><a href="#问题解决">问题解决</a>
-<ul>
-<li><a href="#越过访问限制">越过访问限制</a></li>
-<li><a href="#修改-root-用户密码">修改 root 用户密码</a></li>
-<li><a href="#恢复访问限制">恢复访问限制</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#越过访问限制">越过访问限制</a></li>
+    <li><a href="#修改-root-用户密码">修改 root 用户密码</a></li>
+    <li><a href="#恢复访问限制">恢复访问限制</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -230,7 +224,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

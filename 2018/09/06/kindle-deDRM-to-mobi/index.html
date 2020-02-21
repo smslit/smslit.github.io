@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="让kindle电子书不受DRM禁锢">
 <meta itemprop="description" content="
-
 昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 kindle voyage 进行阅读，屏幕略小呀，我有一个 ireader 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 DRM 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 DRM 并转换导出epub 或 mobi 电子书的方法，本文分享一下这一成果！">
-
-
 <meta itemprop="datePublished" content="2018-09-06T12:04:02&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-06T12:04:02&#43;08:00" />
 <meta itemprop="wordCount" content="1709">
 
 
 
-<meta itemprop="keywords" content="life," />
-<meta property="og:title" content="让kindle电子书不受DRM禁锢" />
+<meta itemprop="keywords" content="life," /><meta property="og:title" content="让kindle电子书不受DRM禁锢" />
 <meta property="og:description" content="
-
 昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 kindle voyage 进行阅读，屏幕略小呀，我有一个 ireader 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 DRM 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 DRM 并转换导出epub 或 mobi 电子书的方法，本文分享一下这一成果！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/09/06/kindle-deDRM-to-mobi/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="让kindle电子书不受DRM禁锢"/>
 <meta name="twitter:description" content="
-
 昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 kindle voyage 进行阅读，屏幕略小呀，我有一个 ireader 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 DRM 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 DRM 并转换导出epub 或 mobi 电子书的方法，本文分享一下这一成果！"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -89,165 +83,139 @@
 				<h1>让kindle电子书不受DRM禁锢</h1>
 			</header>
 			<div class="content">
-				<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153620800099678.png" alt="20180906153620800099678.png" /></p>
-
-<p>昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 <strong>kindle voyage</strong> 进行阅读，屏幕略小呀，我有一个 <strong>ireader</strong> 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 <a href="https://en.wikipedia.org/wiki/Digital_rights_management" target="_blank"><strong>DRM</strong></a> 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 <strong>DRM</strong> 并转换导出<a href="https://en.wikipedia.org/wiki/EPUB" target="_blank">epub</a> 或 <a href="https://en.wikipedia.org/wiki/Mobi" target="_blank">mobi</a> 电子书的方法，本文分享一下这一成果！</p>
-
+				<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153620800099678.png" alt="20180906153620800099678.png"></p>
+<p>昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 <strong>kindle voyage</strong> 进行阅读，屏幕略小呀，我有一个 <strong>ireader</strong> 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 <a href="https://en.wikipedia.org/wiki/Digital_rights_management"><strong>DRM</strong></a> 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 <strong>DRM</strong> 并转换导出<a href="https://en.wikipedia.org/wiki/EPUB">epub</a> 或 <a href="https://en.wikipedia.org/wiki/Mobi">mobi</a> 电子书的方法，本文分享一下这一成果！</p>
 <p>本文操作是在mac下完成的，windows下的操作可以类比，只有一些文件路径不太一样，操作步骤还是基本一致的！</p>
-
 <h2 id="获取电子书">获取电子书</h2>
-
 <p>这里讲解两种方法获取电子书文件，这个文件一般为 <strong>awz</strong> 、<strong>awz3</strong> 格式，其实可以直接USB连接kindle电纸书获取，但是最新的电纸书改成了 <strong>kfz</strong> 格式，可能这个文件并不是完整的电子书文件，所以这里不推荐通过kindle设备导出。推荐使用的两种方法：</p>
-
 <ul>
 <li>通过kindle电脑客户端获取电子书文件；</li>
 <li>去亚马逊网站下载电子书文件；</li>
 </ul>
-
 <p>当然上述实现是建立在您已经购买此电子书的基础上的。</p>
-
 <h3 id="电脑客户端获取">电脑客户端获取</h3>
-
 <h4 id="安装客户端">安装客户端</h4>
-
 <ol>
-<li><p>访问 <a href="https://www.amazon.com/kindle-dbs/fd/kcp" target="_blank">https://www.amazon.com/kindle-dbs/fd/kcp</a> 下载客户端：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622073189036.jpg" alt="20180906153622073189036.jpg" /></p></li>
-
-<li><p>mac的话会得到一个dmg文件，打开后将 <strong>kindle.app</strong> 拖入 <strong>applications</strong> 文件夹即可完成安装</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622083965152.png" alt="20180906153622083965152.png" /></p></li>
-
-<li><p>启动 <strong>Kindle.app</strong> ，登录自己的亚马逊账号，就可以看到自己已购书单：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622106031221.png" alt="20180906153622106031221.png" /></p></li>
-
-<li><p>在待导出电子书的封面上右键单击，可以看到 <code>下载</code>，单击即可下载到本地：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018090615362212568184.png" alt="2018090615362212568184.png" /></p></li>
-
-<li><p>启动终端（mac下的命令行工具），输入命令</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">open ~/Library/Application<span class="se">\ </span>Support/Kindle/My<span class="se">\ </span>Kindle<span class="se">\ </span>Content/ </code></pre></div>
-<p>此时会打开一个finder窗口，你会找到刚下载电子书对应的 <strong>awz</strong> 文件，将其拷贝到桌面备用。</p></li>
+<li>
+<p>访问 <a href="https://www.amazon.com/kindle-dbs/fd/kcp">https://www.amazon.com/kindle-dbs/fd/kcp</a> 下载客户端：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622073189036.jpg" alt="20180906153622073189036.jpg"></p>
+</li>
+<li>
+<p>mac的话会得到一个dmg文件，打开后将 <strong>kindle.app</strong> 拖入 <strong>applications</strong> 文件夹即可完成安装</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622083965152.png" alt="20180906153622083965152.png"></p>
+</li>
+<li>
+<p>启动 <strong>Kindle.app</strong> ，登录自己的亚马逊账号，就可以看到自己已购书单：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622106031221.png" alt="20180906153622106031221.png"></p>
+</li>
+<li>
+<p>在待导出电子书的封面上右键单击，可以看到 <code>下载</code>，单击即可下载到本地：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018090615362212568184.png" alt="2018090615362212568184.png"></p>
+</li>
+<li>
+<p>启动终端（mac下的命令行工具），输入命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">open ~/Library/Application<span class="se">\ </span>Support/Kindle/My<span class="se">\ </span>Kindle<span class="se">\ </span>Content/ 
+</code></pre></div><p>此时会打开一个finder窗口，你会找到刚下载电子书对应的 <strong>awz</strong> 文件，将其拷贝到桌面备用。</p>
+</li>
 </ol>
-
 <h3 id="亚马逊网站获取">亚马逊网站获取</h3>
-
 <ol>
-<li><p>访问网址 <a href="https://www.amazon.cn/hz/mycd/myx#/home/content/booksAll/dateDsc/" target="_blank">https://www.amazon.cn/hz/mycd/myx#/home/content/booksAll/dateDsc/</a>，登录自己的亚马逊账户，就能看到自己购买的书单，类似：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153621988176856.png" alt="20180906153621988176856.png" /></p></li>
-
-<li><p>可以看到每一项的 <code>操作</code> 列中包含一个三个小点的按钮，点击待导出电子书的这个按钮，能看到一些操作项：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622005546113.png" alt="20180906153622005546113.png" /></p></li>
-
-<li><p>点击 <code>通过电脑下载USB传输</code>，可以看到一个跳窗，选择对应的kindle设备，点击 <code>下载</code> 就可以下载到电子书文件了</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622023195517.png" alt="20180906153622023195517.png" /></p>
-
-<p>理论上下载的文件应该是一个 <strong>awz3</strong> 文件，将其拷贝到桌面备用。</p></li>
+<li>
+<p>访问网址 <a href="https://www.amazon.cn/hz/mycd/myx#/home/content/booksAll/dateDsc/">https://www.amazon.cn/hz/mycd/myx#/home/content/booksAll/dateDsc/</a>，登录自己的亚马逊账户，就能看到自己购买的书单，类似：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153621988176856.png" alt="20180906153621988176856.png"></p>
+</li>
+<li>
+<p>可以看到每一项的 <code>操作</code> 列中包含一个三个小点的按钮，点击待导出电子书的这个按钮，能看到一些操作项：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622005546113.png" alt="20180906153622005546113.png"></p>
+</li>
+<li>
+<p>点击 <code>通过电脑下载USB传输</code>，可以看到一个跳窗，选择对应的kindle设备，点击 <code>下载</code> 就可以下载到电子书文件了</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622023195517.png" alt="20180906153622023195517.png"></p>
+<p>理论上下载的文件应该是一个 <strong>awz3</strong> 文件，将其拷贝到桌面备用。</p>
+</li>
 </ol>
-
 <h2 id="安装calibre和dedrm插件">安装Calibre和DeDRM插件</h2>
-
 <h3 id="安装-calibre">安装 <strong>Calibre</strong></h3>
-
 <ol>
-<li><p>访问 <a href="https://calibre-ebook.com/download" target="_blank">https://calibre-ebook.com/download</a> 下载 Calibre：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622219216546.png" alt="20180906153622219216546.png" /></p></li>
-
-<li><p>mac下载得到一个dmg文件，如 <strong>calibre-3.30.0.dmg</strong>，打开后，将 <strong>Calibre.app</strong> 拖入 <strong>Applications</strong> 即可完成安装</p></li>
-
-<li><p>初次启动 Calibre 会出现配置窗口，相信您能自己搞定，完成后就会看到主窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622239713512.png" alt="20180906153622239713512.png" /></p></li>
+<li>
+<p>访问 <a href="https://calibre-ebook.com/download">https://calibre-ebook.com/download</a> 下载 Calibre：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622219216546.png" alt="20180906153622219216546.png"></p>
+</li>
+<li>
+<p>mac下载得到一个dmg文件，如 <strong>calibre-3.30.0.dmg</strong>，打开后，将 <strong>Calibre.app</strong> 拖入 <strong>Applications</strong> 即可完成安装</p>
+</li>
+<li>
+<p>初次启动 Calibre 会出现配置窗口，相信您能自己搞定，完成后就会看到主窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622239713512.png" alt="20180906153622239713512.png"></p>
+</li>
 </ol>
-
 <h3 id="安装-dedrm-插件">安装 <strong>DeDRM</strong> 插件</h3>
-
 <ol>
-<li><p>访问<a href="https://github.com/apprenticeharper/DeDRM_tools/releases" target="_blank">apprenticeharper/DeDRM_tools</a>下载最新插件，我这里下载的是 <strong>DeDRM_tools_6.6.1.zip</strong></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622271157232.png" alt="20180906153622271157232.png" /></p></li>
-
-<li><p>解压下载的插件到桌面备用；</p></li>
-
-<li><p>启动 Calibre，依次找到 <strong>菜单栏</strong> - <strong>偏好选项</strong> - <strong>调整calibre操作方式</strong>，得到窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622255682731.png" alt="20180906153622255682731.png" /></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622303928379.png" alt="20180906153622303928379.png" /></p></li>
-
-<li><p>点击窗口左下角的 <strong>插件</strong> ，会启动插件管理窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622314086532.png" alt="20180906153622314086532.png" /></p></li>
-
-<li><p>点击右下角的 <strong>从文件加载插件</strong>，按照下图从上面解压到桌面的插件找到插件选择：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622340325039.png" alt="20180906153622340325039.png" /></p></li>
-
-<li><p>此时会提示有风险问是否继续安装，选择 <strong>是</strong> 即可</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622381263863.png" alt="20180906153622381263863.png" /></p>
-
+<li>
+<p>访问<a href="https://github.com/apprenticeharper/DeDRM_tools/releases">apprenticeharper/DeDRM_tools</a>下载最新插件，我这里下载的是 <strong>DeDRM_tools_6.6.1.zip</strong></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622271157232.png" alt="20180906153622271157232.png"></p>
+</li>
+<li>
+<p>解压下载的插件到桌面备用；</p>
+</li>
+<li>
+<p>启动 Calibre，依次找到 <strong>菜单栏</strong> - <strong>偏好选项</strong> - <strong>调整calibre操作方式</strong>，得到窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622255682731.png" alt="20180906153622255682731.png"></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622303928379.png" alt="20180906153622303928379.png"></p>
+</li>
+<li>
+<p>点击窗口左下角的 <strong>插件</strong> ，会启动插件管理窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622314086532.png" alt="20180906153622314086532.png"></p>
+</li>
+<li>
+<p>点击右下角的 <strong>从文件加载插件</strong>，按照下图从上面解压到桌面的插件找到插件选择：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622340325039.png" alt="20180906153622340325039.png"></p>
+</li>
+<li>
+<p>此时会提示有风险问是否继续安装，选择 <strong>是</strong> 即可</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622381263863.png" alt="20180906153622381263863.png"></p>
 <p>然后会提醒需要重启才能生效，点击 <strong>确定</strong></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622381873868.png" alt="20180906153622381873868.png" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622381873868.png" alt="20180906153622381873868.png"></p>
 <p>可以看到插件已经安装成功：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622383489537.png" alt="20180906153622383489537.png" /></p>
-
-<p>点击左下角的 <strong>应用</strong>。</p></li>
-
-<li><p>双击上图中刚安装的插件，会跳出配置窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622469077974.png" alt="20180906153622469077974.png" /></p></li>
-
-<li><p>单击第一个 <strong>eInk kindle books</strong>，会跳出kindle设备串号的管理窗口，点击 <code>+</code> 按钮，添加您kindle设备的串号，一路确定即可配置完成：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622497256903.png" alt="20180906153622497256903.png" /></p>
-
-<p><strong>注：</strong> <a href="https://bookfere.com/post/200.html" target="_blank">点我</a> 了解如何得到kindle设备串号。</p></li>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622383489537.png" alt="20180906153622383489537.png"></p>
+<p>点击左下角的 <strong>应用</strong>。</p>
+</li>
+<li>
+<p>双击上图中刚安装的插件，会跳出配置窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622469077974.png" alt="20180906153622469077974.png"></p>
+</li>
+<li>
+<p>单击第一个 <strong>eInk kindle books</strong>，会跳出kindle设备串号的管理窗口，点击 <code>+</code> 按钮，添加您kindle设备的串号，一路确定即可配置完成：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622497256903.png" alt="20180906153622497256903.png"></p>
+<p><strong>注：</strong> <a href="https://bookfere.com/post/200.html">点我</a> 了解如何得到kindle设备串号。</p>
+</li>
 </ol>
-
 <h2 id="转换电子书">转换电子书</h2>
-
 <p>有了上面的准备工作，我们就可以处理电子书文件了。</p>
-
 <h3 id="dedrm">DeDRM</h3>
-
 <p>启动 <strong>Calibre</strong>，拖动桌面上的电子书文件到 <strong>Calibre</strong> 主窗口中，主窗口中就会出现这本书，双击它，如果能阅读，说明已完成DeDRM，下面就可以转换格式了：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018090615362252841670.png" alt="2018090615362252841670.png" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018090615362252841670.png" alt="2018090615362252841670.png"></p>
 <h3 id="转换电子书-1">转换电子书</h3>
-
 <p>我的ireader阅读器可识别mobi或者epub，这里以将电子书导出为mobi为例。</p>
-
 <ol>
-<li><p>选中主窗口的电子书，单击工具栏中的第二个按钮 <strong>转换书籍</strong>，会得到配置窗口：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622552212554.png" alt="20180906153622552212554.png" /></p></li>
-
-<li><p>使用默认配置就ok，当然您也可以根据自己的需求进行修改，然后点击右下角的 <strong>确定</strong> 按钮即可启动转换任务，完成转换后 Calibre 会提醒完成；</p></li>
-
-<li><p>完成后，右击主窗口的电子书条目，可以看到操作菜单：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622564761740.png" alt="20180906153622564761740.png" /></p></li>
-
-<li><p>选择 <strong>打开所在目录</strong> 就会打开一个finder窗口，转换完成的mobi的就在里面了，这样我就可以导入到我的ireader中阅读啦，·皆大欢喜！</p></li>
+<li>
+<p>选中主窗口的电子书，单击工具栏中的第二个按钮 <strong>转换书籍</strong>，会得到配置窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622552212554.png" alt="20180906153622552212554.png"></p>
+</li>
+<li>
+<p>使用默认配置就ok，当然您也可以根据自己的需求进行修改，然后点击右下角的 <strong>确定</strong> 按钮即可启动转换任务，完成转换后 Calibre 会提醒完成；</p>
+</li>
+<li>
+<p>完成后，右击主窗口的电子书条目，可以看到操作菜单：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153622564761740.png" alt="20180906153622564761740.png"></p>
+</li>
+<li>
+<p>选择 <strong>打开所在目录</strong> 就会打开一个finder窗口，转换完成的mobi的就在里面了，这样我就可以导入到我的ireader中阅读啦，·皆大欢喜！</p>
+</li>
 </ol>
-
 <h2 id="参考">参考</h2>
-
-<p><a href="https://www.epubor.com/3-ways-to-remove-drm-from-kindle-books.html" target="_blank">3 Ways to Remove DRM from Kindle Books</a></p>
-
+<p><a href="https://www.epubor.com/3-ways-to-remove-drm-from-kindle-books.html">3 Ways to Remove DRM from Kindle Books</a></p>
 <h2 id="提醒">提醒</h2>
-
 <p>本文操作只是为了自己方便，电子书毕竟自己购买了，想拥有更多掌控权没什么错，但是为了尊重作者的劳动成果还是提醒大家转换了自己购买了的电子书后，不要随便传阅。</p>
 			</div>
 			<hr class="post-end">
@@ -267,31 +235,28 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#获取电子书">获取电子书</a>
-<ul>
-<li><a href="#电脑客户端获取">电脑客户端获取</a>
-<ul>
-<li><a href="#安装客户端">安装客户端</a></li>
-</ul></li>
-<li><a href="#亚马逊网站获取">亚马逊网站获取</a></li>
-</ul></li>
-<li><a href="#安装calibre和dedrm插件">安装Calibre和DeDRM插件</a>
-<ul>
-<li><a href="#安装-calibre">安装 <strong>Calibre</strong></a></li>
-<li><a href="#安装-dedrm-插件">安装 <strong>DeDRM</strong> 插件</a></li>
-</ul></li>
-<li><a href="#转换电子书">转换电子书</a>
-<ul>
-<li><a href="#dedrm">DeDRM</a></li>
-<li><a href="#转换电子书-1">转换电子书</a></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
-<li><a href="#提醒">提醒</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#获取电子书">获取电子书</a>
+      <ul>
+        <li><a href="#电脑客户端获取">电脑客户端获取</a></li>
+        <li><a href="#亚马逊网站获取">亚马逊网站获取</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装calibre和dedrm插件">安装Calibre和DeDRM插件</a>
+      <ul>
+        <li><a href="#安装-calibre">安装 Calibre</a></li>
+        <li><a href="#安装-dedrm-插件">安装 DeDRM 插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#转换电子书">转换电子书</a>
+      <ul>
+        <li><a href="#dedrm">DeDRM</a></li>
+        <li><a href="#转换电子书-1">转换电子书</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+    <li><a href="#提醒">提醒</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -342,7 +307,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

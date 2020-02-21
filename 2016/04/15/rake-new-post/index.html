@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="使用rake生成jekyll静态博客新文章">
 <meta itemprop="description" content="使用了Jekyll也有9个月了，虽然写的博文不多，但也是会觉得每次写新文章是痛苦的。复制粘贴再更改也是显得不够条理，一个字一个字的敲也是痛苦的，索性搜索一下有没有好的方法，终于找到了一个好办法，利用ruby插件rake来完成。">
-
-
 <meta itemprop="datePublished" content="2016-04-15T19:14:39&#43;08:00" />
 <meta itemprop="dateModified" content="2016-04-15T19:14:39&#43;08:00" />
 <meta itemprop="wordCount" content="679">
 
 
 
-<meta itemprop="keywords" content="rake,jekyll," />
-<meta property="og:title" content="使用rake生成jekyll静态博客新文章" />
+<meta itemprop="keywords" content="rake,jekyll," /><meta property="og:title" content="使用rake生成jekyll静态博客新文章" />
 <meta property="og:description" content="使用了Jekyll也有9个月了，虽然写的博文不多，但也是会觉得每次写新文章是痛苦的。复制粘贴再更改也是显得不够条理，一个字一个字的敲也是痛苦的，索性搜索一下有没有好的方法，终于找到了一个好办法，利用ruby插件rake来完成。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/04/15/rake-new-post/" />
@@ -84,53 +81,47 @@
 			</header>
 			<div class="content">
 				<p>使用了Jekyll也有9个月了，虽然写的博文不多，但也是会觉得每次写新文章是痛苦的。复制粘贴再更改也是显得不够条理，一个字一个字的敲也是痛苦的，索性搜索一下有没有好的方法，终于找到了一个好办法，利用ruby插件rake来完成。</p>
-
 <p>下面就讲一下怎么实现。</p>
-
 <h4 id="安装rake">安装rake</h4>
-
-<p>利用gem包管理工具进行安装rake模块，国内的话要将gem安装源更改为taobao的，详 <a href="/2015/08/24/jekyllInstallFedoraLinux/" target="_blank">Fedora Linux下安装Jekyll</a></p>
+<p>利用gem包管理工具进行安装rake模块，国内的话要将gem安装源更改为taobao的，详 <a href="/2015/08/24/jekyllInstallFedoraLinux/">Fedora Linux下安装Jekyll</a></p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># gem 安装 rake</span>
-sudo gem install rake</code></pre></div>
-<h4 id="编写rakefile">编写Rakefile</h4>
-
+sudo gem install rake
+</code></pre></div><h4 id="编写rakefile">编写Rakefile</h4>
 <p>我们可以编写Rakefile，按照一定规则生成我们的博文，需要将Rakefile放到Jekyll博客工程的根目录下，如下是示例Rakefile的内容：</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="ss">:new</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">task</span> <span class="ss">:default</span> <span class="o">=</span><span class="o">&gt;</span> <span class="ss">:new</span>
 
 <span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
 
-<span class="n">desc</span> <span class="s2">&#34;创建新 post&#34;</span>
+<span class="n">desc</span> <span class="s2">&#34;</span><span class="s2">创建新 post</span><span class="s2">&#34;</span>
 <span class="n">task</span> <span class="ss">:new</span> <span class="k">do</span>
-  <span class="nb">puts</span> <span class="s2">&#34;请输入要创建的 post URL：&#34;</span>
+  <span class="nb">puts</span> <span class="s2">&#34;</span><span class="s2">请输入要创建的 post URL：</span><span class="s2">&#34;</span>
 	<span class="vi">@url</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">chomp</span>
-	<span class="nb">puts</span> <span class="s2">&#34;请输入 post 标题：&#34;</span>
+	<span class="nb">puts</span> <span class="s2">&#34;</span><span class="s2">请输入 post 标题：</span><span class="s2">&#34;</span>
 	<span class="vi">@name</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">chomp</span>
-	<span class="nb">puts</span> <span class="s2">&#34;请输入 post 分类，以空格分隔：&#34;</span>
+	<span class="nb">puts</span> <span class="s2">&#34;</span><span class="s2">请输入 post 分类，以空格分隔：</span><span class="s2">&#34;</span>
 	<span class="vi">@categories</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">gets</span><span class="o">.</span><span class="n">chomp</span>
 	<span class="vi">@slug</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="vi">@url</span><span class="si">}</span><span class="s2">&#34;</span>
 	<span class="vi">@slug</span> <span class="o">=</span> <span class="vi">@slug</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">strip</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
-	<span class="vi">@date</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%F&#34;</span><span class="p">)</span>
-	<span class="vi">@post_name</span> <span class="o">=</span> <span class="s2">&#34;_posts/</span><span class="si">#{</span><span class="vi">@date</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="vi">@slug</span><span class="si">}</span><span class="s2">.markdown&#34;</span>
-	<span class="vi">@author</span> <span class="o">=</span> <span class="s2">&#34;5km（十里）&#34;</span>
+	<span class="vi">@date</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">%F</span><span class="s2">&#34;</span><span class="p">)</span>
+	<span class="vi">@post_name</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="s2">_posts/</span><span class="si">#{</span><span class="vi">@date</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="vi">@slug</span><span class="si">}</span><span class="s2">.markdown</span><span class="s2">&#34;</span>
+	<span class="vi">@author</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="s2">5km（十里）</span><span class="s2">&#34;</span>
 	<span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="vi">@post_name</span><span class="p">)</span>
-			<span class="nb">abort</span><span class="p">(</span><span class="s2">&#34;文件名已经存在！创建失败&#34;</span><span class="p">)</span>
+			<span class="nb">abort</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">文件名已经存在！创建失败</span><span class="s2">&#34;</span><span class="p">)</span>
 	<span class="k">end</span>
 	<span class="no">FileUtils</span><span class="o">.</span><span class="n">touch</span><span class="p">(</span><span class="vi">@post_name</span><span class="p">)</span>
 	<span class="nb">open</span><span class="p">(</span><span class="vi">@post_name</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;---&#34;</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;layout:     post&#34;</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;title:      </span><span class="se">\&#34;</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">&#34;</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;date:       </span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">&#34;</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;author:     </span><span class="se">\&#34;</span><span class="si">#{</span><span class="vi">@author</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">&#34;</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;categories: </span><span class="si">#{</span><span class="vi">@categories</span><span class="si">}</span><span class="s2">&#34;</span>
-			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;---&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">---</span><span class="s2">&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">layout:     post</span><span class="s2">&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">title:      </span><span class="se">\&#34;</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">date:       </span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">author:     </span><span class="se">\&#34;</span><span class="si">#{</span><span class="vi">@author</span><span class="si">}</span><span class="se">\&#34;</span><span class="s2">&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">categories: </span><span class="si">#{</span><span class="vi">@categories</span><span class="si">}</span><span class="s2">&#34;</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&#34;</span><span class="s2">---</span><span class="s2">&#34;</span>
 	<span class="k">end</span>
-	<span class="nb">exec</span> <span class="s2">&#34;vim </span><span class="si">#{</span><span class="vi">@post_name</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="k">end</span></code></pre></div>
-<p>看上面的Ruby代码，应该能看出实现思路，可以根据自己的需求作出修改，其中@author变量改成自己的就可以了。</p>
-
+	<span class="nb">exec</span> <span class="s2">&#34;</span><span class="s2">vim </span><span class="si">#{</span><span class="vi">@post_name</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="k">end</span>
+</code></pre></div><p>看上面的Ruby代码，应该能看出实现思路，可以根据自己的需求作出修改，其中@author变量改成自己的就可以了。</p>
 <h4 id="生成新文章">生成新文章</h4>
-
 <p>使用rake new命令，生成新的post，<strong>new</strong>与上述ruby代码中task命名对应起来，也可以修改。执行命令的时候要在jekyll的工程目录中，执行<code>rake new</code>命令，执行过程如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">-&gt; % rake new
 请输入要创建的 post URL：
@@ -138,7 +129,9 @@ rake-new-post
 请输入 post 标题：
 使用rake生成jekyll新文章  
 请输入 post 分类，以空格分隔：
-Jekyll</code></pre></div>
+Jekyll
+
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -157,20 +150,13 @@ Jekyll</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#安装rake">安装rake</a></li>
-<li><a href="#编写rakefile">编写Rakefile</a></li>
-<li><a href="#生成新文章">生成新文章</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -221,7 +207,7 @@ Jekyll</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

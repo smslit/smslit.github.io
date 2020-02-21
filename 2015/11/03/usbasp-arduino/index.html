@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="USBasp为Arduino板子烧写bootloader">
 <meta itemprop="description" content="在Arduino使用过程中有时候会造成bootloader的损坏，有时候我们还会做Arduino的最小系统板，那我们都需要为Arduino下载bootloader，本文将介绍用USBasp下载bootloader。">
-
-
 <meta itemprop="datePublished" content="2015-11-03T17:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-11-03T17:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="488">
 
 
 
-<meta itemprop="keywords" content="arduino," />
-<meta property="og:title" content="USBasp为Arduino板子烧写bootloader" />
+<meta itemprop="keywords" content="arduino," /><meta property="og:title" content="USBasp为Arduino板子烧写bootloader" />
 <meta property="og:description" content="在Arduino使用过程中有时候会造成bootloader的损坏，有时候我们还会做Arduino的最小系统板，那我们都需要为Arduino下载bootloader，本文将介绍用USBasp下载bootloader。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/11/03/usbasp-arduino/" />
@@ -84,69 +81,44 @@
 			</header>
 			<div class="content">
 				<p>在Arduino使用过程中有时候会造成bootloader的损坏，有时候我们还会做Arduino的最小系统板，那我们都需要为Arduino下载bootloader，本文将介绍用USBasp下载bootloader。</p>
-
 <h2 id="试验硬件清单">试验硬件清单</h2>
-
 <ul>
 <li>USBasp</li>
 <li>Arduino Pro Mini</li>
 </ul>
-
 <p><strong>说明：</strong></p>
-
 <ol>
-<li><p>我的USBasp是某宝上淘的，不贵，就是下面的样子，接口是10pin的：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/3fm5n.jpg" alt="1" /></p>
-
+<li>
+<p>我的USBasp是某宝上淘的，不贵，就是下面的样子，接口是10pin的：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/3fm5n.jpg" alt="1"></p>
 <p>10pin的ISP接口图如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/029j1.jpg" alt="2" /></p></li>
-
-<li><p>这里我试验的是Arduino Pro Mini（5V，16MHz的版本），如下图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rbitt.jpg" alt="4" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/029j1.jpg" alt="2"></p>
+</li>
+<li>
+<p>这里我试验的是Arduino Pro Mini（5V，16MHz的版本），如下图：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rbitt.jpg" alt="4"></p>
 <p>6pin的ISP接口图如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/oftpi.jpg" alt="3" /></p></li>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/oftpi.jpg" alt="3"></p>
+</li>
 </ol>
-
 <h2 id="详细">详细</h2>
-
 <h3 id="连线">连线</h3>
-
 <p>直接用杜邦线将Arduino上的6Pin的ISP与USBasp上的10Pin的ISP对应管脚连接起来，就像这样：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2mq1l.jpg" alt="5" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2mq1l.jpg" alt="5"></p>
 <p>然后连接到电脑（我用的这个USBasp是免驱的）。</p>
-
-<h3 id="菜单栏tools下-设置arduino-ide">菜单栏Tools下，设置Arduino IDE</h3>
-
+<h3 id="菜单栏tools下设置arduino-ide">菜单栏Tools下，设置Arduino IDE</h3>
 <p>我的系统是Mac OSX，操作在win下应该是一样的。</p>
-
 <h4 id="设置board为arduino-pro-mini">设置Board为Arduino Pro Mini</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/27sxf.png" alt="6" /></p>
-
-<h4 id="设置processor为atmega28-5vv-16mhz">设置Processor为ATmega28（5VV，16MHz）</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/zsg2d.png" alt="7" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/27sxf.png" alt="6"></p>
+<h4 id="设置processor为atmega285vv16mhz">设置Processor为ATmega28（5VV，16MHz）</h4>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/zsg2d.png" alt="7"></p>
 <h4 id="设置programmer为usbasp">设置Programmer为USBasp</h4>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5rnfx.png" alt="8" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5rnfx.png" alt="8"></p>
 <h3 id="菜单栏tools-burn-bootloader">菜单栏Tools-&gt;Burn Bootloader</h3>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2nwji.png" alt="9" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2nwji.png" alt="9"></p>
 <p>如果烧写成功，Arduino IDE的Console下会出现提示：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5wvw5.png" alt="10" /></p>
-
-<h4 id="烧写成功后-板上的led灯就会闪动">烧写成功后，板上的Led灯就会闪动。</h4>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5wvw5.png" alt="10"></p>
+<h4 id="烧写成功后板上的led灯就会闪动">烧写成功后，板上的Led灯就会闪动。</h4>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -165,26 +137,16 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#试验硬件清单">试验硬件清单</a></li>
-<li><a href="#详细">详细</a>
-<ul>
-<li><a href="#连线">连线</a></li>
-<li><a href="#菜单栏tools下-设置arduino-ide">菜单栏Tools下，设置Arduino IDE</a>
-<ul>
-<li><a href="#设置board为arduino-pro-mini">设置Board为Arduino Pro Mini</a></li>
-<li><a href="#设置processor为atmega28-5vv-16mhz">设置Processor为ATmega28（5VV，16MHz）</a></li>
-<li><a href="#设置programmer为usbasp">设置Programmer为USBasp</a></li>
-</ul></li>
-<li><a href="#菜单栏tools-burn-bootloader">菜单栏Tools-&gt;Burn Bootloader</a>
-<ul>
-<li><a href="#烧写成功后-板上的led灯就会闪动">烧写成功后，板上的Led灯就会闪动。</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#试验硬件清单">试验硬件清单</a></li>
+    <li><a href="#详细">详细</a>
+      <ul>
+        <li><a href="#连线">连线</a></li>
+        <li><a href="#菜单栏tools下设置arduino-ide">菜单栏Tools下，设置Arduino IDE</a></li>
+        <li><a href="#菜单栏tools-burn-bootloader">菜单栏Tools->Burn Bootloader</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -235,7 +197,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

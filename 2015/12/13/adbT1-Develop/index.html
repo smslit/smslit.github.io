@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="解决adb对Android设备的识别问题">
 <meta itemprop="description" content="今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。">
-
-
 <meta itemprop="datePublished" content="2015-12-13T08:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-12-13T08:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1649">
 
 
 
-<meta itemprop="keywords" content="smartisan,adb,macOS," />
-<meta property="og:title" content="解决adb对Android设备的识别问题" />
+<meta itemprop="keywords" content="smartisan,adb,macOS," /><meta property="og:title" content="解决adb对Android设备的识别问题" />
 <meta property="og:description" content="今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/12/13/adbT1-Develop/" />
@@ -84,115 +81,99 @@
 			</header>
 			<div class="content">
 				<p>今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。</p>
-
 <h3 id="平台">平台</h3>
-
 <ul>
 <li>平台：Mac</li>
 <li>手机：Smartisan T1（锤子手机）</li>
 <li>开发技术平台：APICloud</li>
 </ul>
-
 <h3 id="问题分析">问题分析</h3>
-
 <p>在sublime Text的APICloud插件中，有android真机调试的选项，但是我点击后却出现一下对话框：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/regid.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/regid.png" alt="1"></p>
 <p>正常情况下，应该可以直接进行真机调试，我首先想到会不会是官方教程中所说的在mac下权限的问题，我就进入插件安装包下找到adb，命令行下执行</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x ./adb</code></pre></div>
-<p>但是，修改adb权限后还是这个问题，调用adb命令查看连接着的设备</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./adb devices</code></pre></div>
-<p>但是结果中确实没有链接中的设备，这就排除插件的问题了，应该会是手机的问题，按理说adb应该可以查看到链接中的设备，我又去网上一搜，发现了<a href="http://bbs.smartisan.com/thread-60797-1-1.html" target="_blank">Smartisan T1 配置 ADB 的方法</a>这个帖子，这才明白原来是旧版的adb中没有包含T1的ID所致，但是帖子中没有Mac下解决此问题的方法，估计应该是类似的方法，无非就是添加T1的ID到adb_usb.ini文件中，后来搜索又看到了这个帖子<a href="http://my.oschina.net/u/698243/blog/139441" target="_blank">Mac下android手机的adb识别</a>，第2部分将讲解各平台下解决adb对T1的识别问题。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x ./adb
+</code></pre></div><p>但是，修改adb权限后还是这个问题，调用adb命令查看连接着的设备</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./adb devices
+</code></pre></div><p>但是结果中确实没有链接中的设备，这就排除插件的问题了，应该会是手机的问题，按理说adb应该可以查看到链接中的设备，我又去网上一搜，发现了<a href="http://bbs.smartisan.com/thread-60797-1-1.html">Smartisan T1 配置 ADB 的方法</a>这个帖子，这才明白原来是旧版的adb中没有包含T1的ID所致，但是帖子中没有Mac下解决此问题的方法，估计应该是类似的方法，无非就是添加T1的ID到adb_usb.ini文件中，后来搜索又看到了这个帖子<a href="http://my.oschina.net/u/698243/blog/139441">Mac下android手机的adb识别</a>，第2部分将讲解各平台下解决adb对T1的识别问题。</p>
 <h3 id="解决adb对android设备的识别问题">解决adb对android设备的识别问题</h3>
-
 <p>貌似最新的adb工具已经包含了Smartisan T1的Vendor ID 0X29A9，但是如果不想更换到最新的adb可以通过以下方法解决不能识别设备的问题，其实这些方法同样适于所有不能识别的android手机，因为可能都是因为adb没有包含对应手机的Vendor ID所致。</p>
-
 <h4 id="查看android设备的vendor-id">查看Android设备的Vendor ID</h4>
-
 <p>首先我们应该知道我们的android设备的Vendor ID。</p>
-
 <h5 id="windows下">Windows下</h5>
-
 <p>在windows下，通常的做法是进入设备管理器找到连接的手机右击选择属性进行查看。</p>
-
 <h5 id="linux下">Linux下</h5>
-
 <p>通常可以在终端下输入以下命令，敲回车可以查看连接的USB设备的信息，然后记下ID即可：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">lsusb -tv</code></pre></div>
-<h5 id="mac下">Mac下</h5>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">lsusb -tv
+</code></pre></div><h5 id="mac下">Mac下</h5>
 <p>顶栏最左侧苹果标志-&gt;关于本机-&gt;更多信息-&gt;概览-&gt;系统报告-&gt;USB-&gt;Android-&gt;厂商ID(Vendor ID)</p>
-
 <h4 id="配置中添加vendor-id">配置中添加Vendor ID</h4>
-
 <p>我们知道了Vendor ID，下面就要修改一些文件来实现识别了，三大平台下的方法有所差异，但都是向文件中添加Vendor ID来解决问题。</p>
-
 <h5 id="windows下-1">Windows下</h5>
-
 <ul>
-<li><p><strong>windows8/8.1</strong></p>
-
+<li>
+<p><strong>windows8/8.1</strong></p>
 <ul>
-<li>禁用强制驱动签名，参考教程－<strong><a href="http://bbs.pcbeta.com/viewthread-1122886-1-1.html" target="_blank">解决Win8/8.1强制要求驱动签名而导致驱动安装失败的问题</a></strong></li>
-<li>从设备管理器中安装驱动<a href="http://pan.baidu.com/s/1sjXK1ml" target="_blank">adb_usb_driver_smartisan.zip</a>。</li>
+<li>禁用强制驱动签名，参考教程－<strong><a href="http://bbs.pcbeta.com/viewthread-1122886-1-1.html">解决Win8/8.1强制要求驱动签名而导致驱动安装失败的问题</a></strong></li>
+<li>从设备管理器中安装驱动<a href="http://pan.baidu.com/s/1sjXK1ml">adb_usb_driver_smartisan.zip</a>。</li>
 <li>打开用户目录下的.android/adb_usb.ini文件，将得到的Vendor ID添加到最后一行（是新起一行），比如T1的是0x29A9.</li>
-<li>在命令行中重启adb：</li>
+<li>在命令行中重启adb：
+<ul>
 <li>adb kill-server</li>
 <li>adb start-server</li>
-</ul></li>
-
-<li><p><strong>windows7</strong></p>
-
-<ul>
-<li>从设备管理器中安装驱动<a href="http://pan.baidu.com/s/1sjXK1ml" target="_blank">adb_usb_driver_smartisan.zip</a>。</li>
-<li>打开用户目录下的.android/adb_usb.ini文件，将得到的Vendor ID添加到最后一行（是新起一行），比如T1的是0x29A9.</li>
-<li>在命令行中重启adb：</li>
-<li>adb kill-server</li>
-<li>adb start-server</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+<li>
+<p><strong>windows7</strong></p>
+<ul>
+<li>从设备管理器中安装驱动<a href="http://pan.baidu.com/s/1sjXK1ml">adb_usb_driver_smartisan.zip</a>。</li>
+<li>打开用户目录下的.android/adb_usb.ini文件，将得到的Vendor ID添加到最后一行（是新起一行），比如T1的是0x29A9.</li>
+<li>在命令行中重启adb：
+<ul>
+<li>adb kill-server</li>
+<li>adb start-server</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h5 id="linux下-1">Linux下</h5>
-
 <ul>
-<li><p>修改设备规则文件，向文件<code>/etc/udev/rules.d/51-android.rules</code>中添加以下内容：</p>
-
+<li>
+<p>修改设备规则文件，向文件<code>/etc/udev/rules.d/51-android.rules</code>中添加以下内容：</p>
 <blockquote>
-<p>SUBSYSTEM==&ldquo;usb&rdquo;, ATTR{idVendor}==&ldquo;29a9&rdquo;, ATTR{idProduct}==&ldquo;701a&rdquo;, MODE=&ldquo;0666&rdquo;, OWNER=&ldquo;your name&rdquo;</p>
-
-<p>SUBSYSTEM==&ldquo;usb&rdquo;, ATTR{idVendor}==&ldquo;29a9&rdquo;, ATTR{idProduct}==&ldquo;701b&rdquo;, MODE=&ldquo;0666&rdquo;, OWNER=&ldquo;your name&rdquo;</p>
-</blockquote></li>
-
-<li><p>打开用户目录下的.android/adb_usb.ini文件，将得到的Vendor ID添加到最后一行（是新起一行），比如T1的是0x29A9.</p></li>
-
-<li><p>在命令行中重启adb：</p>
-
+<p>SUBSYSTEM==&quot;usb&rdquo;, ATTR{idVendor}==&quot;29a9&rdquo;, ATTR{idProduct}==&quot;701a&rdquo;, MODE=&quot;0666&rdquo;, OWNER=&quot;your name&rdquo;</p>
+</blockquote>
+<blockquote>
+<p>SUBSYSTEM==&quot;usb&rdquo;, ATTR{idVendor}==&quot;29a9&rdquo;, ATTR{idProduct}==&quot;701b&rdquo;, MODE=&quot;0666&rdquo;, OWNER=&quot;your name&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>打开用户目录下的.android/adb_usb.ini文件，将得到的Vendor ID添加到最后一行（是新起一行），比如T1的是0x29A9.</p>
+</li>
+<li>
+<p>在命令行中重启adb：</p>
 <ul>
 <li>adb kill-server</li>
 <li>adb start-server</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h5 id="mac下-1">Mac下</h5>
-
 <p>以T1为例，可以在终端下执行以下命令：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> 0x29A9 &gt;&gt; ~/.android/adb_usb.ini
 adb kill-server
-adb start-server</code></pre></div>
-<h5 id="检查是否成功解决问题">检查是否成功解决问题</h5>
-
+adb start-server
+</code></pre></div><h5 id="检查是否成功解决问题">检查是否成功解决问题</h5>
 <p>执行命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">adb devices</code></pre></div>
-<p>如果能列出你的设备说明，就可以了。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">adb devices
+</code></pre></div><p>如果能列出你的设备说明，就可以了。</p>
 <h3 id="参考">参考</h3>
-
 <ol>
-<li><strong><a href="http://bbs.smartisan.com/thread-60797-1-1.html" target="_blank">Smartisan T1 配置 ADB 的方法</a></strong></li>
-<li><strong><a href="http://my.oschina.net/u/698243/blog/139441" target="_blank">Mac下android手机的adb识别</a></strong></li>
-<li><strong><a href="http://bbs.pcbeta.com/viewthread-1122886-1-1.html" target="_blank">解决Win8/8.1强制要求驱动签名而导致驱动安装失败的问题</a></strong></li>
+<li><strong><a href="http://bbs.smartisan.com/thread-60797-1-1.html">Smartisan T1 配置 ADB 的方法</a></strong></li>
+<li><strong><a href="http://my.oschina.net/u/698243/blog/139441">Mac下android手机的adb识别</a></strong></li>
+<li><strong><a href="http://bbs.pcbeta.com/viewthread-1122886-1-1.html">解决Win8/8.1强制要求驱动签名而导致驱动安装失败的问题</a></strong></li>
 </ol>
 			</div>
 			<hr class="post-end">
@@ -212,33 +193,16 @@ adb start-server</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#平台">平台</a></li>
-<li><a href="#问题分析">问题分析</a></li>
-<li><a href="#解决adb对android设备的识别问题">解决adb对android设备的识别问题</a>
-<ul>
-<li><a href="#查看android设备的vendor-id">查看Android设备的Vendor ID</a>
-<ul>
-<li><a href="#windows下">Windows下</a></li>
-<li><a href="#linux下">Linux下</a></li>
-<li><a href="#mac下">Mac下</a></li>
-</ul></li>
-<li><a href="#配置中添加vendor-id">配置中添加Vendor ID</a>
-<ul>
-<li><a href="#windows下-1">Windows下</a></li>
-<li><a href="#linux下-1">Linux下</a></li>
-<li><a href="#mac下-1">Mac下</a></li>
-<li><a href="#检查是否成功解决问题">检查是否成功解决问题</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#平台">平台</a></li>
+        <li><a href="#问题分析">问题分析</a></li>
+        <li><a href="#解决adb对android设备的识别问题">解决adb对android设备的识别问题</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -289,7 +253,7 @@ adb start-server</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

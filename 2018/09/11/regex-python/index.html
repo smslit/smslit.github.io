@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python常用正则表达式总结">
 <meta itemprop="description" content="python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。
-
 ">
-
-
 <meta itemprop="datePublished" content="2018-09-11T16:53:07&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-11T16:53:07&#43;08:00" />
-<meta itemprop="wordCount" content="569">
+<meta itemprop="wordCount" content="570">
 
 
 
-<meta itemprop="keywords" content="python,正则表达式," />
-<meta property="og:title" content="python常用正则表达式总结" />
+<meta itemprop="keywords" content="python,正则表达式," /><meta property="og:title" content="python常用正则表达式总结" />
 <meta property="og:description" content="python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/09/11/regex-python/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python常用正则表达式总结"/>
 <meta name="twitter:description" content="python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,9 +84,7 @@
 			</header>
 			<div class="content">
 				<p>python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180911153665750929978.png" alt="20180911153665750929978.png" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180911153665750929978.png" alt="20180911153665750929978.png"></p>
 <table>
 <thead>
 <tr>
@@ -100,248 +92,199 @@
 <th align="center">表达式</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>非负整数</td>
 <td align="center">^\d+$</td>
 </tr>
-
 <tr>
 <td>正整数</td>
 <td align="center">^[0-9]*[1-9][0-9]*$</td>
 </tr>
-
 <tr>
 <td>非正整数</td>
 <td align="center">^((-\d+)|(0+))$</td>
 </tr>
-
 <tr>
 <td>负整数</td>
 <td align="center">^-[0-9]*[1-9][0-9]*$</td>
 </tr>
-
 <tr>
 <td>整数</td>
 <td align="center">^-?\d+$</td>
 </tr>
-
 <tr>
 <td>非负浮点数</td>
 <td align="center">^\d+\.?\d+$</td>
 </tr>
-
 <tr>
 <td>正浮点数</td>
 <td align="center">^((0-9)+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)$</td>
 </tr>
-
 <tr>
 <td>非正浮点数</td>
 <td align="center">^((-\d+\.\d+)?)|(0+(\.0+)?))$</td>
 </tr>
-
 <tr>
 <td>负浮点数</td>
 <td align="center">^(-((正浮点数正则式)))$</td>
 </tr>
-
 <tr>
 <td>英文字符串</td>
 <td align="center">^[A-Za-z]+$</td>
 </tr>
-
 <tr>
 <td>英文大写串</td>
 <td align="center">^[A-Z]+$</td>
 </tr>
-
 <tr>
 <td>英文小写串</td>
 <td align="center">^[a-z]+$</td>
 </tr>
-
 <tr>
 <td>英文字符数字串</td>
 <td align="center">^[A-Za-z0-9]+$</td>
 </tr>
-
 <tr>
 <td>英数字加下划线串</td>
 <td align="center">^\w+$</td>
 </tr>
-
 <tr>
 <td>E-mail地址</td>
 <td align="center">^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$</td>
 </tr>
-
 <tr>
 <td>URL</td>
 <td align="center">^[a-zA-Z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\s*)?$</td>
 </tr>
-
 <tr>
 <td>URL</td>
-<td align="center">^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\&lsquo;:+!]*([^&lt;&gt;\&ldquo;\&ldquo;])* $</td>
+<td align="center">^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\':+!]*([^&lt;&gt;\&quot;\&quot;])* $ |</td>
 </tr>
-
 <tr>
 <td>邮政编码</td>
 <td align="center">^[1-9]\d{5}$</td>
 </tr>
-
 <tr>
 <td>中文</td>
 <td align="center">^[\u0391-\uFFE5]+$</td>
 </tr>
-
 <tr>
 <td>电话号码</td>
 <td align="center">^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$</td>
 </tr>
-
 <tr>
 <td>手机号码</td>
 <td align="center">^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$</td>
 </tr>
-
 <tr>
 <td>双字节字符(包括汉字在内)</td>
 <td align="center">^\x00-\xff</td>
 </tr>
-
 <tr>
 <td>匹配首尾空格</td>
 <td align="center">(^\s*)|(\s*$)（像vbscript那样的trim函数）</td>
 </tr>
-
 <tr>
 <td>匹配HTML标记</td>
 <td align="center">&lt;(.*)&gt;.*&lt;\/\1&gt;|&lt;(.*)\/&gt;</td>
 </tr>
-
 <tr>
 <td>匹配空行</td>
 <td align="center">\n[\s| ]*\r</td>
 </tr>
-
 <tr>
 <td>提取信息中的网络链接</td>
-<td align="center">(h|H)(r|R)(e|E)(f|F)  *=  *(&rsquo;|&rdquo;)?(\w|\\|\/|\.)+(&rsquo;|&ldquo;|  *|&gt;)?</td>
+<td align="center">(h|H)(r|R)(e|E)(f|F)  *=  *('|&rdquo;)?(\w|\\|\/|\.)+('|&rdquo;|  *|&gt;)?</td>
 </tr>
-
 <tr>
 <td>提取信息中的邮件地址</td>
 <td align="center">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</td>
 </tr>
-
 <tr>
 <td>提取信息中的图片链接</td>
-<td align="center">(s|S)(r|R)(c|C)  *=  *(&rsquo;|&rdquo;)?(\w|\\|\/|\.)+(&rsquo;|&ldquo;|  *|&gt;)?</td>
+<td align="center">(s|S)(r|R)(c|C)  *=  *('|&rdquo;)?(\w|\\|\/|\.)+('|&rdquo;|  *|&gt;)?</td>
 </tr>
-
 <tr>
 <td>提取信息中的IP地址</td>
 <td align="center">(\d+)\.(\d+)\.(\d+)\.(\d+)</td>
 </tr>
-
 <tr>
 <td>提取信息中的中国手机号码</td>
 <td align="center">(86)\*0\*13\d{9}</td>
 </tr>
-
 <tr>
 <td>提取信息中的中国固定电话号码</td>
 <td align="center">(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}</td>
 </tr>
-
 <tr>
 <td>提取信息中的中国电话号码（包括移动和固定电话）</td>
 <td align="center">(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}</td>
 </tr>
-
 <tr>
 <td>提取信息中的中国邮政编码</td>
 <td align="center">[1-9]{1}(\d+){5}</td>
 </tr>
-
 <tr>
 <td>提取信息中的浮点数（即小数）</td>
 <td align="center">(-?\d*)\.?\d+</td>
 </tr>
-
 <tr>
 <td>提取信息中的任何数字</td>
 <td align="center">(-?\d*)(\.\d+)?</td>
 </tr>
-
 <tr>
 <td>IP</td>
 <td align="center">(\d+)\.(\d+)\.(\d+)\.(\d+)</td>
 </tr>
-
 <tr>
 <td>电话区号</td>
 <td align="center">/^0\d{2,3}$/</td>
 </tr>
-
 <tr>
 <td>腾讯QQ号</td>
 <td align="center">^[1-9]*[1-9][0-9]*$</td>
 </tr>
-
 <tr>
 <td>帐号(字母开头，允许5-16字节，允许字母数字下划线)</td>
 <td align="center">^[a-zA-Z][a-zA-Z0-9_]{4,15}$</td>
 </tr>
-
 <tr>
 <td>中文、英文、数字及下划线</td>
 <td align="center">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</td>
 </tr>
-
 <tr>
 <td>匹配中文字符的正则表达式</td>
 <td align="center">[\u4e00-\u9fa5]</td>
 </tr>
-
 <tr>
 <td>匹配双字节字符(包括汉字在内)</td>
 <td align="center">[^\x00-\xff]</td>
 </tr>
-
 <tr>
 <td>匹配空行的正则表达式</td>
 <td align="center">\n[\s| ]*\r</td>
 </tr>
-
 <tr>
 <td>匹配HTML标记的正则表达式</td>
 <td align="center">/&lt;(.*)&gt;.*&lt;\/\1&gt;|&lt;(.*) \/&gt;/</td>
 </tr>
-
 <tr>
 <td>sql语句</td>
 <td align="center">^(select|drop|delete|create|update|insert).*$</td>
 </tr>
-
 <tr>
 <td>匹配首尾空格的正则表达式</td>
 <td align="center">(^\s*)|(\s*$)</td>
 </tr>
-
 <tr>
 <td>匹配Email地址的正则表达式</td>
 <td align="center">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="参考">参考</h2>
-
-<p><a href="http://thman.lofter.com/post/2311ca_100dff6" target="_blank">python：常用的正则表达式总结</a></p>
+<p><a href="http://thman.lofter.com/post/2311ca_100dff6">python：常用的正则表达式总结</a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -350,7 +293,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					569 字
+					570 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -405,7 +348,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -7,21 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python3 生成密码字典">
-<meta itemprop="description" content="黑客破解密码通常会用到密码字典1，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 keykey 吧！
-
+<meta itemprop="description" content="黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— 密码字典]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 keykey 吧！
 ">
-
-
 <meta itemprop="datePublished" content="2018-10-21T06:58:33&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-21T06:58:33&#43;08:00" />
-<meta itemprop="wordCount" content="1728">
+<meta itemprop="wordCount" content="1840">
 
 
 
-<meta itemprop="keywords" content="hacker,python," />
-<meta property="og:title" content="python3 生成密码字典" />
-<meta property="og:description" content="黑客破解密码通常会用到密码字典1，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 keykey 吧！
-
+<meta itemprop="keywords" content="hacker,python," /><meta property="og:title" content="python3 生成密码字典" />
+<meta property="og:description" content="黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— 密码字典]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 keykey 吧！
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/10/21/unzip-dict-hacker/" />
@@ -29,8 +24,7 @@
 <meta property="article:modified_time" content="2018-10-21T06:58:33+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python3 生成密码字典"/>
-<meta name="twitter:description" content="黑客破解密码通常会用到密码字典1，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 keykey 吧！
-
+<meta name="twitter:description" content="黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— 密码字典]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 keykey 吧！
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -89,106 +83,99 @@
 				<h1>python3 生成密码字典</h1>
 			</header>
 			<div class="content">
-				<p>黑客破解密码通常会用到密码字典<sup class="footnote-ref" id="fnref:https-baike-baid"><a href="#fn:https-baike-baid">1</a></sup>，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 <strong>keykey</strong> 吧！</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181021154012962176683.png" alt="20181021154012962176683.png" /></p>
-
-<p>本文实现的密码生成器，非常简单和暴力，其实就是穷举<sup class="footnote-ref" id="fnref:Python-https-www"><a href="#fn:Python-https-www">2</a></sup>，哈哈哈！</p>
-
+				<p>黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— <a href="https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E5%AD%97%E5%85%B8">密码字典</a>]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 <strong>keykey</strong> 吧！</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181021154012962176683.png" alt="20181021154012962176683.png"></p>
+<p>本文实现的密码生成器，非常简单和暴力，其实就是穷举^[<a href="https://www.jianshu.com/p/3efd3197ab35">Python - 自导自演 密码字典暴力破解</a>]，哈哈哈！</p>
 <h1 id="知识点">知识点</h1>
-
 <ul>
-<li><a href="https://docs.python.org/3.7/library/itertools.html#module-itertools" target="_blank">itertools</a>，是 python 内建库，提供了很多操作迭代对象的函数接口，本文生成密码主要用到的就是 <code>product</code> 方法。</li>
-<li><a href="https://docs.python.org/3.7/library/argparse.html#module-argparse" target="_blank">argparse</a>，这是用于解析命令参数的库，python 内建的，<a href="/2018/09/13/python-argparse/" target="_blank">argparse 库的使用</a> 介绍了基本使用方法，可以了解下。</li>
+<li><a href="https://docs.python.org/3.7/library/itertools.html#module-itertools">itertools</a>，是 python 内建库，提供了很多操作迭代对象的函数接口，本文生成密码主要用到的就是 <code>product</code> 方法。</li>
+<li><a href="https://docs.python.org/3.7/library/argparse.html#module-argparse">argparse</a>，这是用于解析命令参数的库，python 内建的，<a href="/2018/09/13/python-argparse/">argparse 库的使用</a> 介绍了基本使用方法，可以了解下。</li>
 </ul>
-
 <h1 id="实现">实现</h1>
-
 <p>因为暴力生成密码是很简单的操作，所以只需跟着十里操作就明白怎么实现了。</p>
-
 <h2 id="准备工作">准备工作</h2>
-
 <p>本文实现使用的都是 python3 内建库，所以不需要安装第三方库。</p>
-
 <ol>
-<li>新建脚本文件<code>keykey</code>： <code>touch keykey</code></li>
-<li>赋予文件运行权限：<code>chmod +x keykey</code></li>
-
-<li><p>为脚本文件注明python解释器，文件中添加内容：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span></code></pre></div></li>
-
-<li><p>导入需要用到的库，文件中：</p>
+<li>
+<p>新建脚本文件<code>keykey</code>： <code>touch keykey</code></p>
+</li>
+<li>
+<p>赋予文件运行权限：<code>chmod +x keykey</code></p>
+</li>
+<li>
+<p>为脚本文件注明python解释器，文件中添加内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+</code></pre></div></li>
+<li>
+<p>导入需要用到的库，文件中：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">itertools</span></code></pre></div></li>
+<span class="kn">import</span> <span class="nn">itertools</span>
+</code></pre></div></li>
 </ol>
-
 <h2 id="生成密码列表">生成密码列表</h2>
-
 <p>下一步实现密码列表生成的方法 <code>getkeyslist</code>，文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getkeyslist</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="s1">&#39;0123456789&#39;</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;生成 minlength ~ maxlength 位密码列表，并返回列表
-</span><span class="s2">    Args:
-</span><span class="s2">        minlength: 密码最小位数
-</span><span class="s2">        maxlength: 密码最大位数
-</span><span class="s2">        choices: 候选字符，密码使用的字符从候选字符中得到
-</span><span class="s2">    Returns:
-</span><span class="s2">        keyslist: 密码列表
-</span><span class="s2">    &#34;&#34;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getkeyslist</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">0123456789</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">生成 minlength ~ maxlength 位密码列表，并返回列表</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    Args:</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        minlength: 密码最小位数</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        maxlength: 密码最大位数</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        choices: 候选字符，密码使用的字符从候选字符中得到</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    Returns:</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        keyslist: 密码列表</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
     <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">choices</span> <span class="o">=</span> <span class="s1">&#39;0123456789&#39;</span>
-    <span class="n">keyslist</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">0123456789</span><span class="s1">&#39;</span>
+    <span class="n">keyslist</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
         <span class="n">keyiter</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">keyiter</span><span class="p">]</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">keyiter</span><span class="p">]</span>
         <span class="n">keyslist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[+] 已生成 {minlength} ~ {maxlength} 位密码字典 [+]&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">keyslist</span></code></pre></div>
-<p>其中:</p>
-
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">[+] 已生成 {minlength} ~ {maxlength} 位密码字典 [+]</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keyslist</span>
+</code></pre></div><p>其中:</p>
 <ul>
-<li><p><code>itertools.product(choices, repeat=i)</code> 生成一个迭代器，迭代器每次迭代会从 <code>choices</code> 中提取字符组成包含 <code>i</code> 个字符的 tuple ，每个 tuple 中的元素为单个字符，如下的样子，迭代器会枚举所有可能的 <code>i</code> 个字符组合。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span></code></pre></div></li>
-
-<li><p><code>[''.join(c)+'\n' for c in keyiter]</code> 会使用字符串的 <code>join</code> 方法将迭代生成的 tuple 中的字符练成字符串生成长度为 上述的 <code>i</code> 长度的密码。</p></li>
-
-<li><p>for 循环是为了生成位数在 minlength ~ maxlength 之间左右可能的组合的密码。</p></li>
+<li>
+<p><code>itertools.product(choices, repeat=i)</code> 生成一个迭代器，迭代器每次迭代会从 <code>choices</code> 中提取字符组成包含 <code>i</code> 个字符的 tuple ，每个 tuple 中的元素为单个字符，如下的样子，迭代器会枚举所有可能的 <code>i</code> 个字符组合。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">0</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">1</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">3</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+<li>
+<p><code>[''.join(c)+'\n' for c in keyiter]</code> 会使用字符串的 <code>join</code> 方法将迭代生成的 tuple 中的字符练成字符串生成长度为 上述的 <code>i</code> 长度的密码。</p>
+</li>
+<li>
+<p>for 循环是为了生成位数在 minlength ~ maxlength 之间左右可能的组合的密码。</p>
+</li>
 </ul>
-
 <h2 id="保存密码列表">保存密码列表</h2>
-
 <p>生成了密码列表还需要保存的，所以封装一个保存密码列表的函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">save_keys_dict</span><span class="p">(</span><span class="n">keyslist</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;保存密码字典
-</span><span class="s2">    Args:
-</span><span class="s2">        keyslist: 密码列表
-</span><span class="s2">        outfile: 要保存的密码字典文件
-</span><span class="s2">    &#34;&#34;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">save_keys_dict</span><span class="p">(</span><span class="n">keyslist</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">保存密码字典</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    Args:</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        keyslist: 密码列表</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        outfile: 要保存的密码字典文件</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
     <span class="k">if</span> <span class="n">outfile</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">homepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">)</span>
-        <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">homepath</span><span class="p">,</span> <span class="s1">&#39;Desktop/keys.txt&#39;</span><span class="p">)</span>
+        <span class="n">homepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">~</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">homepath</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Desktop/keys.txt</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">keys</span> <span class="ow">in</span> <span class="n">keyslist</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[+] 已保存密码字典到 {outfile} [+]&#39;</span><span class="p">)</span></code></pre></div>
-<p>这个没什么好说的，就是使用 <code>with</code> 语法实现安全的文件写入操作，将密码列表写入到指定文件中，为了防止指定文件为空，这里会使用 <code>~/Desktop/keys.txt</code> 。</p>
-
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">[+] 已保存密码字典到 {outfile} [+]</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>这个没什么好说的，就是使用 <code>with</code> 语法实现安全的文件写入操作，将密码列表写入到指定文件中，为了防止指定文件为空，这里会使用 <code>~/Desktop/keys.txt</code> 。</p>
 <h2 id="获取命令参数">获取命令参数</h2>
-
 <p>使用 <code>argparse</code> 库解析命令参数，这里将相关操作封装到函数 <code>getargs</code> 中，最终返回参数信息：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">():</span>
-    <span class="s2">&#34;&#34;&#34;获取命令参数
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;用于生成指定长度和字符空间的密码字典&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;minlength&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;用于指定生成密码的最小位数&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;maxlength&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;用于指定生成密码的最大位数&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--outfile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定字典文件的保存路径&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--choices&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;0123456789&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定字符串，密码中的字符从字符串中选择，默认为 &#34;0123456789&#34;&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></code></pre></div>
-<p>命令参数设计详情如下表：</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">获取命令参数</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">用于生成指定长度和字符空间的密码字典</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">minlength</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">用于指定生成密码的最小位数</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">maxlength</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">用于指定生成密码的最大位数</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--outfile</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定字典文件的保存路径</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-c</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--choices</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">0123456789</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定字符串，密码中的字符从字符串中选择，默认为 </span><span class="s1">&#34;</span><span class="s1">0123456789</span><span class="s1">&#34;</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>命令参数设计详情如下表：</p>
 <table>
 <thead>
 <tr>
@@ -197,26 +184,22 @@
 <th>描述</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>minlength</td>
 <td>int</td>
 <td>用于指定生成密码的最小位数</td>
 </tr>
-
 <tr>
 <td>maxlength</td>
 <td>int</td>
 <td>用于指定生成密码的最大位数</td>
 </tr>
-
 <tr>
 <td>-o, &ndash;outfile</td>
 <td>文件路径</td>
 <td>指定字典文件的保存路径</td>
 </tr>
-
 <tr>
 <td>-c, &ndash;choices</td>
 <td>字符串</td>
@@ -224,23 +207,18 @@
 </tr>
 </tbody>
 </table>
-
 <h2 id="main实现">main实现</h2>
-
 <p>最终整合一下，实现 main：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">(</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">minlength</span> <span class="o">&lt;</span> <span class="n">args</span><span class="o">.</span><span class="n">maxlength</span><span class="p">:</span>
         <span class="n">keyslist</span> <span class="o">=</span> <span class="n">getkeyslist</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">minlength</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">maxlength</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">keyslist</span> <span class="o">=</span> <span class="n">getkeyslist</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">maxlength</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">minlength</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
-    <span class="n">save_keys_dict</span><span class="p">(</span><span class="n">keyslist</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">outfile</span><span class="p">)</span></code></pre></div>
-<p>其中， <code>if</code> 是为了防止 <code>minlength</code> 比 <code>minlength</code> 大的情况。</p>
-
-<p>完整代码参考：<a href="https://github.com/smslit/tools-with-script/blob/master/keykey/keykey" target="_blank">tools-with-script/keykey/keykey</a></p>
-
+    <span class="n">save_keys_dict</span><span class="p">(</span><span class="n">keyslist</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">outfile</span><span class="p">)</span>
+</code></pre></div><p>其中， <code>if</code> 是为了防止 <code>minlength</code> 比 <code>minlength</code> 大的情况。</p>
+<p>完整代码参考：<a href="https://github.com/smslit/tools-with-script/blob/master/keykey/keykey">tools-with-script/keykey/keykey</a></p>
 <h1 id="使用">使用</h1>
-
 <h2 id="获取工具帮助信息">获取工具帮助信息</h2>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$  ./keykey -h
 usage: keykey <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-o OUTFILE<span class="o">]</span> <span class="o">[</span>-c CHOICES<span class="o">]</span> minlength maxlength
@@ -256,8 +234,8 @@ optional arguments:
   -o OUTFILE, --outfile OUTFILE
                         指定字典文件的保存路径
   -c CHOICES, --choices CHOICES
-                        指定字符串，密码中的字符从字符串中选择，默认为 <span class="s2">&#34;0123456789&#34;</span></code></pre></div>
-<h2 id="生成-4-6-位数字密码">生成 4～6 位数字密码</h2>
+                        指定字符串，密码中的字符从字符串中选择，默认为 <span class="s2">&#34;0123456789&#34;</span>
+</code></pre></div><h2 id="生成-46-位数字密码">生成 4～6 位数字密码</h2>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ ./keykey <span class="m">4</span> <span class="m">6</span>
 <span class="o">[</span>+<span class="o">]</span> 已生成 <span class="m">4</span> ~ <span class="m">6</span> 位密码字典 <span class="o">[</span>+<span class="o">]</span>
 <span class="o">[</span>+<span class="o">]</span> 已保存密码字典到 /Users/5km/Desktop/keys.txt <span class="o">[</span>+<span class="o">]</span>
@@ -266,8 +244,8 @@ $ head -n <span class="m">5</span> /Users/5km/Desktop/keys.txt
 <span class="m">0001</span>
 <span class="m">0002</span>
 <span class="m">0003</span>
-<span class="m">0004</span></code></pre></div>
-<h2 id="指定密码字典保存文件">指定密码字典保存文件</h2>
+<span class="m">0004</span>
+</code></pre></div><h2 id="指定密码字典保存文件">指定密码字典保存文件</h2>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ ./keykey <span class="m">4</span> <span class="m">6</span> -o keys.txt
 <span class="o">[</span>+<span class="o">]</span> 已生成 <span class="m">4</span> ~ <span class="m">6</span> 位密码字典 <span class="o">[</span>+<span class="o">]</span>
 <span class="o">[</span>+<span class="o">]</span> 已保存密码字典到 /Users/5km/Documents/workspace/python/tools-with-script/keykey/keys.txt <span class="o">[</span>+<span class="o">]</span>
@@ -276,8 +254,8 @@ $ head -n <span class="m">5</span> keys.txt
 <span class="m">0001</span>
 <span class="m">0002</span>
 <span class="m">0003</span>
-<span class="m">0004</span></code></pre></div>
-<h2 id="指定密码可选择字符">指定密码可选择字符</h2>
+<span class="m">0004</span>
+</code></pre></div><h2 id="指定密码可选择字符">指定密码可选择字符</h2>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ ./keykey <span class="m">4</span> <span class="m">6</span> -o keys.txt -c <span class="s1">&#39;asdfghjkl&#39;</span>
 <span class="o">[</span>+<span class="o">]</span> 已生成 <span class="m">4</span> ~ <span class="m">6</span> 位密码字典 <span class="o">[</span>+<span class="o">]</span>
 <span class="o">[</span>+<span class="o">]</span> 已保存密码字典到 /Users/5km/Documents/workspace/python/tools-with-script/keykey/keys.txt <span class="o">[</span>+<span class="o">]</span>
@@ -286,19 +264,9 @@ aaaa
 aaas
 aaad
 aaaf
-aaag</code></pre></div>
-<h1 id="总结">总结</h1>
-
+aaag
+</code></pre></div><h1 id="总结">总结</h1>
 <p>一切顺利的话，到目前就实现了一个简单的密码字典生成器。本文复习了 <code>itertools</code> 和 <code>argparse</code> 的知识和部分使用方法，希望对您有所帮助！感谢您的阅读！</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:https-baike-baid">密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— <a href="https://baike.baidu.com/item/密码字典" target="_blank">密码字典</a> <a class="footnote-return" href="#fnref:https-baike-baid"><sup>[return]</sup></a></li>
-<li id="fn:Python-https-www"><a href="https://www.jianshu.com/p/3efd3197ab35" target="_blank">Python - 自导自演 密码字典暴力破解</a> <a class="footnote-return" href="#fnref:Python-https-www"><sup>[return]</sup></a></li>
-</ol>
-</div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -307,7 +275,7 @@ aaag</code></pre></div>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1728 字
+					1840 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -317,25 +285,20 @@ aaag</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#知识点">知识点</a></li>
-<li><a href="#实现">实现</a>
-<ul>
-<li><a href="#准备工作">准备工作</a></li>
-<li><a href="#生成密码列表">生成密码列表</a></li>
-<li><a href="#保存密码列表">保存密码列表</a></li>
-<li><a href="#获取命令参数">获取命令参数</a></li>
-<li><a href="#main实现">main实现</a></li>
-</ul></li>
-<li><a href="#使用">使用</a>
-<ul>
-<li><a href="#获取工具帮助信息">获取工具帮助信息</a></li>
-<li><a href="#生成-4-6-位数字密码">生成 4～6 位数字密码</a></li>
-<li><a href="#指定密码字典保存文件">指定密码字典保存文件</a></li>
-<li><a href="#指定密码可选择字符">指定密码可选择字符</a></li>
-</ul></li>
-<li><a href="#总结">总结</a></li>
-</ul>
+  <ul>
+    <li><a href="#准备工作">准备工作</a></li>
+    <li><a href="#生成密码列表">生成密码列表</a></li>
+    <li><a href="#保存密码列表">保存密码列表</a></li>
+    <li><a href="#获取命令参数">获取命令参数</a></li>
+    <li><a href="#main实现">main实现</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#获取工具帮助信息">获取工具帮助信息</a></li>
+    <li><a href="#生成-46-位数字密码">生成 4～6 位数字密码</a></li>
+    <li><a href="#指定密码字典保存文件">指定密码字典保存文件</a></li>
+    <li><a href="#指定密码可选择字符">指定密码可选择字符</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -386,7 +349,7 @@ aaag</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS下运行非App Store下载的app提示损坏的解决方法">
 <meta itemprop="description" content="在网上下载了一个macOS平台下的软件，但是一运行就弹出提示框，大概意思是说app已损坏，一开始以为真的是损坏了，然后又重新下载了一遍安装运行还是这样，然后又去另外一个平台下载还是这样。这怎么可能？">
-
-
 <meta itemprop="datePublished" content="2016-11-27T16:08:35&#43;08:00" />
 <meta itemprop="dateModified" content="2016-11-27T16:08:35&#43;08:00" />
 <meta itemprop="wordCount" content="288">
 
 
 
-<meta itemprop="keywords" content="macOS," />
-<meta property="og:title" content="macOS下运行非App Store下载的app提示损坏的解决方法" />
+<meta itemprop="keywords" content="macOS," /><meta property="og:title" content="macOS下运行非App Store下载的app提示损坏的解决方法" />
 <meta property="og:description" content="在网上下载了一个macOS平台下的软件，但是一运行就弹出提示框，大概意思是说app已损坏，一开始以为真的是损坏了，然后又重新下载了一遍安装运行还是这样，然后又去另外一个平台下载还是这样。这怎么可能？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/11/27/macOS-app-damaged/" />
@@ -84,24 +81,18 @@
 			</header>
 			<div class="content">
 				<p>在网上下载了一个macOS平台下的软件，但是一运行就弹出提示框，大概意思是说app已损坏，一开始以为真的是损坏了，然后又重新下载了一遍安装运行还是这样，然后又去另外一个平台下载还是这样。这怎么可能？</p>
-
 <h3 id="原因">原因</h3>
-
 <p>后来知道原来是升级到<code>macOS Seirra</code>的原因，这个版本macOS的设置中的安全与隐私下<code>允许从以下位置下载的应用</code>中只有两个选项，就是这搞的鬼，应该还有一个<strong>任何来源</strong>的才对。</p>
-
 <h3 id="解决方法">解决方法</h3>
-
 <p>下面解决一下这个问题：</p>
-
 <ul>
 <li>打开终端；</li>
-
-<li><p>执行命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo spctl --master-disable</code></pre></div></li>
-
-<li><p>重启mac；</p></li>
+<li>执行命令：</li>
 </ul>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo spctl --master-disable
+</code></pre></div><ul>
+<li>重启mac；</li>
+</ul>
 <p>做完以上三步，就会发现<code>设置</code>中<code>安全性与隐私</code>下<code>允许从以下位置下载的应用</code>有了第三个选项<code>任何来源</code>，然后再去打开之前提示损坏的app就能运行了。</p>
 			</div>
 			<hr class="post-end">
@@ -121,16 +112,14 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#原因">原因</a></li>
-<li><a href="#解决方法">解决方法</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#原因">原因</a></li>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -181,7 +170,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

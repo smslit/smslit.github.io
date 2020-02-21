@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="在MacOS终端下使用Ino进行Arduino开发">
 <meta itemprop="description" content="虽然我算不上真正的Vimer，但我还是惊叹与vim的强大，也正慢慢学习vim的使用，经朋友介绍可以用命令行工具Ino进行Arduino开发，那么就可以在终端中使用vim进行Arduino的coding了。其实我使用了好长时间了，觉得不错，适合喜欢用终端敲命令的朋友，所以在此写一下安装和使用。">
-
-
 <meta itemprop="datePublished" content="2016-06-15T09:10:38&#43;08:00" />
 <meta itemprop="dateModified" content="2016-06-15T09:10:38&#43;08:00" />
-<meta itemprop="wordCount" content="3360">
+<meta itemprop="wordCount" content="3368">
 
 
 
-<meta itemprop="keywords" content="vim,arduino,ino," />
-<meta property="og:title" content="在MacOS终端下使用Ino进行Arduino开发" />
+<meta itemprop="keywords" content="vim,arduino,ino," /><meta property="og:title" content="在MacOS终端下使用Ino进行Arduino开发" />
 <meta property="og:description" content="虽然我算不上真正的Vimer，但我还是惊叹与vim的强大，也正慢慢学习vim的使用，经朋友介绍可以用命令行工具Ino进行Arduino开发，那么就可以在终端中使用vim进行Arduino的coding了。其实我使用了好长时间了，觉得不错，适合喜欢用终端敲命令的朋友，所以在此写一下安装和使用。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2016/06/15/ino-vim-arduino/" />
@@ -84,45 +81,34 @@
 			</header>
 			<div class="content">
 				<p>虽然我算不上真正的Vimer，但我还是惊叹与vim的强大，也正慢慢学习vim的使用，经朋友介绍可以用命令行工具<strong>Ino</strong>进行Arduino开发，那么就可以在终端中使用vim进行Arduino的coding了。其实我使用了好长时间了，觉得不错，适合喜欢用终端敲命令的朋友，所以在此写一下安装和使用。</p>
-
 <h3 id="ino工具安装">Ino工具安装</h3>
-
-<p><a href="http://inotool.org/" target="_blank"><strong>Ino</strong></a>依赖于Arduino IDE，所以使用Ino之前保证已经安装了Arduino IDE，有了Ino你可以做以下事情：</p>
-
+<p><a href="http://inotool.org/"><strong>Ino</strong></a>依赖于Arduino IDE，所以使用Ino之前保证已经安装了Arduino IDE，有了Ino你可以做以下事情：</p>
 <ul>
 <li>快速新建Arduino工程。</li>
 <li>编译工程。</li>
 <li>上传工程到Arduino开发板。</li>
 <li>串口通信。</li>
 </ul>
-
 <h4 id="安装">安装</h4>
-
 <p>可以通过下载最新的源码进行安装，不过这里我还是建议用工具进行安装，<strong>Ino</strong>使用python实现的，一般mac上都安装了python，所以不用担心，那么<strong>Ino</strong>可以用Python的包管理工具进行安装，<strong>pip</strong>或者<strong>easy_insyall</strong>。这里我们用<strong>pip</strong>，需要安装pip：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl https://bootstrap.pypa.io/ez_setup.py -o - <span class="p">|</span> sudo python
-$ sudo easy_install pip</code></pre></div>
-<p><strong>pip</strong>可以用来安装、更新或卸载python软件包，那么我们就可以安装<strong>Ino</strong>了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo pip isntall ino</code></pre></div>
-<h4 id="依赖">依赖</h4>
-
+$ sudo easy_install pip
+</code></pre></div><p><strong>pip</strong>可以用来安装、更新或卸载python软件包，那么我们就可以安装<strong>Ino</strong>了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo pip isntall ino
+</code></pre></div><h4 id="依赖">依赖</h4>
 <p>要正常使用<strong>Ino</strong>，依赖于以下工具：</p>
-
 <ul>
 <li><strong>Python</strong> 2.6+</li>
 <li><strong>Arduino IDE</strong></li>
 <li><strong>picocom</strong>，用来进行串口通信</li>
 </ul>
-
-<p>第一个Python需求macOS天然满足，Arduino IDE我们需要自己去<a href="https://www.arduino.cc/en/Main/OldSoftwareReleases" target="_blank">官网</a>下载，友情提示一定要安装1.0.x版本的，1.6.x或更新的有问题。</p>
-
-<p><strong>picocom</strong>工具的话，我们可以用macOS下的homebrew进行安装，在这之前先来安装强大的mac软件包管理工具<a href="http://brew.sh/index_zh-cn.html" target="_blank"><strong>Homebrew</strong></a>，它的能力类似与Ubuntu Linux的apt-get。</p>
-
+<p>第一个Python需求macOS天然满足，Arduino IDE我们需要自己去<a href="https://www.arduino.cc/en/Main/OldSoftwareReleases">官网</a>下载，友情提示一定要安装1.0.x版本的，1.6.x或更新的有问题。</p>
+<p><strong>picocom</strong>工具的话，我们可以用macOS下的homebrew进行安装，在这之前先来安装强大的mac软件包管理工具<a href="http://brew.sh/index_zh-cn.html"><strong>Homebrew</strong></a>，它的能力类似与Ubuntu Linux的apt-get。</p>
 <p>安装<strong>Homebrew</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ /usr/bin/ruby -e <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&#34;</span></code></pre></div>
-<p>安装<strong>picocom</strong>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ brew install picocom</code></pre></div>
-<h3 id="ino的使用">ino的使用</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ /usr/bin/ruby -e <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&#34;</span>
+</code></pre></div><p>安装<strong>picocom</strong>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ brew install picocom
+</code></pre></div><h3 id="ino的使用">ino的使用</h3>
 <p>如果安装成功了，顺利的话，终端下敲命令<code>ino --help</code>或<code>ino -h</code>，会出现简单的使用说明：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino -h
 usage: ino <span class="o">[</span>-h<span class="o">]</span> <span class="o">{</span>list-models,preproc,upload,init,build,clean,serial<span class="o">}</span> ...
@@ -150,9 +136,8 @@ positional arguments:
     upload              Upload built firmware to the device
 
 optional arguments:
-  -h, --help            show this <span class="nb">help</span> message and exit</code></pre></div>
-<p>命令表如下：</p>
-
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+</code></pre></div><p>命令表如下：</p>
 <table>
 <thead>
 <tr>
@@ -160,49 +145,39 @@ optional arguments:
 <th align="left">含义</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">build</td>
 <td align="left">编译当前目录下的工程</td>
 </tr>
-
 <tr>
 <td align="center">clean</td>
 <td align="left">删除编译生成的中间文件</td>
 </tr>
-
 <tr>
 <td align="center">init</td>
 <td align="left">在当前目录下新建工程</td>
 </tr>
-
 <tr>
 <td align="center">list-model</td>
 <td align="left">列出所有支持的Arduino开发板</td>
 </tr>
-
 <tr>
 <td align="center">preproc</td>
 <td align="left">将工程文件转换为有效c++文件</td>
 </tr>
-
 <tr>
 <td align="center">serial</td>
 <td align="left">打开串口监视器</td>
 </tr>
-
 <tr>
 <td align="center">upload</td>
 <td align="left">给Arduino设备上传程序</td>
 </tr>
 </tbody>
 </table>
-
-<p>也可以访问<a href="http://inotool.org/quickstart" target="_blank">http://inotool.org/quickstart</a>简单了解<strong>Ino</strong>的使用，这里简单说一下使用。</p>
-
+<p>也可以访问<a href="http://inotool.org/quickstart">http://inotool.org/quickstart</a>简单了解<strong>Ino</strong>的使用，这里简单说一下使用。</p>
 <h4 id="查看arduino型号">查看Arduino型号</h4>
-
 <p>查看一下是否有支持的Arduino开发板。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino list-models
 Searching <span class="k">for</span> Board description file <span class="o">(</span>boards.txt<span class="o">)</span> ... /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/boards.txt
@@ -227,54 +202,50 @@ Searching <span class="k">for</span> Board description file <span class="o">(</s
      lilypad: LilyPad Arduino w/ ATmega168
     pro5v328: Arduino Pro or Pro Mini <span class="o">(</span>5V, <span class="m">16</span> MHz<span class="o">)</span> w/ ATmega328
        pro5v: Arduino Pro or Pro Mini <span class="o">(</span>5V, <span class="m">16</span> MHz<span class="o">)</span> w/ ATmega168
-      pro328: Arduino Pro or Pro Mini <span class="o">(</span><span class="m">3</span>.3V, <span class="m">8</span> MHz<span class="o">)</span> w/ ATmega328
-         pro: Arduino Pro or Pro Mini <span class="o">(</span><span class="m">3</span>.3V, <span class="m">8</span> MHz<span class="o">)</span> w/ ATmega168
+      pro328: Arduino Pro or Pro Mini <span class="o">(</span>3.3V, <span class="m">8</span> MHz<span class="o">)</span> w/ ATmega328
+         pro: Arduino Pro or Pro Mini <span class="o">(</span>3.3V, <span class="m">8</span> MHz<span class="o">)</span> w/ ATmega168
    atmega168: Arduino NG or older w/ ATmega168
      atmega8: Arduino NG or older w/ ATmega8
 robotControl: Arduino Robot Control
-  robotMotor: Arduino Robot Motor</code></pre></div>
-<p>上面就是支持的所有型号的开发板，冒号前的是我们用到配置文件中的，我的开发板是<strong>Arduino Pro Mini (5V, 16MHz) w/ ATmega328</strong>，所以对应的是pro5v328，你可以找到自己的板型，编译和上传的时候会用到，默认的是uno，所以一定要搞清楚自己的是哪一个型号。</p>
-
+  robotMotor: Arduino Robot Motor
+</code></pre></div><p>上面就是支持的所有型号的开发板，冒号前的是我们用到配置文件中的，我的开发板是<strong>Arduino Pro Mini (5V, 16MHz) w/ ATmega328</strong>，所以对应的是pro5v328，你可以找到自己的板型，编译和上传的时候会用到，默认的是uno，所以一定要搞清楚自己的是哪一个型号。</p>
 <h4 id="新建ino工程">新建Ino工程</h4>
-
 <p>可以用blink模板新建工程，这之前需要创建自己的工程目录，比如<strong>blink</strong>：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir blink
 $ <span class="nb">cd</span> blink
-$ ino init -t blink</code></pre></div>
-<p>可以用tree命令列出文件树（tree命令可以用homebrew安装<code>brew install tree</code>）：</p>
+$ ino init -t blink
+</code></pre></div><p>可以用tree命令列出文件树（tree命令可以用homebrew安装<code>brew install tree</code>）：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree
 .
 ├── lib
 └── src
     └── sketch.ino
 
-<span class="m">2</span> directories, <span class="m">1</span> file</code></pre></div>
-<p>可以看到生成了两个目录，一个是lib一个是src，lib用来放第三方arduino的库，而src存放我们自己的代码，这里因为用了模板，所以生成了一个sketch.ino，可以查看其内容：</p>
+<span class="m">2</span> directories, <span class="m">1</span> file
+</code></pre></div><p>可以看到生成了两个目录，一个是lib一个是src，lib用来放第三方arduino的库，而src存放我们自己的代码，这里因为用了模板，所以生成了一个sketch.ino，可以查看其内容：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat src/sketch.ino
 
 <span class="c1">#define LED_PIN 13</span>
 
-void setup<span class="o">()</span>
+void setup<span class="o">(</span><span class="o">)</span>
 <span class="o">{</span>
     pinMode<span class="o">(</span>LED_PIN, OUTPUT<span class="o">)</span><span class="p">;</span>
 <span class="o">}</span>
 
-void loop<span class="o">()</span>
+void loop<span class="o">(</span><span class="o">)</span>
 <span class="o">{</span>
     digitalWrite<span class="o">(</span>LED_PIN, HIGH<span class="o">)</span><span class="p">;</span>
-    delay<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="p">;</span>
+    delay<span class="o">(</span>100<span class="o">)</span><span class="p">;</span>
     digitalWrite<span class="o">(</span>LED_PIN, LOW<span class="o">)</span><span class="p">;</span>
-    delay<span class="o">(</span><span class="m">900</span><span class="o">)</span><span class="p">;</span>
-<span class="o">}</span></code></pre></div>
-<p>这样我们就可以用vim进行coding了，修改sketch.ino即可，当然，我们也可以将其改成其他的名字，比如blink.ino。</p>
-
+    delay<span class="o">(</span>900<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div><p>这样我们就可以用vim进行coding了，修改sketch.ino即可，当然，我们也可以将其改成其他的名字，比如blink.ino。</p>
 <h4 id="编译工程">编译工程</h4>
-
-<p>用ino build编译工程时，其实相关的是板子的mcu型号，所以使用此命令可以加-m参数指定开发板型号，就是我们之前看到的，我的是pro5v328，如果不指定-m参数的话，命令会使用默认的板型，就是list-model结果中带有<strong>[DEFAULT]</strong>标识的，一般为uno。</p>
+<p>用ino build编译工程时，其实相关的是板子的mcu型号，所以使用此命令可以加-m参数指定开发板型号，就是我们之前看到的，我的是pro5v328，如果不指定-m参数的话，命令会使用默认的板型，就是list-model结果中带有**[DEFAULT]**标识的，一般为uno。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino build -m pro5v328
 Searching <span class="k">for</span> Board description file <span class="o">(</span>boards.txt<span class="o">)</span> ... /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/boards.txt
 Searching <span class="k">for</span> Arduino lib version file <span class="o">(</span>version.txt<span class="o">)</span> ... /Applications/Arduino.app/Contents/Resources/Java/lib/version.txt
-Detecting Arduino software version ...  <span class="m">1</span>.0.6 <span class="o">(</span><span class="m">1</span>.0.6<span class="o">)</span>
+Detecting Arduino software version ...  1.0.6 <span class="o">(</span>1.0.6<span class="o">)</span>
 Searching <span class="k">for</span> Arduino core library ... /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/cores/arduino
 Searching <span class="k">for</span> Arduino variants directory ... /Applications/Arduino.app/Contents/Resources/Java/hardware/arduino/variants
 Searching <span class="k">for</span> Arduino standard libraries ... /Applications/Arduino.app/Contents/Resources/Java/libraries
@@ -285,7 +256,7 @@ Searching <span class="k">for</span> avr-ar ... /Applications/Arduino.app/Conten
 Searching <span class="k">for</span> avr-objcopy ... /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avr-objcopy
 src/sketch.ino
 Searching <span class="k">for</span> Arduino lib version file <span class="o">(</span>version.txt<span class="o">)</span> ... /Applications/Arduino.app/Contents/Resources/Java/lib/version.txt
-Detecting Arduino software version ...  <span class="m">1</span>.0.6 <span class="o">(</span><span class="m">1</span>.0.6<span class="o">)</span>
+Detecting Arduino software version ...  1.0.6 <span class="o">(</span>1.0.6<span class="o">)</span>
 Scanning dependencies of src
 Scanning dependencies of arduino
 src/sketch.cpp
@@ -311,9 +282,8 @@ arduino/WMath.cpp
 arduino/WString.cpp
 Linking libarduino.a
 Linking firmware.elf
-Converting to firmware.hex</code></pre></div>
-<p>当然我们还有另一种方法指定板子型号，就是添加配置文件，有三种类型的配置文件：</p>
-
+Converting to firmware.hex
+</code></pre></div><p>当然我们还有另一种方法指定板子型号，就是添加配置文件，有三种类型的配置文件：</p>
 <table>
 <thead>
 <tr>
@@ -322,20 +292,17 @@ Converting to firmware.hex</code></pre></div>
 <th align="left">优先级</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">/etc/ino.ini</td>
 <td align="left">对mac中所有用户下的所有ino工程有效</td>
 <td align="left">最低</td>
 </tr>
-
 <tr>
 <td align="left">~/.inorc</td>
 <td align="left">对当前用户下的所有工程有效</td>
 <td align="left">次之</td>
 </tr>
-
 <tr>
 <td align="left">./ino.ini</td>
 <td align="left">对当前工程有效</td>
@@ -343,12 +310,10 @@ Converting to firmware.hex</code></pre></div>
 </tr>
 </tbody>
 </table>
-
 <p><strong>ino build</strong>不指定-m时，工具会优先查看当前工程目录下是否有ino.ini，如果有的话依据配置文件中的参数设置进行编译，如果没有，在去常看当前mac用户$HOME目录下是否有.inorc文件，如果有则据此文件中的配置编译，如果没有，再继续查找系统配置中是否有ino.ini文件，如果有则按配置编译，如果没有则按照默认板型uno进行编译，上传命令ino upload和调用串口监视器ino serial同样是此规则。</p>
-
 <p>所以建议在每个工程下添加适配的配置文件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ touch ino.ini</code></pre></div>
-<p>配置文件中可以指定build、upload和serial这三个功能的参数，用vim编辑ino.ini文件，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ touch ino.ini
+</code></pre></div><p>配置文件中可以指定build、upload和serial这三个功能的参数，用vim编辑ino.ini文件，内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>build<span class="o">]</span>
 board-model <span class="o">=</span> pro5v328
 
@@ -357,11 +322,9 @@ board-model <span class="o">=</span> pro5v328
 serial-port <span class="o">=</span> /dev/tty.wchusbserial1470
 
 <span class="o">[</span>serial<span class="o">]</span>
-serial-port <span class="o">=</span> /dev/tty.wchusbserial1470</code></pre></div>
-<p>上面的serial和upload参数用于后面。</p>
-
+serial-port <span class="o">=</span> /dev/tty.wchusbserial1470
+</code></pre></div><p>上面的serial和upload参数用于后面。</p>
 <p>这样的话，我们每次在自己的工程里只需执行命令<code>ino build</code>即可。</p>
-
 <p>工程目录下加入配置文件后的文件树如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree
 .
@@ -370,17 +333,15 @@ serial-port <span class="o">=</span> /dev/tty.wchusbserial1470</code></pre></div
 └── src
     └── sketch.ino
 
-	<span class="m">2</span> directories, <span class="m">2</span> files</code></pre></div>
-<h4 id="上传程序">上传程序</h4>
-
+	<span class="m">2</span> directories, <span class="m">2</span> files
+</code></pre></div><h4 id="上传程序">上传程序</h4>
 <p>上传程序会使用到串口，我用的串口工具，在系统中识别为<strong>tty.wchusbserial1470</strong>，所以配置文件中改为我们自己对应的串口，如果你不知道自己的串口是什么，可以查看<code>/dev/</code>目录下以tty为前缀的串口：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls /dev/tty.*
-/dev/tty.Bluetooth-Incoming-Port /dev/tty.wchusbserial1470</code></pre></div>
-<p>可以看到有效的串口，mac一般都会有蓝牙，其中有一个是蓝牙，那么另一个就是我们的串口***，所以这里配置文件就是<code>/dev/tty.wchusbserial1470</code>。</p>
-
+/dev/tty.Bluetooth-Incoming-Port /dev/tty.wchusbserial1470
+</code></pre></div><p>可以看到有效的串口，mac一般都会有蓝牙，其中有一个是蓝牙，那么另一个就是我们的串口***，所以这里配置文件就是<code>/dev/tty.wchusbserial1470</code>。</p>
 <p>其实上传命令可以使用两个参数，一个是-m（同上）来指定板子型号，另一个是-p，用来指定使用串口，所以这里可以指定参数来上传程序到arduino设备：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino upload -m pro5v328 -p /dev/tty.wchusbserial1470</code></pre></div>
-<p>如果不指定-p参数的话就会按照之前提到的规则去查找配置文件，使用配置文件中指定的串口进行上传，所以执行<code>ino upload</code>命令就可以了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino upload -m pro5v328 -p /dev/tty.wchusbserial1470
+</code></pre></div><p>如果不指定-p参数的话就会按照之前提到的规则去查找配置文件，使用配置文件中指定的串口进行上传，所以执行<code>ino upload</code>命令就可以了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino upload
 Searching <span class="k">for</span> stty ... /bin/stty
 Searching <span class="k">for</span> avrdude ... /Applications/Arduino.app/Contents/Resources/Java/hardware/tools/avr/bin/avrdude
@@ -409,10 +370,9 @@ avrdude: <span class="m">1082</span> bytes of flash verified
 
 avrdude: safemode: Fuses OK
 
-avrdude <span class="k">done</span>.  Thank you.<span class="o">)</span><span class="s2">&#34;&#34;</span></code></pre></div>
-<h4 id="使用库文件">使用库文件</h4>
-
-<p>如果要使用第三方库的话，可以将库放到工程目录的lib目录下，比如这里我们使用定时器来触发led的blink，用到定时器的库<strong><a href="https://github.com/PaulStoffregen/MsTimer2" target="_blank">MsTimer2</a></strong>，下载下来将库放到lib目录下即可，此时文件树类似如下：</p>
+avrdude <span class="k">done</span>.  Thank you.<span class="o">)</span><span class="s2">&#34;&#34;</span>
+</code></pre></div><h4 id="使用库文件">使用库文件</h4>
+<p>如果要使用第三方库的话，可以将库放到工程目录的lib目录下，比如这里我们使用定时器来触发led的blink，用到定时器的库**<a href="https://github.com/PaulStoffregen/MsTimer2">MsTimer2</a>**，下载下来将库放到lib目录下即可，此时文件树类似如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ tree
 .
 ├── ino.ini
@@ -426,39 +386,37 @@ avrdude <span class="k">done</span>.  Thank you.<span class="o">)</span><span cl
 └── src
     └── sketch.ino
 
-	<span class="m">5</span> directories, <span class="m">5</span> files</code></pre></div>
-<p>然后修改我们的sketch.ino来使用库，可以修改为如下的内容：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;MsTimer2.h&gt;</span><span class="cp">
+	<span class="m">5</span> directories, <span class="m">5</span> files
+</code></pre></div><p>然后修改我们的sketch.ino来使用库，可以修改为如下的内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;MsTimer2.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="c1">// Switch on LED on pin 13 each second
 </span><span class="c1"></span>
-<span class="kt">void</span> <span class="nf">flash</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">flash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">static</span> <span class="n">boolean</span> <span class="n">output</span> <span class="o">=</span> <span class="n">HIGH</span><span class="p">;</span>
-	<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
+	<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span><span class="p">;</span>
 	<span class="n">output</span> <span class="o">=</span> <span class="o">!</span><span class="n">output</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
 
-	<span class="n">MsTimer2</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">flash</span><span class="p">);</span> <span class="c1">// 500ms period
-</span><span class="c1"></span>	<span class="n">MsTimer2</span><span class="o">::</span><span class="n">start</span><span class="p">();</span>
+	<span class="n">MsTimer2</span><span class="o">:</span><span class="o">:</span><span class="n">set</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">flash</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 500ms period
+</span><span class="c1"></span>	<span class="n">MsTimer2</span><span class="o">:</span><span class="o">:</span><span class="n">start</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="p">}</span></code></pre></div>
-<p>然后我们就可以再次编译了，编译之前也可以先清除一下上一次编译生成的中间文件：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino clean</code></pre></div>
-<p>然后再进行编译和上传即可。</p>
-
+<span class="p">}</span>
+</code></pre></div><p>然后我们就可以再次编译了，编译之前也可以先清除一下上一次编译生成的中间文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ino clean
+</code></pre></div><p>然后再进行编译和上传即可。</p>
 <h3 id="vim配合ino">vim配合Ino</h3>
-
 <p>进行Arduino开发使用Ino可以用vim进行代码编辑，为了更方便，我们可以为vim配置快捷键来完成工程的编译、清除和上传(即build\clean\upload)，在<code>~/.vimrc</code>中添加配置即可，我的Vim配置如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nmap &lt;F5&gt;b :!ino build&lt;CR&gt;
 nmap &lt;F5&gt;c :!ino clean&lt;CR&gt;
-nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;</code></pre></div>
-<p>这样就可以在用vim编辑sketch.ino时，普通模式下按下<F5>键+b来进行编译，按下<F5>键+u键进行上传，按下<F5>键+c键进行清除编译生成的中间文件。</p>
+nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;
+</code></pre></div><p>这样就可以在用vim编辑sketch.ino时，普通模式下按下<!-- raw HTML omitted -->键+b来进行编译，按下<!-- raw HTML omitted -->键+u键进行上传，按下<!-- raw HTML omitted -->键+c键进行清除编译生成的中间文件。</p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -467,7 +425,7 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;</code></pre></div>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					3360 字
+					3368 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -477,28 +435,15 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;</code></pre></div>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#ino工具安装">Ino工具安装</a>
-<ul>
-<li><a href="#安装">安装</a></li>
-<li><a href="#依赖">依赖</a></li>
-</ul></li>
-<li><a href="#ino的使用">ino的使用</a>
-<ul>
-<li><a href="#查看arduino型号">查看Arduino型号</a></li>
-<li><a href="#新建ino工程">新建Ino工程</a></li>
-<li><a href="#编译工程">编译工程</a></li>
-<li><a href="#上传程序">上传程序</a></li>
-<li><a href="#使用库文件">使用库文件</a></li>
-</ul></li>
-<li><a href="#vim配合ino">vim配合Ino</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ino工具安装">Ino工具安装</a></li>
+        <li><a href="#ino的使用">ino的使用</a></li>
+        <li><a href="#vim配合ino">vim配合Ino</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -549,7 +494,7 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

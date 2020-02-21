@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="开发的 macOS app 打包为精美的 dmg">
 <meta itemprop="description" content="最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。
-
 ">
-
-
 <meta itemprop="datePublished" content="2019-01-06T21:06:56&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-06T21:06:56&#43;08:00" />
 <meta itemprop="wordCount" content="1329">
 
 
 
-<meta itemprop="keywords" content="develop,macOS 开发," />
-<meta property="og:title" content="开发的 macOS app 打包为精美的 dmg" />
+<meta itemprop="keywords" content="develop,macOS 开发," /><meta property="og:title" content="开发的 macOS app 打包为精美的 dmg" />
 <meta property="og:description" content="最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/01/06/mac_app_to_dmg/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="开发的 macOS app 打包为精美的 dmg"/>
 <meta name="twitter:description" content="最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,66 +84,54 @@
 			</header>
 			<div class="content">
 				<p>最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png" alt=""></p>
 <h1 id="发布-app">发布 app</h1>
-
 <p>十里使用 xcode 开发 timeGO 这款应用，因为要精美所以本身应用也得精美对吧！所以十里为应用开发专门设计了精美的 appIcon (图标)，这样导出的 app 会有精美的图标。发布 app 的方式有很多种，这里说一个比较常用的发布到本地的方式。</p>
-
 <ol>
-<li>xcode 打开应用工程</li>
-
-<li><p>菜单栏选择 <strong>product</strong> -&gt; <strong>Archive</strong>，此时 xcode 就会打包应用，完成后会跳到类似如下的包管理窗口:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106212650.png" alt="" /></p></li>
-
-<li><p>点击 <code>Distribute App</code> 按钮，选择 <code>Copy App</code>：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106212928.png" alt="" /></p></li>
-
-<li><p>点击 <code>Next</code>，选择导出名称和目录，这里名称使用默认，目录选择 <code>Desktop</code>:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106213101.png" alt="" /></p></li>
-
-<li><p>点击 <code>Export</code> 之后，就会在 <code>Desktop</code> 中看到一个步骤4中的名称相同的目录，里面就是导出的 app:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106213609.png" alt="" /></p></li>
+<li>
+<p>xcode 打开应用工程</p>
+</li>
+<li>
+<p>菜单栏选择 <strong>product</strong> -&gt; <strong>Archive</strong>，此时 xcode 就会打包应用，完成后会跳到类似如下的包管理窗口:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106212650.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>Distribute App</code> 按钮，选择 <code>Copy App</code>：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106212928.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>Next</code>，选择导出名称和目录，这里名称使用默认，目录选择 <code>Desktop</code>:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106213101.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>Export</code> 之后，就会在 <code>Desktop</code> 中看到一个步骤4中的名称相同的目录，里面就是导出的 app:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106213609.png" alt=""></p>
+</li>
 </ol>
-
 <p>以上就完成了 app 的发布。</p>
-
 <h1 id="准备素材">准备素材</h1>
-
 <p>制作 dmg 前需要准备 app 的图标文件 icns 和背景图。</p>
-
 <h2 id="app-的图标文件">app 的图标文件</h2>
-
 <p>这里需要的图标文件为 icns 格式，十里在开发 timeGO 的时候只准备了 png 格式的文件，难道还得进行转换不成，其实不需要，macOS 的应用图标都是 icns 格式，所以可以从刚刚导出的 app 中获取这个图标文件。</p>
-
 <ol>
-<li>在刚才导出的 app 上右键，选择 <code>显示包内容</code></li>
-<li>此时会打开显示 app 内的文件，依次进入 <code>Contents</code> - <code>Resources</code></li>
-
-<li><p>不出意外就会看到一个格式为 icns 的图片文件，其样子与 app 的图标一样，这就是我们想要的 icns，将其拷贝到桌面：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106215254.png" alt="" /></p></li>
+<li>
+<p>在刚才导出的 app 上右键，选择 <code>显示包内容</code></p>
+</li>
+<li>
+<p>此时会打开显示 app 内的文件，依次进入 <code>Contents</code> - <code>Resources</code></p>
+</li>
+<li>
+<p>不出意外就会看到一个格式为 icns 的图片文件，其样子与 app 的图标一样，这就是我们想要的 icns，将其拷贝到桌面：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106215254.png" alt=""></p>
+</li>
 </ol>
-
 <h2 id="背景图片">背景图片</h2>
-
 <p>相信读者在安装一下 dmg 文件的应用时，都会知道，打开 dmg 文件后，目录中有个背景图片提示将 app 拖放到 applications 文件夹中，像 qq for mac的也是如此：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106215921.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106215921.png" alt=""></p>
 <p>所以我们也需要一个这样的背景图，自己设计就好了，说明意思就 OK，十里使用 sketch 设计了一个简陋的背景图( png 格式)，也放在了桌面，名为 dmg.png:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106221232.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106221232.png" alt=""></p>
 <h1 id="制作-dmg">制作 dmg</h1>
-
 <p>查看 app 、准备的 icns 图标和背景图共占空间的大小，十里这里是：</p>
-
 <table>
 <thead>
 <tr>
@@ -157,101 +139,102 @@
 <th>空间大小</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>timeGO.app</td>
 <td>约13.1MB</td>
 </tr>
-
 <tr>
 <td>AppIcon.icns</td>
 <td>65KB</td>
 </tr>
-
 <tr>
 <td>dmg.png</td>
 <td>33KB</td>
 </tr>
-
 <tr>
 <td>共计</td>
 <td>约13.2MB(肯定小于13.3MB)</td>
 </tr>
 </tbody>
 </table>
-
 <p>这里统计三个文件的大小是因为一会儿要使用。</p>
-
 <h2 id="新建空的-dmg-文件">新建空的 dmg 文件</h2>
-
 <ol>
-<li>打开 <code>磁盘工具.app</code></li>
-<li>菜单栏中：<code>文件</code> - <code>新建映像</code> - <code>空白映像</code></li>
-
-<li><p>在出来的对话框中按您的需求修改橙色框圈起来的地方，其中空间大小设置略大于上面提到的 13.2MB 即可，这里设置为 14.5MB：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106222645.png" alt="" /></p></li>
-
-<li><p>创建完成后就可以在桌面看到空白的映像</p></li>
+<li>
+<p>打开 <code>磁盘工具.app</code></p>
+</li>
+<li>
+<p>菜单栏中：<code>文件</code> - <code>新建映像</code> - <code>空白映像</code></p>
+</li>
+<li>
+<p>在出来的对话框中按您的需求修改橙色框圈起来的地方，其中空间大小设置略大于上面提到的 13.2MB 即可，这里设置为 14.5MB：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106222645.png" alt=""></p>
+</li>
+<li>
+<p>创建完成后就可以在桌面看到空白的映像</p>
+</li>
 </ol>
-
 <h2 id="放置-dmg-中的文件">放置 dmg 中的文件</h2>
-
 <ol>
-<li><p>将第一节中导出的 app 文件、桌面上的 icns 文件和背景图全部拖进新建的映像文件中:</p>
-
-<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2019-01-06%20_10.42.31.mp4" controls="controls" width="640px"></p></li>
-
-<li><p>在映像中创建 <code>/Applications</code> 的软链接(在终端下执行命令，cd 的目录改为您对应映像挂载的目录)</p>
+<li>
+<p>将第一节中导出的 app 文件、桌面上的 icns 文件和背景图全部拖进新建的映像文件中:</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>在映像中创建 <code>/Applications</code> 的软链接(在终端下执行命令，cd 的目录改为您对应映像挂载的目录)</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> /Volumes/timeGO
-ln -s /Applications Applications</code></pre></div></li>
+ln -s /Applications Applications
+</code></pre></div></li>
 </ol>
-
 <h2 id="配置映像文件的显示选项">配置映像文件的显示选项</h2>
-
 <ol>
-<li>打开映像挂载目录，目录中会看到四个文件：timeGO.app, dmg.png, AppIcon.icns 和 Applications</li>
-
-<li><p>目录中右键点击 <code>查看显示选项</code>，按照下图更改选项：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106230655.png" alt="" /></p></li>
-
-<li><p>把 dmg.png 拖入显示选项下面的框中，为目录设置背景，调整 <code>timeGO.app</code> 和 <code>Applications</code> 到合适位置</p></li>
-
-<li><p>调整窗口大小刚好覆盖背景图</p></li>
-
-<li><p>在桌面映像挂载目录上右击选择 <code>显示简介</code>，会跳出目录的简介对话框，拖动目录中的图标文件到简介窗口左上角的 logo 位置，就把挂载目录的图标修改为应用图标了</p></li>
-
-<li><p>最后隐藏图标文件和背景图：</p>
+<li>
+<p>打开映像挂载目录，目录中会看到四个文件：timeGO.app, dmg.png, AppIcon.icns 和 Applications</p>
+</li>
+<li>
+<p>目录中右键点击 <code>查看显示选项</code>，按照下图更改选项：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106230655.png" alt=""></p>
+</li>
+<li>
+<p>把 dmg.png 拖入显示选项下面的框中，为目录设置背景，调整 <code>timeGO.app</code> 和 <code>Applications</code> 到合适位置</p>
+</li>
+<li>
+<p>调整窗口大小刚好覆盖背景图</p>
+</li>
+<li>
+<p>在桌面映像挂载目录上右击选择 <code>显示简介</code>，会跳出目录的简介对话框，拖动目录中的图标文件到简介窗口左上角的 logo 位置，就把挂载目录的图标修改为应用图标了</p>
+</li>
+<li>
+<p>最后隐藏图标文件和背景图：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> /Volumes/timeGO
 chflags hidden AppIcon.icns
-chflags hidden dmg.png</code></pre></div></li>
+chflags hidden dmg.png
+</code></pre></div></li>
 </ol>
-
 <p>最终打开映像的挂载目录会是类似下面的样子：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png" alt=""></p>
 <h2 id="转换-dmg">转换 dmg</h2>
-
 <p>最后一步转换 dmg 文件，这一步主要起到的作用是压缩文件，减小 dmg 文件的占用空间。</p>
-
 <ol>
-<li>弹出挂载的映像目录</li>
-<li>打开 <code>磁盘工具.app</code></li>
-
-<li><p>菜单栏 - <code>映像</code> - <code>转换</code>，在弹出的对话框中选择刚刚创建的 dmg 文件：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106232643.png" alt="" /></p></li>
-
-<li><p>点击 <code>选取</code> 后，在弹窗中配置名称和导出目录：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106232835.png" alt="" /></p></li>
-
-<li><p>点击 <code>转换</code>，完成后就看到了最终的 dmg 文件了</p></li>
+<li>
+<p>弹出挂载的映像目录</p>
+</li>
+<li>
+<p>打开 <code>磁盘工具.app</code></p>
+</li>
+<li>
+<p>菜单栏 - <code>映像</code> - <code>转换</code>，在弹出的对话框中选择刚刚创建的 dmg 文件：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106232643.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>选取</code> 后，在弹窗中配置名称和导出目录：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106232835.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>转换</code>，完成后就看到了最终的 dmg 文件了</p>
+</li>
 </ol>
-
 <p>最后可以打开这个 dmg 验证一下，是不是骚气了！</p>
 			</div>
 			<hr class="post-end">
@@ -271,21 +254,17 @@ chflags hidden dmg.png</code></pre></div></li>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#发布-app">发布 app</a></li>
-<li><a href="#准备素材">准备素材</a>
-<ul>
-<li><a href="#app-的图标文件">app 的图标文件</a></li>
-<li><a href="#背景图片">背景图片</a></li>
-</ul></li>
-<li><a href="#制作-dmg">制作 dmg</a>
-<ul>
-<li><a href="#新建空的-dmg-文件">新建空的 dmg 文件</a></li>
-<li><a href="#放置-dmg-中的文件">放置 dmg 中的文件</a></li>
-<li><a href="#配置映像文件的显示选项">配置映像文件的显示选项</a></li>
-<li><a href="#转换-dmg">转换 dmg</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#app-的图标文件">app 的图标文件</a></li>
+    <li><a href="#背景图片">背景图片</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#新建空的-dmg-文件">新建空的 dmg 文件</a></li>
+    <li><a href="#放置-dmg-中的文件">放置 dmg 中的文件</a></li>
+    <li><a href="#配置映像文件的显示选项">配置映像文件的显示选项</a></li>
+    <li><a href="#转换-dmg">转换 dmg</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -336,7 +315,7 @@ chflags hidden dmg.png</code></pre></div></li>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

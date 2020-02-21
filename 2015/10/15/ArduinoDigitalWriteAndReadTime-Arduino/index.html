@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="测试Arduino中digital函数的执行时间">
 <meta itemprop="description" content="好久没有玩Arduino了，也没记录过多少关于Arduino的东西，现在有了时间，就写点东西吧，因为Arduino封装了基本功能的函数，方便很多，但好多函数内部可能添加了我们不知道的代码，我很自然地想到一个问题，运行时间是怎么样的呢，影响多大呢？测试一下，看看什么情况。">
-
-
 <meta itemprop="datePublished" content="2015-10-15T12:34:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-15T12:34:46&#43;08:00" />
 <meta itemprop="wordCount" content="1103">
 
 
 
-<meta itemprop="keywords" content="arduino," />
-<meta property="og:title" content="测试Arduino中digital函数的执行时间" />
+<meta itemprop="keywords" content="arduino," /><meta property="og:title" content="测试Arduino中digital函数的执行时间" />
 <meta property="og:description" content="好久没有玩Arduino了，也没记录过多少关于Arduino的东西，现在有了时间，就写点东西吧，因为Arduino封装了基本功能的函数，方便很多，但好多函数内部可能添加了我们不知道的代码，我很自然地想到一个问题，运行时间是怎么样的呢，影响多大呢？测试一下，看看什么情况。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/15/ArduinoDigitalWriteAndReadTime-Arduino/" />
@@ -84,155 +81,145 @@
 			</header>
 			<div class="content">
 				<p>好久没有玩Arduino了，也没记录过多少关于Arduino的东西，现在有了时间，就写点东西吧，因为Arduino封装了基本功能的函数，方便很多，但好多函数内部可能添加了我们不知道的代码，我很自然地想到一个问题，运行时间是怎么样的呢，影响多大呢？测试一下，看看什么情况。</p>
-
 <h3 id="测试digitalwrite和digitalread函数">测试digitalWrite和digitalRead函数</h3>
-
 <h4 id="sketch代码如下">sketch代码如下</h4>
-
 <p>程序中会使板上led以2秒为周期闪烁：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">ledState</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">exeTime</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">dletaTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;Delta Time(write):&#34;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Delta Time(write):</span><span class="s">&#34;</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span> <span class="o">&gt;=</span> <span class="mi">1000000</span><span class="p">){</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">1000000</span><span class="p">)</span><span class="p">{</span>
         <span class="c1">// 测试digitalWrite的执行时间
-</span><span class="c1"></span>        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">();</span>
-        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">);</span>
-        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
-        <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;Delta Time: Write-&gt;&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;us&#34;</span><span class="p">;</span>
+</span><span class="c1"></span>        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
+        <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Delta Time: Write-&gt;</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">us</span><span class="s">&#34;</span><span class="p">;</span>
         <span class="c1">// 测试digitalRead的执行时间
-</span><span class="c1"></span>        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">();</span>
-        <span class="n">digitalRead</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
-        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
-        <span class="n">timeInfo</span> <span class="o">+=</span> <span class="s">&#34;, Read-&gt;&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;us&#34;</span><span class="p">;</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">digitalRead</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
+        <span class="n">timeInfo</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">, Read-&gt;</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">us</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">)</span><span class="p">;</span>
         <span class="n">ledState</span> <span class="o">=</span> <span class="n">HIGH</span> <span class="o">-</span> <span class="n">ledState</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<h4 id="结果及分析">结果及分析</h4>
-
+<span class="p">}</span>
+</code></pre></div><h4 id="结果及分析">结果及分析</h4>
 <h5 id="结果如下">结果如下：</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-&gt;</span><span class="mi">8u</span><span class="n">s</span>
-<span class="p">...</span></code></pre></div>
-<h5 id="分析">分析</h5>
-
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span><span class="p">,</span> <span class="n">Read</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">8u</span><span class="n">s</span>
+<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+</code></pre></div><h5 id="分析">分析</h5>
 <p>如上结果可以看到digitalWrite和digitalRead函数的执行时间大约8us，有时也会是4us，不太清楚这是怎么回事儿，不知道会不会是micros的时间误差导致的，不过看时间的话，这两个函数不会太影响运行时间的要求。</p>
-
 <h3 id="测试digitalwrite与寄存器直接赋值">测试digitalWrite与寄存器直接赋值</h3>
-
 <h4 id="sketch代码如下-1">sketch代码如下</h4>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">ledState</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">exeTime</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">dletaTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;Delta Time(write):&#34;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Delta Time(write):</span><span class="s">&#34;</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">);</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">INPUT</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span> <span class="o">&gt;=</span> <span class="mi">2000000</span><span class="p">){</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">2000000</span><span class="p">)</span><span class="p">{</span>
         <span class="c1">// 测试digitalWrite的执行时间
-</span><span class="c1"></span>        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">();</span>
-        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">);</span>
-        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
-        <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;Delta Time: Write&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;us&#34;</span><span class="p">;</span>
+</span><span class="c1"></span>        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
+        <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Delta Time: Write</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">us</span><span class="s">&#34;</span><span class="p">;</span>
         <span class="c1">// 测试直接配置寄存器的执行时间
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span> 
-        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">();</span>
+</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span> 
+        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
         <span class="n">PORTB</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
-        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
-        <span class="n">timeInfo</span> <span class="o">+=</span> <span class="s">&#34;, Reg-&gt;&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;us&#34;</span><span class="p">;</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">);</span>
+        <span class="n">dletaTime</span> <span class="o">=</span> <span class="n">micros</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span><span class="p">;</span>
+        <span class="n">timeInfo</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">, Reg-&gt;</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">dletaTime</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">us</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<h4 id="结果及分析-1">结果及分析</h4>
-
+<span class="p">}</span>
+</code></pre></div><h4 id="结果及分析-1">结果及分析</h4>
 <h5 id="结果如下-1">结果如下：</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write4us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-&gt;</span><span class="mi">4u</span><span class="n">s</span>
-<span class="p">...</span></code></pre></div>
-<h5 id="分析-1">分析：</h5>
-
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write4us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="n">Delta</span> <span class="nl">Time</span><span class="p">:</span> <span class="n">Write8us</span><span class="p">,</span> <span class="n">Reg</span><span class="o">-</span><span class="o">&gt;</span><span class="mi">4u</span><span class="n">s</span>
+<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+</code></pre></div><h5 id="分析-1">分析：</h5>
 <p>根据结果可以看到，直接寄存器复制占用4us，虽比调用函数的速度快，但也差别不大，所以不用太担心调用digital函数会影响执行效率。</p>
-
 <h3 id="对比两种实现led闪烁的方式">对比两种实现LED闪烁的方式</h3>
-
 <h4 id="实现">实现：</h4>
-
 <ul>
-<li><p><strong>方式1：利用delay延时做到闪烁，每次loop打印Arduino运行的时间。</strong></p>
+<li>
+<p><strong>方式1：利用delay延时做到闪烁，每次loop打印Arduino运行的时间。</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">ledState</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">exeTime</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;Time(write):&#34;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Time(write):</span><span class="s">&#34;</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-    <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
-    <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;time:&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">exeTime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;ms&#34;</span><span class="p">;</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">time:</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">exeTime</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">ms</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">)</span><span class="p">;</span>
     <span class="n">ledState</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ledState</span><span class="p">;</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p><strong>方式2：利用时间判断，做到精确1000ms循环，每个loop打印运行时间；</strong></p>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>方式2：利用时间判断，做到精确1000ms循环，每个loop打印运行时间；</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">ledState</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">exeTime</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;Time(write):&#34;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Time(write):</span><span class="s">&#34;</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
-    <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">exeTime</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">){</span>
-        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
-        <span class="n">timeInfo</span> <span class="o">=</span> <span class="s">&#34;time:&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">exeTime</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;ms&#34;</span><span class="p">;</span>
-            
-        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">millis</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">exeTime</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">1000</span><span class="p">)</span><span class="p">{</span>
+        <span class="n">exeTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">timeInfo</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">time:</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">exeTime</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">ms</span><span class="s">&#34;</span><span class="p">;</span>
+          
+        <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">ledState</span><span class="p">)</span><span class="p">;</span>
         <span class="n">ledState</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ledState</span><span class="p">;</span>
 
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">);</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">timeInfo</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div></li>
+<span class="p">}</span>
+</code></pre></div></li>
 </ul>
-
 <h4 id="对比结果">对比结果</h4>
-
 <ul>
-<li><p><strong>方式1</strong></p>
+<li>
+<p><strong>方式1</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="nl">time</span><span class="p">:</span><span class="mi">0</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">999</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">1999</span><span class="n">ms</span>
@@ -248,9 +235,10 @@
 <span class="nl">time</span><span class="p">:</span><span class="mi">12005</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">13005</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">14006</span><span class="n">ms</span>
-<span class="nl">time</span><span class="p">:</span><span class="mi">15006</span><span class="n">ms</span></code></pre></div></li>
-
-<li><p><strong>方式2</strong></p>
+<span class="nl">time</span><span class="p">:</span><span class="mi">15006</span><span class="n">ms</span>
+</code></pre></div></li>
+<li>
+<p><strong>方式2</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="nl">time</span><span class="p">:</span><span class="mi">1000</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">2000</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">3000</span><span class="n">ms</span>
@@ -266,23 +254,21 @@
 <span class="nl">time</span><span class="p">:</span><span class="mi">13000</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">14000</span><span class="n">ms</span>
 <span class="nl">time</span><span class="p">:</span><span class="mi">15000</span><span class="n">ms</span>
-<span class="nl">time</span><span class="p">:</span><span class="mi">16000</span><span class="n">ms</span></code></pre></div></li>
+<span class="nl">time</span><span class="p">:</span><span class="mi">16000</span><span class="n">ms</span>
+</code></pre></div></li>
 </ul>
-
 <h4 id="分析-2">分析</h4>
-
 <p>可以看到两种方式的结果对比，打印时间是ms级别的，第一种方式就明显的看到的时间差的累加，而第二种方式做到了精确时间的循环，有效的避免中间代码执行时间的不确定性所造成周期时间的变化，这种方法提供的思路还是比较有用处的。</p>
-
 <ul>
-<li><p><strong>方式1代码执行生命周期</strong></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/9qjar.png" alt="1" /></p></li>
-
-<li><p><strong>方式2代码执行生命周期</strong></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/do0in.png" alt="2" /></p></li>
+<li>
+<p><strong>方式1代码执行生命周期</strong></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/9qjar.png" alt="1"></p>
+</li>
+<li>
+<p><strong>方式2代码执行生命周期</strong></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/do0in.png" alt="2"></p>
+</li>
 </ul>
-
 <p><strong>其中有Loop time = Free time + Work time</strong></p>
 			</div>
 			<hr class="post-end">
@@ -302,38 +288,15 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#测试digitalwrite和digitalread函数">测试digitalWrite和digitalRead函数</a>
-<ul>
-<li><a href="#sketch代码如下">sketch代码如下</a></li>
-<li><a href="#结果及分析">结果及分析</a>
-<ul>
-<li><a href="#结果如下">结果如下：</a></li>
-<li><a href="#分析">分析</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#测试digitalwrite与寄存器直接赋值">测试digitalWrite与寄存器直接赋值</a>
-<ul>
-<li><a href="#sketch代码如下-1">sketch代码如下</a></li>
-<li><a href="#结果及分析-1">结果及分析</a>
-<ul>
-<li><a href="#结果如下-1">结果如下：</a></li>
-<li><a href="#分析-1">分析：</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#对比两种实现led闪烁的方式">对比两种实现LED闪烁的方式</a>
-<ul>
-<li><a href="#实现">实现：</a></li>
-<li><a href="#对比结果">对比结果</a></li>
-<li><a href="#分析-2">分析</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#测试digitalwrite和digitalread函数">测试digitalWrite和digitalRead函数</a></li>
+        <li><a href="#测试digitalwrite与寄存器直接赋值">测试digitalWrite与寄存器直接赋值</a></li>
+        <li><a href="#对比两种实现led闪烁的方式">对比两种实现LED闪烁的方式</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -384,7 +347,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

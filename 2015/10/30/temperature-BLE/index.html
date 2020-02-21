@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="BLE开发笔记——读取片上温度传感器数据">
 <meta itemprop="description" content="已经完成了串口打印就很方便调试了，学习其他外设的使用也更方便。本文就记录了温度传感器ADC采样的使用学习。片上的温度传感器输出的是模拟信号，所以需要配置AD采样对信号进行采集，然后进行换算获得温度。">
-
-
 <meta itemprop="datePublished" content="2015-10-30T17:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-30T17:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="839">
 
 
 
-<meta itemprop="keywords" content="ble," />
-<meta property="og:title" content="BLE开发笔记——读取片上温度传感器数据" />
+<meta itemprop="keywords" content="ble," /><meta property="og:title" content="BLE开发笔记——读取片上温度传感器数据" />
 <meta property="og:description" content="已经完成了串口打印就很方便调试了，学习其他外设的使用也更方便。本文就记录了温度传感器ADC采样的使用学习。片上的温度传感器输出的是模拟信号，所以需要配置AD采样对信号进行采集，然后进行换算获得温度。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/30/temperature-BLE/" />
@@ -84,53 +81,38 @@
 			</header>
 			<div class="content">
 				<p>已经完成了串口打印就很方便调试了，学习其他外设的使用也更方便。本文就记录了温度传感器ADC采样的使用学习。片上的温度传感器输出的是模拟信号，所以需要配置AD采样对信号进行采集，然后进行换算获得温度。</p>
-
 <h2 id="结构">结构</h2>
-
-<p>可以从<a href="http://pan.baidu.com/s/1kTwBhpt" target="_blank">CC2541用户手册</a>中找到ADC的结构图如下，TMP_SENSOR就是温度传感器，ADC是Sigma-Delta模数转换器：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/9jxzp.png" alt="1" /></p>
-
+<p>可以从<a href="http://pan.baidu.com/s/1kTwBhpt">CC2541用户手册</a>中找到ADC的结构图如下，TMP_SENSOR就是温度传感器，ADC是Sigma-Delta模数转换器：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/9jxzp.png" alt="1"></p>
 <h2 id="寄存器">寄存器</h2>
-
 <h3 id="adc的使用">ADC的使用</h3>
-
 <p>进行配置只需关心ADCCON1、ADCCON2或ADCCON3（ADCCON2和ADCCON3是一样的，配置哪个都可以，我配置的是ADCCON3）</p>
-
 <ul>
-<li><p>ADCCON1寄存器可用来查询转换状态，可以配置触发事件类型，默认采用手动触发方式启动转换（STSEL=11b），ADCCON1默认值0x33，满足我这里的需要，不需配置。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/flaax.png" alt="2" /></p></li>
-
-<li><p>这里选择配置ADCCON3(也可以配置ADCCON2)，ADCCON.EREF用来配置参考电压源，默认是内部参考电压，ADCCON.EDIV用来配置转换精度，这里选择最高12位精度，ADCCON3.ECH用来选择转换通道，选择温度传感器，最终ADCCON3=0x3E。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/fcv9i.png" alt="3" /></p></li>
+<li>
+<p>ADCCON1寄存器可用来查询转换状态，可以配置触发事件类型，默认采用手动触发方式启动转换（STSEL=11b），ADCCON1默认值0x33，满足我这里的需要，不需配置。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/flaax.png" alt="2"></p>
+</li>
+<li>
+<p>这里选择配置ADCCON3(也可以配置ADCCON2)，ADCCON.EREF用来配置参考电压源，默认是内部参考电压，ADCCON.EDIV用来配置转换精度，这里选择最高12位精度，ADCCON3.ECH用来选择转换通道，选择温度传感器，最终ADCCON3=0x3E。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/fcv9i.png" alt="3"></p>
+</li>
 </ul>
-
 <h3 id="adc转换数据">ADC转换数据</h3>
-
 <p>ADC转换数据[13:6]存放到ADCH寄存器中，[5:0]存放在ADCL寄存器中。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yp4gq.png" alt="4" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yp4gq.png" alt="4"></p>
 <h3 id="开启温度传感器">开启温度传感器</h3>
-
 <p>开启温度传感器通过配置TR0和ATEST两个寄存器</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/dkfes.png" alt="5" /></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ntwtl.png" alt="6" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/dkfes.png" alt="5"></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ntwtl.png" alt="6"></p>
 <h2 id="温度传感器数据获取">温度传感器数据获取</h2>
-
 <p>使用ADC对温度传感器采样前需要开启温度传感器，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">adcTempInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 打开温度传感器
 </span><span class="c1"></span>    <span class="n">TR0</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>
     <span class="c1">// 使能温度传感器
 </span><span class="c1"></span>    <span class="n">ATEST</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
-<p>编写手动读取温度传感器数据的函数，其中转换器获得的数据需要换算才能得到摄氏温度，代码如下：</p>
+<span class="p">}</span>
+</code></pre></div><p>编写手动读取温度传感器数据的函数，其中转换器获得的数据需要换算才能得到摄氏温度，代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// 获取温度传感器数据
 </span><span class="c1"></span><span class="kt">float</span> <span class="nf">readTemperature</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span>  <span class="n">reading</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -139,28 +121,29 @@
     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">do</span><span class="p">{</span>
         <span class="n">ADCCON3</span> <span class="o">=</span> <span class="mh">0x0E</span> <span class="o">|</span> <span class="mh">0x20</span><span class="p">;</span>           <span class="c1">// 12位精度，启动转换
-</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">ADCCON1</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">));</span>          <span class="c1">// 等待转换完成
+</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">ADCCON1</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>          <span class="c1">// 等待转换完成
 </span><span class="c1"></span>
         <span class="c1">// 读取采样结果
-</span><span class="c1"></span>        <span class="n">reading</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">ADCL</span><span class="p">);</span>
-        <span class="n">reading</span> <span class="o">|=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">ADCH</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
-        <span class="n">reading</span> <span class="o">&gt;&gt;=</span> <span class="mi">4</span><span class="p">;</span>                      <span class="c1">// 丢弃低位
-</span><span class="c1"></span>        <span class="n">Result</span> <span class="o">+=</span> <span class="n">reading</span><span class="p">;</span>                  <span class="c1">// 累加
-</span><span class="c1"></span>    <span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">++</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">);</span>   <span class="c1">// 连续采样10次
+</span><span class="c1"></span>        <span class="n">reading</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="n">ADCL</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">reading</span> <span class="o">|</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="n">ADCH</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">8</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">reading</span> <span class="o">&gt;</span><span class="o">&gt;</span><span class="o">=</span> <span class="mi">4</span><span class="p">;</span>                      <span class="c1">// 丢弃低位
+</span><span class="c1"></span>        <span class="n">Result</span> <span class="o">+</span><span class="o">=</span> <span class="n">reading</span><span class="p">;</span>                  <span class="c1">// 累加
+</span><span class="c1"></span>    <span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// 连续采样10次
 </span><span class="c1"></span>    
-    <span class="k">return</span> <span class="p">((</span><span class="n">Result</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mi">1340</span><span class="p">)</span> <span class="o">/</span> <span class="n">factor</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
-<p>在需要获取温度数据的地方调用函数即可，我在主函数获取温度数据并打印，每隔一秒PC串口助手就接收到一次温度数据，代码如下：</p>
+    <span class="k">return</span> <span class="p">(</span><span class="p">(</span><span class="n">Result</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mi">1340</span><span class="p">)</span> <span class="o">/</span> <span class="n">factor</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>在需要获取温度数据的地方调用函数即可，我在主函数获取温度数据并打印，每隔一秒PC串口助手就接收到一次温度数据，代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">oscInit</span><span class="p">();</span>              <span class="c1">// 晶振时钟初始化
-</span><span class="c1"></span>    <span class="n">serialInit</span><span class="p">();</span>
-    <span class="n">adcTempInit</span><span class="p">();</span>
+    <span class="n">oscInit</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>              <span class="c1">// 晶振时钟初始化
+</span><span class="c1"></span>    <span class="n">serialInit</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">adcTempInit</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
     
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printFloatln</span><span class="p">(</span><span class="n">readTemperature</span><span class="p">());</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+        <span class="n">printFloatln</span><span class="p">(</span><span class="n">readTemperature</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -179,19 +162,17 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#结构">结构</a></li>
-<li><a href="#寄存器">寄存器</a>
-<ul>
-<li><a href="#adc的使用">ADC的使用</a></li>
-<li><a href="#adc转换数据">ADC转换数据</a></li>
-<li><a href="#开启温度传感器">开启温度传感器</a></li>
-</ul></li>
-<li><a href="#温度传感器数据获取">温度传感器数据获取</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#结构">结构</a></li>
+    <li><a href="#寄存器">寄存器</a>
+      <ul>
+        <li><a href="#adc的使用">ADC的使用</a></li>
+        <li><a href="#adc转换数据">ADC转换数据</a></li>
+        <li><a href="#开启温度传感器">开启温度传感器</a></li>
+      </ul>
+    </li>
+    <li><a href="#温度传感器数据获取">温度传感器数据获取</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -242,7 +223,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

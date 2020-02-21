@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Arduino UNO R3 软件实现HID键盘功能">
 <meta itemprop="description" content="本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。
-
 本文搬自我之前在Arduino中文社区的帖子-UNO R3 软件实现HID键盘功能，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！">
-
-
 <meta itemprop="datePublished" content="2014-03-27T17:11:40&#43;08:00" />
 <meta itemprop="dateModified" content="2014-03-27T17:11:40&#43;08:00" />
 <meta itemprop="wordCount" content="1919">
 
 
 
-<meta itemprop="keywords" content="arduino," />
-<meta property="og:title" content="Arduino UNO R3 软件实现HID键盘功能" />
+<meta itemprop="keywords" content="arduino," /><meta property="og:title" content="Arduino UNO R3 软件实现HID键盘功能" />
 <meta property="og:description" content="本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。
-
 本文搬自我之前在Arduino中文社区的帖子-UNO R3 软件实现HID键盘功能，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2014/03/27/ArduinoUnoHIDKeyboard/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Arduino UNO R3 软件实现HID键盘功能"/>
 <meta name="twitter:description" content="本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。
-
 本文搬自我之前在Arduino中文社区的帖子-UNO R3 软件实现HID键盘功能，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,31 +84,18 @@
 			</header>
 			<div class="content">
 				<p>本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。</p>
-
-<p>本文搬自我之前在Arduino中文社区的帖子-<a href="http://www.arduino.cn/thread-5107-1-1.html" target="_blank">UNO R3 软件实现HID键盘功能</a>，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！</p>
-
+<p>本文搬自我之前在Arduino中文社区的帖子-<a href="http://www.arduino.cn/thread-5107-1-1.html">UNO R3 软件实现HID键盘功能</a>，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！</p>
 <h3 id="原理"><strong>原理</strong></h3>
-
 <p>极客工坊有帖子是搭硬件实现HID设备功能，但经搜索和了解，不用搭电路照样让我们的Arduino uno r3作HID 键盘或鼠标，这全归功于板子上的<strong>atemga16u芯片</strong>，平常是作为usb转串口的其实这是内部程序实现的，也就是说通过给它换所谓的bootloader即可实现其keyboard或鼠标功能，我只尝试了键盘的实现，所以这里只讲做键盘这方面的。这里先讲述一下，基本的工作原理如下图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gh5q3.jpg" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/gh5q3.jpg" alt="1"></p>
 <p>根据上图，你可能会有疑问，HID识别码是个什么东西，其实这是我自己这么叫的，可以认为就是按键ID，用来告诉<strong>atmega16u2</strong>哪些按键按下了，这里有个规则，如图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/v9mg7.jpg" alt="2" /></p>
-
-<p><strong><em>说明：特殊按键，就是一些修饰键，如ctrl，shift，alt等，这里这么简单说，可能会不太理解，结合下面具体做法就会明白了。</em></strong></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/v9mg7.jpg" alt="2"></p>
+<p><em><strong>说明：特殊按键，就是一些修饰键，如ctrl，shift，alt等，这里这么简单说，可能会不太理解，结合下面具体做法就会明白了。</strong></em></p>
 <h3 id="实现"><strong>实现</strong></h3>
-
 <h4 id="atmega328p的程序编写和下载">ATmega328p的程序编写和下载</h4>
-
 <h5 id="下载对应支持库">下载对应支持库</h5>
-
-<p>其实就是简单的串口通信封装的一些方法和对应按键的按键ID的宏定义，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/arduino/keyboard/USBKeyboard.zip" target="_blank">点我</a>下载库，库下载后解压安装。</p>
-
-<p><strong><em>说明一下</em></strong>之前库是下载的网上的，不过有个小毛病，没考虑到同时按下多个键的情况，而且每发送一个按键按下的消息后都会发送按键松开的消息，我稍微修改了一下，将按键松开的消息独立出来，同时添加了一些同时按下按键的方法。代码里未做注释，不过能看懂，在这里稍稍说一下：</p>
-
+<p>其实就是简单的串口通信封装的一些方法和对应按键的按键ID的宏定义，<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/arduino/keyboard/USBKeyboard.zip">点我</a>下载库，库下载后解压安装。</p>
+<p><em><strong>说明一下</strong></em>之前库是下载的网上的，不过有个小毛病，没考虑到同时按下多个键的情况，而且每发送一个按键按下的消息后都会发送按键松开的消息，我稍微修改了一下，将按键松开的消息独立出来，同时添加了一些同时按下按键的方法。代码里未做注释，不过能看懂，在这里稍稍说一下：</p>
 <table>
 <thead>
 <tr>
@@ -122,95 +103,73 @@
 <th>代码</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>以字符串的形式发送消息的方法：</td>
 <td>Keyboard.print(),例如Keyboard.print(&ldquo;helloWorld&rdquo;)；//区分大小写</td>
 </tr>
-
 <tr>
 <td>只发送单个按键按下不松消息的方法：</td>
 <td>Keyboard.sendKeyStrokeUnReleased(KEY_A);//按下按键A且不松开或Keyboard.sendKeyStroke(KEY_A， 0);//第二个参数是修饰键ID（shift等），用的话要使用对应宏定义见hid_keys.h</td>
 </tr>
-
 <tr>
 <td>只发送按键松开的消息，其实就是HID码全是0：</td>
 <td>Keyboard.sendKeyReleased();//没有按下按键</td>
 </tr>
-
 <tr>
 <td>同时按下两个按键的方法：</td>
 <td>如,Keyboard.sendKeyStrokeUnReleased(KEY_A, KEY_B, 0);//同时按下A、B键</td>
 </tr>
 </tbody>
 </table>
-
 <h5 id="编写代码及下载">编写代码及下载</h5>
-
 <p>可打开刚安装的库的Example，其中有个helloworld，或者自己创建新的sketchbook如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;USBKeyboard.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;USBKeyboard.h&gt;</span><span class="cp">
 </span><span class="cp"></span> 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> 
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> 
 <span class="p">{</span>
-  <span class="n">Keyboard</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
+  <span class="n">Keyboard</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
  
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> 
 <span class="p">{</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
-  <span class="n">Keyboard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
-<p>编译上传到uno板子，当然你也可以编写属于自己的代码，如此就完成第一步工作了。</p>
-
+  <span class="n">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">Keyboard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">hello world</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>编译上传到uno板子，当然你也可以编写属于自己的代码，如此就完成第一步工作了。</p>
 <h4 id="atmega16u2的程序编写和下载">ATmega16u2的程序编写和下载</h4>
-
-<p>下载bootloader的方法，论坛里有相关帖子，网上也有很多，自己多搜搜看看吧，搜到的台湾的一个论坛方法是让atmega16u2进入DFU模式，但悲催的是，我的板子是国内山寨货不能进入DFU模式，无语，便宜果然没好货，感兴趣的可以看最后我贴的帖子地址，之后又搜了好多资料，终于找到适合我自己用的方法，因为我只有ft232r usb转串口线，所以我参考了YFduino论坛里<strong>YFRobot</strong>的帖子：<a href="http://www.yfrobot.com/forum.php?mod=viewthread&amp;tid=2401" target="_blank">利用ft232r的Bitbang模式给arduino控制器重新烧写bootloader</a>，因为以我的条件我只能用这种方法，在此感谢！</p>
-
+<p>下载bootloader的方法，论坛里有相关帖子，网上也有很多，自己多搜搜看看吧，搜到的台湾的一个论坛方法是让atmega16u2进入DFU模式，但悲催的是，我的板子是国内山寨货不能进入DFU模式，无语，便宜果然没好货，感兴趣的可以看最后我贴的帖子地址，之后又搜了好多资料，终于找到适合我自己用的方法，因为我只有ft232r usb转串口线，所以我参考了YFduino论坛里<strong>YFRobot</strong>的帖子：<a href="http://www.yfrobot.com/forum.php?mod=viewthread&amp;tid=2401">利用ft232r的Bitbang模式给arduino控制器重新烧写bootloader</a>，因为以我的条件我只能用这种方法，在此感谢！</p>
 <h5 id="avrdude压缩包">avrdude压缩包</h5>
-
-<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/arduino/keyboard/avrdude.zip" target="_blank">点我</a>下载avrdude压缩包,
+<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/arduino/keyboard/avrdude.zip">点我</a>下载avrdude压缩包,
 压缩包里有avrdude和其对应的avrdude-GUI以及用到的两个bootloader，一个是支持keyboard的Arduino-keyboard-0.3.hex和原来的做usb转串口的Arduino-usbserial-uno.hex</p>
-
 <h5 id="atmega16u2烧写专用程序">Atmega16u2烧写专用程序</h5>
-
 <p>将FT232R串口线与uno r3板子上的Atmega16u2连接,如图：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rdq47.jpg" alt="3" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rdq47.jpg" alt="3"></p>
 <p>按照图示步骤操作：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/a6c4k.jpg" alt="4" /></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/pwhvk.jpg" alt="5" /></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ni47v.jpg" alt="6" /></p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/oga5y.jpg" alt="7" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/a6c4k.jpg" alt="4"></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/pwhvk.jpg" alt="5"></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ni47v.jpg" alt="6"></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/oga5y.jpg" alt="7"></p>
 <p>这就完成了两大工作，之后将Ft232r串口线与板子断开，将Arduino UNO r3板子通过他的USb口连接电脑，在电脑上找个能输文本的地方，单击光标闪动，你会看到每隔5s就会有一个helloWorld字符串出现，怎么样不错吧，利用这个探索其它的玩法吧！</p>
-
-<h6 id="如果想让板子回到原来的状态-为atmega16u2下载arduino-usbserial-uno-hex即可">如果想让板子回到原来的状态，为Atmega16u2下载Arduino-usbserial-uno.hex即可</h6>
-
+<h6 id="如果想让板子回到原来的状态为atmega16u2下载arduino-usbserial-unohex即可">如果想让板子回到原来的状态，为Atmega16u2下载Arduino-usbserial-uno.hex即可</h6>
 <h3 id="参考">参考</h3>
-
 <ol>
 <li>Cooper Maa论坛（台湾的）帖子：（可能需要翻墙）
-
 <ul>
-<li><a href="http://yehnan.blogspot.com/2013/08/arduino-unousb.html" target="_blank">讓Arduino Uno變成USB鍵盤</a></li>
-<li><a href="http://coopermaa2nd.blogspot.tw/2011/11/usbkeyboard-library.html" target="_blank">USBKeyboard Library</a></li>
-</ul></li>
+<li><a href="http://yehnan.blogspot.com/2013/08/arduino-unousb.html">讓Arduino Uno變成USB鍵盤</a></li>
+<li><a href="http://coopermaa2nd.blogspot.tw/2011/11/usbkeyboard-library.html">USBKeyboard Library</a></li>
+</ul>
+</li>
 <li>YFduino
-
 <ul>
-<li><a href="http://www.yfrobot.com/forum.php?mod=viewthread&amp;tid=2401" target="_blank">利用ft232r的Bitbang模式给arduino控制器重新烧写bootloader</a></li>
-</ul></li>
+<li><a href="http://www.yfrobot.com/forum.php?mod=viewthread&amp;tid=2401">利用ft232r的Bitbang模式给arduino控制器重新烧写bootloader</a></li>
+</ul>
+</li>
 <li>极客工坊
-
 <ul>
-<li><a href="http://www.geek-workshop.com/thread-658-1-1.html" target="_blank">arduino uno mega2560等各种不同板子bootloader烧写方法</a></li>
-</ul></li>
+<li><a href="http://www.geek-workshop.com/thread-658-1-1.html">arduino uno mega2560等各种不同板子bootloader烧写方法</a></li>
+</ul>
+</li>
 </ol>
 			</div>
 			<hr class="post-end">
@@ -230,32 +189,15 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#原理"><strong>原理</strong></a></li>
-<li><a href="#实现"><strong>实现</strong></a>
-<ul>
-<li><a href="#atmega328p的程序编写和下载">ATmega328p的程序编写和下载</a>
-<ul>
-<li><a href="#下载对应支持库">下载对应支持库</a></li>
-<li><a href="#编写代码及下载">编写代码及下载</a></li>
-</ul></li>
-<li><a href="#atmega16u2的程序编写和下载">ATmega16u2的程序编写和下载</a>
-<ul>
-<li><a href="#avrdude压缩包">avrdude压缩包</a></li>
-<li><a href="#atmega16u2烧写专用程序">Atmega16u2烧写专用程序</a>
-<ul>
-<li><a href="#如果想让板子回到原来的状态-为atmega16u2下载arduino-usbserial-uno-hex即可">如果想让板子回到原来的状态，为Atmega16u2下载Arduino-usbserial-uno.hex即可</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#实现">实现</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -303,7 +245,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -19,8 +19,7 @@
       
       <guid>https://www.smslit.top/2018/10/12/verification_code_chars/</guid>
       <description>&lt;p&gt;编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181012153933272275283.png&#34; alt=&#34;20181012153933272275283.png&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181012153933272275283.png&#34; alt=&#34;20181012153933272275283.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,12 +28,10 @@
       <pubDate>Fri, 07 Sep 2018 16:50:29 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/09/07/phantomjs-element-invisible/</guid>
-      <description>&lt;p&gt;今天写一个爬虫，使用 &lt;a href=&#34;https://www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;selenium&lt;/strong&gt;&lt;/a&gt;(可以操纵浏览器的python库)操控phantomjs出了问题：&lt;/p&gt;
-
+      <description>&lt;p&gt;今天写一个爬虫，使用 &lt;a href=&#34;https://www.seleniumhq.org&#34;&gt;&lt;strong&gt;selenium&lt;/strong&gt;&lt;/a&gt;(可以操纵浏览器的python库)操控phantomjs出了问题：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Element is not currently visible and may not be manipulated exception&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;获取的元素不可见是什么鬼，操控其它浏览器却没有这个问题，研究了一下，现分享解决方法。&lt;/p&gt;</description>
     </item>
     
@@ -53,7 +50,7 @@
       <pubDate>Mon, 25 Jun 2018 15:17:27 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/06/25/spider-practice-hexo-blogo/</guid>
-      <description>&lt;p&gt;爬虫最好处理的就是静态页面，而静态博客就是静态页面，像&lt;a href=&#34;https://jekyllrb.com&#34; target=&#34;_blank&#34;&gt;jekyll&lt;/a&gt;和&lt;a href=&#34;https://hexo.io&#34; target=&#34;_blank&#34;&gt;hexo&lt;/a&gt;生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。&lt;/p&gt;</description>
+      <description>&lt;p&gt;爬虫最好处理的就是静态页面，而静态博客就是静态页面，像&lt;a href=&#34;https://jekyllrb.com&#34;&gt;jekyll&lt;/a&gt;和&lt;a href=&#34;https://hexo.io&#34;&gt;hexo&lt;/a&gt;生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -63,13 +60,11 @@
       
       <guid>https://www.smslit.top/2018/06/23/spider-basic-pyquery/</guid>
       <description>&lt;p&gt;爬虫程序中少不了解析库的使用，使用库来解析网页内容的话，效率会很高，常用的解析库有:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;lxml&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Beautiful Soup&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;pyquery&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;十里对三个库都稍微了解了一下，个人比较喜欢&lt;code&gt;pyquery库&lt;/code&gt;，当然这只是个人喜好问题，无关优劣。所以本文中十里将与您一起学习&lt;code&gt;pyquery&lt;/code&gt;库的简单使用。&lt;/p&gt;</description>
     </item>
     

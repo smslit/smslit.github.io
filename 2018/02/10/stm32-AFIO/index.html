@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="逼疯我的AFIO，STM32的JTAG调试接口作为GPIO用">
 <meta itemprop="description" content="不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！">
-
-
 <meta itemprop="datePublished" content="2018-02-10T16:34:01&#43;08:00" />
 <meta itemprop="dateModified" content="2018-02-10T16:34:01&#43;08:00" />
 <meta itemprop="wordCount" content="1385">
 
 
 
-<meta itemprop="keywords" content="stm32,develop,circuit," />
-<meta property="og:title" content="逼疯我的AFIO，STM32的JTAG调试接口作为GPIO用" />
+<meta itemprop="keywords" content="stm32,develop,circuit," /><meta property="og:title" content="逼疯我的AFIO，STM32的JTAG调试接口作为GPIO用" />
 <meta property="og:description" content="不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/02/10/stm32-AFIO/" />
@@ -84,59 +81,42 @@
 			</header>
 			<div class="content">
 				<p>不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！</p>
-
 <h2 id="现象">现象</h2>
-
-<p>最近在玩带按钮的<a href="https://baike.baidu.com/item/%E7%BC%96%E7%A0%81%E5%99%A8/6029803?fr=aladdin" target="_blank">旋转编码器</a>，旋转编码器用到了 <strong>stm32f103c8t6</strong> 的3个GPIO作为输入，分别是：</p>
-
+<p>最近在玩带按钮的<a href="https://baike.baidu.com/item/%E7%BC%96%E7%A0%81%E5%99%A8/6029803?fr=aladdin">旋转编码器</a>，旋转编码器用到了 <strong>stm32f103c8t6</strong> 的3个GPIO作为输入，分别是：</p>
 <ul>
 <li>PB4 -&gt; A相</li>
 <li>PB3 -&gt; B相</li>
 <li>PA15 -&gt; 按钮</li>
 </ul>
-
 <p>这里就不介绍旋转编码器了，因为这里只需要知道是作为输入管脚使用就可以了。</p>
-
 <p>出现了很奇怪的现象，PB3的管脚不能正常采集外部输入，造成了驱动异常，十里一度怀疑管脚坏了，但是十里使用STM32CubeMX生成了新的工程，测试管脚正常采集高低电平，简直了！此时此刻脑袋中有一万头羊驼奔过。。。</p>
-
 <h2 id="分析">分析</h2>
-
 <h3 id="管脚配置问题">管脚配置问题</h3>
-
 <p>十里曾经怀疑是不是STM32CubeMX生成的的初始化代码有问题，但是十里在调试过程中查看了管脚配置，与手册对照配置是正确的。</p>
-
 <h3 id="管脚坏了">管脚坏了</h3>
-
 <p>现象中已经提到，新的工程中PB3作为输入是正常的，所以原因排除。</p>
-
 <h3 id="外部电路干扰">外部电路干扰</h3>
-
 <p>直连编码器和单片机，管脚仍然配置为上拉输入，依旧存在问题，说明肯定还有其他原因才对！开始怀疑人生。。。</p>
-
 <h3 id="难道管脚有什么特殊之处">难道管脚有什么特殊之处</h3>
-
 <p>查看芯片手册，最终发现原来真的是有猫腻，PB3管脚复位后的主功能原来不是GPIO，而是JTDO（JTAG接口的数据输出），原来是管脚复用（AFIO）的问题，网上查找资料，果然被十里找到一篇文章，问题出错原理一模一样：</p>
-
 <blockquote>
 <p>查看STM32F1参考手册可以发现PB4及PA13\PA14\PA15\PB3等5个脚在芯片复位后默认的就是专用的调试口，非通用GPIO。现在客户工程师虽然用SWD接口，只用到PA13\PA14两根线，但PB4及PA15、PB3三根线的属性没变，还是专用调试口。如果要把不用的PB4等三根线作为GPIO，还得额外做些相关寄存器配置，即操作AFIO_MAPR寄存器中的SWJ_CFG【2:0】三个位。</p>
-
-<p>&hellip;</p>
-
-<p>如果使用ST公司的STM32CubeMx图形化配置工具来做管脚安排及时钟初始化等就可以避免很多类似上面谈到的繁琐或麻烦。利用STM32CubeMx配置工具，很多初始化的东西都可以依据你的管脚和时钟安排、外设功能的使能等而生成出相应的配置代码，不必手动二次添加配置,让你去专注你的用户应用代码设计与调试。</p>
-
-<p>取自：<a href="http://www.51hei.com/bbs/dpj-41000-1.html" target="_blank">一个关于STM32 GPIO管脚复用冲突的话题</a></p>
 </blockquote>
-
+<blockquote>
+<p>&hellip;</p>
+</blockquote>
+<blockquote>
+<p>如果使用ST公司的STM32CubeMx图形化配置工具来做管脚安排及时钟初始化等就可以避免很多类似上面谈到的繁琐或麻烦。利用STM32CubeMx配置工具，很多初始化的东西都可以依据你的管脚和时钟安排、外设功能的使能等而生成出相应的配置代码，不必手动二次添加配置,让你去专注你的用户应用代码设计与调试。</p>
+</blockquote>
+<blockquote>
+<p>取自：<a href="http://www.51hei.com/bbs/dpj-41000-1.html">一个关于STM32 GPIO管脚复用冲突的话题</a></p>
+</blockquote>
 <h2 id="解决">解决</h2>
-
 <p>依照找到的原因查看程序，调试过程中发现<code>AFIO-&gt;MAPR</code>并不是期望值2，也就是说复位保持了PB3的复用功能JTDO，所以导致PB3作为输入无法正常工作。那么为什么我也采用了STM32CubeMX生成的代码，却没有屏蔽调试接口的处理呢？查看代码找到文件<code>stm32f1xx_hal_msp.c</code>中的 <strong>HAL_Msp_init</strong> 函数，发现里面有屏蔽调试接口的操作：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">__HAL_AFIO_REMAP_SWJ_NOJTAG</span><span class="p">();</span></code></pre></div>
-<p>但是为什么没有生效呢？gdb一步步调试程序，发现执行HAL_Msp_Init函数时跳到了其他文件，这个文件中这个函数为弱函数定义，其中没有任何操作，说明文件stm32f1xx_hal_msp.c没有被编译进程序，最后查找Makefile发现，果真没有加入这个文件的编译，加入后，编译运行，一切OK！！！</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">__HAL_AFIO_REMAP_SWJ_NOJTAG</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>但是为什么没有生效呢？gdb一步步调试程序，发现执行HAL_Msp_Init函数时跳到了其他文件，这个文件中这个函数为弱函数定义，其中没有任何操作，说明文件stm32f1xx_hal_msp.c没有被编译进程序，最后查找Makefile发现，果真没有加入这个文件的编译，加入后，编译运行，一切OK！！！</p>
 <p>这也就解释了为什么其他用STM32CubeMX配置工具生成的工程可以正常操作PB3。</p>
-
 <h2 id="总结">总结</h2>
-
 <p>没有总结，只有安利，gdb真的很好用，对于stm32芯片可以使用<strong>arm-none-eabi-gdb</strong>进行调试，nice！比IDE中的调试功能强大且灵活。。。</p>
 			</div>
 			<hr class="post-end">
@@ -156,21 +136,19 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#现象">现象</a></li>
-<li><a href="#分析">分析</a>
-<ul>
-<li><a href="#管脚配置问题">管脚配置问题</a></li>
-<li><a href="#管脚坏了">管脚坏了</a></li>
-<li><a href="#外部电路干扰">外部电路干扰</a></li>
-<li><a href="#难道管脚有什么特殊之处">难道管脚有什么特殊之处</a></li>
-</ul></li>
-<li><a href="#解决">解决</a></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#现象">现象</a></li>
+    <li><a href="#分析">分析</a>
+      <ul>
+        <li><a href="#管脚配置问题">管脚配置问题</a></li>
+        <li><a href="#管脚坏了">管脚坏了</a></li>
+        <li><a href="#外部电路干扰">外部电路干扰</a></li>
+        <li><a href="#难道管脚有什么特殊之处">难道管脚有什么特殊之处</a></li>
+      </ul>
+    </li>
+    <li><a href="#解决">解决</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -221,7 +199,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

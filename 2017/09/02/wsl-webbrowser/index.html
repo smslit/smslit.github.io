@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="WSL(windows subsytem linux)下添加网络浏览器支持">
 <meta itemprop="description" content="windows下在subsystem linux中安装了Anaconda，在使用jupyter notebook时，发现命令行并不能自动打开浏览器，原来是子系统linux中没有可用网页浏览器，本文就讲述一下如何在WSL中添加网络浏览器支持。">
-
-
 <meta itemprop="datePublished" content="2017-09-02T13:41:03&#43;08:00" />
 <meta itemprop="dateModified" content="2017-09-02T13:41:03&#43;08:00" />
 <meta itemprop="wordCount" content="887">
 
 
 
-<meta itemprop="keywords" content="wsl,command,shell,windows," />
-<meta property="og:title" content="WSL(windows subsytem linux)下添加网络浏览器支持" />
+<meta itemprop="keywords" content="wsl,command,shell,windows," /><meta property="og:title" content="WSL(windows subsytem linux)下添加网络浏览器支持" />
 <meta property="og:description" content="windows下在subsystem linux中安装了Anaconda，在使用jupyter notebook时，发现命令行并不能自动打开浏览器，原来是子系统linux中没有可用网页浏览器，本文就讲述一下如何在WSL中添加网络浏览器支持。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/09/02/wsl-webbrowser/" />
@@ -84,50 +81,43 @@
 			</header>
 			<div class="content">
 				<p>windows下在subsystem linux中安装了Anaconda，在使用jupyter notebook时，发现命令行并不能自动打开浏览器，原来是子系统linux中没有可用网页浏览器，本文就讲述一下如何在WSL中添加网络浏览器支持。</p>
-
 <h2 id="问题现象">问题现象</h2>
-
 <p>WSL命令行中，在相应目录下使用jupyter notebook，会出现如下提示：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  Algorithm_Research git:<span class="o">(</span>master<span class="o">)</span> jupyter notebook
-<span class="o">[</span>I <span class="m">10</span>:44:16.783 NotebookApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /mnt/c/Users/smslit/Desktop/topscomm/Algorithm_Research
-<span class="o">[</span>I <span class="m">10</span>:44:16.784 NotebookApp<span class="o">]</span> <span class="m">0</span> active kernels 
-<span class="o">[</span>I <span class="m">10</span>:44:16.784 NotebookApp<span class="o">]</span> The Jupyter Notebook is running at: http://localhost:8888/?token<span class="o">=</span>000982665d732a5d7052fe3bbadb4346fe0b3fdbc8b87bb4
-<span class="o">[</span>I <span class="m">10</span>:44:16.784 NotebookApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
-<span class="o">[</span>W <span class="m">10</span>:44:16.789 NotebookApp<span class="o">]</span> No web browser found: could not locate runnable browser.
-<span class="o">[</span>C <span class="m">10</span>:44:16.789 NotebookApp<span class="o">]</span> 
+<span class="o">[</span>I 10:44:16.783 NotebookApp<span class="o">]</span> Serving notebooks from <span class="nb">local</span> directory: /mnt/c/Users/smslit/Desktop/topscomm/Algorithm_Research
+<span class="o">[</span>I 10:44:16.784 NotebookApp<span class="o">]</span> <span class="m">0</span> active kernels 
+<span class="o">[</span>I 10:44:16.784 NotebookApp<span class="o">]</span> The Jupyter Notebook is running at: http://localhost:8888/?token<span class="o">=</span>000982665d732a5d7052fe3bbadb4346fe0b3fdbc8b87bb4
+<span class="o">[</span>I 10:44:16.784 NotebookApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
+<span class="o">[</span>W 10:44:16.789 NotebookApp<span class="o">]</span> No web browser found: could not locate runnable browser.
+<span class="o">[</span>C 10:44:16.789 NotebookApp<span class="o">]</span> 
     
     Copy/paste this URL into your browser when you connect <span class="k">for</span> the first time,
     to login with a token:
-        http://localhost:8888/?token<span class="o">=</span>000982665d732a5d7052fe3bbadb4346fe0b3fdbc8b87bb4</code></pre></div>
-<p>其中可以看到<code>No web browser found: could not locate runnable browser</code>，这是因为win下启用了ubuntu bash后只是命令行的接口，但没有相应网络浏览器安装。</p>
-
+        http://localhost:8888/?token<span class="o">=</span>000982665d732a5d7052fe3bbadb4346fe0b3fdbc8b87bb4
+</code></pre></div><p>其中可以看到<code>No web browser found: could not locate runnable browser</code>，这是因为win下启用了ubuntu bash后只是命令行的接口，但没有相应网络浏览器安装。</p>
 <h2 id="意外发现">意外发现</h2>
-
 <h3 id="wsl可以执行exe">WSL可以执行exe</h3>
-
 <p>惊奇的发现wsl的命令行中可以调用exe，比如执行以下命令可以打开chrome浏览器，也就是说可以将windows中安装的浏览器注册给wsl。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/mnt/c/Program<span class="se">\ </span>Files<span class="se">\ \(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe</code></pre></div>
-<h3 id="wsl中可以用命令行配置默认浏览器">WSL中可以用命令行配置默认浏览器</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/mnt/c/Program<span class="se">\ </span>Files<span class="se">\ </span><span class="se">\(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe
+</code></pre></div><h3 id="wsl中可以用命令行配置默认浏览器">WSL中可以用命令行配置默认浏览器</h3>
 <p>如果我们直接用如下命令行配置网页浏览器，会提示没有安装浏览器，没有选项。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo update-alternatives --config x-www-browser</code></pre></div>
-<p>怎么办？这个时候想到了一种饶路子的方式，ubuntu下有配置浏览器选项优先级的命令，这个命令需要指明浏览器，此时指定win 下chrome的路径就可以了，试一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  Downloads <span class="nb">cd</span> /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ \(</span>x86<span class="se">\)</span>/Google/Chrome/Application
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo update-alternatives --config x-www-browser
+</code></pre></div><p>怎么办？这个时候想到了一种饶路子的方式，ubuntu下有配置浏览器选项优先级的命令，这个命令需要指明浏览器，此时指定win 下chrome的路径就可以了，试一下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  Downloads <span class="nb">cd</span> /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ </span><span class="se">\(</span>x86<span class="se">\)</span>/Google/Chrome/Application
 ➜  Application ll
-总用量 <span class="m">1</span>.4M
-dr-xr-xr-x <span class="m">0</span> root root  <span class="m">512</span> 8月  <span class="m">18</span> <span class="m">08</span>:31 <span class="m">60</span>.0.3112.101
--r-xr-xr-x <span class="m">1</span> root root <span class="m">1</span>.3M 8月  <span class="m">11</span> <span class="m">15</span>:40 chrome.exe
--r-xr-xr-x <span class="m">1</span> root root  <span class="m">410</span> 8月  <span class="m">18</span> <span class="m">08</span>:31 chrome.VisualElementsManifest.xml
--r-xr-xr-x <span class="m">1</span> root root 121K 8月  <span class="m">14</span> <span class="m">08</span>:41 master_preferences
-drwxrwxrwx <span class="m">0</span> root root  <span class="m">512</span> 8月  <span class="m">25</span> <span class="m">18</span>:14 SetupMetrics
-➜  Application sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ \(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe <span class="m">100</span>
+总用量 1.4M
+dr-xr-xr-x <span class="m">0</span> root root  <span class="m">512</span> 8月  <span class="m">18</span> 08:31 60.0.3112.101
+-r-xr-xr-x <span class="m">1</span> root root 1.3M 8月  <span class="m">11</span> 15:40 chrome.exe
+-r-xr-xr-x <span class="m">1</span> root root  <span class="m">410</span> 8月  <span class="m">18</span> 08:31 chrome.VisualElementsManifest.xml
+-r-xr-xr-x <span class="m">1</span> root root 121K 8月  <span class="m">14</span> 08:41 master_preferences
+drwxrwxrwx <span class="m">0</span> root root  <span class="m">512</span> 8月  <span class="m">25</span> 18:14 SetupMetrics
+➜  Application sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ </span><span class="se">\(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe <span class="m">100</span>
 update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<span class="o">)</span>/Google/Chrome/Application/chrome.exe 来在自动模式中提供 /usr/bin/x-www-browser <span class="o">(</span>x-www-browser<span class="o">)</span>
 ➜  Application sudo update-alternatives --config x-www-browser 
-链接组 x-www-browser <span class="o">(</span>提供 /usr/bin/x-www-browser<span class="o">)</span>中只有一个候选项：/mnt/c/Program Files <span class="o">(</span>x86<span class="o">)</span>/Google/Chrome/Application/chrome.exe无需配置。</code></pre></div>
-<h2 id="jupyter-notebook">jupyter notebook</h2>
-
+链接组 x-www-browser <span class="o">(</span>提供 /usr/bin/x-www-browser<span class="o">)</span>中只有一个候选项：/mnt/c/Program Files <span class="o">(</span>x86<span class="o">)</span>/Google/Chrome/Application/chrome.exe无需配置。
+</code></pre></div><h2 id="jupyter-notebook">jupyter notebook</h2>
 <p>此时再次执行jupyter notebook，惊喜，确实可以自动打开chrome呈现仿真目录：</p>
-<div class="highlight"><pre class="chroma">➜  Algorithm_Research git:(master) jupyter notebook                               
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  Algorithm_Research git:(master) jupyter notebook                               
 [I 10:59:17.800 NotebookApp] Serving notebooks from local directory: /mnt/c/Users/smslit/Desktop/topscomm/Algorithm_Research
 [I 10:59:17.800 NotebookApp] 0 active kernels 
 [I 10:59:17.800 NotebookApp] The Jupyter Notebook is running at: http://localhost:8888/?token=2d7f588a4341b73bc65fcc6c85aac0289677123ef1b8e24c
@@ -140,7 +130,8 @@ update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<spa
 [I 10:59:18.359 NotebookApp] Accepting one-time-token-authenticated connection from 127.0.0.1
 [W 11:02:15.429 NotebookApp] 404 GET /static/components/preact/preact.min.js.map (127.0.0.1) 32.15ms referer=None
 [W 11:02:15.433 NotebookApp] 404 GET /static/components/proptypes/index.js.map (127.0.0.1) 2.30ms referer=None
-[W 11:02:15.436 NotebookApp] 404 GET /static/components/preact-compat/preact-compat.min.js.map (127.0.0.1) 2.09ms referer=None</pre></div>
+[W 11:02:15.436 NotebookApp] 404 GET /static/components/preact-compat/preact-compat.min.js.map (127.0.0.1) 2.09ms referer=None
+</code></pre></div>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -159,18 +150,16 @@ update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<spa
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#问题现象">问题现象</a></li>
-<li><a href="#意外发现">意外发现</a>
-<ul>
-<li><a href="#wsl可以执行exe">WSL可以执行exe</a></li>
-<li><a href="#wsl中可以用命令行配置默认浏览器">WSL中可以用命令行配置默认浏览器</a></li>
-</ul></li>
-<li><a href="#jupyter-notebook">jupyter notebook</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#问题现象">问题现象</a></li>
+    <li><a href="#意外发现">意外发现</a>
+      <ul>
+        <li><a href="#wsl可以执行exe">WSL可以执行exe</a></li>
+        <li><a href="#wsl中可以用命令行配置默认浏览器">WSL中可以用命令行配置默认浏览器</a></li>
+      </ul>
+    </li>
+    <li><a href="#jupyter-notebook">jupyter notebook</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -221,7 +210,7 @@ update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<spa
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

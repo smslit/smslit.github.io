@@ -72,9 +72,8 @@
       <pubDate>Wed, 10 Oct 2018 16:25:37 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/10/10/vscode-pio-ide/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34; target=&#34;_blank&#34;&gt;platformio&lt;/a&gt;是一款跨平台的物联网开发的生态环境，&lt;a href=&#34;https://code.visualstudio.com&#34; target=&#34;_blank&#34;&gt;VS Code&lt;/a&gt; 这款强大的文本编辑器辅以 &lt;strong&gt;PlatformIO IDE&lt;/strong&gt; 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018101015391609436627.png&#34; alt=&#34;2018101015391609436627.png&#34; /&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34;&gt;platformio&lt;/a&gt;是一款跨平台的物联网开发的生态环境，&lt;a href=&#34;https://code.visualstudio.com&#34;&gt;VS Code&lt;/a&gt; 这款强大的文本编辑器辅以 &lt;strong&gt;PlatformIO IDE&lt;/strong&gt; 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018101015391609436627.png&#34; alt=&#34;2018101015391609436627.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -83,9 +82,8 @@
       <pubDate>Wed, 11 Jul 2018 23:28:08 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/07/11/platformio-command-device/</guid>
-      <description>&lt;p&gt;今天收到了前些天买的&lt;a href=&#34;https://store.arduino.cc/arduino-leonardo-with-headers&#34; target=&#34;_blank&#34;&gt;Arduino Leonardo&lt;/a&gt;，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 &lt;strong&gt;platformio&lt;/strong&gt; 监视 Arduino的串口数据。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180711153132350560223.jpg&#34; alt=&#34;20180711153132350560223.jpg&#34; /&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;今天收到了前些天买的&lt;a href=&#34;https://store.arduino.cc/arduino-leonardo-with-headers&#34;&gt;Arduino Leonardo&lt;/a&gt;，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 &lt;strong&gt;platformio&lt;/strong&gt; 监视 Arduino的串口数据。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180711153132350560223.jpg&#34; alt=&#34;20180711153132350560223.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -94,7 +92,7 @@
       <pubDate>Wed, 08 Nov 2017 09:10:51 +0800</pubDate>
       
       <guid>https://www.smslit.top/2017/11/08/stm32InPIO-start/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34; target=&#34;_blank&#34;&gt;platformio&lt;/a&gt;，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34;&gt;platformio&lt;/a&gt;，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。&lt;/p&gt;</description>
     </item>
     
     <item>

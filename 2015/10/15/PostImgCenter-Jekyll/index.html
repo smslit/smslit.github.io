@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Jekyll博文图片居中">
 <meta itemprop="description" content="在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。
-
 当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。">
-
-
 <meta itemprop="datePublished" content="2015-10-15T17:34:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-15T17:34:46&#43;08:00" />
 <meta itemprop="wordCount" content="644">
 
 
 
-<meta itemprop="keywords" content="jekyll," />
-<meta property="og:title" content="Jekyll博文图片居中" />
+<meta itemprop="keywords" content="jekyll," /><meta property="og:title" content="Jekyll博文图片居中" />
 <meta property="og:description" content="在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。
-
 当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/15/PostImgCenter-Jekyll/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jekyll博文图片居中"/>
 <meta name="twitter:description" content="在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。
-
 当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。"/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,9 +84,7 @@
 			</header>
 			<div class="content">
 				<p>在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。</p>
-
 <p>当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。</p>
-
 <h4 id="对齐方式的等效代码">对齐方式的等效代码</h4>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* Alignment */</span> 
 <span class="p">.</span><span class="nc">alignleft</span> <span class="p">{</span> 
@@ -107,27 +99,22 @@
 <span class="k">clear</span><span class="p">:</span> <span class="kc">both</span><span class="p">;</span> 
 <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span> 
 <span class="k">margin</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span> 
-<span class="p">}</span> </code></pre></div>
-<h4 id="修改-layout-scss文件">修改_layout.scss文件</h4>
-
+<span class="p">}</span> 
+</code></pre></div><h4 id="修改_layoutscss文件">修改_layout.scss文件</h4>
 <p>修改jekyll目录中_sass下的 _ layout.scss文件</p>
-
 <p>可以找到对应博文的样式设置代码，在<code>post-cotent{}</code>块中添加<code>img</code>项的配置即可，借鉴上述居中代码，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">img</span> <span class="p">{</span>
     <span class="k">clear</span><span class="p">:</span> <span class="kc">both</span><span class="p">;</span> 
     <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span> 
     <span class="k">margin</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span> 
-<span class="p">}</span></code></pre></div>
-<p>如果开着jekyll serve本地服务的话，保存后，能立即访问127.0.0.1:4000，查看自己的博客网站，随便查看一篇博文就能看到，图片居中了，就像下面图片的效果：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/8w9kh.png" alt="1" /></p>
-
+<span class="p">}</span>
+</code></pre></div><p>如果开着jekyll serve本地服务的话，保存后，能立即访问127.0.0.1:4000，查看自己的博客网站，随便查看一篇博文就能看到，图片居中了，就像下面图片的效果：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/8w9kh.png" alt="1"></p>
 <h4 id="附">附：</h4>
-
 <p><strong>从上面可以看到，配置我们文章的样式的话，就是添加或修改_sass下的 _layout.scss文件的<code>post-cotent{}</code>里的代码，我还修改了表格的样式</strong></p>
-
 <ul>
-<li><p>代码：</p>
+<li>
+<p>代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">table</span> <span class="p">{</span>
     <span class="k">border-collapse</span><span class="p">:</span><span class="kc">collapse</span><span class="p">;</span>
     <span class="k">margin</span><span class="p">:</span><span class="mi">8</span><span class="kt">px</span> <span class="kc">auto</span> <span class="mi">16</span><span class="kt">px</span> <span class="kc">auto</span><span class="p">;</span>
@@ -136,11 +123,12 @@
 <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span>
     <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#828282</span><span class="p">;</span>
     <span class="k">padding</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>效果就像下面的表格：</p></li>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>效果就像下面的表格：</p>
+</li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -148,65 +136,53 @@
 <th>说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>zip</td>
 <td>zip程序打包压缩的文件</td>
 </tr>
-
 <tr>
 <td>rar</td>
 <td>rar程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>7z</td>
 <td>7zip程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar</td>
 <td>tar程序打包，未压缩的文件</td>
 </tr>
-
 <tr>
 <td>gz</td>
 <td>gzip程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>xz</td>
 <td>xz程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>bz2</td>
 <td>bzip2程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.gz</td>
 <td>tar打包，gzip程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.xz</td>
 <td>tar打包，xz程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.bz2</td>
 <td>tar打包，bzip2程序压缩的文件</td>
 </tr>
-
 <tr>
 <td>tar.7z</td>
 <td>tar打包，7zip程序压缩的文件</td>
 </tr>
 </tbody>
 </table>
-
 <p><strong>其他的元素的样式同样可以在<code>post-content</code>里配置。</strong></p>
 			</div>
 			<hr class="post-end">
@@ -226,20 +202,13 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#对齐方式的等效代码">对齐方式的等效代码</a></li>
-<li><a href="#修改-layout-scss文件">修改_layout.scss文件</a></li>
-<li><a href="#附">附：</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -290,7 +259,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

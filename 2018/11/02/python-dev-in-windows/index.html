@@ -8,20 +8,15 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="windows 下 python 开发利器 vscode 的锻造">
 <meta itemprop="description" content="之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。
-
 ">
-
-
 <meta itemprop="datePublished" content="2018-11-02T13:02:49&#43;08:00" />
 <meta itemprop="dateModified" content="2018-11-02T13:02:49&#43;08:00" />
 <meta itemprop="wordCount" content="1788">
 
 
 
-<meta itemprop="keywords" content="python,windows,vscode," />
-<meta property="og:title" content="windows 下 python 开发利器 vscode 的锻造" />
+<meta itemprop="keywords" content="python,windows,vscode," /><meta property="og:title" content="windows 下 python 开发利器 vscode 的锻造" />
 <meta property="og:description" content="之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。
-
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/11/02/python-dev-in-windows/" />
@@ -30,7 +25,6 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="windows 下 python 开发利器 vscode 的锻造"/>
 <meta name="twitter:description" content="之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。
-
 "/>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -90,177 +84,158 @@
 			</header>
 			<div class="content">
 				<p>之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/2.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/2.png" alt=""></p>
 <h1 id="前言">前言</h1>
-
 <p>前几天，十里手贱为了擦屏幕往 macbook 屏幕上洒上了水和洗洁精，导致屏幕进水，导致屏幕上出现了 n 条细小的横线，液晶应该是没有受损，可能是排线进水导致屏幕接收数据异常，从而出现了横线，网上搜了一下说，要立马关机，不要用热风吹，最好是扔到装满干燥剂的箱子里，等待两天屏幕中的水自然蒸发出来，没有干燥剂可以用大米代替，所以我照办了（怪只怪我的macbook不保修了）。</p>
-
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/IMG_20181102_133559R.jpg" width="360"/> 
 </figure>
 
-
 <p>没有电脑了的程序员怎么能叫程序员，所幸水木的 surface pro 闲着，那我就拿来先用着了，也就有了今天文章的主题，在 windows 10 下配置 python 开发环境。</p>
-
 <h1 id="利器打造">利器打造</h1>
-
 <p>现在使用的平台是装有 64位 win10 的 new surface pro ，理论本文的操作不受 windows 版本限制，只要 PC 硬件够用就可以。</p>
-
 <h2 id="安装python">安装python</h2>
-
 <p>在 win10 下默认是不安装 python ，所以还需要自己安装 python。</p>
-
-<h3 id="下载python3-7-1">下载python3.7.1</h3>
-
-<p>去<a href="https://www.python.org" target="_blank">官网</a>下载支持 64位 windows 的版本下载，写此文章时最新的 python 版本是 3.7.1 ，建议安装最新的 python。这里下载的是：<a href="https://www.python.org/ftp/python/3.7.1/python-3.7.1-amd64.exe" target="_blank">Windows x86-64 executable installer</a></p>
-
-<h3 id="安装python3-7-1">安装python3.7.1</h3>
-
+<h3 id="下载python371">下载python3.7.1</h3>
+<p>去<a href="https://www.python.org">官网</a>下载支持 64位 windows 的版本下载，写此文章时最新的 python 版本是 3.7.1 ，建议安装最新的 python。这里下载的是：<a href="https://www.python.org/ftp/python/3.7.1/python-3.7.1-amd64.exe">Windows x86-64 executable installer</a></p>
+<h3 id="安装python371">安装python3.7.1</h3>
 <ol>
-<li>运行下载到的安装包 <strong>python-3.7.1-amd64.exe</strong></li>
-
-<li><p>勾选 <code>Add Python 3.7 to Path</code>，这一步会将 python 添加到环境变量，这样可以在命令行执行 <code>python</code>:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/python-install.png" alt="" /></p></li>
-
-<li><p>点击 <code>Install Now</code>就可以开启自动安装的过程了</p></li>
-
-<li><p>注销重新登录 windows，是环境变量生效</p></li>
-
-<li><p><code>win</code> 键 + <code>x</code>，选择 <strong>命令提示符</strong> 打开命令行，输入 <code>python</code>，如果出现 <code>python</code> 交互 CLI 说明安装成功：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/python-cli.png" alt="" /></p></li>
+<li>
+<p>运行下载到的安装包 <strong>python-3.7.1-amd64.exe</strong></p>
+</li>
+<li>
+<p>勾选 <code>Add Python 3.7 to Path</code>，这一步会将 python 添加到环境变量，这样可以在命令行执行 <code>python</code>:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/python-install.png" alt=""></p>
+</li>
+<li>
+<p>点击 <code>Install Now</code>就可以开启自动安装的过程了</p>
+</li>
+<li>
+<p>注销重新登录 windows，是环境变量生效</p>
+</li>
+<li>
+<p><code>win</code> 键 + <code>x</code>，选择 <strong>命令提示符</strong> 打开命令行，输入 <code>python</code>，如果出现 <code>python</code> 交互 CLI 说明安装成功：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/python-cli.png" alt=""></p>
+</li>
 </ol>
-
 <h2 id="安装vscode">安装vscode</h2>
-
 <ol>
-<li><p><a href="https://code.visualstudio.com/" target="_blank">官网</a>下载 <a href="https://aka.ms/win32-x64-user-stable" target="_blank">VS Code for windows</a>:</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/vscode-download.png" alt="" /></p></li>
-
-<li><p>运行下载的安装包，写本文时下载的是 <strong>VSCodeUserSetup-x64-1.28.2.exe</strong></p></li>
-
-<li><p>一路根据自己的情况下一步，这里要说的是其中一步选择性的勾选一些选项，这里我全部勾选了，比如最后一个添加环境变量Path的，这样安装完成以后就可以在命令提示符窗口输入 <code>code</code> 命令启动 VS code 了：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/vscode-install.png" alt="" /></p></li>
-
-<li><p>继续下一步安装即可，安装完成后打开默认应该是英文界面（配置为中文界面<a href="#配置vscode为中文界面" target="_blank">点我</a>）</p></li>
-
-<li><p>这里十里将 vscode 主题配置为了 <strong>solarized dark</strong></p></li>
+<li>
+<p><a href="https://code.visualstudio.com/">官网</a>下载 <a href="https://aka.ms/win32-x64-user-stable">VS Code for windows</a>:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/vscode-download.png" alt=""></p>
+</li>
+<li>
+<p>运行下载的安装包，写本文时下载的是 <strong>VSCodeUserSetup-x64-1.28.2.exe</strong></p>
+</li>
+<li>
+<p>一路根据自己的情况下一步，这里要说的是其中一步选择性的勾选一些选项，这里我全部勾选了，比如最后一个添加环境变量Path的，这样安装完成以后就可以在命令提示符窗口输入 <code>code</code> 命令启动 VS code 了：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/vscode-install.png" alt=""></p>
+</li>
+<li>
+<p>继续下一步安装即可，安装完成后打开默认应该是英文界面（配置为中文界面<a href="#配置vscode为中文界面">点我</a>）</p>
+</li>
+<li>
+<p>这里十里将 vscode 主题配置为了 <strong>solarized dark</strong></p>
+</li>
 </ol>
-
 <h2 id="配置vscode">配置vscode</h2>
-
 <h3 id="安装python插件">安装python插件</h3>
-
 <p>微软官方为 vscode 开发了 python插件，这里安装这个插件就会提供全面的 python IDE 的功能了。</p>
-
 <ol>
 <li>打开 vscode，点击窗口左边扩展按钮，搜索 <strong>python</strong> 理论上第一个就是要安装的插件</li>
 <li>选中名为 <strong>Python</strong> 的插件点击 <strong>install</strong> 按钮</li>
 <li>安装完成后点击 <strong>reload</strong> 就可激活插件了</li>
 </ol>
-
 <h3 id="安装pylint库">安装pylint库</h3>
-
-<p>上述 <strong>Python</strong> 插件依赖于 python 的库 <a href="https://pypi.org/project/pylint/" target="_blank">pylint</a>，这里需要安装一下。</p>
-
+<p>上述 <strong>Python</strong> 插件依赖于 python 的库 <a href="https://pypi.org/project/pylint/">pylint</a>，这里需要安装一下。</p>
 <p>有两种方式，一种是 vscode 自行检查并提示安装，另一种是手动安装，推荐使用第一种方法。</p>
-
 <h4 id="vscode安装pylint">vscode安装pylint</h4>
-
 <ol>
-<li><p>打开一个 py 文件，就会有如下的提示：</p>
-
+<li>
+<p>打开一个 py 文件，就会有如下的提示：</p>
 <figure>
     <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/pylint-tip.png" width="451"/> 
 </figure>
+
 </li>
-
-<li><p>点击 <strong>install</strong>，vscode就会自行调用 <code>pip</code> 命令进行插件安装</p></li>
+<li>
+<p>点击 <strong>install</strong>，vscode就会自行调用 <code>pip</code> 命令进行插件安装</p>
+</li>
 </ol>
-
 <h4 id="手动安装pylint">手动安装pylint</h4>
-
 <ol>
-<li><p>在 vscode 中按下 <code>ctrl</code> + ` 组合键就可以在 vscode 中打开一个命令行窗口：</p></li>
-
-<li><p>输入以下命令进行安即可：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">python -m pip install pylint</code></pre></div></li>
+<li>
+<p>在 vscode 中按下 <code>ctrl</code> + ` 组合键就可以在 vscode 中打开一个命令行窗口：</p>
+</li>
+<li>
+<p>输入以下命令进行安即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">python -m pip install pylint
+</code></pre></div></li>
 </ol>
-
 <h1 id="测试">测试</h1>
-
 <p>这里新建一个文件 <code>hello.py</code>，输入代码，输入过程中就会看到 vscode 会自动提示补全，同时还能检查语法错误，代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 
 
-<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;向某人打招呼&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定打招呼对象&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">向某人打招呼</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">person</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">?</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定打招呼对象</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">(</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">person</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">person</span> <span class="o">=</span> <span class="s1">&#39;world&#39;</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;hello, {args.person}!&#39;</span><span class="p">)</span></code></pre></div>
-<p>这里使用 <strong>argsparse</strong> 库实现了一个简单的工具，可以向指定人打招呼。</p>
-
+        <span class="n">args</span><span class="o">.</span><span class="n">person</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">world</span><span class="s1">&#39;</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello, {args.person}!</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div><p>这里使用 <strong>argsparse</strong> 库实现了一个简单的工具，可以向指定人打招呼。</p>
 <p>在 vscode 编辑器中的代码编辑器的行号前面可以打断点，也就是说此时的 vscode 也可以调试 python 代码，打上断点后，按 <code>F5</code> 键就可以启动调试，运行到我们打断点的地方：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/python-breakpoint.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/python-breakpoint.png" alt=""></p>
 <h1 id="其它">其它</h1>
-
 <h2 id="配置vscode为中文界面">配置vscode为中文界面</h2>
-
 <h3 id="安装简体中文语言包">安装简体中文语言包</h3>
-
 <ol>
 <li>扩展搜索框搜索 <strong>Chinese</strong></li>
 <li>安装名为 <strong>Chinese (Simplified) Language Pack for Visual Studio Code</strong> 的扩展</li>
 </ol>
-
 <h3 id="更改vscode界面语言配置">更改vscode界面语言配置</h3>
-
 <ol>
-<li><code>ctrl</code> + <code>shift</code> + <code>p</code> 打开 vscode 命令输入框，输入 <strong>language</strong></li>
-<li>选择 <strong>Configure Display Language</strong>，会打开配置文件 <code>locale.json</code></li>
-
-<li><p>更改配置位 <code>zh-cn</code>，如下：</p>
+<li>
+<p><code>ctrl</code> + <code>shift</code> + <code>p</code> 打开 vscode 命令输入框，输入 <strong>language</strong></p>
+</li>
+<li>
+<p>选择 <strong>Configure Display Language</strong>，会打开配置文件 <code>locale.json</code></p>
+</li>
+<li>
+<p>更改配置位 <code>zh-cn</code>，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="err">//</span> <span class="err">定义</span> <span class="err">VS</span> <span class="err">Code</span> <span class="err">的显示语言。</span>
-    <span class="err">//</span> <span class="err">请参阅</span> <span class="err">https://go.microsoft.com/fwlink/?LinkId=761051，了解支持的语言列表。</span>
-        
-    <span class="nt">&#34;locale&#34;</span><span class="p">:</span><span class="s2">&#34;zh-cn&#34;</span> <span class="err">//</span> <span class="err">更改将在重新启动</span> <span class="err">VS</span> <span class="err">Code</span> <span class="err">之后生效。</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p>重启 vscode 即可看到界面变成了中文</p></li>
+    <span class="err">/</span><span class="err">/</span> <span class="err">定</span><span class="err">义</span> <span class="err">V</span><span class="err">S</span> <span class="err">C</span><span class="err">o</span><span class="err">d</span><span class="err">e</span> <span class="err">的</span><span class="err">显</span><span class="err">示</span><span class="err">语</span><span class="err">言</span><span class="err">。</span>
+    <span class="err">/</span><span class="err">/</span> <span class="err">请</span><span class="err">参</span><span class="err">阅</span> <span class="err">h</span><span class="err">t</span><span class="err">t</span><span class="err">p</span><span class="err">s</span><span class="err">:</span><span class="err">/</span><span class="err">/</span><span class="err">g</span><span class="err">o</span><span class="err">.</span><span class="err">m</span><span class="err">i</span><span class="err">c</span><span class="err">r</span><span class="err">o</span><span class="err">s</span><span class="err">o</span><span class="err">f</span><span class="err">t</span><span class="err">.</span><span class="err">c</span><span class="err">o</span><span class="err">m</span><span class="err">/</span><span class="err">f</span><span class="err">w</span><span class="err">l</span><span class="err">i</span><span class="err">n</span><span class="err">k</span><span class="err">/</span><span class="err">?</span><span class="err">L</span><span class="err">i</span><span class="err">n</span><span class="err">k</span><span class="err">I</span><span class="err">d</span><span class="err">=</span><span class="err">7</span><span class="err">6</span><span class="err">1</span><span class="err">0</span><span class="err">5</span><span class="err">1</span><span class="err">，</span><span class="err">了</span><span class="err">解</span><span class="err">支</span><span class="err">持</span><span class="err">的</span><span class="err">语</span><span class="err">言</span><span class="err">列</span><span class="err">表</span><span class="err">。</span>
+       
+    <span class="nt">&#34;locale&#34;</span><span class="p">:</span><span class="s2">&#34;zh-cn&#34;</span> <span class="err">/</span><span class="err">/</span> <span class="err">更</span><span class="err">改</span><span class="err">将</span><span class="err">在</span><span class="err">重</span><span class="err">新</span><span class="err">启</span><span class="err">动</span> <span class="err">V</span><span class="err">S</span> <span class="err">C</span><span class="err">o</span><span class="err">d</span><span class="err">e</span> <span class="err">之</span><span class="err">后</span><span class="err">生</span><span class="err">效</span><span class="err">。</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>重启 vscode 即可看到界面变成了中文</p>
+</li>
 </ol>
-
 <h2 id="配置中文显示字体">配置中文显示字体</h2>
-
 <p>作为颜控无法忍受 vscode 默认显示中文为宋体，必须配置为微软雅黑。</p>
-
 <ol>
-<li><code>ctrl</code> + <code>shift</code> + <code>p</code> 打开 vscode 命令输入框，输入 <strong>setting</strong>，选择 <strong>Open Settings(UI)</strong></li>
-<li>在打开的设置界面中的搜索框，输入 <strong>font</strong>，就会过滤得到一个 <strong>Editor: font family</strong></li>
-
-<li><p>将微软雅黑添加到第一个字体后面，这样不会影响代码的等宽字体显示：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/vscode-font.png" alt="" /></p></li>
+<li>
+<p><code>ctrl</code> + <code>shift</code> + <code>p</code> 打开 vscode 命令输入框，输入 <strong>setting</strong>，选择 <strong>Open Settings(UI)</strong></p>
+</li>
+<li>
+<p>在打开的设置界面中的搜索框，输入 <strong>font</strong>，就会过滤得到一个 <strong>Editor: font family</strong></p>
+</li>
+<li>
+<p>将微软雅黑添加到第一个字体后面，这样不会影响代码的等宽字体显示：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/vscode-font.png" alt=""></p>
+</li>
 </ol>
-
 <p>会看到中文字体的显示会立马生效。</p>
-
 <h1 id="总结">总结</h1>
-
 <p>本文简单介绍了如何在 windows 下 从 0 到 1 的打造 vscode 的 python 开发环境，从此可以在 windows 上使用 python 撒欢了！</p>
 			</div>
 			<hr class="post-end">
@@ -280,38 +255,31 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#前言">前言</a></li>
-<li><a href="#利器打造">利器打造</a>
-<ul>
-<li><a href="#安装python">安装python</a>
-<ul>
-<li><a href="#下载python3-7-1">下载python3.7.1</a></li>
-<li><a href="#安装python3-7-1">安装python3.7.1</a></li>
-</ul></li>
-<li><a href="#安装vscode">安装vscode</a></li>
-<li><a href="#配置vscode">配置vscode</a>
-<ul>
-<li><a href="#安装python插件">安装python插件</a></li>
-<li><a href="#安装pylint库">安装pylint库</a>
-<ul>
-<li><a href="#vscode安装pylint">vscode安装pylint</a></li>
-<li><a href="#手动安装pylint">手动安装pylint</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#测试">测试</a></li>
-<li><a href="#其它">其它</a>
-<ul>
-<li><a href="#配置vscode为中文界面">配置vscode为中文界面</a>
-<ul>
-<li><a href="#安装简体中文语言包">安装简体中文语言包</a></li>
-<li><a href="#更改vscode界面语言配置">更改vscode界面语言配置</a></li>
-</ul></li>
-<li><a href="#配置中文显示字体">配置中文显示字体</a></li>
-</ul></li>
-<li><a href="#总结">总结</a></li>
-</ul>
+  <ul>
+    <li><a href="#安装python">安装python</a>
+      <ul>
+        <li><a href="#下载python371">下载python3.7.1</a></li>
+        <li><a href="#安装python371">安装python3.7.1</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装vscode">安装vscode</a></li>
+    <li><a href="#配置vscode">配置vscode</a>
+      <ul>
+        <li><a href="#安装python插件">安装python插件</a></li>
+        <li><a href="#安装pylint库">安装pylint库</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#配置vscode为中文界面">配置vscode为中文界面</a>
+      <ul>
+        <li><a href="#安装简体中文语言包">安装简体中文语言包</a></li>
+        <li><a href="#更改vscode界面语言配置">更改vscode界面语言配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置中文显示字体">配置中文显示字体</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -362,7 +330,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

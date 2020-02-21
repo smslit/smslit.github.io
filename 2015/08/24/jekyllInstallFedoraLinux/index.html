@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Fedora Linux下安装Jekyll">
 <meta itemprop="description" content="本文将介绍如何在Fedora Linux下安装Jekyll。">
-
-
 <meta itemprop="datePublished" content="2015-08-24T17:55:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-08-24T17:55:46&#43;08:00" />
 <meta itemprop="wordCount" content="671">
 
 
 
-<meta itemprop="keywords" content="jekyll,linux," />
-<meta property="og:title" content="Fedora Linux下安装Jekyll" />
+<meta itemprop="keywords" content="jekyll,linux," /><meta property="og:title" content="Fedora Linux下安装Jekyll" />
 <meta property="og:description" content="本文将介绍如何在Fedora Linux下安装Jekyll。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/08/24/jekyllInstallFedoraLinux/" />
@@ -84,109 +81,96 @@
 			</header>
 			<div class="content">
 				<p>本文将介绍如何在Fedora Linux下安装Jekyll。</p>
-
 <h3 id="简说">简说</h3>
-
 <p>经过一天时间折腾公司配发的thinkpad-x250安装了Fedora22，安装了Evopop主题和图标包，简直美翻了，原来linux也可以这么美，哈哈，安装各种软件和工具是免不了的，jekyll也不例外，今天就说一下我在Fedora下安装jekyll的过程。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/s9ybv.png" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/s9ybv.png" alt="1"></p>
 <ul>
 <li>平台：Fedora 22</li>
 </ul>
-
 <h3 id="准备工作">准备工作</h3>
-
 <ol>
-<li><p><strong>安装ruby</strong></p>
-
+<li>
+<p><strong>安装ruby</strong></p>
 <p><strong>注：从fedora22开始yum停用，而使用了新的安装软件包的工具dnf，这里就不赘述添加源的问题。</strong></p>
-
 <ul>
-<li><p>在【terminal】中，执行命令：</p>
-
-<p><code>sudo dnf install ruby</code></p></li>
-
-<li><p>安装完成后，执行命令验证：</p>
-
-<p><code>ruby -v</code></p></li>
-</ul>
-
+<li>
+<p>在【terminal】中，执行命令：</p>
+<p><code>sudo dnf install ruby</code></p>
+</li>
+<li>
+<p>安装完成后，执行命令验证：</p>
+<p><code>ruby -v</code></p>
 <p>会出现类似下面的字样，说明安装成功：</p>
-<div class="highlight"><pre class="chroma">ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]</pre></div>
-<ul>
-<li><p>执行命令验证gem：</p>
-
+<p>ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]</p>
+</li>
+<li>
+<p>执行命令验证gem：</p>
 <p><code>gem -v</code></p>
-
-<p>会出现版本号<code>2.4.8</code>，说明gem也安装成功。</p></li>
-</ul></li>
-
-<li><p><strong>安装nodejs</strong></p>
-
-<ul>
-<li><p>在【terminal】中，执行命令：</p>
-
-<p><code>sudo dnf install nodejs</code></p></li>
-
-<li><p>安装完成后，执行命令验证：</p>
-
-<p><code>node -v</code></p>
-
-<p>会出现类似下面的字样，说明安装成功：</p>
-
-<p><code>v0.10.36</code></p></li>
-</ul></li>
-
-<li><p><strong>更改gem源</strong></p>
-
-<p><strong>国内比较坑，原设置的源在墙外，所以要更改成国内的。</strong></p>
-
-<ul>
-<li><p>分别执行一下两条命令：</p>
-
-<p><code>sudo gem sources --remove https://rubygems.org/</code></p>
-
-<p><code>sudo gem sources -a https://ruby.taobao.org/</code></p></li>
-
-<li><p>确保gem源只有【<a href="https://ruby.taobao.org/】，执行下面命令查看gem源列表：" target="_blank">https://ruby.taobao.org/】，执行下面命令查看gem源列表：</a></p>
-
-<p><code>gem sources -l</code></p></li>
-</ul></li>
-
-<li><p><strong>安装ruby-devel</strong></p>
-
-<ul>
-<li><p>执行命令安装jekyll发现，结果可能出现如下错误：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/tletd.png" alt="2" /></p></li>
-
-<li><p>出现这种情况是因为编译安装jekyll需要安装ruby-devel包：</p>
-
-<p><code>sudo dnf install ruby-devel</code></p></li>
-</ul></li>
-</ol>
-
-<h3 id="安装jekyll">安装jekyll</h3>
-
-<ul>
-<li><p>这时执行安装命令应该就没问题了：</p>
-
-<p><code>sudo gem install jekyll</code></p></li>
-
-<li><p>验证安装版本，版本号【jekyll 2.5.3】：</p>
-
-<p><code>jekyll -v</code></p></li>
+<p>会出现版本号<code>2.4.8</code>，说明gem也安装成功。</p>
+</li>
 </ul>
-
-<p><strong>至此为止，jekyll安装完成。</strong></p>
-
-<h3 id="参考">参考</h3>
-
+</li>
+<li>
+<p><strong>安装nodejs</strong></p>
 <ul>
-<li><a href="http://www.it165.net/os/html/201408/9059.html" target="_blank">Linux下安装jekyll</a></li>
-<li><a href="blog.csdn.net/cherry_sun/article/details/774362" target="_blank">Ruby gem install Error(mkmf.rb can&rsquo;t find header files for ruby at&hellip;)</a></li>
-<li><a href="http://jekyll.bootcss.com/" target="_blank">jekyll</a></li>
+<li>
+<p>在【terminal】中，执行命令：</p>
+<p><code>sudo dnf install nodejs</code></p>
+</li>
+<li>
+<p>安装完成后，执行命令验证：</p>
+<p><code>node -v</code></p>
+<p>会出现类似下面的字样，说明安装成功：</p>
+<p><code>v0.10.36</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>更改gem源</strong></p>
+<p><strong>国内比较坑，原设置的源在墙外，所以要更改成国内的。</strong></p>
+<ul>
+<li>
+<p>分别执行一下两条命令：</p>
+<p><code>sudo gem sources --remove https://rubygems.org/</code></p>
+<p><code>sudo gem sources -a https://ruby.taobao.org/</code></p>
+</li>
+<li>
+<p>确保gem源只有【https://ruby.taobao.org/】，执行下面命令查看gem源列表：</p>
+<p><code>gem sources -l</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>安装ruby-devel</strong></p>
+<ul>
+<li>
+<p>执行命令安装jekyll发现，结果可能出现如下错误：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/tletd.png" alt="2"></p>
+</li>
+<li>
+<p>出现这种情况是因为编译安装jekyll需要安装ruby-devel包：</p>
+<p><code>sudo dnf install ruby-devel</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="安装jekyll">安装jekyll</h3>
+<ul>
+<li>
+<p>这时执行安装命令应该就没问题了：</p>
+<p><code>sudo gem install jekyll</code></p>
+</li>
+<li>
+<p>验证安装版本，版本号【jekyll 2.5.3】：</p>
+<p><code>jekyll -v</code></p>
+</li>
+</ul>
+<p><strong>至此为止，jekyll安装完成。</strong></p>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="http://www.it165.net/os/html/201408/9059.html">Linux下安装jekyll</a></li>
+<li><a href="blog.csdn.net/cherry_sun/article/details/774362">Ruby gem install Error(mkmf.rb can&rsquo;t find header files for ruby at&hellip;)</a></li>
+<li><a href="http://jekyll.bootcss.com/">jekyll</a></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -206,18 +190,16 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#简说">简说</a></li>
-<li><a href="#准备工作">准备工作</a></li>
-<li><a href="#安装jekyll">安装jekyll</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简说">简说</a></li>
+        <li><a href="#准备工作">准备工作</a></li>
+        <li><a href="#安装jekyll">安装jekyll</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -268,7 +250,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

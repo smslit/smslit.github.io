@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Jekyll博文内链和返回顶部按钮">
 <meta itemprop="description" content="有些时候，写的文章会很长，在开始看的时候，有目录会很方便，能即刻跳到需要阅读的地方，为了更方便回到顶部目录的地方，还得需要添加返回顶部的按钮，本文就说一下Jekyll博文用markdown书写时为文章添加锚点和返回顶部按钮。">
-
-
 <meta itemprop="datePublished" content="2015-10-28T12:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-28T12:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1148">
 
 
 
-<meta itemprop="keywords" content="jekyll," />
-<meta property="og:title" content="Jekyll博文内链和返回顶部按钮" />
+<meta itemprop="keywords" content="jekyll," /><meta property="og:title" content="Jekyll博文内链和返回顶部按钮" />
 <meta property="og:description" content="有些时候，写的文章会很长，在开始看的时候，有目录会很方便，能即刻跳到需要阅读的地方，为了更方便回到顶部目录的地方，还得需要添加返回顶部的按钮，本文就说一下Jekyll博文用markdown书写时为文章添加锚点和返回顶部按钮。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/10/28/backToTop-Jekyll/" />
@@ -84,13 +81,9 @@
 			</header>
 			<div class="content">
 				<p>有些时候，写的文章会很长，在开始看的时候，有目录会很方便，能即刻跳到需要阅读的地方，为了更方便回到顶部目录的地方，还得需要添加返回顶部的按钮，本文就说一下Jekyll博文用markdown书写时为文章添加锚点和返回顶部按钮。</p>
-
 <h3 id="添加目录锚点">添加目录锚点</h3>
-
 <p>其实说起来就是添加一个内部链接，能使点一下目录立马跳到内容链接处，分两步：</p>
-
 <h4 id="添加目录">添加目录</h4>
-
 <p>首先，得添加一个清晰醒目的目录，添加目录时只需按照markdown添加超链接的方式，为每一个目录点添加锚点链接，不同于一般超链接的是，链接以『#』开头，紧接着『锚点名』，如以下例子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="k">1.</span> [<span class="nt">访问模式</span>](<span class="na">#no1</span>)
 <span class="k">2.</span> [<span class="nt">时钟相关</span>](<span class="na">#no2</span>)
@@ -112,11 +105,9 @@
     <span class="k">*</span> [<span class="nt">UART的控制</span>](<span class="na">#no12-2</span>)
     <span class="k">*</span> [<span class="nt">USART0的通用控制</span>](<span class="na">#no12-3</span>)
     <span class="k">*</span> [<span class="nt">USART0的数据缓存</span>](<span class="na">#no12-4</span>)
-    * [<span class="nt">USART0波特率</span>](<span class="na">#no12-5</span>) </code></pre></div>
-<h4 id="添加锚点">添加锚点</h4>
-
+    <span class="k">*</span> [<span class="nt">USART0波特率</span>](<span class="na">#no12-5</span>) 
+</code></pre></div><h4 id="添加锚点">添加锚点</h4>
 <p>紧接着在目录所对应内容处添加锚点，如下：</p>
-
 <p><strong>注意：添加锚点要添加到内容标题的前一行，这样能保证跳转时能以标题顶头，主要是我之前总是与内容处的目录标题同行，导致跳转后跳到了目录下一行，就看不到目录对应内容的标题了。</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">&lt;a name=&#34;no1&#34;/&gt;
 
@@ -143,25 +134,19 @@
 
 <span class="gu">##### 12.5. USART0波特率（U0BAUD，0xC2）
 </span><span class="gu"></span>
-...</code></pre></div>
-<h4 id="1-3-效果展示">1.3 效果展示</h4>
+...
 
+</code></pre></div><h4 id="13-效果展示">1.3 效果展示</h4>
 <p>效果就像是下面展示的一样，点击目录即跳转到对应内容处：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/v9ekx.gif" alt="1" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/v9ekx.gif" alt="1"></p>
 <h3 id="添加返回顶部按钮">添加返回顶部按钮</h3>
-
 <p>只需两步就可以在页面添加一个固定的返回顶部按钮，这里没有加JS代码，没什么漂亮的效果，只是功能的实现。</p>
-
 <h4 id="添加返回按钮块">添加返回按钮块</h4>
-
 <p>将以下代码添加到博文采用的布局html文件的最后，比如我的是post.html。</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;backtop&#34;</span><span class="p">&gt;</span>
-   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>TOP<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> </code></pre></div>
-<h4 id="添加按钮的css样式">添加按钮的css样式</h4>
-
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;backtop&#34;</span><span class="p"></span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p"></span><span class="p">&gt;</span>TOP<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> 
+</code></pre></div><h4 id="添加按钮的css样式">添加按钮的css样式</h4>
 <p>这里我把我的css样式粘上，可以按照自己喜欢修改样式即可。</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">#</span><span class="nn">backtop</span> <span class="nt">a</span> <span class="p">{</span> <span class="c">/* back to top button */</span>
     <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
@@ -172,7 +157,7 @@
     <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
     <span class="k">bottom</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* 小按钮到浏览器底边的距离 */</span>
     <span class="k">right</span><span class="p">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* 小按钮到浏览器右边框的距离 */</span>
-    <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">);</span> <span class="c">/* 小按钮中文字的颜色 */</span>
+    <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">)</span><span class="p">;</span> <span class="c">/* 小按钮中文字的颜色 */</span>
     <span class="k">z-index</span><span class="p">:</span> <span class="mi">1000</span><span class="p">;</span>
     <span class="k">background</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span> <span class="c">/* 小按钮底色 */</span>
     <span class="k">padding</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span> <span class="c">/* 小按钮中文字到按钮边缘的距离 */</span>
@@ -181,16 +166,16 @@
     <span class="kp">-webkit-</span><span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
     <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span> <span class="c">/* 小按钮中文字的粗细 */</span>
     <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
-    <span class="k">box-shadow</span><span class="p">:</span><span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">2</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.15</span><span class="p">),</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">0</span> <span class="mh">#ffffff</span> <span class="kc">inset</span><span class="p">;</span>
+    <span class="k">box-shadow</span><span class="p">:</span><span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">2</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.15</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">0</span> <span class="mh">#ffffff</span> <span class="kc">inset</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="p">#</span><span class="nn">backtop</span> <span class="nt">a</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span> <span class="c">/* 小按钮上有鼠标悬停时 */</span>
-    <span class="k">background</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">,</span><span class="mf">0.8</span><span class="p">);</span> <span class="c">/* 小按钮的底色 */</span>
+    <span class="k">background</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span><span class="p">;</span> <span class="c">/* 小按钮的底色 */</span>
     <span class="k">color</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span> <span class="c">/* 文字颜色 */</span>
-<span class="p">}</span></code></pre></div>
-<h4 id="展示效果">展示效果</h4>
+<span class="p">}</span>
 
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/lnxf0.gif" alt="2" /></p>
+</code></pre></div><h4 id="展示效果">展示效果</h4>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/lnxf0.gif" alt="2"></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -209,26 +194,14 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#添加目录锚点">添加目录锚点</a>
-<ul>
-<li><a href="#添加目录">添加目录</a></li>
-<li><a href="#添加锚点">添加锚点</a></li>
-<li><a href="#1-3-效果展示">1.3 效果展示</a></li>
-</ul></li>
-<li><a href="#添加返回顶部按钮">添加返回顶部按钮</a>
-<ul>
-<li><a href="#添加返回按钮块">添加返回按钮块</a></li>
-<li><a href="#添加按钮的css样式">添加按钮的css样式</a></li>
-<li><a href="#展示效果">展示效果</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#添加目录锚点">添加目录锚点</a></li>
+        <li><a href="#添加返回顶部按钮">添加返回顶部按钮</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -279,7 +252,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

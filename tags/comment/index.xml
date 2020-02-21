@@ -18,7 +18,7 @@
       <pubDate>Sun, 08 Jul 2018 17:01:05 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/07/08/hugo-valine/</guid>
-      <description>&lt;p&gt;博客已经基本从 &lt;a href=&#34;https://hexo.io&#34; target=&#34;_blank&#34;&gt;hexo&lt;/a&gt; 迁移到 &lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34;&gt;hugo&lt;/a&gt; ，对使用的 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34; target=&#34;_blank&#34;&gt;Even&lt;/a&gt; 主题非常满意，虽自带了评论系统 &lt;a href=&#34;https://github.com/imsun/gitment&#34; target=&#34;_blank&#34;&gt;gitment&lt;/a&gt; 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 &lt;a href=&#34;https://valine.js.org/&#34; target=&#34;_blank&#34;&gt;valine&lt;/a&gt;，本文就讲一下如何在 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34; target=&#34;_blank&#34;&gt;Even&lt;/a&gt; 中添加 &lt;a href=&#34;https://valine.js.org/&#34; target=&#34;_blank&#34;&gt;Valine&lt;/a&gt; 的支持。&lt;/p&gt;</description>
+      <description>&lt;p&gt;博客已经基本从 &lt;a href=&#34;https://hexo.io&#34;&gt;hexo&lt;/a&gt; 迁移到 &lt;a href=&#34;https://gohugo.io/&#34;&gt;hugo&lt;/a&gt; ，对使用的 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34;&gt;Even&lt;/a&gt; 主题非常满意，虽自带了评论系统 &lt;a href=&#34;https://github.com/imsun/gitment&#34;&gt;gitment&lt;/a&gt; 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 &lt;a href=&#34;https://valine.js.org/&#34;&gt;valine&lt;/a&gt;，本文就讲一下如何在 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34;&gt;Even&lt;/a&gt; 中添加 &lt;a href=&#34;https://valine.js.org/&#34;&gt;Valine&lt;/a&gt; 的支持。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -82,8 +82,7 @@
       
       <guid>https://www.smslit.top/2019/01/06/mac_app_to_dmg/</guid>
       <description>&lt;p&gt;最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -96,13 +95,14 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ lldb
 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lldb&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; script
 Traceback &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;most recent call last&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
-  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;input&amp;gt;&amp;#34;&lt;/span&gt;, line &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;, in &amp;lt;module&amp;gt;
-  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/copy.py&amp;#34;&lt;/span&gt;, line &lt;span class=&#34;m&#34;&gt;52&lt;/span&gt;, in &amp;lt;module&amp;gt;
+  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;input&amp;gt;&amp;#34;&lt;/span&gt;, line 1, in &amp;lt;module&amp;gt;
+  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/copy.py&amp;#34;&lt;/span&gt;, line 52, in &amp;lt;module&amp;gt;
     import weakref
-  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&amp;#34;&lt;/span&gt;, line &lt;span class=&#34;m&#34;&gt;14&lt;/span&gt;, in &amp;lt;module&amp;gt;
+  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&amp;#34;&lt;/span&gt;, line 14, in &amp;lt;module&amp;gt;
     from _weakref import &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;
 ImportError: cannot import name _remove_dead_weakref
-Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;quit()&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;exit()&amp;#39;&lt;/span&gt; or Ctrl-D.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;quit()&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;exit()&amp;#39;&lt;/span&gt; or Ctrl-D.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>

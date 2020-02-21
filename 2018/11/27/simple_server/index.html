@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="简陋的不能再简陋的 HTTP1.1 Server">
 <meta itemprop="description" content="今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。">
-
-
 <meta itemprop="datePublished" content="2018-11-27T10:48:29&#43;08:00" />
 <meta itemprop="dateModified" content="2018-11-27T10:48:29&#43;08:00" />
 <meta itemprop="wordCount" content="1303">
 
 
 
-<meta itemprop="keywords" content="python," />
-<meta property="og:title" content="简陋的不能再简陋的 HTTP1.1 Server" />
+<meta itemprop="keywords" content="python," /><meta property="og:title" content="简陋的不能再简陋的 HTTP1.1 Server" />
 <meta property="og:description" content="今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2018/11/27/simple_server/" />
@@ -84,9 +81,7 @@
 			</header>
 			<div class="content">
 				<p>今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。</p>
-
 <h1 id="知识基础">知识基础</h1>
-
 <ul>
 <li>python3 的 tcp 网络通信: socket 的使用；</li>
 <li>客户端与服务器之间的通信过程；</li>
@@ -95,15 +90,10 @@
 <li>正则表达式；</li>
 <li>python 的基本知识应用：文件读、Shebang运行、命令参数解析</li>
 </ul>
-
 <h1 id="实现功能">实现功能</h1>
-
 <p>为指定的路径提供简陋的 HTTP/1.1 服务，可以通过浏览器访问，符合 HTTP/1.1 的长连接支持，并且实现的服务是单进程、单线程、非阻塞的。网络服务为了提高响应速度，多以多进程、多线程和协程方式实现服务，一般情况下实现效率从高到低是：协程 &gt; 多线程 &gt; 多进程，主要还是因为资源开销的问题，实际应用过程中大多数情况下主要使用 epoll 技术实现高并发，简单来说是一种高级的单进程、单线程、非阻塞技术，依赖于：内存映射和通知机制。这里实现的非阻塞形式相当简单，与 epoll 相比差很大一截。</p>
-
 <p>这里服务默认开启在 8080 端口，也可以指定端口。</p>
-
 <h1 id="实现代码">实现代码</h1>
-
 <p>因为只是练习，以后应该也不会维护加功能，废话不多说，粗暴地展示代码了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -111,67 +101,67 @@
 <span class="kn">import</span> <span class="nn">argparse</span>
 
 
-<span class="k">def</span> <span class="nf">get_args</span><span class="p">():</span>
-    <span class="s2">&#34;&#34;&#34;get_args&#34;&#34;&#34;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;开启指定网站服务&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-p&#34;</span><span class="p">,</span> <span class="s2">&#34;--port&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8080</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;指定网服务端口&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;site&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;指定网站路径&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">get_args</span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">开启指定网站服务</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">-p</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">--port</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8080</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">指定网服务端口</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">site</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">指定网站路径</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">response_to</span><span class="p">(</span><span class="n">client_socket</span><span class="p">:</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">site_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">response_to</span><span class="p">(</span><span class="n">client_socket</span><span class="p">:</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">site_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="p">:</span>
     <span class="c1"># 处理请求</span>
-    <span class="n">req_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
-    <span class="n">req_lines</span> <span class="o">=</span> <span class="n">req_str</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">req_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">utf-8</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">req_lines</span> <span class="o">=</span> <span class="n">req_str</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="p">)</span>
 
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[^/]+([^(?| )]*)&#34;</span><span class="p">,</span> <span class="n">req_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;</span><span class="s2">[^/]+([^(?| )]*)</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">req_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
     <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">):</span>
-            <span class="n">file_name</span> <span class="o">+=</span> <span class="s2">&#34;index.html&#34;</span>
+        <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">file_name</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">index.html</span><span class="s2">&#34;</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">site_path</span> <span class="o">+</span> <span class="n">file_name</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;+&#34;</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;+&#34;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">+</span><span class="s2">&#34;</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">+</span><span class="s2">&#34;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">f_req</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
+        <span class="n">f_req</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">rb</span><span class="s2">&#34;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="c1"># 生成响应</span>
         <span class="c1"># 响应内容</span>
-        <span class="n">response_body</span> <span class="o">=</span> <span class="s2">&#34;file is not available!&#34;</span>
+        <span class="n">response_body</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">file is not available!</span><span class="s2">&#34;</span>
         <span class="c1"># 响应头</span>
-        <span class="n">response_header</span> <span class="o">=</span> <span class="s2">&#34;HTTP/1.1 404 NOT FOUND</span><span class="se">\r\n</span><span class="s2">&#34;</span>
-        <span class="n">response_header</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&#34;Content-Length:{len(response_body)}</span><span class="se">\r\n</span><span class="s2">&#34;</span>
-        <span class="n">response_header</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="p">(</span><span class="n">response_header</span> <span class="o">+</span> <span class="n">response_body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+        <span class="n">response_header</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">HTTP/1.1 404 NOT FOUND</span><span class="se">\r</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="n">response_header</span> <span class="o">+</span><span class="o">=</span> <span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Content-Length:{len(response_body)}</span><span class="se">\r</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="n">response_header</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\r</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">(</span><span class="n">response_header</span> <span class="o">+</span> <span class="n">response_body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">utf-8</span><span class="s2">&#34;</span><span class="p">)</span>
         <span class="c1"># 发送响应</span>
         <span class="n">client_socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Not found!&#34;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Not found!</span><span class="s2">&#34;</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">html_content</span> <span class="o">=</span> <span class="n">f_req</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="n">f_req</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">html_content</span> <span class="o">=</span> <span class="n">f_req</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">f_req</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
         <span class="c1"># 生成响应</span>
         <span class="c1"># 响应内容</span>
         <span class="n">response_body</span> <span class="o">=</span> <span class="n">html_content</span>
         <span class="c1"># 响应头</span>
-        <span class="n">response_header</span> <span class="o">=</span> <span class="s2">&#34;HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s2">&#34;</span>
-        <span class="n">response_header</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&#34;Content-Length:{len(response_body)}</span><span class="se">\r\n</span><span class="s2">&#34;</span>
-        <span class="n">response_header</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">response_header</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">response_body</span>
+        <span class="n">response_header</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">HTTP/1.1 200 OK</span><span class="se">\r</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="n">response_header</span> <span class="o">+</span><span class="o">=</span> <span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Content-Length:{len(response_body)}</span><span class="se">\r</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="n">response_header</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\r</span><span class="se">\n</span><span class="s2">&#34;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">response_header</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">utf-8</span><span class="s2">&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">response_body</span>
         <span class="c1"># 发送响应</span>
         <span class="n">client_socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
     <span class="k">print</span><span class="p">(</span><span class="n">req_str</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
     <span class="c1"># 获取命令参数</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">(</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">site</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">):</span>
-            <span class="n">args</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">site</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span> <span class="o">&gt;=</span> <span class="mi">65535</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">site</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">65535</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">8080</span>
 
     <span class="c1"># 创建套接字</span>
@@ -182,19 +172,19 @@
     <span class="n">tcp_socket</span><span class="o">.</span><span class="n">setblocking</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 
     <span class="c1"># 绑定套接字</span>
-    <span class="n">tcp_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+    <span class="n">tcp_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">)</span><span class="p">)</span>
 
     <span class="c1"># 监听</span>
     <span class="n">tcp_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{args.site} 的 http 服务已开启&#34;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;访问地址: http://127.0.0.1:{args.port}&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">{args.site} 的 http 服务已开启</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">访问地址: http://127.0.0.1:{args.port}</span><span class="s2">&#34;</span><span class="p">)</span>
 
-    <span class="n">client_socket_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">client_socket_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># 等待</span>
-            <span class="n">client_socket</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">tcp_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+            <span class="n">client_socket</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">tcp_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
@@ -210,19 +200,18 @@
                 <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
                     <span class="n">response_to</span><span class="p">(</span><span class="n">client_socket</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">site</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    <span class="n">client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
                     <span class="n">client_socket_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">client_socket</span><span class="p">)</span>
 
                 <span class="c1"># 关闭套接字</span>
-    <span class="n">tcp_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">tcp_socket</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span></code></pre></div>
-<p>代码保存到文件 <code>simple_server</code> 中，为源文件添加运行权限：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ chmod +x simple_server</code></pre></div>
-<h1 id="使用方法">使用方法</h1>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>代码保存到文件 <code>simple_server</code> 中，为源文件添加运行权限：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ chmod +x simple_server
+</code></pre></div><h1 id="使用方法">使用方法</h1>
 <p>命令行执行命令获取帮助信息</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ ./simple_server -h
 usage: simple_server <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-p PORT<span class="o">]</span> site
@@ -234,27 +223,21 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
-  -p PORT, --port PORT  指定网服务端口</code></pre></div>
-<p>开启服务，我这里使用的测试对象是本人静态博客的路径，如此简陋，居然能用!</p>
+  -p PORT, --port PORT  指定网服务端口
+</code></pre></div><p>开启服务，我这里使用的测试对象是本人静态博客的路径，如此简陋，居然能用!</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ ./simple_server /Users/5km/smslit/public/ -p <span class="m">7788</span>
 /Users/5km/smslit/public 的 http 服务已开启
-访问地址: http://127.0.0.1:7788</code></pre></div>
-<p>这里使用了端口 <strong>7788</strong>，访问一切👌，什么？你不信，有图有真相的：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181127111056.png" alt="" /></p>
-
+访问地址: http://127.0.0.1:7788
+</code></pre></div><p>这里使用了端口 <strong>7788</strong>，访问一切👌，什么？你不信，有图有真相的：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181127111056.png" alt=""></p>
 <h1 id="分析">分析</h1>
-
-<p><a href="#实现功能" target="_blank">实现功能</a>小节中提到了，本文实现的非阻塞方式相当低级，是对套接字列表轮询的机制，这种方式有两个大问题：</p>
-
+<p><a href="#实现功能">实现功能</a>小节中提到了，本文实现的非阻塞方式相当低级，是对套接字列表轮询的机制，这种方式有两个大问题：</p>
 <ol>
 <li>套接字列表中元素增多，对于一个操作系统来说，这个列表是在用户层的，每次轮询都需要用户层和系统层之间数据的拷贝，才能让系统正常的操作硬件；当套接字数量到足够大时，可能会因为拷贝而造成时间的浪费；</li>
 <li>当列表中套接字数量足够多，如果其中只有极少部分的套接字需要数据处理，那全部轮询就会造成不必要的时间浪费；</li>
 </ol>
-
 <p>而上文提到的 epoll 恰恰能解决这两个问题，所以十里用 epoll 的方式也实现了这个服务，只是为了理解原理，所以实现同样很简单，可参考：</p>
-
-<p><a href="https://github.com/smslit/tools-with-script/blob/master/simple_server/simple_server" target="_blank">smslit/tools_of_python/simpe_server</a></p>
+<p><a href="https://github.com/smslit/tools-with-script/blob/master/simple_server/simple_server">smslit/tools_of_python/simpe_server</a></p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -272,15 +255,7 @@ optional arguments:
 		</article>
 		<aside id="toc">
 			<div class="toc-title">目录</div>
-			<nav id="TableOfContents">
-<ul>
-<li><a href="#知识基础">知识基础</a></li>
-<li><a href="#实现功能">实现功能</a></li>
-<li><a href="#实现代码">实现代码</a></li>
-<li><a href="#使用方法">使用方法</a></li>
-<li><a href="#分析">分析</a></li>
-</ul>
-</nav>
+			<nav id="TableOfContents"></nav>
 		</aside>
 		<div class="post-nav thin">
 			<a class="next-post" href="https://www.smslit.top/2018/12/17/simple_ai_stupid/">
@@ -330,7 +305,7 @@ optional arguments:
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

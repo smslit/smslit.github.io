@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="vim也是platformio的IDE">
 <meta itemprop="description" content="知道platformio很久了，但是一直没时间玩耍，最近有时间了，又研究了一番，platformio也为vim用户提供了一些可用的姿势，本篇文章就分享一下vim与pio的配合好戏！">
-
-
 <meta itemprop="datePublished" content="2017-08-15T10:00:29&#43;08:00" />
 <meta itemprop="dateModified" content="2018-07-12T08:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1623">
 
 
 
-<meta itemprop="keywords" content="platformio,develop,mcu,pio," />
-<meta property="og:title" content="vim也是platformio的IDE" />
+<meta itemprop="keywords" content="platformio,develop,mcu,pio," /><meta property="og:title" content="vim也是platformio的IDE" />
 <meta property="og:description" content="知道platformio很久了，但是一直没时间玩耍，最近有时间了，又研究了一番，platformio也为vim用户提供了一些可用的姿势，本篇文章就分享一下vim与pio的配合好戏！" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2017/08/15/platformio-vim/" />
@@ -84,14 +81,12 @@
 			</header>
 			<div class="content">
 				<p>知道platformio很久了，但是一直没时间玩耍，最近有时间了，又研究了一番，platformio也为vim用户提供了一些可用的姿势，本篇文章就分享一下vim与pio的配合好戏！</p>
-
 <h2 id="初始化工程">初始化工程</h2>
-
 <p>这里以<code>Arduino uno</code>为例，可以使用以下命令初始化工程，哦，对了，之前先切换到工程目录：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio init --ide vim -b &lt;ID&gt;</code></pre></div>
-<p>其中，<code>&lt;ID&gt;</code>代表板子的ID，可以通过命令<code>pio boards</code>列出所有的板子ID，选择自己使用的，所以可以执行以下命令初始化：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio init --ide vim -b uno</code></pre></div>
-<p>此时会发现生成了一下文件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio init --ide vim -b &lt;ID&gt;
+</code></pre></div><p>其中，<code>&lt;ID&gt;</code>代表板子的ID，可以通过命令<code>pio boards</code>列出所有的板子ID，选择自己使用的，所以可以执行以下命令初始化：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio init --ide vim -b uno
+</code></pre></div><p>此时会发现生成了一下文件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">.
 ├── .clang_complete
 ├── .gcc-flags.json
@@ -105,9 +100,8 @@
 ├── platformio.ini
 └── src
 
-<span class="m">3</span> directories, <span class="m">8</span> files</code></pre></div>
-<p>其中<code>.clang_complete</code>用于代码补全，后面会告诉你如何利用这个文件。</p>
-
+<span class="m">3</span> directories, <span class="m">8</span> files
+</code></pre></div><p>其中<code>.clang_complete</code>用于代码补全，后面会告诉你如何利用这个文件。</p>
 <p>为了方便编译和上传等，可以创建文件<code>Makefile</code>，内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">all</span><span class="o">:</span>
  	platformio -f -c vim run
@@ -126,60 +120,46 @@
 
 <span class="nf">update</span><span class="o">:</span>
 	platformio -f -c vim update
-</code></pre></div>
-<p>那么以后在工程目录下，执行<code>make all</code>就可以编译了，如此简单！</p>
-
+</code></pre></div><p>那么以后在工程目录下，执行<code>make all</code>就可以编译了，如此简单！</p>
 <h2 id="添加源代码">添加源代码</h2>
-
 <p>在目录<code>src</code>下新建文件<code>main.cpp</code>，内容可以添加如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&#34;What?&#34;</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">);</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">What?</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<h2 id="编译工程">编译工程</h2>
-
+</code></pre></div><h2 id="编译工程">编译工程</h2>
 <p>为了方便在vim下编辑代码时可以编译工程，这里可以添加快捷键，在<code>~/.vimrc</code> 中添加如下内容：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nnoremap &lt;C-b&gt; :make&lt;CR&gt;</code></pre></div>
-<p>这样可以按快捷键<code>ctrl+b</code>编译工程了。</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nnoremap &lt;C-b&gt; :make&lt;CR&gt;
+</code></pre></div><p>这样可以按快捷键<code>ctrl+b</code>编译工程了。</p>
 <h2 id="代码补全">代码补全</h2>
-
-<p>有两种方法，一个是使用<a href="https://github.com/Valloric/YouCompleteMe" target="_blank">YouCompleteMe</a>，一个是使用插件<a href="https://github.com/maralla/completor.vim" target="_blank">completor</a>，这两种方式任选其一即可，这里强烈建议使用后者 <strong>completor.vim</strong>，因为配置方便，安装轻量。</p>
-
-<h3 id="completor-vim">completor.vim</h3>
-
-<p>如果您使用的vim版本是8.0+，那么可以看一下 <a href="/2018/06/25/vim-pack/" target="_blank">vim插件管理工具pack</a> 了解一款新的vim插件管理工具，当然也可以使用其他的管理工具，这里说一下使用 <strong>pack</strong> 安装，非常简单：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ pack install maralla/completor.vim</code></pre></div>
-<p>确保已经安装 <strong>clang</strong>，自行搜索安装方法。</p>
-
+<p>有两种方法，一个是使用<a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a>，一个是使用插件<a href="https://github.com/maralla/completor.vim">completor</a>，这两种方式任选其一即可，这里强烈建议使用后者 <strong>completor.vim</strong>，因为配置方便，安装轻量。</p>
+<h3 id="completorvim">completor.vim</h3>
+<p>如果您使用的vim版本是8.0+，那么可以看一下 <a href="/2018/06/25/vim-pack/">vim插件管理工具pack</a> 了解一款新的vim插件管理工具，当然也可以使用其他的管理工具，这里说一下使用 <strong>pack</strong> 安装，非常简单：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ pack install maralla/completor.vim
+</code></pre></div><p>确保已经安装 <strong>clang</strong>，自行搜索安装方法。</p>
 <p>查看<code>clang</code>安装目录：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  which clang
-/usr/bin/clang</code></pre></div>
-<p>最后一步，配置插件所需要的 <code>clang</code> 路径即可，可以在 <code>.vimrc</code>中添加配置：</p>
+/usr/bin/clang
+</code></pre></div><p>最后一步，配置插件所需要的 <code>clang</code> 路径即可，可以在 <code>.vimrc</code>中添加配置：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">let</span> g:completor_clang_binary <span class="o">=</span> <span class="s1">&#39;/usr/bin/clang&#39;</span>
 map  &lt;leader&gt;jj &lt;Plug&gt;CompletorCppJumpToPlaceholder
-imap &lt;leader&gt;jj &lt;Plug&gt;CompletorCppJumpToPlaceholder</code></pre></div>
-<p>⚠️： <strong>clang</strong> 的目录配置是您电脑中clang的安装目录，可能与这里不同。</p>
-
-<p>或者使用 <a href="https://github.com/maralla/pack" target="_blank">pack</a> 的配置方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  pack config maralla/completor</code></pre></div>
-<p>此时会跳出vim来编辑配置，添加上面三行的配置内容保存退出即可。三行配置中后两行用来配置跳转占位符快捷键。</p>
-
+imap &lt;leader&gt;jj &lt;Plug&gt;CompletorCppJumpToPlaceholder
+</code></pre></div><p>⚠️： <strong>clang</strong> 的目录配置是您电脑中clang的安装目录，可能与这里不同。</p>
+<p>或者使用 <a href="https://github.com/maralla/pack">pack</a> 的配置方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  pack config maralla/completor
+</code></pre></div><p>此时会跳出vim来编辑配置，添加上面三行的配置内容保存退出即可。三行配置中后两行用来配置跳转占位符快捷键。</p>
 <p>打开源码 <code>src/main.cpp</code> ，输入函数前几个字母就会有提示，选择相应函数， <strong>completor</strong> 在形参位置以占位符填充，按下配置中的快捷键就会在占位符间跳转，方便填写实参。</p>
-
 <h3 id="youcompleteme">YouCOmpleteMe</h3>
-
-<p>为VIM安装YCM插件，自行研究安装即可，<a href="https://github.com/oblitum/YouCompleteMe/tree/clang_complete-params" target="_blank">传送门在这里</a>。假设已经成功安装<code>YCM</code>，其中相应<code>.vimrc</code>中的配置如下：</p>
-<div class="highlight"><pre class="chroma">&#34; set the runtime path to include Vundle and initialize
+<p>为VIM安装YCM插件，自行研究安装即可，<a href="https://github.com/oblitum/YouCompleteMe/tree/clang_complete-params">传送门在这里</a>。假设已经成功安装<code>YCM</code>，其中相应<code>.vimrc</code>中的配置如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&#34; set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 &#34; alternatively, pass a path where Vundle should install plugins
@@ -204,21 +184,16 @@ nnoremap &lt;leader&gt;gg :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
 &#34;让YouCompleteMe同时利用原来的ctags
 let g:ycm_collect_identifiers_from_tags_files = 1
 nmap &lt;F4&gt; :YcmDiags&lt;CR&gt;
-&#34; let g:loaded_youcompleteme = 1</pre></div>
-<p>插件需要文件<code>.ycm_extra_conf.py</code>，可以根据<strong>Anthony Ford</strong>提供的配置文件<a href="https://gist.github.com/ajford/f551b2b6fd4d6b6e1ef2" target="_blank">PlatformIO/YouCompleteMe Integration</a>修改我们工程需要的这个配置文件。先将这个文件下载到工程目录下，然后进行修改即可。</p>
-
+&#34; let g:loaded_youcompleteme = 1
+</code></pre></div><p>插件需要文件<code>.ycm_extra_conf.py</code>，可以根据<strong>Anthony Ford</strong>提供的配置文件<a href="https://gist.github.com/ajford/f551b2b6fd4d6b6e1ef2">PlatformIO/YouCompleteMe Integration</a>修改我们工程需要的这个配置文件。先将这个文件下载到工程目录下，然后进行修改即可。</p>
 <p>需要修改的地方有几处：</p>
-
 <ul>
 <li>libDirs中对应的几个库目录，也就是31、36、40这三行，对应自己使用的framwork目录就可以，不同MCU平台可能有不同，自行添加即可；</li>
 <li>修改flags，<code>.ycm_extra_conf.py</code>中61～65这五行内容替换成正确的，这里需要参考上面提到的<code>.clang_complete</code>文件，文件中最后几行给出了flags；</li>
 </ul>
-
 <p>再次启动vim编辑<code>/src/main.cpp</code>，提示使用我们创建的<code>.ycm_extra_conf.py</code>，OK即可，然后就可以享受语义分析的代码补全了。</p>
-
 <h2 id="写在最后">写在最后</h2>
-
-<p>如果你也玩 <code>Arduino</code>，使用 <a href="http://platformio.org" target="_blank">platformio</a>进行开发，同时喜欢使用 <strong>vim</strong> 这款神级代码编辑器，那么本文应该会对您有所帮助，感谢您的阅读！</p>
+<p>如果你也玩 <code>Arduino</code>，使用 <a href="http://platformio.org">platformio</a>进行开发，同时喜欢使用 <strong>vim</strong> 这款神级代码编辑器，那么本文应该会对您有所帮助，感谢您的阅读！</p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -237,20 +212,18 @@ nmap &lt;F4&gt; :YcmDiags&lt;CR&gt;
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#初始化工程">初始化工程</a></li>
-<li><a href="#添加源代码">添加源代码</a></li>
-<li><a href="#编译工程">编译工程</a></li>
-<li><a href="#代码补全">代码补全</a>
-<ul>
-<li><a href="#completor-vim">completor.vim</a></li>
-<li><a href="#youcompleteme">YouCOmpleteMe</a></li>
-</ul></li>
-<li><a href="#写在最后">写在最后</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#初始化工程">初始化工程</a></li>
+    <li><a href="#添加源代码">添加源代码</a></li>
+    <li><a href="#编译工程">编译工程</a></li>
+    <li><a href="#代码补全">代码补全</a>
+      <ul>
+        <li><a href="#completorvim">completor.vim</a></li>
+        <li><a href="#youcompleteme">YouCOmpleteMe</a></li>
+      </ul>
+    </li>
+    <li><a href="#写在最后">写在最后</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -301,7 +274,7 @@ nmap &lt;F4&gt; :YcmDiags&lt;CR&gt;
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

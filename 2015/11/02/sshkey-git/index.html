@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="Git之SSH密钥实现免密码">
 <meta itemprop="description" content="SSH密钥用于免密码git操作时验证信任的客户端。下面将说一下生成SSH密钥和将SSH密钥添加到对应git账户（不特指github，其他平台也可以如coding）的步骤。">
-
-
 <meta itemprop="datePublished" content="2015-11-02T12:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2015-11-02T12:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="1021">
 
 
 
-<meta itemprop="keywords" content="git,ssh," />
-<meta property="og:title" content="Git之SSH密钥实现免密码" />
+<meta itemprop="keywords" content="git,ssh," /><meta property="og:title" content="Git之SSH密钥实现免密码" />
 <meta property="og:description" content="SSH密钥用于免密码git操作时验证信任的客户端。下面将说一下生成SSH密钥和将SSH密钥添加到对应git账户（不特指github，其他平台也可以如coding）的步骤。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2015/11/02/sshkey-git/" />
@@ -84,129 +81,89 @@
 			</header>
 			<div class="content">
 				<p>SSH密钥用于免密码git操作时验证信任的客户端。下面将说一下生成SSH密钥和将SSH密钥添加到对应git账户（不特指github，其他平台也可以如coding）的步骤。</p>
-
 <p>本文以<strong>mac osx</strong>系统为例。</p>
-
 <h2 id="检查">检查</h2>
-
 <p>检查是否存在SSH密钥</p>
-
 <p>首先，我们应该检查一下计算机中是否已经存在SSH密钥，打开终端输入：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -al ~/.ssh
-<span class="c1"># 如果有文件存在，列出.ssh文件夹下的文件</span></code></pre></div>
-<p>默认会有以下文件：</p>
-
+<span class="c1"># 如果有文件存在，列出.ssh文件夹下的文件</span>
+</code></pre></div><p>默认会有以下文件：</p>
 <ul>
 <li>id_dsa.pub</li>
 <li>id_ecdsa.pub</li>
 <li>id_ed25519.pub</li>
 <li>id_rsa.pub</li>
 </ul>
-
 <p><strong>注：</strong></p>
-
 <ul>
 <li>如果已经存在了SSH公钥和私钥，可以直接跳过第二、三步。</li>
 <li>如果出现错误<code>~/.ssh doesn't exist</code>，不用担心，只需要在~目录下创建.ssh目录即可<code>mkdir ~/.ssh</code></li>
 </ul>
-
 <h2 id="生成新的ssh密钥">生成新的SSH密钥</h2>
-
 <h3 id="ssh-keygen">ssh-keygen</h3>
-
 <p>在终端中执行一下命令，把邮箱换成自己的邮箱即可</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&#34;your_email@example.com&#34;</span>
 <span class="c1"># Creates a new ssh key, using the provided email as a label</span>
-<span class="c1"># Generating public/private rsa key pair.</span></code></pre></div>
-<h3 id="一路回车">一路回车</h3>
-
+<span class="c1"># Generating public/private rsa key pair.</span>
+</code></pre></div><h3 id="一路回车">一路回车</h3>
 <p>Github官方强烈建议保持默认设置，所以下面出现的三个需要输入的时候，直接回车就好：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ Enter file in which to save the key <span class="o">(</span>/Users/you/.ssh/id_rsa<span class="o">)</span>: <span class="o">[</span>Press enter<span class="o">]</span>
 $ Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>: <span class="o">[</span>Type a passphrase<span class="o">]</span>
-$ Enter same passphrase again: <span class="o">[</span>Type passphrase again<span class="o">]</span></code></pre></div>
-<h3 id="结果">结果</h3>
-
+$ Enter same passphrase again: <span class="o">[</span>Type passphrase again<span class="o">]</span>
+</code></pre></div><h3 id="结果">结果</h3>
 <p>成功完成上述操作后，就会出现下面类似的样子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Your identification has been saved in /Users/you/.ssh/id_rsa.
 Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
 The key fingerprint is:
-<span class="m">01</span>:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com</code></pre></div>
-<h2 id="向ssh-agent中添加ssh密钥">向ssh-agent中添加SSH密钥</h2>
-
+01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
+</code></pre></div><h2 id="向ssh-agent中添加ssh密钥">向ssh-agent中添加SSH密钥</h2>
 <h3 id="验证ssh-agent可用">验证ssh-agent可用</h3>
-
 <p>确保ssh-agent是可用的：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># start the ssh-agent in the background</span>
 $ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">&#34;</span>
-<span class="c1"># Agent pid 43686</span></code></pre></div>
-<h3 id="添加ssh密钥">添加SSH密钥</h3>
-
+<span class="c1"># Agent pid 43686</span>
+</code></pre></div><h3 id="添加ssh密钥">添加SSH密钥</h3>
 <p>将ssh密钥添加到ssh-agent中：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa</code></pre></div>
-<h2 id="git账户添加ssh密钥">git账户添加SSH密钥</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-add ~/.ssh/id_rsa
+</code></pre></div><h2 id="git账户添加ssh密钥">git账户添加SSH密钥</h2>
 <p>首先执行下面命令，将刚生成的SSH密钥拷贝到系统粘贴板：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ pbcopy &lt; ~/.ssh/id_rsa.pub
-<span class="c1"># Copies the contents of the id_rsa.pub file to your clipboard</span></code></pre></div>
-<p><strong>注：</strong></p>
-
+<span class="c1"># Copies the contents of the id_rsa.pub file to your clipboard</span>
+</code></pre></div><p><strong>注：</strong></p>
 <p>可以自己到HOME的.ssh目录下拷贝is_rsa.pub的内容，但一定注意不要有新行或空格，上述命令方式比较安全！</p>
-
 <p>以github为例讲解向账户中添加SSH密钥，coding是类似的。</p>
-
 <h3 id="进入settings">进入settings</h3>
-
 <p>点击自己github首页右上角的头像，选择settings（设置）</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/w7xck.png" alt="1" /></p>
-
-<h3 id="选择-ssh-keys">选择<strong>SSH Keys</strong></h3>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/w7xck.png" alt="1"></p>
+<h3 id="选择ssh-keys">选择<strong>SSH Keys</strong></h3>
 <p>在左边栏用户设置中选择<strong>SSH Keys</strong>：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/9cr7g.png" alt="2" /></p>
-
-<h3 id="添加-ssh">添加<strong>SSH</strong></h3>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/9cr7g.png" alt="2"></p>
+<h3 id="添加ssh">添加<strong>SSH</strong></h3>
 <p>点击右上角的<strong>Add SSH Key</strong>。</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/oz68n.png" alt="3" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/oz68n.png" alt="3"></p>
 <h3 id="输入ssh密钥">输入SSH密钥</h3>
-
 <p>在下面跳出的输入框中分别输入用于区分SSH密钥的名称和贴入已经复制到系统粘贴板上的SSH密钥：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rif0x.png" alt="4" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/rif0x.png" alt="4"></p>
 <h3 id="添加即可">添加即可</h3>
-
-<p>点击<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/42kz2.png" alt="5" />，然后输入账户密码完成添加。</p>
-
+<p>点击<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/42kz2.png" alt="5">，然后输入账户密码完成添加。</p>
 <h2 id="测试ssh连接">测试SSH连接</h2>
-
 <p>为了确保我们之前做的一切都是可用的，现在可以尝试SSH连接Github。</p>
-
-<h3 id="ssh-t">ssh -T</h3>
-
+<h3 id="ssh--t">ssh -T</h3>
 <p>打开终端，输入命令：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@github.com</code></pre></div>
-<h3 id="警告">警告</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -T git@github.com
+</code></pre></div><h3 id="警告">警告</h3>
 <p>可能会看到下面的警告：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">The authenticity of host <span class="s1">&#39;github.com (207.97.227.239)&#39;</span> can<span class="err">&#39;</span>t be established.
 <span class="c1"># RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span>
-<span class="c1"># Are you sure you want to continue connecting (yes/no)?</span></code></pre></div>
-<p>输入<code>yes</code>继续：</p>
+<span class="c1"># Are you sure you want to continue connecting (yes/no)?</span>
+</code></pre></div><p>输入<code>yes</code>继续：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Hi username! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not
-<span class="c1"># provide shell access.</span></code></pre></div>
-<h3 id="注意">注意</h3>
-
+<span class="c1"># provide shell access.</span>
+</code></pre></div><h3 id="注意">注意</h3>
 <p>如果上面的用户名是你的，就说明已经把SSH密钥绑定好了，以后可以用ssh免密码进行git推送了。</p>
-
 <h2 id="参考"><strong>参考：</strong></h2>
-
 <ul>
-<li><strong><a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank">Generating SSH keys</a></strong></li>
+<li><strong><a href="https://help.github.com/articles/generating-ssh-keys/">Generating SSH keys</a></strong></li>
 </ul>
 			</div>
 			<hr class="post-end">
@@ -226,38 +183,39 @@ $ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#检查">检查</a></li>
-<li><a href="#生成新的ssh密钥">生成新的SSH密钥</a>
-<ul>
-<li><a href="#ssh-keygen">ssh-keygen</a></li>
-<li><a href="#一路回车">一路回车</a></li>
-<li><a href="#结果">结果</a></li>
-</ul></li>
-<li><a href="#向ssh-agent中添加ssh密钥">向ssh-agent中添加SSH密钥</a>
-<ul>
-<li><a href="#验证ssh-agent可用">验证ssh-agent可用</a></li>
-<li><a href="#添加ssh密钥">添加SSH密钥</a></li>
-</ul></li>
-<li><a href="#git账户添加ssh密钥">git账户添加SSH密钥</a>
-<ul>
-<li><a href="#进入settings">进入settings</a></li>
-<li><a href="#选择-ssh-keys">选择<strong>SSH Keys</strong></a></li>
-<li><a href="#添加-ssh">添加<strong>SSH</strong></a></li>
-<li><a href="#输入ssh密钥">输入SSH密钥</a></li>
-<li><a href="#添加即可">添加即可</a></li>
-</ul></li>
-<li><a href="#测试ssh连接">测试SSH连接</a>
-<ul>
-<li><a href="#ssh-t">ssh -T</a></li>
-<li><a href="#警告">警告</a></li>
-<li><a href="#注意">注意</a></li>
-</ul></li>
-<li><a href="#参考"><strong>参考：</strong></a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#检查">检查</a></li>
+    <li><a href="#生成新的ssh密钥">生成新的SSH密钥</a>
+      <ul>
+        <li><a href="#ssh-keygen">ssh-keygen</a></li>
+        <li><a href="#一路回车">一路回车</a></li>
+        <li><a href="#结果">结果</a></li>
+      </ul>
+    </li>
+    <li><a href="#向ssh-agent中添加ssh密钥">向ssh-agent中添加SSH密钥</a>
+      <ul>
+        <li><a href="#验证ssh-agent可用">验证ssh-agent可用</a></li>
+        <li><a href="#添加ssh密钥">添加SSH密钥</a></li>
+      </ul>
+    </li>
+    <li><a href="#git账户添加ssh密钥">git账户添加SSH密钥</a>
+      <ul>
+        <li><a href="#进入settings">进入settings</a></li>
+        <li><a href="#选择ssh-keys">选择SSH Keys</a></li>
+        <li><a href="#添加ssh">添加SSH</a></li>
+        <li><a href="#输入ssh密钥">输入SSH密钥</a></li>
+        <li><a href="#添加即可">添加即可</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试ssh连接">测试SSH连接</a>
+      <ul>
+        <li><a href="#ssh--t">ssh -T</a></li>
+        <li><a href="#警告">警告</a></li>
+        <li><a href="#注意">注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考：</a></li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -308,7 +266,7 @@ $ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

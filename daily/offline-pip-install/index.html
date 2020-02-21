@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="离线安装 python 第三方库">
 <meta itemprop="description" content="昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也">
-
-
 <meta itemprop="datePublished" content="2019-04-11T19:05:39&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-11T19:05:39&#43;08:00" />
 <meta itemprop="wordCount" content="306">
 
 
 
-<meta itemprop="keywords" content="daily," />
-<meta property="og:title" content="离线安装 python 第三方库" />
+<meta itemprop="keywords" content="daily," /><meta property="og:title" content="离线安装 python 第三方库" />
 <meta property="og:description" content="昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/daily/offline-pip-install/" />
@@ -84,22 +81,26 @@
 			</header>
 			<div class="content">
 				<p>昨天开始了套娃式开发的抓狂生活，今天得解决 64 位 windows server 离线安装 python 第三方库的问题，总不能去下载一个一个的离线包然后一层一层的传进去再安装吧，这样也不好解决依赖的问题呀🤮，其实 pip 支持批量下载和安装第三方库，开干！</p>
-
 <ol>
-<li>找一台安装 64 位 windows 的电脑就当是 A 吧，安装上与不能访问互联网的远程主机一样版本的 python</li>
-
-<li><p>在 A 中打开 cmd，使用 pip 命令安装i(<code>pip install</code>)开发需要的第三方库，执行一下命令导出 <strong>requirements.txt</strong>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip freeze &gt; requirements.txt</code></pre></div></li>
-
-<li><p>在 A 上利用刚导出的 <strong>requirements.txt</strong> 下载第三方包及其依赖包到 <strong>packages</strong> 目录中：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip download -r requirements.txt -d packages</code></pre></div></li>
-
-<li><p>将 <strong>requirements.txt</strong> 和 <strong>packages</strong> 压缩一下，这里实例压缩成了 zip，将 zip 包一层层的发送到远程开发机中</p></li>
-
-<li><p>将 zip 包中的 *<strong>requirements.txt</strong> 和 <strong>packages</strong> 解压到桌面，打开 cmd 切换到到桌面，使用 pip 安装离线包:</p>
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip install --no-index --find-links<span class="o">=</span>pakages -r requirements.txt</code></pre></div></li>
+<li>
+<p>找一台安装 64 位 windows 的电脑就当是 A 吧，安装上与不能访问互联网的远程主机一样版本的 python</p>
+</li>
+<li>
+<p>在 A 中打开 cmd，使用 pip 命令安装i(<code>pip install</code>)开发需要的第三方库，执行一下命令导出 <strong>requirements.txt</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip freeze &gt; requirements.txt
+</code></pre></div></li>
+<li>
+<p>在 A 上利用刚导出的 <strong>requirements.txt</strong> 下载第三方包及其依赖包到 <strong>packages</strong> 目录中：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip download -r requirements.txt -d packages
+</code></pre></div></li>
+<li>
+<p>将 <strong>requirements.txt</strong> 和 <strong>packages</strong> 压缩一下，这里实例压缩成了 zip，将 zip 包一层层的发送到远程开发机中</p>
+</li>
+<li>
+<p>将 zip 包中的 *<strong>requirements.txt</strong> 和 <strong>packages</strong> 解压到桌面，打开 cmd 切换到到桌面，使用 pip 安装离线包:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">pip install --no-index --find-links<span class="o">=</span>pakages -r requirements.txt
+</code></pre></div></li>
 </ol>
-
 <p>完美！🤓</p>
 
 			</div>
@@ -165,7 +166,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

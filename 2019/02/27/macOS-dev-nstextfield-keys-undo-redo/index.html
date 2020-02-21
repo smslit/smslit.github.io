@@ -8,16 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做">
 <meta itemprop="description" content="在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两">
-
-
 <meta itemprop="datePublished" content="2019-02-27T10:23:39&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-27T10:23:39&#43;08:00" />
-<meta itemprop="wordCount" content="1951">
+<meta itemprop="wordCount" content="2040">
 
 
 
-<meta itemprop="keywords" content="macOS 开发," />
-<meta property="og:title" content="macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做" />
+<meta itemprop="keywords" content="macOS 开发," /><meta property="og:title" content="macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做" />
 <meta property="og:description" content="在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.smslit.top/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/" />
@@ -84,43 +81,28 @@
 				<h1>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</h1>
 			</header>
 			<div class="content">
-				
-
-<p>在文章<a href="/2019/02/25/macOS-dev-nstextfield-keys/" target="_blank">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a>中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两个操作：</p>
-
+				<p>在文章<a href="/2019/02/25/macOS-dev-nstextfield-keys/">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a>中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两个操作：</p>
 <ul>
 <li>撤销: <code>Command</code> + <code>z</code></li>
 <li>重做: <code>Shift</code> + <code>Command</code> + <code>z</code></li>
 </ul>
-
 <h1 id="实现平台">实现平台</h1>
-
 <ul>
 <li>macOS 10.14.3</li>
 <li>swift 4.2.1</li>
 <li>xcode 10.1</li>
 </ul>
-
 <h1 id="示例工程">示例工程</h1>
-
-<p>我们继续使用 <a href="/2019/02/25/macOS-dev-nstextfield-keys/" target="_blank">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a> 中的 Demo 工程，点击下面链接可以下载：</p>
-
-<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip" target="_blank">TextFieldKeyDemo</a></p>
-
+<p>我们继续使用 <a href="/2019/02/25/macOS-dev-nstextfield-keys/">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a> 中的 Demo 工程，点击下面链接可以下载：</p>
+<p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo.zip">TextFieldKeyDemo</a></p>
 <h1 id="添加撤销和重做支持">添加撤销和重做支持</h1>
-
 <p>这里先说一下怎么做，然后再解释。</p>
-
 <h2 id="确认勾选-undo">确认勾选 undo</h2>
-
 <p>NSTextField是默认支持撤销和重做的，打开 Main.storyboard 文件，点击 view controller 中的 Text Field，按快捷键 <code>Option</code> + <code>Command</code> + 4 打开 Text Field 的 Attribute Inspector 这是就会看到 Undo 是默认勾选的：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227124649.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227124649.png" alt=""></p>
 <h2 id="添加快捷键支持">添加快捷键支持</h2>
-
 <p>既然支持了 Undo，那么我们只需按照相应快捷键添加相应的操作就可以了，打开文件 AppDelegate.swift，可以看到上一篇文章中复写的 <code>performKeyEquivalent:</code> 方法，添加撤销和重做的代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 支持快捷键</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//</span><span class="c1"> </span><span class="c1">N</span><span class="c1">S</span><span class="c1">T</span><span class="c1">e</span><span class="c1">x</span><span class="c1">t</span><span class="c1">F</span><span class="c1">i</span><span class="c1">e</span><span class="c1">l</span><span class="c1">d</span><span class="c1"> </span><span class="c1">支</span><span class="c1">持</span><span class="c1">快</span><span class="c1">捷</span><span class="c1">键</span>
 <span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
     <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
         <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">modifierFlags</span><span class="p">.</span><span class="n">isDisjoint</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="p">.</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span>
@@ -128,143 +110,116 @@
         <span class="p">}</span>
         
         <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;z&#34;</span><span class="p">:</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">?.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">undo</span><span class="p">()</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">a</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">c</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">v</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">x</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">z</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">?</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">undo</span><span class="p">(</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">true</span>
-        <span class="k">case</span> <span class="s">&#34;Z&#34;</span><span class="p">:</span>
-            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">?.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">redo</span><span class="p">()</span>
+        <span class="k">case</span> <span class="s">&#34;</span><span class="s">Z</span><span class="s">&#34;</span><span class="p">:</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">?</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">redo</span><span class="p">(</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">true</span>
         <span class="k">default</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>添加完上述代码，按下快捷键 <code>Command</code> + <code>r</code> 运行程序，在运行起来的窗口中的文本框中输入一些字符，然后尝试按快捷键 <code>Command</code> + <code>z</code> 和 <code>Command</code> + <code>Z</code> ，恭喜你完成了撤销和重做操作的添加！</p>
-
+<span class="p">}</span>
+</code></pre></div><p>添加完上述代码，按下快捷键 <code>Command</code> + <code>r</code> 运行程序，在运行起来的窗口中的文本框中输入一些字符，然后尝试按快捷键 <code>Command</code> + <code>z</code> 和 <code>Command</code> + <code>Z</code> ，恭喜你完成了撤销和重做操作的添加！</p>
 <ul>
 <li><code>Shift</code> + <code>Command</code> + <code>z</code> 可以理解为 <code>Command</code> + (<code>Shift</code> + <code>z</code>)，而 <code>Shift</code> + <code>z</code> 其实就是 <code>Z</code>，所以最终这个重做快捷键其实就是 <code>Command</code> + <code>Z</code>(大写的 <code>z</code>)</li>
 <li>当文本框编辑的时候其就是窗口的第一响应对象，这里使用 <code>self.window?.firstResponder</code> 就是要快速定位到正在编辑的文本对象，而不是通过 NSTextField 的对象层级关系查找键盘事件的响应对象</li>
 <li>在 macOS 中，撤销和重做被做了统一封装，由 UndoManager 类进行统一管理这两个操作，而对于继承 NSResponder 类的子类都是默认有一个 undoManager 属性的，类型就是 UndoManager，不需要手动创建。同样，NSTextField 也不例外。macOS 中文本对象的操作都是默认包含 undoManager 的管理的也不需要我们手动添加相关管理实现。</li>
 </ul>
-
 <h1 id="撤销和重做的实现原理">撤销和重做的实现原理</h1>
-
 <p>上面已经提到 App 中的撤销和重做操作是由 UndoManager 类进行管理的，虽然我们知道了如何实现 NSTextField 的撤销和重做，但是 UndoManager 实现原理和使用还是得了解一下的，后面有需求要做不是文本操作的撤销和重做功能时也就更容易上手了。</p>
-
 <h2 id="理解撤销和重做操作流程">理解撤销和重做操作流程</h2>
-
 <p>UndoManager 通过管理两个操作栈(撤销栈和重做栈)的压栈和弹栈实现 undo 和 redo，两个操作栈中保存的是最小的操作过程，这个小的操作过程被封装为 NSInvocation 对象，然后保存在两个栈中，示意大概如下：</p>
-
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227224058.png" alt="" /></p>
-
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190227224058.png" alt=""></p>
 <p>NSInvocation 是一种包含执行方法及参数的对象。</p>
-
 <p>操作流程中的操作压栈和弹栈过程分三种情况：</p>
-
 <ul>
 <li>正常操作时：将马上要进行的正常操作的逆操作进行封装压入撤销栈，然后执行正常操作</li>
 <li>要执行撤销操作时：先从撤销栈中弹出得到要进行的操作，将这一步操作的逆操作压入重做栈，然后执行刚弹出的操作</li>
 <li>要执行重做操作时：从重做栈中弹出得到要进行的操作，将其逆向操作的封装压入撤销栈，然后进行刚弹出的操作</li>
 </ul>
-
 <h2 id="撤销和重做操作的管理">撤销和重做操作的管理</h2>
-
 <h3 id="undomanager-对象的创建">UndoManager 对象的创建</h3>
-
 <p>如上面提到的，大多数情况下对象中都有一个现成的 UndoManager 对象属性，可以直接使用这个属性 undoManager。继承 NSResponder 的子类由有：NSApplication、NSPopover、NSView、NSViewController、NSWindow 和 NSWindowController。</p>
-
 <h3 id="撤销操作压栈">撤销操作压栈</h3>
-
 <p>要将操作压入撤销栈其实就是一个注册操作的过程，有三个方法：</p>
-
 <ul>
-<li><p><code>registerUndo(withTarget:handler:)</code> 方法，是将对象、处理一起进行注册，使用闭包的形式，例如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndo</span><span class="p">(</span><span class="n">withTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">textField</span><span class="p">:</span> <span class="n">NSTextField</span><span class="p">)</span> <span class="k">in</span>
-<span class="n">textField</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-<span class="p">}</span></code></pre></div></li>
-
-<li><p><code>registerUndo(withTarget:selector:object:)</code> 方法注册</p></li>
-
-<li><p>使用 <code>prepare(withInvocaionTarget:)</code> 方法注册：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">target</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">prepare</span><span class="p">(</span><span class="n">withInvocationTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">NSTextField</span> <span class="p">{</span>
-<span class="n">target</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span>
-<span class="p">}</span></code></pre></div></li>
+<li><code>registerUndo(withTarget:handler:)</code> 方法，是将对象、处理一起进行注册，使用闭包的形式，例如：</li>
 </ul>
-
-<p><strong>注：</strong></p>
-
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">registerUndo</span><span class="p">(</span><span class="n">withTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">textField</span><span class="p">:</span> <span class="n">NSTextField</span><span class="p">)</span> <span class="k">in</span>
+    <span class="n">textField</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">hello</span><span class="s">&#34;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>
+<p><code>registerUndo(withTarget:selector:object:)</code> 方法注册</p>
+</li>
+<li>
+<p>使用 <code>prepare(withInvocaionTarget:)</code> 方法注册：</p>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">target</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">withInvocationTarget</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">NSTextField</span> <span class="p">{</span>
+    <span class="n">target</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">hello</span><span class="s">&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>注：</strong></p>
 <p>UndoManager 对象的 undoRegistionEnabled 是 true 的时候，撤销操作可以注册，但是如果是 false 就会禁用注册功能。</p>
-
 <h3 id="清除所有的撤销操作">清除所有的撤销操作</h3>
-
 <ul>
 <li><code>removeAllActions</code>: 删除撤销栈中所有的撤销操作</li>
 <li><code>removeAllActions(withTarget:)</code>: 删除撤销栈中指定对象的所有撤销操作</li>
 </ul>
-
 <p>需要注意的一点是：UndoManager 会强引用保留对象，所以在一个对象被删除的时候一定要清除这个对象在撤销栈中的所有撤销操作。</p>
-
 <h3 id="为撤销操作命名">为撤销操作命名</h3>
-
 <p>可以使用 <code>setActionName</code> 为撤销操作进行命名，这样在全局菜单中的编辑菜单中的就能看到撤销和重做对应的具体实际的动作。</p>
-
 <h1 id="实例感受撤销和重做的实现">实例感受撤销和重做的实现</h1>
-
 <p>这里继续使用上面的工程，实现一个可以撤销和重做的整数加法器，具体实现过程如下：</p>
-
 <ul>
 <li>另外添加两个 Text Field，三个文本框分别是加数、被加数和结果，并将其作为属性绑定到 View Controller 中</li>
 <li>添加三个按钮，分别是计算、撤销和重做，同样绑定动作到 View Controller 中</li>
-
-<li><p>添加三个 Action 的实现，在撤销和重做的实现中，可以参考下面的模板实现：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">func</span> <span class="nf">doThing</span><span class="p">()</span> <span class="p">{</span>
-<span class="c1">// do the thing here</span>
-<span class="p">}</span>
-
-<span class="kd">private</span> <span class="kd">func</span> <span class="nf">undoThing</span><span class="p">()</span> <span class="p">{</span>
-<span class="c1">// undo the thing here</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">undoablyDoThing</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
-    <span class="n">me</span><span class="p">.</span><span class="n">redoablyUndoThing</span><span class="p">()</span>
-<span class="p">})</span>
-<span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
-<span class="n">doThing</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">redoablyUndoThing</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">undoManager</span><span class="p">?.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
-    <span class="n">me</span><span class="p">.</span><span class="n">undoablyDoThing</span><span class="p">()</span>
-<span class="p">})</span>
-<span class="c1">// 可以添加有意义的操作名称: undoManager?.setActionName(&#34;Thing&#34;)</span>
-<span class="n">undoThing</span><span class="p">()</span>
-<span class="p">}</span></code></pre></div></li>
+<li>添加三个 Action 的实现，在撤销和重做的实现中，可以参考下面的模板实现：</li>
 </ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">func</span> <span class="nf">doThing</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//</span><span class="c1"> </span><span class="c1">d</span><span class="c1">o</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1"> </span><span class="c1">h</span><span class="c1">e</span><span class="c1">r</span><span class="c1">e</span>
+<span class="p">}</span>
 
-<p>另外还要注意的是，最好是也要将撤销按钮和重做按钮与 undoManager 的 canUndo 和 canRedo 同步，形式如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canUndo</span><span class="p">)</span><span class="o">!</span>
-<span class="kc">self</span><span class="p">.</span><span class="n">redoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?.</span><span class="n">canRedo</span><span class="p">)</span><span class="o">!</span></code></pre></div>
-<p>最终实现效果如下视频，视频中可以看到 ViewController 类的实现：</p>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">undoThing</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//</span><span class="c1"> </span><span class="c1">u</span><span class="c1">n</span><span class="c1">d</span><span class="c1">o</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1"> </span><span class="c1">h</span><span class="c1">e</span><span class="c1">r</span><span class="c1">e</span>
+<span class="p">}</span>
 
-<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/undomanager.mp4" controls="controls" width="960"></video>
+<span class="kd">func</span> <span class="nf">undoablyDoThing</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
+        <span class="n">me</span><span class="p">.</span><span class="n">redoablyUndoThing</span><span class="p">(</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">)</span>
+    <span class="c1">//</span><span class="c1"> </span><span class="c1">可</span><span class="c1">以</span><span class="c1">添</span><span class="c1">加</span><span class="c1">有</span><span class="c1">意</span><span class="c1">义</span><span class="c1">的</span><span class="c1">操</span><span class="c1">作</span><span class="c1">名</span><span class="c1">称</span><span class="c1">:</span><span class="c1"> </span><span class="c1">u</span><span class="c1">n</span><span class="c1">d</span><span class="c1">o</span><span class="c1">M</span><span class="c1">a</span><span class="c1">n</span><span class="c1">a</span><span class="c1">g</span><span class="c1">e</span><span class="c1">r</span><span class="c1">?</span><span class="c1">.</span><span class="c1">s</span><span class="c1">e</span><span class="c1">t</span><span class="c1">A</span><span class="c1">c</span><span class="c1">t</span><span class="c1">i</span><span class="c1">o</span><span class="c1">n</span><span class="c1">N</span><span class="c1">a</span><span class="c1">m</span><span class="c1">e</span><span class="c1">(</span><span class="c1">&#34;</span><span class="c1">T</span><span class="c1">h</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1">&#34;</span><span class="c1">)</span>
+    <span class="n">doThing</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}</span>
 
-<p>具体实现代码可以参考 Demo 源码：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo_UndoManager.zip" target="_blank">TextFieldKeyDemo_UndoManager</a></p>
-
+<span class="kd">func</span> <span class="nf">redoablyUndoThing</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">registerUndoWithTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">{</span> <span class="n">me</span> <span class="k">in</span>
+        <span class="n">me</span><span class="p">.</span><span class="n">undoablyDoThing</span><span class="p">(</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">)</span>
+    <span class="c1">//</span><span class="c1"> </span><span class="c1">可</span><span class="c1">以</span><span class="c1">添</span><span class="c1">加</span><span class="c1">有</span><span class="c1">意</span><span class="c1">义</span><span class="c1">的</span><span class="c1">操</span><span class="c1">作</span><span class="c1">名</span><span class="c1">称</span><span class="c1">:</span><span class="c1"> </span><span class="c1">u</span><span class="c1">n</span><span class="c1">d</span><span class="c1">o</span><span class="c1">M</span><span class="c1">a</span><span class="c1">n</span><span class="c1">a</span><span class="c1">g</span><span class="c1">e</span><span class="c1">r</span><span class="c1">?</span><span class="c1">.</span><span class="c1">s</span><span class="c1">e</span><span class="c1">t</span><span class="c1">A</span><span class="c1">c</span><span class="c1">t</span><span class="c1">i</span><span class="c1">o</span><span class="c1">n</span><span class="c1">N</span><span class="c1">a</span><span class="c1">m</span><span class="c1">e</span><span class="c1">(</span><span class="c1">&#34;</span><span class="c1">T</span><span class="c1">h</span><span class="c1">i</span><span class="c1">n</span><span class="c1">g</span><span class="c1">&#34;</span><span class="c1">)</span>
+    <span class="n">undoThing</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>另外还要注意的是，最好是也要将撤销按钮和重做按钮与 undoManager 的 canUndo 和 canRedo 同步，形式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kc">self</span><span class="p">.</span><span class="n">undoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">canUndo</span><span class="p">)</span><span class="o">!</span>
+<span class="kc">self</span><span class="p">.</span><span class="n">redoButton</span><span class="p">.</span><span class="n">isEnabled</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">undoManager</span><span class="p">?</span><span class="p">.</span><span class="n">canRedo</span><span class="p">)</span><span class="o">!</span>
+</code></pre></div><p>最终实现效果如下视频，视频中可以看到 ViewController 类的实现：</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>具体实现代码可以参考 Demo 源码：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/TextFieldKeyDemo_UndoManager.zip">TextFieldKeyDemo_UndoManager</a></p>
 <h1 id="参考">参考</h1>
-
 <ul>
 <li>《macOS应用开发基础教程》</li>
-<li><a href="https://stackoverflow.com/questions/36491789/using-Undomanager-how-to-register-undos-using-swift-closures" target="_blank">Using UndoManager, how to register undos using Swift closures</a></li>
-<li><a href="https://developer.apple.com/documentation/foundation/undomanager" target="_blank">UndoManager</a></li>
+<li><a href="https://stackoverflow.com/questions/36491789/using-Undomanager-how-to-register-undos-using-swift-closures">Using UndoManager, how to register undos using Swift closures</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/undomanager">UndoManager</a></li>
 </ul>
 
 			</div>
@@ -275,7 +230,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1951 字
+					2040 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -285,28 +240,22 @@
 		<aside id="toc">
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
-<ul>
-<li><a href="#实现平台">实现平台</a></li>
-<li><a href="#示例工程">示例工程</a></li>
-<li><a href="#添加撤销和重做支持">添加撤销和重做支持</a>
-<ul>
-<li><a href="#确认勾选-undo">确认勾选 undo</a></li>
-<li><a href="#添加快捷键支持">添加快捷键支持</a></li>
-</ul></li>
-<li><a href="#撤销和重做的实现原理">撤销和重做的实现原理</a>
-<ul>
-<li><a href="#理解撤销和重做操作流程">理解撤销和重做操作流程</a></li>
-<li><a href="#撤销和重做操作的管理">撤销和重做操作的管理</a>
-<ul>
-<li><a href="#undomanager-对象的创建">UndoManager 对象的创建</a></li>
-<li><a href="#撤销操作压栈">撤销操作压栈</a></li>
-<li><a href="#清除所有的撤销操作">清除所有的撤销操作</a></li>
-<li><a href="#为撤销操作命名">为撤销操作命名</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#实例感受撤销和重做的实现">实例感受撤销和重做的实现</a></li>
-<li><a href="#参考">参考</a></li>
-</ul>
+  <ul>
+    <li><a href="#确认勾选-undo">确认勾选 undo</a></li>
+    <li><a href="#添加快捷键支持">添加快捷键支持</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#理解撤销和重做操作流程">理解撤销和重做操作流程</a></li>
+    <li><a href="#撤销和重做操作的管理">撤销和重做操作的管理</a>
+      <ul>
+        <li><a href="#undomanager-对象的创建">UndoManager 对象的创建</a></li>
+        <li><a href="#撤销操作压栈">撤销操作压栈</a></li>
+        <li><a href="#清除所有的撤销操作">清除所有的撤销操作</a></li>
+        <li><a href="#为撤销操作命名">为撤销操作命名</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 		</aside>
 		<div class="post-nav thin">
@@ -357,7 +306,7 @@
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

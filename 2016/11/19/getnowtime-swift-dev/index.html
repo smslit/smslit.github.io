@@ -10,7 +10,7 @@
 <meta itemprop="description" content="今天尝试做一个macOS下的生成645协议的广播校时报文的小工具，做到一半竟然被“如何获取当前时间？”给难住了，百度搜索结果找来的方法都是过时的，经过尝试和研究找到了方法。">
 <meta itemprop="datePublished" content="2016-11-19T21:53:23&#43;08:00" />
 <meta itemprop="dateModified" content="2016-11-19T21:53:23&#43;08:00" />
-<meta itemprop="wordCount" content="224">
+<meta itemprop="wordCount" content="231">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -84,15 +86,15 @@
 			<div class="content">
 				<p>今天尝试做一个macOS下的生成645协议的广播校时报文的小工具，做到一半竟然被“如何获取当前时间？”给难住了，百度搜索结果找来的方法都是过时的，经过尝试和研究找到了方法。</p>
 <p>以在macOS的playground为例，首先新建一个macOS平台的playground，编写代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">//</span><span class="c1">:</span><span class="c1"> </span><span class="c1">P</span><span class="c1">l</span><span class="c1">a</span><span class="c1">y</span><span class="c1">g</span><span class="c1">r</span><span class="c1">o</span><span class="c1">u</span><span class="c1">n</span><span class="c1">d</span><span class="c1"> </span><span class="c1">-</span><span class="c1"> </span><span class="c1">n</span><span class="c1">o</span><span class="c1">u</span><span class="c1">n</span><span class="c1">:</span><span class="c1"> </span><span class="c1">a</span><span class="c1"> </span><span class="c1">p</span><span class="c1">l</span><span class="c1">a</span><span class="c1">c</span><span class="c1">e</span><span class="c1"> </span><span class="c1">w</span><span class="c1">h</span><span class="c1">e</span><span class="c1">r</span><span class="c1">e</span><span class="c1"> </span><span class="c1">p</span><span class="c1">e</span><span class="c1">o</span><span class="c1">p</span><span class="c1">l</span><span class="c1">e</span><span class="c1"> </span><span class="c1">c</span><span class="c1">a</span><span class="c1">n</span><span class="c1"> </span><span class="c1">p</span><span class="c1">l</span><span class="c1">a</span><span class="c1">y</span>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">//: Playground - noun: a place where people can play</span>
 
 <span class="kd">import</span> <span class="nc">Cocoa</span>
 
-<span class="c1">//</span><span class="c1"> </span><span class="c1">获</span><span class="c1">取</span><span class="c1">当</span><span class="c1">前</span><span class="c1">时</span><span class="c1">间</span>
-<span class="kd">let</span> <span class="nv">now</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="n">Date</span><span class="p">(</span><span class="p">)</span>
+<span class="c1">// 获取当前时间</span>
+<span class="kd">let</span> <span class="nv">now</span><span class="p">:</span> <span class="n">Date</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
 <span class="kd">let</span> <span class="nv">calendar</span> <span class="p">=</span> <span class="n">Calendar</span><span class="p">.</span><span class="n">current</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nv">components</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">.</span><span class="n">dateComponents</span><span class="p">(</span><span class="p">[</span><span class="p">.</span><span class="n">year</span><span class="p">,</span> <span class="p">.</span><span class="n">month</span><span class="p">,</span> <span class="p">.</span><span class="n">day</span><span class="p">,</span> <span class="p">.</span><span class="n">hour</span><span class="p">,</span> <span class="p">.</span><span class="n">minute</span><span class="p">,</span> <span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">now</span><span class="p">)</span>
-<span class="c1">//</span><span class="c1"> </span><span class="c1">获</span><span class="c1">取</span><span class="c1">当</span><span class="c1">前</span><span class="c1">时</span><span class="c1">间</span><span class="c1">对</span><span class="c1">应</span><span class="c1">年</span><span class="c1">月</span><span class="c1">日</span><span class="c1">时</span><span class="c1">分</span><span class="c1">秒</span><span class="c1">的</span><span class="c1">整</span><span class="c1">数</span><span class="c1">值</span>
+<span class="kd">let</span> <span class="nv">components</span> <span class="p">=</span> <span class="n">calendar</span><span class="p">.</span><span class="n">dateComponents</span><span class="p">([.</span><span class="n">year</span><span class="p">,</span> <span class="p">.</span><span class="n">month</span><span class="p">,</span> <span class="p">.</span><span class="n">day</span><span class="p">,</span> <span class="p">.</span><span class="n">hour</span><span class="p">,</span> <span class="p">.</span><span class="n">minute</span><span class="p">,</span> <span class="p">.</span><span class="n">second</span><span class="p">],</span> <span class="n">from</span><span class="p">:</span> <span class="n">now</span><span class="p">)</span>
+<span class="c1">// 获取当前时间对应年月日时分秒的整数值</span>
 <span class="kd">let</span> <span class="nv">year</span> <span class="p">=</span> <span class="n">components</span><span class="p">.</span><span class="n">year</span><span class="p">!</span> <span class="o">%</span> <span class="mi">100</span>
 <span class="kd">let</span> <span class="nv">month</span> <span class="p">=</span> <span class="n">components</span><span class="p">.</span><span class="n">month</span>
 <span class="kd">let</span> <span class="nv">day</span> <span class="p">=</span> <span class="n">components</span><span class="p">.</span><span class="n">day</span>
@@ -109,7 +111,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					224 字
+					231 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -190,6 +192,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

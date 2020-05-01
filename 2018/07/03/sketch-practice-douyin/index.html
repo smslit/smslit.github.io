@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -91,11 +93,11 @@
 <h2 id="抖音效果的原理">抖音效果的原理</h2>
 <p>抖音效果利用了图片的颜色混合通道的处理以及显示的原理<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，目前图片多选用RGB，像png图片还包含了alpha通道主要控制透明，这里只关心RGB三个通道：<strong>red</strong> 、<strong>green</strong> 和 <strong>blue</strong>。观看上面抖音音符的图片可以看到是两个音符叠放相加得到的。</p>
 <p>其实上面的两个音符本来都是白色，只是青色的音符关闭了<code>R</code>通道，及<code>R</code>通道设置为了0:</p>
-<p><!-- raw HTML omitted -->青色<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/qing.mp4" controls="controls" width="100%">青色</video></p>
 <p>红色的音符同样的道理是关闭了<code>G</code>和<code>B</code>通道：</p>
-<p><!-- raw HTML omitted -->红色<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/red.mp4" controls="controls" width="100%">红色</video></p>
 <p>然后接着需要修改青色圆图层到红色圆图层的上方，然后修改青圆的填充的混合方式为：<code>screen</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>，屏幕的混合方式的效果与前面提到的文章中所说的相加一致，然后将青色圆形拖动与红色圆形重叠，会发现重叠部分是白色的，与抖音音符效果一致：</p>
-<p><!-- raw HTML omitted -->重叠<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/screen.mp4" controls="controls" width="100%">重叠</video></p>
 <p>这样我们就知道了抖音效果的原理，这个原理针对于复杂的图片一样适用。</p>
 <h2 id="分析音符">分析音符</h2>
 <p>抖音音符的基本元素是两个一样的音符，sketch具有几何布尔运算的功能，所以下面分解一下音符的结构，就可以理清音符绘制步骤。</p>
@@ -133,7 +135,7 @@
 <li>选中圆环和正方形，点击工具栏 <code>subtract</code> 布尔相减处理，最终得到 3/4 圆环；</li>
 </ul>
 <p>整个操作过程参考下方视频：</p>
-<p><!-- raw HTML omitted -->3/4圆环<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/bigRing.mp4" controls="controls" width="100%">3/4圆环</video></p>
 <h3 id="绘制-14-圆环">绘制 1/4 圆环</h3>
 <ul>
 <li>按下<code>r</code>键，按住 <code>Shift</code>键拖动添加边长 <strong>240px</strong> 的正方形；</li>
@@ -143,7 +145,7 @@
 <li>选中两个扇形，点击工具栏的 <code>subtract</code>工具进行几何布尔相减，得到 1/4 圆环；</li>
 </ul>
 <p>具体操作参考：</p>
-<p><!-- raw HTML omitted --> 1/4 圆环<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/smalRing.mp4" controls="controls" width="100%"> 1/4 圆环</video></p>
 <h3 id="绘制矩形">绘制矩形</h3>
 <p>按下 <code>r</code> 键，拖动绘制宽 <strong>120px</strong>, 高 <strong>360px</strong> 的矩形，这个就不需要演示视频了。</p>
 <h3 id="组合音符">组合音符</h3>
@@ -155,7 +157,7 @@
 <li>将音符调整到画布正中间；</li>
 </ul>
 <p>具体过程参考：</p>
-<p><!-- raw HTML omitted -->音符<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/yinfu.mp4" controls="controls" width="100%">音符</video></p>
 <h3 id="抖音吧">抖音吧</h3>
 <p>来吧，一起抖音！</p>
 <ul>
@@ -166,7 +168,7 @@
 <li>调整青色音符的位置向左向右各 <strong>10px</strong>，最终就看到了抖音音符了；</li>
 </ul>
 <p>就像这样：</p>
-<p><!-- raw HTML omitted -->抖音音符<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/sketch/douyin/douyin.mp4" controls="controls" width="100%">抖音音符</video></p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -288,6 +290,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

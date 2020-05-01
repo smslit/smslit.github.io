@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -87,19 +89,19 @@
 <p>这里根据我自己的情况，需要将系统主时钟配置为32M外部晶振，要借助CLKCONCMD.OSC配置，选择32K时钟源为内部RC振荡器，要借助CLKCONCMD.OSC32K。再者就是配置工作模式，只需关心其中有关时钟的配置即可，SLEEPCMD.OSC_PD，这里要说明的是SLEEPCMD.OSC_PD为0时会开启所有振荡器电源，能保证32MHz晶振和16MHz RC振荡器都能起振，通过检查SLEEPSTA.XOSC_STB来确定32MHz晶振是否起振。</p>
 <p>那么可以按照以下代码实现系统时钟的初始化，根据注释理解过程即可：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">oscInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">SLEEPCMD</span> <span class="o">&amp;</span><span class="o">=</span> <span class="o">~</span><span class="mh">0x04</span><span class="p">;</span>                      <span class="c1">// 启动所有晶振，SLEEPCMD.OSC_PD设为0
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">SLEEPSTA</span> <span class="o">&amp;</span> <span class="mh">0x40</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>             <span class="c1">// 等待晶振稳定，检查SLEEPSTA.XOSC_STB，确认32MHz外部晶振起振
+    <span class="n">SLEEPCMD</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x04</span><span class="p">;</span>                      <span class="c1">// 启动所有晶振，SLEEPCMD.OSC_PD设为0
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">SLEEPSTA</span> <span class="o">&amp;</span> <span class="mh">0x40</span><span class="p">));</span>             <span class="c1">// 等待晶振稳定，检查SLEEPSTA.XOSC_STB，确认32MHz外部晶振起振
 </span><span class="c1"></span>
     <span class="n">CLKCONCMD</span> <span class="o">=</span> <span class="p">(</span><span class="n">CLKCONCMD</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">|</span> <span class="mh">0x49</span><span class="p">;</span>  <span class="c1">// 使用16M晶振作为主时钟
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="p">(</span><span class="n">CLKCONSTA</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">!</span><span class="o">=</span> <span class="mh">0x49</span> <span class="p">)</span><span class="p">;</span>   <span class="c1">// 等待主时钟切换到16M晶振
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">((</span><span class="n">CLKCONSTA</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x49</span> <span class="p">);</span>   <span class="c1">// 等待主时钟切换到16M晶振
 </span><span class="c1"></span>
     <span class="n">CLKCONCMD</span> <span class="o">=</span> <span class="p">(</span><span class="n">CLKCONCMD</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x80</span><span class="p">)</span> <span class="p">;</span>       <span class="c1">// 使用外部32K晶振作为休眠时钟
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="n">CLKCONSTA</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span> <span class="p">)</span><span class="p">;</span>      <span class="c1">// 等待睡眠时钟切换到外部32K晶振
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="n">CLKCONSTA</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">);</span>      <span class="c1">// 等待睡眠时钟切换到外部32K晶振
 </span><span class="c1"></span>
     <span class="n">CLKCONCMD</span> <span class="o">=</span> <span class="p">(</span><span class="n">CLKCONCMD</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="p">;</span>        <span class="c1">// 使用32M晶振作为主时钟
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="n">CLKCONSTA</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span> <span class="p">)</span><span class="p">;</span>     <span class="c1">// 等待主时钟切换到32M晶振
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span> <span class="p">(</span><span class="n">CLKCONSTA</span> <span class="o">&amp;</span> <span class="o">~</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">);</span>     <span class="c1">// 等待主时钟切换到32M晶振
 </span><span class="c1"></span>
-    <span class="n">SLEEPCMD</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x04</span><span class="p">;</span>                       <span class="c1">// 关闭未使用的晶振
+    <span class="n">SLEEPCMD</span> <span class="o">|=</span> <span class="mh">0x04</span><span class="p">;</span>                       <span class="c1">// 关闭未使用的晶振
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div>
 			</div>
@@ -187,6 +189,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

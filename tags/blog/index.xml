@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 17 Nov 2018 13:56:21 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 May 2020 08:10:24 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>博客现已支持 Asciinema</title>
+      <link>https://www.smslit.top/2020/05/01/asciinema/</link>
+      <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/05/01/asciinema/</guid>
+      <description>前几天好朋友分享给我一个工具，叫 asciinema。经了解，发现这真是个好东西！ 这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文</description>
+    </item>
     
     <item>
       <title>图床的选择从七牛云到腾讯云</title>

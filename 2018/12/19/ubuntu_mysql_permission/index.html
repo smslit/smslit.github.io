@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -125,8 +127,8 @@
 <li>
 <p>准备用于修改 root 密码的 <code>setpw.sql</code> 文件：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
-<span class="k">update</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">set</span> <span class="n">authentication_string</span><span class="o">=</span><span class="n">password</span><span class="p">(</span><span class="s1">&#39;</span><span class="s1">123456</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">where</span> <span class="k">user</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">root</span><span class="s1">&#39;</span> <span class="k">and</span> <span class="k">Host</span> <span class="o">=</span><span class="s1">&#39;</span><span class="s1">localhost</span><span class="s1">&#39;</span><span class="p">;</span>
-<span class="k">update</span> <span class="k">user</span> <span class="k">set</span> <span class="n">plugin</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">mysql_native_password</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="k">update</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">set</span> <span class="n">authentication_string</span><span class="o">=</span><span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456&#39;</span><span class="p">)</span> <span class="k">where</span> <span class="k">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span> <span class="k">and</span> <span class="k">Host</span> <span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="k">update</span> <span class="k">user</span> <span class="k">set</span> <span class="n">plugin</span><span class="o">=</span><span class="s2">&#34;mysql_native_password&#34;</span><span class="p">;</span>
 <span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
 </code></pre></div><blockquote>
 <p>上面代码第二行中的 <code>123456</code> 就是要修改的密码，密码修改为您想使用的密码即可</p>
@@ -248,6 +250,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

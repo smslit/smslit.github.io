@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -99,15 +101,15 @@
 <p>大概的意思是说：现在可以实时绘制数据了，只需要在Loop中加入Serial.println()就可以。</p>
 <h5 id="实现正弦函数">实现正弦函数</h5>
 <p>所以我编写一个测试sketch，实现正弦函数数据的绘制：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><h4 id="设置arduino">设置Arduino</h4>
@@ -122,17 +124,17 @@
 <h4 id="绘制多值曲线">绘制多值曲线</h4>
 <p>上面的例子是利用Serial Plotter工具绘制单值曲线的，其实这个工具还支持多个值绘制多条曲线，只需在每个值之间加上逗号，这里要注意的是，只有最后一个值用<strong>println</strong>函数，前面的值用<strong>print</strong>函数。</p>
 <p>测试代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Serial</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">,</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mf">0.05</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sc">&#39;,&#39;</span><span class="p">);</span>
+        <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>然后下载程序到Arduino，用Serial  Plotter查看可以看到两条三角函数曲线。</p>
@@ -245,6 +247,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

@@ -11,7 +11,7 @@
 ">
 <meta itemprop="datePublished" content="2018-10-20T10:09:31&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-20T10:09:31&#43;08:00" />
-<meta itemprop="wordCount" content="4850">
+<meta itemprop="wordCount" content="4771">
 
 
 
@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -110,7 +112,7 @@
 <h4 id="图片没有alpha通道问题">图片没有alpha通道问题</h4>
 <p>对于不含透明通道的位图图片（比如jpg）来说，少一个 Alpha 通道，那么 <a href="#数据存储">原理-数据存储</a> 提到的四通道存储方案显然缺少通道，其实解决很简单，只需要使用 <strong>pillow</strong> 库将 jpg 图片数据转换为带 alpha 通道的数据即可进行，可使用如下的方法转换：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">demo.jpg</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">RGBA</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;demo.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span>
 </code></pre></div><p>直接转换为 RGBA 模式即可。</p>
 <h4 id="怎么判断图片有没有隐写信息问题">怎么判断图片有没有隐写信息问题</h4>
 <p>为了判断图片有没有隐写信息，这里设计一个字节数据包存储协议，协议很简单，如下表：</p>
@@ -162,12 +164,12 @@ $$</p>
 <li>
 <p>声明类 MessageImage，文件 <code>messageimage.py</code> 中添加:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">MessageImage</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> MessageImage 类</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    初始化加载图片或者手动打开图片，将隐写信息写入图片，也可以解析图片中的隐写信息</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    Attributes:</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        image: 打开图片的 Image 类型对象</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        pkghead: 写入图片隐写信息的头标记，可以初始化时赋值</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="s2">&#34;&#34;&#34; MessageImage 类
+</span><span class="s2">    初始化加载图片或者手动打开图片，将隐写信息写入图片，也可以解析图片中的隐写信息
+</span><span class="s2">    Attributes:
+</span><span class="s2">        image: 打开图片的 Image 类型对象
+</span><span class="s2">        pkghead: 写入图片隐写信息的头标记，可以初始化时赋值
+</span><span class="s2">    &#34;&#34;&#34;</span>
 </code></pre></div><p>剩下的就是添加类的方法了。</p>
 </li>
 </ol>
@@ -223,7 +225,7 @@ $$</p>
 </table>
 <h4 id="初始化">初始化</h4>
 <p>类的初始化，主要是根据指定图片和指定存储协议头初始化基本属性：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">,</span> <span class="n">pkghead</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">,</span> <span class="n">pkghead</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">imgpath</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -240,29 +242,29 @@ $$</p>
 <li><a href="#__putdata">__putdata</a> 将协议包数据写入图片数据，得到新的图片数据；</li>
 </ol>
 <p>实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片为空，请调用实例的 open 方法打开一张图片！</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="n">pkgbytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pack</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__putdata</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
         <span class="n">pathlist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imgpath</span><span class="p">)</span>
-        <span class="n">newpath</span> <span class="o">=</span> <span class="n">pathlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">_code</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.png</span><span class="s1">&#39;</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1"> </span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">newpath</span> <span class="o">=</span> <span class="n">pathlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_code&#39;</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">newpath</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="bp">True</span>
 </code></pre></div><h5 id="__pack">__pack</h5>
 <p>这个方法主要是按照 <a href="#怎么判断图片有没有隐写信息问题">怎么判断图片有没有隐写信息问题</a> 小节中提到的协议进行打包，具体实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__pack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    打包数据，转换为待写入图片的字节数据组，并返回</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="n">tagbytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pkghead</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">little</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">databytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf8</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">lengthbytes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">databytes</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">little</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__pack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    打包数据，转换为待写入图片的字节数据组，并返回
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">tagbytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pkghead</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
+    <span class="n">databytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+    <span class="n">lengthbytes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">databytes</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
     <span class="n">pkgbytes</span> <span class="o">=</span> <span class="n">tagbytes</span> <span class="o">+</span> <span class="n">lengthbytes</span> <span class="o">+</span> <span class="n">databytes</span>
     <span class="k">return</span> <span class="n">pkgbytes</span>
 </code></pre></div><p>这里有两点关键：</p>
@@ -275,16 +277,16 @@ $$</p>
 </li>
 </ul>
 <h5 id="__putdata">__putdata</h5>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__putdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkgbytes</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">pixels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-    <span class="n">freespace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">freespace</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__putdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkgbytes</span><span class="p">):</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">getdata</span><span class="p">())</span>
+    <span class="n">freespace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">freespace</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">freespace</span><span class="p">:</span>  <span class="c1"># 超出全部数据空间， 抛出异常</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">错误: 不能载入超过 </span><span class="s2">&#34;</span> <span class="o">+</span> <span class="n">freespace</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2"> 字节的数据到图片中。</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;错误: 不能载入超过 &#34;</span> <span class="o">+</span> <span class="n">freespace</span> <span class="o">+</span> <span class="s2">&#34; 字节的数据到图片中。&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">):</span>
         <span class="n">_index</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span>
-        <span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="p">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">byte</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
-        <span class="n">_index</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-        <span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="p">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">byte</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+        <span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(((</span><span class="n">byte</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">])])</span>
+        <span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(((</span><span class="n">byte</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">])])</span>
     <span class="n">newimg</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
     <span class="n">newimg</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">newimg</span>
@@ -298,8 +300,8 @@ $$</p>
 </li>
 <li>
 <p>如果空间足够，就将隐写数据写入到像素数据中，这一部分实现在 <code>for</code> 循环中，枚举隐写数据中的字节，每个字节需要写入两个像素数据，低位在前原则，这里解释一下下面的语句：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="p">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">byte</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
-<span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="p">(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">byte</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">]</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">tuple</span><span class="p">([(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(((</span><span class="n">byte</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">])])</span>
+<span class="nb">tuple</span><span class="p">([(</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0xFE</span><span class="p">)</span> <span class="o">|</span> <span class="p">(((</span><span class="n">byte</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">_index</span><span class="p">])])</span>
 </code></pre></div><ul>
 <li><code>i</code> 和 <code>v</code> 分别是像素数据中通道数据的索引和值；</li>
 <li><code>v &amp; 0xFE</code> ：将通道数据的最低位置0；</li>
@@ -313,21 +315,21 @@ $$</p>
 </ol>
 <h4 id="decode方法">decode方法</h4>
 <p>这个方法用来解析图片中的隐写信息，实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片为空，请调用实例的 open 方法打开一张图片！</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>        
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unpack</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unpack</span><span class="p">()</span>
 </code></pre></div><p>直接关键是调用了解包函数 <a href="#__unpack">__unpack</a>，返回的是它的结果。</p>
 <h5 id="__unpack">__unpack</h5>
 <p>用于从图片中检查是否包含隐写数据并解析隐写数据，实现：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__unpack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__unpack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">pkgbytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getdata</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-    <span class="n">pkghead</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">little</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">pkghead</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">pkghead</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">pkghead</span><span class="p">:</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">little</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
         <span class="n">pkgbytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getdata</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span> <span class="o">+</span> <span class="n">length</span><span class="p">)</span>
-        <span class="n">info</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf8</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">info</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
@@ -340,15 +342,15 @@ $$</p>
 <li>将得到的字节数组转换为编码为 <code>utf8</code> 的字符串；</li>
 </ol>
 <h5 id="__getdata">__getdata</h5>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__getdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">pixels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-    <span class="n">pkgbytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">)</span><span class="p">:</span>
-        <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x01</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__getdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">getdata</span><span class="p">())</span>
+    <span class="n">pkgbytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x01</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">]])</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">r</span> <span class="o">|</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x01</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
-        <span class="n">v</span> <span class="o">|</span><span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span>
-        <span class="n">pkgbytes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">little</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x01</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]])</span>
+        <span class="n">v</span> <span class="o">|=</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span>
+        <span class="n">pkgbytes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">pkgbytes</span>  
 </code></pre></div><p>这个方法可以从图片数据中获取像素存储的位数据并组成字节数据。其中：</p>
 <ul>
@@ -358,36 +360,36 @@ $$</p>
 <p>所以实现中，<code>for</code> 的每一次循环读取两个像素点数据，组得一个字节数据，上述代码第 5 和第 7 行代码，得到的是每个通道的最低位数值。第 9 行代码将得到的数值转换为单字节数据。</p>
 <h4 id="open方法">open方法</h4>
 <p>这个方法用来打开新的图片获取 RGBA 模式的图片数据覆盖原来的属性 <code>image</code>，并记录图片路径到属性 <code>imgpath</code>，实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">RGBA</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">imgpath</span> <span class="o">=</span> <span class="n">imgpath</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">None</span>
 </code></pre></div><h4 id="freespace方法">freespace方法</h4>
 <p>这个方法用来计算图片可存隐写数据的空间大小，单位是字节，实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">freespace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    查看图片存储隐藏数据的可用空间，单位 byte</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">freespace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    查看图片存储隐藏数据的可用空间，单位 byte
+</span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片为空，请调用实例的 open 方法打开一张图片！</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">size</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div><p>像素个数的一半就是可存数据的空间大小，因为两个像素存一个字节数据。</p>
 <h4 id="sethead方法">sethead方法</h4>
 <p>有时可能需要自定义协议头，所以设计这个方法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sethead</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkghead</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sethead</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkghead</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">pkghead</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pkghead</span> <span class="o">=</span> <span class="n">pkghead</span>
 </code></pre></div><h3 id="类测试">类测试</h3>
 <p>最终实现了 <code>MessageImage</code> 类。需要测试一下，添加代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">mi</span> <span class="o">=</span> <span class="n">MessageImage</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">demo.png</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">你好，世界！hello, world!</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">mi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">demo_code.png</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">mi</span> <span class="o">=</span> <span class="n">MessageImage</span><span class="p">(</span><span class="s1">&#39;demo.png&#39;</span><span class="p">)</span>
+    <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;你好，世界！hello, world!&#39;</span><span class="p">)</span>
+    <span class="n">mi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;demo_code.png&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
 </code></pre></div><p>这里以图片 <a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/demo.png">demo.png</a> 为例，如果最终打印了解析结果，就说明 <code>MessageImage</code> 类搞定了，类似于：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python messageimage.py
 demo_code.png 你好，世界！hello, world!
@@ -411,12 +413,12 @@ demo_code.png 你好，世界！hello, world!
 </ol>
 <h3 id="获取参数方法">获取参数方法</h3>
 <p>封装获取命令行参数的方法为 <code>getargs</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">为图片写入隐藏信息，或者从包含隐藏信息的图片中获取信息。</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">command</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">encode</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">decode</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">check</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定子命令。encode -&gt; 往图片中写入隐藏信息；decode -&gt; 读取图片中的隐藏信息；check -&gt; 查看图片可存空间(单位 byte)</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-i</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--info</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定要写入的隐藏信息，子命令为 encode 时有效</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">imgpath</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定要处理的图片</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;为图片写入隐藏信息，或者从包含隐藏信息的图片中获取信息。&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;encode&#39;</span><span class="p">,</span> <span class="s1">&#39;decode&#39;</span><span class="p">,</span> <span class="s1">&#39;check&#39;</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定子命令。encode -&gt; 往图片中写入隐藏信息；decode -&gt; 读取图片中的隐藏信息；check -&gt; 查看图片可存空间(单位 byte)&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--info&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定要写入的隐藏信息，子命令为 encode 时有效&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;imgpath&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定要处理的图片&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </code></pre></div><p>设置三个子命令：</p>
 <ul>
 <li>encode : 往图片中写入隐藏信息；</li>
@@ -426,43 +428,43 @@ demo_code.png 你好，世界！hello, world!
 <p><code>imgpath</code> 图片路径是必须参数。</p>
 <h3 id="参数处理">参数处理</h3>
 <p>最终脚本的处理如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
     <span class="n">mi</span> <span class="o">=</span> <span class="n">MessageImage</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgpath</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">encode</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;encode&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">info</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">args</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">请输入要隐藏的信息：</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">info</span><span class="p">)</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">已写入隐藏信息！</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">decode</span><span class="s1">&#39;</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">解析到隐藏信息：{mi.decode()}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">check</span><span class="s1">&#39;</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片可用空间 {mi.freespace()} bytes</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入要隐藏的信息：&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">info</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;已写入隐藏信息！&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;decode&#39;</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;解析到隐藏信息：{mi.decode()}&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;check&#39;</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;图片可用空间 {mi.freespace()} bytes&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">不支持 {args.command} 命令</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;不支持 {args.command} 命令&#39;</span><span class="p">)</span>
 </code></pre></div><p>大功告成！命令行工具的代码参考：<a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/codeimg">tools-with-script/codeimg/codeimg</a></p>
 <h1 id="测试">测试</h1>
 <p>同样以<a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/demo.png">demo.png</a> 为例，测试过程如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="o">.</span><span class="o">/</span><span class="n">codeimg</span> <span class="n">encode</span> <span class="n">demo</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">i</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">https://www.smslit.top</span><span class="s1">&#39;</span>
-<span class="n">demo_code</span><span class="o">.</span><span class="n">png</span> <span class="err">已</span><span class="err">写</span><span class="err">入</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">！</span>
-<span class="err">$</span> <span class="o">.</span><span class="o">/</span><span class="n">codeimg</span> <span class="n">decode</span> <span class="n">demo_code</span><span class="o">.</span><span class="n">png</span>
-<span class="err">解</span><span class="err">析</span><span class="err">到</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">：</span><span class="n">https</span><span class="p">:</span><span class="o">/</span><span class="o">/</span><span class="n">www</span><span class="o">.</span><span class="n">smslit</span><span class="o">.</span><span class="n">top</span>
-<span class="err">$</span> <span class="o">.</span><span class="o">/</span><span class="n">codeimg</span> <span class="n">check</span> <span class="n">demo</span><span class="o">.</span><span class="n">png</span>
-<span class="err">图</span><span class="err">片</span><span class="err">可</span><span class="err">用</span><span class="err">空</span><span class="err">间</span> <span class="mi">381024</span> <span class="nb">bytes</span>
-<span class="err">$</span> <span class="o">.</span><span class="o">/</span><span class="n">codeimg</span> <span class="o">-</span><span class="n">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="n">encode</span> <span class="n">demo</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;https://www.smslit.top&#39;</span>
+<span class="n">demo_code</span><span class="o">.</span><span class="n">png</span> <span class="err">已写入隐藏信息！</span>
+<span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="n">decode</span> <span class="n">demo_code</span><span class="o">.</span><span class="n">png</span>
+<span class="err">解析到隐藏信息：</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">smslit</span><span class="o">.</span><span class="n">top</span>
+<span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="n">check</span> <span class="n">demo</span><span class="o">.</span><span class="n">png</span>
+<span class="err">图片可用空间</span> <span class="mi">381024</span> <span class="nb">bytes</span>
+<span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="o">-</span><span class="n">h</span>
 <span class="n">usage</span><span class="p">:</span> <span class="n">codeimg</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="n">INFO</span><span class="p">]</span> <span class="p">{</span><span class="n">encode</span><span class="p">,</span><span class="n">decode</span><span class="p">,</span><span class="n">check</span><span class="p">}</span> <span class="n">imgpath</span>
 
-<span class="err">为</span><span class="err">图</span><span class="err">片</span><span class="err">写</span><span class="err">入</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">，</span><span class="err">或</span><span class="err">者</span><span class="err">从</span><span class="err">包</span><span class="err">含</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">的</span><span class="err">图</span><span class="err">片</span><span class="err">中</span><span class="err">获</span><span class="err">取</span><span class="err">信</span><span class="err">息</span><span class="err">。</span>
+<span class="err">为图片写入隐藏信息，或者从包含隐藏信息的图片中获取信息。</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
   <span class="p">{</span><span class="n">encode</span><span class="p">,</span><span class="n">decode</span><span class="p">,</span><span class="n">check</span><span class="p">}</span>
-                        <span class="err">指</span><span class="err">定</span><span class="err">子</span><span class="err">命</span><span class="err">令</span><span class="err">。</span><span class="n">encode</span> <span class="o">-</span><span class="o">&gt;</span> <span class="err">往</span><span class="err">图</span><span class="err">片</span><span class="err">中</span><span class="err">写</span><span class="err">入</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">；</span><span class="n">decode</span> <span class="o">-</span><span class="o">&gt;</span> <span class="err">读</span><span class="err">取</span><span class="err">图</span><span class="err">片</span><span class="err">中</span><span class="err">的</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">；</span><span class="n">check</span>
-                        <span class="o">-</span><span class="o">&gt;</span> <span class="err">查</span><span class="err">看</span><span class="err">图</span><span class="err">片</span><span class="err">可</span><span class="err">存</span><span class="err">空</span><span class="err">间</span><span class="p">(</span><span class="err">单</span><span class="err">位</span> <span class="n">byte</span><span class="p">)</span>
-  <span class="n">imgpath</span>               <span class="err">指</span><span class="err">定</span><span class="err">要</span><span class="err">处</span><span class="err">理</span><span class="err">的</span><span class="err">图</span><span class="err">片</span>
+                        <span class="err">指定子命令。</span><span class="n">encode</span> <span class="o">-&gt;</span> <span class="err">往图片中写入隐藏信息；</span><span class="n">decode</span> <span class="o">-&gt;</span> <span class="err">读取图片中的隐藏信息；</span><span class="n">check</span>
+                        <span class="o">-&gt;</span> <span class="err">查看图片可存空间</span><span class="p">(</span><span class="err">单位</span> <span class="n">byte</span><span class="p">)</span>
+  <span class="n">imgpath</span>               <span class="err">指定要处理的图片</span>
 
 <span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">-</span><span class="o">-</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="nb">exit</span>
-  <span class="o">-</span><span class="n">i</span> <span class="n">INFO</span><span class="p">,</span> <span class="o">-</span><span class="o">-</span><span class="n">info</span> <span class="n">INFO</span>  <span class="err">指</span><span class="err">定</span><span class="err">要</span><span class="err">写</span><span class="err">入</span><span class="err">的</span><span class="err">隐</span><span class="err">藏</span><span class="err">信</span><span class="err">息</span><span class="err">，</span><span class="err">子</span><span class="err">命</span><span class="err">令</span><span class="err">为</span> <span class="n">encode</span> <span class="err">时</span><span class="err">有</span><span class="err">效</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="nb">exit</span>
+  <span class="o">-</span><span class="n">i</span> <span class="n">INFO</span><span class="p">,</span> <span class="o">--</span><span class="n">info</span> <span class="n">INFO</span>  <span class="err">指定要写入的隐藏信息，子命令为</span> <span class="n">encode</span> <span class="err">时有效</span>
 </code></pre></div><h1 id="总结">总结</h1>
 <p>本文实现了图片隐写术的基本功能，过程中熟悉了pillow 库、 argparse 库的基本使用以及类的编写，同时还了解了字节与字符串、字节与整型数据的相互转换。</p>
 <p>如果您觉得本文写的还不错，请持续关注 <a href="https://www.smslit.top">https://www.smslit.top</a>，后面还会有好玩的东西分享！</p>
@@ -474,7 +476,7 @@ demo_code.png 你好，世界！hello, world!
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					4850 字
+					4771 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -490,7 +492,7 @@ demo_code.png 你好，世界！hello, world!
   </ul>
 
   <ul>
-    <li><a href="#messageimage-类">MessageImage 类</a>
+    <li><a href="#messageimage-类"><strong>MessageImage</strong> 类</a>
       <ul>
         <li><a href="#问题分析">问题分析</a></li>
         <li><a href="#准备工作">准备工作</a></li>
@@ -578,6 +580,7 @@ demo_code.png 你好，世界！hello, world!
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

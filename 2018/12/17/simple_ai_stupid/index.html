@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -89,11 +91,11 @@
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png" alt=""></p>
 <p>新建文件 <code>chatbot.py</code> ，内容如下:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="n">chat_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">吗</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">?</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">!</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">? </span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">! </span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">小爱:</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">chat_str</span><span class="p">)</span>
+    <span class="n">chat_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;吗&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;?&#34;</span><span class="p">,</span> <span class="s2">&#34;!&#34;</span><span class="p">)</span>
+    <span class="n">chat_str</span> <span class="o">=</span> <span class="n">chat_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;? &#34;</span><span class="p">,</span> <span class="s2">&#34;! &#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;小爱:&#34;</span><span class="p">,</span> <span class="n">chat_str</span><span class="p">)</span>
 </code></pre></div><p>大功告成！运行文件进行玩耍:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 chatbot.py
 您好
@@ -190,6 +192,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

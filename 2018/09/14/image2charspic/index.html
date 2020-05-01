@@ -11,7 +11,7 @@
 ">
 <meta itemprop="datePublished" content="2018-09-14T17:04:01&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-14T17:04:01&#43;08:00" />
-<meta itemprop="wordCount" content="1388">
+<meta itemprop="wordCount" content="1389">
 
 
 
@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -145,12 +147,12 @@ $$
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ ./img2ascii
 </code></pre></div><h4 id="添加参数解析实现">添加参数解析实现</h4>
 <p>添加四个参数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">此工具可以将图片转换为字符画。</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">file</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">待转换的图片路径</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--output</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定生成字符画的保存路径</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-W</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--width</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">可以通过此参数指定图片转换大小到一定宽度，单位：像素，默认值：80</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-H</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--height</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">可以通过此参数指定图片转换大小到一定高度，单位：像素，默认值：80</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;此工具可以将图片转换为字符画。&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;待转换的图片路径&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--output&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定生成字符画的保存路径&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-W&#39;</span><span class="p">,</span> <span class="s1">&#39;--width&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;可以通过此参数指定图片转换大小到一定宽度，单位：像素，默认值：80&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-H&#39;</span><span class="p">,</span> <span class="s1">&#39;--height&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;可以通过此参数指定图片转换大小到一定高度，单位：像素，默认值：80&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 
 <span class="n">IMG</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span>
@@ -159,36 +161,36 @@ $$
 <span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span>
 </code></pre></div><h4 id="生成字符表">生成字符表</h4>
 <p>构建需要的字符表，其实这个表里的字符可以任意添加：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ascii_chars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ!@#$</span><span class="s2">%</span><span class="s2">^&amp;*()_+|?&gt;&lt;.,:;~`1234567890 </span><span class="s2">&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ascii_chars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ!@#$%^&amp;*()_+|?&gt;&lt;.,:;~`1234567890 &#34;</span><span class="p">)</span>
 <span class="n">ascii_table</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ascii_chars</span><span class="p">]</span>
 <span class="n">TABLE_LENGTH</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ascii_table</span><span class="p">)</span>
 </code></pre></div><h4 id="创建映射函数">创建映射函数</h4>
 <p>映射函数用于获取对应像素点上应该放置的字符串：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getChars</span><span class="p">(</span><span class="n">gray</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getChars</span><span class="p">(</span><span class="n">gray</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">gray</span> <span class="o">==</span> <span class="mi">255</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">  </span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;  &#39;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ascii_table</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">gray</span> <span class="o">/</span> <span class="mi">256</span>  <span class="o">*</span> <span class="n">TABLE_LENGTH</span><span class="p">)</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ascii_table</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">gray</span> <span class="o">/</span> <span class="mi">256</span>  <span class="o">*</span> <span class="n">TABLE_LENGTH</span><span class="p">)]</span>
 </code></pre></div><h4 id="打开图像并灰度化">打开图像并灰度化</h4>
 <p>使用 <strong>pillow</strong> 库打开图片，将图片转换为灰度图：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">IMG</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">)</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">L</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">txt</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </code></pre></div><h4 id="生成字符画">生成字符画</h4>
 <p>通过读取每个像素点的灰度值，获取替代字符串，生成字符画：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">gray</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">(</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-        <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="n">getChars</span><span class="p">(</span><span class="n">gray</span><span class="p">)</span>
-    <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">):</span>
+        <span class="n">gray</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="n">txt</span> <span class="o">+=</span> <span class="n">getChars</span><span class="p">(</span><span class="n">gray</span><span class="p">)</span>
+    <span class="n">txt</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 </code></pre></div><h4 id="导出字符画文件">导出字符画文件</h4>
 <p>将生成的字符画字符串以文件的形式保存到指定路径：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">OUTPUT</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OUTPUT</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OUTPUT</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">output.txt</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
 </code></pre></div><p><strong>注：</strong></p>
 <p><a href="https://github.com/smslit/tools-with-script/blob/master/img2ascii/img2ascii"><strong>点我</strong></a> 查看完整代码！</p>
@@ -209,7 +211,7 @@ $$
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1388 字
+					1389 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -303,6 +305,7 @@ $$
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

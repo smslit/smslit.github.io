@@ -10,7 +10,7 @@
 <meta itemprop="description" content="前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一">
 <meta itemprop="datePublished" content="2019-08-24T19:21:06&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-24T19:21:06&#43;08:00" />
-<meta itemprop="wordCount" content="1267">
+<meta itemprop="wordCount" content="1266">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -99,44 +101,44 @@
 <p>右键 src 文件夹，新建两个文件，一个是 <code>main.h</code> 另一个是 <code>main.c</code>：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824195932-qoIR8c.png" alt=""></p>
 <p>向 <code>mian.h</code> 中添加以下代码，如果您的板载 LED 连接到其它管脚，请相应修改关于 LED 的三个宏定义：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">ifndef MAIN_H</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define MAIN_H</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifndef MAIN_H
+</span><span class="cp">#define MAIN_H
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;stm32f1xx_hal.h&#34;</span><span class="cp">
+<span class="cp">#include</span> <span class="cpf">&#34;stm32f1xx_hal.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define LED_PIN GPIO_PIN_13</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define LED_GPIO_PORT GPIOC</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define LED_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()</span><span class="cp">
+<span class="cp">#define LED_PIN GPIO_PIN_13
+</span><span class="cp">#define LED_GPIO_PORT GPIOC
+</span><span class="cp">#define LED_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">endif  </span><span class="c1">// MAIN_H
+<span class="cp">#endif  </span><span class="c1">// MAIN_H
 </span></code></pre></div><p>向 <code>mian.c</code> 中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;main.h&#34;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;main.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">LED_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">LED_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">HAL_Init</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">LED_Init</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">HAL_Init</span><span class="p">();</span>
+  <span class="n">LED_Init</span><span class="p">();</span>
 
   <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// LED 翻转
-</span><span class="c1"></span>    <span class="n">HAL_GPIO_TogglePin</span><span class="p">(</span><span class="n">LED_GPIO_PORT</span><span class="p">,</span> <span class="n">LED_PIN</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">HAL_Delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">HAL_GPIO_TogglePin</span><span class="p">(</span><span class="n">LED_GPIO_PORT</span><span class="p">,</span> <span class="n">LED_PIN</span><span class="p">);</span>
+    <span class="n">HAL_Delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">LED_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// LED GPIO 初始化
-</span><span class="c1"></span>  <span class="n">LED_GPIO_CLK_ENABLE</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="n">LED_GPIO_CLK_ENABLE</span><span class="p">();</span>
   <span class="n">GPIO_InitTypeDef</span> <span class="n">GPIO_InitStruct</span><span class="p">;</span>
   <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Pin</span> <span class="o">=</span> <span class="n">LED_PIN</span><span class="p">;</span>
   <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Mode</span> <span class="o">=</span> <span class="n">GPIO_MODE_OUTPUT_PP</span><span class="p">;</span>
   <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Pull</span> <span class="o">=</span> <span class="n">GPIO_PULLUP</span><span class="p">;</span>
   <span class="n">GPIO_InitStruct</span><span class="p">.</span><span class="n">Speed</span> <span class="o">=</span> <span class="n">GPIO_SPEED_FREQ_HIGH</span><span class="p">;</span>
-  <span class="n">HAL_GPIO_Init</span><span class="p">(</span><span class="n">LED_GPIO_PORT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">GPIO_InitStruct</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">HAL_GPIO_Init</span><span class="p">(</span><span class="n">LED_GPIO_PORT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">GPIO_InitStruct</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">SysTick_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span> <span class="n">HAL_IncTick</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">SysTick_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span> <span class="n">HAL_IncTick</span><span class="p">();</span> <span class="p">}</span>
 </code></pre></div><p>确保把 stm32f103c8t6 的最小系统板通过 stlink 连接到电脑 usb，编译并上传程序：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20190824222127-q3S1ZX.png" alt=""></p>
 <p><strong>what？</strong> LED 竟然没有如期的闪动起来!</p>
@@ -144,18 +146,18 @@
 <p>代码都正确呀，为什么程序没有正常工作呢?首先怀疑对象是系统时钟，用示波器测试了一下芯片的高速晶振管脚，竟然没有起振，哎呀，我们确实没有添加系统时钟配置的代码，再次对照一下用 <strong>STMCubeMX</strong>^[STM32CubeMX is a graphical tool that allows a very easy configuration of STM32 microcontrollers and microprocessors, as well as the generation of the corresponding initialization C code for the Arm® Cortex®-M core or a partial Linux® Device Tree for Arm® Cortex®-A core), through a step-by-step process.——<a href="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a>] 生成的普通项目的源码，确实我们的工程中缺少了对于时钟的配置。</p>
 <p>为了解决这个问题，参考了 STMCubeMX 项目，笔者建议除了添加时钟的配置之外，还要加一些可能以后会用到的处理函数。这里我们添加两个新的文件 <code>sys_basic.h</code> 和 <code>sys_basic.c</code>。</p>
 <p>文件 <code>sys_basic.h</code> 内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">ifndef SYS_BASIC_H</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define SYS_BASIC_H</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#ifndef SYS_BASIC_H
+</span><span class="cp">#define SYS_BASIC_H
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">_Error_Handler</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="p">;</span>
-<span class="cp">#</span><span class="cp">define Error_Handler() _Error_Handler(__FILE__, __LINE__)</span><span class="cp">
+<span class="kt">void</span> <span class="nf">_Error_Handler</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+<span class="cp">#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">SystemClock_Config</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">SystemClock_Config</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 
-<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#endif
 </span></code></pre></div><p>文件 <code>sys_basic.c</code> 内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;sys_basic.h&#34;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;stm32f1xx_hal.h&#34;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;sys_basic.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;stm32f1xx_hal.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="cm">/** System Clock Configuration
 </span><span class="cm"> */</span>
@@ -172,8 +174,8 @@
   <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">PLL</span><span class="p">.</span><span class="n">PLLState</span> <span class="o">=</span> <span class="n">RCC_PLL_ON</span><span class="p">;</span>
   <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">PLL</span><span class="p">.</span><span class="n">PLLSource</span> <span class="o">=</span> <span class="n">RCC_PLLSOURCE_HSE</span><span class="p">;</span>
   <span class="n">RCC_OscInitStruct</span><span class="p">.</span><span class="n">PLL</span><span class="p">.</span><span class="n">PLLMUL</span> <span class="o">=</span> <span class="n">RCC_PLL_MUL9</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_RCC_OscConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RCC_OscInitStruct</span><span class="p">)</span> <span class="o">!</span><span class="o">=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">_Error_Handler</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_RCC_OscConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RCC_OscInitStruct</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_Error_Handler</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="cm">/**Initializes the CPU, AHB and APB busses clocks
@@ -185,20 +187,20 @@
   <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">APB1CLKDivider</span> <span class="o">=</span> <span class="n">RCC_HCLK_DIV2</span><span class="p">;</span>
   <span class="n">RCC_ClkInitStruct</span><span class="p">.</span><span class="n">APB2CLKDivider</span> <span class="o">=</span> <span class="n">RCC_HCLK_DIV1</span><span class="p">;</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_RCC_ClockConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RCC_ClkInitStruct</span><span class="p">,</span> <span class="n">FLASH_LATENCY_2</span><span class="p">)</span> <span class="o">!</span><span class="o">=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">_Error_Handler</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_RCC_ClockConfig</span><span class="p">(</span><span class="o">&amp;</span><span class="n">RCC_ClkInitStruct</span><span class="p">,</span> <span class="n">FLASH_LATENCY_2</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_Error_Handler</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">,</span> <span class="n">__LINE__</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="cm">/**Configure the Systick interrupt time
 </span><span class="cm">   */</span>
-  <span class="n">HAL_SYSTICK_Config</span><span class="p">(</span><span class="n">HAL_RCC_GetHCLKFreq</span><span class="p">(</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">HAL_SYSTICK_Config</span><span class="p">(</span><span class="n">HAL_RCC_GetHCLKFreq</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">);</span>
 
   <span class="cm">/**Configure the Systick
 </span><span class="cm">   */</span>
-  <span class="n">HAL_SYSTICK_CLKSourceConfig</span><span class="p">(</span><span class="n">SYSTICK_CLKSOURCE_HCLK</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">HAL_SYSTICK_CLKSourceConfig</span><span class="p">(</span><span class="n">SYSTICK_CLKSOURCE_HCLK</span><span class="p">);</span>
 
   <span class="cm">/* SysTick_IRQn interrupt configuration */</span>
-  <span class="n">HAL_NVIC_SetPriority</span><span class="p">(</span><span class="n">SysTick_IRQn</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">HAL_NVIC_SetPriority</span><span class="p">(</span><span class="n">SysTick_IRQn</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="cm">/**
@@ -214,7 +216,7 @@
   <span class="cm">/* USER CODE END Error_Handler_Debug */</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">NMI_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="kt">void</span> <span class="nf">NMI_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
 
 <span class="kt">void</span> <span class="nf">HardFault_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -236,11 +238,11 @@
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">SVC_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="kt">void</span> <span class="nf">SVC_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="kt">void</span> <span class="nf">DebugMon_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="kt">void</span> <span class="nf">DebugMon_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="kt">void</span> <span class="nf">PendSV_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="kt">void</span> <span class="nf">PendSV_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
 </code></pre></div><p>时钟初始化在函数 <code>SystemClock_Config</code> 中实现，这里时钟源选择使用 8M 高速晶振、9倍频等等常用的时钟配置，在 <code>main.c</code> 中包含头文件 <code>sys_basic.h</code> 并在主函数 <code>HAL_Init();</code> 后加入时钟初始化函数调用 <code>SystemClock_Config();</code>。</p>
 <p>此时编译上传程序，可以看到 LED 如期灵动了起来！</p>
 <h2 id="调试程序">调试程序</h2>
@@ -262,7 +264,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1267 字
+					1266 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -352,6 +354,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

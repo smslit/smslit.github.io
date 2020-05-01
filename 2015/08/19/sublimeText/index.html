@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -105,7 +107,7 @@
 <ul>
 <li>
 <p>安装Package Control，按下快捷键 <code>CTRL</code>+ ` ，复制粘贴以下命令，并回车就会自动安装，稍等即可，会有提示重启软件，重新启动Sublime就行了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">import urllib.request,os<span class="p">;</span> <span class="nv">pf</span> <span class="o">=</span> <span class="s1">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="nv">ipp</span> <span class="o">=</span> sublime.installed_packages_path<span class="o">(</span><span class="o">)</span><span class="p">;</span> urllib.request.install_opener<span class="o">(</span> urllib.request.build_opener<span class="o">(</span> urllib.request.ProxyHandler<span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">)</span><span class="p">;</span> open<span class="o">(</span>os.path.join<span class="o">(</span>ipp, pf<span class="o">)</span>, <span class="s1">&#39;wb&#39;</span><span class="o">)</span>.write<span class="o">(</span>urllib.request.urlopen<span class="o">(</span> <span class="s1">&#39;http://sublime.wbond.net/&#39;</span> + pf.replace<span class="o">(</span><span class="s1">&#39; &#39;</span>,<span class="s1">&#39;%20&#39;</span><span class="o">)</span><span class="o">)</span>.read<span class="o">(</span><span class="o">)</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">import urllib.request,os<span class="p">;</span> <span class="nv">pf</span> <span class="o">=</span> <span class="s1">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="nv">ipp</span> <span class="o">=</span> sublime.installed_packages_path<span class="o">()</span><span class="p">;</span> urllib.request.install_opener<span class="o">(</span> urllib.request.build_opener<span class="o">(</span> urllib.request.ProxyHandler<span class="o">())</span> <span class="o">)</span><span class="p">;</span> open<span class="o">(</span>os.path.join<span class="o">(</span>ipp, pf<span class="o">)</span>, <span class="s1">&#39;wb&#39;</span><span class="o">)</span>.write<span class="o">(</span>urllib.request.urlopen<span class="o">(</span> <span class="s1">&#39;http://sublime.wbond.net/&#39;</span> + pf.replace<span class="o">(</span><span class="s1">&#39; &#39;</span>,<span class="s1">&#39;%20&#39;</span><span class="o">))</span>.read<span class="o">())</span>
 </code></pre></div><p>验证安装：按下快捷键【SHIFT+CTRL+P】，输入package的字样就会出现下图样子：
 <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/u57ni.png" alt="2"></p>
 </li>
@@ -164,9 +166,9 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#前言">前言</a></li>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#正文">正文</a></li>
+        <li><a href="#前言"><strong>前言</strong></a></li>
+        <li><a href="#简介"><strong>简介</strong></a></li>
+        <li><a href="#正文"><strong>正文</strong></a></li>
         <li><a href="#总结">总结</a></li>
       </ul>
     </li>
@@ -243,6 +245,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

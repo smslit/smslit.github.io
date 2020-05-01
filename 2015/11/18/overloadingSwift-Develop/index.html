@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -99,17 +101,17 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 <ul>
 <li>
 <p>一种是使用@objc(newNameMethod:)，如下</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">,</span> <span class="n">par2</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">,</span> <span class="n">par2</span><span class="p">)</span> <span class="p">{...}</span>
 
-<span class="kr">@objc</span><span class="p">(</span><span class="n">methodTow</span><span class="p">:</span><span class="p">)</span>
-<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
+<span class="kr">@objc</span><span class="p">(</span><span class="n">methodTow</span><span class="p">:)</span>
+<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="n">par1</span><span class="p">)</span> <span class="p">{...}</span>
 </code></pre></div></li>
 <li>
 <p>另一种是使用 @nonobjc，如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">methodOne</span><span class="p">()</span> <span class="p">{...}</span>
 
 <span class="p">@</span><span class="n">nonobjc</span>
-<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">}</span>
+<span class="kd">func</span> <span class="nf">methodOne</span><span class="p">()</span> <span class="p">{...}</span>
 </code></pre></div></li>
 </ul>
 			</div>
@@ -201,6 +203,7 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

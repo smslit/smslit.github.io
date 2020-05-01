@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -136,19 +138,19 @@ C:<span class="se">\U</span>sers<span class="se">\s</span>mslit<span class="se">
 <p>编译会有类似提示如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Undefined symbols <span class="k">for</span> architecture x86_64:
   <span class="s2">&#34;QSerialPort::setBaudRate(int, QFlags&lt;QSerialPort::Direction&gt;)&#34;</span>, referenced from:
-      MainWindow::on_openPortButton_clicked<span class="o">(</span><span class="o">)</span> in mainwindow.o
+      MainWindow::on_openPortButton_clicked<span class="o">()</span> in mainwindow.o
   <span class="s2">&#34;QSerialPort::setDataBits(QSerialPort::DataBits)&#34;</span>, referenced from:
-      MainWindow::on_openPortButton_clicked<span class="o">(</span><span class="o">)</span> in mainwindow.o
+      MainWindow::on_openPortButton_clicked<span class="o">()</span> in mainwindow.o
   .
   .
   .
   <span class="s2">&#34;QSerialPortInfo::portName() const&#34;</span>, referenced from:
-      MainWindow::fillPortsInfo<span class="o">(</span><span class="o">)</span> in mainwindow.o
+      MainWindow::fillPortsInfo<span class="o">()</span> in mainwindow.o
 ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span class="k">for</span> architecture x86_64
 clang: error: linker <span class="nb">command</span> failed with <span class="nb">exit</span> code <span class="m">1</span> <span class="o">(</span>use -v to see invocation<span class="o">)</span>
 </code></pre></div><h4 id="解决办法"><strong>解决办法</strong></h4>
 <p>在工程的pro文件中的第一行加入以下内容，再次编译即可通过：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">QT</span>  <span class="o">+</span><span class="o">=</span> <span class="n">serialport</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">QT</span>  <span class="o">+=</span> <span class="n">serialport</span>
 </code></pre></div><h3 id="mac-osx下qt设置程序的图标">Mac OSX下QT设置程序的图标</h3>
 <ul>
 <li>
@@ -306,6 +308,7 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

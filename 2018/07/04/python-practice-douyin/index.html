@@ -10,7 +10,7 @@
 <meta itemprop="description" content="前两篇文章 Affinity Photo绘制抖音音符  和 Sketch练习稿之绘制抖音音符 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。">
 <meta itemprop="datePublished" content="2018-07-04T21:01:38&#43;08:00" />
 <meta itemprop="dateModified" content="2018-07-04T21:01:38&#43;08:00" />
-<meta itemprop="wordCount" content="2031">
+<meta itemprop="wordCount" content="1965">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -105,7 +107,7 @@ pip3 install numpy
 <p>本文主要用到库中的 <strong>Image</strong> 模块。</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 </code></pre></div><p>使用 <strong>Image</strong> 模块的 <code>open</code> 方法可以打开图片得到图片原生数据，类型为 <code>PIL.JpegImagePlugin.JpegImageFile</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">picname.jpg</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;picname.jpg&#39;</span><span class="p">)</span>
 </code></pre></div><p>上述对象有两个常用的方法：</p>
 <ul>
 <li>show() : 显示图片，比如<code>image_data.show()</code></li>
@@ -119,7 +121,7 @@ pip3 install numpy
 </code></pre></div><p>上面的操作可以逆向进行，也就是将 <strong>img_array</strong> 转换为 <code>PIL.JpegImagePlugin.JpegImageFile</code> 对象，需要依赖于 <strong>Image</strong> 的另一个方法 <code>fromarray(array)</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
 </code></pre></div><p>可以很方便地使用切片操作处理图片矩阵数据中三个通道的数据，比如将 <code>R</code> 通道的数据设置为0:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span><span class="p">[</span><span class="p">:</span><span class="p">,</span> <span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div><p>另外还需要用到矩阵复制的方法 <code>numpy.copy(array)</code>，会得到 <strong>array</strong> 的复制对象：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
 </code></pre></div><h3 id="具体实现">具体实现</h3>
@@ -129,7 +131,7 @@ pip3 install numpy
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 </code></pre></div></li>
 <li>打开指定图片，这里以 <code>glasses.jpg</code> 为例，转换得到图片矩阵数据：
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">glasses.jpg</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;glasses.jpg&#39;</span><span class="p">)</span>
 <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
 </code></pre></div></li>
 <li>复制得到两个新的矩阵：
@@ -138,17 +140,17 @@ pip3 install numpy
 </code></pre></div></li>
 <li>这里需要注意的是，为了保证得到数据保存后的图片还是原图片的尺寸，这里只对有错位相加部分的像素点进行去通道操作，这里计划将 <strong>img_gb</strong> 向上向左错位10px，那么只需处理 <strong>img_gb</strong> 宽和高纬度上第 11px 到最后的像素点的 <code>R</code> 通道数据为0，同时 <strong>img_r</strong> 宽和高纬度上从第0到倒数第11个像素点的 <code>GB</code> 通道数据为0:
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 去GB两通道数据</span>
-<span class="n">img_r</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="c1"># 去除R通道数据</span>
-<span class="n">img_gb</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">img_gb</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div></li>
 <li>将两个矩阵数据错位相加保存到 <strong>img_array</strong> 中，即 <strong>img_r</strong> 的 <code>[:-10,:-10,:]</code> 数据与 <strong>img_gb</strong> 的 <code>[10:, 10:, :]</code>数据相加，赋值给 <strong>img_array</strong> 的 <code>[:-10, :10, :]</code>：
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="p">]</span> <span class="o">=</span> <span class="n">img_r</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">img_gb</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="p">,</span> <span class="p">:</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">img_gb</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="p">:]</span>
 </code></pre></div></li>
 <li>从矩阵数据创建 <code>PIL.JpegImagePlugin.JpegImageFile</code> 对象，并保存和显示图片：
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
-<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">glasses_douyin.jpg</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;glasses_douyin.jpg&#39;</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></li>
 </ul>
 <p>最终得到图片如下：</p>
@@ -159,43 +161,43 @@ pip3 install numpy
 <p>这里创建gif动图，使用到 <strong>imageio</strong> 库，同样可以使用 <strong>pip3</strong> 安装：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install imageio
 </code></pre></div><p>使用 <strong>imageio</strong> 模块的 <code>mimsave()</code> 方法生成 gif 动图，比较简单，利用方法封装得到 <code>create_gif</code> 函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">create_gif</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="n">gif_name</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">创建gif图片</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param image_list: 图片名称列表</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type image_list: list</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param gif_name: gif图片路径</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type gif_name: unicode字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Creating 「{gif_name}」from {image_list} ...</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">create_gif</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="n">gif_name</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;创建gif图片
+</span><span class="s1">    :param image_list: 图片名称列表
+</span><span class="s1">    :type image_list: list
+</span><span class="s1">    :param gif_name: gif图片路径
+</span><span class="s1">    :type gif_name: unicode字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Creating 「{gif_name}」from {image_list} ...&#39;</span><span class="p">)</span>
+    <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">image_name</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
-        <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_name</span><span class="p">)</span><span class="p">)</span>
-    <span class="n">imageio</span><span class="o">.</span><span class="n">mimsave</span><span class="p">(</span><span class="n">gif_name</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">GIF</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">duration</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Saved {gif_name}!</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_name</span><span class="p">))</span>
+    <span class="n">imageio</span><span class="o">.</span><span class="n">mimsave</span><span class="p">(</span><span class="n">gif_name</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="s1">&#39;GIF&#39;</span><span class="p">,</span> <span class="n">duration</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Saved {gif_name}!&#39;</span><span class="p">)</span>
 </code></pre></div><h3 id="封装抖音效果添加函数">封装抖音效果添加函数</h3>
 <p>为了更方便得到不同错位尺寸下的静态抖音效果图，这里封装上面的实现，得到以下函数接口：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">convert_douyin_image</span><span class="p">(</span><span class="n">pic_path</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">为普通图片添加红蓝溢出位移效果，抖音app效果</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param pic_path: 图片路径</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type pic_path: unicode字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param offset: 红蓝位移大小，单位像素，默认值是10</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :return r_pic_path: 返回转换图片的路径</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :rtype: unicode字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">convert_douyin_image</span><span class="p">(</span><span class="n">pic_path</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;为普通图片添加红蓝溢出位移效果，抖音app效果
+</span><span class="s1">    :param pic_path: 图片路径
+</span><span class="s1">    :type pic_path: unicode字符串
+</span><span class="s1">    :param offset: 红蓝位移大小，单位像素，默认值是10
+</span><span class="s1">    :return r_pic_path: 返回转换图片的路径
+</span><span class="s1">    :rtype: unicode字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pic_path</span><span class="p">):</span>
         <span class="n">pic_name</span><span class="p">,</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
-        <span class="n">pic_path_new</span> <span class="o">=</span> <span class="n">pic_name</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">_</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span> <span class="o">+</span> <span class="n">extension</span>
+        <span class="n">pic_path_new</span> <span class="o">=</span> <span class="n">pic_name</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span> <span class="o">+</span> <span class="n">extension</span>
         <span class="n">img_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
         <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">offset</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">img_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
             <span class="n">img_gb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
-            <span class="n">img_r</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">img_gb</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">img_array</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="p">]</span> <span class="o">=</span> <span class="n">img_r</span><span class="p">[</span><span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="p">]</span> <span class="o">+</span> <span class="n">img_gb</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span><span class="p">,</span> <span class="p">:</span><span class="p">]</span>
+            <span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">img_gb</span><span class="p">[</span><span class="n">offset</span><span class="p">:,</span> <span class="n">offset</span><span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">img_array</span><span class="p">[:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">img_gb</span><span class="p">[</span><span class="n">offset</span><span class="p">:,</span> <span class="n">offset</span><span class="p">:,</span> <span class="p">:]</span>
         <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
         <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">pic_path_new</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Saved {pic_path_new}!</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Saved {pic_path_new}!&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">pic_path_new</span>
 </code></pre></div><p>接口中，对 offset 为 0 时做了处理，直接保存原图，最终函数返回保存的图片路径，方便生成图片路径列表用于生成gif。</p>
 <h3 id="整体实现">整体实现</h3>
@@ -205,19 +207,19 @@ pip3 install numpy
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 </code></pre></div><p>这里定义一个图片路径，方便指定待处理图片：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">PIC_PATH</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">glasses.jpg</span><span class="s1">&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">PIC_PATH</span> <span class="o">=</span> <span class="s1">&#39;glasses.jpg&#39;</span>
 </code></pre></div><p>最后，先得到错位[0, 2, 4, 6, 8, 10]px 的静态抖音效果图和图片路径列表，为了是动图连贯，处理列表中元素按照错位尺寸为 [0, 2, 4, 6, 8, 10, 8, 6, 4, 2, 0]px，然后根据 <strong>PIC_PATH</strong> 得到 gif图片保存路径，调用 <strong>create_gif</strong> 函数生成gif：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">pic_list</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pic_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
         <span class="n">pic_path</span> <span class="o">=</span> <span class="n">convert_douyin_image</span><span class="p">(</span><span class="n">PIC_PATH</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pic_path</span><span class="p">:</span>
             <span class="n">pic_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
     <span class="n">temp_l</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pic_list</span><span class="p">)</span>
-    <span class="n">temp_l</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">pic_list</span> <span class="o">=</span> <span class="n">pic_list</span> <span class="o">+</span> <span class="n">temp_l</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span>
+    <span class="n">temp_l</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">pic_list</span> <span class="o">=</span> <span class="n">pic_list</span> <span class="o">+</span> <span class="n">temp_l</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
     <span class="n">p_name</span><span class="p">,</span> <span class="n">p_ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">PIC_PATH</span><span class="p">)</span>
-    <span class="n">gif_name</span> <span class="o">=</span> <span class="n">PIC_PATH</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">p_ext</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.gif</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">gif_name</span> <span class="o">=</span> <span class="n">PIC_PATH</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">p_ext</span><span class="p">,</span> <span class="s1">&#39;.gif&#39;</span><span class="p">)</span>
     <span class="n">create_gif</span><span class="p">(</span><span class="n">pic_list</span><span class="p">,</span> <span class="n">gif_name</span><span class="p">)</span>
 </code></pre></div><p>最终得到的gif图片效果如下：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070846317421.gif" alt="20180704153070846317421.gif"></p>
@@ -236,7 +238,7 @@ pip3 install numpy
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2031 字
+					1965 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -336,6 +338,7 @@ pip3 install numpy
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -126,17 +128,17 @@
 </table>
 <h5 id="编写代码及下载">编写代码及下载</h5>
 <p>可打开刚安装的库的Example，其中有个helloworld，或者自己创建新的sketchbook如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;USBKeyboard.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;USBKeyboard.h&gt;</span><span class="cp">
 </span><span class="cp"></span> 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> 
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> 
 <span class="p">{</span>
-  <span class="n">Keyboard</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">Keyboard</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
 <span class="p">}</span>
  
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> 
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
 <span class="p">{</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">Keyboard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">hello world</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+  <span class="n">Keyboard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>编译上传到uno板子，当然你也可以编写属于自己的代码，如此就完成第一步工作了。</p>
 <h4 id="atmega16u2的程序编写和下载">ATmega16u2的程序编写和下载</h4>
@@ -194,8 +196,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#原理">原理</a></li>
-        <li><a href="#实现">实现</a></li>
+        <li><a href="#原理"><strong>原理</strong></a></li>
+        <li><a href="#实现"><strong>实现</strong></a></li>
         <li><a href="#参考">参考</a></li>
       </ul>
     </li>
@@ -269,6 +271,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

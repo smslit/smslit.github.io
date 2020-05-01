@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -143,17 +145,17 @@ genericSTM32F103RE    STM32F103RE    72Mhz     512kB   64kB   STM32F103RE <span 
 <p><code>upload_protocol = stlink</code> 可以省略。</p>
 <h2 id="添加代码">添加代码</h2>
 <p>添加点灯代码，十里的最小系统板上LED对应于管脚<code>PB0</code>，所以在<code>src</code>目录下添加<code>main.cpp</code>的内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">PB0</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>编译一下，编译的时候会下载stm32平台开发需要的编译工具和相关框架，你能做的就是waiting&hellip;：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ <span class="nb">test</span> make all
@@ -169,7 +171,7 @@ Linking .pioenvs/genericSTM32F103C8/firmware.elf
 Calculating size .pioenvs/genericSTM32F103C8/firmware.elf
 text	   data	    bss	    dec	    hex	filename
 6484	   1936	    312	   8732	   221c	.pioenvs/genericSTM32F103C8/firmware.elf
-<span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took 1.55 <span class="nv">seconds</span> <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span>
+<span class="o">================================</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took 1.55 <span class="nv">seconds</span> <span class="o">=====================================</span>
 </code></pre></div><h2 id="上传程序">上传程序</h2>
 <p>因为前面已经配置了程序上传方式为<code>stlink</code>，所以将stlink连接最小系统板和mac就可以执行上传了，这里也会下载相应的下载工具，waiting &hellip; ：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ make upload
@@ -192,7 +194,7 @@ Uploading .pioenvs/genericSTM32F103C8/firmware.bin
 2017-11-08T09:50:11 WARN src/common.c: unknown chip id! 0xe0042000
 st-flash 1.3.1
 *** <span class="o">[</span>upload<span class="o">]</span> Error <span class="nv">255</span>
-<span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="o">[</span>ERROR<span class="o">]</span> Took 1.53 <span class="nv">seconds</span> <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span>
+<span class="o">======================================</span> <span class="o">[</span>ERROR<span class="o">]</span> Took 1.53 <span class="nv">seconds</span> <span class="o">======================================</span>
 make: *** <span class="o">[</span>upload<span class="o">]</span> Error <span class="m">1</span>
 </code></pre></div><blockquote>
 <p>有一个临时的解决方法，将板上的<code>BOOT0</code>与<code>VDD</code>短接，复位一下最小系统板，会进入boot模式，此时执行<code>make upload</code>，程序会同时烧写在flash和内存上，一旦复位内存上的程序会消失，如果<code>BOOT0</code>还是接<code>VDD</code>的话还会进入boot模式，此时程序已经没了，但是flash 中仍然存在，所以只需将<code>BOOT0</code>短接<code>GND</code>再复位一下，板子就从flash启动了，所以最终程序调试方法为：</p>
@@ -275,7 +277,7 @@ Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2017
 ...
 ...
 Reading symbols from .pioenvs/genericSTM32F103C8/firmware.elf...done.
-0x00000000 in ?? <span class="o">(</span><span class="o">)</span>
+0x00000000 in ?? <span class="o">()</span>
 target halted due to debug-request, current mode: Thread
 xPSR: 0x01000000 pc: 0x08000fb8 msp: 0x20005000
 Loading section .text, size 0x39e4 lma 0x8000000
@@ -394,6 +396,7 @@ Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/pa
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

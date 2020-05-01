@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -94,22 +96,22 @@
 <p>函数返回一个<code>clock_t</code> 的类型数据，其实就是一个无符号的长整型，那么要获得时间的话，还得除以 <code>CLOCKS_PER_SEC</code> 的宏定义。顾名思义，<code>CLOCKS_PER_SEC</code> 就是每秒所经过的滴答数。</p>
 <h3 id="测试程序">测试程序</h3>
 <p>那么编写一下程序 <code>example1.c</code> 尝尝鲜：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">long</span> <span class="n">loopCount</span> <span class="o">=</span> <span class="mi">10000000L</span><span class="p">;</span>
 	<span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
 	<span class="kt">double</span> <span class="n">duration</span><span class="p">;</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Time to do %ld empty loops: </span><span class="s">&#34;</span><span class="p">,</span> <span class="n">loopCount</span><span class="p">)</span> <span class="p">;</span>
-	<span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">while</span><span class="p">(</span> <span class="n">loopCount</span><span class="o">-</span><span class="o">-</span> <span class="p">)</span><span class="p">;</span>
-	<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;Time to do %ld empty loops: &#34;</span><span class="p">,</span> <span class="n">loopCount</span><span class="p">)</span> <span class="p">;</span>
+	<span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+	<span class="k">while</span><span class="p">(</span> <span class="n">loopCount</span><span class="o">--</span> <span class="p">);</span>
+	<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+	<span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
     <span class="c1">// 精确到ms
-</span><span class="c1"></span>	<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%.3f ms</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">duration</span> <span class="o">*</span> <span class="mf">1000.0</span> <span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%.3f ms</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">duration</span> <span class="o">*</span> <span class="mf">1000.0</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>程序验证了10000000个空循环的耗时，执行结果如下：</p>
@@ -125,20 +127,20 @@ Time to <span class="k">do</span> <span class="m">10000000</span> empty loops: 1
 <blockquote>
 <p>网上好多资料说是精度是ms级别的，仔细想一下其实他们说的不对，就像上面我说的<code>CLOCKS_PER_SEC</code>是1000000，那么这个<code>clock()</code>函数其实返回的是该进程占用CPU的us时间，那么他们说打印函数的时间占用为0ms，问题出在哪儿了呢？很简单，打印一下开始和结束的滴答数就知道了，占用滴答数不可能为0的。<code>CLOCKS_PER_SEC</code>是个整型，计算的时候前后获取的clock()的值也都是整型，所以计算的时候当然会是0，只需要按浮点类型计算就可以了，比如下面<code>example.c</code>的实现。这里要注意的是，有些系统中<code>CLOCKS_PER_SEC</code>可能不是1000000，所以程序中计算还应让<code>CLOCKS_PER_SEC</code>参与。</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">double</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
     <span class="kt">double</span> <span class="n">duration</span><span class="p">;</span>
-    <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">begin clock: %0.f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">begin</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">end clock: %0.f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;begin clock: %0.f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">begin</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;end clock: %0.f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
     <span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span> <span class="o">*</span> <span class="mf">1000.0</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">print time: %.3f ms</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;print time: %.3f ms&#34;</span><span class="p">,</span> <span class="n">duration</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>结果：</p>
@@ -149,21 +151,21 @@ Time to <span class="k">do</span> <span class="m">10000000</span> empty loops: 1
 <span class="n">print</span> <span class="nl">time</span><span class="p">:</span> <span class="mf">0.028</span> <span class="n">ms</span>
 </code></pre></div><h2 id="time函数"><code>time()</code>函数</h2>
 <p><code>time()</code>函数来获得当前日历时间，是从一个标准时间点（一般是1970年1月1日0时0分0秒）到现在的时间，单位为秒。函数声明:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">time_t</span> <span class="nf">time</span><span class="p">(</span><span class="n">time_t</span> <span class="o">*</span> <span class="n">timer</span><span class="p">)</span><span class="p">;</span> 
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">time_t</span> <span class="nf">time</span><span class="p">(</span><span class="n">time_t</span> <span class="o">*</span> <span class="n">timer</span><span class="p">);</span> 
 </code></pre></div><p><code>time_t</code>也是一个长整型类型，函数中如果<code>timer</code>为<code>NULL</code>或遇到错误返回结果-1，如果不为<code>NULL</code>，则会把值保存在<code>timer</code>中。</p>
 <h3 id="试一下">试一下</h3>
 <p>编写程序<code>example2.c</code>使用延时函数<code>sleep()</code>进行测试：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// time()方法精度只有1s
-</span><span class="c1"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
     <span class="n">time_t</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">;</span>
-    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t1</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t2</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">t1: %ld, t2: %ld, sleep: %ld s</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t1</span><span class="p">);</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;t1: %ld, t2: %ld, sleep: %ld s&#34;</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>输出结果如下：</p>
@@ -177,7 +179,7 @@ t1: 1509401991, t2: 1509401994, sleep: <span class="m">3</span> s
 </blockquote>
 <h2 id="gettimeofday函数"><code>gettimeofday()</code>函数</h2>
 <p><code>gettimeofday()</code>函数在<code>sys/time.h</code>中，声明如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">gettimeofday</span><span class="p">(</span><span class="k">struct</span> <span class="n">timeval</span><span class="o">*</span><span class="n">tv</span><span class="p">,</span> <span class="k">struct</span> <span class="n">timezone</span> <span class="o">*</span><span class="n">tz</span> <span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">gettimeofday</span><span class="p">(</span><span class="k">struct</span> <span class="n">timeval</span><span class="o">*</span><span class="n">tv</span><span class="p">,</span> <span class="k">struct</span> <span class="n">timezone</span> <span class="o">*</span><span class="n">tz</span> <span class="p">);</span>
 </code></pre></div><p>其中形参对应结构体如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span>  <span class="n">timeval</span> <span class="p">{</span>
     <span class="kt">long</span>  <span class="n">tv_sec</span><span class="p">;</span>
@@ -187,7 +189,7 @@ t1: 1509401991, t2: 1509401994, sleep: <span class="m">3</span> s
 <span class="k">struct</span>  <span class="n">timezone</span><span class="p">{</span>
     <span class="kt">int</span> <span class="n">tz_minuteswest</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">tz_dsttime</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div><p>我们这里只关心时间差，所以只需要传入定义好的<code>timeval</code>结构体就好，<code>timezone</code>可以为<code>NULL</code>，每次调用函数，会把时间戳记录在传入的<code>timeval</code>结构体变量指针中，其中:</p>
 <ul>
 <li><code>tv_sec</code>存储的是s；</li>
@@ -195,18 +197,18 @@ t1: 1509401991, t2: 1509401994, sleep: <span class="m">3</span> s
 </ul>
 <h3 id="实例测试">实例测试</h3>
 <p>那么可以编写程序<code>example3.c</code>进行测试了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
     <span class="k">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
     <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">duration</span><span class="p">;</span>
-    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hello,World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello,World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
     <span class="n">duration</span> <span class="o">=</span> <span class="mi">1000000</span> <span class="o">*</span> <span class="p">(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="p">)</span><span class="o">+</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_usec</span><span class="o">-</span><span class="n">start</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%ld us:</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%ld us:&#34;</span><span class="p">,</span> <span class="n">duration</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>最终结果为：</p>
@@ -240,19 +242,19 @@ Hello,World!
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#clock函数">clock()函数</a>
+    <li><a href="#clock函数"><code>clock()</code>函数</a>
       <ul>
         <li><a href="#测试程序">测试程序</a></li>
         <li><a href="#注意">注意</a></li>
       </ul>
     </li>
-    <li><a href="#time函数">time()函数</a>
+    <li><a href="#time函数"><code>time()</code>函数</a>
       <ul>
         <li><a href="#试一下">试一下</a></li>
         <li><a href="#注意-1">注意</a></li>
       </ul>
     </li>
-    <li><a href="#gettimeofday函数">gettimeofday()函数</a>
+    <li><a href="#gettimeofday函数"><code>gettimeofday()</code>函数</a>
       <ul>
         <li><a href="#实例测试">实例测试</a></li>
         <li><a href="#注意-2">注意</a></li>
@@ -333,6 +335,7 @@ Hello,World!
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

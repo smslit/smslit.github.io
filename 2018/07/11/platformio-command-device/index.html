@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -117,26 +119,26 @@ pio init --ide vim --board leonardo
 <span class="nf">update</span><span class="o">:</span>
 	platformio -f -c vim update
 </code></pre></div><p>添加测试源码 <code>src/main.cpp</code>，代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Led on!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Led off!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&#34;Led on!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&#34;Led off!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>上述代码主要实现LED管脚和串口的初始化，在主循环中，每一秒LED闪动一次，期间串口会发送LED状态。以此代码来测试新收到的开发板，还有介绍本文的主题，串口数据监视器功能。</p>
 <p>连接 <strong>Arduino Leonardo</strong> 和 电脑，编译工程并上传程序：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make all <span class="o">&amp;&amp;</span> make upload
 </code></pre></div><p>程序上传成功后看到，板载led开始闪动，说明程序基本运行了：</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/platform/command/device/blinky.mp4" width="100%" controls="controls" loop="loop"></video></p>
 <p>下面我们只需要看一下，串口是否打印了LED状态。</p>
 <h2 id="device命令"><code>device</code>命令</h2>
 <p>这个命令用来控制设备，常用的功能就是监视设配通过串口发送的数据，或向设备发送串口数据。串口用的很多，所以这里只拿串口来分享经验。</p>
@@ -325,7 +327,7 @@ yyyyyLed on!
 			<nav id="TableOfContents">
   <ul>
     <li><a href="#测试程序">测试程序</a></li>
-    <li><a href="#device命令">device命令</a>
+    <li><a href="#device命令"><code>device</code>命令</a>
       <ul>
         <li><a href="#列出可用设备">列出可用设备</a></li>
         <li><a href="#开启监视器">开启监视器</a></li>
@@ -405,6 +407,7 @@ yyyyyLed on!
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

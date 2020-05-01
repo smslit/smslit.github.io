@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -92,10 +94,10 @@
 <p>为了能够混合使用这两个字体，我们需要编辑<code>/etc/fonts/fonts.conf</code>文件，这里使用vim编辑这个文件，要用sudo提高权限操作：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo vim /etc/fonts/fonts.conf
 </code></pre></div><p>可以看到文件就是个xml文件，其中很多match标签，只需要在最后一个match标签后加入以下代码就可以，加代码的位置应该只需要与match同级就可以：</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;alias</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;family</span><span class="nt">&gt;</span>Source Code Pro<span class="nt">&lt;/family&gt;</span>
-	<span class="nt">&lt;prefer</span><span class="nt">&gt;</span>
-		<span class="nt">&lt;family</span><span class="nt">&gt;</span>Source Han Sans CN <span class="nt">&lt;/family&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;alias&gt;</span>
+	<span class="nt">&lt;family&gt;</span>Source Code Pro<span class="nt">&lt;/family&gt;</span>
+	<span class="nt">&lt;prefer&gt;</span>
+		<span class="nt">&lt;family&gt;</span>Source Han Sans CN <span class="nt">&lt;/family&gt;</span>
 	<span class="nt">&lt;/prefer&gt;</span>
 <span class="nt">&lt;/alias&gt;</span>
 </code></pre></div><p>第一个family标签中是英文字体的名称，第二个family的标签中是中文字体的名称，对应修改成你喜欢的字体就可以了，然后去gnome-tweak-tool中设置字体为Source Code Pro就可以了，或者单独设置终端的配置，换成其他字体，然后再换到Source Code Pro（对应你喜欢的英文字体），然后再打开终端，输入一段中英文字符，可以看到，中英文各是你喜欢的样子。</p>
@@ -223,6 +225,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

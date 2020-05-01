@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -125,17 +127,17 @@
 </code></pre></div><p>那么以后在工程目录下，执行<code>make all</code>就可以编译了，如此简单！</p>
 <h2 id="添加源代码">添加源代码</h2>
 <p>在目录<code>src</code>下新建文件<code>main.cpp</code>，内容可以添加如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">What?</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&#34;What?&#34;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><h2 id="编译工程">编译工程</h2>
 <p>为了方便在vim下编辑代码时可以编译工程，这里可以添加快捷键，在<code>~/.vimrc</code> 中添加如下内容：</p>
@@ -298,6 +300,7 @@ nmap &lt;F4&gt; :YcmDiags&lt;CR&gt;
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

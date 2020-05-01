@@ -10,7 +10,7 @@
 <meta itemprop="description" content="十里还是比较喜欢用终端解决问题的，在某个小伙伴身上学到了些vim神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用arduino，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持Arduino开发的CLI，没想到就找到了文章主角platformio，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(&#43;arm)，简直了！特此分享！">
 <meta itemprop="datePublished" content="2017-05-20T19:59:43&#43;08:00" />
 <meta itemprop="dateModified" content="2017-05-20T19:59:43&#43;08:00" />
-<meta itemprop="wordCount" content="1659">
+<meta itemprop="wordCount" content="1661">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -142,31 +144,31 @@ PlatformIO, version 3.3.0
 </span><span class="cm"> * Turns on an LED on for one second,
 </span><span class="cm"> * then off for one second, repeatedly.
 </span><span class="cm"> */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;Arduino.h&#34;</span><span class="cp">
+<span class="cp">#include</span> <span class="cpf">&#34;Arduino.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">ifndef LED_BUILTIN</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define LED_BUILTIN 13</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#ifndef LED_BUILTIN
+</span><span class="cp">#define LED_BUILTIN 13
+</span><span class="cp">#endif
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="c1">// initialize LED digital pin as an output.
-</span><span class="c1"></span>	<span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="c1">// turn the LED on (HIGH is the voltage level)
-</span><span class="c1"></span>	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
 
 	<span class="c1">// wait for a second
-</span><span class="c1"></span>	<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 
 	<span class="c1">// turn the LED off by making the voltage LOW
-</span><span class="c1"></span>	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 
 	<span class="c1">// wait for a second
-</span><span class="c1"></span>	<span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>	<span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><h4 id="编译工程">编译工程</h4>
 <p>可以使用<code>run</code>命令进行编译和上传程序，执行</p>
@@ -187,7 +189,7 @@ PlatformIO, version 3.3.0
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1659 字
+					1661 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -278,6 +280,7 @@ PlatformIO, version 3.3.0
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -130,21 +132,21 @@
 <p>初次创建可能需要时间会长一点，会下载编译需要的一些依赖工具包，以后再创建相同平台项目的时候就很快了。</p>
 <h3 id="编写程序">编写程序</h3>
 <p>手头上这个最小系统板上的 LED 是 PB0 管脚控制的，硬件设计是低电平 LED 点亮，所以一个简单的闪灯程序如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define LED_PIN PB0</span><span class="cp">
+<span class="cp">#define LED_PIN PB0
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// put your setup code here, to run once:
-</span><span class="c1"></span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// put your main code here, to run repeatedly:
-</span><span class="c1"></span>  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>点击底部状态栏左边的小对号图标就可以进行编译，编译完成后点击右边向右的箭头图标就可以烧写程序，初次上传烧写需要时间长一些，PIO 需要下载一些相关工具包，以后就是正常上传程序了，完成后就能看到程序正常运行，LED 闪了起来。</p>
 <h3 id="调试程序">调试程序</h3>
@@ -276,6 +278,7 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

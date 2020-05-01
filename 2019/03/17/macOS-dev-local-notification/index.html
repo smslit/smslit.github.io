@@ -10,7 +10,7 @@
 <meta itemprop="description" content="macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开">
 <meta itemprop="datePublished" content="2019-03-17T11:33:15&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-17T11:33:15&#43;08:00" />
-<meta itemprop="wordCount" content="3569">
+<meta itemprop="wordCount" content="3555">
 
 
 
@@ -35,6 +35,8 @@
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/un561.png');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -161,18 +163,18 @@
 <h3 id="oldnotificationaction-实现">oldNotificationAction 实现</h3>
 <p>下面在 oldNotificationAction 中添加使用传统方法消息通知的实现:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">oldNotificationAction</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">userNotification</span> <span class="p">=</span> <span class="n">NSUserNotification</span><span class="p">(</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">userNotification</span> <span class="p">=</span> <span class="n">NSUserNotification</span><span class="p">()</span>
     
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">传统方式</span><span class="s">&#34;</span>
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">subtitle</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">old</span><span class="s">&#34;</span>
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">informativeText</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">我是一个传统的方式</span><span class="s">&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;传统方式&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">subtitle</span> <span class="p">=</span> <span class="s">&#34;old&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">informativeText</span> <span class="p">=</span> <span class="s">&#34;我是一个传统的方式&#34;</span>
     
     <span class="n">userNotification</span><span class="p">.</span><span class="n">hasActionButton</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">otherButtonTitle</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">关闭</span><span class="s">&#34;</span>
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">actionButtonTitle</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">显示</span><span class="s">&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">otherButtonTitle</span> <span class="p">=</span> <span class="s">&#34;关闭&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">actionButtonTitle</span> <span class="p">=</span> <span class="s">&#34;显示&#34;</span>
     
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">identifier</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">OLD_NOTIFICATION_DEMO</span><span class="s">&#34;</span>
-    <span class="n">userNotification</span><span class="p">.</span><span class="n">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;</span><span class="s">method</span><span class="s">&#34;</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">old</span><span class="s">&#34;</span><span class="p">]</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">identifier</span> <span class="p">=</span> <span class="s">&#34;OLD_NOTIFICATION_DEMO&#34;</span>
+    <span class="n">userNotification</span><span class="p">.</span><span class="n">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;old&#34;</span><span class="p">]</span>
     
     <span class="n">userNotification</span><span class="p">.</span><span class="n">soundName</span> <span class="p">=</span> <span class="n">NSUserNotificationDefaultSoundName</span>
     
@@ -188,30 +190,30 @@
 <h3 id="实现代理方法">实现代理方法</h3>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">extension</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">NSUserNotificationCenterDelegate</span> <span class="p">{</span>
     
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">当</span><span class="c1"> </span><span class="c1">A</span><span class="c1">p</span><span class="c1">p</span><span class="c1"> </span><span class="c1">在</span><span class="c1">前</span><span class="c1">台</span><span class="c1">时</span><span class="c1">是</span><span class="c1">否</span><span class="c1">弹</span><span class="c1">出</span><span class="c1">通</span><span class="c1">知</span>
+    <span class="c1">// 当 App 在前台时是否弹出通知</span>
     <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">NSUserNotificationCenter</span><span class="p">,</span> <span class="n">shouldPresent</span> <span class="n">notification</span><span class="p">:</span> <span class="n">NSUserNotification</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">true</span>
     <span class="p">}</span>
     
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">推</span><span class="c1">送</span><span class="c1">消</span><span class="c1">息</span><span class="c1">后</span><span class="c1">的</span><span class="c1">回</span><span class="c1">调</span>
+    <span class="c1">// 推送消息后的回调</span>
     <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">NSUserNotificationCenter</span><span class="p">,</span> <span class="n">didDeliver</span> <span class="n">notification</span><span class="p">:</span> <span class="n">NSUserNotification</span><span class="p">)</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="si">)</span><span class="si">)</span><span class="s"> -&gt; 消息已经推送</span><span class="s">&#34;</span><span class="p">)</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">Date</span><span class="si">(</span><span class="n">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">0</span><span class="si">))</span><span class="s"> -&gt; 消息已经推送&#34;</span><span class="p">)</span>
     <span class="p">}</span>
     
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">用</span><span class="c1">户</span><span class="c1">点</span><span class="c1">击</span><span class="c1">了</span><span class="c1">通</span><span class="c1">知</span><span class="c1">后</span><span class="c1">的</span><span class="c1">回</span><span class="c1">调</span>
+    <span class="c1">// 用户点击了通知后的回调</span>
     <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">NSUserNotificationCenter</span><span class="p">,</span> <span class="n">didActivate</span> <span class="n">notification</span><span class="p">:</span> <span class="n">NSUserNotification</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">switch</span> <span class="n">notification</span><span class="p">.</span><span class="n">activationType</span> <span class="p">{</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">actionButtonClicked</span><span class="p">:</span>
-            <span class="kd">let</span> <span class="nv">method</span> <span class="p">=</span> <span class="n">notification</span><span class="p">.</span><span class="n">userInfo</span><span class="p">!</span><span class="p">[</span><span class="s">&#34;</span><span class="s">method</span><span class="s">&#34;</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="nb">String</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">methods -&gt; </span><span class="si">\(</span><span class="n">method</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="kd">let</span> <span class="nv">method</span> <span class="p">=</span> <span class="n">notification</span><span class="p">.</span><span class="n">userInfo</span><span class="p">![</span><span class="s">&#34;method&#34;</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="nb">String</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;methods -&gt; </span><span class="si">\(</span><span class="n">method</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">contentsClicked</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">clicked</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;clicked&#34;</span><span class="p">)</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">replied</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">replied</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;replied&#34;</span><span class="p">)</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">additionalActionClicked</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">additional action</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;additional action&#34;</span><span class="p">)</span>
         <span class="k">default</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">action</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;action&#34;</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
     
@@ -258,34 +260,34 @@
 </ul>
 <p>所以根据我们的实现目标，<code>notificationAction</code> 的实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">notificationAction</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">content</span> <span class="p">=</span> <span class="n">UNMutableNotificationContent</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">content</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">新的方式</span><span class="s">&#34;</span>
-    <span class="n">content</span><span class="p">.</span><span class="n">body</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">我是一个新的方式</span><span class="s">&#34;</span>
+    <span class="kd">let</span> <span class="nv">content</span> <span class="p">=</span> <span class="n">UNMutableNotificationContent</span><span class="p">()</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;新的方式&#34;</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">body</span> <span class="p">=</span> <span class="s">&#34;我是一个新的方式&#34;</span>
     
-    <span class="n">content</span><span class="p">.</span><span class="n">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;</span><span class="s">method</span><span class="s">&#34;</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">new</span><span class="s">&#34;</span><span class="p">]</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;method&#34;</span><span class="p">:</span> <span class="s">&#34;new&#34;</span><span class="p">]</span>
     
     <span class="n">content</span><span class="p">.</span><span class="n">sound</span> <span class="p">=</span> <span class="n">UNNotificationSound</span><span class="p">.</span><span class="k">default</span>
-    <span class="n">content</span><span class="p">.</span><span class="n">categoryIdentifier</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">NOTIFICATION_DEMO</span><span class="s">&#34;</span>
+    <span class="n">content</span><span class="p">.</span><span class="n">categoryIdentifier</span> <span class="p">=</span> <span class="s">&#34;NOTIFICATION_DEMO&#34;</span>
     
-    <span class="kd">let</span> <span class="nv">acceptAction</span> <span class="p">=</span> <span class="n">UNNotificationAction</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">SHOW_ACTION</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">显示</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nv">declineAction</span> <span class="p">=</span> <span class="n">UNNotificationAction</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">CLOSE_ACTION</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">关闭</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nv">testCategory</span> <span class="p">=</span> <span class="n">UNNotificationCategory</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">NOTIFICATION_DEMO</span><span class="s">&#34;</span><span class="p">,</span>
-                                              <span class="n">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">acceptAction</span><span class="p">,</span> <span class="n">declineAction</span><span class="p">]</span><span class="p">,</span>
-                                              <span class="n">intentIdentifiers</span><span class="p">:</span> <span class="p">[</span><span class="p">]</span><span class="p">,</span>
-                                              <span class="n">hiddenPreviewsBodyPlaceholder</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">,</span>
+    <span class="kd">let</span> <span class="nv">acceptAction</span> <span class="p">=</span> <span class="n">UNNotificationAction</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;SHOW_ACTION&#34;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;显示&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="kd">let</span> <span class="nv">declineAction</span> <span class="p">=</span> <span class="n">UNNotificationAction</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;CLOSE_ACTION&#34;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="s">&#34;关闭&#34;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">rawValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="kd">let</span> <span class="nv">testCategory</span> <span class="p">=</span> <span class="n">UNNotificationCategory</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;NOTIFICATION_DEMO&#34;</span><span class="p">,</span>
+                                              <span class="n">actions</span><span class="p">:</span> <span class="p">[</span><span class="n">acceptAction</span><span class="p">,</span> <span class="n">declineAction</span><span class="p">],</span>
+                                              <span class="n">intentIdentifiers</span><span class="p">:</span> <span class="p">[],</span>
+                                              <span class="n">hiddenPreviewsBodyPlaceholder</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">,</span>
                                               <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="n">customDismissAction</span><span class="p">)</span>
     
-    <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">NOTIFICATION_DEMO_REQUEST</span><span class="s">&#34;</span><span class="p">,</span>
+    <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;NOTIFICATION_DEMO_REQUEST&#34;</span><span class="p">,</span>
                                         <span class="n">content</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
                                         <span class="n">trigger</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
     
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">S</span><span class="c1">c</span><span class="c1">h</span><span class="c1">e</span><span class="c1">d</span><span class="c1">u</span><span class="c1">l</span><span class="c1">e</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">r</span><span class="c1">e</span><span class="c1">q</span><span class="c1">u</span><span class="c1">e</span><span class="c1">s</span><span class="c1">t</span><span class="c1"> </span><span class="c1">w</span><span class="c1">i</span><span class="c1">t</span><span class="c1">h</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">s</span><span class="c1">y</span><span class="c1">s</span><span class="c1">t</span><span class="c1">e</span><span class="c1">m</span><span class="c1">.</span>
-    <span class="kd">let</span> <span class="nv">notificationCenter</span> <span class="p">=</span> <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">(</span><span class="p">)</span>
+    <span class="c1">// Schedule the request with the system.</span>
+    <span class="kd">let</span> <span class="nv">notificationCenter</span> <span class="p">=</span> <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">()</span>
     <span class="n">notificationCenter</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
-    <span class="n">notificationCenter</span><span class="p">.</span><span class="n">setNotificationCategories</span><span class="p">(</span><span class="p">[</span><span class="n">testCategory</span><span class="p">]</span><span class="p">)</span>
+    <span class="n">notificationCenter</span><span class="p">.</span><span class="n">setNotificationCategories</span><span class="p">([</span><span class="n">testCategory</span><span class="p">])</span>
     <span class="n">notificationCenter</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-            <span class="c1">//</span><span class="c1"> </span><span class="c1">H</span><span class="c1">a</span><span class="c1">n</span><span class="c1">d</span><span class="c1">l</span><span class="c1">e</span><span class="c1"> </span><span class="c1">a</span><span class="c1">n</span><span class="c1">y</span><span class="c1"> </span><span class="c1">e</span><span class="c1">r</span><span class="c1">r</span><span class="c1">o</span><span class="c1">r</span><span class="c1">s</span><span class="c1">.</span>
+            <span class="c1">// Handle any errors.</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -295,23 +297,23 @@
 <p>直接贴出实现：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">extension</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="n">UNUserNotificationCenterDelegate</span> <span class="p">{</span>
     
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">用</span><span class="c1">户</span><span class="c1">点</span><span class="c1">击</span><span class="c1">弹</span><span class="c1">窗</span><span class="c1">后</span><span class="c1">的</span><span class="c1">回</span><span class="c1">调</span>
-    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">UNUserNotificationCenter</span><span class="p">,</span> <span class="n">didReceive</span> <span class="n">response</span><span class="p">:</span> <span class="n">UNNotificationResponse</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 用户点击弹窗后的回调</span>
+    <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">UNUserNotificationCenter</span><span class="p">,</span> <span class="n">didReceive</span> <span class="n">response</span><span class="p">:</span> <span class="n">UNNotificationResponse</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">userInfo</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">notification</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">userInfo</span>
         <span class="k">switch</span> <span class="n">response</span><span class="p">.</span><span class="n">actionIdentifier</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s">&#34;</span><span class="s">SHOW_ACTION</span><span class="s">&#34;</span><span class="p">:</span>
+        <span class="k">case</span> <span class="s">&#34;SHOW_ACTION&#34;</span><span class="p">:</span>
             <span class="bp">print</span><span class="p">(</span><span class="n">userInfo</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;</span><span class="s">CLOSE_ACTION</span><span class="s">&#34;</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">Nothing to do</span><span class="s">&#34;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;CLOSE_ACTION&#34;</span><span class="p">:</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Nothing to do&#34;</span><span class="p">)</span>
         <span class="k">default</span><span class="p">:</span>
             <span class="k">break</span>
         <span class="p">}</span>
-        <span class="n">completionHandler</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">completionHandler</span><span class="p">()</span>
     <span class="p">}</span>
     
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">配</span><span class="c1">置</span><span class="c1">通</span><span class="c1">知</span><span class="c1">发</span><span class="c1">起</span><span class="c1">时</span><span class="c1">的</span><span class="c1">行</span><span class="c1">为</span><span class="c1"> </span><span class="c1">a</span><span class="c1">l</span><span class="c1">e</span><span class="c1">r</span><span class="c1">t</span><span class="c1"> </span><span class="c1">-</span><span class="c1">&gt;</span><span class="c1"> </span><span class="c1">显</span><span class="c1">示</span><span class="c1">弹</span><span class="c1">窗</span><span class="c1">,</span><span class="c1"> </span><span class="c1">s</span><span class="c1">o</span><span class="c1">u</span><span class="c1">n</span><span class="c1">d</span><span class="c1"> </span><span class="c1">-</span><span class="c1">&gt;</span><span class="c1"> </span><span class="c1">播</span><span class="c1">放</span><span class="c1">提</span><span class="c1">示</span><span class="c1">音</span>
+    <span class="c1">// 配置通知发起时的行为 alert -&gt; 显示弹窗, sound -&gt; 播放提示音</span>
     <span class="kd">func</span> <span class="nf">userNotificationCenter</span><span class="p">(</span><span class="kc">_</span> <span class="n">center</span><span class="p">:</span> <span class="n">UNUserNotificationCenter</span><span class="p">,</span> <span class="n">willPresent</span> <span class="n">notification</span><span class="p">:</span> <span class="n">UNNotification</span><span class="p">,</span> <span class="n">withCompletionHandler</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">UNNotificationPresentationOptions</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">completionHandler</span><span class="p">(</span><span class="p">[</span><span class="p">.</span><span class="n">alert</span><span class="p">,</span> <span class="p">.</span><span class="n">sound</span><span class="p">]</span><span class="p">)</span>
+        <span class="n">completionHandler</span><span class="p">([.</span><span class="n">alert</span><span class="p">,</span> <span class="p">.</span><span class="n">sound</span><span class="p">])</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><ul>
@@ -340,7 +342,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					3569 字
+					3555 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -457,6 +459,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

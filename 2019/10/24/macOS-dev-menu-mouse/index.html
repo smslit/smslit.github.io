@@ -10,7 +10,7 @@
 <meta itemprop="description" content="上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图">
 <meta itemprop="datePublished" content="2019-10-24T07:30:12&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-24T07:30:12&#43;08:00" />
-<meta itemprop="wordCount" content="926">
+<meta itemprop="wordCount" content="924">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -83,7 +85,7 @@
 			</header>
 			<div class="content">
 				<p>上一篇文章 <a href="/2019/10/22/macOS-dev-basic-nsmenu/">macOS 开发之菜单栏形式的状态栏小工具</a> 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图标，都会弹出我们添加的菜单，考虑到我们可能会需要分别对鼠标左右键单击菜单栏按钮进行不同的处理，所以写此文讲解一下如何实现。</p>
-<!-- raw HTML omitted -->
+<!-- more -->
 <h2 id="工程">工程</h2>
 <p>我们继续使用上一篇文章最后完成的工程：</p>
 <p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022195552-l6UN33.zip">MenuToolDemo</a></p>
@@ -98,20 +100,20 @@
 <li>
 <p>打开文件 <code>AppDelegate.swift</code>，修改之前工程中指定 button 图标的代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
-    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">StatusIcon</span><span class="s">&#34;</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&#34;StatusIcon&#34;</span><span class="p">)</span>
     <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">mouseClickHandler</span><span class="p">)</span>
-    <span class="n">button</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="p">[</span><span class="p">.</span><span class="n">leftMouseUp</span><span class="p">,</span> <span class="p">.</span><span class="n">rightMouseUp</span><span class="p">]</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="n">on</span><span class="p">:</span> <span class="p">[.</span><span class="n">leftMouseUp</span><span class="p">,</span> <span class="p">.</span><span class="n">rightMouseUp</span><span class="p">])</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>在方法 <code>applicationDidFinishLaunching(_ aNotification:)</code> 后面添加鼠标点击处理方法 <code>mouseClickHandler</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">mouseClickHandler</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">mouseClickHandler</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">event</span> <span class="p">=</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">currentEvent</span> <span class="p">{</span>
         <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">type</span> <span class="p">{</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">leftMouseUp</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">左键</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;左键&#34;</span><span class="p">)</span>
         <span class="k">default</span><span class="p">:</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">右键</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;右键&#34;</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -130,20 +132,20 @@
 </li>
 <li>
 <p>修改 <code>mouseClickHandler</code> 的处理如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">mouseClickHandler</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">mouseClickHandler</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">event</span> <span class="p">=</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">currentEvent</span> <span class="p">{</span>
         <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">type</span> <span class="p">{</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">leftMouseUp</span><span class="p">:</span>
-            <span class="c1">//</span><span class="c1"> </span><span class="c1">使</span><span class="c1">用</span><span class="c1">警</span><span class="c1">告</span><span class="c1">窗</span><span class="c1">口</span><span class="c1">示</span><span class="c1">意</span><span class="c1">左</span><span class="c1">键</span><span class="c1">单</span><span class="c1">击</span>
-            <span class="kd">let</span> <span class="nv">alert</span> <span class="p">=</span> <span class="n">NSAlert</span><span class="p">(</span><span class="p">)</span>
-            <span class="n">alert</span><span class="p">.</span><span class="n">messageText</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">鼠标事件</span><span class="s">&#34;</span>
-            <span class="n">alert</span><span class="p">.</span><span class="n">informativeText</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">左键单击</span><span class="s">&#34;</span>
-            <span class="n">alert</span><span class="p">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">withTitle</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">关闭</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="c1">// 使用警告窗口示意左键单击</span>
+            <span class="kd">let</span> <span class="nv">alert</span> <span class="p">=</span> <span class="n">NSAlert</span><span class="p">()</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">messageText</span> <span class="p">=</span> <span class="s">&#34;鼠标事件&#34;</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">informativeText</span> <span class="p">=</span> <span class="s">&#34;左键单击&#34;</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">withTitle</span><span class="p">:</span> <span class="s">&#34;关闭&#34;</span><span class="p">)</span>
             <span class="n">alert</span><span class="p">.</span><span class="n">window</span><span class="p">.</span><span class="n">titlebarAppearsTransparent</span> <span class="p">=</span> <span class="kc">true</span>
-            <span class="n">alert</span><span class="p">.</span><span class="n">runModal</span><span class="p">(</span><span class="p">)</span>
+            <span class="n">alert</span><span class="p">.</span><span class="n">runModal</span><span class="p">()</span>
         <span class="k">default</span><span class="p">:</span>
             <span class="n">statusItem</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="n">menu</span>
-            <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span><span class="p">?</span><span class="p">.</span><span class="n">performClick</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+            <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span><span class="p">?.</span><span class="n">performClick</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -151,7 +153,7 @@
 <li>
 <p>保证菜单关闭的时候，将 <code>statusItem</code> 的 <code>menu</code> 设置为 nil，扩展一下 <strong>AppDelegate</strong>，遵循 <code>NSMenuDelegate</code> 在方法 Menu 关闭后指定 nil：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">NSMenuDelegate</span> <span class="p">{</span>
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">为</span><span class="c1">了</span><span class="c1">保</span><span class="c1">证</span><span class="c1">按</span><span class="c1">钮</span><span class="c1">的</span><span class="c1">单</span><span class="c1">击</span><span class="c1">事</span><span class="c1">件</span><span class="c1">设</span><span class="c1">置</span><span class="c1">有</span><span class="c1">效</span><span class="c1">，</span><span class="c1">m</span><span class="c1">e</span><span class="c1">n</span><span class="c1">u</span><span class="c1">要</span><span class="c1">去</span><span class="c1">除</span>
+    <span class="c1">// 为了保证按钮的单击事件设置有效，menu要去除</span>
     <span class="kd">func</span> <span class="nf">menuDidClose</span><span class="p">(</span><span class="kc">_</span> <span class="n">menu</span><span class="p">:</span> <span class="n">NSMenu</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">statusItem</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="kc">nil</span>
     <span class="p">}</span>
@@ -161,7 +163,7 @@
 </code></pre></div></li>
 </ol>
 <p>此时运行程序，鼠标左键单击菜单栏按钮，便会弹出警告窗口，右键单击就能显示菜单了。</p>
-<!-- raw HTML omitted -->
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191024094833-3CiYyz.mp4" width="100%" controls="controls">
 <p>工程打包如下：</p>
 <p><a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191024095445-Rhex8j.zip">MenuToolDemo2</a></p>
 
@@ -173,7 +175,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					926 字
+					924 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -261,6 +263,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

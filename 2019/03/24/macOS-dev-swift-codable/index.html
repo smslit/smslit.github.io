@@ -10,7 +10,7 @@
 <meta itemprop="description" content="近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 Codable，在本文一起探讨一下以下三个方">
 <meta itemprop="datePublished" content="2019-03-24T16:49:16&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-24T16:49:16&#43;08:00" />
-<meta itemprop="wordCount" content="2838">
+<meta itemprop="wordCount" content="2840">
 
 
 
@@ -35,6 +35,8 @@
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-26-codable.png');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -104,11 +106,11 @@
 <ul>
 <li>
 <p><strong>Encodable</strong>: 用于自定义类型向 JSON 或 Property List 的转换，协议包含一个方法</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">encode</span><span class="p">(</span><span class="n">to</span><span class="p">:</span><span class="p">)</span> 
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">encode</span><span class="p">(</span><span class="n">to</span><span class="p">:)</span> 
 </code></pre></div></li>
 <li>
 <p><strong>Decodable</strong>: 用于自 JSON 或 Property List 数据向自定义类型的转换，协议包含一个方法</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">init</span><span class="p">(</span><span class="n">from</span><span class="p">:</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">init</span><span class="p">(</span><span class="n">from</span><span class="p">:)</span>
 </code></pre></div></li>
 <li>
 <p><strong>Codable</strong>: 包含 Encodable 和 Decodable 两方面的转换，其定义如下：</p>
@@ -151,8 +153,8 @@
 <h2 id="编码和解码">编码和解码</h2>
 <h3 id="使用-jsonencoder-编码">使用 <code>JSONEncoder</code> 编码</h3>
 <p>非常简单，只需调用 <code>JSONEncoder</code> 的 <code>encode(_:)</code> 方法就能将 Codable 类型转换为 JSON 数据：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">jack</span> <span class="p">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">Jack</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">jackData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">jack</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">jack</span> <span class="p">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;Jack&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">jackData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">jack</span><span class="p">)</span> <span class="p">{</span>
     <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">jackData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>可以看到打印出转换得到的 JSON 字符串数据：</p>
@@ -160,20 +162,20 @@
 </code></pre></div><p>是不是很方便，解码同样如此简单！</p>
 <h3 id="使用-jsondecoder-解码">使用 <code>JSONDecoder</code> 解码</h3>
 <p>只需要调用 <code>JSONDecoder</code> 实例的 <code>decode(_:from:)</code> 方法就能将 JSON 对象转换得到指定类型的实例。</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">jsonString</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="s">&#34;</span><span class="s">
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">jsonString</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34;
 </span><span class="s">{
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">id</span><span class="s">&#34;</span><span class="s">: 2,
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">name</span><span class="s">&#34;</span><span class="s">: </span><span class="s">&#34;</span><span class="n">lucy</span><span class="s">&#34;</span><span class="s">,
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">age</span><span class="s">&#34;</span><span class="s">: 11,
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">isMale</span><span class="s">&#34;</span><span class="s">: false
+</span><span class="s">    &#34;</span><span class="n">id</span><span class="s">&#34;: 2,
+</span><span class="s">    &#34;</span><span class="n">name</span><span class="s">&#34;: &#34;</span><span class="n">lucy</span><span class="s">&#34;,
+</span><span class="s">    &#34;</span><span class="n">age</span><span class="s">&#34;: 11,
+</span><span class="s">    &#34;</span><span class="n">isMale</span><span class="s">&#34;: false
 </span><span class="s">}
-</span><span class="s"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="s">&#34;</span>
+</span><span class="s">&#34;&#34;&#34;</span>
 <span class="k">if</span> <span class="kd">let</span> <span class="nv">json</span> <span class="p">=</span> <span class="n">jsonString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">lucy</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">lucy</span><span class="p">!</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">lucy</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">lucy</span><span class="p">!)</span>
 <span class="p">}</span>
 </code></pre></div><p>打印结果，如您所料，将 JSON 字符串成功的解码为了 Person 实例对象：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">lucy</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;lucy&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
 </code></pre></div><h3 id="codable-使用的基本步骤">Codable 使用的基本步骤</h3>
 <p>综上过程，我们可以总结一下，要使用 Swift 的特性其实很简单，分两步：</p>
 <ul>
@@ -206,18 +208,18 @@
     <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
     <span class="kd">var</span> <span class="nv">age</span><span class="p">:</span> <span class="nb">Int</span>
     <span class="kd">var</span> <span class="nv">isMale</span><span class="p">:</span> <span class="nb">Bool</span>
-    <span class="kd">var</span> <span class="nv">description</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">person</span><span class="s">&#34;</span>
+    <span class="kd">var</span> <span class="nv">description</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;person&#34;</span>
     
     <span class="kd">enum</span> <span class="nc">CodingKeys</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">CodingKey</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="n">id</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">身份证号</span><span class="s">&#34;</span>
-        <span class="k">case</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">姓名</span><span class="s">&#34;</span>
-        <span class="k">case</span> <span class="n">age</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">年龄</span><span class="s">&#34;</span>
+        <span class="k">case</span> <span class="n">id</span> <span class="p">=</span> <span class="s">&#34;身份证号&#34;</span>
+        <span class="k">case</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;姓名&#34;</span>
+        <span class="k">case</span> <span class="n">age</span> <span class="p">=</span> <span class="s">&#34;年龄&#34;</span>
         <span class="k">case</span> <span class="n">isMale</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>我们看一下将自定义数据转换为 JSON 会是怎样的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">tim</span> <span class="p">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">tim</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">timData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">tim</span> <span class="p">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&#34;tim&#34;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">isMale</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">timData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span> <span class="p">{</span>
     <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">timData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>编码得到的 JSON 数据如下：</p>
@@ -239,12 +241,12 @@
     <span class="kd">var</span> <span class="nv">size</span><span class="p">:</span> <span class="n">Size</span>
 <span class="p">}</span>
 </code></pre></div><p>我们利用一开始定义的 Rect 结构体声明一个 rect，坐标在原点，宽高都为 2.0，并将其转换为 JSON 数据：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span><span class="p">)</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
     <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">rectData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>team 对应的 JSON 字符串如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;position&#34;</span><span class="p">:</span><span class="p">{</span><span class="nt">&#34;x&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;y&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="p">{</span><span class="nt">&#34;width&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&#34;height&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;position&#34;</span><span class="p">:{</span><span class="nt">&#34;x&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;y&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span><span class="nt">&#34;size&#34;</span><span class="p">:{</span><span class="nt">&#34;width&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&#34;height&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">}}</span>
 </code></pre></div><p>但是呢，十里不想让 JSON 数据中 x 和 y 嵌套在 positon 中，也不想 width 和 height 嵌套在 size 中，而是像下面的样子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span>
     <span class="nt">&#34;x&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -294,28 +296,28 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>测试一下编码实现：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span><span class="p">)</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="p">{</span>
     <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">rectData</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>得到的 JSON 数据的打印结果为：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span><span class="nt">&#34;y&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;x&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&#34;width&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">&#34;height&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
 </code></pre></div><p>测试一下解码的实现：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rectString</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="s">&#34;</span><span class="s">
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rectString</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34;
 </span><span class="s">{
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">x</span><span class="s">&#34;</span><span class="s">: 3,
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">y</span><span class="s">&#34;</span><span class="s">: 3,
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">width</span><span class="s">&#34;</span><span class="s">: 2.5,
-</span><span class="s">    </span><span class="s">&#34;</span><span class="n">height</span><span class="s">&#34;</span><span class="s">: 2.5
+</span><span class="s">    &#34;</span><span class="n">x</span><span class="s">&#34;: 3,
+</span><span class="s">    &#34;</span><span class="n">y</span><span class="s">&#34;: 3,
+</span><span class="s">    &#34;</span><span class="n">width</span><span class="s">&#34;: 2.5,
+</span><span class="s">    &#34;</span><span class="n">height</span><span class="s">&#34;: 2.5
 </span><span class="s">}
-</span><span class="s"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="s">&#34;</span>
+</span><span class="s">&#34;&#34;&#34;</span>
 
 <span class="k">if</span> <span class="kd">let</span> <span class="nv">json</span> <span class="p">=</span> <span class="n">rectString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">newRect</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">Rect</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">newRect</span><span class="p">!</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">newRect</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Rect</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">json</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">newRect</span><span class="p">!)</span>
 <span class="p">}</span>
 </code></pre></div><p>得到的 newRect 实例对象打印结果：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">__lldb_expr_21</span><span class="p">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">)</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">__lldb_expr_21</span><span class="p">.</span><span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">)</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">__lldb_expr_21</span><span class="p">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">__lldb_expr_21</span><span class="p">.</span><span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">))</span>
 </code></pre></div><h1 id="codable-带来的福利">Codable 带来的福利</h1>
 <p>上面说了这么多的 Codable ，到底我们能用它来干什么呢，最主要的两个应用方向就是自定义类型数据持久化和网络通信。</p>
 <h2 id="数据持久化">数据持久化</h2>
@@ -326,20 +328,20 @@
 <li>手动调用 <code>synchronize</code> 方法可以立马将数据持久化存储</li>
 </ul>
 <p>这里只是以这种数据持久化为例，讲一下如何持久化自定义数据类型的数据：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rectDemo</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span><span class="p">)</span>
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">demoData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">rectDemo</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">demoData</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">rect-test</span><span class="s">&#34;</span><span class="p">)</span>
-    <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">synchronize</span><span class="p">(</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">saved successfully!</span><span class="s">&#34;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">rectDemo</span> <span class="p">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">demoData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">rectDemo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">demoData</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;rect-test&#34;</span><span class="p">)</span>
+    <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">synchronize</span><span class="p">()</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;saved successfully!&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectJson</span> <span class="p">=</span> <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">rect-test</span><span class="s">&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">Data</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">newRect</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">Rect</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">rectJson</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="n">newRect</span><span class="p">!</span><span class="p">)</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">rectJson</span> <span class="p">=</span> <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;rect-test&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">Data</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">newRect</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONDecoder</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="n">Rect</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="n">rectJson</span><span class="p">)</span>
+    <span class="bp">print</span><span class="p">(</span><span class="n">newRect</span><span class="p">!)</span>
 <span class="p">}</span>
 </code></pre></div><p>可以看到打印结果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">saved</span> <span class="n">successfully</span><span class="p">!</span>
-<span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">__lldb_expr_29</span><span class="p">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">__lldb_expr_29</span><span class="p">.</span><span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span><span class="p">)</span>
+<span class="n">Rect</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">__lldb_expr_29</span><span class="p">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">size</span><span class="p">:</span> <span class="n">__lldb_expr_29</span><span class="p">.</span><span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">))</span>
 </code></pre></div><h2 id="网络通信">网络通信</h2>
 <p>HTTP/HTTPS 网络通信中 JSON 是常用的交互数据类型，假如我们编写一个网络接口，当外部请求的时候，我们为其返回一个响应，如果我们定义一个 Codable 的 Response 类型，可以方便生成响应数据：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Response</span><span class="p">:</span> <span class="n">Codable</span> <span class="p">{</span>
@@ -347,8 +349,8 @@
     <span class="kd">var</span> <span class="nv">message</span><span class="p">:</span> <span class="nb">String</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nv">res</span> <span class="p">=</span> <span class="n">Response</span><span class="p">(</span><span class="n">ststus</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">OK</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">resData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">res</span> <span class="p">=</span> <span class="n">Response</span><span class="p">(</span><span class="n">ststus</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s">&#34;OK&#34;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">resData</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">JSONEncoder</span><span class="p">().</span><span class="n">encode</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </code></pre></div><h1 id="总结">总结</h1>
 <p>Swift 4 开始支持的 Codable 大大简化了对自定义类型数据序列化的实现，相信您会用得到！</p>
 
@@ -360,7 +362,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2838 字
+					2840 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -379,8 +381,8 @@
   <ul>
     <li><a href="#编码和解码">编码和解码</a>
       <ul>
-        <li><a href="#使用-jsonencoder-编码">使用 JSONEncoder 编码</a></li>
-        <li><a href="#使用-jsondecoder-解码">使用 JSONDecoder 解码</a></li>
+        <li><a href="#使用-jsonencoder-编码">使用 <code>JSONEncoder</code> 编码</a></li>
+        <li><a href="#使用-jsondecoder-解码">使用 <code>JSONDecoder</code> 解码</a></li>
         <li><a href="#codable-使用的基本步骤">Codable 使用的基本步骤</a></li>
       </ul>
     </li>
@@ -464,6 +466,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

@@ -10,7 +10,7 @@
 <meta itemprop="description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代">
 <meta itemprop="datePublished" content="2019-02-21T18:02:47&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-21T18:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="2124">
+<meta itemprop="wordCount" content="2130">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -115,12 +117,12 @@
 </li>
 </ol>
 <p>上述五步操作，可参考如下视频进行：</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/mac_international_add_button.mp4" controls="controls" width="720"></video></p>
 <h2 id="添加-label-的-outlet">添加 Label 的 outlet</h2>
 <p>打开 Main.storyboard ，选中 view controller 中的 label，按下快捷键 <code>Option</code> + <code>Command</code> + 回车键会显示 <code>Main.storyboard</code> 中 view controller 对应的 Assitant Editor 并打开对应的 swift 文件，按住 <code>Ctrl</code> 键，在 label 上按住鼠标左键拖动到 Assitant Editor 中松手添加一个 outlet ，名称为 <code>movieLabel</code>。</p>
 <h2 id="添加标签内容">添加标签内容</h2>
 <p>在 ViewController.swift 的 ViewController 类中添加以下定义：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;</span><span class="s">天空之城</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;</span><span class="s">幽灵公主</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;</span><span class="s">风之谷</span><span class="s">&#34;</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;天空之城&#34;</span><span class="p">,</span> <span class="s">&#34;幽灵公主&#34;</span><span class="p">,</span> <span class="s">&#34;风之谷&#34;</span><span class="p">]</span>
 <span class="kd">var</span> <span class="nv">movieIndex</span> <span class="p">=</span> <span class="mi">0</span>
 </code></pre></div><p>在 ViewDidLoad 方法的 <code>super.viewDidLoad()</code> 后面添加：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">movieLable</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">movieIndex</span><span class="p">]</span>
@@ -164,26 +166,26 @@
 <ul>
 <li>Localizable.strings (English):</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Laputa Castle in the Sky</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Princess Mononoke</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Nausicaa Of The Valley Of The Wind </span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Laputa Castle in the Sky&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Princess Mononoke&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Nausicaa Of The Valley Of The Wind &#34;</span><span class="p">;</span>
 </code></pre></div><ul>
 <li>Localizable.strings (Chinese(Simplified)):</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">天空之城</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">幽灵公主</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">风之谷</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;天空之城&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;幽灵公主&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;风之谷&#34;</span><span class="p">;</span>
 </code></pre></div><ul>
 <li>Localizable.strings (Japanese):</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">天空の城ラピュタ</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">もののけ姫</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">風の谷のナウシカ</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-1.title&#34;</span> <span class="p">=</span> <span class="s">&#34;天空の城ラピュタ&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-2.title&#34;</span> <span class="p">=</span> <span class="s">&#34;もののけ姫&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-3.title&#34;</span> <span class="p">=</span> <span class="s">&#34;風の谷のナウシカ&#34;</span><span class="p">;</span>
 </code></pre></div><h3 id="更新代码">更新代码</h3>
 <p>修改添加本地化字符串对应的地方，也就是 <code>movies</code> 初始化的地方，修改为：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-1.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-2.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-3.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)]</span>
 </code></pre></div><h3 id="效果展示">效果展示</h3>
 <p>更改系统语言查看各语言的效果。</p>
 <ul>
@@ -209,10 +211,10 @@
 <ul>
 <li>比如再在 <code>movies</code> 初始化中新加一个元素，代码可写为：</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-1.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-2.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-3.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span>
-              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">movies</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-1.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-2.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-3.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+              <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">&#34;movie-label-4.title&#34;</span><span class="p">,</span> <span class="n">comment</span><span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">)]</span>
 </code></pre></div><ul>
 <li>命令行下切换至工程文根目录，执行命令：</li>
 </ul>
@@ -222,14 +224,14 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 </code></pre></div><ul>
 <li>打开三个 <code>Localizable.strings</code> 文件会发现新添加了一项，并且为每一个添加了预置注释：</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">N</span><span class="cm">o</span><span class="cm"> </span><span class="cm">c</span><span class="cm">o</span><span class="cm">m</span><span class="cm">m</span><span class="cm">e</span><span class="cm">n</span><span class="cm">t</span><span class="cm"> </span><span class="cm">p</span><span class="cm">r</span><span class="cm">o</span><span class="cm">v</span><span class="cm">i</span><span class="cm">d</span><span class="cm">e</span><span class="cm">d</span><span class="cm"> </span><span class="cm">b</span><span class="cm">y</span><span class="cm"> </span><span class="cm">e</span><span class="cm">n</span><span class="cm">g</span><span class="cm">i</span><span class="cm">n</span><span class="cm">e</span><span class="cm">e</span><span class="cm">r</span><span class="cm">.</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* No comment provided by engineer. */</span>
+<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
 </code></pre></div><ul>
 <li>分别为三个 Strings 文件修改对应新加项的值：</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Howl&#39;s Moving Castle</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">哈尔的移动城堡</span><span class="s">&#34;</span><span class="p">;</span>
-<span class="s">&#34;</span><span class="s">movie-label-4.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">ハウルの動く城</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Howl&#39;s Moving Castle&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;哈尔的移动城堡&#34;</span><span class="p">;</span>
+<span class="s">&#34;movie-label-4.title&#34;</span> <span class="p">=</span> <span class="s">&#34;ハウルの動く城&#34;</span><span class="p">;</span>
 </code></pre></div><p>运行程序，可以看到不同语言下，第四个电影就出现了！</p>
 <h3 id="编译时更新">编译时更新</h3>
 <p><a href="/2019/02/19/mac_app_international_2/">macOS 开发之 storyboard 或 xib 本地化</a> 中在工程中创建了 build phase 运行脚本，脚本中添加代码字符串本地化要执行的命令即可：</p>
@@ -252,7 +254,7 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2124 字
+					2130 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -357,6 +359,7 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

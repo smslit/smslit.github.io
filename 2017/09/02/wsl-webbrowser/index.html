@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -100,12 +102,12 @@
 <h2 id="意外发现">意外发现</h2>
 <h3 id="wsl可以执行exe">WSL可以执行exe</h3>
 <p>惊奇的发现wsl的命令行中可以调用exe，比如执行以下命令可以打开chrome浏览器，也就是说可以将windows中安装的浏览器注册给wsl。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/mnt/c/Program<span class="se">\ </span>Files<span class="se">\ </span><span class="se">\(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/mnt/c/Program<span class="se">\ </span>Files<span class="se">\ \(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe
 </code></pre></div><h3 id="wsl中可以用命令行配置默认浏览器">WSL中可以用命令行配置默认浏览器</h3>
 <p>如果我们直接用如下命令行配置网页浏览器，会提示没有安装浏览器，没有选项。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo update-alternatives --config x-www-browser
 </code></pre></div><p>怎么办？这个时候想到了一种饶路子的方式，ubuntu下有配置浏览器选项优先级的命令，这个命令需要指明浏览器，此时指定win 下chrome的路径就可以了，试一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  Downloads <span class="nb">cd</span> /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ </span><span class="se">\(</span>x86<span class="se">\)</span>/Google/Chrome/Application
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  Downloads <span class="nb">cd</span> /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ \(</span>x86<span class="se">\)</span>/Google/Chrome/Application
 ➜  Application ll
 总用量 1.4M
 dr-xr-xr-x <span class="m">0</span> root root  <span class="m">512</span> 8月  <span class="m">18</span> 08:31 60.0.3112.101
@@ -113,7 +115,7 @@ dr-xr-xr-x <span class="m">0</span> root root  <span class="m">512</span> 8月  
 -r-xr-xr-x <span class="m">1</span> root root  <span class="m">410</span> 8月  <span class="m">18</span> 08:31 chrome.VisualElementsManifest.xml
 -r-xr-xr-x <span class="m">1</span> root root 121K 8月  <span class="m">14</span> 08:41 master_preferences
 drwxrwxrwx <span class="m">0</span> root root  <span class="m">512</span> 8月  <span class="m">25</span> 18:14 SetupMetrics
-➜  Application sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ </span><span class="se">\(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe <span class="m">100</span>
+➜  Application sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /mnt/c/Program<span class="se">\ </span>Files<span class="se">\ \(</span>x86<span class="se">\)</span>/Google/Chrome/Application/chrome.exe <span class="m">100</span>
 update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<span class="o">)</span>/Google/Chrome/Application/chrome.exe 来在自动模式中提供 /usr/bin/x-www-browser <span class="o">(</span>x-www-browser<span class="o">)</span>
 ➜  Application sudo update-alternatives --config x-www-browser 
 链接组 x-www-browser <span class="o">(</span>提供 /usr/bin/x-www-browser<span class="o">)</span>中只有一个候选项：/mnt/c/Program Files <span class="o">(</span>x86<span class="o">)</span>/Google/Chrome/Application/chrome.exe无需配置。
@@ -234,6 +236,7 @@ update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<spa
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

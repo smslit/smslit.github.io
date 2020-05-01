@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -121,7 +123,7 @@ sudo vim 90-tofu.rules
 </li>
 <li>
 <p>添加内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SUBSYSTEMS</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;usb-serial&#34;</span>, <span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;ttyUSB?&#34;</span>, <span class="nv">GROUP</span><span class="o">=</span><span class="s2">&#34;tofu&#34;</span>, <span class="nv">MODE</span><span class="o">=</span><span class="s2">&#34;0666&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&#34;usb-serial&#34;</span>, <span class="nv">KERNEL</span><span class="o">==</span><span class="s2">&#34;ttyUSB?&#34;</span>, <span class="nv">GROUP</span><span class="o">=</span><span class="s2">&#34;tofu&#34;</span>, <span class="nv">MODE</span><span class="o">=</span><span class="s2">&#34;0666&#34;</span>
 </code></pre></div><p>按下 <em>ESC</em> 键，输入<code>:wq</code>，保存并退出。重新插拔Arduino或下载线。</p>
 </li>
 </ul>
@@ -223,6 +225,7 @@ sudo vim 90-tofu.rules
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

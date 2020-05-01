@@ -3,22 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.smslit.top/tags/blog/</loc>
+    <lastmod>2020-05-01T08:10:24+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.smslit.top/post/</loc>
-    <lastmod>2020-02-21T15:57:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/tags/python/</loc>
-    <lastmod>2020-02-21T15:57:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/</loc>
-    <lastmod>2020-02-21T15:57:16+08:00</lastmod>
+    <lastmod>2020-05-01T08:10:24+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.smslit.top/tags/</loc>
+    <lastmod>2020-05-01T08:10:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/tags/terminal/</loc>
+    <lastmod>2020-05-01T08:10:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/2020/05/01/asciinema/</loc>
+    <lastmod>2020-05-01T08:10:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/tags/python/</loc>
     <lastmod>2020-02-21T15:57:16+08:00</lastmod>
   </url>
   
@@ -44,6 +54,11 @@
   
   <url>
     <loc>https://www.smslit.top/tags/develop/</loc>
+    <lastmod>2019-10-24T07:30:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/tags/macOS/</loc>
     <lastmod>2019-10-24T07:30:12+08:00</lastmod>
   </url>
   
@@ -553,11 +568,6 @@
   </url>
   
   <url>
-    <loc>https://www.smslit.top/tags/macOS/</loc>
-    <lastmod>2019-01-02T17:20:38+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.smslit.top/2019/01/02/mac_hidpi/</loc>
     <lastmod>2019-01-02T17:20:38+08:00</lastmod>
   </url>
@@ -605,11 +615,6 @@
   <url>
     <loc>https://www.smslit.top/2018/11/27/simple_server/</loc>
     <lastmod>2018-11-27T10:48:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/tags/blog/</loc>
-    <lastmod>2018-11-17T13:56:21+08:00</lastmod>
   </url>
   
   <url>
@@ -663,6 +668,11 @@
   </url>
   
   <url>
+    <loc>https://www.smslit.top/tags/c/</loc>
+    <lastmod>2018-10-24T17:58:19+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.smslit.top/tags/command/</loc>
     <lastmod>2018-10-24T17:58:19+08:00</lastmod>
   </url>
@@ -674,11 +684,6 @@
   
   <url>
     <loc>https://www.smslit.top/tags/shell/</loc>
-    <lastmod>2018-10-24T17:58:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/tags/terminal/</loc>
     <lastmod>2018-10-24T17:58:19+08:00</lastmod>
   </url>
   
@@ -933,11 +938,6 @@
   </url>
   
   <url>
-    <loc>https://www.smslit.top/tags/c/</loc>
-    <lastmod>2017-10-31T06:35:29+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.smslit.top/2017/10/31/timetogo/</loc>
     <lastmod>2017-10-31T06:35:29+08:00</lastmod>
   </url>
@@ -980,6 +980,11 @@
   <url>
     <loc>https://www.smslit.top/2017/09/02/wsl-webbrowser/</loc>
     <lastmod>2017-09-02T13:41:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/</loc>
+    <lastmod>2017-08-28T21:41:52+08:00</lastmod>
   </url>
   
   <url>

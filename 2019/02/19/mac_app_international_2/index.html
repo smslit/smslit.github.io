@@ -10,7 +10,7 @@
 <meta itemprop="description" content="开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s">
 <meta itemprop="datePublished" content="2019-02-19T08:53:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-19T08:53:54&#43;08:00" />
-<meta itemprop="wordCount" content="1576">
+<meta itemprop="wordCount" content="1636">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -108,8 +110,8 @@
 <li>Main.Strings (Japanese)</li>
 </ul>
 <p>可以看到文件中都包含了相同的字符串项，例如其中的窗口标题项：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">W</span><span class="cm">i</span><span class="cm">n</span><span class="cm">d</span><span class="cm">o</span><span class="cm">w</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">W</span><span class="cm">i</span><span class="cm">n</span><span class="cm">d</span><span class="cm">o</span><span class="cm">w</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">I</span><span class="cm">Q</span><span class="cm">v</span><span class="cm">-</span><span class="cm">I</span><span class="cm">B</span><span class="cm">-</span><span class="cm">i</span><span class="cm">L</span><span class="cm">A</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">IQv-IB-iLA.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Window</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSWindow&#34;; title = &#34;Window&#34;; ObjectID = &#34;IQv-IB-iLA&#34;; */</span>
+<span class="s">&#34;IQv-IB-iLA.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Window&#34;</span><span class="p">;</span>
 </code></pre></div><ol>
 <li>
 <p>左侧的代表了字符串标识，右侧是相对应的字符串值，我们要对应语言修改的就是每一项的右侧值。</p>
@@ -144,11 +146,11 @@
 ℹ️ BartyCrouch: Successfully updated strings file<span class="o">(</span>s<span class="o">)</span> of Storyboard or XIB file.
 </code></pre></div><p>其中需要使用 <code>-p</code> 指明包含工程文件的目录，因为此时工作目录是在工程根目录下，所以要指定的目录是存放文件的 <code>InternationalDemo/</code></p>
 <p>执行了上面的命令以后，查看三个 Strings 文件中确实新添了按钮和 label 的相关字符串！</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">B</span><span class="cm">u</span><span class="cm">t</span><span class="cm">t</span><span class="cm">o</span><span class="cm">n</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">B</span><span class="cm">u</span><span class="cm">t</span><span class="cm">t</span><span class="cm">o</span><span class="cm">n</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">0</span><span class="cm">A</span><span class="cm">1</span><span class="cm">-</span><span class="cm">8</span><span class="cm">b</span><span class="cm">-</span><span class="cm">f</span><span class="cm">i</span><span class="cm">d</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">0A1-8b-fid.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSButtonCell&#34;; title = &#34;Button&#34;; ObjectID = &#34;0A1-8b-fid&#34;; */</span>
+<span class="s">&#34;0A1-8b-fid.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
 
-<span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
 </code></pre></div><h3 id="检查-strings-文件">检查 Strings 文件</h3>
 <p>bartycrouch 的子命令 lint 可以帮助检查：</p>
 <ul>
@@ -182,20 +184,20 @@
 <ul>
 <li>Main.strings (English)</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">Hello, world!</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">;</span>
 </code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143602.png" alt=""></p>
 <ul>
 <li>Main.strings (Chinese(Simplified))</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">世界，你好!</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;世界，你好!&#34;</span><span class="p">;</span>
 </code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143627.png" alt=""></p>
 <ul>
 <li>Main.strings (Japanese)</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*</span><span class="cm"> </span><span class="cm">C</span><span class="cm">l</span><span class="cm">a</span><span class="cm">s</span><span class="cm">s</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">N</span><span class="cm">S</span><span class="cm">T</span><span class="cm">e</span><span class="cm">x</span><span class="cm">t</span><span class="cm">F</span><span class="cm">i</span><span class="cm">e</span><span class="cm">l</span><span class="cm">d</span><span class="cm">C</span><span class="cm">e</span><span class="cm">l</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">t</span><span class="cm">i</span><span class="cm">t</span><span class="cm">l</span><span class="cm">e</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">L</span><span class="cm">a</span><span class="cm">b</span><span class="cm">e</span><span class="cm">l</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">O</span><span class="cm">b</span><span class="cm">j</span><span class="cm">e</span><span class="cm">c</span><span class="cm">t</span><span class="cm">I</span><span class="cm">D</span><span class="cm"> </span><span class="cm">=</span><span class="cm"> </span><span class="cm">&#34;</span><span class="cm">b</span><span class="cm">y</span><span class="cm">2</span><span class="cm">-</span><span class="cm">m</span><span class="cm">L</span><span class="cm">-</span><span class="cm">G</span><span class="cm">s</span><span class="cm">U</span><span class="cm">&#34;</span><span class="cm">;</span><span class="cm"> </span><span class="cm">*/</span>
-<span class="s">&#34;</span><span class="s">by2-mL-GsU.title</span><span class="s">&#34;</span> <span class="p">=</span> <span class="s">&#34;</span><span class="s">こんにちは世界!</span><span class="s">&#34;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/* Class = &#34;NSTextFieldCell&#34;; title = &#34;Label&#34;; ObjectID = &#34;by2-mL-GsU&#34;; */</span>
+<span class="s">&#34;by2-mL-GsU.title&#34;</span> <span class="p">=</span> <span class="s">&#34;こんにちは世界!&#34;</span><span class="p">;</span>
 </code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219143636.png" alt=""></p>
 <p>至此，这一部分就讲完了，希望对您有所帮助！</p>
 <p>此部分完成后的工程下载：<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/InternationalDemo2.zip">InternationalDemo2</a></p>
@@ -208,7 +210,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1576 字
+					1636 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -300,6 +302,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

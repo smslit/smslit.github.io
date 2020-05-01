@@ -11,7 +11,7 @@
 ">
 <meta itemprop="datePublished" content="2018-10-24T17:58:19&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-24T17:58:19&#43;08:00" />
-<meta itemprop="wordCount" content="1391">
+<meta itemprop="wordCount" content="1377">
 
 
 
@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -117,7 +119,7 @@ DESCRIPTION
      The tee utility exits <span class="m">0</span> on success, and &gt;0 <span class="k">if</span> an error occurs.
 
 STANDARDS
-     The tee <span class="k">function</span> is expected to be POSIX IEEE Std 1003.2 <span class="o">(</span><span class="sb">`</span><span class="sb">`</span>POSIX.2<span class="s1">&#39;&#39;</span><span class="o">)</span> compatible.
+     The tee <span class="k">function</span> is expected to be POSIX IEEE Std 1003.2 <span class="o">(</span><span class="sb">``</span>POSIX.2<span class="s1">&#39;&#39;</span><span class="o">)</span> compatible.
 
 BSD                              June 6, <span class="m">1993</span>                              BSD
 </code></pre></div><p>功能简单来说就是把标准输入传输给标准输出(打印出来)的同时将输入内容写入到指定文件，而在指定文件的时候加上 <code>-a</code> 会在文件内容的基础上追加输入而不是覆盖^[<a href="https://www.ibm.com/support/knowledgecenter/zh/ssw_aix_71/com.ibm.aix.cmds5/tee.htm">tee 命令</a>]。</p>
@@ -175,34 +177,34 @@ hah
 </ol>
 <h2 id="解析命令参数">解析命令参数</h2>
 <p>这里将使用 argparse 库解析参数的操作封装为函数 <code>getargs</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">获取命令参数</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">The tee utility copies standard </span><span class="se">\
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;获取命令参数
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;The tee utility copies standard </span><span class="se">\
 </span><span class="se"></span><span class="s2">                                                input to standard output, making a </span><span class="se">\
 </span><span class="se"></span><span class="s2">                                                copy in zero or more files.  The </span><span class="se">\
-</span><span class="se"></span><span class="s2">                                                output is unbuffered.</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-v</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--version</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">version</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">v 1.0.0</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--append</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">store_true</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Append the output to the files rather than overwriting them.</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">file</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">*</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">A pathname of an output file.</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+</span><span class="se"></span><span class="s2">                                                output is unbuffered.&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&#34;v 1.0.0&#34;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--append&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&#34;store_true&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Append the output to the files rather than overwriting them.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;A pathname of an output file.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </code></pre></div><h2 id="tee功能实现">tee功能实现</h2>
 <p>直接在 <code>__main__</code> 中实现 tee 的功能如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">filemode</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">append</span> <span class="k">else</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
+    <span class="n">filemode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">append</span> <span class="k">else</span> <span class="s1">&#39;w&#39;</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">filemode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">filemode</span> <span class="ow">is</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">:</span>
-            <span class="n">filemode</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">filemode</span> <span class="ow">is</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
+            <span class="n">filemode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
 </code></pre></div><p>可以看到代码非常简单就实现了 tee 的完整功能，直接操作 <code>sys.stdin</code> 、<code>sys.stdout</code>^[<a href="https://sparkydogx.github.io/2018/08/08/python-tee/">使用python实现tee的效果</a>] 和 文件^[<a href="http://outofmemory.cn/code-snippet/11733/achieve-tee-command">实现tee命令</a>]即可！最终代码可参考：<a href="https://github.com/smslit/tools-with-script/blob/master/tee/tee">tools-with-script/tee/tee</a>。</p>
 <h1 id="测试">测试</h1>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ ./tee --help
-usage: tee <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>-a<span class="o">]</span> <span class="o">[</span>file <span class="o">[</span>file ...<span class="o">]</span><span class="o">]</span>
+usage: tee <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>-a<span class="o">]</span> <span class="o">[</span>file <span class="o">[</span>file ...<span class="o">]]</span>
 
 The tee utility copies standard input to standard output, making a copy in
 zero or more files. The output is unbuffered.
@@ -261,7 +263,7 @@ Wonderful
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1391 字
+					1377 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -353,6 +355,7 @@ Wonderful
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

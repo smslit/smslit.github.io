@@ -12,7 +12,7 @@ pap.er
 昨天研究了Popover的使用，所以今天以一个实例与大家分享一下！">
 <meta itemprop="datePublished" content="2018-06-29T15:20:04&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-05T11:40:04&#43;08:00" />
-<meta itemprop="wordCount" content="3481">
+<meta itemprop="wordCount" content="3453">
 
 
 
@@ -41,6 +41,8 @@ pap.er
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -89,7 +91,7 @@ pap.er
 			</header>
 			<div class="content">
 				<p>mac中安装了一个叫<a href="http://paper.meiyuan.in">pap.er</a>的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 <code>Popover</code> 中实现。看视频感受一下，叫<code>Popover</code>的弹窗，这是本文要讲的东西。</p>
-<p><!-- raw HTML omitted -->pap.er<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/pap.er.mp4" controls="controls" width="100%" poster="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153023532585285.jpg">pap.er</video></p>
 <p>昨天研究了<code>Popover</code>的使用，所以今天以一个实例与大家分享一下！</p>
 <h2 id="平台">平台</h2>
 <ul>
@@ -139,7 +141,7 @@ pap.er
 </code></pre></div><p>状态栏按钮总该需要一个图标吧！打开<code>Assets.xcassets</code>，右击显示<code>AppIcon</code>下方的空白区，选择<code>New Image Set</code>，重命名为<code>statusIcon</code>，当然这个名字随便定，选中这个图集，会看到右侧有配置区，配置图集按照<code>Template Image</code>渲染：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024293742991.png" alt="20180629153024293742991.png"></p>
 <p>看到有三个虚线框空白区，这就是图片区，状态栏按钮的图片基本大小为 $18px\times18px$ ，还需2倍和3倍的适用于视网膜屏幕的mac，像素分别是 $36px\times36px$ 和 $54px\times54px$ ，可以使用以下我提供的图标：</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024309821129.png" width="18px"><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018062915302434352614.png" width="36px"><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024344990828.png" width="54px"></p>
 <p>分别将图拖到对应位置：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024408859417.png" alt="20180629153024408859417.png"></p>
 <p>切换到文件<code>AppDelegate.swift</code>，定义一个测试状态栏按钮点击行为的函数，这里以关闭应用程序为例吧，实现的函数：</p>
@@ -148,7 +150,7 @@ pap.er
 <span class="p">}</span>
 </code></pre></div><p>然后找到<code>applicationDidFinishLaunching </code>在其中添加以下代码，为状态栏按钮配置图标和行为：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
-	<span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;</span><span class="s">statusIcon</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span>
+	<span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;statusIcon&#34;</span><span class="p">))</span>
 	<span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">quitApp</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>此时运行程序会看到状态栏中出现了我们定义的按钮，点击一下，应用程序就退出了。</p>
@@ -165,7 +167,7 @@ pap.er
 <p>点击控件将其拖入界面，添加后其并没有可视化的元素，可以在<code>Objects</code>管理器中看到已经添加成功：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024707619315.png" alt="20180629153024707619315.png"></p>
 <p>启动<code>Assitant Editor</code>，按住<code>Contorl</code>键点击<code>Popover</code>拖入<code>AppDelegate.swift</code>文件，创建<code>popover</code>属性：</p>
-<p><!-- raw HTML omitted -->popover_link<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/link.mp4" controls="controls" width="100%">popover_link</video></p>
 <h3 id="添加popover-view-controller">添加Popover View Controller</h3>
 <p>此时<code>popover</code>是没有界面的，因为此时还没有为其指定<code>view controller</code>。</p>
 <ul>
@@ -207,13 +209,13 @@ pap.er
 <li>
 <p>重新更改一下<code>applicationDidFinishLaunching </code>中实现的<code>statusItem</code>的<code>action</code>为上面的<code>togglePopover</code>，删掉之前定义的<code>quitApp</code>就可以了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
-    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;</span><span class="s">statusIcon</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;statusIcon&#34;</span><span class="p">))</span>
     <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">togglePopover</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>此时运行程序，就会看到正常出现的状态栏按钮，点击按钮就会弹出<code>Popover</code>，再次点击就会关闭。</p>
-<p><!-- raw HTML omitted -->popover-click<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/popover-click.mp4" width="100%" controls="controls">popover-click</video></p>
 </li>
 </ul>
 <h3 id="设计popover界面">设计Popover界面</h3>
@@ -258,25 +260,25 @@ pap.er
   
 <span class="kd">class</span> <span class="nc">EventMonitor</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">mask</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">EventTypeMask</span>
-    <span class="kd">var</span> <span class="nv">handler</span> <span class="p">:</span> <span class="p">(</span><span class="n">NSEvent</span><span class="p">?</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nv">handler</span> <span class="p">:</span> <span class="p">(</span><span class="n">NSEvent</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="p">()</span>
     <span class="kd">var</span> <span class="nv">monitor</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span>
       
-    <span class="kd">init</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">EventTypeMask</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">NSEvent</span><span class="p">?</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">EventTypeMask</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">NSEvent</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="p">()){</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">mask</span> <span class="p">=</span> <span class="n">mask</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">handler</span> <span class="p">=</span> <span class="n">handler</span>
     <span class="p">}</span>
       
     <span class="kd">deinit</span> <span class="p">{</span>
-        <span class="n">stop</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">stop</span><span class="p">()</span>
     <span class="p">}</span>
       
-    <span class="kd">func</span> <span class="nf">start</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">start</span><span class="p">(){</span>
         <span class="n">monitor</span> <span class="p">=</span> <span class="n">NSEvent</span><span class="p">.</span><span class="n">addGlobalMonitorForEvents</span><span class="p">(</span><span class="n">matching</span><span class="p">:</span> <span class="n">mask</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">handler</span><span class="p">)</span>
     <span class="p">}</span>
       
-    <span class="kd">func</span> <span class="nf">stop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="n">monitor</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-            <span class="n">NSEvent</span><span class="p">.</span><span class="n">removeMonitor</span><span class="p">(</span><span class="n">monitor</span><span class="p">!</span><span class="p">)</span>
+            <span class="n">NSEvent</span><span class="p">.</span><span class="n">removeMonitor</span><span class="p">(</span><span class="n">monitor</span><span class="p">!)</span>
             <span class="n">monitor</span> <span class="p">=</span> <span class="kc">nil</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -290,9 +292,9 @@ pap.er
 </code></pre></div></li>
 <li>
 <p>在<code>applicationDidFinishLaunching</code>中添加监视器的初始化操作：</p>
-<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">eventMonitor</span> <span class="p">=</span> <span class="n">EventMonitor</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="p">[</span><span class="p">.</span><span class="n">leftMouseDown</span><span class="p">,</span> <span class="p">.</span><span class="n">rightMouseDown</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">eventMonitor</span> <span class="p">=</span> <span class="n">EventMonitor</span><span class="p">(</span><span class="n">mask</span><span class="p">:</span> <span class="p">[.</span><span class="n">leftMouseDown</span><span class="p">,</span> <span class="p">.</span><span class="n">rightMouseDown</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">strongSelf</span> <span class="p">=</span> <span class="kc">self</span><span class="p">,</span> <span class="n">strongSelf</span><span class="p">.</span><span class="n">popover</span><span class="p">.</span><span class="n">isShown</span> <span class="p">{</span>
-        <span class="n">strongSelf</span><span class="p">.</span><span class="n">closePopover</span><span class="p">(</span><span class="n">event</span><span class="p">!</span><span class="p">)</span>
+        <span class="n">strongSelf</span><span class="p">.</span><span class="n">closePopover</span><span class="p">(</span><span class="n">event</span><span class="p">!)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
@@ -300,14 +302,14 @@ pap.er
 <p>还需要完善<code>popover</code>显示和关闭的接口：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">closePopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">popover</span><span class="p">.</span><span class="n">performClose</span><span class="p">(</span><span class="n">sender</span><span class="p">)</span>
-    <span class="n">eventMonitor</span><span class="p">?</span><span class="p">.</span><span class="n">stop</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">eventMonitor</span><span class="p">?.</span><span class="n">stop</span><span class="p">()</span>
 <span class="p">}</span>
   
 <span class="kr">@objc</span> <span class="kd">func</span> <span class="nf">showPopover</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
         <span class="n">popover</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="n">relativeTo</span><span class="p">:</span> <span class="n">button</span><span class="p">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">of</span><span class="p">:</span> <span class="n">button</span><span class="p">,</span> <span class="n">preferredEdge</span><span class="p">:</span> <span class="n">NSRectEdge</span><span class="p">.</span><span class="n">minY</span><span class="p">)</span>
     <span class="p">}</span>
-    <span class="n">eventMonitor</span><span class="p">?</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">eventMonitor</span><span class="p">?.</span><span class="n">start</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>
@@ -316,7 +318,7 @@ pap.er
 </ul>
 <h2 id="运行效果">运行效果：</h2>
 <p>最终的这么简陋的程序的运行效果：</p>
-<p><!-- raw HTML omitted -->popover_final<!-- raw HTML omitted --></p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/popover/popover_final.mp4" width="100%" controls="controls">popover_final</video></p>
 <p>完整的工程可以<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/popover/PopoverDemo.zip">点我</a>下载。</p>
 <h2 id="参考">参考：</h2>
 <ul>
@@ -338,7 +340,7 @@ pap.er
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					3481 字
+					3453 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -435,6 +437,7 @@ pap.er
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

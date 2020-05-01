@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -116,15 +118,15 @@ yarn-error.log*
 </span></code></pre></div><h3 id="修改-vscode-工程配置">修改 vscode 工程配置</h3>
 <p>修改文件 <code>.vscode/settings.json</code> ，内容如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">v</span><span class="err">s</span><span class="err">c</span><span class="err">o</span><span class="err">d</span><span class="err">e</span><span class="err">默</span><span class="err">认</span><span class="err">启</span><span class="err">用</span><span class="err">了</span><span class="err">根</span><span class="err">据</span><span class="err">文</span><span class="err">件</span><span class="err">类</span><span class="err">型</span><span class="err">自</span><span class="err">动</span><span class="err">设</span><span class="err">置</span><span class="err">t</span><span class="err">a</span><span class="err">b</span><span class="err">s</span><span class="err">i</span><span class="err">z</span><span class="err">e</span><span class="err">的</span><span class="err">选</span><span class="err">项</span>
+  <span class="err">//</span> <span class="err">vscode默认启用了根据文件类型自动设置tabsize的选项</span>
   <span class="nt">&#34;editor.detectIndentation&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">重</span><span class="err">新</span><span class="err">设</span><span class="err">定</span><span class="err">t</span><span class="err">a</span><span class="err">b</span><span class="err">s</span><span class="err">i</span><span class="err">z</span><span class="err">e</span>
+  <span class="err">//</span> <span class="err">重新设定tabsize</span>
   <span class="nt">&#34;editor.tabSize&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">每</span><span class="err">次</span><span class="err">保</span><span class="err">存</span><span class="err">的</span><span class="err">时</span><span class="err">候</span><span class="err">自</span><span class="err">动</span><span class="err">格</span><span class="err">式</span><span class="err">化</span>
+  <span class="err">//</span> <span class="err">#每次保存的时候自动格式化</span>
   <span class="nt">&#34;editor.formatOnSave&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">每</span><span class="err">次</span><span class="err">保</span><span class="err">存</span><span class="err">的</span><span class="err">时</span><span class="err">候</span><span class="err">将</span><span class="err">代</span><span class="err">码</span><span class="err">按</span><span class="err">e</span><span class="err">s</span><span class="err">l</span><span class="err">i</span><span class="err">n</span><span class="err">t</span><span class="err">格</span><span class="err">式</span><span class="err">进</span><span class="err">行</span><span class="err">修</span><span class="err">复</span>
+  <span class="err">//</span> <span class="err">#每次保存的时候将代码按eslint格式进行修复</span>
   <span class="nt">&#34;eslint.autoFixOnSave&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">添</span><span class="err">加</span> <span class="err">v</span><span class="err">u</span><span class="err">e</span> <span class="err">支</span><span class="err">持</span>
+  <span class="err">//</span> <span class="err">添加</span> <span class="err">vue</span> <span class="err">支持</span>
   <span class="nt">&#34;eslint.validate&#34;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&#34;javascript&#34;</span><span class="p">,</span>
     <span class="s2">&#34;javascriptreact&#34;</span><span class="p">,</span>
@@ -132,25 +134,25 @@ yarn-error.log*
       <span class="nt">&#34;language&#34;</span><span class="p">:</span> <span class="s2">&#34;vue&#34;</span><span class="p">,</span>
       <span class="nt">&#34;autoFix&#34;</span><span class="p">:</span> <span class="kc">true</span>
     <span class="p">}</span>
-  <span class="p">]</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">让</span><span class="err">p</span><span class="err">r</span><span class="err">e</span><span class="err">t</span><span class="err">t</span><span class="err">i</span><span class="err">e</span><span class="err">r</span><span class="err">使</span><span class="err">用</span><span class="err">e</span><span class="err">s</span><span class="err">l</span><span class="err">i</span><span class="err">n</span><span class="err">t</span><span class="err">的</span><span class="err">代</span><span class="err">码</span><span class="err">格</span><span class="err">式</span><span class="err">进</span><span class="err">行</span><span class="err">校</span><span class="err">验</span>
+  <span class="p">],</span>
+  <span class="err">//</span> <span class="err">#让prettier使用eslint的代码格式进行校验</span>
   <span class="nt">&#34;prettier.eslintIntegration&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">去</span><span class="err">掉</span><span class="err">代</span><span class="err">码</span><span class="err">结</span><span class="err">尾</span><span class="err">的</span><span class="err">分</span><span class="err">号</span>
+  <span class="err">//</span> <span class="err">#去掉代码结尾的分号</span>
   <span class="nt">&#34;prettier.semi&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">使</span><span class="err">用</span><span class="err">带</span><span class="err">引</span><span class="err">号</span><span class="err">替</span><span class="err">代</span><span class="err">双</span><span class="err">引</span><span class="err">号</span>
+  <span class="err">//</span> <span class="err">#使用带引号替代双引号</span>
   <span class="nt">&#34;prettier.singleQuote&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">让</span><span class="err">函</span><span class="err">数</span><span class="err">(</span><span class="err">名</span><span class="err">)</span><span class="err">和</span><span class="err">后</span><span class="err">面</span><span class="err">的</span><span class="err">括</span><span class="err">号</span><span class="err">之</span><span class="err">间</span><span class="err">加</span><span class="err">个</span><span class="err">空</span><span class="err">格</span>
+  <span class="err">//</span> <span class="err">#让函数(名)和后面的括号之间加个空格</span>
   <span class="nt">&#34;javascript.format.insertSpaceBeforeFunctionParenthesis&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">这</span><span class="err">个</span><span class="err">按</span><span class="err">用</span><span class="err">户</span><span class="err">自</span><span class="err">身</span><span class="err">习</span><span class="err">惯</span><span class="err">选</span><span class="err">择</span>
+  <span class="err">//</span> <span class="err">#这个按用户自身习惯选择</span>
   <span class="nt">&#34;vetur.format.defaultFormatter.html&#34;</span><span class="p">:</span> <span class="s2">&#34;js-beautify-html&#34;</span><span class="p">,</span>
-  <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">让</span><span class="err">v</span><span class="err">u</span><span class="err">e</span><span class="err">中</span><span class="err">的</span><span class="err">j</span><span class="err">s</span><span class="err">按</span><span class="err">编</span><span class="err">辑</span><span class="err">器</span><span class="err">自</span><span class="err">带</span><span class="err">的</span><span class="err">t</span><span class="err">s</span><span class="err">格</span><span class="err">式</span><span class="err">进</span><span class="err">行</span><span class="err">格</span><span class="err">式</span><span class="err">化</span>
+  <span class="err">//</span> <span class="err">#让vue中的js按编辑器自带的ts格式进行格式化</span>
   <span class="nt">&#34;vetur.format.defaultFormatter.js&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode-typescript&#34;</span><span class="p">,</span>
   <span class="nt">&#34;vetur.format.defaultFormatterOptions&#34;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&#34;js-beautify-html&#34;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&#34;wrap_attributes&#34;</span><span class="p">:</span> <span class="s2">&#34;force-aligned&#34;</span>
-      <span class="err">/</span><span class="err">/</span> <span class="err">#</span><span class="err">v</span><span class="err">u</span><span class="err">e</span><span class="err">组</span><span class="err">件</span><span class="err">中</span><span class="err">h</span><span class="err">t</span><span class="err">m</span><span class="err">l</span><span class="err">代</span><span class="err">码</span><span class="err">格</span><span class="err">式</span><span class="err">化</span><span class="err">样</span><span class="err">式</span>
+      <span class="err">//</span> <span class="err">#vue组件中html代码格式化样式</span>
     <span class="p">}</span>
-  <span class="p">}</span><span class="p">,</span>
+  <span class="p">},</span>
 <span class="p">}</span>
 </code></pre></div><h3 id="安装-ant-design-vue">安装 Ant Design Vue</h3>
 <p>从 yarn 或 npm 安装并引入 ant-design-vue。</p>
@@ -162,11 +164,11 @@ yarn-error.log*
 <div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"> module.exports = {
   presets: [&#34;@vue/app&#34;],
 <span class="gi">+  plugins: [
-</span><span class="gi"></span><span class="gi">+    [
-</span><span class="gi"></span><span class="gi">+      &#34;import&#34;,
-</span><span class="gi"></span><span class="gi">+      { libraryName: &#34;ant-design-vue&#34;, libraryDirectory: &#34;es&#34;, style: true }
-</span><span class="gi"></span><span class="gi">+    ]
-</span><span class="gi"></span><span class="gi">+  ]
+</span><span class="gi">+    [
+</span><span class="gi">+      &#34;import&#34;,
+</span><span class="gi">+      { libraryName: &#34;ant-design-vue&#34;, libraryDirectory: &#34;es&#34;, style: true }
+</span><span class="gi">+    ]
+</span><span class="gi">+  ]
 </span><span class="gi"></span>};
 </code></pre></div><h2 id="简单测试">简单测试</h2>
 <p>修改 <code>main.js</code> 文件如下：</p>
@@ -333,6 +335,7 @@ You may need to install it.
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

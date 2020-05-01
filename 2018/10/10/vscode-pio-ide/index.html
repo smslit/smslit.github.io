@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -244,19 +246,19 @@
 <p>根据字面意思就知道相应快捷操作是什么用途了，这里就不做介绍了。</p>
 <h3 id="编写代码">编写代码</h3>
 <p>src文件夹下为源文件，更改源文件 <code>main.cpp</code> 的内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define LED_PIN PB0 </span><span class="c1">// 十里使用的最小系统板板上LED连接的是PB0
+<span class="cp">#define LED_PIN PB0 </span><span class="c1">// 十里使用的最小系统板板上LED连接的是PB0
 </span><span class="c1"></span>
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>编写代码过程中就会感受到强大的代码提示功能，写代码从此一马平川，各种666！同时也支持代码跳转，比如跳转到函数定义，可以按住 <code>command</code> 键（linux和window下是 <code>ctrl</code> 键）然后鼠标左键单击就可以跳转，感受空间穿梭的快感！</p>
 <h3 id="编译程序">编译程序</h3>
@@ -274,9 +276,9 @@ Linking .pioenvs/genericSTM32F103C8/firmware.elf
 Checking size .pioenvs/genericSTM32F103C8/firmware.elf
 Building .pioenvs/genericSTM32F103C8/firmware.bin
 Memory Usage -&gt; http://bit.ly/pio-memory-usage
-DATA:    <span class="o">[</span><span class="o">=</span><span class="o">=</span>        <span class="o">]</span>  15.3% <span class="o">(</span>used <span class="m">3136</span> bytes from <span class="m">20480</span> bytes<span class="o">)</span>
-PROGRAM: <span class="o">[</span><span class="o">=</span><span class="o">=</span>        <span class="o">]</span>  21.6% <span class="o">(</span>used <span class="m">14188</span> bytes from <span class="m">65536</span> bytes<span class="o">)</span>
-<span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took 3.33 <span class="nv">seconds</span> <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="o">=</span>
+DATA:    <span class="o">[==</span>        <span class="o">]</span>  15.3% <span class="o">(</span>used <span class="m">3136</span> bytes from <span class="m">20480</span> bytes<span class="o">)</span>
+PROGRAM: <span class="o">[==</span>        <span class="o">]</span>  21.6% <span class="o">(</span>used <span class="m">14188</span> bytes from <span class="m">65536</span> bytes<span class="o">)</span>
+<span class="o">============================</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took 3.33 <span class="nv">seconds</span> <span class="o">============================</span>
 
 终端将被任务重用，按任意键关闭。
 </code></pre></div><p>触发编译还可以使用快捷操作栏中的 <code>build</code>操作。</p>
@@ -352,9 +354,9 @@ For bug reports, <span class="nb">read</span>
             <span class="nt">&#34;configFiles&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="s2">&#34;interface/stlink.cfg&#34;</span><span class="p">,</span>
                 <span class="s2">&#34;target/stm32f1x.cfg&#34;</span>
-            <span class="p">]</span><span class="p">,</span>
+            <span class="p">],</span>
             <span class="nt">&#34;runToMain&#34;</span><span class="p">:</span> <span class="kc">true</span>
-        <span class="p">}</span><span class="p">,</span>
+        <span class="p">},</span>
     <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div><p>其中，</p>
@@ -498,6 +500,7 @@ For bug reports, <span class="nb">read</span>
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

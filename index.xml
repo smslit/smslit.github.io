@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>博客现已支持 Asciinema</title>
+      <link>https://www.smslit.top/2020/05/01/asciinema/</link>
+      <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/05/01/asciinema/</guid>
+      <description>前几天好朋友分享给我一个工具，叫 asciinema。经了解，发现这真是个好东西！ 这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文</description>
+    </item>
     
     <item>
       <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/08/19/platformio-libraries/</guid>
       <description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
-    </item>
-    
-    <item>
-      <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
-      <link>https://www.smslit.top/2019/08/18/platformio-newproject/</link>
-      <pubDate>Sun, 18 Aug 2019 17:02:01 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/08/18/platformio-newproject/</guid>
-      <description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
     </item>
     
   </channel>

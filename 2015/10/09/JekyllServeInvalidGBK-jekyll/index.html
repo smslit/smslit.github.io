@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -86,7 +88,7 @@
 <h4 id="现象">现象</h4>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="no">Conversion</span> <span class="ss">error</span><span class="p">:</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">Converters</span><span class="o">::</span><span class="no">Scss</span> <span class="n">encountered</span> <span class="n">an</span> <span class="n">error</span> <span class="k">while</span> <span class="n">converting</span> <span class="s1">&#39;css/main.scss&#39;</span><span class="p">:</span>
                     <span class="no">Invalid</span> <span class="no">GBK</span> <span class="n">character</span> <span class="s2">&#34;</span><span class="se">\xE5</span><span class="s2">&#34;</span> <span class="n">on</span> <span class="n">line</span> <span class="mi">368</span>
-<span class="o"></span></code></pre></div><p>搜索网上，果然发现有人也遇到了此问题，分析:<code>Invalid GBK character &quot;\xE5&quot; on line 368</code>提示的倒很清楚，但我的jekyll博客文件夹css的main.scss没有第368行呀，应该是编译时调用了其他文件，而这些文件包含了中文编码。</p>
+</code></pre></div><p>搜索网上，果然发现有人也遇到了此问题，分析:<code>Invalid GBK character &quot;\xE5&quot; on line 368</code>提示的倒很清楚，但我的jekyll博客文件夹css的main.scss没有第368行呀，应该是编译时调用了其他文件，而这些文件包含了中文编码。</p>
 <h4 id="解决">解决</h4>
 <p>修改编译引擎文件设置外部默认编码是utf-8就可以了，所以修改ruby文件，根据自己的安装目录找到此文件,在<code>module Sass</code>之后添加<code>Encoding.default_external = Encoding.find('utf-8')</code>一行即可，我的是<code>C:\Ruby22-x64\lib\ruby\gems\2.2.0\gems\sass-3.4.18\lib\sass\engine.rb</code>，如下的样子：</p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sass/script&#39;</span>
@@ -187,6 +189,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

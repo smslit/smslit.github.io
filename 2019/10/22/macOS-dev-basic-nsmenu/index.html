@@ -10,7 +10,7 @@
 <meta itemprop="description" content="不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下">
 <meta itemprop="datePublished" content="2019-10-22T16:46:21&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-22T16:46:21&#43;08:00" />
-<meta itemprop="wordCount" content="2088">
+<meta itemprop="wordCount" content="2105">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -84,7 +86,7 @@
 			<div class="content">
 				<p>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下面截图展示的工具，本文就讲一下如何实现。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022165922-Nf83mL.jpg" alt=""></p>
-<!-- raw HTML omitted -->
+<!-- more -->
 <h2 id="平台">平台</h2>
 <ul>
 <li>macOS 10.15</li>
@@ -126,16 +128,16 @@
 <li>
 <p>打开文件<code>AppDelegate.swift</code>，删掉两个地方代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">var</span> <span class="nv">window</span><span class="p">:</span> <span class="n">NSWindow</span><span class="p">!</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">//</span><span class="c1"> </span><span class="c1">C</span><span class="c1">r</span><span class="c1">e</span><span class="c1">a</span><span class="c1">t</span><span class="c1">e</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">S</span><span class="c1">w</span><span class="c1">i</span><span class="c1">f</span><span class="c1">t</span><span class="c1">U</span><span class="c1">I</span><span class="c1"> </span><span class="c1">v</span><span class="c1">i</span><span class="c1">e</span><span class="c1">w</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">a</span><span class="c1">t</span><span class="c1"> </span><span class="c1">p</span><span class="c1">r</span><span class="c1">o</span><span class="c1">v</span><span class="c1">i</span><span class="c1">d</span><span class="c1">e</span><span class="c1">s</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">w</span><span class="c1">i</span><span class="c1">n</span><span class="c1">d</span><span class="c1">o</span><span class="c1">w</span><span class="c1"> </span><span class="c1">c</span><span class="c1">o</span><span class="c1">n</span><span class="c1">t</span><span class="c1">e</span><span class="c1">n</span><span class="c1">t</span><span class="c1">s</span><span class="c1">.</span>
-<span class="kd">let</span> <span class="nv">contentView</span> <span class="p">=</span> <span class="n">ContentView</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// Create the SwiftUI view that provides the window contents.</span>
+<span class="kd">let</span> <span class="nv">contentView</span> <span class="p">=</span> <span class="n">ContentView</span><span class="p">()</span>
 
-<span class="c1">//</span><span class="c1"> </span><span class="c1">C</span><span class="c1">r</span><span class="c1">e</span><span class="c1">a</span><span class="c1">t</span><span class="c1">e</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">w</span><span class="c1">i</span><span class="c1">n</span><span class="c1">d</span><span class="c1">o</span><span class="c1">w</span><span class="c1"> </span><span class="c1">a</span><span class="c1">n</span><span class="c1">d</span><span class="c1"> </span><span class="c1">s</span><span class="c1">e</span><span class="c1">t</span><span class="c1"> </span><span class="c1">t</span><span class="c1">h</span><span class="c1">e</span><span class="c1"> </span><span class="c1">c</span><span class="c1">o</span><span class="c1">n</span><span class="c1">t</span><span class="c1">e</span><span class="c1">n</span><span class="c1">t</span><span class="c1"> </span><span class="c1">v</span><span class="c1">i</span><span class="c1">e</span><span class="c1">w</span><span class="c1">.</span>
+<span class="c1">// Create the window and set the content view.</span>
 <span class="n">window</span> <span class="p">=</span> <span class="n">NSWindow</span><span class="p">(</span>
-    <span class="n">contentRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">480</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span><span class="p">,</span>
-    <span class="n">styleMask</span><span class="p">:</span> <span class="p">[</span><span class="p">.</span><span class="n">titled</span><span class="p">,</span> <span class="p">.</span><span class="n">closable</span><span class="p">,</span> <span class="p">.</span><span class="n">miniaturizable</span><span class="p">,</span> <span class="p">.</span><span class="n">resizable</span><span class="p">,</span> <span class="p">.</span><span class="n">fullSizeContentView</span><span class="p">]</span><span class="p">,</span>
+    <span class="n">contentRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">480</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">300</span><span class="p">),</span>
+    <span class="n">styleMask</span><span class="p">:</span> <span class="p">[.</span><span class="n">titled</span><span class="p">,</span> <span class="p">.</span><span class="n">closable</span><span class="p">,</span> <span class="p">.</span><span class="n">miniaturizable</span><span class="p">,</span> <span class="p">.</span><span class="n">resizable</span><span class="p">,</span> <span class="p">.</span><span class="n">fullSizeContentView</span><span class="p">],</span>
     <span class="n">backing</span><span class="p">:</span> <span class="p">.</span><span class="n">buffered</span><span class="p">,</span> <span class="k">defer</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
-<span class="n">window</span><span class="p">.</span><span class="n">center</span><span class="p">(</span><span class="p">)</span>
-<span class="n">window</span><span class="p">.</span><span class="n">setFrameAutosaveName</span><span class="p">(</span><span class="s">&#34;</span><span class="s">Main Window</span><span class="s">&#34;</span><span class="p">)</span>
+<span class="n">window</span><span class="p">.</span><span class="n">center</span><span class="p">()</span>
+<span class="n">window</span><span class="p">.</span><span class="n">setFrameAutosaveName</span><span class="p">(</span><span class="s">&#34;Main Window&#34;</span><span class="p">)</span>
 <span class="n">window</span><span class="p">.</span><span class="n">contentView</span> <span class="p">=</span> <span class="n">NSHostingView</span><span class="p">(</span><span class="n">rootView</span><span class="p">:</span> <span class="n">contentView</span><span class="p">)</span>
 <span class="n">window</span><span class="p">.</span><span class="n">makeKeyAndOrderFront</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
 </code></pre></div></li>
@@ -148,12 +150,12 @@
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">statusItem</span> <span class="p">=</span> <span class="n">NSStatusBar</span><span class="p">.</span><span class="n">system</span><span class="p">.</span><span class="n">statusItem</span><span class="p">(</span><span class="n">withLength</span><span class="p">:</span> <span class="n">NSStatusItem</span><span class="p">.</span><span class="n">squareLength</span><span class="p">)</span>
 </code></pre></div><p>状态栏按钮总该需要一个图标吧！打开<code>Assets.xcassets</code>，右击显示<code>AppIcon</code>下方的空白区，选择<code>New Image Set</code>，重命名为<code>statusIcon</code>，当然这个名字随便定，选中这个图集，会看到右侧有配置区，配置图集按照<code>Template Image</code>渲染。</p>
 <p>看到有三个虚线框空白区，这就是图片区，状态栏按钮的图片基本大小为 $18px\times18px$ ，还需2倍和3倍的适用于视网膜屏幕的mac，像素分别是 $36px\times36px$ 和 $54px\times54px$ ，可以使用以下我提供的图标：</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024309821129.png" width="18px"><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018062915302434352614.png" width="36px"><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153024344990828.png" width="54px"></p>
 <p>分别将图拖到对应位置：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022175555-Ag8b6R.png" alt=""></p>
 <p>找到<code>applicationDidFinishLaunching </code>在其中添加以下代码，为状态栏按钮配置图标和行为：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
-    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">StatusIcon</span><span class="s">&#34;</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&#34;StatusIcon&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>此时运行程序会看到状态栏中出现了我们定义的按钮，当然此时鼠标单击没有任何动作发生。</p>
 <blockquote>
@@ -179,7 +181,7 @@
 <p>按下快捷键 <code>Ctrl</code> + <code>Option</code> + <code>Command</code> + <code>Enter</code>(⌃⌥⌘⏎) 打开 <strong>Assitant</strong> 编辑器：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022184927-uusDC1.png" alt=""></p>
 <p>按住 <code>Ctrl</code> 键，鼠标左键按住 Menu 控件不松拖动至辅助编辑器的文件 <strong>AppDelegate.swift</strong> 中，在弹出的属性添加弹窗中输入属性名 <code>menu</code>，点击 Connect 就会看到 <strong>AppDelegate.swift</strong> 中出现 menu 属性：</p>
-<!-- raw HTML omitted -->
+<video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022190313-oUeSVx.mp4" controls="controls" width="100%">
 <p>打开文件 <code>AppDelegate.swift</code> ，在上面配置按钮图标的代码上面添加以下代码：</p>
 <div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">statusItem</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="n">menu</span>
 </code></pre></div><p>运行程序，鼠标左键和右键单击菜单栏按钮都会弹出我们添加的按钮，包含 item1、item2 和 item3。</p>
@@ -229,7 +231,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					2088 字
+					2105 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -324,6 +326,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

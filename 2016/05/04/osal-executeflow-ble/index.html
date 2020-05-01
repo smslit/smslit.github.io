@@ -10,7 +10,7 @@
 <meta itemprop="description" content="在进行协议栈开发之前，必须要了解协议栈中完成任务调度和资源管理的OSAL以及整个协议栈程序大体的启动流程，只有这样才能更好的开发协议栈程序。">
 <meta itemprop="datePublished" content="2016-05-04T09:32:48&#43;08:00" />
 <meta itemprop="dateModified" content="2016-05-04T09:32:48&#43;08:00" />
-<meta itemprop="wordCount" content="3951">
+<meta itemprop="wordCount" content="3952">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -129,45 +131,45 @@
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">Int</span>  <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="cm">/* Initialize hardware */</span>
-    <span class="n">HAL_BOARD_INIT</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                       <span class="c1">// 硬件初始化
+    <span class="n">HAL_BOARD_INIT</span><span class="p">();</span>                       <span class="c1">// 硬件初始化
 </span><span class="c1"></span>
     <span class="c1">// Initialize board I/O
-</span><span class="c1"></span>    <span class="n">InitBoard</span><span class="p">(</span> <span class="n">OB_COLD</span> <span class="p">)</span><span class="p">;</span>                   <span class="c1">// 板级初始化
+</span><span class="c1"></span>    <span class="n">InitBoard</span><span class="p">(</span> <span class="n">OB_COLD</span> <span class="p">);</span>                   <span class="c1">// 板级初始化
 </span><span class="c1"></span>
     <span class="cm">/* Initialze the HAL driver */</span>
-    <span class="n">HalDriverInit</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                        <span class="c1">// Hal驱动初始化
+    <span class="n">HalDriverInit</span><span class="p">();</span>                        <span class="c1">// Hal驱动初始化
 </span><span class="c1"></span>
     <span class="cm">/* Initialize NV system */</span>
-    <span class="n">osal_snv_init</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                        <span class="c1">// Flash存储SNV初始化
+    <span class="n">osal_snv_init</span><span class="p">();</span>                        <span class="c1">// Flash存储SNV初始化
 </span><span class="c1"></span>
     <span class="cm">/* Initialize LL */</span>
 
     <span class="cm">/* Initialize the operating system */</span>
-    <span class="n">osal_init_system</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                     <span class="c1">// OSAL初始化
+    <span class="n">osal_init_system</span><span class="p">();</span>                     <span class="c1">// OSAL初始化
 </span><span class="c1"></span>
     <span class="cm">/* Enable interrupts */</span>
-    <span class="n">HAL_ENABLE_INTERRUPTS</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                <span class="c1">// 使能总中断
+    <span class="n">HAL_ENABLE_INTERRUPTS</span><span class="p">();</span>                <span class="c1">// 使能总中断
 </span><span class="c1"></span>
     <span class="c1">// Final board initialization
-</span><span class="c1"></span>    <span class="n">InitBoard</span><span class="p">(</span> <span class="n">OB_READY</span> <span class="p">)</span><span class="p">;</span>                  <span class="c1">// 板级初始化
+</span><span class="c1"></span>    <span class="n">InitBoard</span><span class="p">(</span> <span class="n">OB_READY</span> <span class="p">);</span>                  <span class="c1">// 板级初始化
 </span><span class="c1"></span>
-    <span class="cp">#</span><span class="cp">if defined ( POWER_SAVING )</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">osal_pwrmgr_device</span><span class="p">(</span> <span class="n">PWRMGR_BATTERY</span> <span class="p">)</span><span class="p">;</span>   <span class="c1">// 低功耗管理
-</span><span class="c1"></span>    <span class="cp">#</span><span class="cp">endif</span><span class="cp">
+    <span class="cp">#if defined ( POWER_SAVING )
+</span><span class="cp"></span>    <span class="n">osal_pwrmgr_device</span><span class="p">(</span> <span class="n">PWRMGR_BATTERY</span> <span class="p">);</span>   <span class="c1">// 低功耗管理
+</span><span class="c1"></span>    <span class="cp">#endif
 </span><span class="cp"></span>
     <span class="cm">/* Start OSAL */</span>
-      <span class="n">osal_start_system</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                  <span class="c1">// No Return from here  启动OSAL
+      <span class="n">osal_start_system</span><span class="p">();</span>                  <span class="c1">// No Return from here  启动OSAL
 </span><span class="c1"></span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>可以看到，进入main函数后，首先做了各种初始化，以及低功耗管理，最后启动了OSAL，进入**osal_start_system()**函数，函数代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">osal_start_system</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
 <span class="p">{</span>
-<span class="cp">#</span><span class="cp">if !defined ( ZBIT ) &amp;&amp; !defined ( UBIT )</span><span class="cp">
-</span><span class="cp"></span>    <span class="k">for</span><span class="p">(</span><span class="p">;</span><span class="p">;</span><span class="p">)</span>  <span class="c1">// Forever Loop
-</span><span class="c1"></span><span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#if !defined ( ZBIT ) &amp;&amp; !defined ( UBIT )
+</span><span class="cp"></span>    <span class="k">for</span><span class="p">(;;)</span>  <span class="c1">// Forever Loop
+</span><span class="c1"></span><span class="cp">#endif
 </span><span class="cp"></span>    <span class="p">{</span>
-        <span class="n">osal_run_system</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">osal_run_system</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>根据上面代码，启动OSAL后，就会循环执行<strong>osal_run_system()</strong>，我们还得看一下这个函数的内容：</p>
@@ -175,62 +177,62 @@
 <span class="p">{</span>
     <span class="n">uint8</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="cp">#</span><span class="cp">ifndef HAL_BOARD_CC2538</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">osalTimeUpdate</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                           <span class="c1">// 定时器更新
-</span><span class="c1"></span><span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#ifndef HAL_BOARD_CC2538
+</span><span class="cp"></span>    <span class="n">osalTimeUpdate</span><span class="p">();</span>                           <span class="c1">// 定时器更新
+</span><span class="c1"></span><span class="cp">#endif
 </span><span class="cp"></span>
-    <span class="n">Hal_ProcessPoll</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                          <span class="c1">// Hal层信息处理
+    <span class="n">Hal_ProcessPoll</span><span class="p">();</span>                          <span class="c1">// Hal层信息处理
 </span><span class="c1"></span>
     <span class="k">do</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="p">)</span>                   <span class="c1">// Task is highest priority that is ready.
+        <span class="k">if</span> <span class="p">(</span><span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>                   <span class="c1">// Task is highest priority that is ready.
 </span><span class="c1"></span>        <span class="p">{</span>
             <span class="k">break</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">+</span><span class="o">+</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">tasksCnt</span><span class="p">)</span><span class="p">;</span>                 <span class="c1">// 检查每个人任务是否有事件
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">++</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">tasksCnt</span><span class="p">);</span>                 <span class="c1">// 检查每个人任务是否有事件
 </span><span class="c1"></span>
     <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">tasksCnt</span><span class="p">)</span>                         <span class="c1">// 有事件发生
 </span><span class="c1"></span>    <span class="p">{</span>
         <span class="n">uint16</span> <span class="n">events</span><span class="p">;</span>
         <span class="n">halIntState_t</span> <span class="n">intState</span><span class="p">;</span>
 
-        <span class="n">HAL_ENTER_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// 进入临界区
-</span><span class="c1"></span>        <span class="n">events</span> <span class="o">=</span> <span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="p">;</span>
+        <span class="n">HAL_ENTER_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">);</span>   <span class="c1">// 进入临界区
+</span><span class="c1"></span>        <span class="n">events</span> <span class="o">=</span> <span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
         <span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                   <span class="c1">// Clear the Events for this task. 清除事件标志
-</span><span class="c1"></span>        <span class="n">HAL_EXIT_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">)</span><span class="p">;</span>    <span class="c1">// 退出临界区
+</span><span class="c1"></span>        <span class="n">HAL_EXIT_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">);</span>    <span class="c1">// 退出临界区
 </span><span class="c1"></span>
         <span class="n">activeTaskID</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span>
-        <span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="n">tasksArr</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="p">)</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">events</span> <span class="p">)</span><span class="p">;</span><span class="c1">// 执行事件处理函数
+        <span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="n">tasksArr</span><span class="p">[</span><span class="n">idx</span><span class="p">])(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">events</span> <span class="p">);</span><span class="c1">// 执行事件处理函数
 </span><span class="c1"></span>        <span class="n">activeTaskID</span> <span class="o">=</span> <span class="n">TASK_NO_TASK</span><span class="p">;</span>
 
-        <span class="n">HAL_ENTER_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// 进入临界区
-</span><span class="c1"></span>        <span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">|</span><span class="o">=</span> <span class="n">events</span><span class="p">;</span>             <span class="c1">// Add back unprocessed events to the current task.
-</span><span class="c1"></span>        <span class="n">HAL_EXIT_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">)</span><span class="p">;</span>    <span class="c1">// 退出临界区
+        <span class="n">HAL_ENTER_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">);</span>   <span class="c1">// 进入临界区
+</span><span class="c1"></span>        <span class="n">tasksEvents</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">|=</span> <span class="n">events</span><span class="p">;</span>             <span class="c1">// Add back unprocessed events to the current task.
+</span><span class="c1"></span>        <span class="n">HAL_EXIT_CRITICAL_SECTION</span><span class="p">(</span><span class="n">intState</span><span class="p">);</span>    <span class="c1">// 退出临界区
 </span><span class="c1"></span>    <span class="p">}</span>
-<span class="cp">#</span><span class="cp">if defined( POWER_SAVING )                     </span><span class="c1">// 没有事件发生，并且开启了低功耗模式
+<span class="cp">#if defined( POWER_SAVING )                     </span><span class="c1">// 没有事件发生，并且开启了低功耗模式
 </span><span class="c1"></span>    <span class="k">else</span>                                        <span class="c1">// Complete pass through all task events with no activity?
 </span><span class="c1"></span>    <span class="p">{</span>                                           <span class="c1">// 系统进入低功耗模式
-</span><span class="c1"></span>        <span class="n">osal_pwrmgr_powerconserve</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>            <span class="c1">// Put the processor/system into sleep
+</span><span class="c1"></span>        <span class="n">osal_pwrmgr_powerconserve</span><span class="p">();</span>            <span class="c1">// Put the processor/system into sleep
 </span><span class="c1"></span>    <span class="p">}</span>
-<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#endif
 </span><span class="cp"></span>
     <span class="cm">/* Yield in case cooperative scheduling is being used. */</span>
-<span class="cp">#</span><span class="cp">if defined (configUSE_PREEMPTION) &amp;&amp; (configUSE_PREEMPTION == 0)</span><span class="cp">
+<span class="cp">#if defined (configUSE_PREEMPTION) &amp;&amp; (configUSE_PREEMPTION == 0)
 </span><span class="cp"></span>    <span class="p">{</span>
-        <span class="n">osal_task_yield</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">osal_task_yield</span><span class="p">();</span>
     <span class="p">}</span>
-<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#endif
 </span><span class="cp"></span><span class="p">}</span>
 </code></pre></div><p>阅读代码可以明白OSAL循环检测每一个任务是否有事件发生，如果有则执行相应的任务并处理触发的事件，如果没有事件并且宏定义中开启了低功耗模式，那么就会进入低功耗模式。但是OSAL怎么检测任务是否有事件的呢？我们可以看到有一句代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="n">tasksArr</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="p">)</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">events</span> <span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">events</span> <span class="o">=</span> <span class="p">(</span><span class="n">tasksArr</span><span class="p">[</span><span class="n">idx</span><span class="p">])(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">events</span> <span class="p">);</span>
 </code></pre></div><p>taskArr又是什么鬼？其实它是一个函数指针数组：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="k">const</span> <span class="n">pTaskEventHandlerFn</span> <span class="n">tasksArr</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="k">const</span> <span class="n">pTaskEventHandlerFn</span> <span class="n">tasksArr</span><span class="p">[]</span> <span class="o">=</span>
 <span class="p">{</span>
     <span class="n">LL_ProcessEvent</span><span class="p">,</span>                                              <span class="c1">// task 0
 </span><span class="c1"></span>    <span class="n">Hal_ProcessEvent</span><span class="p">,</span>                                             <span class="c1">// task 1
 </span><span class="c1"></span>    <span class="n">HCI_ProcessEvent</span><span class="p">,</span>                                             <span class="c1">// task 2
-</span><span class="c1"></span>    <span class="cp">#</span><span class="cp">if defined ( OSAL_CBTIMER_NUM_TASKS )</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">OSAL_CBTIMER_PROCESS_EVENT</span><span class="p">(</span> <span class="n">osal_CbTimerProcessEvent</span> <span class="p">)</span><span class="p">,</span>       <span class="c1">// task 3
-</span><span class="c1"></span>    <span class="cp">#</span><span class="cp">endif</span><span class="cp">
+</span><span class="c1"></span>    <span class="cp">#if defined ( OSAL_CBTIMER_NUM_TASKS )
+</span><span class="cp"></span>    <span class="n">OSAL_CBTIMER_PROCESS_EVENT</span><span class="p">(</span> <span class="n">osal_CbTimerProcessEvent</span> <span class="p">),</span>       <span class="c1">// task 3
+</span><span class="c1"></span>    <span class="cp">#endif
 </span><span class="cp"></span>    <span class="n">L2CAP_ProcessEvent</span><span class="p">,</span>                                           <span class="c1">// task 4
 </span><span class="c1"></span>    <span class="n">GAP_ProcessEvent</span><span class="p">,</span>                                             <span class="c1">// task 5
 </span><span class="c1"></span>    <span class="n">GATT_ProcessEvent</span><span class="p">,</span>                                            <span class="c1">// task 6
@@ -239,64 +241,64 @@
 </span><span class="c1"></span>    <span class="n">GAPBondMgr_ProcessEvent</span><span class="p">,</span>                                      <span class="c1">// task 9
 </span><span class="c1"></span>    <span class="n">GATTServApp_ProcessEvent</span><span class="p">,</span>                                     <span class="c1">// task 10
 </span><span class="c1"></span>    <span class="n">SimpleBLEPeripheral_ProcessEvent</span>                              <span class="c1">// task 11
-</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
+</span><span class="c1"></span><span class="p">};</span>
 </code></pre></div><p>tasksArr中的成员是每一个任务事件处理函数，是按照优先级排列的，排列顺序与任务初始化中任务初始化顺序是一致的，这样就保证了触发事件或产生消息能够准确传递到相应的任务处理函数中，任务初始化代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">osalInitTasks</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="n">uint8</span> <span class="n">taskID</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="n">tasksEvents</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint16</span> <span class="o">*</span><span class="p">)</span><span class="n">osal_mem_alloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span> <span class="n">uint16</span> <span class="p">)</span> <span class="o">*</span> <span class="n">tasksCnt</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">osal_memset</span><span class="p">(</span> <span class="n">tasksEvents</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span> <span class="n">uint16</span> <span class="p">)</span> <span class="o">*</span> <span class="n">tasksCnt</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">tasksEvents</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint16</span> <span class="o">*</span><span class="p">)</span><span class="n">osal_mem_alloc</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span> <span class="n">uint16</span> <span class="p">)</span> <span class="o">*</span> <span class="n">tasksCnt</span><span class="p">);</span>
+    <span class="n">osal_memset</span><span class="p">(</span> <span class="n">tasksEvents</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span> <span class="n">uint16</span> <span class="p">)</span> <span class="o">*</span> <span class="n">tasksCnt</span><span class="p">));</span>
 
     <span class="cm">/* LL Task */</span>
-    <span class="n">LL_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">LL_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* Hal Task */</span>
-    <span class="n">Hal_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">Hal_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* HCI Task */</span>
-    <span class="n">HCI_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">HCI_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
-<span class="cp">#</span><span class="cp">if defined ( OSAL_CBTIMER_NUM_TASKS )</span><span class="cp">
+<span class="cp">#if defined ( OSAL_CBTIMER_NUM_TASKS )
 </span><span class="cp"></span>    <span class="cm">/* Callback Timer Tasks */</span>
-    <span class="n">osal_CbTimerInit</span><span class="p">(</span> <span class="n">taskID</span> <span class="p">)</span><span class="p">;</span>
-    <span class="n">taskID</span> <span class="o">+</span><span class="o">=</span> <span class="n">OSAL_CBTIMER_NUM_TASKS</span><span class="p">;</span>
-<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+    <span class="n">osal_CbTimerInit</span><span class="p">(</span> <span class="n">taskID</span> <span class="p">);</span>
+    <span class="n">taskID</span> <span class="o">+=</span> <span class="n">OSAL_CBTIMER_NUM_TASKS</span><span class="p">;</span>
+<span class="cp">#endif
 </span><span class="cp"></span>
     <span class="cm">/* L2CAP Task */</span>
-    <span class="n">L2CAP_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">L2CAP_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* GAP Task */</span>
-    <span class="n">GAP_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">GAP_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* GATT Task */</span>
-    <span class="n">GATT_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">GATT_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* SM Task */</span>
-    <span class="n">SM_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">SM_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* Profiles */</span>
-    <span class="n">GAPRole_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
-    <span class="n">GAPBondMgr_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">GAPRole_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
+    <span class="n">GAPBondMgr_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
-    <span class="n">GATTServApp_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">GATTServApp_Init</span><span class="p">(</span> <span class="n">taskID</span><span class="o">++</span> <span class="p">);</span>
 
     <span class="cm">/* Application */</span>
-    <span class="n">SimpleBLEPeripheral_Init</span><span class="p">(</span> <span class="n">taskID</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">SimpleBLEPeripheral_Init</span><span class="p">(</span> <span class="n">taskID</span> <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>我们做BLE开发，主要是编写Application，而在SimpleBLEPeripheral工程中的应用程序则是SimpleBLEPeripheral，对应两个重要的函数就是任务初始化函数<strong>SimpleBLEPeripheral_Init</strong>和事件处理函数<strong>SimpleBLEPeripheral_ProcessEvent</strong>。</p>
 <p>在<strong>SimpleBLEPeripheral_Init</strong>中主要是对GAP和GATT进行初始化配置，在最后会执行<strong>osal_set_event( simpleBLEPeripheral_TaskID, SBP_START_DEVICE_EVT )<strong>触发启动设备的事件，处理</strong>SBP_START_DEVICE_EVT</strong>事件的代码如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span> <span class="n">events</span> <span class="o">&amp;</span> <span class="n">SBP_START_DEVICE_EVT</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// Start the Device
-</span><span class="c1"></span>    <span class="n">VOID</span> <span class="n">GAPRole_StartDevice</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">simpleBLEPeripheral_PeripheralCBs</span> <span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">VOID</span> <span class="n">GAPRole_StartDevice</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">simpleBLEPeripheral_PeripheralCBs</span> <span class="p">);</span>
 
     <span class="c1">// Start Bond Manager
-</span><span class="c1"></span>    <span class="n">VOID</span> <span class="nf">GAPBondMgr_Register</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">simpleBLEPeripheral_BondMgrCBs</span> <span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">VOID</span> <span class="nf">GAPBondMgr_Register</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">simpleBLEPeripheral_BondMgrCBs</span> <span class="p">);</span>
     <span class="c1">// Set timer for first periodic event
-</span><span class="c1"></span>    <span class="n">osal_start_timerEx</span><span class="p">(</span> <span class="n">simpleBLEPeripheral_TaskID</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT_PERIOD</span> <span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">osal_start_timerEx</span><span class="p">(</span> <span class="n">simpleBLEPeripheral_TaskID</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT_PERIOD</span> <span class="p">);</span>
 
-    <span class="k">return</span> <span class="p">(</span> <span class="n">events</span> <span class="o">^</span> <span class="n">SBP_START_DEVICE_EVT</span> <span class="p">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span> <span class="n">events</span> <span class="o">^</span> <span class="n">SBP_START_DEVICE_EVT</span> <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>能够看到在执行上述代码的时候，设置定时触发事件<strong>SBP_PERIODIC_EVT</strong>，时间为<strong>SBP_PERIODIC_EVT_PERIOD</strong>，在事件处理函数中有对<strong>SBP_PERIODIC_EVT</strong>的处理，处理中又重新设置此事件的定时触发，也就实现了事件周期触发：</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span> <span class="n">event</span> <span class="o">&amp;</span> <span class="n">SBP_PERIODIC_EVT</span> <span class="p">)</span>
@@ -304,12 +306,12 @@
     <span class="c1">// Restart timer
 </span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span> <span class="n">SBP_PERIODIC_EVT_PERIOD</span> <span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">osal_start_timerEx</span><span class="p">(</span> <span class="n">simpleBLEPeripheral_TaskID</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT_PERIOD</span> <span class="p">)</span><span class="p">;</span>
+        <span class="n">osal_start_timerEx</span><span class="p">(</span> <span class="n">simpleBLEPeripheral_TaskID</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT</span><span class="p">,</span> <span class="n">SBP_PERIODIC_EVT_PERIOD</span> <span class="p">);</span>
     <span class="p">}</span>
     <span class="c1">// Perform periodic application task
-</span><span class="c1"></span>    <span class="n">performPeriodicTassk</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">performPeriodicTassk</span><span class="p">();</span>
 
-    <span class="k">return</span> <span class="p">(</span> <span class="n">events</span> <span class="o">^</span> <span class="n">SBP_PERIODIC_EVT</span> <span class="p">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span> <span class="n">events</span> <span class="o">^</span> <span class="n">SBP_PERIODIC_EVT</span> <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>另外还有两个重要的回调函数：</p>
 <ul>
@@ -325,7 +327,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					3951 字
+					3952 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -415,6 +417,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

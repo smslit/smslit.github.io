@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -90,35 +92,35 @@
 <p>很明显在这里，我们更关注的是对象的行为而不是它们的类型。</p>
 <p>举个🌰，定义一个鸭子类，其有个 <strong>叫</strong> 方法，在定义一个人类(有一种男人被称为“🦆”)，他也有 <strong>叫</strong> 的方法，总感觉好搞笑！这里我们就可以认为它们都有叫的方法，都是鸭子的行为，所以都是鸭子！Python 试一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">class</span> <span class="nc">Duck</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">呱呱</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;呱呱&#34;</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">Man</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">女王大人</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;女王大人&#34;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">do_quack</span><span class="p">(</span><span class="n">ducker</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">ducker</span><span class="o">.</span><span class="n">quack</span><span class="p">(</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">do_quack</span><span class="p">(</span><span class="n">ducker</span><span class="p">):</span>
+    <span class="n">ducker</span><span class="o">.</span><span class="n">quack</span><span class="p">()</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">Duck</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">duck</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">Man</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">man</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">Duck</span><span class="p">(</span><span class="s1">&#39;duck&#39;</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">Man</span><span class="p">(</span><span class="s1">&#39;man&#39;</span><span class="p">)</span>
     <span class="n">do_quack</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="n">do_quack</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </code></pre></div><p><a href="https://www.zhihu.com/people/pegasus-wang/activities">PegasusWang</a> 还用 Go 语言试了一下，使用了 interface 特性，咦！这与 swift 语言中的协议(protocol) 很像嘛，那咱用 swift 实现一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">import</span> <span class="nc">Foundation</span>
 
 <span class="kd">protocol</span> <span class="nc">Ducker</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">(</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">class</span> <span class="nc">Duck</span><span class="p">:</span> <span class="n">Ducker</span> <span class="p">{</span>
@@ -129,8 +131,8 @@
         <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
     <span class="p">}</span>
     
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">呱呱</span><span class="s">&#34;</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;呱呱&#34;</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -142,17 +144,17 @@
         <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
     <span class="p">}</span>
     
-    <span class="kd">func</span> <span class="nf">quack</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="s">女王大人</span><span class="s">&#34;</span><span class="p">)</span>
+    <span class="kd">func</span> <span class="nf">quack</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;女王大人&#34;</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">Ducker</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">ducker</span><span class="p">.</span><span class="n">quack</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">ducker</span><span class="p">.</span><span class="n">quack</span><span class="p">()</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">Duck</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">duck</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="n">Man</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">man</span><span class="s">&#34;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">Duck</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;duck&#34;</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">m</span> <span class="p">=</span> <span class="n">Man</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;man&#34;</span><span class="p">)</span>
 
 <span class="n">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">d</span><span class="p">)</span>
 <span class="n">doQuack</span><span class="p">(</span><span class="n">ducker</span><span class="p">:</span> <span class="n">m</span><span class="p">)</span>
@@ -245,6 +247,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

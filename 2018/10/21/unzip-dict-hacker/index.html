@@ -11,7 +11,7 @@
 ">
 <meta itemprop="datePublished" content="2018-10-21T06:58:33&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-21T06:58:33&#43;08:00" />
-<meta itemprop="wordCount" content="1840">
+<meta itemprop="wordCount" content="1735">
 
 
 
@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -117,29 +119,29 @@
 </ol>
 <h2 id="生成密码列表">生成密码列表</h2>
 <p>下一步实现密码列表生成的方法 <code>getkeyslist</code>，文件中添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getkeyslist</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">0123456789</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">生成 minlength ~ maxlength 位密码列表，并返回列表</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    Args:</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        minlength: 密码最小位数</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        maxlength: 密码最大位数</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        choices: 候选字符，密码使用的字符从候选字符中得到</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    Returns:</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        keyslist: 密码列表</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getkeyslist</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="s1">&#39;0123456789&#39;</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;生成 minlength ~ maxlength 位密码列表，并返回列表
+</span><span class="s2">    Args:
+</span><span class="s2">        minlength: 密码最小位数
+</span><span class="s2">        maxlength: 密码最大位数
+</span><span class="s2">        choices: 候选字符，密码使用的字符从候选字符中得到
+</span><span class="s2">    Returns:
+</span><span class="s2">        keyslist: 密码列表
+</span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">choices</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">0123456789</span><span class="s1">&#39;</span>
-    <span class="n">keyslist</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="s1">&#39;0123456789&#39;</span>
+    <span class="n">keyslist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">keyiter</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">keyiter</span><span class="p">]</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">keyiter</span><span class="p">]</span>
         <span class="n">keyslist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">[+] 已生成 {minlength} ~ {maxlength} 位密码字典 [+]</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[+] 已生成 {minlength} ~ {maxlength} 位密码字典 [+]&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">keyslist</span>
 </code></pre></div><p>其中:</p>
 <ul>
 <li>
 <p><code>itertools.product(choices, repeat=i)</code> 生成一个迭代器，迭代器每次迭代会从 <code>choices</code> 中提取字符组成包含 <code>i</code> 个字符的 tuple ，每个 tuple 中的元素为单个字符，如下的样子，迭代器会枚举所有可能的 <code>i</code> 个字符组合。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">0</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">1</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">3</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
 </code></pre></div></li>
 <li>
 <p><code>[''.join(c)+'\n' for c in keyiter]</code> 会使用字符串的 <code>join</code> 方法将迭代生成的 tuple 中的字符练成字符串生成长度为 上述的 <code>i</code> 长度的密码。</p>
@@ -150,33 +152,33 @@
 </ul>
 <h2 id="保存密码列表">保存密码列表</h2>
 <p>生成了密码列表还需要保存的，所以封装一个保存密码列表的函数：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">save_keys_dict</span><span class="p">(</span><span class="n">keyslist</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">保存密码字典</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    Args:</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        keyslist: 密码列表</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        outfile: 要保存的密码字典文件</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">save_keys_dict</span><span class="p">(</span><span class="n">keyslist</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;保存密码字典
+</span><span class="s2">    Args:
+</span><span class="s2">        keyslist: 密码列表
+</span><span class="s2">        outfile: 要保存的密码字典文件
+</span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">if</span> <span class="n">outfile</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">homepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">~</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">homepath</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Desktop/keys.txt</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">homepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">homepath</span><span class="p">,</span> <span class="s1">&#39;Desktop/keys.txt&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">outfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">keys</span> <span class="ow">in</span> <span class="n">keyslist</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">[+] 已保存密码字典到 {outfile} [+]</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;[+] 已保存密码字典到 {outfile} [+]&#39;</span><span class="p">)</span>
 </code></pre></div><p>这个没什么好说的，就是使用 <code>with</code> 语法实现安全的文件写入操作，将密码列表写入到指定文件中，为了防止指定文件为空，这里会使用 <code>~/Desktop/keys.txt</code> 。</p>
 <h2 id="获取命令参数">获取命令参数</h2>
 <p>使用 <code>argparse</code> 库解析命令参数，这里将相关操作封装到函数 <code>getargs</code> 中，最终返回参数信息：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">获取命令参数</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">用于生成指定长度和字符空间的密码字典</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">minlength</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">用于指定生成密码的最小位数</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">maxlength</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">用于指定生成密码的最大位数</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--outfile</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定字典文件的保存路径</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-c</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--choices</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">0123456789</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">指定字符串，密码中的字符从字符串中选择，默认为 </span><span class="s1">&#34;</span><span class="s1">0123456789</span><span class="s1">&#34;</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">getargs</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;获取命令参数
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;用于生成指定长度和字符空间的密码字典&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;minlength&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;用于指定生成密码的最小位数&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;maxlength&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;用于指定生成密码的最大位数&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--outfile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定字典文件的保存路径&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--choices&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;0123456789&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;指定字符串，密码中的字符从字符串中选择，默认为 &#34;0123456789&#34;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </code></pre></div><p>命令参数设计详情如下表：</p>
 <table>
 <thead>
@@ -211,8 +213,8 @@
 </table>
 <h2 id="main实现">main实现</h2>
 <p>最终整合一下，实现 main：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">minlength</span> <span class="o">&lt;</span> <span class="n">args</span><span class="o">.</span><span class="n">maxlength</span><span class="p">:</span>
         <span class="n">keyslist</span> <span class="o">=</span> <span class="n">getkeyslist</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">minlength</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">maxlength</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -277,7 +279,7 @@ aaag
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1840 字
+					1735 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -373,6 +375,7 @@ aaag
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -182,7 +184,7 @@ answer: <span class="nv">String</span> <span class="o">=</span> <span class="s2"
 </code></pre></div><p><strong>REPL</strong>还有一个很有用的特性：在输入特定文本后可以提示函数和方法。比如，在一个<code>String</code>后输入<code>re</code>在按下<code>TAB</code>键，便会给出一个提示可用函数和方法的列表，就像下面那样：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">5&gt; <span class="s2">&#34;Hi!&#34;</span>.re⇥
 Available completions:
-	removeAll<span class="o">(</span><span class="o">)</span> -&gt; Void
+	removeAll<span class="o">()</span> -&gt; Void
 	removeAll<span class="o">(</span>keepCapacity: Bool<span class="o">)</span> -&gt; Void
 	removeAtIndex<span class="o">(</span>i: Index<span class="o">)</span> -&gt; Character
 	removeRange<span class="o">(</span>subRange: Range&lt;Index&gt;<span class="o">)</span> -&gt; Void
@@ -196,7 +198,7 @@ numbers: <span class="o">[</span>Int<span class="o">]</span> <span class="o">=</
   <span class="o">[</span>1<span class="o">]</span> <span class="o">=</span> <span class="m">2</span>
   <span class="o">[</span>2<span class="o">]</span> <span class="o">=</span> <span class="m">3</span>
 <span class="o">}</span>
-  7&gt; <span class="k">for</span> n in numbers.reverse<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+  7&gt; <span class="k">for</span> n in numbers.reverse<span class="o">()</span> <span class="o">{</span>
   8.     print<span class="o">(</span>n<span class="o">)</span>
   9. <span class="o">}</span>
 <span class="m">3</span>
@@ -209,7 +211,7 @@ numbers: <span class="o">[</span>Int<span class="o">]</span> <span class="o">=</
 <span class="nv">$R0</span>: <span class="nv">UInt32</span> <span class="o">=</span> <span class="m">4</span>
 </code></pre></div><p>Linux下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">1&gt; import Glibc
-2&gt; random<span class="o">(</span><span class="o">)</span> % <span class="m">10</span>
+2&gt; random<span class="o">()</span> % <span class="m">10</span>
 <span class="nv">$R0</span>: <span class="nv">Int32</span> <span class="o">=</span> <span class="m">4</span>
 </code></pre></div><h2 id="使用编译系统">使用编译系统</h2>
 <p>Swift的编译系统可以用来编译库、可执行程序和在不同工程之间分享代码。</p>
@@ -358,6 +360,7 @@ Hello, Monkey!
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

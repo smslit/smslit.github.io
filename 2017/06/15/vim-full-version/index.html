@@ -10,7 +10,7 @@
 <meta itemprop="description" content="十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持clipboard的vim，毅然决然的决定自己编译一个全功能的vim！">
 <meta itemprop="datePublished" content="2017-06-15T08:24:08&#43;08:00" />
 <meta itemprop="dateModified" content="2017-06-15T08:24:08&#43;08:00" />
-<meta itemprop="wordCount" content="710">
+<meta itemprop="wordCount" content="779">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -86,7 +88,9 @@
 <h2 id="编译vim">编译vim</h2>
 <h3 id="卸载原有的所有vim">卸载原有的所有vim</h3>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre></div><div class="tip">
+有可能之前使用checkinstall安装了vim，可以通过`dpkg -r vim`和`sudo rm -rf /usr/local/share/vim /usr/bin/vim`卸载一下试试！
+</div>
 <h3 id="安装编译vim需要的依赖包">安装编译vim需要的依赖包</h3>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libatk1.0-dev libx11-dev libxpm-dev libxt-dev
 </code></pre></div><h3 id="下载源码">下载源码</h3>
@@ -131,7 +135,7 @@ git pull <span class="o">&amp;&amp;</span> git fetch
 +autocmd         +float           +mouse_urxvt     -tcl
 +balloon_eval    +folding         +mouse_xterm     +termguicolors
 +browse          -footer          +multi_byte      +terminfo
-++builtin_terms  +fork<span class="o">(</span><span class="o">)</span>          +multi_lang      +termresponse
+++builtin_terms  +fork<span class="o">()</span>          +multi_lang      +termresponse
 +byte_offset     +gettext         -mzscheme        +textobjects
 +channel         -hangul_input    -netbeans_intg   +timers
 +cindent         +iconv           +num64           +title
@@ -156,15 +160,15 @@ git pull <span class="o">&amp;&amp;</span> git fetch
 +ex_extra        -mouse_gpm       -sun_workshop    -xterm_save
 +extra_search    -mouse_jsbterm   +syntax          
 +farsi           +mouse_netterm   +tag_binary      
-     系统 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/vimrc</span><span class="s2">&#34;</span>
-     用户 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.vimrc</span><span class="s2">&#34;</span>
+     系统 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/vimrc&#34;</span>
+     用户 vimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.vimrc&#34;</span>
  第二用户 vimrc 文件: <span class="s2">&#34;~/.vim/vimrc&#34;</span>
-      用户 exrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.exrc</span><span class="s2">&#34;</span>
-    系统 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/gvimrc</span><span class="s2">&#34;</span>
-    用户 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.gvimrc</span><span class="s2">&#34;</span>
+      用户 exrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.exrc&#34;</span>
+    系统 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$VIM</span><span class="s2">/gvimrc&#34;</span>
+    用户 gvimrc 文件: <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.gvimrc&#34;</span>
 第二用户 gvimrc 文件: <span class="s2">&#34;~/.vim/gvimrc&#34;</span>
-       defaults file: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/defaults.vim</span><span class="s2">&#34;</span>
-        系统菜单文件: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/menu.vim</span><span class="s2">&#34;</span>
+       defaults file: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/defaults.vim&#34;</span>
+        系统菜单文件: <span class="s2">&#34;</span><span class="nv">$VIMRUNTIME</span><span class="s2">/menu.vim&#34;</span>
          <span class="nv">$VIM</span> 预设值: <span class="s2">&#34;/usr/local/share/vim&#34;</span>
 编译方式: gcc -c -I. -Iproto -DHAVE_CONFIG_H -DFEAT_GUI_GTK  -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/freetype2   -g -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE<span class="o">=</span><span class="m">1</span>       
 链接方式: gcc   -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic -Wl,-E   -L/usr/local/lib -Wl,--as-needed -o vim   -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype -lSM -lICE -lXpm -lXt -lX11 -lXdmcp -lSM -lICE  -lm -ltinfo -lnsl  -lselinux   -ldl  -L/usr/lib/x86_64-linux-gnu -lluajit-5.1 -Wl,-E  -fstack-protector-strong -L/usr/local/lib  -L/usr/lib/x86_64-linux-gnu/perl/5.22/CORE -lperl -ldl -lm -lpthread -lcrypt
@@ -187,7 +191,7 @@ sudo checkinstall
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					710 字
+					779 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -287,6 +291,7 @@ sudo checkinstall
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

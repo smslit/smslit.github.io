@@ -39,12 +39,12 @@
       <guid>https://www.smslit.top/2016/04/05/0x80070570error-Life/</guid>
       <description>&lt;p&gt;今天无聊的“虫子”拿着移动硬盘过来让我删除硬盘上的一个文件夹（在windows下），呀，一删除就弹出一个错误提示说是：&lt;code&gt;error0x80070570&lt;/code&gt;，文件无法删除。木有办法，看来只有我能拯救这个世界了，经过了解，呀，别人已经解决了这个世界性难题，好吧，不管怎样，我也学到了咋解决：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;没有正常插拔移动设备&lt;code&gt;系统没有完成完整的读写操作&lt;/code&gt;致使文件目录信息错乱和不完整&lt;!-- raw HTML omitted --&gt;
-比如&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;没有正常插拔移动设备&lt;code&gt;系统没有完成完整的读写操作&lt;/code&gt;致使文件目录信息错乱和不完整&lt;br&gt;
+比如&lt;br&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
-&lt;li&gt;复制一个文件到移动设备，关机重启，拔取后再次打开使用或到别的电脑上使用时出现症状病毒&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
-&lt;li&gt;硬盘硬件本身故障&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;复制一个文件到移动设备，关机重启，拔取后再次打开使用或到别的电脑上使用时出现症状病毒&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;硬盘硬件本身故障&lt;br&gt;&lt;/li&gt;
 &lt;li&gt;工作期间突然停电。&lt;/li&gt;
 &lt;/ol&gt;</description>
     </item>

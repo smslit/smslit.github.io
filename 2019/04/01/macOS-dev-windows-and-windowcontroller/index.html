@@ -10,7 +10,7 @@
 <meta itemprop="description" content="本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口">
 <meta itemprop="datePublished" content="2019-04-01T08:20:10&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-01T08:20:10&#43;08:00" />
-<meta itemprop="wordCount" content="6036">
+<meta itemprop="wordCount" content="6040">
 
 
 
@@ -35,6 +35,8 @@
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-windw_controller.png');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -159,11 +161,11 @@
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2023.34.42-1.png" alt=""></p>
 <p>同样的操作，分别将 <code>Save...</code>、<code>Save As...</code> 和 <code>Reverrt to Saved</code> 与相应的 Action 断开连接。</p>
 <p>然后删除 <code>Open Recent</code> 菜单项，最后我们重写一下 <code>save(withDelegate:didSave:contexInfo:)</code> 方法，后面我们会用到，主要是添加一个错误🙅‍提醒窗口，打开 <code>Document.swift</code> 文件，在 <code>Document</code> 类中添加重写方法如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">func</span> <span class="nf">save</span><span class="p">(</span><span class="n">withDelegate</span> <span class="n">delegate</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?</span><span class="p">,</span> <span class="n">didSave</span> <span class="n">didSaveSelector</span><span class="p">:</span> <span class="nb">Selector</span><span class="p">?</span><span class="p">,</span> <span class="n">contextInfo</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedDescriptionKey</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">Sorry, no saving implemented in this post. Click &#39;Do not save&#39; to quit!</span><span class="s">&#34;</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">func</span> <span class="nf">save</span><span class="p">(</span><span class="n">withDelegate</span> <span class="n">delegate</span><span class="p">:</span> <span class="nb">Any</span><span class="p">?,</span> <span class="n">didSave</span> <span class="n">didSaveSelector</span><span class="p">:</span> <span class="nb">Selector</span><span class="p">?,</span> <span class="n">contextInfo</span><span class="p">:</span> <span class="n">UnsafeMutableRawPointer</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">userInfo</span> <span class="p">=</span> <span class="p">[</span><span class="n">NSLocalizedDescriptionKey</span><span class="p">:</span> <span class="s">&#34;Sorry, no saving implemented in this post. Click &#39;Do not save&#39; to quit!&#34;</span><span class="p">]</span>
     <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">NSError</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="n">NSOSStatusErrorDomain</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="n">unimpErr</span><span class="p">,</span> <span class="n">userInfo</span><span class="p">:</span> <span class="n">userInfo</span><span class="p">)</span>
     <span class="kd">let</span> <span class="nv">alert</span> <span class="p">=</span> <span class="n">NSAlert</span><span class="p">(</span><span class="n">error</span><span class="p">:</span> <span class="n">error</span><span class="p">)</span>
-    <span class="n">alert</span><span class="p">.</span><span class="n">runModal</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">alert</span><span class="p">.</span><span class="n">runModal</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>运行程序，此时会看到菜单栏的相应菜单项已经禁用：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-31%2023.41.27.png" alt=""></p>
@@ -177,7 +179,7 @@
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/2019-03-31-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-04-01%2000.08.04.png" alt=""></p>
 <h2 id="层叠窗口">层叠窗口</h2>
 <p>现在我们可以使新建的窗口层叠显示而不是覆盖显示，打开新建的 <code>WindowController.swift</code> 文件，添加以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">required</span> <span class="kd">init</span><span class="p">?</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">coder</span><span class="p">)</span>
     <span class="n">shouldCascadeWindows</span> <span class="p">=</span> <span class="kc">true</span>
 <span class="p">}</span>
@@ -207,15 +209,15 @@
 <h2 id="代码实现对窗口显示位置的设置">代码实现对窗口显示位置的设置</h2>
 <p>代码实现的话，需要在 window 加载之后进行设置，在 WindowsController 中重写的 windowDidLoad 方法中添加相关代码。</p>
 <p>这次我们来点特别的，我们设置窗口显示在离屏幕顶边和左边均为 150px 的位置，打开 <code>WindowController.swift</code> 文件，在 <code>WindowController</code> 类中修改 windowDidLoad 方法内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">func</span> <span class="nf">windowDidLoad</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kc">super</span><span class="p">.</span><span class="n">windowDidLoad</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">override</span> <span class="kd">func</span> <span class="nf">windowDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kc">super</span><span class="p">.</span><span class="n">windowDidLoad</span><span class="p">()</span>
     
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">window</span> <span class="p">=</span> <span class="n">window</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">screen</span> <span class="p">=</span> <span class="n">window</span><span class="p">.</span><span class="n">screen</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">offsetFromLeftOfScreen</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
         <span class="kd">let</span> <span class="nv">offsetFromTopOFScreen</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
         <span class="kd">let</span> <span class="nv">screenFrame</span> <span class="p">=</span> <span class="n">screen</span><span class="p">.</span><span class="n">visibleFrame</span>
         <span class="kd">let</span> <span class="nv">offsetFromBottomOfScreen</span> <span class="p">=</span> <span class="n">screenFrame</span><span class="p">.</span><span class="n">maxY</span> <span class="o">-</span> <span class="n">window</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">offsetFromTopOFScreen</span>
-        <span class="n">window</span><span class="p">.</span><span class="n">setFrameOrigin</span><span class="p">(</span><span class="n">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">offsetFromLeftOfScreen</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">offsetFromBottomOfScreen</span><span class="p">)</span><span class="p">)</span>
+        <span class="n">window</span><span class="p">.</span><span class="n">setFrameOrigin</span><span class="p">(</span><span class="n">CGPoint</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">offsetFromLeftOfScreen</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">offsetFromBottomOfScreen</span><span class="p">))</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>上面代码主要完成以下工作：</p>
@@ -331,21 +333,21 @@
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBOutlet</span> <span class="kd">var</span> <span class="nv">text</span><span class="p">:</span> <span class="n">NSTextView</span><span class="p">!</span>
 </code></pre></div><p>同时添加以下方法：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">showWordCountWindow</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//</span><span class="c1"> </span><span class="c1">1</span>
-    <span class="kd">let</span> <span class="nv">storyboard</span> <span class="p">=</span> <span class="n">NSStoryboard</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">Main</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nv">wordCountWindowController</span> <span class="p">=</span> <span class="n">storyboard</span><span class="p">.</span><span class="n">instantiateController</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span> <span class="s">&#34;</span><span class="s">Word Count Window Controller</span><span class="s">&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSWindowController</span>
+    <span class="c1">// 1</span>
+    <span class="kd">let</span> <span class="nv">storyboard</span> <span class="p">=</span> <span class="n">NSStoryboard</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;Main&#34;</span><span class="p">,</span> <span class="n">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">wordCountWindowController</span> <span class="p">=</span> <span class="n">storyboard</span><span class="p">.</span><span class="n">instantiateController</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span> <span class="s">&#34;Word Count Window Controller&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSWindowController</span>
 
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">wordCountWindow</span> <span class="p">=</span> <span class="n">wordCountWindowController</span><span class="p">.</span><span class="n">window</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">textStorage</span> <span class="p">=</span> <span class="n">text</span><span class="p">.</span><span class="n">textStorage</span> <span class="p">{</span>
 
-        <span class="c1">//</span><span class="c1"> </span><span class="c1">2</span>
+        <span class="c1">// 2</span>
         <span class="kd">let</span> <span class="nv">wordCountViewController</span> <span class="p">=</span> <span class="n">wordCountWindow</span><span class="p">.</span><span class="n">contentViewController</span> <span class="k">as</span><span class="p">!</span> <span class="n">WordCountViewController</span>
         <span class="n">wordCountViewController</span><span class="p">.</span><span class="n">wordCount</span> <span class="p">=</span> <span class="n">textStorage</span><span class="p">.</span><span class="n">words</span><span class="p">.</span><span class="bp">count</span>
         <span class="n">wordCountViewController</span><span class="p">.</span><span class="n">paragraphCount</span> <span class="p">=</span> <span class="n">textStorage</span><span class="p">.</span><span class="n">paragraphs</span><span class="p">.</span><span class="bp">count</span>
 
-        <span class="c1">//</span><span class="c1"> </span><span class="c1">3</span>
+        <span class="c1">// 3</span>
         <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">runModal</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="n">wordCountWindow</span><span class="p">)</span>
-        <span class="c1">//</span><span class="c1"> </span><span class="c1">4</span>
-        <span class="n">wordCountWindow</span><span class="p">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+        <span class="c1">// 4</span>
+        <span class="n">wordCountWindow</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>打开 <strong>Main.storyboard</strong> 文件，选中添加 Text View 的 View Controller，按住 <code>Ctrl</code> 键，点击 View Controller 按钮，不松手拖动至 Text View 上松手，此时会弹出一个绑定选择框，里面就包含了我们刚添加的 text 属性，点击它，这就完成了 Text View 控件与 text 属性的绑定</p>
@@ -360,7 +362,7 @@
 <h3 id="消失吧模态窗口">消失吧，模态窗口</h3>
 <p>这里我们需要添加结束模态的实现，打开文件 <strong>WordCountViewController.swift</strong>，添加以下方法：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">dismissWordCountWindow</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="n">NSButton</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">stopModal</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">NSApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">stopModal</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div><p>下面我们将此方法与上面添加的 OK 按钮进行绑定。</p>
 <p>打开 <code>Main.storyboard</code>，选中 OK 按钮，点击它，同时按住 <code>Ctrl</code> 键，拖动鼠标至 <strong>Word Count View Controller</strong> 的按钮上，在弹出的绑定窗口上选择刚添加的方法 <code>dismissWordCountWindow</code> 即可完成绑定。</p>
@@ -411,7 +413,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					6036 字
+					6040 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -526,6 +528,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

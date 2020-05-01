@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -115,7 +117,7 @@
 </blockquote>
 <h2 id="解决">解决</h2>
 <p>依照找到的原因查看程序，调试过程中发现<code>AFIO-&gt;MAPR</code>并不是期望值2，也就是说复位保持了PB3的复用功能JTDO，所以导致PB3作为输入无法正常工作。那么为什么我也采用了STM32CubeMX生成的代码，却没有屏蔽调试接口的处理呢？查看代码找到文件<code>stm32f1xx_hal_msp.c</code>中的 <strong>HAL_Msp_init</strong> 函数，发现里面有屏蔽调试接口的操作：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">__HAL_AFIO_REMAP_SWJ_NOJTAG</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">__HAL_AFIO_REMAP_SWJ_NOJTAG</span><span class="p">();</span>
 </code></pre></div><p>但是为什么没有生效呢？gdb一步步调试程序，发现执行HAL_Msp_Init函数时跳到了其他文件，这个文件中这个函数为弱函数定义，其中没有任何操作，说明文件stm32f1xx_hal_msp.c没有被编译进程序，最后查找Makefile发现，果真没有加入这个文件的编译，加入后，编译运行，一切OK！！！</p>
 <p>这也就解释了为什么其他用STM32CubeMX配置工具生成的工程可以正常操作PB3。</p>
 <h2 id="总结">总结</h2>
@@ -223,6 +225,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

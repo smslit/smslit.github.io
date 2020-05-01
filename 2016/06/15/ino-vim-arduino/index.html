@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -229,12 +231,12 @@ $ ino init -t blink
 
 <span class="c1">#define LED_PIN 13</span>
 
-void setup<span class="o">(</span><span class="o">)</span>
+void setup<span class="o">()</span>
 <span class="o">{</span>
     pinMode<span class="o">(</span>LED_PIN, OUTPUT<span class="o">)</span><span class="p">;</span>
 <span class="o">}</span>
 
-void loop<span class="o">(</span><span class="o">)</span>
+void loop<span class="o">()</span>
 <span class="o">{</span>
     digitalWrite<span class="o">(</span>LED_PIN, HIGH<span class="o">)</span><span class="p">;</span>
     delay<span class="o">(</span>100<span class="o">)</span><span class="p">;</span>
@@ -390,24 +392,24 @@ avrdude <span class="k">done</span>.  Thank you.<span class="o">)</span><span cl
 
 	<span class="m">5</span> directories, <span class="m">5</span> files
 </code></pre></div><p>然后修改我们的sketch.ino来使用库，可以修改为如下的内容：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;MsTimer2.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;MsTimer2.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="c1">// Switch on LED on pin 13 each second
 </span><span class="c1"></span>
-<span class="kt">void</span> <span class="nf">flash</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">flash</span><span class="p">()</span> <span class="p">{</span>
 	<span class="k">static</span> <span class="n">boolean</span> <span class="n">output</span> <span class="o">=</span> <span class="n">HIGH</span><span class="p">;</span>
-	<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
 	<span class="n">output</span> <span class="o">=</span> <span class="o">!</span><span class="n">output</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 
-	<span class="n">MsTimer2</span><span class="o">:</span><span class="o">:</span><span class="n">set</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">flash</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 500ms period
-</span><span class="c1"></span>	<span class="n">MsTimer2</span><span class="o">:</span><span class="o">:</span><span class="n">start</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">MsTimer2</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">flash</span><span class="p">);</span> <span class="c1">// 500ms period
+</span><span class="c1"></span>	<span class="n">MsTimer2</span><span class="o">::</span><span class="n">start</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
 
 <span class="p">}</span>
 </code></pre></div><p>然后我们就可以再次编译了，编译之前也可以先清除一下上一次编译生成的中间文件：</p>
@@ -418,7 +420,7 @@ avrdude <span class="k">done</span>.  Thank you.<span class="o">)</span><span cl
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nmap &lt;F5&gt;b :!ino build&lt;CR&gt;
 nmap &lt;F5&gt;c :!ino clean&lt;CR&gt;
 nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;
-</code></pre></div><p>这样就可以在用vim编辑sketch.ino时，普通模式下按下<!-- raw HTML omitted -->键+b来进行编译，按下<!-- raw HTML omitted -->键+u键进行上传，按下<!-- raw HTML omitted -->键+c键进行清除编译生成的中间文件。</p>
+</code></pre></div><p>这样就可以在用vim编辑sketch.ino时，普通模式下按下<F5>键+b来进行编译，按下<F5>键+u键进行上传，按下<F5>键+c键进行清除编译生成的中间文件。</p>
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
@@ -518,6 +520,7 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

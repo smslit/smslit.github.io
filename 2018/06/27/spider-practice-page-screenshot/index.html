@@ -10,7 +10,7 @@
 <meta itemprop="description" content="今天在想一个问题，会不会有一天我的静态博客就废了，应该不至于哈，本地也能渲染嘛！但是假设真的没有地方可以访问我们的文章了，我们提前截个图，保存个pdf，备个份啥的也是有必要的嘛！本文就来说一下怎么为python网页内容截图，炒🐔煎🥚！">
 <meta itemprop="datePublished" content="2018-06-27T23:58:50&#43;08:00" />
 <meta itemprop="dateModified" content="2018-06-27T23:58:50&#43;08:00" />
-<meta itemprop="wordCount" content="1097">
+<meta itemprop="wordCount" content="1104">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -116,35 +118,35 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 
-<span class="n">URL</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">https://www.smslit.top</span><span class="s1">&#39;</span>
-<span class="n">PIC_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">~</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Pictures/python/screenshot</span><span class="s1">&#39;</span><span class="p">)</span> 
-<span class="n">PIC_NAME</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">screenshot.png</span><span class="s1">&#39;</span>
+<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.smslit.top&#39;</span>
+<span class="n">PIC_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s1">&#39;Pictures/python/screenshot&#39;</span><span class="p">)</span> 
+<span class="n">PIC_NAME</span> <span class="o">=</span> <span class="s1">&#39;screenshot.png&#39;</span>
 
-<span class="k">def</span> <span class="nf">screenshot_web</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">URL</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">PIC_PATH</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">PIC_NAME</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">capture the whole web page</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param url: the website url</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type url: str</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param path: the path for saving picture</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type str</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param name: the name of picture</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type name: str</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">screenshot_web</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">URL</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">PIC_PATH</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">PIC_NAME</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;capture the whole web page
+</span><span class="s1">    :param url: the website url
+</span><span class="s1">    :type url: str
+</span><span class="s1">    :param path: the path for saving picture
+</span><span class="s1">    :type str
+</span><span class="s1">    :param name: the name of picture
+</span><span class="s1">    :type name: str
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">()</span>
     <span class="n">browser</span><span class="o">.</span><span class="n">set_window_size</span><span class="p">(</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
     <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">pic_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">pic_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
     <span class="k">print</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">browser</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Done!</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">browser</span><span class="o">.</span><span class="n">save_screenshot</span><span class="p">(</span><span class="n">pic_path</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Failed!</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Failed!&#39;</span><span class="p">)</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">screenshot_web</span><span class="p">(</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">screenshot_web</span><span class="p">()</span>
 </code></pre></div><p>首先构造了一个以<code>PhantomJS</code>引擎为核心的实例，然后<code>get</code>相应网址，等待3秒后，执行保存截图函数。 <code>selenium</code>中提供了<code>WebDriverWait</code>模块用来等待网页加载，这里就不展示了，使用比较暴力的死等。</p>
 <h2 id="执行效果">执行效果</h2>
 <p>执行脚本：</p>
@@ -166,7 +168,7 @@ warnings.warn(&lsquo;Selenium support for PhantomJS has been deprecated, please 
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1097 字
+					1104 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -179,8 +181,8 @@ warnings.warn(&lsquo;Selenium support for PhantomJS has been deprecated, please 
   <ul>
     <li><a href="#环境与依赖">环境与依赖</a>
       <ul>
-        <li><a href="#selenium库">selenium库</a></li>
-        <li><a href="#phantomjs">PhantomJS</a></li>
+        <li><a href="#selenium库"><code>selenium</code>库</a></li>
+        <li><a href="#phantomjs"><code>PhantomJS</code></a></li>
       </ul>
     </li>
     <li><a href="#长截图">长截图</a></li>
@@ -258,6 +260,7 @@ warnings.warn(&lsquo;Selenium support for PhantomJS has been deprecated, please 
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

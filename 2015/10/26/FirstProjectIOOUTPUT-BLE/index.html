@@ -10,7 +10,7 @@
 <meta itemprop="description" content="CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。">
 <meta itemprop="datePublished" content="2015-10-26T17:34:46&#43;08:00" />
 <meta itemprop="dateModified" content="2015-10-26T17:34:46&#43;08:00" />
-<meta itemprop="wordCount" content="1373">
+<meta itemprop="wordCount" content="1369">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -134,13 +136,13 @@
 <ul>
 <li>
 <p>单击工具栏<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/qxped.png" alt="11">新建按钮，新建文件，输入以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">P1SEL</span> <span class="o">&amp;</span><span class="o">=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
-</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置IO，P1.0为输出
+    <span class="n">P1SEL</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
+</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置IO，P1.0为输出
 </span><span class="c1"></span>      
-    <span class="n">P1</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>             <span class="c1">// 配置P1.0管脚输出高电平
+    <span class="n">P1</span> <span class="o">|=</span> <span class="mh">0x01</span><span class="p">;</span>             <span class="c1">// 配置P1.0管脚输出高电平
 </span><span class="c1"></span>      
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
           
@@ -173,35 +175,35 @@
 <li>
 <p>编写简单的延时函数，测试IO的高低电平间隔输出，分别新建编写delay.c和delay.h文件，按照3中的方式添加到工程之中。</p>
 <p>delay.h代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">ifndef __DELAY_H__</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define __DELAY_H__</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#ifndef __DELAY_H__
+</span><span class="cp">#define __DELAY_H__
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">timeDelay</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">timeDelay</span><span class="p">);</span>
 
-<span class="cp">#</span><span class="cp">endif</span><span class="cp">
+<span class="cp">#endif
 </span></code></pre></div><p>delay.c代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">timeDelay</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">timeDelay</span><span class="o">-</span><span class="o">-</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">320</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>       <span class="c1">// 执行空命令模拟延时1ms
+    <span class="k">while</span><span class="p">(</span><span class="n">timeDelay</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">320</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">);</span>       <span class="c1">// 执行空命令模拟延时1ms
 </span><span class="c1"></span>    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>然后更改LED.c文件的代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;ioCC2541.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">P1SEL</span> <span class="o">&amp;</span><span class="o">=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
-</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置P1.0为输出
+    <span class="n">P1SEL</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置管脚为IO功能
+</span><span class="c1"></span>    <span class="n">P1DIR</span> <span class="o">|=</span> <span class="mh">0x03</span><span class="p">;</span>          <span class="c1">// 配置P1.0为输出
 </span><span class="c1"></span>      
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">P1</span> <span class="o">|</span><span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置P1.0输出高电平
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>        <span class="c1">// 延时1000ms
-</span><span class="c1"></span>        <span class="n">P1</span> <span class="o">&amp;</span><span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="mh">0x01</span><span class="p">)</span><span class="p">;</span>      <span class="c1">// 配置P1.0输出高电平
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="p">;</span>        <span class="c1">// 延时1000ms
+        <span class="n">P1</span> <span class="o">|=</span> <span class="mh">0x01</span><span class="p">;</span>         <span class="c1">// 配置P1.0输出高电平
+</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>        <span class="c1">// 延时1000ms
+</span><span class="c1"></span>        <span class="n">P1</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="o">~</span><span class="mh">0x01</span><span class="p">);</span>      <span class="c1">// 配置P1.0输出高电平
+</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>        <span class="c1">// 延时1000ms
 </span><span class="c1"></span>    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
@@ -217,7 +219,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1373 字
+					1369 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -306,6 +308,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

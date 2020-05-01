@@ -11,7 +11,7 @@
 ">
 <meta itemprop="datePublished" content="2018-11-07T15:37:05&#43;08:00" />
 <meta itemprop="dateModified" content="2018-11-13T15:00:05&#43;08:00" />
-<meta itemprop="wordCount" content="3886">
+<meta itemprop="wordCount" content="3896">
 
 
 
@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -94,8 +96,14 @@
 <p>![](<a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/Surface">https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/Surface</a> Pro 4 – <a href="mailto:1@2x.png">1@2x.png</a>)</p>
 <h2 id="排序算法对比">排序算法对比</h2>
 <p>从<strong>时间复杂度</strong>^[<strong>时间复杂度</strong>：对排序数据的总的操作次数。反映当n变化时，操作次数呈现什么规律。]、<strong>空间复杂度</strong>^[<strong>空间复杂度</strong>：是指算法在计算机内执行时所需存储空间的度量，它也是数据规模n的函数。]和 <strong>稳定性</strong>^[<strong>稳定</strong>：如果a原本在b前面，而a=b，排序之后a仍然在b的前面。<strong>不稳定</strong>：如果a原本在b的前面，而a=b，排序之后 a 可能会出现在 b 的后面。]三方面对比十种排序方法如下：</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<style>
+table th:first-of-type {
+    width:75px;
+}
+table th:last-of-type {
+    width:75px;
+}
+</style>
 <table>
 <thead>
 <tr>
@@ -204,19 +212,19 @@
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018111115418975029904.gif" alt="2018111115418975029904.gif"></p>
 <h2 id="冒泡排序示例代码">冒泡排序示例代码</h2>
 <p>python3 实现冒泡算法封装成函数如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">numlist</span><span class="p">):</span>
     <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-                <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">,</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">numlist</span>
 </code></pre></div><p>进行测试，简单测试代码如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorting... {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorting... {l}&#39;</span><span class="p">)</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">bubble_sort</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorted  -&gt; {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorted  -&gt; {l}&#39;</span><span class="p">)</span>
 </code></pre></div><p>运行脚本，一切OK：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 bubble.py
 sorting... <span class="o">[</span>12, 3, 45, 65, 54, 34, 78, 9, 10, 23<span class="o">]</span>
@@ -252,22 +260,22 @@ $n$ 个项目要 $O(n\log n)$（大O符号）次比较。在最坏状况下则�
         <span class="n">quicksort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
     <span class="k">return</span>
 
-<span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">):</span>
     <span class="n">pivot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">lo</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">:</span>
-            <span class="n">i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
 </code></pre></div><p>测试实现的快速排序算法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorting... {l}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">quicksort</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorted:    {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorting... {l}&#39;</span><span class="p">)</span>
+    <span class="n">quicksort</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorted:    {l}&#39;</span><span class="p">)</span>
 </code></pre></div><p>测试一下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 quick.py
 sorting... <span class="o">[</span>12, 3, 45, 65, 54, 34, 78, 9, 10, 23<span class="o">]</span>
@@ -288,23 +296,23 @@ sorted:    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
 <p>为了方便理解，以数组 <code>[12, 3, 45, 65, 54, 34, 78, 9 ,10, 23]</code> 排序为例，排序过程如以下动图：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181111154194998895578.gif" alt="20181111154194998895578.gif"></p>
 <h2 id="插入排序示例代码">插入排序示例代码</h2>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">data</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-                <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">break</span>
     <span class="k">return</span> <span class="n">data</span>
 </code></pre></div><p>测试一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorting... {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorting... {l}&#39;</span><span class="p">)</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">insert_sort</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorted:    {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorted:    {l}&#39;</span><span class="p">)</span>
 </code></pre></div><p>结果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 insert.py
 sorting... <span class="o">[</span>12, 3, 45, 65, 54, 34, 78, 9, 10, 23<span class="o">]</span>
@@ -334,29 +342,29 @@ sorted:    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
 <p>为了方便理解，以数组 <code>[12, 3, 45, 65, 54, 34, 78, 9 ,10, 23]</code> 排序为例，排序过程如以下动图：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154195404360778.gif" alt="20181112154195404360778.gif"></p>
 <h2 id="希尔排序示例代码">希尔排序示例代码</h2>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">shell_sort</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">shell_sort</span><span class="p">(</span><span class="n">numlist</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span>
     <span class="c1"># 初始步长</span>
-    <span class="n">stepsize</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span>
+    <span class="n">stepsize</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
     <span class="k">while</span> <span class="n">stepsize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stepsize</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stepsize</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
             <span class="c1"># 每个步长进行插入排序</span>
             <span class="n">temp</span> <span class="o">=</span> <span class="n">numlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
             <span class="c1"># 插入排序</span>
-            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">stepsize</span> <span class="ow">and</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">stepsize</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">stepsize</span> <span class="ow">and</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">stepsize</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">:</span>
                 <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">stepsize</span><span class="p">]</span>
-                <span class="n">j</span> <span class="o">-</span><span class="o">=</span> <span class="n">stepsize</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="n">stepsize</span>
             <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
         <span class="c1"># 得到新的步长</span>
-        <span class="n">stepsize</span> <span class="o">=</span> <span class="n">stepsize</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span>
+        <span class="n">stepsize</span> <span class="o">=</span> <span class="n">stepsize</span> <span class="o">//</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">numlist</span>
 </code></pre></div><p>测试一下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorting... {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorting... {l}&#39;</span><span class="p">)</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">shell_sort</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorted:    {l}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorted:    {l}&#39;</span><span class="p">)</span>
 </code></pre></div><p>结果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 shell.py
 sorting... <span class="o">[</span>12, 3, 45, 65, 54, 34, 78, 9, 10, 23<span class="o">]</span>
@@ -374,21 +382,21 @@ sorted:    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
 <p>为了方便理解，这里以对序列 <code>[12, 3, 45, 65, 54, 34, 78, 9 ,10, 23]</code> 排序为例展示排序过程动画如下：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154200663696412.gif" alt="20181112154200663696412.gif"></p>
 <h2 id="选择排序示例代码">选择排序示例代码</h2>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">select_sort</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">select_sort</span><span class="p">(</span><span class="n">numlist</span><span class="p">):</span>
     <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">min_index</span> <span class="o">=</span> <span class="n">i</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">numlist</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">numlist</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">numlist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
                 <span class="n">min_index</span> <span class="o">=</span> <span class="n">j</span>
         <span class="k">if</span> <span class="n">min_index</span> <span class="o">!=</span> <span class="n">i</span><span class="p">:</span>
-            <span class="n">numlist</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span><span class="p">,</span> <span class="n">numlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">numlist</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>
+            <span class="n">numlist</span><span class="p">[</span><span class="n">min_index</span><span class="p">],</span> <span class="n">numlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">numlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">numlist</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">numlist</span>
 </code></pre></div><p>测试一下封装的算法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">9</span> <span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorting... {l}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sorrted    {select_sort(l)}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorting... {l}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;sorrted    {select_sort(l)}&#39;</span><span class="p">)</span>
 </code></pre></div><p>测试结果：</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ python3 <span class="k">select</span>.py
 sorting... <span class="o">[</span>12, 3, 45, 65, 54, 34, 78, 9, 10, 23<span class="o">]</span>
@@ -407,7 +415,7 @@ sorrted    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					3886 字
+					3896 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -518,6 +526,7 @@ sorrted    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

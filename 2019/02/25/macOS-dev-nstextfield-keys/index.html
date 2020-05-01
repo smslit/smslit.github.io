@@ -10,7 +10,7 @@
 <meta itemprop="description" content="在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得">
 <meta itemprop="datePublished" content="2019-02-25T10:00:05&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-25T10:00:05&#43;08:00" />
-<meta itemprop="wordCount" content="1983">
+<meta itemprop="wordCount" content="1972">
 
 
 
@@ -35,6 +35,8 @@
 	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190225201341.jpg');}</style>
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -143,18 +145,18 @@
 <h1 id="快捷键加持">快捷键加持</h1>
 <p>有时我们开发 app 就是不想保留菜单栏，比如状态栏小工具。所以继续研究怎么在没有菜单栏的情况下让 Text Field 支持快捷键是有必要的！很自然的我们就会想到上面说的为 NSTextField 复写 <code>performKeyEquivalent:</code> 方法的方式来解决！</p>
 <p>这里直接贴出代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">//</span><span class="c1"> </span><span class="c1">N</span><span class="c1">S</span><span class="c1">T</span><span class="c1">e</span><span class="c1">x</span><span class="c1">t</span><span class="c1">F</span><span class="c1">i</span><span class="c1">e</span><span class="c1">l</span><span class="c1">d</span><span class="c1"> </span><span class="c1">自</span><span class="c1">身</span><span class="c1">支</span><span class="c1">持</span><span class="c1">快</span><span class="c1">捷</span><span class="c1">键</span>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// NSTextField 自身支持快捷键</span>
 <span class="kd">extension</span> <span class="nc">NSTextField</span> <span class="p">{</span>
     <span class="n">open</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span> <span class="n">event</span><span class="p">:</span> <span class="n">NSEvent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
         <span class="k">switch</span> <span class="n">event</span><span class="p">.</span><span class="n">charactersIgnoringModifiers</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s">&#34;</span><span class="s">a</span><span class="s">&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;</span><span class="s">c</span><span class="s">&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;</span><span class="s">v</span><span class="s">&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
-        <span class="k">case</span> <span class="s">&#34;</span><span class="s">x</span><span class="s">&#34;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?</span><span class="p">.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;a&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;c&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;v&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s">&#34;x&#34;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">sendAction</span><span class="p">(</span><span class="k">#selector</span><span class="p">(</span><span class="n">NSText</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="kc">_</span><span class="p">:)),</span> <span class="n">to</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">window</span><span class="p">?.</span><span class="n">firstResponder</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
         <span class="k">default</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">super</span><span class="p">.</span><span class="n">performKeyEquivalent</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span>
         <span class="p">}</span>
@@ -197,7 +199,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					1983 字
+					1972 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -283,6 +285,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

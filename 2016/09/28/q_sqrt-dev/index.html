@@ -10,7 +10,7 @@
 <meta itemprop="description" content="今天学习《Python科学计算》，看到了一个绝对丧心病狂、计算速度碾压标准sqrt库函数的平方根倒数速算法，据说平均比标准库的sqrt快4倍。这个算法是约翰-卡马克（John Carmack）创造的，据说他是一个伟大的3D引擎开发者，《雷神之锤3》用的就是他开发的3D引擎。">
 <meta itemprop="datePublished" content="2016-09-28T23:02:48&#43;08:00" />
 <meta itemprop="dateModified" content="2016-09-28T23:02:48&#43;08:00" />
-<meta itemprop="wordCount" content="522">
+<meta itemprop="wordCount" content="528">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -92,9 +94,9 @@
 	<span class="n">x2</span> <span class="o">=</span> <span class="n">number</span> <span class="o">*</span> <span class="mf">0.5F</span><span class="p">;</span>
 	<span class="n">y</span> <span class="o">=</span> <span class="n">number</span><span class="p">;</span>
 	<span class="n">i</span> <span class="o">=</span> <span class="o">*</span> <span class="p">(</span> <span class="kt">long</span> <span class="o">*</span> <span class="p">)</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">;</span>
-	<span class="n">i</span> <span class="o">=</span> <span class="mh">0x5f3759df</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>	<span class="c1">// 这是什么鬼？
+	<span class="n">i</span> <span class="o">=</span> <span class="mh">0x5f3759df</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span>	<span class="c1">// 这是什么鬼？
 </span><span class="c1"></span>	<span class="n">y</span> <span class="o">=</span> <span class="o">*</span> <span class="p">(</span> <span class="kt">float</span> <span class="o">*</span> <span class="p">)</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
-	<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span> <span class="n">threeHalfs</span> <span class="o">-</span> <span class="p">(</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="p">)</span> <span class="p">)</span><span class="p">;</span>
+	<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span> <span class="n">threeHalfs</span> <span class="o">-</span> <span class="p">(</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="p">)</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="n">y</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>后续有机会的话我会写篇文章研究一下 让人摸不到头脑的 <strong>0x5f3759df</strong> 的推导，有个叫 <strong>Chris Lomont</strong> 疯子（其实他是个数学家）不服，怒了，然后暴力方法找到了一个更好的数 <strong>0x5f375a86</strong> ，呵呵了。</p>
@@ -109,35 +111,35 @@
 <span class="n">y</span> <span class="o">=</span> <span class="n">number</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mf">0.5</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">)</span>
-<span class="n">i</span><span class="p">[</span><span class="o">:</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x5f3759df</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">i</span><span class="p">[</span><span class="o">:</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x5f3759df</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.5</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">y_s</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
 
 <span class="n">error</span> <span class="o">=</span> <span class="n">y_s</span> <span class="o">-</span> <span class="n">y</span>
 
-<span class="n">np</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">abs</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="p">)</span>
+<span class="n">np</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">abs</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">$Fast</span><span class="s">\</span><span class="s"> Inverse</span><span class="s">\</span><span class="s"> Square</span><span class="s">\</span><span class="s"> Root$</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">y_s</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">--</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">$Standard</span><span class="s">\</span><span class="s"> Inverse</span><span class="s">\</span><span class="s"> Square</span><span class="s">\</span><span class="s"> Root$</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Number</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Inverse Square Root Value Of Number</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Inverse Square Root</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#34;$Fast\ Inverse\ Square\ Root$&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">y_s</span><span class="p">,</span> <span class="s">&#34;--&#34;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&#34;$Standard\ Inverse\ Square\ Root$&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#34;Number&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#34;Inverse Square Root Value Of Number&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#34;Inverse Square Root&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Number</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The Error Of The two Methods</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The Error</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#34;Number&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#34;The Error Of The two Methods&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#34;The Error&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div><h4 id="结果">结果</h4>
 <p>两种方法得到曲线如下：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/z372t.png" alt="line"></p>
 <p>偏差曲线如下：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/j8ec4.png" alt="error"></p>
 <p>可以得到最大误差和最小误差：</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">np</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">np</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">error</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 </code></pre></div><p>得到结果如下：</p>
 <ul>
 <li><strong>(0.0050456140410597428, -4.9357368359093101e-08)</strong></li>
@@ -151,7 +153,7 @@
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					522 字
+					528 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -240,6 +242,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

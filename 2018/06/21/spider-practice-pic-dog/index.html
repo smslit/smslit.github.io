@@ -10,7 +10,7 @@
 <meta itemprop="description" content="最近在学习爬虫，学了就应该多实践实践，本文将记录使用requests 库下载头条上搜到的狗狗图片的实现过程，使用python3实现。">
 <meta itemprop="datePublished" content="2018-06-21T14:41:32&#43;08:00" />
 <meta itemprop="dateModified" content="2018-06-21T14:41:32&#43;08:00" />
-<meta itemprop="wordCount" content="6773">
+<meta itemprop="wordCount" content="6588">
 
 
 
@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -156,105 +158,105 @@
 </code></pre></div><h4 id="请求页面内容">请求页面内容</h4>
 <p>根据前面的分析，只需要更改网页链接中的 <code>offset</code> 参数就可以生成新的请求链接，为了提高封装性，这里将网页内容的获取过程定义为一个函数，参数为 <code>offset</code>，这里需要注意的是，为了防止被头条屏蔽IP或拒绝访问，这里还需要给出一定头信息，参考chrome检查窗口中看到的请求头的信息即可：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Host</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">www.toutiao.com</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">User-Agent</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">X-Requested-With</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">XMLHttpRequest</span><span class="s1">&#39;</span>
+    <span class="s1">&#39;Host&#39;</span><span class="p">:</span> <span class="s1">&#39;www.toutiao.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X-Requested-With&#39;</span><span class="p">:</span> <span class="s1">&#39;XMLHttpRequest&#39;</span>
 <span class="p">}</span>
 </code></pre></div><p>请求链接中的参数使用<code>urlencode</code>方法进行封装处理，根据链接特征需要指定参数如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">offset</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">format</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">json</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">keyword</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">狗狗</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">autoload</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">true</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">20</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">cur_tab</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">3</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">from</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">gallery</span><span class="s1">&#39;</span>
+    <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+    <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s1">&#39;狗狗&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;autoload&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cur_tab&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;from&#39;</span><span class="p">:</span> <span class="s1">&#39;gallery&#39;</span>
 <span class="p">}</span>
 </code></pre></div><p>为了提高程序的鲁棒性，使用try-except处理异常，最终实现的函数如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">生成ajax请求，发出get请求，并获取响应结果，以字典的形式返回json数据</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :params offset: 页面请求偏移值</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type offset: 能被20整除的整数</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :return: 响应数据</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :rtype: dict</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;生成ajax请求，发出get请求，并获取响应结果，以字典的形式返回json数据
+</span><span class="s1">    :params offset: 页面请求偏移值
+</span><span class="s1">    :type offset: 能被20整除的整数
+</span><span class="s1">    :return: 响应数据
+</span><span class="s1">    :rtype: dict
+</span><span class="s1">    &#39;&#39;&#39;</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">offset</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">format</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">json</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">keyword</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">狗狗</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">autoload</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">true</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">20</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">cur_tab</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">3</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">from</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">gallery</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="s1">&#39;狗狗&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;autoload&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cur_tab&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;from&#39;</span><span class="p">:</span> <span class="s1">&#39;gallery&#39;</span>
     <span class="p">}</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">https://www.toutiao.com/search_content/?</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.toutiao.com/search_content/?&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Error</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div><p>使用get方法进行请求，如果正常的话，就会得到响应的json数据，最终函数返回json数据转换成的字典数据，如果出现异常就会返回<code>None</code>。</p>
 <h4 id="解析响应结果">解析响应结果</h4>
 <p>上一步获得了一次请求的json数据，下面就该实现响应结果的解析了，因为得到的是字典，所以首先得到<code>data</code>键对应的值，是一个列表，对应包含20个条目的数据，遍历列表中的元素，每个元素都是字典，找到<code>title</code>键对应的值就是标题，<code>image_list</code>键对应的值是一个列表，列表中的元素就是链接关键信息，为链接信息加上协议组成正常的url字符串即可，将解析出来的每个链接和上层的标题共同组成一个字典返回，这里用<code>yield</code>方法生成迭代器，最终实现的函数如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">解析json字典，获得对应条目标题和图片链接</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param json: 页面请求响应结果对应的字典数据</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type json: dict</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">data</span><span class="s1">&#39;</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;解析json字典，获得对应条目标题和图片链接
+</span><span class="s1">    :param json: 页面请求响应结果对应的字典数据
+</span><span class="s1">    :type json: dict
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">title</span><span class="s1">&#39;</span><span class="p">]</span>
-            <span class="n">images</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">image_list</span><span class="s1">&#39;</span><span class="p">]</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+            <span class="n">images</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;image_list&#39;</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">images</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
                     <span class="k">yield</span> <span class="p">{</span>
-                        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">image</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">http:</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">image</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">url</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">,</span>
-                        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">title</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">title</span>
+                        <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="s1">&#39;http:&#39;</span> <span class="o">+</span> <span class="n">image</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">],</span>
+                        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span>
                     <span class="p">}</span>
 </code></pre></div><h4 id="下载图片">下载图片</h4>
 <p>得到了图片链接，那么我们就可以保存图片了，同样将保存图片的操作封装为一个函数。</p>
 <p>思路很简单，为了更好的管理图片，生成以标题命名的目录用来保存图片，get请求图片链接，因为获取的是二进制数据，所以将响应结果按照二进制保存为文件，文件名则根据二进制数据计算md5生成文件名，实现中加入了多个信息判断以及try-except方式的处理，最终结果如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">save_image_from</span><span class="p">(</span><span class="n">image_info</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">根据链接获取图片，保存到标题命名的目录中，图片以md5码命名</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param image_info: 包含标题和链接信息的字典数据</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type image_info: dict</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param to_dir: 要保存到的目录，默认值是空字符串，可指定目录，格式如: </span><span class="s1">&#39;</span><span class="s1">狗狗</span><span class="s1">&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type to_dir: unicode 字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">save_image_from</span><span class="p">(</span><span class="n">image_info</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;根据链接获取图片，保存到标题命名的目录中，图片以md5码命名
+</span><span class="s1">    :param image_info: 包含标题和链接信息的字典数据
+</span><span class="s1">    :type image_info: dict
+</span><span class="s1">    :param to_dir: 要保存到的目录，默认值是空字符串，可指定目录，格式如: &#39;狗狗&#39;
+</span><span class="s1">    :type to_dir: unicode 字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">image_info</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="n">image_info</span><span class="p">)</span>
-        <span class="n">image_dir</span> <span class="o">=</span> <span class="n">to_dir</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">image_info</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">title</span><span class="s1">&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">image_dir</span> <span class="o">=</span> <span class="n">to_dir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">image_info</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_info</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">image</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_info</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-                <span class="n">image_path</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">{0}/{1}.{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">md5</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">jpg</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">image_path</span> <span class="o">=</span> <span class="s1">&#39;{0}/{1}.{2}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">md5</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
                 <span class="k">print</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span><span class="p">:</span>
-                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">wb</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-                    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片下载完成！</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片下载完成！&#39;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片已下载 -&gt; </span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片已下载 -&gt; &#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">图片下载失败！</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片下载失败！&#39;</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">出现异常！</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;出现异常！&#39;</span><span class="p">)</span>
 </code></pre></div><p>可以看到函数还多了一个参数<code>to_dir</code>，这个参数用来指定目录，用来保存以标题命名的目录以及其目录下的图片。</p>
 <h4 id="编写主函数实现">编写主函数实现</h4>
 <p>每一次请求会收到20个条目的数据，这里我们以请求10次为例，也就是总共获取200个条目下的图片，实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 请求数</span>
 <span class="n">PAGE_NUM</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">20</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">PAGE_NUM</span><span class="p">)</span><span class="p">]</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">获取第</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">～</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">个条目...</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">20</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">PAGE_NUM</span><span class="p">)]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;获取第&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;～&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;个条目...&#39;</span><span class="p">)</span>
         <span class="n">json</span> <span class="o">=</span> <span class="n">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">save_image_from</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">狗狗</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">):</span>
+            <span class="n">save_image_from</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="s1">&#39;狗狗&#39;</span><span class="p">)</span>
 </code></pre></div><h4 id="整合实现">整合实现</h4>
 <p>将上述几部分的说明和实现进行整合：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/local/bin/python3</span>
@@ -267,20 +269,20 @@
 <span class="n">PAGE_NUM</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">User-Agent</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">X-Requested-With</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">XMLHttpRequest</span><span class="s1">&#39;</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;X-Requested-With&#39;</span><span class="p">:</span> <span class="s1">&#39;XMLHttpRequest&#39;</span>
 <span class="p">}</span>
 
-<span class="k">def</span> <span class="nf">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">):</span>
     <span class="c1"># 此处省略，参考前面的实现</span>
 
-<span class="k">def</span> <span class="nf">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">)</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">):</span>
     <span class="c1"># 此处省略，参考前面的实现</span>
 
-<span class="k">def</span> <span class="nf">save_image_from</span><span class="p">(</span><span class="n">image_info</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">save_image_from</span><span class="p">(</span><span class="n">image_info</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
     <span class="c1"># 此处省略，参考前面的实现</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="c1"># 此处省略，参考前面的实现</span>
 </code></pre></div><h2 id="测试及优化">测试及优化</h2>
 <p>上述代码在脚本文件<code>toutiao_pic.py</code>中实现，执行脚本测试一下：</p>
@@ -358,30 +360,30 @@
 <p>更改低分辨率图片链接中的<code>p1</code>为<code>p3</code>，用浏览器去访问，居然也能出图片，但还是低分辨率，看来这个不关键，那只更改<code>list</code>为<code>origin</code>试一下，居然可以访问，而且是高分辨率的图片。</p>
 <p>以此方式比较几张其它图片的链接，发现均可以只改链接中的<code>list</code>为<code>origin</code>就能得到高分辨率的图片，那么优化函数<code>parse_images_url</code>中的image链接生成的那一行代码，调用字符串替换函数<code>replace</code>就可以，如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 原代码</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">image</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">http:</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">image</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">url</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">,</span>
+<span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="s1">&#39;http:&#39;</span> <span class="o">+</span> <span class="n">image</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">],</span>
 <span class="c1"># 改进后代码</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">image</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">http:</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">image</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">url</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">list</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">origin</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+<span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="s1">&#39;http:&#39;</span> <span class="o">+</span> <span class="n">image</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">),</span>
 </code></pre></div><p>重新运行脚本，检查图片，结果可行！</p>
 <h4 id="多进程爬取">多进程爬取</h4>
 <p>这里采用多进程库<code>multiprocessing</code>的进程池实现多进程调度，为了方便映射，将主函数中的实现，封装为main函数，参数用来进程分配，所以为<code>offset</code>，<code>main</code>函数实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">主函数，用于多进程调度</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param offset: 页面链接offset参数的值</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type offset: 能被20整除的整数</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">获取第</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">～</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">个条目...</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">offset</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;主函数，用于多进程调度
+</span><span class="s1">    :param offset: 页面链接offset参数的值
+</span><span class="s1">    :type offset: 能被20整除的整数
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;获取第&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;～&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;个条目...&#39;</span><span class="p">)</span>
     <span class="n">json</span> <span class="o">=</span> <span class="n">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">save_image_from</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">狗狗</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">):</span>
+        <span class="n">save_image_from</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="s1">&#39;狗狗&#39;</span><span class="p">)</span>
 </code></pre></div><p>引入多进程库：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">multiprocessing.pool</span> <span class="kn">import</span> <span class="n">Pool</span>
 </code></pre></div><p>生成进程池，映射主函数并执行，最终实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">20</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">PAGE_NUM</span><span class="p">)</span><span class="p">]</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">20</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">PAGE_NUM</span><span class="p">)]</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">()</span>
     <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">offset_list</span><span class="p">)</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </code></pre></div><p>执行后，看打印信息，会发现会有多个请求同时进行，速度明显加快。</p>
 <h4 id="通用化脚本">通用化脚本</h4>
 <p>这里说通用化，也仅局限于获取头条中的图集，目前根据前面分析，链接中可以更改的除了<code>offset</code>，其实还有个<code>keyword</code>，其它的目前来看没必要更改了，说起来其中<code>count</code>应该也可以修改，这里有个假设：</p>
@@ -393,43 +395,43 @@
 <p>上面的假设就不验证了，留给感兴趣的人吧，这里只做<code>offset</code>和<code>keyword</code>的定制实现。</p>
 </blockquote>
 <p>稍微修改<code>get_page_json</code>函数和<code>main</code>函数，加入keyword参数用来指定搜索关键词：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">keyword</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">生成ajax请求，发出get请求，并获取响应结果，以字典的形式返回json数据</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param offset: 页面请求偏移值</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type offset: 能被20整除的整数</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param keyword: 图片搜索的关键词</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type keyword: unicode字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :return: 响应数据</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :rtype: dict</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;生成ajax请求，发出get请求，并获取响应结果，以字典的形式返回json数据
+</span><span class="s1">    :param offset: 页面请求偏移值
+</span><span class="s1">    :type offset: 能被20整除的整数
+</span><span class="s1">    :param keyword: 图片搜索的关键词
+</span><span class="s1">    :type keyword: unicode字符串
+</span><span class="s1">    :return: 响应数据
+</span><span class="s1">    :rtype: dict
+</span><span class="s1">    &#39;&#39;&#39;</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">offset</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">format</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">json</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">keyword</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">keyword</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">autoload</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">true</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">20</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">cur_tab</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">3</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">from</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">gallery</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span>
+        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;keyword&#39;</span><span class="p">:</span> <span class="n">keyword</span><span class="p">,</span>
+        <span class="s1">&#39;autoload&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cur_tab&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;from&#39;</span><span class="p">:</span> <span class="s1">&#39;gallery&#39;</span>
     <span class="p">}</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">https://www.toutiao.com/search_content/?</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.toutiao.com/search_content/?&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Error</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">keyword</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">主函数，用于多进程调度</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param offset: 页面链接offset参数的值</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type offset: 能被20整除的整数</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param keyword: 图片搜索关键词</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type keyword: unicode字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">获取第</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">～</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">个条目...</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;主函数，用于多进程调度
+</span><span class="s1">    :param offset: 页面链接offset参数的值
+</span><span class="s1">    :type offset: 能被20整除的整数
+</span><span class="s1">    :param keyword: 图片搜索关键词
+</span><span class="s1">    :type keyword: unicode字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;获取第&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;～&#39;</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;个条目...&#39;</span><span class="p">)</span>
     <span class="n">json</span> <span class="o">=</span> <span class="n">get_page_json</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">keyword</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">parse_images_url</span><span class="p">(</span><span class="n">json</span><span class="p">):</span>
         <span class="n">save_image_from</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">=</span><span class="n">keyword</span><span class="p">)</span>
 </code></pre></div><p>能不能做成类似于命令行的方式传入搜索的关键词呢？当然可以了，首先在脚本文档最前面加上如下的代码，用来指明所使用的python路径，例如<a href="https://www.smslit.top/about">十里</a>的是：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/local/bin/python3</span>
@@ -440,45 +442,45 @@
 </code></pre></div><p>这里实现一个简单的参数设置思路，规定必须输入两个参数，一个是关键词，一个是请求个数，所以固定命令的格式为：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">./toutiao_pic.py 狗狗 <span class="m">5</span>
 </code></pre></div><p>即命令后跟着第一个参数就是图片搜索的关键词，然后就是请求个数的设置，如果要提取这两个参数，需要用到<code>sys</code>库的<code>argv</code>，在脚本中<code>sys.argv</code>是一个字符串列表，第一个元素就是命令，在这里的话，如果输入命令格式正确，那么这个列表会包含三个元素，后两个按顺序分别是：图片搜索关键词和请求个数（每个请求会得到20个图集信息），为了更好的交互，还得加入一定的帮助信息的打印，所以最终添加了以下代码：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_help_info</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">生成帮助信息</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :param command: 命令的名称</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    :type command: 字符串</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
-    <span class="n">help_info</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">使用:</span><span class="se">\n</span><span class="s1">  </span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1"> 关键字 请求个数</span><span class="se">\n</span><span class="s1">&#39;</span>
-    <span class="n">help_info</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">  - 关键字: 图片搜索关键词</span><span class="se">\n</span><span class="s1">  - 请求个数: 一次请求会获取20个图集的图片</span><span class="se">\n</span><span class="s1">&#39;</span>
-    <span class="n">help_info</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">例如:</span><span class="se">\n</span><span class="s1">  </span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1"> 狗狗 5</span><span class="se">\n</span><span class="s1">  -&gt; 会获取100个图集中狗狗的图片</span><span class="se">\n</span><span class="s1">&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_help_info</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;生成帮助信息
+</span><span class="s1">    :param command: 命令的名称
+</span><span class="s1">    :type command: 字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">help_info</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">使用:</span><span class="se">\n</span><span class="s1">  &#39;</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="s1">&#39; 关键字 请求个数</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="n">help_info</span> <span class="o">+=</span> <span class="s1">&#39;  - 关键字: 图片搜索关键词</span><span class="se">\n</span><span class="s1">  - 请求个数: 一次请求会获取20个图集的图片</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="n">help_info</span> <span class="o">+=</span> <span class="s1">&#39;例如:</span><span class="se">\n</span><span class="s1">  &#39;</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="s1">&#39; 狗狗 5</span><span class="se">\n</span><span class="s1">  -&gt; 会获取100个图集中狗狗的图片</span><span class="se">\n</span><span class="s1">&#39;</span>
     <span class="k">return</span> <span class="n">help_info</span>
 
-<span class="k">def</span> <span class="nf">parse_argv</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">解析命令参数</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">parse_argv</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;解析命令参数
+</span><span class="s1">    &#39;&#39;&#39;</span>
     <span class="n">args_dict</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">-h</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">get_help_info</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">-k</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">狗狗</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">-n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">PAGE_NUM</span>
+        <span class="s1">&#39;-h&#39;</span><span class="p">:</span> <span class="n">get_help_info</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="s1">&#39;-k&#39;</span><span class="p">:</span> <span class="s1">&#39;狗狗&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;-n&#39;</span><span class="p">:</span> <span class="n">PAGE_NUM</span>
     <span class="p">}</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">args_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-h</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">args_dict</span><span class="p">[</span><span class="s1">&#39;-h&#39;</span><span class="p">])</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">page_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">)</span>
-            <span class="n">args_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-n</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">page_num</span> <span class="k">if</span> <span class="n">page_num</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">5</span>
-            <span class="n">args_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-k</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">page_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">args_dict</span><span class="p">[</span><span class="s1">&#39;-n&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">page_num</span> <span class="k">if</span> <span class="n">page_num</span> <span class="o">&lt;=</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">5</span>
+            <span class="n">args_dict</span><span class="p">[</span><span class="s1">&#39;-k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">请求个数有误，请输入整数</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;请求个数有误，请输入整数&#39;</span><span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">args_dict</span>
 </code></pre></div><p>此时会有一个问题，那就是main函成为了有两个参数函数，进程池map的处理需要调整。先看一下现在程序的执行思路：先解析命令参数获得关键词和请求个数，然后传入main函数进行处理。进程池的map只能管理单个参数的函数，那么现在的问题就是解决进程池的map的多参数处理，应该有多个方法，可以发现main函数执行的话每次传入的图片搜索关键词是一定的，那么可以利用<code>functools</code>库的<code>partial</code>类构造一个只有<code>offset</code>这个参数的partial函数，实现过程：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="n">args_dict</span> <span class="o">=</span> <span class="n">parse_argv</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">20</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">args_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-n</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span><span class="p">]</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">partial_main</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="n">args_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-k</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args_dict</span> <span class="o">=</span> <span class="n">parse_argv</span><span class="p">()</span>
+    <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">20</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">args_dict</span><span class="p">[</span><span class="s1">&#39;-n&#39;</span><span class="p">])]</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">()</span>
+    <span class="n">partial_main</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="n">args_dict</span><span class="p">[</span><span class="s1">&#39;-k&#39;</span><span class="p">])</span>
     <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">partial_main</span><span class="p">,</span> <span class="n">offset_list</span><span class="p">)</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </code></pre></div><h2 id="总结">总结</h2>
 <p>至此，所有代码已经完成，为了让脚本用起来更像命令行工具，可以把后缀名<code>py</code>去掉，然后想一个好名字重命名一下，比如这样：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ mv toutiao_pic.py ttpic
@@ -502,7 +504,7 @@ $ ./ttpic
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					6773 字
+					6588 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -607,6 +609,7 @@ $ ./ttpic
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

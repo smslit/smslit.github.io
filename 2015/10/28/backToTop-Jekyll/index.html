@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -145,9 +147,9 @@
 <p>只需两步就可以在页面添加一个固定的返回顶部按钮，这里没有加JS代码，没什么漂亮的效果，只是功能的实现。</p>
 <h4 id="添加返回按钮块">添加返回按钮块</h4>
 <p>将以下代码添加到博文采用的布局html文件的最后，比如我的是post.html。</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;backtop&#34;</span><span class="p"></span><span class="p">&gt;</span>
-   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p"></span><span class="p">&gt;</span>TOP<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> 
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;backtop&#34;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>TOP<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> 
 </code></pre></div><h4 id="添加按钮的css样式">添加按钮的css样式</h4>
 <p>这里我把我的css样式粘上，可以按照自己喜欢修改样式即可。</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">#</span><span class="nn">backtop</span> <span class="nt">a</span> <span class="p">{</span> <span class="c">/* back to top button */</span>
@@ -159,7 +161,7 @@
     <span class="k">position</span><span class="p">:</span> <span class="kc">fixed</span><span class="p">;</span>
     <span class="k">bottom</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* 小按钮到浏览器底边的距离 */</span>
     <span class="k">right</span><span class="p">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* 小按钮到浏览器右边框的距离 */</span>
-    <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">)</span><span class="p">;</span> <span class="c">/* 小按钮中文字的颜色 */</span>
+    <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">);</span> <span class="c">/* 小按钮中文字的颜色 */</span>
     <span class="k">z-index</span><span class="p">:</span> <span class="mi">1000</span><span class="p">;</span>
     <span class="k">background</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span> <span class="c">/* 小按钮底色 */</span>
     <span class="k">padding</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span> <span class="c">/* 小按钮中文字到按钮边缘的距离 */</span>
@@ -168,11 +170,11 @@
     <span class="kp">-webkit-</span><span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
     <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span> <span class="c">/* 小按钮中文字的粗细 */</span>
     <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
-    <span class="k">box-shadow</span><span class="p">:</span><span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">2</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.15</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">0</span> <span class="mh">#ffffff</span> <span class="kc">inset</span><span class="p">;</span>
+    <span class="k">box-shadow</span><span class="p">:</span><span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">2</span><span class="kt">px</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.15</span><span class="p">),</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">0</span> <span class="mh">#ffffff</span> <span class="kc">inset</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="p">#</span><span class="nn">backtop</span> <span class="nt">a</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span> <span class="c">/* 小按钮上有鼠标悬停时 */</span>
-    <span class="k">background</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span><span class="p">;</span> <span class="c">/* 小按钮的底色 */</span>
+    <span class="k">background</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">192</span><span class="p">,</span><span class="mf">0.8</span><span class="p">);</span> <span class="c">/* 小按钮的底色 */</span>
     <span class="k">color</span><span class="p">:</span> <span class="mh">#fff</span><span class="p">;</span> <span class="c">/* 文字颜色 */</span>
 <span class="p">}</span>
 
@@ -276,6 +278,7 @@
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

@@ -35,6 +35,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -97,7 +99,7 @@ Error <span class="k">while</span> running Linker
 <p><code>printFloat(1.02);</code></p>
 <p>必须传递一个变量，例如</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">test</span> <span class="o">=</span> <span class="mf">1.02</span><span class="p">;</span>
-<span class="n">printFloat</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="p">;</span>
+<span class="n">printFloat</span><span class="p">(</span><span class="n">test</span><span class="p">);</span>
 </code></pre></div><p>找到了根本一点的解决方法，右击工程，选择<code>Options</code>-&gt;<code>Linker</code>，在<code>Config</code>标签页下找到<code>Linker configuration file</code>，勾选<code>Override default</code>，选择安装的TI蓝牙协议栈工程例程里common文件夹下的<code>ti_51ew_cc2540b.xcl</code>，ok，编译链接就可以通过了。</p>
 <h2 id="问题2">问题2</h2>
 <p>出现编译连接错误：</p>
@@ -135,12 +137,12 @@ Error <span class="k">while</span> running Linker
     <li><a href="#更新情况">更新情况</a></li>
     <li><a href="#问题1">问题1</a>
       <ul>
-        <li><a href="#解决方法">解决方法：</a></li>
+        <li><a href="#解决方法"><strong>解决方法：</strong></a></li>
       </ul>
     </li>
     <li><a href="#问题2">问题2</a>
       <ul>
-        <li><a href="#解决方法-1">解决方法：</a></li>
+        <li><a href="#解决方法-1"><strong>解决方法：</strong></a></li>
         <li><a href="#参考">参考：</a></li>
       </ul>
     </li>
@@ -217,6 +219,7 @@ Error <span class="k">while</span> running Linker
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

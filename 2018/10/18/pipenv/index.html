@@ -38,6 +38,8 @@
 	
 	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
 	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
 </head>
 
 <body id="page">
@@ -132,7 +134,7 @@ $ pipenv install --python 3.7
 </code></pre></div><p>安装过程中，<code>Pipfile</code> 会记录包安装的信息和使用的安装源，名称、版本号等。所以 <code>Pipfile</code> 可以跟踪包的管理信息，可以在与别人分享项目的时候，实现一致的开发环境。而 <code>Pipfile.lock</code> 中包含系统信息，所有已安装包的依赖包及其版本信息，以及所有安装包及其依赖包的 Hash 校验信息。</p>
 <h5 id="指定版本安装">指定版本安装</h5>
 <p>这里以安装版本为1.22的 <code>urllib3</code> 为例：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pipenv install <span class="nv">urllib3</span><span class="o">=</span><span class="o">=</span>1.22
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pipenv install <span class="nv">urllib3</span><span class="o">==</span>1.22
 </code></pre></div><h5 id="安装开发版本包">安装开发版本包</h5>
 <p>在安装命令的基础上使用 <code>--dev</code> 参数即可：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pipenv install httpie --dev
@@ -189,8 +191,8 @@ $ pipenv install --python 3.7
 </code></pre></div><h4 id="查看包安装信息">查看包安装信息</h4>
 <p>可以通过以下命令清晰有层次的查看包的安装依赖信息：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ pipenv graph
-<span class="nv">Pygments</span><span class="o">=</span><span class="o">=</span>2.2.0
-<span class="nv">requests</span><span class="o">=</span><span class="o">=</span>2.19.1
+<span class="nv">Pygments</span><span class="o">==</span>2.2.0
+<span class="nv">requests</span><span class="o">==</span>2.19.1
   - certifi <span class="o">[</span>required: &gt;<span class="o">=</span>2017.4.17, installed: 2018.10.15<span class="o">]</span>
   - chardet <span class="o">[</span>required: &gt;<span class="o">=</span>3.0.2,&lt;3.1.0, installed: 3.0.4<span class="o">]</span>
   - idna <span class="o">[</span>required: &gt;<span class="o">=</span>2.5,&lt;2.8, installed: 2.7<span class="o">]</span>
@@ -238,7 +240,7 @@ NONE
 <h2 id="问题">问题</h2>
 <h3 id="module-object-is-not-callable-问题">&lsquo;module&rsquo; object is not callable 问题</h3>
 <p>使用命令 <code>pipenv install</code> 安装软件包的时候，可能会遇到 <strong>TypeError: &lsquo;module&rsquo; object is not callable</strong> 问题，这是因为 pip 版本不兼容的问题导致的，可以在相应的工程内执行以下命令安装 18.0 版本的 pip 临时解决^[<a href="https://github.com/pypa/pipenv/issues/2871">Running pipenv gives TypeError: &lsquo;module&rsquo; object is not callable #2871</a>]：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ pipenv run pip install <span class="nv">pip</span><span class="o">=</span><span class="o">=</span>18.0
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ pipenv run pip install <span class="nv">pip</span><span class="o">==</span>18.0
 </code></pre></div><p>这个问题，是在本文章发表的时候刚出现的，可能会随着 pipenv 的升级得到相应解决。</p>
 <h3 id="valueerror-unknown-locale-utf-8-问题">ValueError: unknown locale: UTF-8 问题</h3>
 <p>这个问题解决方法很简单，只需指定环境变量即可，可以将以下内容添加到 <code>.bashrc</code> 或 <code>.zshrc</code> 中解决^[<a href="https://github.com/pypa/pipenv/issues/187">ValueError: unknown locale: UTF-8 #187</a>]：</p>
@@ -363,6 +365,7 @@ NONE
     };
   </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
 
 
 

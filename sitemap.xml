@@ -538,7 +538,12 @@
   </url>
   
   <url>
-    <loc>https://www.smslit.top/2019/01/22/textGO/</loc>
+    <loc>https://www.smslit.top/</loc>
+    <lastmod>2019-01-22T16:32:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/textGO/</loc>
     <lastmod>2019-01-22T16:32:01+08:00</lastmod>
   </url>
   
@@ -728,7 +733,7 @@
   </url>
   
   <url>
-    <loc>https://www.smslit.top/2018/10/10/vscode-pio-ide/</loc>
+    <loc>https://www.smslit.top/vscode-pio-ide/</loc>
     <lastmod>2018-10-12T12:50:37+08:00</lastmod>
   </url>
   
@@ -980,11 +985,6 @@
   <url>
     <loc>https://www.smslit.top/2017/09/02/wsl-webbrowser/</loc>
     <lastmod>2017-09-02T13:41:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/</loc>
-    <lastmod>2017-08-28T21:41:52+08:00</lastmod>
   </url>
   
   <url>

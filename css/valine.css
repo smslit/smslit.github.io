@@ -109,3 +109,7 @@
 :-ms-input-placeholder {
   color: #ccc;
 }
+
+.v[data-class="v"] .vicon {
+  fill: #999 !important;
+}

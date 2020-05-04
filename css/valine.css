@@ -72,11 +72,11 @@
   color: #c6cddb !important;
 }
 
-.v .vlist .vcard .vquote {
+.v[data-class="v"] .vcards .vcard .vquote {
   border-left: 0px !important;
 }
 
-.v .vlist .vcard .vh {
+.v[data-class="v"] .vcards .vcard .vh {
   border-bottom: 0px !important;
 }
 

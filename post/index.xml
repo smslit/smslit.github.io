@@ -6,8 +6,124 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Fri, 01 May 2020 08:10:24 +0800</lastBuildDate>
+		<lastBuildDate>Tue, 12 May 2020 13:32:23 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
+			<link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+			<pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+			<description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
+			<content type="html"><![CDATA[<p>出于某些原因，公司使用 <strong>ubuntu16.04(xenial)</strong> 和 <strong>python3.6</strong>，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用环境大部分类似，有必要先弄一个满足基本需求的镜像，后续再定制相应环境镜像即可。</p>
+<p>本文主要讲一下制作这个基础镜像的过程，灰常简单。</p>
+<h2 id="需求">需求</h2>
+<p>先理一下我们的需求：</p>
+<ul>
+<li>ubuntu16.04(xenial)，apt-get 使用国内源，安装基本的工具</li>
+<li>最新的 python3.6，目前最新的为 python3.6</li>
+<li>最新的 pip3，而且要更改配置为国内的 pypi 源</li>
+</ul>
+<h2 id="准备工作">准备工作</h2>
+<p>我们使用 Dockerfile 制作镜像，这里需要准备一些文件，所以先创建个目录，在此目录下进行操作，比如目录是 <code>docker_ubuntu_python3.6</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">mkdir docker_ubuntu_python3.6
+<span class="c1"># 进入目录</span>
+<span class="nb">cd</span> docker_ubuntu_python3.6
+</code></pre></div><p>此目录下后面我们需要创建三个文件，最好是不要包含其它文件：</p>
+<ul>
+<li>sources.list</li>
+<li>pip.conf</li>
+<li>Dockerfile</li>
+</ul>
+<p><strong>注：</strong></p>
+<p>这个目录不要再有其它文件，否则还要将多余的文件加到 .dockerignore</p>
+<h3 id="sourceslist">sources.list</h3>
+<p>为更改镜像中的 apt-get 源为国内源而准备。</p>
+<p>新建文件 <strong>sources.list</strong>，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">deb-src http://archive.ubuntu.com/ubuntu xenial main restricted <span class="c1">#Added by software-properties</span>
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe <span class="c1">#Added by software-properties</span>
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe <span class="c1">#Added by software-properties</span>
+deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse <span class="c1">#Added by software-properties</span>
+deb http://archive.canonical.com/ubuntu xenial partner
+deb-src http://archive.canonical.com/ubuntu xenial partner
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe <span class="c1">#Added by software-properties</span>
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
+</code></pre></div><p>这里使用的是阿里云 ubuntu16.04 的源，可选择其它源。</p>
+<h3 id="pipconf">pip.conf</h3>
+<p>为加速 pip 安装第三方依赖的速度而准备。</p>
+<p>创建文件 <strong>pip.conf</strong>，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[global]</span>
+<span class="na">index-url</span> <span class="o">=</span> <span class="s">https://pypi.tuna.tsinghua.edu.cn/simple</span>
+<span class="k">[install]</span>
+<span class="na">trusted-host</span><span class="o">=</span><span class="s">pypi.tuna.tsinghua.edu.cn</span>
+<span class="na">disable-pip-version-check</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">timeout</span> <span class="o">=</span> <span class="s">6000</span>
+</code></pre></div><p>这里使用的清华的 pypi 源，可选择使用其它源！</p>
+<h3 id="dockerfile">Dockerfile</h3>
+<p>最后是制作 Docker 镜像的  Dokerfile，新建文件，名为 <strong>Dockerfile</strong>，内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> ubuntu:xenial</span><span class="err">
+</span><span class="err"></span><span class="k">LABEL</span> <span class="nv">author</span><span class="o">=</span><span class="s2">&#34;lazyman&#34;</span><span class="err">
+</span><span class="err"></span><span class="c"># 用ubuntu国内源替换默认源</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> rm /etc/apt/sources.list<span class="err">
+</span><span class="err"></span><span class="k">COPY</span> sources.list /etc/apt/sources.list<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get update<span class="err">
+</span><span class="err"></span><span class="c"># 安装python3.6必要的包。源镜像太精简了，ip ifconfig之类的都没有。后续安装python pip也需要一些。但是build_essential似乎不必须，先去了。如果后面安装numpy之类需要gcc了，再加上</span><span class="err">
+</span><span class="err"></span><span class="c"># RUN apt-get install -y apt-transport-https vim iproute2 net-tools build-essential ca-certificates curl wget software-properties-common</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get install -y libapt-pkg5.0 apt-transport-https iproute2 net-tools ca-certificates curl wget software-properties-common<span class="err">
+</span><span class="err"></span><span class="c"># 安装python3.6 来自第三方</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> add-apt-repository ppa:deadsnakes/ppa<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get update<span class="err">
+</span><span class="err"></span><span class="c"># 安装 python3.6</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get install -y python3.6<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get install -y python3.6-dev<span class="err">
+</span><span class="err"></span><span class="c"># 和自带的3.5共存</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 <span class="m">2</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> update-alternatives --config python3<span class="err">
+</span><span class="err"></span><span class="c"># 安装 vim</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get install -y vim python3-pip<span class="err">
+</span><span class="err"></span><span class="c"># 更改 pip 源为清华源，加速</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> mkdir /root/.pip<span class="err">
+</span><span class="err"></span><span class="k">COPY</span> pip.conf /root/.pip/pip.conf<span class="err">
+</span><span class="err"></span><span class="c"># 更新 pip3</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> pip3 install --upgrade pip<span class="err">
+</span><span class="err"></span><span class="c">#print()时在控制台正常显示中文</span><span class="err">
+</span><span class="err"></span><span class="k">ENV</span> <span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8<span class="err">
+</span></code></pre></div><p>内容中有注释，所以很容易明白过程！！！</p>
+<p>准备工作大功告成，看一下当前目录下的文件结构：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">irecog@irecog <span class="o">[</span>01:59:36 PM<span class="o">]</span> <span class="o">[</span>~/docker_ubuntu_python3.6<span class="o">]</span>
+-&gt; % tree .
+.
+├── Dockerfile
+├── pip.conf
+└── sources.list
+
+<span class="m">0</span> directories, <span class="m">3</span> files
+</code></pre></div><h2 id="制作镜像">制作镜像</h2>
+<p>一条命令，完成制作：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker build -t ubuntu16_04-with-python3_6 .
+</code></pre></div><p>理论上不到一杯咖啡过后，就能看到制作完成的镜像：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">irecog@irecog <span class="o">[</span>02:00:40 PM<span class="o">]</span> <span class="o">[</span>~/docker_ubuntu_python3.6<span class="o">]</span>
+-&gt; % docker images
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+ubuntu16_04-with-python3_6   latest              7883d49a0394        <span class="m">47</span> minutes ago      623MB
+</code></pre></div><h2 id="过程回顾">过程回顾</h2>
+<p>下面是整个操作过程的 asciinema 录制，可参考录制进行操作：</p>
+<script id="asciicast-329370" src="https://asciinema.org/a/329370.js?speed=3&autoplay=1" async></script>
+<p>如果上面过程录制加载很慢，可自行安装 <a href="https://asciinema.org/">asciinema</a> ，使用 asciinema 播放 <a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/docker-ubuntu1604-python36-20200512143204.json">docker-ubuntu1604-python36.json</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">asciinema play docker-ubuntu1604-python36.json
+</code></pre></div>]]></content>
+		</item>
 		
 		<item>
 			<title>博客现已支持 Asciinema</title>

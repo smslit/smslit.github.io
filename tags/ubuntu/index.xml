@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 20 Dec 2018 14:49:08 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 13:32:23 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
+      <link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+      <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+      <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
+    </item>
     
     <item>
       <title>mac 下使用 Docker 搭建 ubuntu 环境</title>

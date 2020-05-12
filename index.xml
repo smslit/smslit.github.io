@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
+      <link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+      <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+      <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
+    </item>
+    
+    <item>
       <title>博客现已支持 Asciinema</title>
       <link>https://www.smslit.top/2020/05/01/asciinema/</link>
       <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</guid>
       <description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
-    </item>
-    
-    <item>
-      <title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
-      <link>https://www.smslit.top/2019/08/19/platformio-libraries/</link>
-      <pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/08/19/platformio-libraries/</guid>
-      <description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
     </item>
     
   </channel>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2020 13:32:23 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
+      <link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+      <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+      <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
+    </item>
     
     <item>
       <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
@@ -96,15 +105,6 @@
       
       <guid>https://www.smslit.top/2018/10/26/hashcal-python/</guid>
       <description>&lt;p&gt;今天又学习了点 &lt;code&gt;argparse&lt;/code&gt; 库的东西——子命令实现的正确姿势(常规操作)，借着实现一个文件校验、比较的小工具来巩固一下刚学到的子命令实现。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>python 实现文本文件的编码检测和转换</title>
-      <link>https://www.smslit.top/2018/10/25/encoding-python/</link>
-      <pubDate>Thu, 25 Oct 2018 22:05:59 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2018/10/25/encoding-python/</guid>
-      <description>&lt;p&gt;记得在前公司做嵌入式开发时，总是会遇到因代码文件编码不对导致的注释乱码问题。因为部门里很多人喜欢使用 GB2312，而我比较倾向于用 utf-8 编码，所以每次合并他们代码的时候，通常我会使用一个 &lt;code&gt;find&lt;/code&gt; 和 &lt;code&gt;enca&lt;/code&gt; 的组合命令，对工程检索将 GB2312 的 &lt;code&gt;.c&lt;/code&gt; 和 &lt;code&gt;.h&lt;/code&gt; 文件转码为 &lt;code&gt;utf-8&lt;/code&gt;，那么我们是不是可以自己编写一个 python 工具实现文件编码的检测和转换呢？当然可以，借助第三方库 &lt;code&gt;chardet&lt;/code&gt; 就可以做到！&lt;/p&gt;</description>
     </item>
     
   </channel>

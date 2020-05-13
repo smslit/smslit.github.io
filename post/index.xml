@@ -71,32 +71,30 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 </code></pre></div><p>这里使用的清华的 pypi 源，可选择使用其它源！</p>
 <h3 id="dockerfile">Dockerfile</h3>
 <p>最后是制作 Docker 镜像的  Dokerfile，新建文件，名为 <strong>Dockerfile</strong>，内容如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> ubuntu:xenial</span><span class="err">
-</span><span class="err"></span><span class="k">LABEL</span> <span class="nv">author</span><span class="o">=</span><span class="s2">&#34;lazyman&#34;</span><span class="err">
+<div class="highlight"><pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> ubuntu:xenial AS ubuntu16_04-with-python3_6</span><span class="err">
+</span><span class="err"></span><span class="k">LABEL</span> <span class="nv">author</span><span class="o">=</span><span class="s2">&#34;5km&#34;</span><span class="err">
 </span><span class="err"></span><span class="c"># 用ubuntu国内源替换默认源</span><span class="err">
 </span><span class="err"></span><span class="k">RUN</span> rm /etc/apt/sources.list<span class="err">
 </span><span class="err"></span><span class="k">COPY</span> sources.list /etc/apt/sources.list<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update<span class="err">
 </span><span class="err"></span><span class="c"># 安装python3.6必要的包。源镜像太精简了，ip ifconfig之类的都没有。后续安装python pip也需要一些。但是build_essential似乎不必须，先去了。如果后面安装numpy之类需要gcc了，再加上</span><span class="err">
-</span><span class="err"></span><span class="c"># RUN apt-get install -y apt-transport-https vim iproute2 net-tools build-essential ca-certificates curl wget software-properties-common</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get install -y libapt-pkg5.0 apt-transport-https iproute2 net-tools ca-certificates curl wget software-properties-common<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> apt-get install -y libapt-pkg5.0 apt-transport-https iproute2 net-tools ca-certificates curl wget software-properties-common <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> apt-get clean<span class="err">
 </span><span class="err"></span><span class="c"># 安装python3.6 来自第三方</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> add-apt-repository ppa:deadsnakes/ppa<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update<span class="err">
-</span><span class="err"></span><span class="c"># 安装 python3.6</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get install -y python3.6<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get install -y python3.6-dev<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> add-apt-repository ppa:deadsnakes/ppa <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> apt-get update <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> apt-get install -y python3.6 python3.6-dev python3-pip <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> apt-get clean<span class="err">
 </span><span class="err"></span><span class="c"># 和自带的3.5共存</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 <span class="m">1</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 <span class="m">2</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> update-alternatives --config python3<span class="err">
-</span><span class="err"></span><span class="c"># 安装 vim</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get install -y vim python3-pip<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 <span class="m">1</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 <span class="m">2</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> update-alternatives --config python3<span class="err">
 </span><span class="err"></span><span class="c"># 更改 pip 源为清华源，加速</span><span class="err">
 </span><span class="err"></span><span class="k">RUN</span> mkdir /root/.pip<span class="err">
 </span><span class="err"></span><span class="k">COPY</span> pip.conf /root/.pip/pip.conf<span class="err">
 </span><span class="err"></span><span class="c"># 更新 pip3</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> pip3 install --upgrade pip<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> pip3 install --upgrade pip <span class="se">\
+</span><span class="se"></span>    <span class="o">&amp;&amp;</span> rm -rf /root/.cache/pip<span class="err">
 </span><span class="err"></span><span class="c">#print()时在控制台正常显示中文</span><span class="err">
 </span><span class="err"></span><span class="k">ENV</span> <span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8<span class="err">
 </span></code></pre></div><p>内容中有注释，所以很容易明白过程！！！</p>

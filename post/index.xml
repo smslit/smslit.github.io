@@ -6,8 +6,60 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Tue, 12 May 2020 13:32:23 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 24 Oct 2020 10:59:00 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>同域名下不同端口的 web 服务 session 冲突导致用户登录互顶的问题</title>
+			<link>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</link>
+			<pubDate>Sat, 24 Oct 2020 10:59:00 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</guid>
+			<description>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！ 日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都</description>
+			<content type="html"><![CDATA[<p>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！</p>
+<p>日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都有用户登录功能，且采用 session 的安全认证方式，就会出现两个应用登录信息互顶的问题，具体表现为：已经登录了 A 应用，结果再去登录 B 应用，回头去 A 应用的页面发现登录信息失效了，本文就看一下这个问题。</p>
+<!-- more -->
+<h2 id="说明">说明</h2>
+<p>web 项目使用基于 python 的 web 框架 flask 实现。</p>
+<h2 id="探索">探索</h2>
+<h3 id="复现问题">复现问题</h3>
+<p>我以自己的项目为例：</p>
+<ul>
+<li><strong>应用 A</strong>：localhost:20702</li>
+<li><strong>应用 B</strong>：localhost:20709</li>
+</ul>
+<p>首先打开项目 A 的网页并登录，然后打开浏览器的网页检查器看一下，cookie 信息中 session id 叫 <strong>session</strong>:</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/%E6%88%AA%E5%B1%8F2020-10-24%2011.42.39_%E5%89%AF%E6%9C%AC-20201024131254.jpg" alt=""></p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">session:&#34;eyJ1c2VybmFtZSI6InRpYW55ZTEifQ.X5OddA.Tt8ayJhPp8KHcBdzRzU72I6U-SI&#34;
+</code></pre></div><p>同样，再打开项目 B 的网页并登录，然后同样打开浏览器网页检查器看一下 cookie 信息，也有一个 session id 为 <strong>session</strong> 的信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">session:&#34;eyJ1c2VybmFtZSI6InRpYW55ZSJ9.X5OaxQ.IltnUYo4-bO9JcrNxBJYPc1hxWs&#34;
+</code></pre></div><p>回过头去看项目 A 的网页发现，原来的 cookie 信息变了，还是有 session 的信息，但是值变了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">session:&#34;eyJ1c2VybmFtZSI6InRpYW55ZSJ9.X5OexQ.OC7TtbfCLfuUtwsS0D9nbK6mh5w&#34;
+</code></pre></div><p>导致项目 A 的页面登录失效了。</p>
+<h3 id="排查原因">排查原因</h3>
+<p>上面在检查器中可以明确看到 session 信息，cookie 中仅仅出现的是域名 localhost 下的一个 session 信息，id 为 <strong>session</strong>，怎么回事？两个项目共用了一个 session 信息。</p>
+<p>经过了解知道：</p>
+<blockquote>
+<p>对于浏览器来说，cookie 不区分端口，因此对于同一个域名，它的所有端口都是共享 cookie</p>
+</blockquote>
+<h2 id="解决">解决</h2>
+<p>所以解决方法很简单，修改后端默认的 session id 名称为各自项目的，只要不相同就可以了。可以在 Flask 应用的配置中修改配置项 <code>SESSION_COOKIE_NAME</code>，其默认为 <code>session</code>，因为两个项目的均没有配置这个，都使用 <strong>session</strong> 作为了 session id，造成了冲突，我们添加这个配置项改为相关的应用名称即可，比如我的 Flask 项目中可以通过以下多种方式修改此配置：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># app 为 Flask 实例</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&#34;SESSION_COOKIE_NAME&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;session-demo1&#34;</span>
+</code></pre></div><p>或者</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 单独定义配置对象</span>
+<span class="k">class</span> <span class="nc">ProductionConfig</span><span class="p">():</span>
+    <span class="n">SESSION_COOKIE_NAME</span> <span class="o">=</span> <span class="s2">&#34;session-demo1&#34;</span>
+
+<span class="c1"># 从对象读入配置内容，app 为 Flask 实例</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">ProductionConfig</span><span class="p">)</span>
+</code></pre></div><p>两个项目各自修改 <code>SESSION_COOKIE_NAME</code> 为不同值之后，即可解决 session 冲突问题了！Nice！</p>
+<blockquote>
+<p>如果使用其它语言或 web 框架，一定可以找到这个 session cookie name 的配置项！</p>
+</blockquote>
+<p>希望能帮到您！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>

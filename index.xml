@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>同域名下不同端口的 web 服务 session 冲突导致用户登录互顶的问题</title>
+      <link>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</link>
+      <pubDate>Sat, 24 Oct 2020 10:59:00 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</guid>
+      <description>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！ 日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都</description>
+    </item>
+    
+    <item>
       <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
       <link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
       <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</guid>
       <description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
-    </item>
-    
-    <item>
-      <title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
-      <link>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</link>
-      <pubDate>Wed, 21 Aug 2019 10:51:18 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/08/21/platformio-irremote-driver/</guid>
-      <description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
     </item>
     
   </channel>

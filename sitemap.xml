@@ -3,12 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.smslit.top/tags/flask/</loc>
-    <lastmod>2020-10-24T10:59:00+08:00</lastmod>
+    <loc>https://www.smslit.top/tags/nginx/</loc>
+    <lastmod>2020-11-28T15:04:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/2020/11/28/vue-flask-deploy-with-nginx/</loc>
+    <lastmod>2020-11-28T15:04:55+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.smslit.top/post/</loc>
+    <lastmod>2020-11-28T15:04:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/tags/</loc>
+    <lastmod>2020-11-28T15:04:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/tags/web/</loc>
+    <lastmod>2020-11-28T15:04:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.smslit.top/tags/flask/</loc>
     <lastmod>2020-10-24T10:59:00+08:00</lastmod>
   </url>
   
@@ -19,16 +39,6 @@
   
   <url>
     <loc>https://www.smslit.top/tags/session/</loc>
-    <lastmod>2020-10-24T10:59:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/tags/</loc>
-    <lastmod>2020-10-24T10:59:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.smslit.top/tags/web/</loc>
     <lastmod>2020-10-24T10:59:00+08:00</lastmod>
   </url>
   

@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>nginx 实现 vue &#43; flask 前后端分离部署</title>
+      <link>https://www.smslit.top/2020/11/28/vue-flask-deploy-with-nginx/</link>
+      <pubDate>Sat, 28 Nov 2020 15:04:55 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/11/28/vue-flask-deploy-with-nginx/</guid>
+      <description>随着项目的进展，我们发现单靠后端托管部署 vue 构建的静态文件的方式已无法满足我们的开发需求，所以此文要讲的内容应运而生，借用 nginx 简单实现 vue 和 flask 前后</description>
+    </item>
+    
+    <item>
       <title>同域名下不同端口的 web 服务 session 冲突导致用户登录互顶的问题</title>
       <link>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</link>
       <pubDate>Sat, 24 Oct 2020 10:59:00 +0800</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/leetcode/1.twosum/</guid>
       <description>描述 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一</description>
-    </item>
-    
-    <item>
-      <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
-      <link>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</link>
-      <pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/08/24/platformio-stm32-cubemx/</guid>
-      <description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
     </item>
     
   </channel>

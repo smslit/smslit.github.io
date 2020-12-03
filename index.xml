@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Paddle Inference 推理动态链接库 libnvinfer.so 问题</title>
+      <link>https://www.smslit.top/2020/12/03/Paddle-Inference-libnvinfer.so/</link>
+      <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/12/03/Paddle-Inference-libnvinfer.so/</guid>
+      <description>执行推理时会提示 TensorRT 的动态链接库缺失的问题： TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory) Suggestions: Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed. Configure TensorRT dynamic library environment variables as</description>
+    </item>
+    
+    <item>
       <title>nginx 实现 vue &#43; flask 前后端分离部署</title>
       <link>https://www.smslit.top/2020/11/28/vue-flask-deploy-with-nginx/</link>
       <pubDate>Sat, 28 Nov 2020 15:04:55 +0800</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/10/18/mbp-screen/</guid>
       <description>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部</description>
-    </item>
-    
-    <item>
-      <title>1. 两数之和</title>
-      <link>https://www.smslit.top/leetcode/1.twosum/</link>
-      <pubDate>Tue, 08 Oct 2019 14:46:34 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/leetcode/1.twosum/</guid>
-      <description>描述 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一</description>
     </item>
     
   </channel>

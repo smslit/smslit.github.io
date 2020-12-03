@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 28 Nov 2020 15:04:55 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Dec 2020 13:30:33 +0800</lastBuildDate>
     
 	<atom:link href="https://www.smslit.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ai</title>
+      <link>https://www.smslit.top/tags/ai/</link>
+      <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>paddle</title>
+      <link>https://www.smslit.top/tags/paddle/</link>
+      <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/tags/paddle/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>nginx</title>
@@ -81,24 +99,6 @@
       <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
       
       <guid>https://www.smslit.top/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>terminal</title>
-      <link>https://www.smslit.top/tags/terminal/</link>
-      <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/tags/terminal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>虚拟环境</title>
-      <link>https://www.smslit.top/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</link>
-      <pubDate>Fri, 21 Feb 2020 15:57:16 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</guid>
       <description></description>
     </item>
     

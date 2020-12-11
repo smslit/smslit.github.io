@@ -6,8 +6,138 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 03 Dec 2020 13:30:33 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 11 Dec 2020 14:19:33 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>使用 mmdectection 简单的训练一个 faster-rcnn 模型</title>
+			<link>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</link>
+			<pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
+			<description>今天整理下怎么简单的使用 mmdetection (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 COCO 格式的数据集。 一、准备环境及仓库 创建开发环境 # 创建新的 conda 环境 conda create -n open-mmlab python=3.7 -y</description>
+			<content type="html"><![CDATA[<p>今天整理下怎么简单的使用 <strong>mmdetection</strong> (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 <a href="https://cocodataset.org/">COCO</a> 格式的数据集。</p>
+<h2 id="一准备环境及仓库">一、准备环境及仓库</h2>
+<ol>
+<li>
+<p>创建开发环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建新的 conda 环境</span>
+conda create -n open-mmlab <span class="nv">python</span><span class="o">=</span>3.7 -y
+<span class="c1"># 激活 conda 环境</span>
+conda activate open-mmlab
+</code></pre></div></li>
+<li>
+<p>安装 pytorch</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">conda install <span class="nv">pytorch</span><span class="o">==</span>1.6.0 <span class="nv">torchvision</span><span class="o">==</span>0.7.0 <span class="nv">cudatoolkit</span><span class="o">=</span>10.1 -c pytorch -y
+</code></pre></div></li>
+<li>
+<p>安装 mmcv-full</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pip install https://download.openmmlab.com/mmcv/dist/latest/torch1.6.0/cu101/mmcv_full-latest%2Btorch1.6.0%2Bcu101-cp37-cp37m-manylinux1_x86_64.whl
+</code></pre></div></li>
+<li>
+<p>clone 仓库</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/open-mmlab/mmdetection.git
+<span class="nb">cd</span> mmdetection
+</code></pre></div></li>
+<li>
+<p>安装仓库中开发需要的依赖</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pip install -r requirements/build.txt
+pip install -v -e .  <span class="c1"># or &#34;python setup.py develop&#34;</span>
+</code></pre></div></li>
+</ol>
+<h2 id="二准备数据集">二、准备数据集</h2>
+<p>下载 coco 格式的数据集，或者自己标注制作 coco 格式的数据集，比如我们的数据集的目录是 <code>/path/to/your/dataset</code>（<strong>绝对路径</strong>），需要在 mmdetection 中建立 data 目录，在其下面建立数据集目录的软链接：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 此时在 mmdetection 目录下，建立 data 目录，如果已经存在可以省略此步</span>
+mkdir data
+<span class="c1"># 建立数据集软链接</span>
+ln -s /path/to/your/dataset data/mydetaset
+</code></pre></div><blockquote>
+<p>建立软链接时使用的目录路径必须是<strong>绝对路径</strong></p>
+</blockquote>
+<p>看一下目录结构，这里是 coco 格式，都差不多，以我手头的一个数据集为例，目录结构如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ tree -L <span class="m">2</span> data/mydetaset                          
+data/mydetaset
+├── annotations
+│   ├── test_image_info.json
+│   ├── train1.json
+│   ├── train2.json
+│   ├── val1.json
+│   └── val2.json
+└── images
+    ├── <span class="nb">test</span>
+    ├── train1
+    ├── train2
+    ├── val1
+    └── val2
+
+<span class="m">7</span> directories, <span class="m">5</span> files
+</code></pre></div><h2 id="三修改配置文件">三、修改配置文件</h2>
+<p>这里以 <code>configs/faster_rcnn/faster_rcnn_x101_64x4d_fpn_2x_coco.py</code> 为例，直接修改配置适配训练任务。</p>
+<p>打开这个配置文件发现是引用其它的配置文件，一步步的找到相应的配置文件进行修改：</p>
+<ol>
+<li>
+<p><strong>configs/<em>base</em>/models/faster_rcnn_r50_fpn.py</strong></p>
+<p>这里主要修改检测目标类型个数，比如我修改为 2 个，修改 <strong>46</strong> 行的 <code>num_classes</code> 的值为 2 即可。</p>
+</li>
+<li>
+<p><strong>configs/<em>base</em>/schedules/schedule_2x.py</strong></p>
+<p>这里我要使用一张显卡进行训练，所以这里需要调整学习率为原来的 $\frac{1}{8}$ ，修改第 2 行的  <code>lr</code> 即可，修改为 $0.025$。</p>
+</li>
+<li>
+<p><strong>configs/<em>base</em>/datasets/coco_detection.py</strong></p>
+<p>需要修改数据集相关的配置，主要是路径及取样数</p>
+<ul>
+<li>
+<p><strong>data_root</strong>：这里要修改为上面我们创建的数据集的软链接，为 <code>data/mydetaset/</code></p>
+<blockquote>
+<p>这里的目录最后要带着 <code>/</code></p>
+</blockquote>
+</li>
+<li>
+<p><strong>samples_per_gpu</strong>：如果显卡显存有限，这里就调成 1 吧</p>
+</li>
+<li>
+<p><strong>train</strong>：需要对应数据集修改<code>  img_prefix</code> 和 <code>ann_file</code>，以上边准备的数据集为例，修改标注文件和图像目录，同样需要注意最后带上 <code>/</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">train</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+  <span class="nb">type</span><span class="o">=</span><span class="n">dataset_type</span><span class="p">,</span>
+  <span class="n">ann_file</span><span class="o">=</span><span class="n">data_root</span> <span class="o">+</span> <span class="s1">&#39;annotations/train1.json&#39;</span><span class="p">,</span>
+  <span class="n">img_prefix</span><span class="o">=</span><span class="n">data_root</span> <span class="o">+</span> <span class="s1">&#39;images/train1/&#39;</span><span class="p">,</span>
+  <span class="n">pipeline</span><span class="o">=</span><span class="n">train_pipeline</span><span class="p">),</span>
+</code></pre></div></li>
+<li>
+<p><strong>val</strong>：需要对应数据集修改<code>  img_prefix</code> 和 <code>ann_file</code>，以上边准备的数据集为例，修改标注文件和图像目录，同样需要注意最后带上 <code>/</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">val</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+  <span class="nb">type</span><span class="o">=</span><span class="n">dataset_type</span><span class="p">,</span>
+  <span class="n">ann_file</span><span class="o">=</span><span class="n">data_root</span> <span class="o">+</span> <span class="s1">&#39;annotations/val1.json&#39;</span><span class="p">,</span>
+  <span class="n">img_prefix</span><span class="o">=</span><span class="n">data_root</span> <span class="o">+</span> <span class="s1">&#39;images/val1/&#39;</span><span class="p">,</span>
+  <span class="n">pipeline</span><span class="o">=</span><span class="n">test_pipeline</span><span class="p">),</span>
+</code></pre></div></li>
+<li>
+<p><strong>train</strong>：需要对应数据集修改<code>  img_prefix</code> 和 <code>ann_file</code>，以上边准备的数据集为例，修改标注文件和图像目录，同样需要注意最后带上 <code>/</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">val</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+  <span class="nb">type</span><span class="o">=</span><span class="n">dataset_type</span><span class="p">,</span>
+  <span class="n">ann_file</span><span class="o">=</span><span class="n">data_root</span> <span class="o">+</span> <span class="s1">&#39;annotations/val1.json&#39;</span><span class="p">,</span>
+  <span class="n">img_prefix</span><span class="o">=</span><span class="n">data_root</span> <span class="o">+</span> <span class="s1">&#39;images/val1/&#39;</span><span class="p">,</span>
+  <span class="n">pipeline</span><span class="o">=</span><span class="n">test_pipeline</span><span class="p">),</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="四修改代码中的问题">四、修改代码中的问题</h2>
+<p>加载数据集的时候，可以修改数据集加载器类中的代码，实现自动加载正确的类别信息及所有的数据，否则会无法成加载数据倒是训练失败。</p>
+<p>修改文件 <code>mmdet/datasets/coco.py</code> 中初始化数据中 categories 的加载实现，很简单，只需要去掉 <code>self.coco.get_cat_ids()</code> 方法中的传参，第 <strong>58</strong> 行代码修改为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="bp">self</span><span class="o">.</span><span class="n">cat_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coco</span><span class="o">.</span><span class="n">get_cat_ids</span><span class="p">()</span>
+</code></pre></div><p>另外，保证一致性，还是修改一下 <code>self.CLASSES</code>吧，按照正确顺序写上所有类型即可，这里就不展示了。</p>
+<h2 id="五训练">五、训练</h2>
+<p>使用工具脚本 <code>tools/train.py</code> 即可开启一个简单的训练任务，记得指定 <strong>gpu</strong>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">python tools/train.py configs/faster_rcnn/faster_rcnn_x101_64x4d_fpn_2x_coco.py --gpu-ids <span class="m">1</span> --work-dir output
+</code></pre></div><ul>
+<li><strong>configs/faster_rcnn/faster_rcnn_x101_64x4d_fpn_2x_coco.py</strong>：指定使用的配置，就是上面决定使用的那个</li>
+<li><strong>&ndash;gpu-ids</strong>：指定使用 1 号卡</li>
+<li><strong>&ndash;work-dir</strong>：指定模型训练日志及中间 epoch 文件或其它文件的存储目录为 <code>output</code></li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Paddle Inference 推理动态链接库 libnvinfer.so 问题</title>

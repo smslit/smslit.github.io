@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>使用 mmdectection 简单的训练一个 faster-rcnn 模型</title>
+      <link>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</link>
+      <pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
+      <description>今天整理下怎么简单的使用 mmdetection (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 COCO 格式的数据集。 一、准备环境及仓库 创建开发环境 # 创建新的 conda 环境 conda create -n open-mmlab python=3.7 -y</description>
+    </item>
+    
+    <item>
       <title>Paddle Inference 推理动态链接库 libnvinfer.so 问题</title>
       <link>https://www.smslit.top/2020/12/03/Paddle-Inference-libnvinfer.so/</link>
       <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
@@ -91,15 +100,6 @@
       
       <guid>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</guid>
       <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
-    </item>
-    
-    <item>
-      <title>macbook pro 换脸成功</title>
-      <link>https://www.smslit.top/2019/10/18/mbp-screen/</link>
-      <pubDate>Fri, 18 Oct 2019 10:13:52 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/10/18/mbp-screen/</guid>
-      <description>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部</description>
     </item>
     
   </channel>

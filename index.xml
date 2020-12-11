@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>使用 mmdectection 简单的训练一个 faster-rcnn 模型</title>
+      <title>使用 mmdectection 简单训练一个 faster-rcnn 模型</title>
       <link>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</link>
       <pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
       
       <guid>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
-      <description>今天整理下怎么简单的使用 mmdetection (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 COCO 格式的数据集。 一、准备环境及仓库 创建开发环境 # 创建新的 conda 环境 conda create -n open-mmlab python=3.7 -y</description>
+      <description>今天整理下怎么简单使用 mmdetection (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 COCO 格式的数据集。 一、准备环境及仓库 创建开发环境 # 创建新的 conda 环境 conda create -n open-mmlab python=3.7 -y #</description>
     </item>
     
     <item>

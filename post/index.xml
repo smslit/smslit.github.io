@@ -82,6 +82,9 @@ data/mydetaset
 <li>
 <p><strong>configs/<em>base</em>/schedules/schedule_2x.py</strong></p>
 <p>这里我要使用一张显卡进行训练，所以这里需要调整学习率为原来的 $\frac{1}{8}$ ，修改第 2 行的  <code>lr</code> 即可，修改为 $0.025$。</p>
+<blockquote>
+<p>原来的值一般是针对 8 卡训练的，因为这里使用一张卡，所以这里调整为原来的 $\frac{1}{8}$</p>
+</blockquote>
 </li>
 <li>
 <p><strong>configs/<em>base</em>/datasets/coco_detection.py</strong></p>

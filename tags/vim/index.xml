@@ -7,18 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 25 Jun 2018 17:23:57 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/vim/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 25 Jun 2018 17:23:57 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vim插件管理工具pack</title>
       <link>https://www.smslit.top/2018/06/25/vim-pack/</link>
       <pubDate>Mon, 25 Jun 2018 17:23:57 +0800</pubDate>
       
       <guid>https://www.smslit.top/2018/06/25/vim-pack/</guid>
-      <description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&#39;壮举&#39;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
+      <description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&amp;rsquo;壮举&amp;rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,7 +50,7 @@
       <pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
       
       <guid>https://www.smslit.top/2016/11/27/vim-backspace-invalid/</guid>
-      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;rdquo;，竟然无效！&lt;/p&gt;</description>
+      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;quot;，竟然无效！&lt;/p&gt;</description>
     </item>
     
     <item>

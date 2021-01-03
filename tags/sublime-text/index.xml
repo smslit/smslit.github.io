@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 26 Mar 2016 09:10:46 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/sublime-text/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 26 Mar 2016 09:10:46 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/sublime-text/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux下Sublime Text支持中文输入</title>
       <link>https://www.smslit.top/2016/03/26/subl-ChineseInput-Linux/</link>

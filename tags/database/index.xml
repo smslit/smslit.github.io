@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 19 Dec 2018 20:45:52 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/database/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 19 Dec 2018 20:45:52 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ubuntu 下 mysql 拒绝访问问题</title>
       <link>https://www.smslit.top/2018/12/19/ubuntu_mysql_permission/</link>

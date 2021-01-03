@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 12 Nov 2018 01:22:15 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/matplotlib/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 12 Nov 2018 01:22:15 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/matplotlib/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 matplotlib 的 animation 让数据动起来</title>
       <link>https://www.smslit.top/2018/11/12/matplotlib-animation/</link>

@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/macOS/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 02 Jan 2019 17:20:38 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/macOS/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>为 mac 连接的 2k 显示器开启 HiDPI</title>
       <link>https://www.smslit.top/2019/01/02/mac_hidpi/</link>
@@ -47,7 +43,7 @@
       <pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
       
       <guid>https://www.smslit.top/2016/11/27/vim-backspace-invalid/</guid>
-      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;rdquo;，竟然无效！&lt;/p&gt;</description>
+      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;quot;，竟然无效！&lt;/p&gt;</description>
     </item>
     
     <item>

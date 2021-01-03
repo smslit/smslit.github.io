@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 20 Oct 2015 17:34:46 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/ide/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 20 Oct 2015 17:34:46 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/ide/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>BLE开发笔记——CC254x的开发环境搭建</title>
       <link>https://www.smslit.top/2015/10/20/BLEDevelopEnvironment-elec/</link>

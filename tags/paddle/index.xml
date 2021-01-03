@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 03 Dec 2020 13:30:33 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/paddle/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 03 Dec 2020 13:30:33 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/paddle/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Paddle Inference 推理动态链接库 libnvinfer.so 问题</title>
       <link>https://www.smslit.top/2020/12/03/Paddle-Inference-libnvinfer.so/</link>

@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
       <link>https://www.smslit.top/2020/02/21/pyenv_pipenv/</link>

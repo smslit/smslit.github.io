@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 02 Sep 2017 13:41:03 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.smslit.top/tags/wsl/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 02 Sep 2017 13:41:03 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/wsl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WSL(windows subsytem linux)下添加网络浏览器支持</title>
       <link>https://www.smslit.top/2017/09/02/wsl-webbrowser/</link>

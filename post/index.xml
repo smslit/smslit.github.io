@@ -5629,7 +5629,7 @@ docker-machine version 0.16.0, build 702c267f
 PubkeyAuthentication yes # 可以使用 ssh 公钥许可
 AuthorizedKeysFile	.ssh/authorized_keys # 公钥信息保存到文件 .ssh/authorized_keys 中
 </code></pre></div><h3 id="重启-sshd">重启 sshd</h3>
-<p>因为 ubuntu 过于精简，不能使用 service 命令方便的重启 sshd，这里使用命令 <code>/etc/init.d/ssh restart</code> 进行重启^[<a href="https://blog.csdn.net/u013015629/article/details/70045809">Ubuntu下&quot;sshd:unrecognized service&rdquo;</a>]，重启是为了让上面的配置生效。</p>
+<p>因为 ubuntu 过于精简，不能使用 service 命令方便的重启 sshd，这里使用命令 <code>/etc/init.d/ssh restart</code> 进行重启^[<a href="https://blog.csdn.net/u013015629/article/details/70045809">Ubuntu下&quot;sshd:unrecognized service&quot;</a>]，重启是为了让上面的配置生效。</p>
 <h3 id="添加主机的-ssh-公钥">添加主机的 ssh 公钥</h3>
 <p>这里的主机指的就是 macOS，保证此时还是在 ubuntu 容器中。</p>
 <ol>
@@ -9425,197 +9425,197 @@ optional arguments:
 <thead>
 <tr>
 <th>信息</th>
-<th align="center">表达式</th>
+<th style="text-align:center">表达式</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>非负整数</td>
-<td align="center">^\d+$</td>
+<td style="text-align:center">^\d+$</td>
 </tr>
 <tr>
 <td>正整数</td>
-<td align="center">^[0-9]*[1-9][0-9]*$</td>
+<td style="text-align:center">^[0-9]*[1-9][0-9]*$</td>
 </tr>
 <tr>
 <td>非正整数</td>
-<td align="center">^((-\d+)|(0+))$</td>
+<td style="text-align:center">^((-\d+)|(0+))$</td>
 </tr>
 <tr>
 <td>负整数</td>
-<td align="center">^-[0-9]*[1-9][0-9]*$</td>
+<td style="text-align:center">^-[0-9]*[1-9][0-9]*$</td>
 </tr>
 <tr>
 <td>整数</td>
-<td align="center">^-?\d+$</td>
+<td style="text-align:center">^-?\d+$</td>
 </tr>
 <tr>
 <td>非负浮点数</td>
-<td align="center">^\d+\.?\d+$</td>
+<td style="text-align:center">^\d+\.?\d+$</td>
 </tr>
 <tr>
 <td>正浮点数</td>
-<td align="center">^((0-9)+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)$</td>
+<td style="text-align:center">^((0-9)+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)$</td>
 </tr>
 <tr>
 <td>非正浮点数</td>
-<td align="center">^((-\d+\.\d+)?)|(0+(\.0+)?))$</td>
+<td style="text-align:center">^((-\d+\.\d+)?)|(0+(\.0+)?))$</td>
 </tr>
 <tr>
 <td>负浮点数</td>
-<td align="center">^(-((正浮点数正则式)))$</td>
+<td style="text-align:center">^(-((正浮点数正则式)))$</td>
 </tr>
 <tr>
 <td>英文字符串</td>
-<td align="center">^[A-Za-z]+$</td>
+<td style="text-align:center">^[A-Za-z]+$</td>
 </tr>
 <tr>
 <td>英文大写串</td>
-<td align="center">^[A-Z]+$</td>
+<td style="text-align:center">^[A-Z]+$</td>
 </tr>
 <tr>
 <td>英文小写串</td>
-<td align="center">^[a-z]+$</td>
+<td style="text-align:center">^[a-z]+$</td>
 </tr>
 <tr>
 <td>英文字符数字串</td>
-<td align="center">^[A-Za-z0-9]+$</td>
+<td style="text-align:center">^[A-Za-z0-9]+$</td>
 </tr>
 <tr>
 <td>英数字加下划线串</td>
-<td align="center">^\w+$</td>
+<td style="text-align:center">^\w+$</td>
 </tr>
 <tr>
 <td>E-mail地址</td>
-<td align="center">^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$</td>
+<td style="text-align:center">^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$</td>
 </tr>
 <tr>
 <td>URL</td>
-<td align="center">^[a-zA-Z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\s*)?$</td>
+<td style="text-align:center">^[a-zA-Z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\s*)?$</td>
 </tr>
 <tr>
 <td>URL</td>
-<td align="center">^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\':+!]*([^&lt;&gt;\&quot;\&quot;])* $ |</td>
+<td style="text-align:center">^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\':+!]*([^&lt;&gt;\&quot;\&quot;])* $ |</td>
 </tr>
 <tr>
 <td>邮政编码</td>
-<td align="center">^[1-9]\d{5}$</td>
+<td style="text-align:center">^[1-9]\d{5}$</td>
 </tr>
 <tr>
 <td>中文</td>
-<td align="center">^[\u0391-\uFFE5]+$</td>
+<td style="text-align:center">^[\u0391-\uFFE5]+$</td>
 </tr>
 <tr>
 <td>电话号码</td>
-<td align="center">^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$</td>
+<td style="text-align:center">^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$</td>
 </tr>
 <tr>
 <td>手机号码</td>
-<td align="center">^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$</td>
+<td style="text-align:center">^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$</td>
 </tr>
 <tr>
 <td>双字节字符(包括汉字在内)</td>
-<td align="center">^\x00-\xff</td>
+<td style="text-align:center">^\x00-\xff</td>
 </tr>
 <tr>
 <td>匹配首尾空格</td>
-<td align="center">(^\s*)|(\s*$)（像vbscript那样的trim函数）</td>
+<td style="text-align:center">(^\s*)|(\s*$)（像vbscript那样的trim函数）</td>
 </tr>
 <tr>
 <td>匹配HTML标记</td>
-<td align="center">&lt;(.*)&gt;.*&lt;\/\1&gt;|&lt;(.*)\/&gt;</td>
+<td style="text-align:center">&lt;(.*)&gt;.*&lt;\/\1&gt;|&lt;(.*)\/&gt;</td>
 </tr>
 <tr>
 <td>匹配空行</td>
-<td align="center">\n[\s| ]*\r</td>
+<td style="text-align:center">\n[\s| ]*\r</td>
 </tr>
 <tr>
 <td>提取信息中的网络链接</td>
-<td align="center">(h|H)(r|R)(e|E)(f|F)  *=  *('|&rdquo;)?(\w|\\|\/|\.)+('|&rdquo;|  *|&gt;)?</td>
+<td style="text-align:center">(h|H)(r|R)(e|E)(f|F)  *=  *('|&quot;)?(\w|\\|\/|\.)+('|&quot;|  *|&gt;)?</td>
 </tr>
 <tr>
 <td>提取信息中的邮件地址</td>
-<td align="center">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</td>
+<td style="text-align:center">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</td>
 </tr>
 <tr>
 <td>提取信息中的图片链接</td>
-<td align="center">(s|S)(r|R)(c|C)  *=  *('|&rdquo;)?(\w|\\|\/|\.)+('|&rdquo;|  *|&gt;)?</td>
+<td style="text-align:center">(s|S)(r|R)(c|C)  *=  *('|&quot;)?(\w|\\|\/|\.)+('|&quot;|  *|&gt;)?</td>
 </tr>
 <tr>
 <td>提取信息中的IP地址</td>
-<td align="center">(\d+)\.(\d+)\.(\d+)\.(\d+)</td>
+<td style="text-align:center">(\d+)\.(\d+)\.(\d+)\.(\d+)</td>
 </tr>
 <tr>
 <td>提取信息中的中国手机号码</td>
-<td align="center">(86)\*0\*13\d{9}</td>
+<td style="text-align:center">(86)\*0\*13\d{9}</td>
 </tr>
 <tr>
 <td>提取信息中的中国固定电话号码</td>
-<td align="center">(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}</td>
+<td style="text-align:center">(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}</td>
 </tr>
 <tr>
 <td>提取信息中的中国电话号码（包括移动和固定电话）</td>
-<td align="center">(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}</td>
+<td style="text-align:center">(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}</td>
 </tr>
 <tr>
 <td>提取信息中的中国邮政编码</td>
-<td align="center">[1-9]{1}(\d+){5}</td>
+<td style="text-align:center">[1-9]{1}(\d+){5}</td>
 </tr>
 <tr>
 <td>提取信息中的浮点数（即小数）</td>
-<td align="center">(-?\d*)\.?\d+</td>
+<td style="text-align:center">(-?\d*)\.?\d+</td>
 </tr>
 <tr>
 <td>提取信息中的任何数字</td>
-<td align="center">(-?\d*)(\.\d+)?</td>
+<td style="text-align:center">(-?\d*)(\.\d+)?</td>
 </tr>
 <tr>
 <td>IP</td>
-<td align="center">(\d+)\.(\d+)\.(\d+)\.(\d+)</td>
+<td style="text-align:center">(\d+)\.(\d+)\.(\d+)\.(\d+)</td>
 </tr>
 <tr>
 <td>电话区号</td>
-<td align="center">/^0\d{2,3}$/</td>
+<td style="text-align:center">/^0\d{2,3}$/</td>
 </tr>
 <tr>
 <td>腾讯QQ号</td>
-<td align="center">^[1-9]*[1-9][0-9]*$</td>
+<td style="text-align:center">^[1-9]*[1-9][0-9]*$</td>
 </tr>
 <tr>
 <td>帐号(字母开头，允许5-16字节，允许字母数字下划线)</td>
-<td align="center">^[a-zA-Z][a-zA-Z0-9_]{4,15}$</td>
+<td style="text-align:center">^[a-zA-Z][a-zA-Z0-9_]{4,15}$</td>
 </tr>
 <tr>
 <td>中文、英文、数字及下划线</td>
-<td align="center">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</td>
+<td style="text-align:center">^[\u4e00-\u9fa5_a-zA-Z0-9]+$</td>
 </tr>
 <tr>
 <td>匹配中文字符的正则表达式</td>
-<td align="center">[\u4e00-\u9fa5]</td>
+<td style="text-align:center">[\u4e00-\u9fa5]</td>
 </tr>
 <tr>
 <td>匹配双字节字符(包括汉字在内)</td>
-<td align="center">[^\x00-\xff]</td>
+<td style="text-align:center">[^\x00-\xff]</td>
 </tr>
 <tr>
 <td>匹配空行的正则表达式</td>
-<td align="center">\n[\s| ]*\r</td>
+<td style="text-align:center">\n[\s| ]*\r</td>
 </tr>
 <tr>
 <td>匹配HTML标记的正则表达式</td>
-<td align="center">/&lt;(.*)&gt;.*&lt;\/\1&gt;|&lt;(.*) \/&gt;/</td>
+<td style="text-align:center">/&lt;(.*)&gt;.*&lt;\/\1&gt;|&lt;(.*) \/&gt;/</td>
 </tr>
 <tr>
 <td>sql语句</td>
-<td align="center">^(select|drop|delete|create|update|insert).*$</td>
+<td style="text-align:center">^(select|drop|delete|create|update|insert).*$</td>
 </tr>
 <tr>
 <td>匹配首尾空格的正则表达式</td>
-<td align="center">(^\s*)|(\s*$)</td>
+<td style="text-align:center">(^\s*)|(\s*$)</td>
 </tr>
 <tr>
 <td>匹配Email地址的正则表达式</td>
-<td align="center">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</td>
+<td style="text-align:center">\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</td>
 </tr>
 </tbody>
 </table>
@@ -10077,42 +10077,42 @@ Description: Arduino Leonardo
 <table>
 <thead>
 <tr>
-<th align="center">参数</th>
-<th align="center">默认值</th>
-<th align="center">参数标识</th>
-<th align="left">可选值</th>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">参数标识</th>
+<th style="text-align:left">可选值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">波特率</td>
-<td align="center">9600</td>
-<td align="center">-b, &ndash;baud</td>
-<td align="left">2400、4800、9600、19200、115200等等</td>
+<td style="text-align:center">波特率</td>
+<td style="text-align:center">9600</td>
+<td style="text-align:center">-b, &ndash;baud</td>
+<td style="text-align:left">2400、4800、9600、19200、115200等等</td>
 </tr>
 <tr>
-<td align="center">端口</td>
-<td align="center">自动识别</td>
-<td align="center">-p, &ndash;port</td>
-<td align="left"><code>pio devcie list</code>列出的设备地址</td>
+<td style="text-align:center">端口</td>
+<td style="text-align:center">自动识别</td>
+<td style="text-align:center">-p, &ndash;port</td>
+<td style="text-align:left"><code>pio devcie list</code>列出的设备地址</td>
 </tr>
 <tr>
-<td align="center">校验位</td>
-<td align="center">N</td>
-<td align="center">&ndash;parity</td>
-<td align="left"><code>N</code>, <code>E</code>, <code>O</code>, <code>S</code>, <code>M</code></td>
+<td style="text-align:center">校验位</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">&ndash;parity</td>
+<td style="text-align:left"><code>N</code>, <code>E</code>, <code>O</code>, <code>S</code>, <code>M</code></td>
 </tr>
 <tr>
-<td align="center">编码</td>
-<td align="center">UTF-8</td>
-<td align="center">&ndash;encoding</td>
-<td align="left"><code>hexlify</code>, <code>UTF-8</code></td>
+<td style="text-align:center">编码</td>
+<td style="text-align:center">UTF-8</td>
+<td style="text-align:center">&ndash;encoding</td>
+<td style="text-align:left"><code>hexlify</code>, <code>UTF-8</code></td>
 </tr>
 <tr>
-<td align="center">回显</td>
-<td align="center">off</td>
-<td align="center">&ndash;echo</td>
-<td align="left">无设置值</td>
+<td style="text-align:center">回显</td>
+<td style="text-align:center">off</td>
+<td style="text-align:center">&ndash;echo</td>
+<td style="text-align:left">无设置值</td>
 </tr>
 </tbody>
 </table>
@@ -10283,42 +10283,42 @@ yyyyyLed on!
 <table>
 <thead>
 <tr>
-<th align="center">参数</th>
-<th align="left">用途</th>
+<th style="text-align:center">参数</th>
+<th style="text-align:left">用途</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">enable</td>
-<td align="left">这是用于主题中配置的，不是官方Valine的参数，<strong>true</strong>时控制开启此评论系统</td>
+<td style="text-align:center">enable</td>
+<td style="text-align:left">这是用于主题中配置的，不是官方Valine的参数，<strong>true</strong>时控制开启此评论系统</td>
 </tr>
 <tr>
-<td align="center">appId</td>
-<td align="left">这是在 <a href="https://leancloud.cn/">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App ID</strong></td>
+<td style="text-align:center">appId</td>
+<td style="text-align:left">这是在 <a href="https://leancloud.cn/">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App ID</strong></td>
 </tr>
 <tr>
-<td align="center">appKey</td>
-<td align="left">这是在 <a href="https://leancloud.cn/">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App Key</strong></td>
+<td style="text-align:center">appKey</td>
+<td style="text-align:left">这是在 <a href="https://leancloud.cn/">leancloud</a> 后台应用中获取的，也就是上面提到的 <strong>App Key</strong></td>
 </tr>
 <tr>
-<td align="center">notify</td>
-<td align="left">用于控制是否开启邮件通知功能，具体参考<a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE">邮件提醒配置</a></td>
+<td style="text-align:center">notify</td>
+<td style="text-align:left">用于控制是否开启邮件通知功能，具体参考<a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE">邮件提醒配置</a></td>
 </tr>
 <tr>
-<td align="center">verify</td>
-<td align="left">用于控制是否开启评论验证码功能</td>
+<td style="text-align:center">verify</td>
+<td style="text-align:left">用于控制是否开启评论验证码功能</td>
 </tr>
 <tr>
-<td align="center">avatar</td>
-<td align="left">用于配置评论项中用户头像样式，有多种选择：mm, identicon, monsterid, wavatar, retro, hide。详细参考：<a href="https://valine.js.org/avatar.html">头像配置</a></td>
+<td style="text-align:center">avatar</td>
+<td style="text-align:left">用于配置评论项中用户头像样式，有多种选择：mm, identicon, monsterid, wavatar, retro, hide。详细参考：<a href="https://valine.js.org/avatar.html">头像配置</a></td>
 </tr>
 <tr>
-<td align="center">placehoder</td>
-<td align="left">评论框的提示符</td>
+<td style="text-align:center">placehoder</td>
+<td style="text-align:left">评论框的提示符</td>
 </tr>
 <tr>
-<td align="center">visitor</td>
-<td align="left">控制是否开启文章阅读数的统计功能i, 详情阅读<a href="https://valine.js.org/visitor.html">文章阅读数统计</a></td>
+<td style="text-align:center">visitor</td>
+<td style="text-align:left">控制是否开启文章阅读数的统计功能i, 详情阅读<a href="https://valine.js.org/visitor.html">文章阅读数统计</a></td>
 </tr>
 </tbody>
 </table>
@@ -10427,41 +10427,41 @@ ls -l
 <table>
 <thead>
 <tr>
-<th align="center">hugo目录</th>
-<th align="center">hexo目录</th>
-<th align="left">作用</th>
+<th style="text-align:center">hugo目录</th>
+<th style="text-align:center">hexo目录</th>
+<th style="text-align:left">作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">content</td>
-<td align="center">source</td>
-<td align="left">存储博文的md文件，hexo中的_post,_draft,各自定义的页面目录其实对应到hugo中的话，都是在content下的</td>
+<td style="text-align:center">content</td>
+<td style="text-align:center">source</td>
+<td style="text-align:left">存储博文的md文件，hexo中的_post,_draft,各自定义的页面目录其实对应到hugo中的话，都是在content下的</td>
 </tr>
 <tr>
-<td align="center">config.toml</td>
-<td align="center"><strong>_config.yaml</strong></td>
-<td align="left">用于配置站点中各项参数</td>
+<td style="text-align:center">config.toml</td>
+<td style="text-align:center"><strong>_config.yaml</strong></td>
+<td style="text-align:left">用于配置站点中各项参数</td>
 </tr>
 <tr>
-<td align="center">themes</td>
-<td align="center">themes</td>
-<td align="left">存放主题</td>
+<td style="text-align:center">themes</td>
+<td style="text-align:center">themes</td>
+<td style="text-align:left">存放主题</td>
 </tr>
 <tr>
-<td align="center">static</td>
-<td align="center">source</td>
-<td align="left">hugo中的static目录中存放一些常规静态文件，可以是博客中引用的图片、文件也可以是自添加的任意文件，最终渲染都会放到站点的根目录</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">source</td>
+<td style="text-align:left">hugo中的static目录中存放一些常规静态文件，可以是博客中引用的图片、文件也可以是自添加的任意文件，最终渲染都会放到站点的根目录</td>
 </tr>
 <tr>
-<td align="center">public</td>
-<td align="center">public</td>
-<td align="left">存放渲染后的站点静态文件</td>
+<td style="text-align:center">public</td>
+<td style="text-align:center">public</td>
+<td style="text-align:left">存放渲染后的站点静态文件</td>
 </tr>
 <tr>
-<td align="center">layout</td>
-<td align="center">无</td>
-<td align="left">存放自定义的样式布局文件，优先级高于主题中的同名文件，方便修改主题样式</td>
+<td style="text-align:center">layout</td>
+<td style="text-align:center">无</td>
+<td style="text-align:left">存放自定义的样式布局文件，优先级高于主题中的同名文件，方便修改主题样式</td>
 </tr>
 </tbody>
 </table>
@@ -11444,8 +11444,8 @@ Done!
 			<pubDate>Mon, 25 Jun 2018 17:23:57 +0800</pubDate>
 			
 			<guid>https://www.smslit.top/2018/06/25/vim-pack/</guid>
-			<description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&#39;壮举&#39;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
-			<content type="html"><![CDATA[<p>今天手残输错了一个删除命令，结果把<code>.vimrc</code>和<code>.vim</code>删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的'壮举'哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过<code>vim 8.0</code>有个新的插件管理工具横空出世，叫<a href="https://github.com/maralla/pack"><code>pack</code></a>，那就玩耍一番喽！</p>
+			<description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&amp;rsquo;壮举&amp;rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>今天手残输错了一个删除命令，结果把<code>.vimrc</code>和<code>.vim</code>删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&rsquo;壮举&rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过<code>vim 8.0</code>有个新的插件管理工具横空出世，叫<a href="https://github.com/maralla/pack"><code>pack</code></a>，那就玩耍一番喽！</p>
 <h2 id="现状">现状</h2>
 <ul>
 <li>vim8.1</li>
@@ -12401,21 +12401,21 @@ ol2
 <table>
 <thead>
 <tr>
-<th align="center">图片链接</th>
-<th align="center">主机名</th>
-<th align="center">目录名</th>
+<th style="text-align:center">图片链接</th>
+<th style="text-align:center">主机名</th>
+<th style="text-align:center">目录名</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">低分辨率</td>
-<td align="center">p1</td>
-<td align="center">list</td>
+<td style="text-align:center">低分辨率</td>
+<td style="text-align:center">p1</td>
+<td style="text-align:center">list</td>
 </tr>
 <tr>
-<td align="center">高分辨率</td>
-<td align="center">p3</td>
-<td align="center">origin</td>
+<td style="text-align:center">高分辨率</td>
+<td style="text-align:center">p3</td>
+<td style="text-align:center">origin</td>
 </tr>
 </tbody>
 </table>
@@ -14482,8 +14482,8 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 			<pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
 			
 			<guid>https://www.smslit.top/2016/11/27/vim-backspace-invalid/</guid>
-			<description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;rdquo;，竟然无效！&lt;/p&gt;</description>
-			<content type="html"><![CDATA[<p>MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下<strong>delete</strong>键删除它们，万万没想到呀！只听到&quot;duang duang duang&rdquo;，竟然无效！</p>
+			<description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;quot;，竟然无效！&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下<strong>delete</strong>键删除它们，万万没想到呀！只听到&quot;duang duang duang&quot;，竟然无效！</p>
 <p>有一点先明确一下，在mac的键盘中没有backspace键，有个键叫delete，其实相当于window下的backspace键，编辑文本时按下都具有向左删除字符的功能。</p>
 <h3 id="原因">原因</h3>
 <p>网上搜索得知，出现开头说的令人恼火的问题的原因是：</p>
@@ -14896,14 +14896,14 @@ drwxr-xr-x  <span class="m">4</span> smslit  staff  <span class="m">136</span> J
 <table>
 <thead>
 <tr>
-<th align="left">平台</th>
-<th align="left">项目地址</th>
+<th style="text-align:left">平台</th>
+<th style="text-align:left">项目地址</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">github</td>
-<td align="left">usb2serial-CH340G:<a href="https://github.com/smslit/usb2serial-CH340G">https://github.com/smslit/usb2serial-CH340G</a></td>
+<td style="text-align:left">github</td>
+<td style="text-align:left">usb2serial-CH340G:<a href="https://github.com/smslit/usb2serial-CH340G">https://github.com/smslit/usb2serial-CH340G</a></td>
 </tr>
 </tbody>
 </table>
@@ -15000,38 +15000,38 @@ optional arguments:
 <table>
 <thead>
 <tr>
-<th align="center">命令</th>
-<th align="left">含义</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:left">含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">build</td>
-<td align="left">编译当前目录下的工程</td>
+<td style="text-align:center">build</td>
+<td style="text-align:left">编译当前目录下的工程</td>
 </tr>
 <tr>
-<td align="center">clean</td>
-<td align="left">删除编译生成的中间文件</td>
+<td style="text-align:center">clean</td>
+<td style="text-align:left">删除编译生成的中间文件</td>
 </tr>
 <tr>
-<td align="center">init</td>
-<td align="left">在当前目录下新建工程</td>
+<td style="text-align:center">init</td>
+<td style="text-align:left">在当前目录下新建工程</td>
 </tr>
 <tr>
-<td align="center">list-model</td>
-<td align="left">列出所有支持的Arduino开发板</td>
+<td style="text-align:center">list-model</td>
+<td style="text-align:left">列出所有支持的Arduino开发板</td>
 </tr>
 <tr>
-<td align="center">preproc</td>
-<td align="left">将工程文件转换为有效c++文件</td>
+<td style="text-align:center">preproc</td>
+<td style="text-align:left">将工程文件转换为有效c++文件</td>
 </tr>
 <tr>
-<td align="center">serial</td>
-<td align="left">打开串口监视器</td>
+<td style="text-align:center">serial</td>
+<td style="text-align:left">打开串口监视器</td>
 </tr>
 <tr>
-<td align="center">upload</td>
-<td align="left">给Arduino设备上传程序</td>
+<td style="text-align:center">upload</td>
+<td style="text-align:left">给Arduino设备上传程序</td>
 </tr>
 </tbody>
 </table>
@@ -15146,26 +15146,26 @@ Converting to firmware.hex
 <table>
 <thead>
 <tr>
-<th align="left">配置文件</th>
-<th align="left">作用域</th>
-<th align="left">优先级</th>
+<th style="text-align:left">配置文件</th>
+<th style="text-align:left">作用域</th>
+<th style="text-align:left">优先级</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">/etc/ino.ini</td>
-<td align="left">对mac中所有用户下的所有ino工程有效</td>
-<td align="left">最低</td>
+<td style="text-align:left">/etc/ino.ini</td>
+<td style="text-align:left">对mac中所有用户下的所有ino工程有效</td>
+<td style="text-align:left">最低</td>
 </tr>
 <tr>
-<td align="left">~/.inorc</td>
-<td align="left">对当前用户下的所有工程有效</td>
-<td align="left">次之</td>
+<td style="text-align:left">~/.inorc</td>
+<td style="text-align:left">对当前用户下的所有工程有效</td>
+<td style="text-align:left">次之</td>
 </tr>
 <tr>
-<td align="left">./ino.ini</td>
-<td align="left">对当前工程有效</td>
-<td align="left">最高</td>
+<td style="text-align:left">./ino.ini</td>
+<td style="text-align:left">对当前工程有效</td>
+<td style="text-align:left">最高</td>
 </tr>
 </tbody>
 </table>
@@ -15987,41 +15987,41 @@ Hello, Monkey!
 <table>
 <thead>
 <tr>
-<th align="center">线型</th>
-<th align="center">管脚</th>
-<th align="left">定义</th>
+<th style="text-align:center">线型</th>
+<th style="text-align:center">管脚</th>
+<th style="text-align:left">定义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">蓝色线</td>
-<td align="center">PIN1</td>
-<td align="left">VPP（编程电压）</td>
+<td style="text-align:center">蓝色线</td>
+<td style="text-align:center">PIN1</td>
+<td style="text-align:left">VPP（编程电压）</td>
 </tr>
 <tr>
-<td align="center">黄色线</td>
-<td align="center">PIN2</td>
-<td align="left">VDD（电源正极）</td>
+<td style="text-align:center">黄色线</td>
+<td style="text-align:center">PIN2</td>
+<td style="text-align:left">VDD（电源正极）</td>
 </tr>
 <tr>
-<td align="center">绿色线</td>
-<td align="center">PIN3</td>
-<td align="left">VSS（电源负极）</td>
+<td style="text-align:center">绿色线</td>
+<td style="text-align:center">PIN3</td>
+<td style="text-align:left">VSS（电源负极）</td>
 </tr>
 <tr>
-<td align="center">红色线</td>
-<td align="center">PIN4</td>
-<td align="left">PGD（编程数据）</td>
+<td style="text-align:center">红色线</td>
+<td style="text-align:center">PIN4</td>
+<td style="text-align:left">PGD（编程数据）</td>
 </tr>
 <tr>
-<td align="center">黑色线</td>
-<td align="center">PIN5</td>
-<td align="left">PGC（编程时钟）</td>
+<td style="text-align:center">黑色线</td>
+<td style="text-align:center">PIN5</td>
+<td style="text-align:left">PGC（编程时钟）</td>
 </tr>
 <tr>
-<td align="center">白色线</td>
-<td align="center">PIN6</td>
-<td align="left">LVP（低编程电压）</td>
+<td style="text-align:center">白色线</td>
+<td style="text-align:center">PIN6</td>
+<td style="text-align:left">LVP（低编程电压）</td>
 </tr>
 </tbody>
 </table>
@@ -16099,34 +16099,34 @@ Hello, Monkey!
 <table>
 <thead>
 <tr>
-<th align="center">ISP下载器接口</th>
-<th align="center">AVR单片机</th>
+<th style="text-align:center">ISP下载器接口</th>
+<th style="text-align:center">AVR单片机</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">MISO</td>
-<td align="center">MISO</td>
+<td style="text-align:center">MISO</td>
+<td style="text-align:center">MISO</td>
 </tr>
 <tr>
-<td align="center">VCC</td>
-<td align="center">VCC</td>
+<td style="text-align:center">VCC</td>
+<td style="text-align:center">VCC</td>
 </tr>
 <tr>
-<td align="center">SCK</td>
-<td align="center">SCK</td>
+<td style="text-align:center">SCK</td>
+<td style="text-align:center">SCK</td>
 </tr>
 <tr>
-<td align="center">MOSI</td>
-<td align="center">MOSI</td>
+<td style="text-align:center">MOSI</td>
+<td style="text-align:center">MOSI</td>
 </tr>
 <tr>
-<td align="center">RESET</td>
-<td align="center">RESET</td>
+<td style="text-align:center">RESET</td>
+<td style="text-align:center">RESET</td>
 </tr>
 <tr>
-<td align="center">GND</td>
-<td align="center">GND</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">GND</td>
 </tr>
 </tbody>
 </table>
@@ -16134,34 +16134,34 @@ Hello, Monkey!
 <table>
 <thead>
 <tr>
-<th align="center">ISP下载器接口</th>
-<th align="center">AVR单片机</th>
+<th style="text-align:center">ISP下载器接口</th>
+<th style="text-align:center">AVR单片机</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">MISO</td>
-<td align="center">PDO</td>
+<td style="text-align:center">MISO</td>
+<td style="text-align:center">PDO</td>
 </tr>
 <tr>
-<td align="center">VCC</td>
-<td align="center">VCC</td>
+<td style="text-align:center">VCC</td>
+<td style="text-align:center">VCC</td>
 </tr>
 <tr>
-<td align="center">SCK</td>
-<td align="center">SCK</td>
+<td style="text-align:center">SCK</td>
+<td style="text-align:center">SCK</td>
 </tr>
 <tr>
-<td align="center">MOSI</td>
-<td align="center">PDI</td>
+<td style="text-align:center">MOSI</td>
+<td style="text-align:center">PDI</td>
 </tr>
 <tr>
-<td align="center">RESET</td>
-<td align="center">RESET</td>
+<td style="text-align:center">RESET</td>
+<td style="text-align:center">RESET</td>
 </tr>
 <tr>
-<td align="center">GND</td>
-<td align="center">GND</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">GND</td>
 </tr>
 </tbody>
 </table>
@@ -16294,7 +16294,7 @@ cc-tool -v <span class="nb">read</span> -w image.hex --write patch.bin,80
 <span class="c1"># 设置调试加锁位</span>
 cc-tool --lock debug
 <span class="c1"># Set debug lock bit and lock pages 0,1,2,3,4</span>
-<span class="c1"># 设置调试加锁位，为0,1,2,3,4页加锁</span> 
+<span class="c1"># 设置调试加锁位，为0,1,2,3,4页加锁 </span>
 cc-tool --lock debug<span class="p">;</span>pages:0-4
 <span class="c1"># Set debug lock bit, boot lock bit, and set lock size 8K</span>
 <span class="c1"># 设置调试加锁位、启动加锁位，设置加锁大小为8k</span>
@@ -16742,10 +16742,10 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM 
 <li>
 <p>修改设备规则文件，向文件<code>/etc/udev/rules.d/51-android.rules</code>中添加以下内容：</p>
 <blockquote>
-<p>SUBSYSTEM==&quot;usb&rdquo;, ATTR{idVendor}==&quot;29a9&rdquo;, ATTR{idProduct}==&quot;701a&rdquo;, MODE=&quot;0666&rdquo;, OWNER=&quot;your name&rdquo;</p>
+<p>SUBSYSTEM==&ldquo;usb&rdquo;, ATTR{idVendor}==&ldquo;29a9&rdquo;, ATTR{idProduct}==&ldquo;701a&rdquo;, MODE=&ldquo;0666&rdquo;, OWNER=&ldquo;your name&rdquo;</p>
 </blockquote>
 <blockquote>
-<p>SUBSYSTEM==&quot;usb&rdquo;, ATTR{idVendor}==&quot;29a9&rdquo;, ATTR{idProduct}==&quot;701b&rdquo;, MODE=&quot;0666&rdquo;, OWNER=&quot;your name&rdquo;</p>
+<p>SUBSYSTEM==&ldquo;usb&rdquo;, ATTR{idVendor}==&ldquo;29a9&rdquo;, ATTR{idProduct}==&ldquo;701b&rdquo;, MODE=&ldquo;0666&rdquo;, OWNER=&ldquo;your name&rdquo;</p>
 </blockquote>
 </li>
 <li>
@@ -16983,7 +16983,7 @@ sudo vim 90-tofu.rules
 <p>拟地和数字地单点接地</p>
 <ul>
 <li>
-<p>只要是地，最终都要接到一起，然后入大地。如果不接在一起就是&quot;浮地&rdquo;，存在压差，容易积累电荷，造成静电。地是参考0电位，所有电压都是参考地得出的，地的标准要一致，故各种地应短接在一起。人们认为大地能够吸收所有电荷，始终维持稳定，是最终的地参考点。虽然有些板子没有接大地，但发电厂是接大地的，板子上的电源最终还是会返回发电厂入地。如果把模拟地和数字地大面积直接相连，会导致互相干扰。不短接又不妥，理由如上有四种方法解决此问题：</p>
+<p>只要是地，最终都要接到一起，然后入大地。如果不接在一起就是&quot;浮地&quot;，存在压差，容易积累电荷，造成静电。地是参考0电位，所有电压都是参考地得出的，地的标准要一致，故各种地应短接在一起。人们认为大地能够吸收所有电荷，始终维持稳定，是最终的地参考点。虽然有些板子没有接大地，但发电厂是接大地的，板子上的电源最终还是会返回发电厂入地。如果把模拟地和数字地大面积直接相连，会导致互相干扰。不短接又不妥，理由如上有四种方法解决此问题：</p>
 <ul>
 <li>(1)用磁珠连接;</li>
 <li>(2)用电容连接;</li>
@@ -17474,78 +17474,78 @@ $$</p>
 <table>
 <thead>
 <tr>
-<th align="center">波特率</th>
-<th align="center">UxBAUD.BAUD_M</th>
-<th align="center">UxBAUD.BAUD_E</th>
-<th align="center">误差(%)</th>
+<th style="text-align:center">波特率</th>
+<th style="text-align:center">UxBAUD.BAUD_M</th>
+<th style="text-align:center">UxBAUD.BAUD_E</th>
+<th style="text-align:center">误差(%)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">2400</td>
-<td align="center">59</td>
-<td align="center">6</td>
-<td align="center">0.14</td>
+<td style="text-align:center">2400</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">0.14</td>
 </tr>
 <tr>
-<td align="center">4800</td>
-<td align="center">59</td>
-<td align="center">7</td>
-<td align="center">0.14</td>
+<td style="text-align:center">4800</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0.14</td>
 </tr>
 <tr>
-<td align="center">9600</td>
-<td align="center">59</td>
-<td align="center">8</td>
-<td align="center">0.14</td>
+<td style="text-align:center">9600</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.14</td>
 </tr>
 <tr>
-<td align="center">14,400</td>
-<td align="center">216</td>
-<td align="center">8</td>
-<td align="center">0.03</td>
+<td style="text-align:center">14,400</td>
+<td style="text-align:center">216</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.03</td>
 </tr>
 <tr>
-<td align="center">19,200</td>
-<td align="center">59</td>
-<td align="center">9</td>
-<td align="center">0.14</td>
+<td style="text-align:center">19,200</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">0.14</td>
 </tr>
 <tr>
-<td align="center">28,800</td>
-<td align="center">216</td>
-<td align="center">9</td>
-<td align="center">0.03</td>
+<td style="text-align:center">28,800</td>
+<td style="text-align:center">216</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">0.03</td>
 </tr>
 <tr>
-<td align="center">38,400</td>
-<td align="center">59</td>
-<td align="center">10</td>
-<td align="center">0.14</td>
+<td style="text-align:center">38,400</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0.14</td>
 </tr>
 <tr>
-<td align="center">57,600</td>
-<td align="center">216</td>
-<td align="center">10</td>
-<td align="center">0.03</td>
+<td style="text-align:center">57,600</td>
+<td style="text-align:center">216</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0.03</td>
 </tr>
 <tr>
-<td align="center">76,800</td>
-<td align="center">59</td>
-<td align="center">11</td>
-<td align="center">0.14</td>
+<td style="text-align:center">76,800</td>
+<td style="text-align:center">59</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">0.14</td>
 </tr>
 <tr>
-<td align="center">115,200</td>
-<td align="center">216</td>
-<td align="center">11</td>
-<td align="center">0.03</td>
+<td style="text-align:center">115,200</td>
+<td style="text-align:center">216</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">0.03</td>
 </tr>
 <tr>
-<td align="center">230,400</td>
-<td align="center">216</td>
-<td align="center">12</td>
-<td align="center">0.03</td>
+<td style="text-align:center">230,400</td>
+<td style="text-align:center">216</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">0.03</td>
 </tr>
 </tbody>
 </table>
@@ -17855,7 +17855,7 @@ Error <span class="k">while</span> running Linker
 </code></pre></div><h4 id="添加锚点">添加锚点</h4>
 <p>紧接着在目录所对应内容处添加锚点，如下：</p>
 <p><strong>注意：添加锚点要添加到内容标题的前一行，这样能保证跳转时能以标题顶头，主要是我之前总是与内容处的目录标题同行，导致跳转后跳到了目录下一行，就看不到目录对应内容的标题了。</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">&lt;a name=&#34;no1&#34;/&gt;
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;no1&#34;</span><span class="p">/&gt;</span>
 
 <span class="gu">#### 访问模式
 </span><span class="gu"></span>
@@ -17865,18 +17865,18 @@ Error <span class="k">while</span> running Linker
 
 ...
 
-&lt;a name=&#34;no12&#34;/&gt;
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;no12&#34;</span><span class="p">/&gt;</span>
 
 <span class="gu">#### 12. 串口及SPI相关
 </span><span class="gu"></span>
-&lt;a name=&#34;no12-1&#34;/&gt;
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;no12-1&#34;</span><span class="p">/&gt;</span>
 
 <span class="gu">##### 12.1. USART0的控制和状态（U0CSR，0x86）
 </span><span class="gu"></span>
 ...
 
 
-&lt;a name=&#34;no12-5&#34;/&gt;
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;no12-5&#34;</span><span class="p">/&gt;</span>
 
 <span class="gu">##### 12.5. USART0波特率（U0BAUD，0xC2）
 </span><span class="gu"></span>
@@ -17936,46 +17936,46 @@ Error <span class="k">while</span> running Linker
 <table>
 <thead>
 <tr>
-<th align="center">符号</th>
-<th align="center">访问模式</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">访问模式</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">R/W</td>
-<td align="center">可读写</td>
+<td style="text-align:center">R/W</td>
+<td style="text-align:center">可读写</td>
 </tr>
 <tr>
-<td align="center">R</td>
-<td align="center">只读</td>
+<td style="text-align:center">R</td>
+<td style="text-align:center">只读</td>
 </tr>
 <tr>
-<td align="center">R0</td>
-<td align="center">读0</td>
+<td style="text-align:center">R0</td>
+<td style="text-align:center">读0</td>
 </tr>
 <tr>
-<td align="center">R1</td>
-<td align="center">读1</td>
+<td style="text-align:center">R1</td>
+<td style="text-align:center">读1</td>
 </tr>
 <tr>
-<td align="center">W</td>
-<td align="center">只写</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">只写</td>
 </tr>
 <tr>
-<td align="center">W0</td>
-<td align="center">写0</td>
+<td style="text-align:center">W0</td>
+<td style="text-align:center">写0</td>
 </tr>
 <tr>
-<td align="center">W1</td>
-<td align="center">写1</td>
+<td style="text-align:center">W1</td>
+<td style="text-align:center">写1</td>
 </tr>
 <tr>
-<td align="center">H0</td>
-<td align="center">硬件清除</td>
+<td style="text-align:center">H0</td>
+<td style="text-align:center">硬件清除</td>
 </tr>
 <tr>
-<td align="center">H1</td>
-<td align="center">硬件设置</td>
+<td style="text-align:center">H1</td>
+<td style="text-align:center">硬件设置</td>
 </tr>
 </tbody>
 </table>
@@ -18064,40 +18064,40 @@ Error <span class="k">while</span> running Linker
 <table>
 <thead>
 <tr>
-<th align="center">Bit位</th>
-<th align="center">名称</th>
-<th align="center">初始化</th>
-<th align="center">读写</th>
+<th style="text-align:center">Bit位</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">初始化</th>
+<th style="text-align:center">读写</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">7</td>
-<td align="center">OSC32K_CALDIS</td>
-<td align="center">0</td>
-<td align="center">R/W</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">OSC32K_CALDIS</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">R/W</td>
 <td>禁用32-kHz RC振荡器. 0: 使能32-kHz RC振荡器. 1: 禁用32-kHz RC振荡器.在任何时刻都可以设置此bit位，但在片上16-MHz高速RC振荡器起振前设置不会有作用。</td>
 </tr>
 <tr>
-<td align="center">6:3</td>
-<td align="center">-</td>
-<td align="center">000 0</td>
-<td align="center">R0</td>
+<td style="text-align:center">6:3</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">000 0</td>
+<td style="text-align:center">R0</td>
 <td>保留</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">OSC_PD</td>
-<td align="center">1</td>
-<td align="center">R/W</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">OSC_PD</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">R/W</td>
 <td>设置晶振、振荡器电源。1:关闭未使用振荡器和晶振的电源  0:开启所有振荡器和晶振的电源。</td>
 </tr>
 <tr>
-<td align="center">1:0</td>
-<td align="center">MODE[1:0]</td>
-<td align="center">00</td>
-<td align="center">R/W</td>
+<td style="text-align:center">1:0</td>
+<td style="text-align:center">MODE[1:0]</td>
+<td style="text-align:center">00</td>
+<td style="text-align:center">R/W</td>
 <td>电源模式   00: 活动和空闲模式 01:电源模式1(PM1) 10: 电源模式2(PM2) 11:电源模式3(PM3)</td>
 </tr>
 </tbody>
@@ -18106,54 +18106,54 @@ Error <span class="k">while</span> running Linker
 <table>
 <thead>
 <tr>
-<th align="center">Bit位</th>
-<th align="center">名称</th>
-<th align="center">初始化</th>
-<th align="center">读写</th>
+<th style="text-align:center">Bit位</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">初始化</th>
+<th style="text-align:center">读写</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">7</td>
-<td align="center">OSC32K_CALDIS</td>
-<td align="center">0</td>
-<td align="center">R</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">OSC32K_CALDIS</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">R</td>
 <td>禁用32-kHz RC振荡器. 0: 使能32-kHz RC振荡器. 1: 禁用32-kHz RC振荡器.在任何时刻都可以设置此bit位，但在片上16-MHz高速RC振荡器起振前设置不会有作用。</td>
 </tr>
 <tr>
-<td align="center">6:5</td>
-<td align="center">-</td>
-<td align="center">00</td>
-<td align="center">R</td>
+<td style="text-align:center">6:5</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">00</td>
+<td style="text-align:center">R</td>
 <td>保留</td>
 </tr>
 <tr>
-<td align="center">4:3</td>
-<td align="center">RST[1:0]</td>
-<td align="center">00</td>
-<td align="center">R</td>
+<td style="text-align:center">4:3</td>
+<td style="text-align:center">RST[1:0]</td>
+<td style="text-align:center">00</td>
+<td style="text-align:center">R</td>
 <td>记录最终复位信号源。有多种复位，寄存器只保留最后事件，00:上电复位和掉电检测  01:外部复位信号  10:看门狗时钟复位 11:时钟丢失复位。</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">OSC_PD</td>
-<td align="center">1</td>
-<td align="center">R</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">OSC_PD</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">R</td>
 <td>1:关闭未使用振荡器和晶振的电源  0:开启所有振荡器和晶振的电源。</td>
 </tr>
 <tr>
-<td align="center">1</td>
-<td align="center">-</td>
-<td align="center">0</td>
-<td align="center">R</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">R</td>
 <td>保留.</td>
 </tr>
 <tr>
-<td align="center">0</td>
-<td align="center">CLK32K</td>
-<td align="center">0</td>
-<td align="center">R</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">CLK32K</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">R</td>
 <td>32kHz时钟信号，与系统时钟同步。</td>
 </tr>
 </tbody>
@@ -18163,45 +18163,45 @@ Error <span class="k">while</span> running Linker
 <table>
 <thead>
 <tr>
-<th align="center">端口</th>
-<th align="center">Bit位</th>
-<th align="center">名称</th>
-<th align="center">初始化</th>
-<th align="center">读写</th>
+<th style="text-align:center">端口</th>
+<th style="text-align:center">Bit位</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">初始化</th>
+<th style="text-align:center">读写</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">P0</td>
-<td align="center">7:0</td>
-<td align="center">P0[7:0]</td>
-<td align="center">0XFF</td>
-<td align="center">R/W</td>
+<td style="text-align:center">P0</td>
+<td style="text-align:center">7:0</td>
+<td style="text-align:center">P0[7:0]</td>
+<td style="text-align:center">0XFF</td>
+<td style="text-align:center">R/W</td>
 <td>端口0，通用I/O端口，可以位寻址。 XDATA (0x7080).</td>
 </tr>
 <tr>
-<td align="center">P1</td>
-<td align="center">7:0</td>
-<td align="center">P1[7:0]</td>
-<td align="center">0XFF</td>
-<td align="center">R/W</td>
+<td style="text-align:center">P1</td>
+<td style="text-align:center">7:0</td>
+<td style="text-align:center">P1[7:0]</td>
+<td style="text-align:center">0XFF</td>
+<td style="text-align:center">R/W</td>
 <td>端口1，通用I/O端口，可以位寻址。 XDATA (0x7090).</td>
 </tr>
 <tr>
-<td align="center">P2</td>
-<td align="center">7:5</td>
-<td align="center"></td>
-<td align="center">000</td>
-<td align="center">R0</td>
+<td style="text-align:center">P2</td>
+<td style="text-align:center">7:5</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">000</td>
+<td style="text-align:center">R0</td>
 <td>未使用</td>
 </tr>
 <tr>
-<td align="center">P2</td>
-<td align="center">4:0</td>
-<td align="center">P2[4:0]</td>
-<td align="center">0x1F</td>
-<td align="center">R/W</td>
+<td style="text-align:center">P2</td>
+<td style="text-align:center">4:0</td>
+<td style="text-align:center">P2[4:0]</td>
+<td style="text-align:center">0x1F</td>
+<td style="text-align:center">R/W</td>
 <td>端口2，通用I/O端口，可以位寻址。 XDATA (0x70A0).</td>
 </tr>
 </tbody>
@@ -19921,7 +19921,7 @@ $ tar -xzf test.tar.gz
 <p>编辑[.zshrc]文件，只需配置[ZSH_THEME]的值就可以，我是用默认的[robbyrussell]主题，还有个不错的主题[candy]。</p>
 <ul>
 <li><code>gedit .zshrc</code></li>
-<li>修改[ZSH_THEME=&quot;robbyrussell&rdquo;]一项即可，将robbyrussell修改为你想要的主题就可以了。比如[ZSH_THEME=&quot;candy&rdquo;]。</li>
+<li>修改[ZSH_THEME=&ldquo;robbyrussell&rdquo;]一项即可，将robbyrussell修改为你想要的主题就可以了。比如[ZSH_THEME=&ldquo;candy&rdquo;]。</li>
 </ul>
 </li>
 <li>
@@ -20137,9 +20137,9 @@ $ tar -xzf test.tar.gz
 <li>
 <p>简单配置用户配置文件，菜单栏【Preferences-&gt;Settings-User】,即可打开用户配置文件</p>
 <ul>
-<li>关闭检查更新，加入&quot;update_check&rdquo;:&ldquo;false&rdquo;。</li>
-<li>设置字体，其中xxxxxx是你要设置的字体，我一般用Consolas，加入&quot;font_face&rdquo;:&ldquo;xxxxxx&rdquo;。</li>
-<li>设置字体大小，加入&quot;font_size&rdquo;:11。
+<li>关闭检查更新，加入&quot;update_check&quot;:&ldquo;false&rdquo;。</li>
+<li>设置字体，其中xxxxxx是你要设置的字体，我一般用Consolas，加入&quot;font_face&quot;:&ldquo;xxxxxx&rdquo;。</li>
+<li>设置字体大小，加入&quot;font_size&quot;:11。
 <strong>每个设置项之间要以逗号隔开，如下的样子：</strong>
 <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/z40jx.png" alt="3"></li>
 </ul>
@@ -20316,11 +20316,11 @@ make
 <p>为了能够在任何目录下执行<code>st-flash</code>命令，需要配置用户环境变量，只需将<code>/usr/local/stlink.git</code>目录加入到环境变量里即可，下面编辑文件可以用『vim』，想了解『vim』使用可以看一下我的另一篇文章<a href="http://www.smslit.top/2015/07/16/vimtution"><strong>vim的使用入门</strong></a>：</p>
 <ul>
 <li>
-<p>如果终端用的[bash]，进入<strong>$HOME</strong>，编辑『.bashrc』文件，加入：</p>
+<p>如果终端用的[bash]，进入**$HOME**，编辑『.bashrc』文件，加入：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/stlink.git:<span class="nv">$PATH</span>
 </code></pre></div></li>
 <li>
-<p>如果终端用的[zsh]，进入<strong>$HOME</strong>，编辑『.zshrc』文件，加入：</p>
+<p>如果终端用的[zsh]，进入**$HOME**，编辑『.zshrc』文件，加入：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/stlink.git:<span class="nv">$PATH</span>
 </code></pre></div></li>
 </ul>
@@ -20436,7 +20436,7 @@ make
 <span class="kd">var</span> <span class="nx">duoshuoQuery</span> <span class="o">=</span> <span class="p">{</span><span class="nx">short_name</span><span class="o">:</span><span class="s2">&#34;请将此处替换为你的多说站点的短名short_name&#34;</span><span class="p">};</span>
 	<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 		<span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-		<span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="nx">ds</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span><span class="nx">ds</span><span class="p">.</span><span class="kr">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">==</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https:&#39;</span> <span class="o">:</span> <span class="s1">&#39;http:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;//static.duoshuo.com/embed.js&#39;</span><span class="p">;</span>
 		<span class="nx">ds</span><span class="p">.</span><span class="nx">charset</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">;</span>
 		<span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> 

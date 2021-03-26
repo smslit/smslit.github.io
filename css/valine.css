@@ -115,5 +115,5 @@
 }
 
 .v[data-class="v"] code, .v[data-class="v"] pre {
-  background-color: #333436;
+  background-color: #333436 !important;
 }

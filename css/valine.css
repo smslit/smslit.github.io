@@ -29,7 +29,7 @@
 .v pre {
   font-size: 1rem !important;
   font-weight: bold !important;
-  background: #2c3e50 !important;
+  background: #333436 !important;
 }
 
 .v li {
@@ -112,4 +112,8 @@
 
 .v[data-class="v"] .vicon {
   fill: #999 !important;
+}
+
+.v[data-class="v"] code, .v[data-class="v"] pre {
+  background-color: #333436;
 }

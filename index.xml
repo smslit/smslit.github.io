@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 11 Dec 2020 14:19:33 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 22:26:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>  重新踏上征途</title>
+      <link>https://www.smslit.top/daily/on-the-journey-again/</link>
+      <pubDate>Sat, 27 Mar 2021 22:26:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/on-the-journey-again/</guid>
+      <description>☁️🤔️ 昨天上班时间给博客换了个配色方案，有点滑水的意味儿，今天重新开了 daily 页面，为重新踏上专栏的征程做个铺垫吧。 工作了也快一年半了，想明白了</description>
+    </item>
+    
     <item>
       <title>使用 mmdectection 简单训练一个 faster-rcnn 模型</title>
       <link>https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</guid>
       <description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之菜单栏形式的状态栏小工具</title>
-      <link>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</link>
-      <pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/10/22/macOS-dev-basic-nsmenu/</guid>
-      <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
     </item>
     
   </channel>

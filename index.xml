@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 27 Mar 2021 22:26:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Mar 2021 22:16:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>周末出行-美术馆走走</title>
+      <link>https://www.smslit.top/daily/007-996-copy/</link>
+      <pubDate>Sun, 28 Mar 2021 22:16:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/007-996-copy/</guid>
+      <description>🌞😄 今天与水木一早便出了门，看到了隔壁楼的二楼时常在窗口探头看外面的老奶奶，水木笑着跟老奶奶打招呼，老奶奶开心的说：“起的早身体好！”，就这</description>
+    </item>
+    
     <item>
       <title>  重新踏上征途</title>
       <link>https://www.smslit.top/daily/on-the-journey-again/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/2019/11/11/ant-design-vue-note-start/</guid>
       <description>工程配置 创建工程 # 安装 Vue # npm install -g @vue/cli $ vue creat antd-demo 排除 vscode 配置忽略 vscode 打开上面创建的工程，修改 .gitignore 文件内容为： .DS_Store node_modules /dist # local env files .env.local .env.*.local # Log files npm-debug.log* yarn-debug.log* yarn-error.log* # Editor directories and files .idea -</description>
-    </item>
-    
-    <item>
-      <title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
-      <link>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</link>
-      <pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/10/24/macOS-dev-menu-mouse/</guid>
-      <description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
     </item>
     
   </channel>

@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 28 Mar 2021 22:16:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Mar 2021 22:00:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我们可以做很多</title>
+      <link>https://www.smslit.top/daily/make-more-sense/</link>
+      <pubDate>Mon, 29 Mar 2021 22:00:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/make-more-sense/</guid>
+      <description>今天看到了陈冠希最近的一个采访视频片段，并未详细求证来源和背景（如下视频侵权请告知，会及时删除），听他谈“中国制造”，表示敬意和赞同！ 暂且不</description>
+    </item>
+    
     <item>
       <title>周末出行-美术馆走走</title>
-      <link>https://www.smslit.top/daily/007-996-copy/</link>
+      <link>https://www.smslit.top/daily/weekend-walk-out/</link>
       <pubDate>Sun, 28 Mar 2021 22:16:34 +0800</pubDate>
       
-      <guid>https://www.smslit.top/daily/007-996-copy/</guid>
+      <guid>https://www.smslit.top/daily/weekend-walk-out/</guid>
       <description>🌞😄 今天与水木一早便出了门，看到了隔壁楼的二楼时常在窗口探头看外面的老奶奶，水木笑着跟老奶奶打招呼，老奶奶开心的说：“起的早身体好！”，就这</description>
     </item>
     
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/2020/02/21/pyenv_pipenv/</guid>
       <description>如果你已经无法容忍机器上杂乱的 python 版本，pyenv 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！ 本文适用于 macOS 下的</description>
-    </item>
-    
-    <item>
-      <title>Ant Design Vue 工程配置笔记</title>
-      <link>https://www.smslit.top/2019/11/11/ant-design-vue-note-start/</link>
-      <pubDate>Mon, 11 Nov 2019 11:04:25 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2019/11/11/ant-design-vue-note-start/</guid>
-      <description>工程配置 创建工程 # 安装 Vue # npm install -g @vue/cli $ vue creat antd-demo 排除 vscode 配置忽略 vscode 打开上面创建的工程，修改 .gitignore 文件内容为： .DS_Store node_modules /dist # local env files .env.local .env.*.local # Log files npm-debug.log* yarn-debug.log* yarn-error.log* # Editor directories and files .idea -</description>
     </item>
     
   </channel>

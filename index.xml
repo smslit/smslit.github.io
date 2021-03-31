@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 29 Mar 2021 22:00:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 21:46:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>小米更换新 logo - 学会讲故事</title>
+      <link>https://www.smslit.top/daily/xiaomi-logo-story/</link>
+      <pubDate>Tue, 30 Mar 2021 21:46:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/xiaomi-logo-story/</guid>
+      <description>☀️😄 小米更换了新的 logo，直观感受是从原来的方形变成了具有平滑圆角的轮廓，由设计大师无印良品（MUJI）艺术总监-原研哉操刀设计，说是融</description>
+    </item>
+    
     <item>
       <title>我们可以做很多</title>
       <link>https://www.smslit.top/daily/make-more-sense/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/2020/05/01/asciinema/</guid>
       <description>前几天好朋友分享给我一个工具，叫 asciinema。经了解，发现这真是个好东西！ 这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文</description>
-    </item>
-    
-    <item>
-      <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
-      <link>https://www.smslit.top/2020/02/21/pyenv_pipenv/</link>
-      <pubDate>Fri, 21 Feb 2020 15:57:16 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2020/02/21/pyenv_pipenv/</guid>
-      <description>如果你已经无法容忍机器上杂乱的 python 版本，pyenv 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！ 本文适用于 macOS 下的</description>
     </item>
     
   </channel>

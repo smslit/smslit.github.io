@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 30 Mar 2021 21:46:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Mar 2021 21:45:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>刻意练习</title>
+      <link>https://www.smslit.top/daily/deliberate-practice/</link>
+      <pubDate>Wed, 31 Mar 2021 21:45:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/deliberate-practice/</guid>
+      <description>☁️😊 今天上下班骑了昨天刚买的电驴，确实会比坐公交通勤节省时间，在路上听了《刻意练习》这本书的解读！ 路上听书，多多少少的可能会忽略一些内容，</description>
+    </item>
+    
     <item>
       <title>小米更换新 logo - 学会讲故事</title>
       <link>https://www.smslit.top/daily/xiaomi-logo-story/</link>
@@ -23,7 +32,7 @@
       <pubDate>Mon, 29 Mar 2021 22:00:16 +0800</pubDate>
       
       <guid>https://www.smslit.top/daily/make-more-sense/</guid>
-      <description>今天看到了陈冠希最近的一个采访视频片段，并未详细求证来源和背景（如下视频侵权请告知，会及时删除），听他谈“中国制造”，表示敬意和赞同！ 暂且不</description>
+      <description>☀️🤔 今天看到了陈冠希最近的一个采访视频片段，并未详细求证来源和背景（如下视频侵权请告知，会及时删除），听他谈“中国制造”，表示敬意和赞同！</description>
     </item>
     
     <item>
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
       <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
-    </item>
-    
-    <item>
-      <title>博客现已支持 Asciinema</title>
-      <link>https://www.smslit.top/2020/05/01/asciinema/</link>
-      <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2020/05/01/asciinema/</guid>
-      <description>前几天好朋友分享给我一个工具，叫 asciinema。经了解，发现这真是个好东西！ 这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文</description>
     </item>
     
   </channel>

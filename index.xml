@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 31 Mar 2021 21:45:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Apr 2021 22:05:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>慢慢来就很快</title>
+      <link>https://www.smslit.top/daily/take-it-easy/</link>
+      <pubDate>Thu, 01 Apr 2021 22:05:34 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/take-it-easy/</guid>
+      <description>☁️😊 其实本篇内容很多的，如果你看不到上面的大篇幅内容，说明你急躁了！ (愚人节不快乐&amp;hellip;)</description>
+    </item>
+    
     <item>
       <title>刻意练习</title>
       <link>https://www.smslit.top/daily/deliberate-practice/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</guid>
       <description>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！ 日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都</description>
-    </item>
-    
-    <item>
-      <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
-      <link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
-      <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
-      <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
     </item>
     
   </channel>

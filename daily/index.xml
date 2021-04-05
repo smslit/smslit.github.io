@@ -6,8 +6,35 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 01 Apr 2021 22:05:34 +0800</lastBuildDate>
+		<lastBuildDate>Sat, 03 Apr 2021 22:01:16 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/daily/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>投其所好</title>
+			<link>https://www.smslit.top/daily/give-what-you-like/</link>
+			<pubDate>Sat, 03 Apr 2021 22:01:16 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/give-what-you-like/</guid>
+			<description>🌧️😂 清明时节雨纷纷，第一天假期上午依旧是雨天，气温降低，倒是应景！挺折腾的，回到老家已是下午三点，今天回来是为了给老爸过生日，给他准备了一</description>
+			<content type="html"><![CDATA[<p>🌧️😂</p>
+<p>清明时节雨纷纷，第一天假期上午依旧是雨天，气温降低，倒是应景！挺折腾的，回到老家已是下午三点，今天回来是为了给老爸过生日，给他准备了一个小礼物，是一套收拾绿植花草的小工具，在晚饭后给他看了看，可以看出我一一介绍里面的五个工具时，老爸两眼里是放光的，之后他还自己把玩了好一会儿，果然 “投其所好” 是正确的！</p>
+<p>这其实还有点产品思维的体现，客户想要的才是政治正确，最佳的答案！换位思考一下，对方的需求是什么，我们就提供什么！比如说老爸平时喜欢搞花花草草，那我就想他是不是需要一套正儿八经的工具辅助一下，就在网上精心挑了一套工具，不是最好的，但绝对是高质量的，果不其然，“客户灰常满意”！</p>
+<p>“投其所好”的思路指导做产品，同样对生活也有指导意义！</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>身边的老师</title>
+			<link>https://www.smslit.top/daily/teacher-around-us/</link>
+			<pubDate>Fri, 02 Apr 2021 22:21:16 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/daily/teacher-around-us/</guid>
+			<description>🌧️😳 今天完成了 Paddle 模型的第一次训练，可以说非常顺利了，多亏了大牛同事朱哥、中鹏鹏的大力帮助，数据集还是朱哥给准备好的，训练得到的模型，初测效</description>
+			<content type="html"><![CDATA[<p>🌧️😳</p>
+<p>今天完成了 Paddle 模型的第一次训练，可以说非常顺利了，多亏了大牛同事朱哥、中鹏鹏的大力帮助，数据集还是朱哥给准备好的，训练得到的模型，初测效果还不错，算是工程应用的个人训练的第一个模型，之前倒是用 Pytorch 训练过模型，但是针对比赛，有了上次比赛的经验，加上同事的帮助和 Paddle 框架的易用，才让我一次便得到不错的结果。</p>
+<p>果然学东西还是得有老师带带，会快很多，过去自己学东西，大多自己研究，确实挺耗时间的，效果还不一定好，有了老师不一样，也许时常会有“一语惊醒梦中人”的奇效，“师从天才”就更了不得了，学人所长，周围任何人都有可能是老师！</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>慢慢来就很快</title>

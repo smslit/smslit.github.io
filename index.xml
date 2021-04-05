@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 01 Apr 2021 22:05:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Apr 2021 22:01:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>投其所好</title>
+      <link>https://www.smslit.top/daily/give-what-you-like/</link>
+      <pubDate>Sat, 03 Apr 2021 22:01:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/give-what-you-like/</guid>
+      <description>🌧️😂 清明时节雨纷纷，第一天假期上午依旧是雨天，气温降低，倒是应景！挺折腾的，回到老家已是下午三点，今天回来是为了给老爸过生日，给他准备了一</description>
+    </item>
+    
+    <item>
+      <title>身边的老师</title>
+      <link>https://www.smslit.top/daily/teacher-around-us/</link>
+      <pubDate>Fri, 02 Apr 2021 22:21:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/teacher-around-us/</guid>
+      <description>🌧️😳 今天完成了 Paddle 模型的第一次训练，可以说非常顺利了，多亏了大牛同事朱哥、中鹏鹏的大力帮助，数据集还是朱哥给准备好的，训练得到的模型，初测效</description>
+    </item>
+    
     <item>
       <title>慢慢来就很快</title>
       <link>https://www.smslit.top/daily/take-it-easy/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://www.smslit.top/2020/12/03/Paddle-Inference-libnvinfer.so/</guid>
       <description>执行推理时会提示 TensorRT 的动态链接库缺失的问题： TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory) Suggestions: Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed. Configure TensorRT dynamic library environment variables as</description>
-    </item>
-    
-    <item>
-      <title>nginx 实现 vue &#43; flask 前后端分离部署</title>
-      <link>https://www.smslit.top/2020/11/28/vue-flask-deploy-with-nginx/</link>
-      <pubDate>Sat, 28 Nov 2020 15:04:55 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2020/11/28/vue-flask-deploy-with-nginx/</guid>
-      <description>随着项目的进展，我们发现单靠后端托管部署 vue 构建的静态文件的方式已无法满足我们的开发需求，所以此文要讲的内容应运而生，借用 nginx 简单实现 vue 和 flask 前后</description>
-    </item>
-    
-    <item>
-      <title>同域名下不同端口的 web 服务 session 冲突导致用户登录互顶的问题</title>
-      <link>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</link>
-      <pubDate>Sat, 24 Oct 2020 10:59:00 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/2020/10/24/same-domain-different-port-session-conflict/</guid>
-      <description>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！ 日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都</description>
     </item>
     
   </channel>

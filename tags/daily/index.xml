@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 01 Apr 2021 22:05:34 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Apr 2021 22:01:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/daily/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>投其所好</title>
+      <link>https://www.smslit.top/daily/give-what-you-like/</link>
+      <pubDate>Sat, 03 Apr 2021 22:01:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/give-what-you-like/</guid>
+      <description>🌧️😂 清明时节雨纷纷，第一天假期上午依旧是雨天，气温降低，倒是应景！挺折腾的，回到老家已是下午三点，今天回来是为了给老爸过生日，给他准备了一</description>
+    </item>
+    
+    <item>
+      <title>身边的老师</title>
+      <link>https://www.smslit.top/daily/teacher-around-us/</link>
+      <pubDate>Fri, 02 Apr 2021 22:21:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/teacher-around-us/</guid>
+      <description>🌧️😳 今天完成了 Paddle 模型的第一次训练，可以说非常顺利了，多亏了大牛同事朱哥、中鹏鹏的大力帮助，数据集还是朱哥给准备好的，训练得到的模型，初测效</description>
+    </item>
+    
     <item>
       <title>慢慢来就很快</title>
       <link>https://www.smslit.top/daily/take-it-easy/</link>
@@ -78,24 +96,6 @@
       
       <guid>https://www.smslit.top/daily/happy-from-believed/</guid>
       <description>最近在做的一个活是学长给介绍的，回想过去自己从上学到工作，又到现在自由放荡的状态，整个过程中好像机会都是自己跑来见我的。上大学的时候，能够进</description>
-    </item>
-    
-    <item>
-      <title>Parallels Desktop 体验极佳</title>
-      <link>https://www.smslit.top/daily/nice-virtual-machine/</link>
-      <pubDate>Sun, 14 Apr 2019 21:34:04 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/nice-virtual-machine/</guid>
-      <description>今天发现昨天 Bootcamp 安装的 windows 好像有 bug，mac 出现了假死状态，而且动不动就与外接显示器失联，无法忍受，又把 windows 干掉了！😤，决定使用虚拟机安装 win</description>
-    </item>
-    
-    <item>
-      <title>Windows，又见面了</title>
-      <link>https://www.smslit.top/daily/hello-windows-again/</link>
-      <pubDate>Sat, 13 Apr 2019 19:36:20 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/hello-windows-again/</guid>
-      <description>以为 pyodbc 可以解决在 远程 windows 主机中获取甲方爸爸的另类数据库的数据，万万没有想到，数据是可以获取但是时间戳的格式不忍直视。最后发现，极有可能是这个数</description>
     </item>
     
   </channel>

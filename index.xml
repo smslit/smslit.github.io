@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 10 Apr 2021 22:11:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Apr 2021 21:51:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>练字-好雨知时节</title>
+      <link>https://www.smslit.top/daily/good-rain-in-time/</link>
+      <pubDate>Sun, 11 Apr 2021 21:51:16 +0800</pubDate>
+      
+      <guid>https://www.smslit.top/daily/good-rain-in-time/</guid>
+      <description>☀️😄</description>
+    </item>
+    
     <item>
       <title>练字-天地英雄气</title>
       <link>https://www.smslit.top/daily/sky-earth-hero-air/</link>
@@ -87,15 +96,6 @@
       
       <guid>https://www.smslit.top/daily/teacher-around-us/</guid>
       <description>🌧️😳 今天完成了 Paddle 模型的第一次训练，可以说非常顺利了，多亏了大牛同事朱哥、中鹏鹏的大力帮助，数据集还是朱哥给准备好的，训练得到的模型，初测效</description>
-    </item>
-    
-    <item>
-      <title>慢慢来就很快</title>
-      <link>https://www.smslit.top/daily/take-it-easy/</link>
-      <pubDate>Thu, 01 Apr 2021 22:05:34 +0800</pubDate>
-      
-      <guid>https://www.smslit.top/daily/take-it-easy/</guid>
-      <description>☁️😊 其实本篇内容很多的，如果你看不到上面的大篇幅内容，说明你急躁了！ (愚人节不快乐&amp;hellip;)</description>
     </item>
     
   </channel>

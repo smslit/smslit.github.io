@@ -6,8 +6,421 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Fri, 11 Dec 2020 14:19:33 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 15 Apr 2021 11:31:38 +0800</lastBuildDate>
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PaddleDetection 模型训练</title>
+			<link>https://www.smslit.top/2021/04/15/paddle-detection-train-log/</link>
+			<pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
+			
+			<guid>https://www.smslit.top/2021/04/15/paddle-detection-train-log/</guid>
+			<description>本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查</description>
+			<content type="html"><![CDATA[<p>本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查看官方的文档！</p>
+<h2 id="1-环境搭建">1. 环境搭建</h2>
+<ul>
+<li>为了考虑 python 的兼容性，依旧使用 <strong>python 3.6</strong>，这里我们使用 python ==<strong>3.6.12</strong>==。</li>
+<li>使用更轻量级的 conda 工具包 <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong></a> 来管理虚拟环境。</li>
+</ul>
+<blockquote>
+<h1 id="如果已经有了-python-的虚拟环境工具比如-anaconda这里推荐-anaconda-或-miniconda可以直接跳过-11-小节">如果已经有了 python 的虚拟环境工具，比如 anaconda，这里推荐 anaconda 或 miniconda，可以直接跳过 <code>1.1 小节</code>！</h1>
+</blockquote>
+<h3 id="11-python-环境">1.1 python 环境</h3>
+<ol>
+<li>
+<p>在 <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong></a> 页面中下载最新的 64 位的 linux 下的安装包 <a href="https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh">Miniconda3-py39_4.9.2-Linux-x86_64.sh</a>，最新版本默认的 python 版本是 3.9；</p>
+</li>
+<li>
+<p>下载安装包后，上传至服务器，我这里 ssh 服务器配置的短名是 <strong>20800</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，上传至用户目录下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scp Miniconda3-py39_4.9.2-Linux-x86_64.sh 20800:
+</code></pre></div></li>
+<li>
+<p>远程连接服务器，然后安装 miniconda：</p>
+<ul>
+<li>终端中远程连接 <strong>20800</strong>：<code>ssh 20800</code></li>
+<li>服务器中现在 miniconda 安装包的目录在用户目录下，为其添加运行权限：<code>chmod +x Miniconda3-py39_4.9.2-Linux-x86_64.sh</code></li>
+<li>运行安装包启动安装流程：<code>./Miniconda3-py39_4.9.2-Linux-x86_64.sh</code>，随后按 <code>Enter</code>键，后打开一个协议文件</li>
+<li>按 <code>Ctrl+d</code> 组合键进行翻页，一直翻页，会有提示问是否接受协议内容 - <code>Do you accept the license terms?[yes|no]</code>，输入 <code>yes</code>按回车键 <code>Enter</code> 即可</li>
+<li>之后后询问你安装位置，默认是在自己 <code>HOME</code> 目录下的 <code>miniconda3</code> 中，这里我一般是加个 <code>.</code> 隐藏目录，所以我一般使用用户目录下的 <code>.miniconda3</code>即 <code>/home/tianye/.miniconda3</code>，根据自己的情况改成自己的 <code>HOME</code> 即可，然后继续 <code>Enter</code>，等待安装即可 ⌛️</li>
+<li>一段时间后会继续有提示问题 - <code>Do you wish the installer to initialize Miniconda3 ny running conda init? [yes|no]</code> 这里输入 <strong>yes</strong> 直接回车
+<ul>
+<li>如果 shell 使用的是 <strong>bash</strong>(默认系统的 shell)，<code>Ctrl + d</code>断开 SSH 连接，重新连接远程机器 <code>ssh 20800</code>，此时就能使用 conda 了，<code>which conda</code> 应该就能看打印出 <strong>conda</strong> 的安装路径，直接跳到第 <strong>4</strong> 步</li>
+<li>如果使用的是 <strong>zsh</strong>，还需要将 miniconda 安装时在 <code>~/.bashrc</code> 中添加的内容添加到 <code> ~/.zshrc</code> 的最后添加这些内容，执行命令 <code>tail -n 15 ~/.bashrc &gt;&gt; ~/.zshrc</code>，<code>Ctrl + d</code>断开 SSH 连接，重新连接远程机器 <code>ssh 20800</code>，此时就能使用 conda 了，<code>which conda</code> 应该就能看打印出 <strong>conda</strong> 的安装路径</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="12-paddle-环境">1.2 paddle 环境</h2>
+<h3 id="121-创建虚拟环境">1.2.1 创建虚拟环境</h3>
+<p>此时默认会激活 conda 的 base 环境，默认是 python 3.9 的环境，我们要使用 <strong>python 3.6</strong> ，所以需要新建一个虚拟环境，执行命令 <code>conda create -n paddle python=3.6.12 </code></p>
+<ul>
+<li><code>-n paddle</code>指定虚拟环境名称为 <strong>paddle</strong></li>
+<li><code>python=3.6.12</code>环境中使用 <strong>3.6.12</strong> 版本的 python</li>
+</ul>
+<p>稍等 ⌛️ 一段时间后会有提示，回车直接默认 yes 即可，再 ⌛️ 一段时间即可完成虚拟环境的安装，会有提示如何激活和退出虚拟环境：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># To activate this environment, use</span>
+<span class="c1">#</span>
+<span class="c1">#     $ conda activate paddle</span>
+<span class="c1">#</span>
+<span class="c1"># To deactivate an active environment, use</span>
+<span class="c1">#</span>
+<span class="c1">#     $ conda deactivate</span>
+</code></pre></div><p>至此，conda 的虚拟环境就搭建好了。</p>
+<p>为了加速 conda 安装包的速度，可以配置使用国内的清华源：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+conda config --set show_channel_urls yes
+</code></pre></div><h3 id="122-安装-paddlepaddle">1.2.2 安装 paddlepaddle</h3>
+<p>激活虚拟环境：<code>conda activate paddle</code>，使用 <code>which</code> 命令查看 python 安装目录：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/python-20210412110120.png" style="zoom:50%;">
+<blockquote>
+<h1 id="加速-pip-包安装速度">加速 pip 包安装速度</h1>
+<ol>
+<li>更新 pip：<code>pip install --upgrade pip</code></li>
+<li>配置使用国内安装源，这里使用 aliyun 的源：<code>pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</code></li>
+</ol>
+</blockquote>
+<p>之后我们安装 <a href="https://www.paddlepaddle.org.cn">paddlepaddle</a>，打开主页就能看到 conda 和 pip 的两种安装方式，这里是用 <strong>pip</strong> 的方式，首先确实使用 cpu 还是 GPU，这里我们使用 Nvidia 的 GPU ，cuda 10.1 版本，所以最终安装 paddlepaddle 的命令如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">python -m pip install paddlepaddle-gpu<span class="o">==</span>2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+</code></pre></div><p>官网选择截图如下：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/paddle-install-20210412105514.jpg" width="640">
+<h3 id="123-验证安装">1.2.3 验证安装</h3>
+<p>安装完成后您可以使用 <code>python</code> 进入 python 解释器，输入<code>import paddle</code> ，再输入 <code>paddle.utils.run_check()</code></p>
+<p>如果出现<code>PaddlePaddle is installed successfully!</code>，说明您已成功安装。</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/verify-20210412114137.png" style="zoom:50%;">
+<h2 id="2-目标检测模型训练">2. 目标检测模型训练</h2>
+<blockquote>
+<h1 id="这里以-ppyolo-算法的模型训练为例使用的数据集为-voc-数据格式使用-coco-格式的数据集训练方式后面如果有涉及也会记录相关操作">这里以 ppyolo 算法的模型训练为例，使用的数据集为 <strong>VOC</strong> 数据格式，使用 <strong>COCO</strong> 格式的数据集训练方式后面如果有涉及也会记录相关操作。</h1>
+</blockquote>
+<h3 id="21-下载-paddledetection">2.1 下载 PaddleDetection</h3>
+<p>使用最新的 <a href="https://github.com/PaddlePaddle/PaddleDetection.git"><strong>PaddleDetection</strong></a> 代码进行目标检测，使用 git clone 到服务器适当目录即可，比如用户目录下 <code>paddle</code> 目录下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 如果没有 paddle 目录可以新建</span>
+mkdir ~/paddle
+<span class="c1"># 进入 paddle 目录</span>
+<span class="nb">cd</span> paddle
+<span class="c1"># 克隆 PaddleDetection 仓库</span>
+git clone https://github.com/PaddlePaddle/PaddleDetection.git
+<span class="c1"># 可以查看下 PaddleDetection 的 1 层级目录结构</span>
+tree -L <span class="m">1</span> PaddleDetection
+</code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/paddledetection-tree-20210413153613.png" alt="paddledetection-tree" style="zoom:50%;" /></p>
+<ul>
+<li><strong>configs</strong>：训练的配置文件，包含各种常用的算法，我们可以复制创建自己的配置文件，进行新的训练任务</li>
+<li><strong>dataset</strong>：存放标注数据，一般不要将自己的数据添加到实际的 git 跟踪中</li>
+<li><strong>demo</strong>：存放一些 demo 图像，可以将我们的测试样本放到这个目录中</li>
+<li><strong>output</strong>：这里一般用来存放训练导出的模型以及 demo 图像的推理结果图像</li>
+<li><strong>ppdet</strong>：基于 paddlepaddle 框架的目标检测的基本库</li>
+<li><strong>slim</strong>：裁剪蒸馏文件的存放位置</li>
+<li><strong>tools</strong>：存放基本的模型训练、评估、推理、裁剪、生成锚框、转换数据集格式等工具脚本</li>
+<li><strong>vdl_dir</strong>：可视化深度学习服务所需的文件，用于可视化训练过程</li>
+</ul>
+<blockquote>
+<h1 id="为了更好的管理自己的配置文件建议使用好-git这里我们可以建立自己的分支比如我这里建立-5km-分支">为了更好的管理自己的配置文件，建议使用好 git，这里我们可以建立自己的分支，比如我这里建立 <strong>5km</strong> 分支！</h1>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 进入 PaddleDetection 目录</span>
+<span class="nb">cd</span> PaddleDetection
+<span class="c1"># 创建并切换到 5km 分支</span>
+git checkout -b 5km
+</code></pre></div><h3 id="22-数据集处理">2.2 数据集处理</h3>
+<p>可以使用 <a href="https://pypi.org/project/vocgo/"><strong>vocgo</strong></a> 切分数据集，VOC 数据集中一般会有两个目录，以数据组帮忙标注的银行大厅人员的数据为例，简单讲解下 vocgo 使用。</p>
+<p>这里数据放在了我的用户下的 <code>data/bank</code> 中，首先进入这个目录：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 进入数据目录</span>
+<span class="nb">cd</span> ~/data/bank
+<span class="c1"># 激活虚拟环境</span>
+conda activate paddle
+</code></pre></div><h4 id="221-安装-vocgo">2.2.1 安装 vocgo</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">python3 -m pip install vocgo
+</code></pre></div><h4 id="222-查看标注类别">2.2.2 查看标注类别</h4>
+<p>一般情况下， VOC 数据的目录结构如下：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-20210413141523.png" style="zoom:50%;">
+<p>使用命令 <code>vocgo list .</code>即可查看当前目录下数据中标注的类别都有哪些：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/vocgo-list-20210413142022.png" style="zoom:50%;">
+<ul>
+<li>包含了 5 种类别的目标，也分别统计了每种类别的目标个数</li>
+<li>同时也统计了有、没有检测目标的图像个数</li>
+</ul>
+<blockquote>
+<h2 id="命令中指的是当前目录">命令中==.==指的是当前目录</h2>
+</blockquote>
+<h4 id="223-切分数据">2.2.3 切分数据</h4>
+<p>可以使用命令 <code>vocgo split --ratio 0.9 . </code>对当前目录中的标注数据进行切分，其中训练集图像与验证集图像按照 比例 <code>0.9</code> 进行划分，执行命令后会提示输入切分数据文件的导出目录，这里我们指定为 ==all==:</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/split-data-20210413143652.png" style="zoom:50%;">
+<p>会在指定导出目录中生成相应的标注文件。</p>
+<p>如果我们只想筛选其中的 <strong>customer</strong>、<strong>security</strong>、<strong>teller</strong>三个类别训练模型，可以通过命令<code>vocgo split --labels=customer,security,teller --ratio 0.9 .</code>进行数据筛选和切分，执行命令后指定导出目录为 <code>human</code> ：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/split-data--20210413144210.png" style="zoom:50%;">
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看导出数据的类别</span>
+➜ cat human/label_list.txt
+customer
+security
+teller
+</code></pre></div><p>同样我们可以使用 <code>vocgo list human</code> 查看新导出切分数据集的类别信息：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/new-data-list-20210413144550.png" style="zoom:50%;">
+<blockquote>
+<h1 id="为了不占用多余的数据空间这里建议将我们的数据目录建立软链接到-paddledetection-的-dataset-目录下">为了不占用多余的数据空间，这里建议将我们的数据目录建立软链接到 <strong>PaddleDetection</strong> 的 <strong>dataset</strong> 目录下！</h1>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 将 bank 目录链接到 ~/paddle/PaddleDetection/dataset/bank</span>
+ln -s ~/data/bank ~/paddle/PaddleDetection/dataset/bank
+<span class="c1"># 建议将新增的 bank 软链接添加到 PaddleDetection 仓库的 .gitignore 中</span>
+<span class="nb">echo</span> <span class="s2">&#34;dataset/bank&#34;</span> &gt;&gt; ~/paddle/PaddleDetection/.gitignore
+</code></pre></div><blockquote>
+<h3 id="最好是把自己添加的数据集目录都追加到-paddledetection-的忽略文件中就像上面的第二条命令">最好是把自己添加的数据集目录都追加到 <strong>PaddleDetection</strong> 的忽略文件中！就像上面的第二条命令。</h3>
+</blockquote>
+<h3 id="23-建立配置文件">2.3 建立配置文件</h3>
+<p>我们这里使用百度 paddlepaddle 团队自研算法训练模型。</p>
+<p>仓库中自带的 ppyolo 配置文件在 <code>configs/ppyolo</code>中，当然我们可以直接修改已经有的配置文件，但是为了不影响原有的参考文件，我们最好是复制一份，重命名一下，比如这里我们使用的是 <code>configs/ppyolo/ppyolo_voc.yml</code> ，我们要用 [2.2.3 小节](#2.2.3 切分数据) 中的切分出的 human 数据进行训练，我们暂且重命名为<code>ppyolo_bank_human_voc.yml</code>吧：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 复制新的配置文件</span>
+cp configs/ppyolo/ppyolo_voc.yml configs/ppyolo/ppyolo_bank_human_voc.yml
+</code></pre></div><p>下面开始修改配置文件，这里只简单说几项关键的参数。首先我们明确一下要使用几个 GPU，比如我们使用 4 个卡去训练模型（<strong>GPU_num</strong>=<strong>4</strong>）。</p>
+<h4 id="231-修改-batch_size">2.3.1 修改 batch_size</h4>
+<p>这个指的是一次显卡加载的图像样本数量，这受到显存的限制，默认使用的是 <strong>12</strong>，默认值对应的是 ==32GB== 显存的卡 <strong>Tesla V100</strong>，我们的卡显存是 ==12GB== 的 <strong>2080Ti</strong>，所以需要调小一点，比如使用 <strong>4</strong>，有一定的线性关系，当看着还有显存的时候，可以慢慢上调，比如 <strong>6</strong>，这里我们就使用 <strong>4</strong>。这个在 <code>TrainReader</code>的<code>batch_size</code>设置。</p>
+<h4 id="232-修改-max_iters">2.3.2 修改 max_iters</h4>
+<p>ppyolo 中不使用 <code>epoch_size</code> 表示迭代，而是使用 <code>max_iters</code>表示，这里我们默认 <code>epoch_size=120</code>，可以使用以下关系式去设置参数值：</p>
+<p>$$
+iters_{max}=\frac{Num_{image} \times Size_{epoch}}{Num_{GPU} \times Size_{batch}}
+$$</p>
+<p>在 [2.2.3 小节](#2.2.3 切分数据) 切分数据的时候，可以看到 <strong>human</strong> 数据集中图像数量（<code>image_num</code>）是 <strong>4926</strong>， [2.3.1 小节](#2.3.1 修改 batch_size) 中调整 <code>batch_size</code> 为 <strong>4</strong>，<strong>GPU_num</strong> 为 4，最后计算如下：</p>
+<p>$$
+iters_{max}=\frac{4926 \times 120}{4 \times 4}=36945
+$$</p>
+<p>这里我们就取个整 <strong>36000</strong> 吧！</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># image_num * epoch_size / GPU_num / batch_size</span><span class="w">
+</span><span class="w"></span><span class="c"># 4926 * 120 / 4 / 4 =&gt; 36000</span><span class="w">
+</span><span class="w"></span><span class="nt">max_iters</span><span class="p">:</span><span class="w"> </span><span class="m">36000</span><span class="w">
+</span></code></pre></div><h4 id="233-调整日志打印间隔">2.3.3 调整日志打印间隔</h4>
+<p>为了更细的看到迭代过程中的结果，将 <code>log_smooth_window</code>和<code>log_iter</code>由原来的 <strong>20</strong> 改为 <strong>5</strong>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">log_smooth_window</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="w"></span><span class="nt">log_iter</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></code></pre></div><h4 id="234-设置快照间隔-snapshot_iter">2.3.4 设置快照间隔 snapshot_iter</h4>
+<p>此参数表示每多少次保存一版模型，这里设置 <strong>3000</strong>，最终算下来能保存 <strong>12</strong> 个。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">snapshot_iter</span><span class="p">:</span><span class="w"> </span><span class="m">3000</span><span class="w">
+</span></code></pre></div><h4 id="235-设置模型目录">2.3.5 设置模型目录</h4>
+<p>此参数为设置模型权重文件的最终名称，其实是变相的设置输出目录，一般是设置在 <strong>output</strong> 下，即：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">save_dir</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
+</span></code></pre></div><blockquote>
+<h1 id="训练过程中会在指定的-save_dir-下生成与配置文件同名目录---ppyolo_bank_human_voc中间过程即-234-小节234-设置快照间隔-snapshot_iter-中设置保存的每一版模型都会存储到该目录中">训练过程中，会在指定的 <strong>save_dir</strong> 下生成与配置文件同名目录 - <code>ppyolo_bank_human_voc</code>，中间过程即 [2.3.4 小节](#2.3.4 设置快照间隔 snapshot_iter) 中设置保存的每一版模型都会存储到该目录中。</h1>
+</blockquote>
+<p>这里要特别说一下 <code>weights</code> 参数，这个参数一般用于模型转换和模型推理，用于指定转换的输入模型，模型训练完成后最终的模型名称就是 <strong>model_final</strong>，我们可以指定为下面的配置：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">weights</span><span class="p">:</span><span class="w"> </span><span class="l">output/ppyolo_bank_human_voc/model_final</span><span class="w">
+</span></code></pre></div><h4 id="236-设置类别个数">2.3.6 设置类别个数</h4>
+<p>yolo 系的算法在数据集的配置中都会设置 <code>with_background</code> 为 <code>false</code> 也就是不包含背景，那么依照 [2.2.3 小节](#2.2.3 切分数据) 最后查看 human 切分数据的时候的类别个数为准，也就是 <strong>3</strong> 个：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">num_classes</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span></code></pre></div><h4 id="237-设置学习率参数">2.3.7 设置学习率参数</h4>
+<ol>
+<li>按照百度传达的经验，调整学习率应该依据于使用 GPU 的个数 <strong>GPU_num</strong> 和设置的 <strong>batch_size</strong>，原始的 <code>base_lr=0.01</code>为使用 8 卡，同时 <code>batch_size</code> 设置为 <strong>12</strong> 时设置的值，因为我们使用卡数量为 <strong>4</strong>，<strong>batch_size</strong> 为 <strong>4</strong>，所以最终设置 <code>base_lr</code>为 <strong>0.0025</strong>即可。</li>
+<li>设置学习率调整的 <code>schedulers</code> 参数，其中<code>PiecewiseDecay</code> 的 <code>milestones</code> 设置依赖于 [2.3.2 小节](#2.3.2 设置 max_iters)中的 <code>max_iters</code> 值，两个值一般分别按比例 <strong>0.8</strong> 和 <strong>0.88</strong>（大约，周边取整即可)，所以对应 <strong>36000</strong> 的话，应该是 <strong>28800</strong> 和 <strong>32000</strong>。</li>
+<li>同样需要按比例调整 <code>LinearWarmup</code>的 <code>steps</code>，也是依据 [2.3.2 小节](#2.3.2 设置 max<em>iters) 中的 <code>max_iters</code> 值，一般比例是 <strong>17.5</strong> 左右，计算取整即可，这里 $\frac{iters</em>{max}}{17.5}=\frac{36000}{17.5}\approx2100$，所以最终配置。</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">LearningRate</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">base_lr</span><span class="p">:</span><span class="w"> </span><span class="m">0.0025</span><span class="w">
+</span><span class="w">  </span><span class="nt">schedulers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- !<span class="l">PiecewiseDecay</span><span class="w">
+</span><span class="w">      </span><span class="nt">gamma</span><span class="p">:</span><span class="w"> </span><span class="m">0.1</span><span class="w">
+</span><span class="w">      </span><span class="nt">milestones</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="m">28800</span><span class="w">
+</span><span class="w">        </span>- <span class="m">32000</span><span class="w">
+</span><span class="w">    </span>- !<span class="l">LinearWarmup</span><span class="w">
+</span><span class="w">      </span><span class="nt">start_factor</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="l">.</span><span class="w">
+</span><span class="w">      </span><span class="nt">steps</span><span class="p">:</span><span class="w"> </span><span class="m">2100</span><span class="w">
+</span></code></pre></div><h4 id="238-设置-reader">2.3.8 设置 Reader</h4>
+<ol>
+<li>
+<p>设置 <code>_Reader_</code>，默认值是相对于配置文件下的 <code>ppyolo_reader.yml</code>文件，以后有可能我们还会修改里面的内容，所我们也复制这个文件，新文件命名为 <code>ppyolo_bank_human_reader.yml</code>，同时更新 <code>_Reader_</code> 的值为 <code>ppyolo_bank_human_reader.yml</code>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 复制 reader 文件</span>
+cp configs/ppyolo/ppyolo_reader.yml configs/ppyolo/ppyolo_bank_human_reader.yml
+</code></pre></div></li>
+<li>
+<p>设置数据集目录，需要对训练集、评估集的 <code>dataset_dir</code> 、<code>anno_path</code></p>
+<ul>
+<li><code>dataset_dir</code> 数据集的目录路径，相对于 <strong>PaddleDetection</strong> 的目录设置，训练集和评估集都是 <code>dataset/bank/human</code></li>
+<li><code>anno_path</code> 对应的切分数据文件，训练集的为 <code>train.txt</code>，评估集的为 <code>valid.txt</code></li>
+</ul>
+</li>
+<li>
+<p>设置使用我们自己生成的 <strong>label_list</strong> 文件，所以需要把 <code>TrainReader</code>、<code>EvalReader</code>、<code>TestReader</code> 的 <code>dataset</code> 下的 <code>use_default_label</code> 设置为 <code>false</code> 。</p>
+</li>
+<li>
+<p>对应 [2.3.1 小节](# 设置 batch_size) 中的 <code>batch_size</code> 就是在 <code>TrainReader</code> 中设置，值为 <strong>4</strong>。</p>
+</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">_READER_</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ppyolo_bank_human_reader.yml&#34;</span><span class="w">
+</span><span class="w"></span><span class="nt">TrainReader</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span>!<span class="l">VOCDataSet</span><span class="w">
+</span><span class="w">    </span><span class="nt">dataset_dir</span><span class="p">:</span><span class="w"> </span><span class="l">dataset/bank/human</span><span class="w">
+</span><span class="w">    </span><span class="nt">anno_path</span><span class="p">:</span><span class="w"> </span><span class="l">train.txt</span><span class="w">
+</span><span class="w">    </span><span class="nt">use_default_label</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span><span class="nt">with_background</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">  </span><span class="nt">mixup_epoch</span><span class="p">:</span><span class="w"> </span><span class="m">350</span><span class="w">
+</span><span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">EvalReader</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">inputs_def</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;image&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;im_size&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;im_id&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;gt_bbox&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;gt_class&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;is_difficult&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">    </span><span class="nt">num_max_boxes</span><span class="p">:</span><span class="w"> </span><span class="m">50</span><span class="w">
+</span><span class="w">  </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span>!<span class="l">VOCDataSet</span><span class="w">
+</span><span class="w">    </span><span class="nt">dataset_dir</span><span class="p">:</span><span class="w"> </span><span class="l">dataset/bank/human</span><span class="w">
+</span><span class="w">    </span><span class="nt">anno_path</span><span class="p">:</span><span class="w"> </span><span class="l">valid.txt</span><span class="w">
+</span><span class="w">    </span><span class="nt">use_default_label</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span><span class="nt">with_background</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">TestReader</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">dataset</span><span class="p">:</span><span class="w"> </span>!<span class="l">ImageFolder</span><span class="w">
+</span><span class="w">    </span><span class="nt">use_default_label</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span><span class="nt">with_background</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></code></pre></div><h4 id="239-设置-anchor">2.3.9 设置 Anchor</h4>
+<ol>
+<li>
+<p>这里需要使用 <strong>PaddleDetection</strong> 提供的工具脚本 <code>tools/anchor_cluster.py</code>聚类生成对应 <strong>human</strong> 数据的 Anchor 数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">python tools/anchor_cluster.py -c configs/ppyolo/ppyolo_bank_human_voc.yml -n <span class="m">9</span> -s <span class="m">608</span> -m v2 -i <span class="m">1000</span>
+</code></pre></div><ul>
+<li><code>-c</code> 指定使用的配置文件，这里我们的就是刚刚修改好的配置文件 <code>configs/ppyolo/ppyolo_bank_human_voc.yml</code></li>
+<li><code>-n 9</code> 生成 9 组尺寸</li>
+<li><code>-s 608</code> 指定图像训练尺寸</li>
+<li><code>-m v2</code> 使用默认的 v2 版本方法</li>
+<li><code>-i 1000</code> 迭代次数</li>
+</ul>
+<blockquote>
+<h2 id="其实这里的--c-之后的很多选项我也不知道具体明确的意思后面有时间在探究然后补充到这里先按照默认的选项生成">其实这里的 -c 之后的<strong>很多选项我也不知道具体</strong>明确的<strong>意思</strong>，后面有时间在探究然后补充到这里，先按照默认的选项生成！</h2>
+</blockquote>
+<p>执行上边脚本后会打印 9 组尺寸，用于替换配置文件中原有配置即可，比如我这里打印的是：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/anchor_cluster-20210414140006.png" style="zoom:50%;">
+</li>
+<li>
+<p>需要替换配置文件 <code>configs/ppyolo/ppyolo_bank_human_voc.yml</code>中 <code>YOLOv3Head</code>的 <code>anchors</code> 为上面打印的 9 个尺寸列表。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">YOLOv3Head</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">anchor_masks</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]]</span><span class="w">
+</span><span class="w">  </span><span class="nt">anchors</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="p">[</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">44</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">28</span><span class="p">,</span><span class="w"> </span><span class="m">108</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">38</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">78</span><span class="p">,</span><span class="w"> </span><span class="m">123</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">55</span><span class="p">,</span><span class="w"> </span><span class="m">221</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">108</span><span class="p">,</span><span class="w"> </span><span class="m">152</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">79</span><span class="p">,</span><span class="w"> </span><span class="m">268</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">118</span><span class="p">,</span><span class="w"> </span><span class="m">326</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">156</span><span class="p">,</span><span class="w"> </span><span class="m">352</span><span class="p">],</span><span class="w">
+</span><span class="w">    </span><span class="p">]</span><span class="w">
+</span></code></pre></div></li>
+<li>
+<p>因为配置项 <code>YOLOv3Loss</code> 的 <code>use_fine_grained_loss</code> 配置为了 <code>true</code> 所以还需要设置 <code>configs/ppyolo/ppyolo_bank_human_reader.yml</code> 中的 <strong>anchor</strong> 配置，具体找到 <code>TrainReader</code> -<code>batch_transforms</code>-<code>!Gt2YoloTarget</code> 修改 <code>anchors</code> 即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># Gt2YoloTarget is only used when use_fine_grained_loss set as true,</span><span class="w">
+</span><span class="w"></span><span class="c"># this operator will be deleted automatically if use_fine_grained_loss</span><span class="w">
+</span><span class="w"></span><span class="c"># is set as false</span><span class="w">
+</span><span class="w"></span>- !<span class="l">Gt2YoloTarget</span><span class="w">
+</span><span class="w">  </span><span class="nt">anchor_masks</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]]</span><span class="w">
+</span><span class="w">  </span><span class="c"># anchors: [[22, 47], [29, 112], [41, 170],</span><span class="w">
+</span><span class="w">  </span><span class="c">#           [75, 123], [62, 243], [106, 148],</span><span class="w">
+</span><span class="w">  </span><span class="c">#           [101, 278], [121, 384], [155, 328]]</span><span class="w">
+</span><span class="w">  </span><span class="nt">anchors</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="p">[</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">44</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">28</span><span class="p">,</span><span class="w"> </span><span class="m">108</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">38</span><span class="p">,</span><span class="w"> </span><span class="m">158</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">78</span><span class="p">,</span><span class="w"> </span><span class="m">123</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">55</span><span class="p">,</span><span class="w"> </span><span class="m">221</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">108</span><span class="p">,</span><span class="w"> </span><span class="m">152</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">79</span><span class="p">,</span><span class="w"> </span><span class="m">268</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">118</span><span class="p">,</span><span class="w"> </span><span class="m">326</span><span class="p">],</span><span class="w">
+</span><span class="w">      </span><span class="p">[</span><span class="m">156</span><span class="p">,</span><span class="w"> </span><span class="m">352</span><span class="p">],</span><span class="w">
+</span><span class="w">    </span><span class="p">]</span><span class="w">
+</span></code></pre></div></li>
+</ol>
+<blockquote>
+<h3 id="到这里完成了基本的配置文件的修改下一步就可以进行模型训练了">到这里完成了基本的配置文件的修改，下一步就可以进行模型训练了！</h3>
+<h1 id="本小节简单介绍了基本的常规需要调整的参数后面如果有收获会继续丰富这个小节关于参数的调整内容">本小节简单介绍了基本的常规需要调整的参数，后面如果有收获会继续丰富这个小节关于参数的调整内容。</h1>
+</blockquote>
+<h3 id="24-模型训练">2.4 模型训练</h3>
+<p>得益于强大的 <strong>PaddleDetection</strong> 我们只需要简单的一条命令就可以开启模型训练。</p>
+<h4 id="241-准备工作">2.4.1 准备工作</h4>
+<p>训练过程一般是很长时间，然而我们 ssh 链接一旦断开就会把运行的训练程序停掉，为了防止这种情况的发生，我们一般远程 SSH 链接机器后，还会使用 <a href="https://baike.baidu.com/item/tmux/10234491?fr=aladdin">tmux</a> 创建会话，在新的会话中执行我们的命令，只要不是 <strong>tmux</strong> 挂掉或者我们自己 kill 程序，一般情况下我们的程序就会由 tmux 进行托管执行，即使我们断开了 SSH ，重新连接机器后，连接上 tmux 的会话也能看到自己也还在执行的程序，下面简单说一下我的操作过程：</p>
+<ol>
+<li>
+<p>创建会话，会话名称为 <strong>paddle</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tmux new -s paddle
+</code></pre></div><p>这样就会打开一个会话并激活一个窗口 shell。</p>
+</li>
+<li>
+<p>我一般会把窗口重命名，还会创建一个专门监控显卡和其他硬件资源的窗口，使用当前的窗口创建即可：</p>
+<ul>
+<li>
+<p>重命名窗口为 <strong>monitor</strong>：按下快捷键 <code>ctrl</code>+<code>b</code>，然后按 <code>,</code> 键就会在最低边可以编辑修改名称，改为 <strong>monitor</strong> 回车即可</p>
+</li>
+<li>
+<p>这样回到 shell 之，执行命令 <code>watch -n 0.5 nvidia-smi</code>，这样就会每 0.5 秒刷新一次显卡状态</p>
+</li>
+<li>
+<p>快捷键 <code>ctrl</code>+<code>b</code>，然后按 <code>%</code> 键，会在右侧竖分出一个新的窗格，我们可以打开一个 top 命令随时查看 CPU、memery 和 proc 情况，我这里使用的是 gotop 命令，更好看一些，直接运行命令 <code>gotop</code>，你可以运行 <code>top</code> 或者 <code>htop</code>，这样我们的监控窗口就做好了，晒一下我的监控窗口：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/monitor-20210414150134.jpg" style="zoom:50%;">
+</li>
+<li>
+<p>快捷键 <code>ctrl</code>+<code>b</code>，然后按 <code>c</code> 键，此时会创建新的窗口，按下快捷键 <code>ctrl</code>+<code>b</code>，然后按 <code>,</code> 键就会在最低边可以编辑修改名称，改为 <strong>train</strong> 回车，这样我们的窗口都准备好了，窗口切换的快捷键是：快捷键 <code>ctrl</code>+<code>b</code>，然后按 <code>p</code> 或 <code>n</code></p>
+<ul>
+<li>其中 <code>p</code> 代表 <strong>previous</strong> 表示切换到前一个窗口</li>
+<li>其中 <code>n</code> 代表 <strong>next</strong> 表示切换到前一个窗口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>然后进入工作目录，并激活虚拟环境</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 进入 PaddleDetection 目录</span>
+<span class="nb">cd</span> paddle/PaddleDetection
+<span class="c1"># 激活虚拟环境</span>
+conda activate paddle
+</code></pre></div></li>
+</ol>
+<h4 id="242-开始训练">2.4.2 开始训练</h4>
+<p>假设我们使用 0、1、2、3 号卡训练模型，那么执行命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>0,1,2,3 python tools/train.py -c configs/ppyolo/ppyolo_bank_human_voc.yml --eval -o <span class="nv">use_gpu</span><span class="o">=</span><span class="nb">true</span> --use_vdl<span class="o">=</span>True --vdl_log_dir<span class="o">=</span>vdl_dir/scalar
+</code></pre></div><ul>
+<li><code>CUDA_VISIBLE_DEVICES=0,1,2,3</code> 指定环境变量，告诉 <strong>ppdect</strong> 使用 0、1、2、3 号卡进行多卡训练</li>
+<li><code>tools/train.py</code> 训练工具脚本</li>
+<li><code>-c configs/ppyolo/ppyolo_bank_human_voc.yml</code> 使用我们刚做好的配置文件</li>
+<li><code>--eval</code> 每次快照保存模型的时候进行一次评估</li>
+<li><code>-o use_gpu=true</code> 覆盖配置文件中的指定配置项的值，这里是指定要使用 gpu</li>
+<li><code>--use_vdl=True</code> 配置开启深度学习可视化，可以看一些 loss 曲线，可视化训练过程中关键指标的变化</li>
+<li><code>--vdl_log_dir=vdl_dir/scalar</code> 指定可视化日志输出位置</li>
+</ul>
+<p>正常的情况下，经过 ⌛️ 一段时间我们就能看到迭代过程中的日志打印了，类似于：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>INFO 2021-04-14 14:29:09,065 train.py:286<span class="o">]</span> iter: 765, lr: 0.000607, <span class="s1">&#39;loss_xy&#39;</span>: <span class="s1">&#39;1.455415&#39;</span>, <span class="s1">&#39;loss_wh&#39;</span>: <span class="s1">&#39;1.337777&#39;</span>, <span class="s1">&#39;loss_obj&#39;</span>: <span class="s1">&#39;11.151718&#39;</span>, <span class="s1">&#39;loss_cls&#39;</span>: <span class="s1">&#39;2.540418&#39;</span>, <span class="s1">&#39;loss_iou&#39;</span>: <span class="s1">&#39;4.378272&#39;</span>, <span class="s1">&#39;loss_iou_aware&#39;</span>: <span class="s1">&#39;0.087677&#39;</span>, <span class="s1">&#39;loss&#39;</span>: <span class="s1">&#39;20.988634&#39;</span>, eta: 6:41:24, batch_cost: 0.68355 sec, ips: 5.85182 images/sec
+</code></pre></div><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/train-20210414150402.png" style="zoom:50%;">
+<p>可以查看日志打印观察 <strong>loss</strong> 是否是收敛的。</p>
+<p>训练起来之后可以按快捷键 快捷键 <code>ctrl</code>+<code>b</code>，然后按 <code>p</code> 返回到 <strong>monitor</strong> 窗口，查看硬件资源使用情况，比如显卡，可以看一下显存占用，可以作为依据调整配置文件中<code> batch_size</code>。</p>
+<h4 id="243-可视化曲线">2.4.3 可视化曲线</h4>
+<p>为了更直观的观看训练情况，我们可以开启 <strong>VDL</strong> 的服务查看动态的曲线变化。这里有个小技巧，如果直接在 ssh 连接机器的 shell 中执行启动可视化服务的命令，因为服务器的端口并未开放，我们在自己本地是无法访问的，最简单的坚决方式是使用 <strong>vscode</strong>，vscode 能自动转发连接服务器上自己启动的端口服务，这里就不讲如何使用 vscode 远程连接服务器了，自行百度。</p>
+<p>使用 vscode 远程连接上面训练任务开启的机器，打开 <code>paddle/PaddleDetectioj</code> 文件夹，打开一个终端窗口，如果没有激活我们创建的 <strong>paddle</strong> 虚拟环境的话，我们自己激活即可 <code>conda activate paddle</code> ，然后执行以下命令启动服务，指定 vdl 的日志目录与训练命令中对应起来：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">visualdl --logdir vdl_dir/scalar/
+</code></pre></div><p>执行命令后，vscode 就会检测到新的端口服务并提示完成转发：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/visual-dl-20210414152231.png"  style="zoom:50%;">
+<p>点击**「在浏览器中打开」**按钮即可在浏览器打开我们的可视化服务的页面，便可以查看各种曲线了：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/vdl-20210414152903.png" alt=""></p>
+<h4 id="244-后台运行">2.4.4 后台运行</h4>
+<p>我们可以把 tmux 会话推到后台，使用快捷键 <code>ctrl</code>+<code>b</code>，然后按下 <code>d</code> 即可退出 tmux。</p>
+<p>如果想要重新连接我们训练的会话，执行命令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">tmux a -t paddle
+</code></pre></div><ul>
+<li><code>paddle</code> 就是我们的会话名称</li>
+<li><code>a</code> 是 <strong>attach</strong> 的缩写</li>
+</ul>
+<h4 id="245-等待完成">2.4.5 等待完成</h4>
+<p>训练需要很长时间，具体大约的时间，在打印的日志中有体现，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>INFO 2021-04-14 14:29:09,065 train.py:286<span class="o">]</span> iter: 765, lr: 0.000607, <span class="s1">&#39;loss_xy&#39;</span>: <span class="s1">&#39;1.455415&#39;</span>, <span class="s1">&#39;loss_wh&#39;</span>: <span class="s1">&#39;1.337777&#39;</span>, <span class="s1">&#39;loss_obj&#39;</span>: <span class="s1">&#39;11.151718&#39;</span>, <span class="s1">&#39;loss_cls&#39;</span>: <span class="s1">&#39;2.540418&#39;</span>, <span class="s1">&#39;loss_iou&#39;</span>: <span class="s1">&#39;4.378272&#39;</span>, <span class="s1">&#39;loss_iou_aware&#39;</span>: <span class="s1">&#39;0.087677&#39;</span>, <span class="s1">&#39;loss&#39;</span>: <span class="s1">&#39;20.988634&#39;</span>, eta: 6:41:24, batch_cost: 0.68355 sec, ips: 5.85182 images/sec
+</code></pre></div><p>其中 <code>eta</code> 就是评估的可能耗时。</p>
+<blockquote>
+<h3 id="去干点其它的事情就行了可以偶尔连接机器连接-tmux-会话查看训练情况有可能会出问题的">去干点其它的事情就行了，可以偶尔连接机器连接 tmux 会话查看训练情况，有可能会出问题的！</h3>
+</blockquote>
+<h3 id="25-模型推理">2.5 模型推理</h3>
+<p>未完待续&hellip;</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>通过 SSH 配置文件中添加远程机器的配置内容实现，我这里是在自己的 ssh 配置文件中添加了 20800 远程机器的配置，如何配置可参考<a href="https://blog.csdn.net/zhanlanmg/article/details/48708255">ssh 别名登录</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+		</item>
 		
 		<item>
 			<title>使用 mmdectection 简单训练一个 faster-rcnn 模型</title>

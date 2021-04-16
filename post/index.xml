@@ -10,7 +10,7 @@
 		<atom:link href="https://www.smslit.top/post/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>PaddleDetection 模型训练</title>
+			<title>PaddleDetection 模型训练笔记</title>
 			<link>https://www.smslit.top/2021/04/15/paddle-detection-train-log/</link>
 			<pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
 			
@@ -19,7 +19,7 @@
 			<content type="html"><![CDATA[<p>本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查看官方的文档！</p>
 <h2 id="1-环境搭建">1. 环境搭建</h2>
 <ul>
-<li>为了考虑 python 的兼容性，依旧使用 <strong>python 3.6</strong>，这里我们使用 python ==<strong>3.6.12</strong>==。</li>
+<li>为了考虑 python 的兼容性，依旧使用 <strong>python 3.6</strong>，这里我们使用 python <strong>3.6.12</strong>。</li>
 <li>使用更轻量级的 conda 工具包 <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong></a> 来管理虚拟环境。</li>
 </ul>
 <blockquote>
@@ -103,7 +103,10 @@ mkdir ~/paddle
 git clone https://github.com/PaddlePaddle/PaddleDetection.git
 <span class="c1"># 可以查看下 PaddleDetection 的 1 层级目录结构</span>
 tree -L <span class="m">1</span> PaddleDetection
-</code></pre></div><p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/paddledetection-tree-20210413153613.png" alt="paddledetection-tree" style="zoom:50%;" /></p>
+</code></pre></div><blockquote>
+<h1 id="此文撰写时使用的仓库的默认分支即-release20-rc">此文撰写时使用的仓库的默认分支，即 <strong>release/2.0-rc</strong></h1>
+</blockquote>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/paddledetection-tree-20210413153613.png" alt="paddledetection-tree" style="zoom:50%;" /></p>
 <ul>
 <li><strong>configs</strong>：训练的配置文件，包含各种常用的算法，我们可以复制创建自己的配置文件，进行新的训练任务</li>
 <li><strong>dataset</strong>：存放标注数据，一般不要将自己的数据添加到实际的 git 跟踪中</li>
@@ -140,10 +143,10 @@ conda activate paddle
 <li>同时也统计了有、没有检测目标的图像个数</li>
 </ul>
 <blockquote>
-<h2 id="命令中指的是当前目录">命令中==.==指的是当前目录</h2>
+<h2 id="命令中指的是当前目录">命令中**.**指的是当前目录</h2>
 </blockquote>
 <h4 id="223-切分数据">2.2.3 切分数据</h4>
-<p>可以使用命令 <code>vocgo split --ratio 0.9 . </code>对当前目录中的标注数据进行切分，其中训练集图像与验证集图像按照 比例 <code>0.9</code> 进行划分，执行命令后会提示输入切分数据文件的导出目录，这里我们指定为 ==all==:</p>
+<p>可以使用命令 <code>vocgo split --ratio 0.9 . </code>对当前目录中的标注数据进行切分，其中训练集图像与验证集图像按照 比例 <code>0.9</code> 进行划分，执行命令后会提示输入切分数据文件的导出目录，这里我们指定为 <strong>all</strong>:</p>
 <img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/split-data-20210413143652.png" style="zoom:50%;">
 <p>会在指定导出目录中生成相应的标注文件。</p>
 <p>如果我们只想筛选其中的 <strong>customer</strong>、<strong>security</strong>、<strong>teller</strong>三个类别训练模型，可以通过命令<code>vocgo split --labels=customer,security,teller --ratio 0.9 .</code>进行数据筛选和切分，执行命令后指定导出目录为 <code>human</code> ：</p>
@@ -172,7 +175,7 @@ ln -s ~/data/bank ~/paddle/PaddleDetection/dataset/bank
 cp configs/ppyolo/ppyolo_voc.yml configs/ppyolo/ppyolo_bank_human_voc.yml
 </code></pre></div><p>下面开始修改配置文件，这里只简单说几项关键的参数。首先我们明确一下要使用几个 GPU，比如我们使用 4 个卡去训练模型（<strong>GPU_num</strong>=<strong>4</strong>）。</p>
 <h4 id="231-修改-batch_size">2.3.1 修改 batch_size</h4>
-<p>这个指的是一次显卡加载的图像样本数量，这受到显存的限制，默认使用的是 <strong>12</strong>，默认值对应的是 ==32GB== 显存的卡 <strong>Tesla V100</strong>，我们的卡显存是 ==12GB== 的 <strong>2080Ti</strong>，所以需要调小一点，比如使用 <strong>4</strong>，有一定的线性关系，当看着还有显存的时候，可以慢慢上调，比如 <strong>6</strong>，这里我们就使用 <strong>4</strong>。这个在 <code>TrainReader</code>的<code>batch_size</code>设置。</p>
+<p>这个指的是一次显卡加载的图像样本数量，这受到显存的限制，默认使用的是 <strong>12</strong>，默认值对应的是 <strong>32GB</strong> 显存的卡 <strong>Tesla V100</strong>，我们的卡显存是 <strong>12GB</strong> 的 <strong>2080Ti</strong>，所以需要调小一点，比如使用 <strong>4</strong>，有一定的线性关系，当看着还有显存的时候，可以慢慢上调，比如 <strong>6</strong>，这里我们就使用 <strong>4</strong>。这个在 <code>TrainReader</code>的<code>batch_size</code>设置。</p>
 <h4 id="232-修改-max_iters">2.3.2 修改 max_iters</h4>
 <p>ppyolo 中不使用 <code>epoch_size</code> 表示迭代，而是使用 <code>max_iters</code>表示，这里我们默认 <code>epoch_size=120</code>，可以使用以下关系式去设置参数值：</p>
 <p>$$

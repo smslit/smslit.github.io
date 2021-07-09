@@ -8,21 +8,17 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="python 实现命令行工具 tee">
 <meta itemprop="description" content="最近，朋友 Litreily 发表了文章Linux指令 - tee的实现 ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！
-">
-<meta itemprop="datePublished" content="2018-10-24T17:58:19+08:00" />
+"><meta itemprop="datePublished" content="2018-10-24T17:58:19+08:00" />
 <meta itemprop="dateModified" content="2018-10-24T17:58:19+08:00" />
 <meta itemprop="wordCount" content="1377">
-
-
-
-<meta itemprop="keywords" content="python,command,terminal,shell," />
-<meta property="og:title" content="python 实现命令行工具 tee" />
+<meta itemprop="keywords" content="python,command,terminal,shell," /><meta property="og:title" content="python 实现命令行工具 tee" />
 <meta property="og:description" content="最近，朋友 Litreily 发表了文章Linux指令 - tee的实现 ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.smslit.top/2018/10/24/tee-Python/" />
+<meta property="og:url" content="https://www.smslit.cn/2018/10/24/tee-Python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-10-24T17:58:19+08:00" />
 <meta property="article:modified_time" content="2018-10-24T17:58:19+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python 实现命令行工具 tee"/>
 <meta name="twitter:description" content="最近，朋友 Litreily 发表了文章Linux指令 - tee的实现 ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！
@@ -35,11 +31,11 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>python 实现命令行工具 tee</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.4bcd07cd791e18daa427063d0c52035f18b1bea29b62001841d87fe95b2089c5.css" integrity="sha256-S80HzXkeGNqkJwY9DFIDXxixvqKbYgAYQdh/6VsgicU=">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=">
 	
-	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/asciinema.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/asciinema.css">
 </head>
 
 <body id="page">
@@ -48,14 +44,14 @@
 		<div class="hdr-wrapper section-inner">
 			<div class="hdr-left">
 				<div class="site-branding">
-					<a href="https://www.smslit.top">SMSLIT</a>
+					<a href="https://www.smslit.cn">SMSLIT</a>
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-				<a href="https://www.smslit.top/post/">Posts</a>
-				<a href="https://www.smslit.top/tags/">Tags</a>
-				<a href="https://www.smslit.top/daily/">Daily</a>
-				<a href="https://www.smslit.top/about/">Me</a>
+				<a href="https://www.smslit.cn/post/">Posts</a>
+				<a href="https://www.smslit.cn/tags/">Tags</a>
+				<a href="https://www.smslit.cn/daily/">Daily</a>
+				<a href="https://www.smslit.cn/about/">Me</a>
 
 				</nav>
 			</div>
@@ -72,10 +68,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://www.smslit.top/post/">Posts</a></li>
-			<li><a href="https://www.smslit.top/tags/">Tags</a></li>
-			<li><a href="https://www.smslit.top/daily/">Daily</a></li>
-			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://www.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://www.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://www.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://www.smslit.cn/about/">Me</a></li>
 		</ul>
 	</div>
 
@@ -185,7 +181,7 @@ hah
 </span><span class="se"></span><span class="s2">                                                copy in zero or more files.  The </span><span class="se">\
 </span><span class="se"></span><span class="s2">                                                output is unbuffered.&#34;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&#34;v 1.0.0&#34;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--append&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&#34;store_true&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Append the output to the files rather than overwriting them.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--append&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&#34;store_true&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Append the output to the files rather than overwriting them.&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;A pathname of an output file.&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </code></pre></div><h2 id="tee功能实现">tee功能实现</h2>
@@ -193,11 +189,11 @@ hah
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
     <span class="n">filemode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">append</span> <span class="k">else</span> <span class="s1">&#39;w&#39;</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">filemode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">filemode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">filemode</span> <span class="ow">is</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
             <span class="n">filemode</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
@@ -259,7 +255,7 @@ Wonderful
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.top/tags/command">command</a></span><span class="tag"><a href="https://www.smslit.top/tags/terminal">terminal</a></span><span class="tag"><a href="https://www.smslit.top/tags/shell">shell</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.cn/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.cn/tags/command">command</a></span><span class="tag"><a href="https://www.smslit.cn/tags/terminal">terminal</a></span><span class="tag"><a href="https://www.smslit.cn/tags/shell">shell</a></span>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -286,10 +282,10 @@ Wonderful
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://www.smslit.top/2018/10/25/encoding-python/">
+			<a class="next-post" href="https://www.smslit.cn/2018/10/25/encoding-python/">
 				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python 实现文本文件的编码检测和转换</span>
 			</a>
-			<a class="prev-post" href="https://www.smslit.top/2018/10/23/crack-zip-hacker/">
+			<a class="prev-post" href="https://www.smslit.cn/2018/10/23/crack-zip-hacker/">
 				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>zip 文件暴破</span>
 			</a>
 		</div>
@@ -333,13 +329,13 @@ Wonderful
 </script>
 </div>
 	</main>
-<script src="https://www.smslit.top/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+<script src="https://www.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
 	
 	
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2021 <a href="https://www.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

@@ -8,21 +8,17 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="图中藏(cáng)语">
 <meta itemprop="description" content="今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。
-">
-<meta itemprop="datePublished" content="2018-10-20T10:09:31+08:00" />
+"><meta itemprop="datePublished" content="2018-10-20T10:09:31+08:00" />
 <meta itemprop="dateModified" content="2018-10-20T10:09:31+08:00" />
-<meta itemprop="wordCount" content="4771">
-
-
-
-<meta itemprop="keywords" content="hacker,python,life," />
-<meta property="og:title" content="图中藏(cáng)语" />
+<meta itemprop="wordCount" content="4783">
+<meta itemprop="keywords" content="hacker,python,life," /><meta property="og:title" content="图中藏(cáng)语" />
 <meta property="og:description" content="今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.smslit.top/2018/10/20/codeimg-python/" />
+<meta property="og:url" content="https://www.smslit.cn/2018/10/20/codeimg-python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-10-20T10:09:31+08:00" />
 <meta property="article:modified_time" content="2018-10-20T10:09:31+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="图中藏(cáng)语"/>
 <meta name="twitter:description" content="今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。
@@ -35,11 +31,11 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>图中藏(cáng)语</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.4bcd07cd791e18daa427063d0c52035f18b1bea29b62001841d87fe95b2089c5.css" integrity="sha256-S80HzXkeGNqkJwY9DFIDXxixvqKbYgAYQdh/6VsgicU=">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=">
 	
-	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/asciinema.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/asciinema.css">
 </head>
 
 <body id="page">
@@ -48,14 +44,14 @@
 		<div class="hdr-wrapper section-inner">
 			<div class="hdr-left">
 				<div class="site-branding">
-					<a href="https://www.smslit.top">SMSLIT</a>
+					<a href="https://www.smslit.cn">SMSLIT</a>
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-				<a href="https://www.smslit.top/post/">Posts</a>
-				<a href="https://www.smslit.top/tags/">Tags</a>
-				<a href="https://www.smslit.top/daily/">Daily</a>
-				<a href="https://www.smslit.top/about/">Me</a>
+				<a href="https://www.smslit.cn/post/">Posts</a>
+				<a href="https://www.smslit.cn/tags/">Tags</a>
+				<a href="https://www.smslit.cn/daily/">Daily</a>
+				<a href="https://www.smslit.cn/about/">Me</a>
 
 				</nav>
 			</div>
@@ -72,10 +68,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://www.smslit.top/post/">Posts</a></li>
-			<li><a href="https://www.smslit.top/tags/">Tags</a></li>
-			<li><a href="https://www.smslit.top/daily/">Daily</a></li>
-			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://www.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://www.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://www.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://www.smslit.cn/about/">Me</a></li>
 		</ul>
 	</div>
 
@@ -225,11 +221,11 @@ $$</p>
 </table>
 <h4 id="初始化">初始化</h4>
 <p>类的初始化，主要是根据指定图片和指定存储协议头初始化基本属性：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">,</span> <span class="n">pkghead</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imgpath</span><span class="p">,</span> <span class="n">pkghead</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">imgpath</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">pkghead</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pkghead</span> <span class="o">=</span> <span class="n">pkghead</span>
     <span class="k">else</span><span class="p">:</span>
@@ -242,20 +238,20 @@ $$</p>
 <li><a href="#__putdata">__putdata</a> 将协议包数据写入图片数据，得到新的图片数据；</li>
 </ol>
 <p>实现如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">False</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
     <span class="n">pkgbytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pack</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__putdata</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
         <span class="n">pathlist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imgpath</span><span class="p">)</span>
         <span class="n">newpath</span> <span class="o">=</span> <span class="n">pathlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_code&#39;</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">newpath</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">newpath</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="kc">True</span>
 </code></pre></div><h5 id="__pack">__pack</h5>
 <p>这个方法主要是按照 <a href="#怎么判断图片有没有隐写信息问题">怎么判断图片有没有隐写信息问题</a> 小节中提到的协议进行打包，具体实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">__pack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
@@ -316,9 +312,9 @@ $$</p>
 <h4 id="decode方法">decode方法</h4>
 <p>这个方法用来解析图片中的隐写信息，实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">None</span>        
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>        
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unpack</span><span class="p">()</span>
 </code></pre></div><p>直接关键是调用了解包函数 <a href="#__unpack">__unpack</a>，返回的是它的结果。</p>
 <h5 id="__unpack">__unpack</h5>
@@ -332,7 +328,7 @@ $$</p>
         <span class="n">info</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pkgbytes</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">info</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div><ol>
 <li>首先通过 <a href="#__getdata">__getdata</a> 方法从图片数据中获取存储的前8个字节数据；</li>
 <li>使用 <code>int</code> 的 <code>from_bytes</code> 方法^[<a href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c03/p05_pack_unpack_large_int_from_bytes.html">字节到大整数的打包与解包</a>]得到前4个字节代表的协议头；</li>
@@ -365,15 +361,15 @@ $$</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">imgpath</span> <span class="o">=</span> <span class="n">imgpath</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div><h4 id="freespace方法">freespace方法</h4>
 <p>这个方法用来计算图片可存隐写数据的空间大小，单位是字节，实现如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">freespace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    查看图片存储隐藏数据的可用空间，单位 byte
 </span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;图片为空，请调用实例的 open 方法打开一张图片！&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">size</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
@@ -389,7 +385,7 @@ $$</p>
     <span class="n">mi</span> <span class="o">=</span> <span class="n">MessageImage</span><span class="p">(</span><span class="s1">&#39;demo.png&#39;</span><span class="p">)</span>
     <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;你好，世界！hello, world!&#39;</span><span class="p">)</span>
     <span class="n">mi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;demo_code.png&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
 </code></pre></div><p>这里以图片 <a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/demo.png">demo.png</a> 为例，如果最终打印了解析结果，就说明 <code>MessageImage</code> 类搞定了，类似于：</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ python messageimage.py
 demo_code.png 你好，世界！hello, world!
@@ -432,39 +428,39 @@ demo_code.png 你好，世界！hello, world!
     <span class="n">args</span> <span class="o">=</span> <span class="n">getargs</span><span class="p">()</span>
     <span class="n">mi</span> <span class="o">=</span> <span class="n">MessageImage</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">imgpath</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;encode&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">info</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">args</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入要隐藏的信息：&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">mi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">info</span><span class="p">):</span>
-                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;已写入隐藏信息！&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;已写入隐藏信息！&#39;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;decode&#39;</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;解析到隐藏信息：{mi.decode()}&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;解析到隐藏信息：</span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;check&#39;</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;图片可用空间 {mi.freespace()} bytes&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;图片可用空间 </span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">freespace</span><span class="p">()</span><span class="si">}</span><span class="s1"> bytes&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;不支持 {args.command} 命令&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;不支持 </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="si">}</span><span class="s1"> 命令&#39;</span><span class="p">)</span>
 </code></pre></div><p>大功告成！命令行工具的代码参考：<a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/codeimg">tools-with-script/codeimg/codeimg</a></p>
 <h1 id="测试">测试</h1>
 <p>同样以<a href="https://github.com/smslit/tools-with-script/blob/master/codeimg/demo.png">demo.png</a> 为例，测试过程如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="n">encode</span> <span class="n">demo</span><span class="o">.</span><span class="n">png</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;https://www.smslit.top&#39;</span>
-<span class="n">demo_code</span><span class="o">.</span><span class="n">png</span> <span class="err">已写入隐藏信息！</span>
+<span class="n">demo_code</span><span class="o">.</span><span class="n">png</span> <span class="n">已写入隐藏信息</span><span class="err">！</span>
 <span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="n">decode</span> <span class="n">demo_code</span><span class="o">.</span><span class="n">png</span>
-<span class="err">解析到隐藏信息：</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">smslit</span><span class="o">.</span><span class="n">top</span>
+<span class="n">解析到隐藏信息</span><span class="err">：</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">smslit</span><span class="o">.</span><span class="n">top</span>
 <span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="n">check</span> <span class="n">demo</span><span class="o">.</span><span class="n">png</span>
-<span class="err">图片可用空间</span> <span class="mi">381024</span> <span class="nb">bytes</span>
+<span class="n">图片可用空间</span> <span class="mi">381024</span> <span class="nb">bytes</span>
 <span class="err">$</span> <span class="o">./</span><span class="n">codeimg</span> <span class="o">-</span><span class="n">h</span>
 <span class="n">usage</span><span class="p">:</span> <span class="n">codeimg</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="n">INFO</span><span class="p">]</span> <span class="p">{</span><span class="n">encode</span><span class="p">,</span><span class="n">decode</span><span class="p">,</span><span class="n">check</span><span class="p">}</span> <span class="n">imgpath</span>
 
-<span class="err">为图片写入隐藏信息，或者从包含隐藏信息的图片中获取信息。</span>
+<span class="n">为图片写入隐藏信息</span><span class="err">，</span><span class="n">或者从包含隐藏信息的图片中获取信息</span><span class="err">。</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
   <span class="p">{</span><span class="n">encode</span><span class="p">,</span><span class="n">decode</span><span class="p">,</span><span class="n">check</span><span class="p">}</span>
-                        <span class="err">指定子命令。</span><span class="n">encode</span> <span class="o">-&gt;</span> <span class="err">往图片中写入隐藏信息；</span><span class="n">decode</span> <span class="o">-&gt;</span> <span class="err">读取图片中的隐藏信息；</span><span class="n">check</span>
-                        <span class="o">-&gt;</span> <span class="err">查看图片可存空间</span><span class="p">(</span><span class="err">单位</span> <span class="n">byte</span><span class="p">)</span>
-  <span class="n">imgpath</span>               <span class="err">指定要处理的图片</span>
+                        <span class="n">指定子命令</span><span class="err">。</span><span class="n">encode</span> <span class="o">-&gt;</span> <span class="n">往图片中写入隐藏信息</span><span class="err">；</span><span class="n">decode</span> <span class="o">-&gt;</span> <span class="n">读取图片中的隐藏信息</span><span class="err">；</span><span class="n">check</span>
+                        <span class="o">-&gt;</span> <span class="n">查看图片可存空间</span><span class="p">(</span><span class="n">单位</span> <span class="n">byte</span><span class="p">)</span>
+  <span class="n">imgpath</span>               <span class="n">指定要处理的图片</span>
 
 <span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="nb">exit</span>
-  <span class="o">-</span><span class="n">i</span> <span class="n">INFO</span><span class="p">,</span> <span class="o">--</span><span class="n">info</span> <span class="n">INFO</span>  <span class="err">指定要写入的隐藏信息，子命令为</span> <span class="n">encode</span> <span class="err">时有效</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">i</span> <span class="n">INFO</span><span class="p">,</span> <span class="o">--</span><span class="n">info</span> <span class="n">INFO</span>  <span class="n">指定要写入的隐藏信息</span><span class="err">，</span><span class="n">子命令为</span> <span class="n">encode</span> <span class="n">时有效</span>
 </code></pre></div><h1 id="总结">总结</h1>
 <p>本文实现了图片隐写术的基本功能，过程中熟悉了pillow 库、 argparse 库的基本使用以及类的编写，同时还了解了字节与字符串、字节与整型数据的相互转换。</p>
 <p>如果您觉得本文写的还不错，请持续关注 <a href="https://www.smslit.top">https://www.smslit.top</a>，后面还会有好玩的东西分享！</p>
@@ -472,11 +468,11 @@ demo_code.png 你好，世界！hello, world!
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/hacker">hacker</a></span><span class="tag"><a href="https://www.smslit.top/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.top/tags/life">life</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.cn/tags/hacker">hacker</a></span><span class="tag"><a href="https://www.smslit.cn/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.cn/tags/life">life</a></span>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					4771 字
+					4783 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -511,10 +507,10 @@ demo_code.png 你好，世界！hello, world!
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://www.smslit.top/2018/10/21/unzip-dict-hacker/">
+			<a class="next-post" href="https://www.smslit.cn/2018/10/21/unzip-dict-hacker/">
 				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python3 生成密码字典</span>
 			</a>
-			<a class="prev-post" href="https://www.smslit.top/2018/10/18/pipenv/">
+			<a class="prev-post" href="https://www.smslit.cn/2018/10/18/pipenv/">
 				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>一起使用 pipenv</span>
 			</a>
 		</div>
@@ -558,13 +554,13 @@ demo_code.png 你好，世界！hello, world!
 </script>
 </div>
 	</main>
-<script src="https://www.smslit.top/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+<script src="https://www.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
 	
 	
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2021 <a href="https://www.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

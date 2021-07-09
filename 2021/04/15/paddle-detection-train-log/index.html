@@ -7,20 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="PaddleDetection 模型训练笔记">
-<meta itemprop="description" content="本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查">
-<meta itemprop="datePublished" content="2021-04-15T11:31:38+08:00" />
+<meta itemprop="description" content="本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查"><meta itemprop="datePublished" content="2021-04-15T11:31:38+08:00" />
 <meta itemprop="dateModified" content="2021-04-15T11:31:38+08:00" />
-<meta itemprop="wordCount" content="6357">
-
-
-
-<meta itemprop="keywords" content="paddlepaddle,detection,deeplearning,train," />
-<meta property="og:title" content="PaddleDetection 模型训练笔记" />
+<meta itemprop="wordCount" content="6301">
+<meta itemprop="keywords" content="paddlepaddle,detection,deeplearning,train," /><meta property="og:title" content="PaddleDetection 模型训练笔记" />
 <meta property="og:description" content="本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.smslit.top/2021/04/15/paddle-detection-train-log/" />
+<meta property="og:url" content="https://www.smslit.cn/2021/04/15/paddle-detection-train-log/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-04-15T11:31:38+08:00" />
 <meta property="article:modified_time" content="2021-04-15T11:31:38+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PaddleDetection 模型训练笔记"/>
 <meta name="twitter:description" content="本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查"/>
@@ -32,11 +28,11 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>PaddleDetection 模型训练笔记</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.4bcd07cd791e18daa427063d0c52035f18b1bea29b62001841d87fe95b2089c5.css" integrity="sha256-S80HzXkeGNqkJwY9DFIDXxixvqKbYgAYQdh/6VsgicU=">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=">
 	
-	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/asciinema.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/asciinema.css">
 </head>
 
 <body id="page">
@@ -45,14 +41,14 @@
 		<div class="hdr-wrapper section-inner">
 			<div class="hdr-left">
 				<div class="site-branding">
-					<a href="https://www.smslit.top">SMSLIT</a>
+					<a href="https://www.smslit.cn">SMSLIT</a>
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-				<a href="https://www.smslit.top/post/">Posts</a>
-				<a href="https://www.smslit.top/tags/">Tags</a>
-				<a href="https://www.smslit.top/daily/">Daily</a>
-				<a href="https://www.smslit.top/about/">Me</a>
+				<a href="https://www.smslit.cn/post/">Posts</a>
+				<a href="https://www.smslit.cn/tags/">Tags</a>
+				<a href="https://www.smslit.cn/daily/">Daily</a>
+				<a href="https://www.smslit.cn/about/">Me</a>
 
 				</nav>
 			</div>
@@ -69,10 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://www.smslit.top/post/">Posts</a></li>
-			<li><a href="https://www.smslit.top/tags/">Tags</a></li>
-			<li><a href="https://www.smslit.top/daily/">Daily</a></li>
-			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://www.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://www.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://www.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://www.smslit.cn/about/">Me</a></li>
 		</ul>
 	</div>
 
@@ -85,46 +81,59 @@
 			</header>
 			<div class="content">
 				<p>本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查看官方的文档！</p>
+<p>本文描述的是使用 Nvidia GPU 的操作步骤。</p>
 <h2 id="1-环境搭建">1. 环境搭建</h2>
 <ul>
-<li>为了考虑 python 的兼容性，依旧使用 <strong>python 3.6</strong>，这里我们使用 python <strong>3.6.12</strong>。</li>
+<li>为了考虑 python 的兼容性，使用最新版本的 <strong>python 3.7</strong>，即 python <strong>3.7.9</strong>。</li>
 <li>使用更轻量级的 conda 工具包 <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong></a> 来管理虚拟环境。</li>
 </ul>
 <blockquote>
-<h1 id="如果已经有了-python-的虚拟环境工具比如-anaconda这里推荐-anaconda-或-miniconda可以直接跳过-11-小节">如果已经有了 python 的虚拟环境工具，比如 anaconda，这里推荐 anaconda 或 miniconda，可以直接跳过 <code>1.1 小节</code>！</h1>
+<p>如果已经有了 python 的虚拟环境工具，比如 anaconda，这里推荐 anaconda 或 miniconda，可以直接跳过 <code>1.1 小节</code>！</p>
 </blockquote>
+<p>后续无特殊说明，均在有 Nvidia GPU 的服务器上操作，当然也可以在本地有显卡的 linux 环境下操作。</p>
 <h3 id="11-python-环境">1.1 python 环境</h3>
-<ol>
+<ol start="2">
 <li>
-<p>在 <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong></a> 页面中下载最新的 64 位的 linux 下的安装包 <a href="https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh">Miniconda3-py39_4.9.2-Linux-x86_64.sh</a>，最新版本默认的 python 版本是 3.9；</p>
-</li>
-<li>
-<p>下载安装包后，上传至服务器，我这里 ssh 服务器配置的短名是 <strong>20800</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，上传至用户目录下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">scp Miniconda3-py39_4.9.2-Linux-x86_64.sh 20800:
+<p>远程连接服务器 <strong>remote-server</strong>，这里 <strong>remote-server</strong> 为远程服务器：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ssh remote-server
 </code></pre></div></li>
 <li>
-<p>远程连接服务器，然后安装 miniconda：</p>
-<ul>
-<li>终端中远程连接 <strong>20800</strong>：<code>ssh 20800</code></li>
-<li>服务器中现在 miniconda 安装包的目录在用户目录下，为其添加运行权限：<code>chmod +x Miniconda3-py39_4.9.2-Linux-x86_64.sh</code></li>
-<li>运行安装包启动安装流程：<code>./Miniconda3-py39_4.9.2-Linux-x86_64.sh</code>，随后按 <code>Enter</code>键，后打开一个协议文件</li>
-<li>按 <code>Ctrl+d</code> 组合键进行翻页，一直翻页，会有提示问是否接受协议内容 - <code>Do you accept the license terms?[yes|no]</code>，输入 <code>yes</code>按回车键 <code>Enter</code> 即可</li>
-<li>之后后询问你安装位置，默认是在自己 <code>HOME</code> 目录下的 <code>miniconda3</code> 中，这里我一般是加个 <code>.</code> 隐藏目录，所以我一般使用用户目录下的 <code>.miniconda3</code>即 <code>/home/tianye/.miniconda3</code>，根据自己的情况改成自己的 <code>HOME</code> 即可，然后继续 <code>Enter</code>，等待安装即可 ⌛️</li>
-<li>一段时间后会继续有提示问题 - <code>Do you wish the installer to initialize Miniconda3 ny running conda init? [yes|no]</code> 这里输入 <strong>yes</strong> 直接回车
-<ul>
-<li>如果 shell 使用的是 <strong>bash</strong>(默认系统的 shell)，<code>Ctrl + d</code>断开 SSH 连接，重新连接远程机器 <code>ssh 20800</code>，此时就能使用 conda 了，<code>which conda</code> 应该就能看打印出 <strong>conda</strong> 的安装路径，直接跳到第 <strong>4</strong> 步</li>
-<li>如果使用的是 <strong>zsh</strong>，还需要将 miniconda 安装时在 <code>~/.bashrc</code> 中添加的内容添加到 <code> ~/.zshrc</code> 的最后添加这些内容，执行命令 <code>tail -n 15 ~/.bashrc &gt;&gt; ~/.zshrc</code>，<code>Ctrl + d</code>断开 SSH 连接，重新连接远程机器 <code>ssh 20800</code>，此时就能使用 conda 了，<code>which conda</code> 应该就能看打印出 <strong>conda</strong> 的安装路径</li>
-</ul>
+<p>打开 <a href="https://docs.conda.io/en/latest/miniconda.html"><strong>Miniconda</strong></a> 页面，找到最新的 64 位的 linux 下的安装包复制链接，写本文时的 64位 linux 版本为：<code>https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh
+</code></pre></div></li>
+<li>
+<p>为下载的 miniconda 包添加运行权限：<code>chmod +x Miniconda3-py39_4.9.2-Linux-x86_64.sh</code></p>
 </li>
+<li>
+<p>运行安装包启动安装流程：<code>./Miniconda3-py39_4.9.2-Linux-x86_64.sh</code>，随后按 <code>Enter</code>键，后打开一个协议文件</p>
+<ul>
+<li>
+<p>按 <code>Ctrl+d</code> 组合键进行翻页，一直翻页，会有提示问是否接受协议内容 - <code>Do you accept the license terms?[yes|no]</code>，输入 <code>yes</code>按回车键 <code>Enter</code> 即可</p>
+</li>
+<li>
+<p>之后后询问你安装位置，默认是在自己 <code>HOME</code> 目录下的 <code>miniconda3</code> 中，这里我一般是加个 <code>.</code> 隐藏目录，所以我一般使用用户目录下的 <code>.miniconda3</code>即 <code>/home/tianye/.miniconda3</code>，根据自己的情况改成自己的 <code>HOME</code> 即可，然后继续 <code>Enter</code>，等待安装即可 ⌛️</p>
+</li>
+<li>
+<p>一段时间后会继续有提示问题 - <code>Do you wish the installer to initialize Miniconda3 ny running conda init? [yes|no]</code> 这里输入 <strong>yes</strong> 直接回车</p>
+</li>
+<li>
+<p><code>Ctrl + d</code>断开 SSH 连接，重新连接远程机器 <code>ssh remote-server</code>，此时就能使用 conda 了，<code>which conda</code> 应该就能看打印出 <strong>conda</strong> 的安装路径；</p>
+</li>
+<li>
+<p>为了加速 conda 安装包的速度，可以配置使用国内的清华源：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+conda config --set show_channel_urls yes
+</code></pre></div></li>
 </ul>
 </li>
 </ol>
 <h2 id="12-paddle-环境">1.2 paddle 环境</h2>
 <h3 id="121-创建虚拟环境">1.2.1 创建虚拟环境</h3>
-<p>此时默认会激活 conda 的 base 环境，默认是 python 3.9 的环境，我们要使用 <strong>python 3.6</strong> ，所以需要新建一个虚拟环境，执行命令 <code>conda create -n paddle python=3.6.12 </code></p>
+<p>重新连接远程机器后，默认会激活 conda 的 base 环境，默认是 python 3.9 的环境，我们要使用 <strong>python 3.7.9</strong> ，所以需要新建一个虚拟环境，执行命令 <code>conda create -n paddle python=3.7.9 </code></p>
 <ul>
-<li><code>-n paddle</code>指定虚拟环境名称为 <strong>paddle</strong></li>
-<li><code>python=3.6.12</code>环境中使用 <strong>3.6.12</strong> 版本的 python</li>
+<li><code>-n paddle</code>指定虚拟环境名称为 <strong>paddle</strong>，这个名称随意，最好是自己能记住，用于区分不同的环境</li>
+<li><code>python=3.7.9</code>环境中使用 <strong>3.7.9</strong> 版本的 python</li>
 </ul>
 <p>稍等 ⌛️ 一段时间后会有提示，回车直接默认 yes 即可，再 ⌛️ 一段时间即可完成虚拟环境的安装，会有提示如何激活和退出虚拟环境：</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># To activate this environment, use</span>
@@ -134,25 +143,23 @@
 <span class="c1"># To deactivate an active environment, use</span>
 <span class="c1">#</span>
 <span class="c1">#     $ conda deactivate</span>
-</code></pre></div><p>至此，conda 的虚拟环境就搭建好了。</p>
-<p>为了加速 conda 安装包的速度，可以配置使用国内的清华源：</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
-conda config --set show_channel_urls yes
-</code></pre></div><h3 id="122-安装-paddlepaddle">1.2.2 安装 paddlepaddle</h3>
-<p>激活虚拟环境：<code>conda activate paddle</code>，使用 <code>which</code> 命令查看 python 安装目录：</p>
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/python-20210412110120.png" style="zoom:50%;">
-<blockquote>
+</code></pre></div><blockquote>
 <h1 id="加速-pip-包安装速度">加速 pip 包安装速度</h1>
 <ol>
 <li>更新 pip：<code>pip install --upgrade pip</code></li>
 <li>配置使用国内安装源，这里使用 aliyun 的源：<code>pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</code></li>
 </ol>
 </blockquote>
-<p>之后我们安装 <a href="https://www.paddlepaddle.org.cn">paddlepaddle</a>，打开主页就能看到 conda 和 pip 的两种安装方式，这里是用 <strong>pip</strong> 的方式，首先确实使用 cpu 还是 GPU，这里我们使用 Nvidia 的 GPU ，cuda 10.1 版本，所以最终安装 paddlepaddle 的命令如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">python -m pip install paddlepaddle-gpu<span class="o">==</span>2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
-</code></pre></div><p>官网选择截图如下：</p>
-<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/paddle-install-20210412105514.jpg" width="640">
+<p>下面的步骤主要是安装 PaddleDetection 2.1 版本的环境，可以参考对应版本的环境安装说明，这里 2.1 的是 <a href="https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/INSTALL_cn.md">docs/tutorials/INSTALL_cn.md</a>，如果是其它版本可以对应选择分支，找到 <code>docs/tutorials/INSTALL_cn.md</code>。</p>
+<h3 id="122-安装-paddlepaddle">1.2.2 安装 paddlepaddle</h3>
+<p>激活虚拟环境：<code>conda activate paddle</code>，使用 <code>which</code> 命令查看 python 安装目录：</p>
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/python-20210412110120.png" style="zoom:50%;">
+<p>首先确实使用 cpu 还是 GPU，这里我们使用 Nvidia 的 GPU ，cuda 10.1 版本，根据  <a href="https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/INSTALL_cn.md">docs/tutorials/INSTALL_cn.md</a> 确定安装 paddlepaddle 的命令如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># CUDA10.1</span>
+python -m pip install paddlepaddle-gpu<span class="o">==</span>2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+</code></pre></div><blockquote>
+<p>如果 CUDA 是其它版本，可以去 <a href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/windows-pip.html">PaddlePaddle官网</a>找对应计算平台的安装命令。</p>
+</blockquote>
 <h3 id="123-验证安装">1.2.3 验证安装</h3>
 <p>安装完成后您可以使用 <code>python</code> 进入 python 解释器，输入<code>import paddle</code> ，再输入 <code>paddle.utils.run_check()</code></p>
 <p>如果出现<code>PaddlePaddle is installed successfully!</code>，说明您已成功安装。</p>
@@ -172,9 +179,8 @@ git clone https://github.com/PaddlePaddle/PaddleDetection.git
 <span class="c1"># 可以查看下 PaddleDetection 的 1 层级目录结构</span>
 tree -L <span class="m">1</span> PaddleDetection
 </code></pre></div><blockquote>
-<h1 id="此文撰写时使用的仓库的默认分支即-release20-rc">此文撰写时使用的仓库的默认分支，即 <strong>release/2.0-rc</strong></h1>
+<h1 id="此文撰写时使用的仓库的默认分支即-release21">此文撰写时使用的仓库的默认分支，即 <strong>release/2.1</strong></h1>
 </blockquote>
-<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/uPic/paddledetection-tree-20210413153613.png" alt="paddledetection-tree" style="zoom:50%;" /></p>
 <ul>
 <li><strong>configs</strong>：训练的配置文件，包含各种常用的算法，我们可以复制创建自己的配置文件，进行新的训练任务</li>
 <li><strong>dataset</strong>：存放标注数据，一般不要将自己的数据添加到实际的 git 跟踪中</li>
@@ -482,24 +488,16 @@ conda activate paddle
 </blockquote>
 <h3 id="25-模型推理">2.5 模型推理</h3>
 <p>未完待续&hellip;</p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>通过 SSH 配置文件中添加远程机器的配置内容实现，我这里是在自己的 ssh 配置文件中添加了 20800 远程机器的配置，如何配置可参考<a href="https://blog.csdn.net/zhanlanmg/article/details/48708255">ssh 别名登录</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
 
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/paddlepaddle">paddlepaddle</a></span><span class="tag"><a href="https://www.smslit.top/tags/detection">detection</a></span><span class="tag"><a href="https://www.smslit.top/tags/deeplearning">deeplearning</a></span><span class="tag"><a href="https://www.smslit.top/tags/train">train</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.cn/tags/paddlepaddle">paddlepaddle</a></span><span class="tag"><a href="https://www.smslit.cn/tags/detection">detection</a></span><span class="tag"><a href="https://www.smslit.cn/tags/deeplearning">deeplearning</a></span><span class="tag"><a href="https://www.smslit.cn/tags/train">train</a></span>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-					6357 字
+					6301 字
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -510,11 +508,7 @@ conda activate paddle
 			<div class="toc-title">目录</div>
 			<nav id="TableOfContents">
   <ul>
-    <li><a href="#1-环境搭建">1. 环境搭建</a></li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#1-环境搭建">1. 环境搭建</a>
       <ul>
         <li><a href="#11-python-环境">1.1 python 环境</a></li>
       </ul>
@@ -522,7 +516,6 @@ conda activate paddle
     <li><a href="#12-paddle-环境">1.2 paddle 环境</a>
       <ul>
         <li><a href="#121-创建虚拟环境">1.2.1 创建虚拟环境</a></li>
-        <li><a href="#122-安装-paddlepaddle">1.2.2 安装 paddlepaddle</a></li>
       </ul>
     </li>
   </ul>
@@ -530,6 +523,7 @@ conda activate paddle
   <ul>
     <li>
       <ul>
+        <li><a href="#122-安装-paddlepaddle">1.2.2 安装 paddlepaddle</a></li>
         <li><a href="#123-验证安装">1.2.3 验证安装</a></li>
       </ul>
     </li>
@@ -591,7 +585,7 @@ conda activate paddle
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="prev-post" href="https://www.smslit.top/2020/12/11/mmdetection-train-fastercnn-coco/">
+			<a class="prev-post" href="https://www.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/">
 				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>使用 mmdectection 简单训练一个 faster-rcnn 模型</span>
 			</a>
 		</div>
@@ -635,13 +629,13 @@ conda activate paddle
 </script>
 </div>
 	</main>
-<script src="https://www.smslit.top/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+<script src="https://www.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
 	
 	
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2021 <a href="https://www.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

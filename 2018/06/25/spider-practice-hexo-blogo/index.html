@@ -7,20 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="爬虫实践之hexo博客分析">
-<meta itemprop="description" content="爬虫最好处理的就是静态页面，而静态博客就是静态页面，像jekyll和hexo生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。">
-<meta itemprop="datePublished" content="2018-06-25T15:17:27+08:00" />
+<meta itemprop="description" content="爬虫最好处理的就是静态页面，而静态博客就是静态页面，像jekyll和hexo生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。"><meta itemprop="datePublished" content="2018-06-25T15:17:27+08:00" />
 <meta itemprop="dateModified" content="2018-06-25T15:17:27+08:00" />
 <meta itemprop="wordCount" content="4134">
-
-
-
-<meta itemprop="keywords" content="python,spider," />
-<meta property="og:title" content="爬虫实践之hexo博客分析" />
+<meta itemprop="keywords" content="python,spider," /><meta property="og:title" content="爬虫实践之hexo博客分析" />
 <meta property="og:description" content="爬虫最好处理的就是静态页面，而静态博客就是静态页面，像jekyll和hexo生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.smslit.top/2018/06/25/spider-practice-hexo-blogo/" />
+<meta property="og:url" content="https://www.smslit.cn/2018/06/25/spider-practice-hexo-blogo/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-06-25T15:17:27+08:00" />
 <meta property="article:modified_time" content="2018-06-25T15:17:27+08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="爬虫实践之hexo博客分析"/>
 <meta name="twitter:description" content="爬虫最好处理的就是静态页面，而静态博客就是静态页面，像jekyll和hexo生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。"/>
@@ -32,11 +28,11 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>爬虫实践之hexo博客分析</title>
-	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.4bcd07cd791e18daa427063d0c52035f18b1bea29b62001841d87fe95b2089c5.css" integrity="sha256-S80HzXkeGNqkJwY9DFIDXxixvqKbYgAYQdh/6VsgicU=">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=">
 	
-	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
-	<link rel="stylesheet" href="https://www.smslit.top/css/asciinema.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://www.smslit.cn/css/asciinema.css">
 </head>
 
 <body id="page">
@@ -45,14 +41,14 @@
 		<div class="hdr-wrapper section-inner">
 			<div class="hdr-left">
 				<div class="site-branding">
-					<a href="https://www.smslit.top">SMSLIT</a>
+					<a href="https://www.smslit.cn">SMSLIT</a>
 				</div>
 				<nav class="site-nav hide-in-mobile">
 					
-				<a href="https://www.smslit.top/post/">Posts</a>
-				<a href="https://www.smslit.top/tags/">Tags</a>
-				<a href="https://www.smslit.top/daily/">Daily</a>
-				<a href="https://www.smslit.top/about/">Me</a>
+				<a href="https://www.smslit.cn/post/">Posts</a>
+				<a href="https://www.smslit.cn/tags/">Tags</a>
+				<a href="https://www.smslit.cn/daily/">Daily</a>
+				<a href="https://www.smslit.cn/about/">Me</a>
 
 				</nav>
 			</div>
@@ -69,10 +65,10 @@
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="https://www.smslit.top/post/">Posts</a></li>
-			<li><a href="https://www.smslit.top/tags/">Tags</a></li>
-			<li><a href="https://www.smslit.top/daily/">Daily</a></li>
-			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://www.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://www.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://www.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://www.smslit.cn/about/">Me</a></li>
 		</ul>
 	</div>
 
@@ -157,8 +153,8 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">md5</span>
-<span class="kn">import</span> <span class="nn">urllib.parse</span> <span class="kn">as</span> <span class="nn">up</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span> <span class="k">as</span> <span class="nn">up</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
 </code></pre></div><h3 id="获取博文列表">获取博文列表</h3>
 <p>根据小节<a href="#%E8%BF%87%E7%A8%8B">过程</a>中第一步的描述，获取博客文章列表，封装为一个方法<code>get_blog_posts</code>，需要传入两个参数：</p>
@@ -179,7 +175,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
             <span class="n">url_p</span> <span class="o">=</span> <span class="n">up</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-            <span class="n">host_url</span> <span class="o">=</span> <span class="s1">&#39;{0}://{1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url_p</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">url_p</span><span class="o">.</span><span class="n">netloc</span><span class="p">)</span>
+            <span class="n">host_url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">://</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url_p</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">url_p</span><span class="o">.</span><span class="n">netloc</span><span class="p">)</span>
             <span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
             <span class="n">archive</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;head title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
@@ -194,7 +190,7 @@
                 <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">archive</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;网络链接异常！请重试！&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;网络链接异常！请重试！&#39;</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div><p>比如对于上面提到的<a href="http://www.litreily.top/archives/">http://www.litreily.top/archives/ </a>可以用浏览器查看一下元素：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180625152990601332320.png" alt="20180625152990601332320.png"></p>
@@ -225,7 +221,7 @@
     <span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%02d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]</span>
     <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">posts</span><span class="p">:</span>
         <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">statistics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">statistics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">statistics</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">month_key</span> <span class="ow">in</span> <span class="n">months</span><span class="p">:</span>
                 <span class="n">statistics</span><span class="p">[</span><span class="n">year</span><span class="p">][</span><span class="n">month_key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -275,9 +271,9 @@
             <span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.post&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;异常，状态码：&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;异常，状态码：&#39;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">异常...&#39;</span><span class="p">,</span> <span class="n">post</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="n">url</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">异常...&#39;</span><span class="p">,</span> <span class="n">post</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="n">url</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_post_images</span><span class="p">(</span><span class="n">posts</span><span class="p">):</span>
     <span class="s1">&#39;&#39;&#39;获取博文列表中博文中所有图片的链接
@@ -291,7 +287,7 @@
         <span class="k">if</span> <span class="n">post_content</span><span class="p">:</span>
             <span class="n">images</span> <span class="o">=</span> <span class="n">post_content</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="n">url_p</span> <span class="o">=</span> <span class="n">up</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">post</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">])</span>
-            <span class="n">host_url</span> <span class="o">=</span> <span class="s1">&#39;{0}://{1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url_p</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">url_p</span><span class="o">.</span><span class="n">netloc</span><span class="p">)</span>
+            <span class="n">host_url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">://</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url_p</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">url_p</span><span class="o">.</span><span class="n">netloc</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
                 <span class="n">image_url</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">src</span>
                 <span class="k">if</span> <span class="n">image_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
@@ -310,25 +306,25 @@
 </span><span class="s1">    :type to_dir: unicode 字符串
 </span><span class="s1">    &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">image_info</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">image_info</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">image_info</span><span class="p">)</span>
         <span class="n">image_dir</span> <span class="o">=</span> <span class="n">to_dir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">image_info</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_info</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-                <span class="n">image_path</span> <span class="o">=</span> <span class="s1">&#39;{0}/{1}.{2}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">md5</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
-                <span class="k">print</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+                <span class="n">image_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/</span><span class="si">{1}</span><span class="s1">.</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">md5</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">image_path</span><span class="p">):</span>
                     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片下载完成！&#39;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;图片下载完成！&#39;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片已下载 -&gt; &#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;图片已下载 -&gt; &#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;图片下载失败！&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;图片下载失败！&#39;</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;出现异常！&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;出现异常！&#39;</span><span class="p">)</span>
 </code></pre></div><h3 id="命令参数解析">命令参数解析</h3>
 <p>按照命令形式的方式构造脚本还需要对参数输入进行解析：</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">parse_sys_args</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
@@ -345,12 +341,12 @@
 </span><span class="s1">
 </span><span class="s1">    &#39;&#39;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">help_info</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">help_info</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;pic&#39;</span> <span class="ow">and</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;count&#39;</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;请输入正确子命令！&#39;</span><span class="p">)</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">help_info</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;请输入正确子命令！&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">help_info</span><span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 </code></pre></div><h3 id="主体执行过程">主体执行过程</h3>
@@ -358,7 +354,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">command</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">css_selector</span> <span class="o">=</span> <span class="n">parse_sys_args</span><span class="p">()</span>
     <span class="n">archive</span> <span class="o">=</span> <span class="n">get_blog_posts</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">css_selector</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;一共有&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">]),</span> <span class="s1">&#39;篇博文！&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s1">&#39;一共有&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">]),</span> <span class="s1">&#39;篇博文！&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;count&#39;</span><span class="p">:</span>
             <span class="n">plot_statistics</span><span class="p">(</span><span class="n">statistic_posts_by_date</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">]),</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">s posts yearly&#39;</span><span class="p">)</span>
@@ -366,7 +362,7 @@
             <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">get_post_images</span><span class="p">(</span><span class="n">archive</span><span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">]):</span>
                 <span class="n">save_image_from</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">archive</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;没有发现博文，请确认您写的css选择器是否合理！&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;没有发现博文，请确认您写的css选择器是否合理！&#39;</span><span class="p">)</span>
 </code></pre></div><p>至此完成脚本文件，在这里十里给文件的命名是：<code>blogo</code>。</p>
 <h2 id="测试功能">测试功能</h2>
 <p>代码已经完成，分别测试两个子命令。</p>
@@ -397,7 +393,7 @@ LITREILY/Python网络爬虫3 - 生产者消费者模型爬取某金融网站数�
 			<hr class="post-end">
 			<footer class="post-info">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.top/tags/spider">spider</a></span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.cn/tags/python">python</a></span><span class="tag"><a href="https://www.smslit.cn/tags/spider">spider</a></span>
 				</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -443,10 +439,10 @@ LITREILY/Python网络爬虫3 - 生产者消费者模型爬取某金融网站数�
 </nav>
 		</aside>
 		<div class="post-nav thin">
-			<a class="next-post" href="https://www.smslit.top/2018/06/25/vim-pack/">
+			<a class="next-post" href="https://www.smslit.cn/2018/06/25/vim-pack/">
 				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>vim插件管理工具pack</span>
 			</a>
-			<a class="prev-post" href="https://www.smslit.top/2018/06/23/spider-basic-pyquery/">
+			<a class="prev-post" href="https://www.smslit.cn/2018/06/23/spider-basic-pyquery/">
 				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>爬虫基础之pyquery</span>
 			</a>
 		</div>
@@ -490,13 +486,13 @@ LITREILY/Python网络爬虫3 - 生产者消费者模型爬取某金融网站数�
 </script>
 </div>
 	</main>
-<script src="https://www.smslit.top/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+<script src="https://www.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
 	
 	
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2021 <a href="https://www.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

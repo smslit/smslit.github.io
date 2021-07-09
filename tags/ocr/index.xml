@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ocr on SMSLIT</title>
-    <link>https://www.smslit.top/tags/ocr/</link>
+    <link>https://www.smslit.cn/tags/ocr/</link>
     <description>Recent content in ocr on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 10 Jan 2019 15:10:32 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/ocr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Jan 2019 15:10:32 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/ocr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>python 利用百度 AI 实现 OCR</title>
-      <link>https://www.smslit.top/2019/01/10/textgo_python/</link>
+      <link>https://www.smslit.cn/2019/01/10/textgo_python/</link>
       <pubDate>Thu, 10 Jan 2019 15:10:32 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2019/01/10/textgo_python/</guid>
+      <guid>https://www.smslit.cn/2019/01/10/textgo_python/</guid>
       <description>&lt;p&gt;前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110210442.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>

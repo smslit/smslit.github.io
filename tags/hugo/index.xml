@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hugo on SMSLIT</title>
-    <link>https://www.smslit.top/tags/hugo/</link>
+    <link>https://www.smslit.cn/tags/hugo/</link>
     <description>Recent content in hugo on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 08 Jul 2018 17:01:05 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Jul 2018 17:01:05 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hugo博客添加评论系统Valine</title>
-      <link>https://www.smslit.top/2018/07/08/hugo-valine/</link>
+      <link>https://www.smslit.cn/2018/07/08/hugo-valine/</link>
       <pubDate>Sun, 08 Jul 2018 17:01:05 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/07/08/hugo-valine/</guid>
+      <guid>https://www.smslit.cn/2018/07/08/hugo-valine/</guid>
       <description>&lt;p&gt;博客已经基本从 &lt;a href=&#34;https://hexo.io&#34;&gt;hexo&lt;/a&gt; 迁移到 &lt;a href=&#34;https://gohugo.io/&#34;&gt;hugo&lt;/a&gt; ，对使用的 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34;&gt;Even&lt;/a&gt; 主题非常满意，虽自带了评论系统 &lt;a href=&#34;https://github.com/imsun/gitment&#34;&gt;gitment&lt;/a&gt; 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 &lt;a href=&#34;https://valine.js.org/&#34;&gt;valine&lt;/a&gt;，本文就讲一下如何在 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34;&gt;Even&lt;/a&gt; 中添加 &lt;a href=&#34;https://valine.js.org/&#34;&gt;Valine&lt;/a&gt; 的支持。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hexo博客迁移到hugo</title>
-      <link>https://www.smslit.top/2018/07/07/hexo2hugo/</link>
+      <link>https://www.smslit.cn/2018/07/07/hexo2hugo/</link>
       <pubDate>Sat, 07 Jul 2018 21:31:38 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/07/07/hexo2hugo/</guid>
+      <guid>https://www.smslit.cn/2018/07/07/hexo2hugo/</guid>
       <description>&lt;p&gt;前段时间了解了一下 &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;，发现了其一个非常突出的优点，那就是快，据说&lt;strong&gt;5000篇文章渲染只需要6s的时间&lt;/strong&gt;。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90+篇文章，hexo渲染一遍竟然需要8s+，叔能忍，哥不能忍！&lt;/p&gt;</description>
     </item>
     

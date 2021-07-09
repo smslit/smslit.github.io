@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>虚拟环境 on SMSLIT</title>
-    <link>https://www.smslit.top/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</link>
+    <link>https://www.smslit.cn/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</link>
     <description>Recent content in 虚拟环境 on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Feb 2020 15:57:16 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
-      <link>https://www.smslit.top/2020/02/21/pyenv_pipenv/</link>
+      <link>https://www.smslit.cn/2020/02/21/pyenv_pipenv/</link>
       <pubDate>Fri, 21 Feb 2020 15:57:16 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2020/02/21/pyenv_pipenv/</guid>
+      <guid>https://www.smslit.cn/2020/02/21/pyenv_pipenv/</guid>
       <description>如果你已经无法容忍机器上杂乱的 python 版本，pyenv 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！ 本文适用于 macOS 下的</description>
     </item>
     

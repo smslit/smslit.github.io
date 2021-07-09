@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>windows on SMSLIT</title>
-    <link>https://www.smslit.top/tags/windows/</link>
+    <link>https://www.smslit.cn/tags/windows/</link>
     <description>Recent content in windows on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 02 Nov 2018 13:02:49 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Nov 2018 13:02:49 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>windows 下 python 开发利器 vscode 的锻造</title>
-      <link>https://www.smslit.top/2018/11/02/python-dev-in-windows/</link>
+      <link>https://www.smslit.cn/2018/11/02/python-dev-in-windows/</link>
       <pubDate>Fri, 02 Nov 2018 13:02:49 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/11/02/python-dev-in-windows/</guid>
+      <guid>https://www.smslit.cn/2018/11/02/python-dev-in-windows/</guid>
       <description>&lt;p&gt;之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>WSL(windows subsytem linux)下添加网络浏览器支持</title>
-      <link>https://www.smslit.top/2017/09/02/wsl-webbrowser/</link>
+      <link>https://www.smslit.cn/2017/09/02/wsl-webbrowser/</link>
       <pubDate>Sat, 02 Sep 2017 13:41:03 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2017/09/02/wsl-webbrowser/</guid>
+      <guid>https://www.smslit.cn/2017/09/02/wsl-webbrowser/</guid>
       <description>&lt;p&gt;windows下在subsystem linux中安装了Anaconda，在使用jupyter notebook时，发现命令行并不能自动打开浏览器，原来是子系统linux中没有可用网页浏览器，本文就讲述一下如何在WSL中添加网络浏览器支持。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>0x80070570错误解决</title>
-      <link>https://www.smslit.top/2016/04/05/0x80070570error-Life/</link>
+      <link>https://www.smslit.cn/2016/04/05/0x80070570error-Life/</link>
       <pubDate>Tue, 05 Apr 2016 15:10:46 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2016/04/05/0x80070570error-Life/</guid>
+      <guid>https://www.smslit.cn/2016/04/05/0x80070570error-Life/</guid>
       <description>&lt;p&gt;今天无聊的“虫子”拿着移动硬盘过来让我删除硬盘上的一个文件夹（在windows下），呀，一删除就弹出一个错误提示说是：&lt;code&gt;error0x80070570&lt;/code&gt;，文件无法删除。木有办法，看来只有我能拯救这个世界了，经过了解，呀，别人已经解决了这个世界性难题，好吧，不管怎样，我也学到了咋解决：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;没有正常插拔移动设备&lt;code&gt;系统没有完成完整的读写操作&lt;/code&gt;致使文件目录信息错乱和不完整&lt;br&gt;
@@ -47,10 +47,10 @@
     
     <item>
       <title>解决windows下git bash中文乱码问题</title>
-      <link>https://www.smslit.top/2015/10/09/GitBashChineseCodeGarbled-Git/</link>
+      <link>https://www.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</link>
       <pubDate>Fri, 09 Oct 2015 12:14:46 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2015/10/09/GitBashChineseCodeGarbled-Git/</guid>
+      <guid>https://www.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</guid>
       <description>&lt;p&gt;因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。&lt;/p&gt;</description>
     </item>
     

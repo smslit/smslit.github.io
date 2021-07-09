@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hacker on SMSLIT</title>
-    <link>https://www.smslit.top/tags/hacker/</link>
+    <link>https://www.smslit.cn/tags/hacker/</link>
     <description>Recent content in hacker on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 23 Oct 2018 17:00:50 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/hacker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Oct 2018 17:00:50 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/hacker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>zip 文件暴破</title>
-      <link>https://www.smslit.top/2018/10/23/crack-zip-hacker/</link>
+      <link>https://www.smslit.cn/2018/10/23/crack-zip-hacker/</link>
       <pubDate>Tue, 23 Oct 2018 17:00:50 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/10/23/crack-zip-hacker/</guid>
+      <guid>https://www.smslit.cn/2018/10/23/crack-zip-hacker/</guid>
       <description>&lt;p&gt;2007年年初，美国德克萨斯州的布朗斯维尔市的程序员 Albert Castillo 协助警方调查 John Craig Zimmerman 涉嫌拥有和制造儿童色情物品的案件，而 Castillo 就是使用&lt;strong&gt;字典式攻击技术&lt;/strong&gt;^[字典式攻击是一种破解密码的方法。是指在破解密码或密钥时，逐一偿试用户自定义词典中的单词或短语的攻击方式。——&lt;a href=&#34;https://baike.baidu.com/item/%E5%AD%97%E5%85%B8%E5%BC%8F%E6%94%BB%E5%87%BB&#34;&gt;&lt;strong&gt;字典式攻击技术&lt;/strong&gt;&lt;/a&gt;]解密了嫌疑人电脑中的zip压缩文件，从而得到儿童色情图片等证据，得以结束案件。本文十里就简单介绍一下使用 python3 进行字典式破解加密zip文件的方法。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181022154020132354092.png&#34; alt=&#34;20181022154020132354092.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>python3 生成密码字典</title>
-      <link>https://www.smslit.top/2018/10/21/unzip-dict-hacker/</link>
+      <link>https://www.smslit.cn/2018/10/21/unzip-dict-hacker/</link>
       <pubDate>Sun, 21 Oct 2018 06:58:33 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/10/21/unzip-dict-hacker/</guid>
+      <guid>https://www.smslit.cn/2018/10/21/unzip-dict-hacker/</guid>
       <description>&lt;p&gt;黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— &lt;a href=&#34;https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E5%AD%97%E5%85%B8&#34;&gt;密码字典&lt;/a&gt;]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 &lt;strong&gt;keykey&lt;/strong&gt; 吧！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181021154012962176683.png&#34; alt=&#34;20181021154012962176683.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>图中藏(cáng)语</title>
-      <link>https://www.smslit.top/2018/10/20/codeimg-python/</link>
+      <link>https://www.smslit.cn/2018/10/20/codeimg-python/</link>
       <pubDate>Sat, 20 Oct 2018 10:09:31 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/10/20/codeimg-python/</guid>
+      <guid>https://www.smslit.cn/2018/10/20/codeimg-python/</guid>
       <description>&lt;p&gt;今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181020154000344643954.png&#34; alt=&#34;20181020154000344643954.png&#34;&gt;&lt;/p&gt;</description>
     </item>

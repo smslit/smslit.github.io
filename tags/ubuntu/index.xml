@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ubuntu on SMSLIT</title>
-    <link>https://www.smslit.top/tags/ubuntu/</link>
+    <link>https://www.smslit.cn/tags/ubuntu/</link>
     <description>Recent content in ubuntu on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 12 May 2020 13:32:23 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 May 2020 13:32:23 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
-      <link>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+      <link>https://www.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</link>
       <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+      <guid>https://www.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
       <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
     </item>
     
     <item>
       <title>mac 下使用 Docker 搭建 ubuntu 环境</title>
-      <link>https://www.smslit.top/2018/12/20/docker_ubuntu_learn/</link>
+      <link>https://www.smslit.cn/2018/12/20/docker_ubuntu_learn/</link>
       <pubDate>Thu, 20 Dec 2018 14:49:08 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/12/20/docker_ubuntu_learn/</guid>
+      <guid>https://www.smslit.cn/2018/12/20/docker_ubuntu_learn/</guid>
       <description>&lt;p&gt;学习网络开发过程中不想“污染”macOS，考虑到之后部署网络应用主要是与linux打交道，所以安装了 ubuntu 虚拟机以满足短期的知识学习需求。十里安装了 ubuntu 虚拟机，一般就是在 mac 中 ssh 连接 ubuntu 虚拟机在终端下进行操作学习，可见安装一个包含完整GUI的 ubuntu 有点多余，还占用很多资源！所以想到了使用 docker 来创建 ubuntu 容器用来开发学习，本文就分享一下这个过程！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181220150817.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>

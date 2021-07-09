@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>smartisan on SMSLIT</title>
-    <link>https://www.smslit.top/tags/smartisan/</link>
+    <link>https://www.smslit.cn/tags/smartisan/</link>
     <description>Recent content in smartisan on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 13 Dec 2015 08:00:00 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/smartisan/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Dec 2015 08:00:00 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/smartisan/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解决adb对Android设备的识别问题</title>
-      <link>https://www.smslit.top/2015/12/13/adbT1-Develop/</link>
+      <link>https://www.smslit.cn/2015/12/13/adbT1-Develop/</link>
       <pubDate>Sun, 13 Dec 2015 08:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2015/12/13/adbT1-Develop/</guid>
+      <guid>https://www.smslit.cn/2015/12/13/adbT1-Develop/</guid>
       <description>&lt;p&gt;今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。&lt;/p&gt;</description>
     </item>
     

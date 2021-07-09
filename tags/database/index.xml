@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>database on SMSLIT</title>
-    <link>https://www.smslit.top/tags/database/</link>
+    <link>https://www.smslit.cn/tags/database/</link>
     <description>Recent content in database on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 19 Dec 2018 20:45:52 +0800</lastBuildDate><atom:link href="https://www.smslit.top/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Dec 2018 20:45:52 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ubuntu 下 mysql 拒绝访问问题</title>
-      <link>https://www.smslit.top/2018/12/19/ubuntu_mysql_permission/</link>
+      <link>https://www.smslit.cn/2018/12/19/ubuntu_mysql_permission/</link>
       <pubDate>Wed, 19 Dec 2018 20:45:52 +0800</pubDate>
       
-      <guid>https://www.smslit.top/2018/12/19/ubuntu_mysql_permission/</guid>
+      <guid>https://www.smslit.cn/2018/12/19/ubuntu_mysql_permission/</guid>
       <description>&lt;p&gt;今天在 ubuntu 中安装 mysql 后出现 &lt;code&gt;Access denied for user &#39;root&#39;@&#39;localhost&#39;&lt;/code&gt; 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！&lt;/p&gt;</description>
     </item>
     

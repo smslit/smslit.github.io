@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>mmdetection on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/mmdetection/</link>
+    <link>https://blog.smslit.cn/tags/mmdetection/</link>
     <description>Recent content in mmdetection on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 11 Dec 2020 14:19:33 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/mmdetection/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Dec 2020 14:19:33 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/mmdetection/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 mmdectection 简单训练一个 faster-rcnn 模型</title>
-      <link>https://www.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</link>
+      <link>https://blog.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</link>
       <pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
+      <guid>https://blog.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
       <description>今天整理下怎么简单使用 mmdetection (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 COCO 格式的数据集。 一、准备环境及仓库 创建开发环境 # 创建新的 conda 环境 conda create -n open-mmlab python=3.7 -y #</description>
     </item>
     

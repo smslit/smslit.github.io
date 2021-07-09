@@ -2,99 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ble on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/ble/</link>
+    <link>https://blog.smslit.cn/tags/ble/</link>
     <description>Recent content in ble on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 05 May 2016 08:44:59 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/ble/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2016 08:44:59 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/ble/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>BLE开发笔记——协议栈HAL驱动控制LED</title>
-      <link>https://www.smslit.cn/2016/05/05/halled-ble/</link>
+      <link>https://blog.smslit.cn/2016/05/05/halled-ble/</link>
       <pubDate>Thu, 05 May 2016 08:44:59 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2016/05/05/halled-ble/</guid>
+      <guid>https://blog.smslit.cn/2016/05/05/halled-ble/</guid>
       <description>&lt;p&gt;已经了解了OSAL工作原理和完成了启动过程的简单分析，那么我们可以尝试协议栈开发了，首先可以玩一下LED的控制，我有一个CC2541-DK MINI Keyfob，本文就以此为测试平台。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——OSAL和协议栈启动流程</title>
-      <link>https://www.smslit.cn/2016/05/04/osal-executeflow-ble/</link>
+      <link>https://blog.smslit.cn/2016/05/04/osal-executeflow-ble/</link>
       <pubDate>Wed, 04 May 2016 09:32:48 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2016/05/04/osal-executeflow-ble/</guid>
+      <guid>https://blog.smslit.cn/2016/05/04/osal-executeflow-ble/</guid>
       <description>&lt;p&gt;在进行协议栈开发之前，必须要了解协议栈中完成任务调度和资源管理的OSAL以及整个协议栈程序大体的启动流程，只有这样才能更好的开发协议栈程序。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——简单新建属于自己的协议栈工程</title>
-      <link>https://www.smslit.cn/2016/03/21/newProject-BLE/</link>
+      <link>https://blog.smslit.cn/2016/03/21/newProject-BLE/</link>
       <pubDate>Mon, 21 Mar 2016 10:10:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2016/03/21/newProject-BLE/</guid>
+      <guid>https://blog.smslit.cn/2016/03/21/newProject-BLE/</guid>
       <description>&lt;p&gt;本文主要讲一下新建TI的CC2541协议栈的工程。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——读取片上温度传感器数据</title>
-      <link>https://www.smslit.cn/2015/10/30/temperature-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/30/temperature-BLE/</link>
       <pubDate>Fri, 30 Oct 2015 17:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/30/temperature-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/30/temperature-BLE/</guid>
       <description>&lt;p&gt;已经完成了串口打印就很方便调试了，学习其他外设的使用也更方便。本文就记录了温度传感器ADC采样的使用学习。片上的温度传感器输出的是模拟信号，所以需要配置AD采样对信号进行采集，然后进行换算获得温度。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——串口的使用</title>
-      <link>https://www.smslit.cn/2015/10/30/serial-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/30/serial-BLE/</link>
       <pubDate>Fri, 30 Oct 2015 14:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/30/serial-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/30/serial-BLE/</guid>
       <description>&lt;p&gt;进行软件开发，串口打印是个有效的调试方式，特别适用于没有显示设备的开发平台，所以为了方便调试必须要学会串口的配置和使用，在后期实现串口数据蓝牙转发的时候，也必须清楚串口的使用。本文就针对我自己的情况说一下串口的使用，CC2541有两个USART，使用都是类似的，根据使用管脚和串口的不同做适当的调整就好。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——时钟和晶振</title>
-      <link>https://www.smslit.cn/2015/10/30/clockOSC-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/30/clockOSC-BLE/</link>
       <pubDate>Fri, 30 Oct 2015 11:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/30/clockOSC-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/30/clockOSC-BLE/</guid>
       <description>&lt;p&gt;一个系统运行要稳定，其时钟必须稳定，学习CC2541开发，应该了解时钟的配置，需要了解时钟的寄存器：CLKCONCMD和CLKCONSTA，CMD，command，是用于配置时钟；STA，state，看状态的，用来检测是否配置成功。为了低功耗的设置，还应该了解SLEEPCMD和SLEEPSTA这两个寄存器，与时钟的电源相关的，本文讲一下时钟的初始化。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——遇到的问题及解决方法记录</title>
-      <link>https://www.smslit.cn/2015/10/30/problem-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/30/problem-BLE/</link>
       <pubDate>Fri, 30 Oct 2015 10:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/30/problem-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/30/problem-BLE/</guid>
       <description>&lt;p&gt;在进行BLE开发的学习中总会遇到一些棘手的问题，开此文就是为了记录在进行CC2541开发中遇到的问题和解决的方法，应该会持续更新。。。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——CC2541寄存器整理</title>
-      <link>https://www.smslit.cn/2015/10/27/BaseRegiser-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/27/BaseRegiser-BLE/</link>
       <pubDate>Tue, 27 Oct 2015 14:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/27/BaseRegiser-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/27/BaseRegiser-BLE/</guid>
       <description>&lt;p&gt;CC2541本质上是一个8051内核的单片机，对其编程必须了解其寄存器，本文整理了常用的寄存器。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——第一个工程,IO的输出</title>
-      <link>https://www.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</link>
       <pubDate>Mon, 26 Oct 2015 17:34:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</guid>
       <description>&lt;p&gt;CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BLE开发笔记——CC Debugger的使用</title>
-      <link>https://www.smslit.cn/2015/10/26/CCDebugger-BLE/</link>
+      <link>https://blog.smslit.cn/2015/10/26/CCDebugger-BLE/</link>
       <pubDate>Mon, 26 Oct 2015 10:34:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/26/CCDebugger-BLE/</guid>
+      <guid>https://blog.smslit.cn/2015/10/26/CCDebugger-BLE/</guid>
       <description>&lt;p&gt;配置好开发环境，话说那得要试一下下载程序，CC2541的BLE开发要用CC Debugger，这里就说一下它的使用。&lt;/p&gt;</description>
     </item>
     

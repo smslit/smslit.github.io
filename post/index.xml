@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Posts on SMSLIT</title>
-		<link>https://www.smslit.cn/post/</link>
+		<link>https://blog.smslit.cn/post/</link>
 		<description>Recent content in Posts on SMSLIT</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
 		<lastBuildDate>Thu, 15 Apr 2021 11:31:38 +0800</lastBuildDate>
-		<atom:link href="https://www.smslit.cn/post/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://blog.smslit.cn/post/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>PaddleDetection 模型训练笔记</title>
-			<link>https://www.smslit.cn/2021/04/15/paddle-detection-train-log/</link>
+			<link>https://blog.smslit.cn/2021/04/15/paddle-detection-train-log/</link>
 			<pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2021/04/15/paddle-detection-train-log/</guid>
+			<guid>https://blog.smslit.cn/2021/04/15/paddle-detection-train-log/</guid>
 			<description>本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查</description>
 			<content type="html"><![CDATA[<p>本文写的应该比较细了，首先介绍环境的搭建，然后以一个算法为例具体讲解训练过程，其他算法类似，而且 PaddleDetection 官方文档写的也很详细，有问题可以第一时间查看官方的文档！</p>
 <p>本文描述的是使用 Nvidia GPU 的操作步骤。</p>
@@ -94,7 +94,7 @@ conda config --set show_channel_urls yes
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># CUDA10.1</span>
 python -m pip install paddlepaddle-gpu<span class="o">==</span>2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
 </code></pre></div><blockquote>
-<p>如果 CUDA 是其它版本，可以去 <a href="https://www.paddlepaddle.org.cn/install/quick?docurl=https://www.smslit.cn/documentation/docs/zh/install/pip/windows-pip.html">PaddlePaddle官网</a>找对应计算平台的安装命令。</p>
+<p>如果 CUDA 是其它版本，可以去 <a href="https://www.paddlepaddle.org.cn/install/quick?docurl=https://blog.smslit.cn/documentation/docs/zh/install/pip/windows-pip.html">PaddlePaddle官网</a>找对应计算平台的安装命令。</p>
 </blockquote>
 <h3 id="123-验证安装">1.2.3 验证安装</h3>
 <p>安装完成后您可以使用 <code>python</code> 进入 python 解释器，输入<code>import paddle</code> ，再输入 <code>paddle.utils.run_check()</code></p>
@@ -429,10 +429,10 @@ conda activate paddle
 		
 		<item>
 			<title>使用 mmdectection 简单训练一个 faster-rcnn 模型</title>
-			<link>https://www.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</link>
+			<link>https://blog.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</link>
 			<pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
+			<guid>https://blog.smslit.cn/2020/12/11/mmdetection-train-fastercnn-coco/</guid>
 			<description>今天整理下怎么简单使用 mmdetection (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 COCO 格式的数据集。 一、准备环境及仓库 创建开发环境 # 创建新的 conda 环境 conda create -n open-mmlab python=3.7 -y #</description>
 			<content type="html"><![CDATA[<p>今天整理下怎么简单使用 <strong>mmdetection</strong> (使用 pytorch) 训练一个 Faster-RCNN 模型，笔者使用的是一个 <a href="https://cocodataset.org/">COCO</a> 格式的数据集。</p>
 <h2 id="一准备环境及仓库">一、准备环境及仓库</h2>
@@ -562,10 +562,10 @@ data/mydetaset
 		
 		<item>
 			<title>Paddle Inference 推理动态链接库 libnvinfer.so 问题</title>
-			<link>https://www.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</link>
+			<link>https://blog.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</link>
 			<pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</guid>
+			<guid>https://blog.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</guid>
 			<description>执行推理时会提示 TensorRT 的动态链接库缺失的问题： TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory) Suggestions: Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed. Configure TensorRT dynamic library environment variables as</description>
 			<content type="html"><![CDATA[<p>执行推理时会提示 <strong>TensorRT</strong> 的动态链接库缺失的问题：</p>
 <blockquote>
@@ -634,10 +634,10 @@ sudo cp /usr/lib/x86_64-linux-gnu/libnvcaffe_parser.so.7 /usr/lib/x86_64-linux-g
 		
 		<item>
 			<title>nginx 实现 vue &#43; flask 前后端分离部署</title>
-			<link>https://www.smslit.cn/2020/11/28/vue-flask-deploy-with-nginx/</link>
+			<link>https://blog.smslit.cn/2020/11/28/vue-flask-deploy-with-nginx/</link>
 			<pubDate>Sat, 28 Nov 2020 15:04:55 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/11/28/vue-flask-deploy-with-nginx/</guid>
+			<guid>https://blog.smslit.cn/2020/11/28/vue-flask-deploy-with-nginx/</guid>
 			<description>随着项目的进展，我们发现单靠后端托管部署 vue 构建的静态文件的方式已无法满足我们的开发需求，所以此文要讲的内容应运而生，借用 nginx 简单实现 vue 和 flask 前后</description>
 			<content type="html"><![CDATA[<p>随着项目的进展，我们发现单靠后端托管部署 vue 构建的静态文件的方式已无法满足我们的开发需求，所以此文要讲的内容应运而生，借用 nginx 简单实现 vue 和 flask 前后端项目的分离部署。</p>
 <p>本文将以一个简单的 web 应用例子以清晰地讲述部署方式。</p>
@@ -794,10 +794,10 @@ sudo systemctl restart demo
 		
 		<item>
 			<title>同域名下不同端口的 web 服务 session 冲突导致用户登录互顶的问题</title>
-			<link>https://www.smslit.cn/2020/10/24/same-domain-different-port-session-conflict/</link>
+			<link>https://blog.smslit.cn/2020/10/24/same-domain-different-port-session-conflict/</link>
 			<pubDate>Sat, 24 Oct 2020 10:59:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/10/24/same-domain-different-port-session-conflict/</guid>
+			<guid>https://blog.smslit.cn/2020/10/24/same-domain-different-port-session-conflict/</guid>
 			<description>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！ 日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都</description>
 			<content type="html"><![CDATA[<p>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！</p>
 <p>日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都有用户登录功能，且采用 session 的安全认证方式，就会出现两个应用登录信息互顶的问题，具体表现为：已经登录了 A 应用，结果再去登录 B 应用，回头去 A 应用的页面发现登录信息失效了，本文就看一下这个问题。</p>
@@ -846,10 +846,10 @@ sudo systemctl restart demo
 		
 		<item>
 			<title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
-			<link>https://www.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+			<link>https://blog.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</link>
 			<pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+			<guid>https://blog.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
 			<description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
 			<content type="html"><![CDATA[<p>出于某些原因，公司使用 <strong>ubuntu16.04(xenial)</strong> 和 <strong>python3.6</strong>，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用环境大部分类似，有必要先弄一个满足基本需求的镜像，后续再定制相应环境镜像即可。</p>
 <p>本文主要讲一下制作这个基础镜像的过程，灰常简单。</p>
@@ -960,10 +960,10 @@ ubuntu16_04-with-python3_6   latest              7883d49a0394        <span class
 		
 		<item>
 			<title>博客现已支持 Asciinema</title>
-			<link>https://www.smslit.cn/2020/05/01/asciinema/</link>
+			<link>https://blog.smslit.cn/2020/05/01/asciinema/</link>
 			<pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/05/01/asciinema/</guid>
+			<guid>https://blog.smslit.cn/2020/05/01/asciinema/</guid>
 			<description>前几天好朋友分享给我一个工具，叫 asciinema。经了解，发现这真是个好东西！ 这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文</description>
 			<content type="html"><![CDATA[<p>前几天好朋友分享给我一个工具，叫 <a href="https://asciinema.org">asciinema</a>。经了解，发现这真是个好东西！</p>
 <p>这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文件，而是一个 json 文件。</p>
@@ -981,10 +981,10 @@ ubuntu16_04-with-python3_6   latest              7883d49a0394        <span class
 		
 		<item>
 			<title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
-			<link>https://www.smslit.cn/2020/02/21/pyenv_pipenv/</link>
+			<link>https://blog.smslit.cn/2020/02/21/pyenv_pipenv/</link>
 			<pubDate>Fri, 21 Feb 2020 15:57:16 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2020/02/21/pyenv_pipenv/</guid>
+			<guid>https://blog.smslit.cn/2020/02/21/pyenv_pipenv/</guid>
 			<description>如果你已经无法容忍机器上杂乱的 python 版本，pyenv 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！ 本文适用于 macOS 下的</description>
 			<content type="html"><![CDATA[<p>如果你已经无法容忍机器上杂乱的 python 版本，<strong>pyenv</strong> 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！</p>
 <p>本文适用于 macOS 下的 python 开发。</p>
@@ -1038,10 +1038,10 @@ ubuntu16_04-with-python3_6   latest              7883d49a0394        <span class
 		
 		<item>
 			<title>Ant Design Vue 工程配置笔记</title>
-			<link>https://www.smslit.cn/2019/11/11/ant-design-vue-note-start/</link>
+			<link>https://blog.smslit.cn/2019/11/11/ant-design-vue-note-start/</link>
 			<pubDate>Mon, 11 Nov 2019 11:04:25 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/11/11/ant-design-vue-note-start/</guid>
+			<guid>https://blog.smslit.cn/2019/11/11/ant-design-vue-note-start/</guid>
 			<description>工程配置 创建工程 # 安装 Vue # npm install -g @vue/cli $ vue creat antd-demo 排除 vscode 配置忽略 vscode 打开上面创建的工程，修改 .gitignore 文件内容为： .DS_Store node_modules /dist # local env files .env.local .env.*.local # Log files npm-debug.log* yarn-debug.log* yarn-error.log* # Editor directories and files .idea -</description>
 			<content type="html"><![CDATA[<h2 id="工程配置">工程配置</h2>
 <h3 id="创建工程">创建工程</h3>
@@ -1213,10 +1213,10 @@ You may need to install it.
 		
 		<item>
 			<title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
-			<link>https://www.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</link>
+			<link>https://blog.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</link>
 			<pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</guid>
+			<guid>https://blog.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</guid>
 			<description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
 			<content type="html"><![CDATA[<p>上一篇文章 <a href="/2019/10/22/macOS-dev-basic-nsmenu/">macOS 开发之菜单栏形式的状态栏小工具</a> 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图标，都会弹出我们添加的菜单，考虑到我们可能会需要分别对鼠标左右键单击菜单栏按钮进行不同的处理，所以写此文讲解一下如何实现。</p>
 <!-- more -->
@@ -1305,10 +1305,10 @@ You may need to install it.
 		
 		<item>
 			<title>macOS 开发之菜单栏形式的状态栏小工具</title>
-			<link>https://www.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</link>
+			<link>https://blog.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</link>
 			<pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</guid>
+			<guid>https://blog.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</guid>
 			<description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
 			<content type="html"><![CDATA[<p>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下面截图展示的工具，本文就讲一下如何实现。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191022165922-Nf83mL.jpg" alt=""></p>
@@ -1453,10 +1453,10 @@ You may need to install it.
 		
 		<item>
 			<title>macbook pro 换脸成功</title>
-			<link>https://www.smslit.cn/2019/10/18/mbp-screen/</link>
+			<link>https://blog.smslit.cn/2019/10/18/mbp-screen/</link>
 			<pubDate>Fri, 18 Oct 2019 10:13:52 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/10/18/mbp-screen/</guid>
+			<guid>https://blog.smslit.cn/2019/10/18/mbp-screen/</guid>
 			<description>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部</description>
 			<content type="html"><![CDATA[<p>关注我的小伙伴应该也知道 long long ago 我因为自己的愚蠢行为让 MBP 的屏幕进水了，导致它的脸 - 屏幕变成了条纹脸，显示出现一些灰色横向条纹分布整个屏幕，底部最密集，造孽呀！没错，它需要得到救赎，就由我来帮它做换脸手术吧！</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20191018104714-0v0def.jpg" alt=""></p>
@@ -1483,10 +1483,10 @@ You may need to install it.
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
-			<link>https://www.smslit.cn/2019/08/24/platformio-stm32-cubemx/</link>
+			<link>https://blog.smslit.cn/2019/08/24/platformio-stm32-cubemx/</link>
 			<pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/08/24/platformio-stm32-cubemx/</guid>
+			<guid>https://blog.smslit.cn/2019/08/24/platformio-stm32-cubemx/</guid>
 			<description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
 			<content type="html"><![CDATA[<p>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一个 <strong>stm32cube</strong> 框架的工程，并且将 LED 点亮。</p>
 <h2 id="测试平台">测试平台</h2>
@@ -1664,10 +1664,10 @@ You may need to install it.
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
-			<link>https://www.smslit.cn/2019/08/21/platformio-irremote-driver/</link>
+			<link>https://blog.smslit.cn/2019/08/21/platformio-irremote-driver/</link>
 			<pubDate>Wed, 21 Aug 2019 10:51:18 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/08/21/platformio-irremote-driver/</guid>
+			<guid>https://blog.smslit.cn/2019/08/21/platformio-irremote-driver/</guid>
 			<description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
 			<content type="html"><![CDATA[<p>最近做一个项目需要用到红外接收，项目工程针对的是 <code>STM32F103C8T6</code> 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个条件的，索性就自己造个轮子呗，也不难！</p>
 <h2 id="硬件连接">硬件连接</h2>
@@ -1907,10 +1907,10 @@ NEC红外线编码协议</a>]，其中红外发射芯片会自动扫描矩阵键
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
-			<link>https://www.smslit.cn/2019/08/19/platformio-libraries/</link>
+			<link>https://blog.smslit.cn/2019/08/19/platformio-libraries/</link>
 			<pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/08/19/platformio-libraries/</guid>
+			<guid>https://blog.smslit.cn/2019/08/19/platformio-libraries/</guid>
 			<description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
 			<content type="html"><![CDATA[<p>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就带大家了解一下在 PlatformIO IDE (VSCode) 中如何使用和管理这些库。</p>
 <h2 id="前言">前言</h2>
@@ -2029,10 +2029,10 @@ NEC红外线编码协议</a>]，其中红外发射芯片会自动扫描矩阵键
 		
 		<item>
 			<title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
-			<link>https://www.smslit.cn/2019/08/18/platformio-newproject/</link>
+			<link>https://blog.smslit.cn/2019/08/18/platformio-newproject/</link>
 			<pubDate>Sun, 18 Aug 2019 17:02:01 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/08/18/platformio-newproject/</guid>
+			<guid>https://blog.smslit.cn/2019/08/18/platformio-newproject/</guid>
 			<description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
 			<content type="html"><![CDATA[<p>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。</p>
 <h2 id="基本概念">基本概念</h2>
@@ -2215,10 +2215,10 @@ PROGRAM: <span class="o">[=</span>         <span class="o">]</span>  14.4% <span
 		
 		<item>
 			<title>PlatformIO IDE(VScode) 下调试 STM32 平台程序</title>
-			<link>https://www.smslit.cn/2019/08/05/platformio-debug/</link>
+			<link>https://blog.smslit.cn/2019/08/05/platformio-debug/</link>
 			<pubDate>Mon, 05 Aug 2019 17:17:42 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/08/05/platformio-debug/</guid>
+			<guid>https://blog.smslit.cn/2019/08/05/platformio-debug/</guid>
 			<description>PlatformIO 系列文章 stm32开发新方式-platformio 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在</description>
 			<content type="html"><![CDATA[<p><strong>PlatformIO</strong> 系列文章 <a href="/2017/11/08/stm32InPIO-start/#调试配置"><strong>stm32开发新方式-platformio</strong></a> 中最后提到说 PlatformIO 限制了免费用户调试程序的功能，最近发现 PlatformIO 已经免费开发程序调试功能，所以现在我们可以使用内建支持更好的方式调试我们的 ST MCU 的程序了，那今天我们就聊一下这一块内容。</p>
 <p>官方称其为 PIO Unified Debugger，很好理解，就是统一的调试器，意思是凡是 PIO 支持的可调式的 MCU 开发平台均可以使用统一功能的调试器，PIO 跨平台的特性仍然支持程序调试，也就是说在 windows、linux和 macOS 下均可以得到相同的开发体验。</p>
@@ -2317,10 +2317,10 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 		
 		<item>
 			<title>macOS 开发之 Windows 和 WindowController</title>
-			<link>https://www.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
+			<link>https://blog.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
 			<pubDate>Mon, 01 Apr 2019 08:20:10 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
+			<guid>https://blog.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
 			<description>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口</description>
 			<content type="html"><![CDATA[<p>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口(tabbed interface)。</p>
 <h1 id="开发平台">开发平台</h1>
@@ -2643,10 +2643,10 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 		
 		<item>
 			<title>PlatformIO 是什么</title>
-			<link>https://www.smslit.cn/2019/03/30/what-is-pio/</link>
+			<link>https://blog.smslit.cn/2019/03/30/what-is-pio/</link>
 			<pubDate>Sat, 30 Mar 2019 17:45:14 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/30/what-is-pio/</guid>
+			<guid>https://blog.smslit.cn/2019/03/30/what-is-pio/</guid>
 			<description>PlatformIO is an open source ecosystem for IoT development. Cross-platform IDE and unified debugger. Remote unit testing and firmware updates. PlatformIO 是一个用于物联网开发的开源生态系统。它提供跨平台的开发环境和统一的调试器，还支持远程单元测试和固件</description>
 			<content type="html"><![CDATA[<blockquote>
 <p>PlatformIO is an open source ecosystem for IoT development.</p>
@@ -2706,10 +2706,10 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 		
 		<item>
 			<title>macOS 开发之 Swift 的 Codable</title>
-			<link>https://www.smslit.cn/2019/03/24/macOS-dev-swift-codable/</link>
+			<link>https://blog.smslit.cn/2019/03/24/macOS-dev-swift-codable/</link>
 			<pubDate>Sun, 24 Mar 2019 16:49:16 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/24/macOS-dev-swift-codable/</guid>
+			<guid>https://blog.smslit.cn/2019/03/24/macOS-dev-swift-codable/</guid>
 			<description>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 Codable，在本文一起探讨一下以下三个方</description>
 			<content type="html"><![CDATA[<p>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 <strong>Codable</strong>，在本文一起探讨一下以下三个方面：</p>
 <ul>
@@ -2984,10 +2984,10 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 		
 		<item>
 			<title>macOS 开发之本地消息通知</title>
-			<link>https://www.smslit.cn/2019/03/17/macOS-dev-local-notification/</link>
+			<link>https://blog.smslit.cn/2019/03/17/macOS-dev-local-notification/</link>
 			<pubDate>Sun, 17 Mar 2019 11:33:15 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/17/macOS-dev-local-notification/</guid>
+			<guid>https://blog.smslit.cn/2019/03/17/macOS-dev-local-notification/</guid>
 			<description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
 			<content type="html"><![CDATA[<p>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。</p>
 <h1 id="开发平台">开发平台</h1>
@@ -3242,10 +3242,10 @@ Error: Please specify <span class="sb">`</span>debug_port<span class="sb">`</spa
 		
 		<item>
 			<title>macOS 开发之 NSTextField 文本的垂直居中</title>
-			<link>https://www.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
+			<link>https://blog.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
 			<pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
+			<guid>https://blog.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
 			<description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
 			<content type="html"><![CDATA[<p>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可以满足我们的需求！</p>
 <h2 id="开发平台">开发平台</h2>
@@ -3307,10 +3307,10 @@ $$</p>
 		
 		<item>
 			<title>快快拿走，Xcode 常用快捷键</title>
-			<link>https://www.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</link>
+			<link>https://blog.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</link>
 			<pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
+			<guid>https://blog.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
 			<description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
 			<content type="html"><![CDATA[<p>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！</p>
 <h1 id="说明">说明</h1>
@@ -3610,10 +3610,10 @@ $$</p>
 		
 		<item>
 			<title>macOS 开发之定时器的使用</title>
-			<link>https://www.smslit.cn/2019/03/05/macOS-dev-timer/</link>
+			<link>https://blog.smslit.cn/2019/03/05/macOS-dev-timer/</link>
 			<pubDate>Tue, 05 Mar 2019 15:43:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/05/macOS-dev-timer/</guid>
+			<guid>https://blog.smslit.cn/2019/03/05/macOS-dev-timer/</guid>
 			<description>前段时间开发了一款状态栏小工具 时光(Time Go) ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关</description>
 			<content type="html"><![CDATA[<p>前段时间开发了一款状态栏小工具 <a href="https://github.com/smslit/timeGO">时光(Time Go)</a> ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关于定时器的的收获及其使用方法，我们一起进步。</p>
 <h1 id="实现平台">实现平台</h1>
@@ -3927,10 +3927,10 @@ $$</p>
 		
 		<item>
 			<title>已开源 app 实现检查更新的简单方式</title>
-			<link>https://www.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</link>
+			<link>https://blog.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</link>
 			<pubDate>Sun, 03 Mar 2019 09:38:27 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</guid>
+			<guid>https://blog.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</guid>
 			<description>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种</description>
 			<content type="html"><![CDATA[<p>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种简单的方式助您实现 app 检查更新的功能。</p>
 <h1 id="实现平台">实现平台</h1>
@@ -4010,10 +4010,10 @@ $$</p>
 		
 		<item>
 			<title>macOS 开发之本地化工具 bartycrouch 4 使用教程</title>
-			<link>https://www.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</link>
+			<link>https://blog.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</link>
 			<pubDate>Fri, 01 Mar 2019 08:59:33 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
+			<guid>https://blog.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
 			<description>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方</description>
 			<content type="html"><![CDATA[<p>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方法变化还挺大，所以赶快在前面三篇文章中标注了一下版本使用问题，本文简单介绍一下 bartycrouch 4 的使用。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190301092140.png" alt=""></p>
@@ -4315,10 +4315,10 @@ Commands:
 		
 		<item>
 			<title>macOS 开发之 NSTextField 支持文本快捷键(二): 撤销和重做</title>
-			<link>https://www.smslit.cn/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</link>
+			<link>https://blog.smslit.cn/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</link>
 			<pubDate>Wed, 27 Feb 2019 10:23:39 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
+			<guid>https://blog.smslit.cn/2019/02/27/macOS-dev-nstextfield-keys-undo-redo/</guid>
 			<description>在文章macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两</description>
 			<content type="html"><![CDATA[<p>在文章<a href="/2019/02/25/macOS-dev-nstextfield-keys/">macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</a>中探讨了 app 开发中键盘事件以及 NSTextfield 支持基本文本快捷键的实现方法，本文跟十里一起实现另外的两个操作：</p>
 <ul>
@@ -4465,10 +4465,10 @@ Commands:
 		
 		<item>
 			<title>macOS 开发之 NSTextField 支持文本快捷键(一): 基本操作</title>
-			<link>https://www.smslit.cn/2019/02/25/macOS-dev-nstextfield-keys/</link>
+			<link>https://blog.smslit.cn/2019/02/25/macOS-dev-nstextfield-keys/</link>
 			<pubDate>Mon, 25 Feb 2019 10:00:05 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/02/25/macOS-dev-nstextfield-keys/</guid>
+			<guid>https://blog.smslit.cn/2019/02/25/macOS-dev-nstextfield-keys/</guid>
 			<description>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得</description>
 			<content type="html"><![CDATA[<p>在日常 macOS 开发中经常会用到 NSTextField 控件，但是会发现一个问题，如果开发的应用没有顶栏应用菜单，编辑控件中的文本内容的时候，按下文本操作快捷键无效，而得到的是系统警告音。本文就跟十里一起看一下如何让没有应用菜单的 app 中的 NSTextField 支持常用的文本操作快捷键。</p>
 <ul>
@@ -4580,10 +4580,10 @@ Commands:
 		
 		<item>
 			<title>macOS 开发之代码字符串的本地化</title>
-			<link>https://www.smslit.cn/2019/02/21/mac_app_international_3/</link>
+			<link>https://blog.smslit.cn/2019/02/21/mac_app_international_3/</link>
 			<pubDate>Thu, 21 Feb 2019 18:02:47 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/02/21/mac_app_international_3/</guid>
+			<guid>https://blog.smslit.cn/2019/02/21/mac_app_international_3/</guid>
 			<description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代</description>
 			<content type="html"><![CDATA[<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第三部：代码字符串本地化。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190221212506.jpg" alt=""></p>
@@ -4751,10 +4751,10 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 		
 		<item>
 			<title>macOS 开发之 storyboard 或 xib 本地化</title>
-			<link>https://www.smslit.cn/2019/02/19/mac_app_international_2/</link>
+			<link>https://blog.smslit.cn/2019/02/19/mac_app_international_2/</link>
 			<pubDate>Tue, 19 Feb 2019 08:53:54 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/02/19/mac_app_international_2/</guid>
+			<guid>https://blog.smslit.cn/2019/02/19/mac_app_international_2/</guid>
 			<description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：s</description>
 			<content type="html"><![CDATA[<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第二部：storyboard 或 xib 本地化。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190219090656.jpg" alt=""></p>
@@ -4878,10 +4878,10 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 		
 		<item>
 			<title>macOS 开发之 APP 名称本地化</title>
-			<link>https://www.smslit.cn/2019/02/18/mac_app_international_1/</link>
+			<link>https://blog.smslit.cn/2019/02/18/mac_app_international_1/</link>
 			<pubDate>Mon, 18 Feb 2019 09:10:02 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/02/18/mac_app_international_1/</guid>
+			<guid>https://blog.smslit.cn/2019/02/18/mac_app_international_1/</guid>
 			<description>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：a</description>
 			<content type="html"><![CDATA[<p>开发了一款好用的 macOS app 后，为了让更多人的尝到自己 “真香” 的作品，app 的国际化和本地化是有必要的，app 的本地化分三部曲讲解，本文是第一部：app 名称的本地化。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190218102516.jpg" alt=""></p>
@@ -5022,10 +5022,10 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 		
 		<item>
 			<title>macOS 开发中实现 APP 的自重启</title>
-			<link>https://www.smslit.cn/2019/02/15/mac_app_restart/</link>
+			<link>https://blog.smslit.cn/2019/02/15/mac_app_restart/</link>
 			<pubDate>Fri, 15 Feb 2019 13:10:30 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/02/15/mac_app_restart/</guid>
+			<guid>https://blog.smslit.cn/2019/02/15/mac_app_restart/</guid>
 			<description>在日常使用某些 app 时，更改语言设置后 app 会提示“软件语言设置在重启后会生效”，有的软件也会提示是否立即重启，这说明我们能实现 app 的自重启，对吧！那</description>
 			<content type="html"><![CDATA[<p>在日常使用某些 app 时，更改语言设置后 app 会提示“软件语言设置在重启后会生效”，有的软件也会提示是否立即重启，这说明我们能实现 app 的自重启，对吧！那么本文将介绍如何通过代码实现 app 的自重启。</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190217101720.jpg" alt=""></p>
@@ -5102,10 +5102,10 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 		
 		<item>
 			<title>macOS 开发之实现 HTTP 的 GET 和 POST 请求</title>
-			<link>https://www.smslit.cn/2019/01/26/get_post_cocoa/</link>
+			<link>https://blog.smslit.cn/2019/01/26/get_post_cocoa/</link>
 			<pubDate>Sat, 26 Jan 2019 15:10:40 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/01/26/get_post_cocoa/</guid>
+			<guid>https://blog.smslit.cn/2019/01/26/get_post_cocoa/</guid>
 			<description>在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift</description>
 			<content type="html"><![CDATA[<p>在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。</p>
 <h1 id="平台">平台</h1>
@@ -5311,10 +5311,10 @@ $ bartycrouch code -p InternationalDemo -l InternationalDemo
 		
 		<item>
 			<title>python 利用百度 AI 实现 OCR</title>
-			<link>https://www.smslit.cn/2019/01/10/textgo_python/</link>
+			<link>https://blog.smslit.cn/2019/01/10/textgo_python/</link>
 			<pubDate>Thu, 10 Jan 2019 15:10:32 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/01/10/textgo_python/</guid>
+			<guid>https://blog.smslit.cn/2019/01/10/textgo_python/</guid>
 			<description>&lt;p&gt;前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110210442.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。</p>
@@ -5492,10 +5492,10 @@ optional arguments:
 		
 		<item>
 			<title>TimeGO 一款轻量简洁的计时提醒 app</title>
-			<link>https://www.smslit.cn/2019/01/08/timeGO/</link>
+			<link>https://blog.smslit.cn/2019/01/08/timeGO/</link>
 			<pubDate>Tue, 08 Jan 2019 04:35:37 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/01/08/timeGO/</guid>
+			<guid>https://blog.smslit.cn/2019/01/08/timeGO/</guid>
 			<description>&lt;p&gt;之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 &lt;a href=&#34;https://toolinbox.net/iTimer/&#34;&gt;iTimer&lt;/a&gt; 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 &lt;strong&gt;timeGO&lt;/strong&gt;。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 <a href="https://toolinbox.net/iTimer/">iTimer</a> 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 <strong>timeGO</strong>。</p>
 <h1 id="简介">简介</h1>
@@ -5628,10 +5628,10 @@ optional arguments:
 		
 		<item>
 			<title>开发的 macOS app 打包为精美的 dmg</title>
-			<link>https://www.smslit.cn/2019/01/06/mac_app_to_dmg/</link>
+			<link>https://blog.smslit.cn/2019/01/06/mac_app_to_dmg/</link>
 			<pubDate>Sun, 06 Jan 2019 21:06:56 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/01/06/mac_app_to_dmg/</guid>
+			<guid>https://blog.smslit.cn/2019/01/06/mac_app_to_dmg/</guid>
 			<description>&lt;p&gt;最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。</p>
@@ -5791,10 +5791,10 @@ chflags hidden dmg.png
 		
 		<item>
 			<title>为 mac 连接的 2k 显示器开启 HiDPI</title>
-			<link>https://www.smslit.cn/2019/01/02/mac_hidpi/</link>
+			<link>https://blog.smslit.cn/2019/01/02/mac_hidpi/</link>
 			<pubDate>Wed, 02 Jan 2019 17:20:38 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2019/01/02/mac_hidpi/</guid>
+			<guid>https://blog.smslit.cn/2019/01/02/mac_hidpi/</guid>
 			<description>&lt;p&gt;最近入手了 thinkvision 的 24寸显示器 &lt;a href=&#34;https://zhuanlan.zhihu.com/p/27516738&#34;&gt;t24h-10&lt;/a&gt;，之所以选择这款显示器，除了很好的工业设计和做工外，最主要的是支持 type-c 连接，用来显示的同时，扩展出了 4 个常规的 USB3.0 接口和 1 个 3.5mm 耳麦接口，并且使用 type-c 的话，显示器可以为我的 macbook pro 反向供电。虽然是 2k(2560*1440) 的分辨率，但因为近距离使用还难免有颗粒感，同时显示内容也会偏小，直观感受就是不细腻，心里还是有个疙瘩！还好最近了解到 macOS 上拥有 HiDPI^[&lt;a href=&#34;https://zhuanlan.zhihu.com/p/36913571&#34;&gt;Macbook外接2K显示器时，如何开启HiDPI?&lt;/a&gt;] 渲染技术，本文就讲解一下如何为自己的 2K 显示器开启 HiDPI 实现 Retina 的效果^[&lt;a href=&#34;https://zhuanlan.zhihu.com/p/20684620?refer=ibuick&#34;&gt;有关retina和HiDPI那点事&lt;/a&gt;]。&lt;/p&gt;
 &lt;p&gt;高PPI(硬件) + HiDPI渲染(软件) = 更细腻的显示效果(retina)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190102211703.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
@@ -5900,10 +5900,10 @@ killall Finder
 		
 		<item>
 			<title>mac 下使用 Docker 搭建 ubuntu 环境</title>
-			<link>https://www.smslit.cn/2018/12/20/docker_ubuntu_learn/</link>
+			<link>https://blog.smslit.cn/2018/12/20/docker_ubuntu_learn/</link>
 			<pubDate>Thu, 20 Dec 2018 14:49:08 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/12/20/docker_ubuntu_learn/</guid>
+			<guid>https://blog.smslit.cn/2018/12/20/docker_ubuntu_learn/</guid>
 			<description>&lt;p&gt;学习网络开发过程中不想“污染”macOS，考虑到之后部署网络应用主要是与linux打交道，所以安装了 ubuntu 虚拟机以满足短期的知识学习需求。十里安装了 ubuntu 虚拟机，一般就是在 mac 中 ssh 连接 ubuntu 虚拟机在终端下进行操作学习，可见安装一个包含完整GUI的 ubuntu 有点多余，还占用很多资源！所以想到了使用 docker 来创建 ubuntu 容器用来开发学习，本文就分享一下这个过程！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181220150817.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>学习网络开发过程中不想“污染”macOS，考虑到之后部署网络应用主要是与linux打交道，所以安装了 ubuntu 虚拟机以满足短期的知识学习需求。十里安装了 ubuntu 虚拟机，一般就是在 mac 中 ssh 连接 ubuntu 虚拟机在终端下进行操作学习，可见安装一个包含完整GUI的 ubuntu 有点多余，还占用很多资源！所以想到了使用 docker 来创建 ubuntu 容器用来开发学习，本文就分享一下这个过程！</p>
@@ -6131,10 +6131,10 @@ AuthorizedKeysFile	.ssh/authorized_keys # 公钥信息保存到文件 .ssh/autho
 		
 		<item>
 			<title>ubuntu 下 mysql 拒绝访问问题</title>
-			<link>https://www.smslit.cn/2018/12/19/ubuntu_mysql_permission/</link>
+			<link>https://blog.smslit.cn/2018/12/19/ubuntu_mysql_permission/</link>
 			<pubDate>Wed, 19 Dec 2018 20:45:52 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/12/19/ubuntu_mysql_permission/</guid>
+			<guid>https://blog.smslit.cn/2018/12/19/ubuntu_mysql_permission/</guid>
 			<description>&lt;p&gt;今天在 ubuntu 中安装 mysql 后出现 &lt;code&gt;Access denied for user &#39;root&#39;@&#39;localhost&#39;&lt;/code&gt; 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天在 ubuntu 中安装 mysql 后出现 <code>Access denied for user 'root'@'localhost'</code> 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！</p>
 <h1 id="问题分析">问题分析</h1>
@@ -6211,10 +6211,10 @@ AuthorizedKeysFile	.ssh/authorized_keys # 公钥信息保存到文件 .ssh/autho
 		
 		<item>
 			<title>最简单的人工智能(皮一下)</title>
-			<link>https://www.smslit.cn/2018/12/17/simple_ai_stupid/</link>
+			<link>https://blog.smslit.cn/2018/12/17/simple_ai_stupid/</link>
 			<pubDate>Mon, 17 Dec 2018 16:35:58 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/12/17/simple_ai_stupid/</guid>
+			<guid>https://blog.smslit.cn/2018/12/17/simple_ai_stupid/</guid>
 			<description>&lt;p&gt;有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[&lt;a href=&#34;https://github.com/ruanyf/weekly/issues/158&#34;&gt;图片：估值一个亿的代码&lt;/a&gt;]！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[<a href="https://github.com/ruanyf/weekly/issues/158">图片：估值一个亿的代码</a>]！</p>
@@ -6241,10 +6241,10 @@ AuthorizedKeysFile	.ssh/authorized_keys # 公钥信息保存到文件 .ssh/autho
 		
 		<item>
 			<title>简陋的不能再简陋的 HTTP1.1 Server</title>
-			<link>https://www.smslit.cn/2018/11/27/simple_server/</link>
+			<link>https://blog.smslit.cn/2018/11/27/simple_server/</link>
 			<pubDate>Tue, 27 Nov 2018 10:48:29 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/11/27/simple_server/</guid>
+			<guid>https://blog.smslit.cn/2018/11/27/simple_server/</guid>
 			<description>&lt;p&gt;今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。</p>
 <h1 id="知识基础">知识基础</h1>
@@ -6408,10 +6408,10 @@ optional arguments:
 		
 		<item>
 			<title>图床的选择从七牛云到腾讯云</title>
-			<link>https://www.smslit.cn/2018/11/17/qiniu-to-tencent-bucket/</link>
+			<link>https://blog.smslit.cn/2018/11/17/qiniu-to-tencent-bucket/</link>
 			<pubDate>Sat, 17 Nov 2018 13:56:21 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/11/17/qiniu-to-tencent-bucket/</guid>
+			<guid>https://blog.smslit.cn/2018/11/17/qiniu-to-tencent-bucket/</guid>
 			<description>&lt;p&gt;昨天收到七牛云的邮件提醒说要回收我的 CDN 测试域名，博客一直使用七牛云的 bucket 作为图床，也就是说收了域名后，图片以及其它文件无法访问，最糟糕的是七牛云后台管理也无法访问文件，这才有了本文的内容，我要将七牛云对象存储转移到腾讯云的对象存储。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>昨天收到七牛云的邮件提醒说要回收我的 CDN 测试域名，博客一直使用七牛云的 bucket 作为图床，也就是说收了域名后，图片以及其它文件无法访问，最糟糕的是七牛云后台管理也无法访问文件，这才有了本文的内容，我要将七牛云对象存储转移到腾讯云的对象存储。</p>
 <h1 id="恢复七牛云文件">恢复七牛云文件</h1>
@@ -6507,10 +6507,10 @@ $ ln -s qshell_darwin_x64 qshell
 		
 		<item>
 			<title>使用 matplotlib 的 animation 让数据动起来</title>
-			<link>https://www.smslit.cn/2018/11/12/matplotlib-animation/</link>
+			<link>https://blog.smslit.cn/2018/11/12/matplotlib-animation/</link>
 			<pubDate>Mon, 12 Nov 2018 01:22:15 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/11/12/matplotlib-animation/</guid>
+			<guid>https://blog.smslit.cn/2018/11/12/matplotlib-animation/</guid>
 			<description>&lt;p&gt;最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154195822047625.gif&#34; alt=&#34;20181112154195822047625.gif&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。</p>
@@ -6622,10 +6622,10 @@ FileNotFoundError: [Errno 2] No such file or directory: &lsquo;ffmpeg&rsquo;: &l
 		
 		<item>
 			<title>排序算法知多少</title>
-			<link>https://www.smslit.cn/2018/11/07/algorithm-sort/</link>
+			<link>https://blog.smslit.cn/2018/11/07/algorithm-sort/</link>
 			<pubDate>Wed, 07 Nov 2018 15:37:05 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/11/07/algorithm-sort/</guid>
+			<guid>https://blog.smslit.cn/2018/11/07/algorithm-sort/</guid>
 			<description>&lt;p&gt;大学里学的第一门编程语言是 c++，c++ 的课程中接触的第一种排序算法是&lt;strong&gt;冒泡排序&lt;/strong&gt;，这已经过去八年，很惭愧的是到目前只了解&lt;strong&gt;冒泡排序&lt;/strong&gt;和&lt;strong&gt;插入排序&lt;/strong&gt;两种，作为一名合格的程序猿也应该了解了解其它的排序算法吧！所以开本文记录整理网上所谓的&lt;strong&gt;十大排序算法&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018111115418975029904.gif&#34; alt=&#34;2018111115418975029904.gif&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>大学里学的第一门编程语言是 c++，c++ 的课程中接触的第一种排序算法是<strong>冒泡排序</strong>，这已经过去八年，很惭愧的是到目前只了解<strong>冒泡排序</strong>和<strong>插入排序</strong>两种，作为一名合格的程序猿也应该了解了解其它的排序算法吧！所以开本文记录整理网上所谓的<strong>十大排序算法</strong>。</p>
@@ -6952,10 +6952,10 @@ sorrted    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
 		
 		<item>
 			<title>windows 下 python 开发利器 vscode 的锻造</title>
-			<link>https://www.smslit.cn/2018/11/02/python-dev-in-windows/</link>
+			<link>https://blog.smslit.cn/2018/11/02/python-dev-in-windows/</link>
 			<pubDate>Fri, 02 Nov 2018 13:02:49 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/11/02/python-dev-in-windows/</guid>
+			<guid>https://blog.smslit.cn/2018/11/02/python-dev-in-windows/</guid>
 			<description>&lt;p&gt;之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。</p>
@@ -7114,10 +7114,10 @@ sorrted    <span class="o">[</span>3, 9, 10, 12, 23, 34, 45, 54, 65, 78<span cla
 		
 		<item>
 			<title>python 实现文件校验</title>
-			<link>https://www.smslit.cn/2018/10/26/hashcal-python/</link>
+			<link>https://blog.smslit.cn/2018/10/26/hashcal-python/</link>
 			<pubDate>Fri, 26 Oct 2018 13:12:18 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/26/hashcal-python/</guid>
+			<guid>https://blog.smslit.cn/2018/10/26/hashcal-python/</guid>
 			<description>&lt;p&gt;今天又学习了点 &lt;code&gt;argparse&lt;/code&gt; 库的东西——子命令实现的正确姿势(常规操作)，借着实现一个文件校验、比较的小工具来巩固一下刚学到的子命令实现。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天又学习了点 <code>argparse</code> 库的东西——子命令实现的正确姿势(常规操作)，借着实现一个文件校验、比较的小工具来巩固一下刚学到的子命令实现。</p>
 <p>本文实现了一个名为 <code>hashpare</code>^[之所以叫 <code>hashpare</code>, 是因为工具使用 <strong>hash</strong> 值对文件进行比较，就是 <strong>hash compare</strong>，合称 <code>hashpare</code>] 的工具，我已经托管到 <a href="https://github.com/smslit">github</a> 上<a href="https://github.com/smslit/tools-with-script/tree/master/hashpare">tools-with-script/hashpare</a>。总感觉直接上代码有点粗暴，下面分步骤讲解实现过程。</p>
@@ -7296,10 +7296,10 @@ optional arguments:
 		
 		<item>
 			<title>python 实现文本文件的编码检测和转换</title>
-			<link>https://www.smslit.cn/2018/10/25/encoding-python/</link>
+			<link>https://blog.smslit.cn/2018/10/25/encoding-python/</link>
 			<pubDate>Thu, 25 Oct 2018 22:05:59 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/25/encoding-python/</guid>
+			<guid>https://blog.smslit.cn/2018/10/25/encoding-python/</guid>
 			<description>&lt;p&gt;记得在前公司做嵌入式开发时，总是会遇到因代码文件编码不对导致的注释乱码问题。因为部门里很多人喜欢使用 GB2312，而我比较倾向于用 utf-8 编码，所以每次合并他们代码的时候，通常我会使用一个 &lt;code&gt;find&lt;/code&gt; 和 &lt;code&gt;enca&lt;/code&gt; 的组合命令，对工程检索将 GB2312 的 &lt;code&gt;.c&lt;/code&gt; 和 &lt;code&gt;.h&lt;/code&gt; 文件转码为 &lt;code&gt;utf-8&lt;/code&gt;，那么我们是不是可以自己编写一个 python 工具实现文件编码的检测和转换呢？当然可以，借助第三方库 &lt;code&gt;chardet&lt;/code&gt; 就可以做到！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>记得在前公司做嵌入式开发时，总是会遇到因代码文件编码不对导致的注释乱码问题。因为部门里很多人喜欢使用 GB2312，而我比较倾向于用 utf-8 编码，所以每次合并他们代码的时候，通常我会使用一个 <code>find</code> 和 <code>enca</code> 的组合命令，对工程检索将 GB2312 的 <code>.c</code> 和 <code>.h</code> 文件转码为 <code>utf-8</code>，那么我们是不是可以自己编写一个 python 工具实现文件编码的检测和转换呢？当然可以，借助第三方库 <code>chardet</code> 就可以做到！</p>
 <h1 id="编码操作">编码操作</h1>
@@ -7502,10 +7502,10 @@ $ ✗ ./encoding big5.txt gb2312.txt
 		
 		<item>
 			<title>python 实现命令行工具 tee</title>
-			<link>https://www.smslit.cn/2018/10/24/tee-Python/</link>
+			<link>https://blog.smslit.cn/2018/10/24/tee-Python/</link>
 			<pubDate>Wed, 24 Oct 2018 17:58:19 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/24/tee-Python/</guid>
+			<guid>https://blog.smslit.cn/2018/10/24/tee-Python/</guid>
 			<description>&lt;p&gt;最近，朋友 &lt;a href=&#34;http://www.litreily.top&#34;&gt;Litreily&lt;/a&gt; 发表了文章&lt;a href=&#34;http://www.litreily.top/2018/09/27/tee/&#34;&gt;Linux指令 - tee的实现&lt;/a&gt; ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png&#34; alt=&#34;20181025154039778364827.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近，朋友 <a href="http://www.litreily.top">Litreily</a> 发表了文章<a href="http://www.litreily.top/2018/09/27/tee/">Linux指令 - tee的实现</a> ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！</p>
@@ -7680,10 +7680,10 @@ Wonderful
 		
 		<item>
 			<title>zip 文件暴破</title>
-			<link>https://www.smslit.cn/2018/10/23/crack-zip-hacker/</link>
+			<link>https://blog.smslit.cn/2018/10/23/crack-zip-hacker/</link>
 			<pubDate>Tue, 23 Oct 2018 17:00:50 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/23/crack-zip-hacker/</guid>
+			<guid>https://blog.smslit.cn/2018/10/23/crack-zip-hacker/</guid>
 			<description>&lt;p&gt;2007年年初，美国德克萨斯州的布朗斯维尔市的程序员 Albert Castillo 协助警方调查 John Craig Zimmerman 涉嫌拥有和制造儿童色情物品的案件，而 Castillo 就是使用&lt;strong&gt;字典式攻击技术&lt;/strong&gt;^[字典式攻击是一种破解密码的方法。是指在破解密码或密钥时，逐一偿试用户自定义词典中的单词或短语的攻击方式。——&lt;a href=&#34;https://baike.baidu.com/item/%E5%AD%97%E5%85%B8%E5%BC%8F%E6%94%BB%E5%87%BB&#34;&gt;&lt;strong&gt;字典式攻击技术&lt;/strong&gt;&lt;/a&gt;]解密了嫌疑人电脑中的zip压缩文件，从而得到儿童色情图片等证据，得以结束案件。本文十里就简单介绍一下使用 python3 进行字典式破解加密zip文件的方法。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181022154020132354092.png&#34; alt=&#34;20181022154020132354092.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>2007年年初，美国德克萨斯州的布朗斯维尔市的程序员 Albert Castillo 协助警方调查 John Craig Zimmerman 涉嫌拥有和制造儿童色情物品的案件，而 Castillo 就是使用<strong>字典式攻击技术</strong>^[字典式攻击是一种破解密码的方法。是指在破解密码或密钥时，逐一偿试用户自定义词典中的单词或短语的攻击方式。——<a href="https://baike.baidu.com/item/%E5%AD%97%E5%85%B8%E5%BC%8F%E6%94%BB%E5%87%BB"><strong>字典式攻击技术</strong></a>]解密了嫌疑人电脑中的zip压缩文件，从而得到儿童色情图片等证据，得以结束案件。本文十里就简单介绍一下使用 python3 进行字典式破解加密zip文件的方法。</p>
@@ -7842,10 +7842,10 @@ demo1.zip 未加密！
 		
 		<item>
 			<title>python3 生成密码字典</title>
-			<link>https://www.smslit.cn/2018/10/21/unzip-dict-hacker/</link>
+			<link>https://blog.smslit.cn/2018/10/21/unzip-dict-hacker/</link>
 			<pubDate>Sun, 21 Oct 2018 06:58:33 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/21/unzip-dict-hacker/</guid>
+			<guid>https://blog.smslit.cn/2018/10/21/unzip-dict-hacker/</guid>
 			<description>&lt;p&gt;黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— &lt;a href=&#34;https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E5%AD%97%E5%85%B8&#34;&gt;密码字典&lt;/a&gt;]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 &lt;strong&gt;keykey&lt;/strong&gt; 吧！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181021154012962176683.png&#34; alt=&#34;20181021154012962176683.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>黑客破解密码通常会用到密码字典^[密码字典，是配合密码破译软件所使用的。密码字典里包括许多人们习惯性设置的密码，这样可以提高密码破译软件的密码破译成功率和命中率，缩短密码破译的时间。—— <a href="https://baike.baidu.com/item/%E5%AF%86%E7%A0%81%E5%AD%97%E5%85%B8">密码字典</a>]，网上会看到各种各样的密码生成器，那么本文就一起用 python3 实现一个简单的密码生成器吧，就叫它 <strong>keykey</strong> 吧！</p>
@@ -8036,10 +8036,10 @@ aaag
 		
 		<item>
 			<title>图中藏(cáng)语</title>
-			<link>https://www.smslit.cn/2018/10/20/codeimg-python/</link>
+			<link>https://blog.smslit.cn/2018/10/20/codeimg-python/</link>
 			<pubDate>Sat, 20 Oct 2018 10:09:31 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/20/codeimg-python/</guid>
+			<guid>https://blog.smslit.cn/2018/10/20/codeimg-python/</guid>
 			<description>&lt;p&gt;今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181020154000344643954.png&#34; alt=&#34;20181020154000344643954.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天分享一个好玩工具，这个工具可以往图片中藏入信息，当然也可以从藏有信息的图片中将信息找出来。专业名词的话，这叫图片隐写技术，但无所谓了，我们知道是咋回事儿就好。本文将介绍如何使用 python3 实现这个工具。</p>
@@ -8427,10 +8427,10 @@ demo_code.png 你好，世界！hello, world!
 		
 		<item>
 			<title>一起使用 pipenv</title>
-			<link>https://www.smslit.cn/2018/10/18/pipenv/</link>
+			<link>https://blog.smslit.cn/2018/10/18/pipenv/</link>
 			<pubDate>Thu, 18 Oct 2018 10:53:36 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/18/pipenv/</guid>
+			<guid>https://blog.smslit.cn/2018/10/18/pipenv/</guid>
 			<description>&lt;p&gt;今天十里给大家推荐一个 python 工具，它就是 python 官方推荐的包管理工具 &lt;a href=&#34;https://pypi.org/project/pipenv/&#34;&gt;pipenv&lt;/a&gt;。这个工具会十八般武艺， virtualenv、pyenv 和 pip 三者的功能集于一身，可谓是高手中的高手了，所以，掌控了它相信你会轻松很多！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181018153983543930207.png&#34; alt=&#34;20181018153983543930207.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天十里给大家推荐一个 python 工具，它就是 python 官方推荐的包管理工具 <a href="https://pypi.org/project/pipenv/">pipenv</a>。这个工具会十八般武艺， virtualenv、pyenv 和 pip 三者的功能集于一身，可谓是高手中的高手了，所以，掌控了它相信你会轻松很多！</p>
@@ -8601,10 +8601,10 @@ NONE
 		
 		<item>
 			<title>python3 实现Markdown转html小工具</title>
-			<link>https://www.smslit.cn/2018/10/16/md2html_python/</link>
+			<link>https://blog.smslit.cn/2018/10/16/md2html_python/</link>
 			<pubDate>Tue, 16 Oct 2018 17:44:29 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/16/md2html_python/</guid>
+			<guid>https://blog.smslit.cn/2018/10/16/md2html_python/</guid>
 			<description>&lt;p&gt;写博客文章一直使用 &lt;a href=&#34;http://www.markdown.cn&#34;&gt;markdown&lt;/a&gt;，&lt;a href=&#34;http://www.markdown.cn&#34;&gt;markdown&lt;/a&gt; 是一个轻量级的标记语言，可以快速创建待格式的简单文档。&lt;a href=&#34;https://typora.io&#34;&gt;typra&lt;/a&gt; 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 &lt;a href=&#34;http://www.markdown.cn&#34;&gt;markdown&lt;/a&gt; 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181018153983700396678.png&#34; alt=&#34;20181018153983700396678.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>写博客文章一直使用 <a href="http://www.markdown.cn">markdown</a>，<a href="http://www.markdown.cn">markdown</a> 是一个轻量级的标记语言，可以快速创建待格式的简单文档。<a href="https://typora.io">typra</a> 是一款跨平台而且设计极佳的 markdown 写作工具。markdown 本质上算是简化版的 html。那么，如何自己编写一个 <a href="http://www.markdown.cn">markdown</a> 转换工具呢？本文将带你一起用python3 实现一个 markdown 转 html 的命令行工具，用浏览器查看 html 就能看到带格式的文章了。</p>
@@ -8844,10 +8844,10 @@ README.md 已转换完成，保存为./output/README.html
 		
 		<item>
 			<title>python3 简单实现验证码识别器</title>
-			<link>https://www.smslit.cn/2018/10/12/verification_code_chars/</link>
+			<link>https://blog.smslit.cn/2018/10/12/verification_code_chars/</link>
 			<pubDate>Fri, 12 Oct 2018 14:59:37 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/12/verification_code_chars/</guid>
+			<guid>https://blog.smslit.cn/2018/10/12/verification_code_chars/</guid>
 			<description>&lt;p&gt;编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181012153933272275283.png&#34; alt=&#34;20181012153933272275283.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>编写爬虫总该要过验证码识别这个坎，今天用python3简单实现一个验证码识别器。其实主要是实践，最后效果也不是特别好，对于复杂的验证码，还是力不从心的！</p>
@@ -9159,10 +9159,10 @@ tesseract_ocr 库的识别结果： 7S9T9J’
 		
 		<item>
 			<title>PUBG &amp; ROE, See you later</title>
-			<link>https://www.smslit.cn/2018/10/02/pubg_roe_bye/</link>
+			<link>https://blog.smslit.cn/2018/10/02/pubg_roe_bye/</link>
 			<pubDate>Tue, 02 Oct 2018 23:24:41 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/10/02/pubg_roe_bye/</guid>
+			<guid>https://blog.smslit.cn/2018/10/02/pubg_roe_bye/</guid>
 			<description>&lt;p&gt;今年八月初，第一次真正的玩PC大型游戏，以前也就玩个 &lt;strong&gt;愤怒的小鸟&lt;/strong&gt; 这种小游戏，吃鸡（绝地求生：大逃杀&lt;PUBG&gt;）正🔥，咱也掺和掺和，所以既是PC端游戏菜鸟，又是PUBG专业快递员。9月底腾讯无限法则（ROE）在steam上上市了，作为一个合格的好奇宝宝，我当然要去里面滑滑❄️啦，所以也算玩过ROE了，技术依旧烂的一笔。嗯&amp;hellip;&amp;hellip;可是当初势必要练得“走位骚、刚强猛、爆头准”的决心随着心境的变化已经慢慢淡去，所以呀，开此文祭奠这即将逝去的 &lt;strong&gt;Game Pleasure&lt;/strong&gt;！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181002153849597149140.jpg&#34; alt=&#34;20181002153849597149140.jpg&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今年八月初，第一次真正的玩PC大型游戏，以前也就玩个 <strong>愤怒的小鸟</strong> 这种小游戏，吃鸡（绝地求生：大逃杀<PUBG>）正🔥，咱也掺和掺和，所以既是PC端游戏菜鸟，又是PUBG专业快递员。9月底腾讯无限法则（ROE）在steam上上市了，作为一个合格的好奇宝宝，我当然要去里面滑滑❄️啦，所以也算玩过ROE了，技术依旧烂的一笔。嗯&hellip;&hellip;可是当初势必要练得“走位骚、刚强猛、爆头准”的决心随着心境的变化已经慢慢淡去，所以呀，开此文祭奠这即将逝去的 <strong>Game Pleasure</strong>！</p>
@@ -9194,10 +9194,10 @@ tesseract_ocr 库的识别结果： 7S9T9J’
 		
 		<item>
 			<title>macOS下lldb遇到_remove_dead_weakref的Import_Error</title>
-			<link>https://www.smslit.cn/2018/09/30/lldb_weakref_error/</link>
+			<link>https://blog.smslit.cn/2018/09/30/lldb_weakref_error/</link>
 			<pubDate>Sun, 30 Sep 2018 12:01:47 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/30/lldb_weakref_error/</guid>
+			<guid>https://blog.smslit.cn/2018/09/30/lldb_weakref_error/</guid>
 			<description>&lt;p&gt;今天使用lldb遇到了_weakref的Import_Error问题，找了很久才找到合适的解决方法，开此文分享一下。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ lldb
 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lldb&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; script
@@ -9242,10 +9242,10 @@ You can override this and force removal with:
 		
 		<item>
 			<title>python3实现图片转换为字符画</title>
-			<link>https://www.smslit.cn/2018/09/14/image2charspic/</link>
+			<link>https://blog.smslit.cn/2018/09/14/image2charspic/</link>
 			<pubDate>Fri, 14 Sep 2018 17:04:01 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/14/image2charspic/</guid>
+			<guid>https://blog.smslit.cn/2018/09/14/image2charspic/</guid>
 			<description>&lt;p&gt;记得之前看到过有人做了一个小工具，可以将图片用字符展示出来，就是所谓的 &lt;strong&gt;字符画&lt;/strong&gt; 了，今天咱也用python3实现这么一个有趣的小工具。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180914153691718315759.png&#34; alt=&#34;20180914153691718315759.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>记得之前看到过有人做了一个小工具，可以将图片用字符展示出来，就是所谓的 <strong>字符画</strong> 了，今天咱也用python3实现这么一个有趣的小工具。</p>
@@ -9368,10 +9368,10 @@ $$
 		
 		<item>
 			<title>argparse 库的使用</title>
-			<link>https://www.smslit.cn/2018/09/13/python-argparse/</link>
+			<link>https://blog.smslit.cn/2018/09/13/python-argparse/</link>
 			<pubDate>Thu, 13 Sep 2018 15:16:37 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/13/python-argparse/</guid>
+			<guid>https://blog.smslit.cn/2018/09/13/python-argparse/</guid>
 			<description>&lt;p&gt;如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：&lt;code&gt;ls -l&lt;/code&gt;。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 &lt;code&gt;sys.argv&lt;/code&gt; 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 &lt;strong&gt;argparse&lt;/strong&gt; 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：<code>ls -l</code>。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 <code>sys.argv</code> 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 <strong>argparse</strong> 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！</p>
 <p>本文就不用解释这个参数的概念了吧，相信您对参数这个概念有了自己的感受，开发一个属于自己的命令工具一定很酷，Let&rsquo;s do it!</p>
@@ -9756,11 +9756,11 @@ optional arguments:
 		
 		<item>
 			<title>AZW3 格式电子书转换为 MOBI 格式保持原有排版格式</title>
-			<link>https://www.smslit.cn/2018/09/12/convert-ebook/</link>
+			<link>https://blog.smslit.cn/2018/09/12/convert-ebook/</link>
 			<pubDate>Wed, 12 Sep 2018 00:20:28 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/12/convert-ebook/</guid>
-			<description>&lt;p&gt;前些天写的文章 &lt;a href=&#34;https://www.smslit.cn/2018/09/06/kindle-deDRM-to-mobi/&#34;&gt;《让kindle电子书不受DRM禁锢》&lt;/a&gt; 中将kindle中的azw3格式电子书去除了DRM，并转换格式为mobi格式，这样就能导入我的 &lt;strong&gt;ireader plus&lt;/strong&gt; 阅读器了。但是这些天发现，用calibre转换的书籍把原有排版格式改变了挺多，所以网上搜索了解决方法，找到文章《将 AZW3 格式转换为 MOBI 格式并保持原有排版格式》^[&lt;a href=&#34;https://bookfere.com/post/102.html&#34;&gt;将 AZW3 格式转换为 MOBI 格式并保持原有排版格式&lt;/a&gt;]，按照方法尝试，果然最大限度的保留了排版格式，现分享详细操作过程！&lt;/p&gt;</description>
+			<guid>https://blog.smslit.cn/2018/09/12/convert-ebook/</guid>
+			<description>&lt;p&gt;前些天写的文章 &lt;a href=&#34;https://blog.smslit.cn/2018/09/06/kindle-deDRM-to-mobi/&#34;&gt;《让kindle电子书不受DRM禁锢》&lt;/a&gt; 中将kindle中的azw3格式电子书去除了DRM，并转换格式为mobi格式，这样就能导入我的 &lt;strong&gt;ireader plus&lt;/strong&gt; 阅读器了。但是这些天发现，用calibre转换的书籍把原有排版格式改变了挺多，所以网上搜索了解决方法，找到文章《将 AZW3 格式转换为 MOBI 格式并保持原有排版格式》^[&lt;a href=&#34;https://bookfere.com/post/102.html&#34;&gt;将 AZW3 格式转换为 MOBI 格式并保持原有排版格式&lt;/a&gt;]，按照方法尝试，果然最大限度的保留了排版格式，现分享详细操作过程！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>前些天写的文章 <a href="/2018/09/06/kindle-deDRM-to-mobi/">《让kindle电子书不受DRM禁锢》</a> 中将kindle中的azw3格式电子书去除了DRM，并转换格式为mobi格式，这样就能导入我的 <strong>ireader plus</strong> 阅读器了。但是这些天发现，用calibre转换的书籍把原有排版格式改变了挺多，所以网上搜索了解决方法，找到文章《将 AZW3 格式转换为 MOBI 格式并保持原有排版格式》^[<a href="https://bookfere.com/post/102.html">将 AZW3 格式转换为 MOBI 格式并保持原有排版格式</a>]，按照方法尝试，果然最大限度的保留了排版格式，现分享详细操作过程！</p>
 <p>本文的方法过程很简单：</p>
 <ol>
@@ -9825,10 +9825,10 @@ optional arguments:
 		
 		<item>
 			<title>python常用正则表达式总结</title>
-			<link>https://www.smslit.cn/2018/09/11/regex-python/</link>
+			<link>https://blog.smslit.cn/2018/09/11/regex-python/</link>
 			<pubDate>Tue, 11 Sep 2018 16:53:07 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/11/regex-python/</guid>
+			<guid>https://blog.smslit.cn/2018/09/11/regex-python/</guid>
 			<description>&lt;p&gt;python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180911153665750929978.png&#34; alt=&#34;20180911153665750929978.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。</p>
@@ -10037,10 +10037,10 @@ optional arguments:
 		
 		<item>
 			<title>Phantomjs失控 - Element is not currently visible</title>
-			<link>https://www.smslit.cn/2018/09/07/phantomjs-element-invisible/</link>
+			<link>https://blog.smslit.cn/2018/09/07/phantomjs-element-invisible/</link>
 			<pubDate>Fri, 07 Sep 2018 16:50:29 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/07/phantomjs-element-invisible/</guid>
+			<guid>https://blog.smslit.cn/2018/09/07/phantomjs-element-invisible/</guid>
 			<description>&lt;p&gt;今天写一个爬虫，使用 &lt;a href=&#34;https://www.seleniumhq.org&#34;&gt;&lt;strong&gt;selenium&lt;/strong&gt;&lt;/a&gt;(可以操纵浏览器的python库)操控phantomjs出了问题：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Element is not currently visible and may not be manipulated exception&lt;/p&gt;
@@ -10107,10 +10107,10 @@ optional arguments:
 		
 		<item>
 			<title>让kindle电子书不受DRM禁锢</title>
-			<link>https://www.smslit.cn/2018/09/06/kindle-deDRM-to-mobi/</link>
+			<link>https://blog.smslit.cn/2018/09/06/kindle-deDRM-to-mobi/</link>
 			<pubDate>Thu, 06 Sep 2018 12:04:02 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/06/kindle-deDRM-to-mobi/</guid>
+			<guid>https://blog.smslit.cn/2018/09/06/kindle-deDRM-to-mobi/</guid>
 			<description>&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153620800099678.png&#34; alt=&#34;20180906153620800099678.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;昨天在亚马逊购买了关注很久的新书，电子版的，临时使用水木的 &lt;strong&gt;kindle voyage&lt;/strong&gt; 进行阅读，屏幕略小呀，我有一个 &lt;strong&gt;ireader&lt;/strong&gt; 电纸书阅读器，屏幕是6.8寸的，比kindle大一整圈，为什么我不用它来阅读呢（ireader平台没有上这本新书）！问题来了，kindle中的电子书受 &lt;a href=&#34;https://en.wikipedia.org/wiki/Digital_rights_management&#34;&gt;&lt;strong&gt;DRM&lt;/strong&gt;&lt;/a&gt; 保护，导出的电子书文件不能用其它阅读器中打开，经过探索，找到了去除 &lt;strong&gt;DRM&lt;/strong&gt; 并转换导出&lt;a href=&#34;https://en.wikipedia.org/wiki/EPUB&#34;&gt;epub&lt;/a&gt; 或 &lt;a href=&#34;https://en.wikipedia.org/wiki/Mobi&#34;&gt;mobi&lt;/a&gt; 电子书的方法，本文分享一下这一成果！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180906153620800099678.png" alt="20180906153620800099678.png"></p>
@@ -10251,11 +10251,11 @@ optional arguments:
 		
 		<item>
 			<title>chrome网页长截图神技</title>
-			<link>https://www.smslit.cn/2018/09/05/chrome-screenshot/</link>
+			<link>https://blog.smslit.cn/2018/09/05/chrome-screenshot/</link>
 			<pubDate>Wed, 05 Sep 2018 16:48:03 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/09/05/chrome-screenshot/</guid>
-			<description>&lt;p&gt;相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 &lt;a href=&#34;https://www.smslit.cn/2018/06/27/spider-practice-page-screenshot/&#34;&gt;爬虫实践之网页长截图&lt;/a&gt;。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！&lt;/p&gt;</description>
+			<guid>https://blog.smslit.cn/2018/09/05/chrome-screenshot/</guid>
+			<description>&lt;p&gt;相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 &lt;a href=&#34;https://blog.smslit.cn/2018/06/27/spider-practice-page-screenshot/&#34;&gt;爬虫实践之网页长截图&lt;/a&gt;。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>相信大家都有过要对网页进行长截图的时候，不知道大家是怎么实现的，想必大部分的可能还是安装浏览器插件吧，当然还可能是比较奇葩的可能——用python实现，如 <a href="/2018/06/27/spider-practice-page-screenshot/">爬虫实践之网页长截图</a>。本文介绍一种不用安装插件、不用写代码的方式，只需要一个chrome就能搞定，一起来感受chrome的强大！</p>
 <h2 id="初探">初探</h2>
 <p>先简单通过一个例子介绍这个功能的使用，比如截取本博客首页<a href="https://www.smslit.top">https://www.smslit.top</a>。用chrome打开这个网页，下面只需简单的三部就可以得到长截图：</p>
@@ -10323,10 +10323,10 @@ optional arguments:
 		
 		<item>
 			<title>糖豆广场舞视频下载</title>
-			<link>https://www.smslit.cn/2018/07/15/tangdou-video/</link>
+			<link>https://blog.smslit.cn/2018/07/15/tangdou-video/</link>
 			<pubDate>Sun, 15 Jul 2018 22:24:33 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/15/tangdou-video/</guid>
+			<guid>https://blog.smslit.cn/2018/07/15/tangdou-video/</guid>
 			<description>&lt;p&gt;回到老家总会面临各种奇葩的需求，装系统、下歌、修电脑、修电器，我内心是崩溃的，家人和乡亲们也真是“热情”！最近几年，乡镇文化中又多了流行的广场舞，所以我又担负起给人下载广场舞视频的重任。今天就简单说一下如何下载糖豆广场舞中的视频。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>回到老家总会面临各种奇葩的需求，装系统、下歌、修电脑、修电器，我内心是崩溃的，家人和乡亲们也真是“热情”！最近几年，乡镇文化中又多了流行的广场舞，所以我又担负起给人下载广场舞视频的重任。今天就简单说一下如何下载糖豆广场舞中的视频。</p>
 <p>这不，这次回老家，老妈让给下载一下别人微信分享给她的广场舞视频，虽然内心是拒绝的，但我还是接下了这个任务。我把别人分享给老妈的信息转发给我自己，研究一下怎么下载，也就有了现在这篇文章！对于我的探索过程无感想直接看方法的同学可以点<a href="#方法">我</a>。</p>
@@ -10375,10 +10375,10 @@ optional arguments:
 		
 		<item>
 			<title>platformio串口监视器功能</title>
-			<link>https://www.smslit.cn/2018/07/11/platformio-command-device/</link>
+			<link>https://blog.smslit.cn/2018/07/11/platformio-command-device/</link>
 			<pubDate>Wed, 11 Jul 2018 23:28:08 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/11/platformio-command-device/</guid>
+			<guid>https://blog.smslit.cn/2018/07/11/platformio-command-device/</guid>
 			<description>&lt;p&gt;今天收到了前些天买的&lt;a href=&#34;https://store.arduino.cc/arduino-leonardo-with-headers&#34;&gt;Arduino Leonardo&lt;/a&gt;，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 &lt;strong&gt;platformio&lt;/strong&gt; 监视 Arduino的串口数据。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180711153132350560223.jpg&#34; alt=&#34;20180711153132350560223.jpg&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天收到了前些天买的<a href="https://store.arduino.cc/arduino-leonardo-with-headers">Arduino Leonardo</a>，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 <strong>platformio</strong> 监视 Arduino的串口数据。</p>
@@ -10605,10 +10605,10 @@ yyyyyLed on!
 		
 		<item>
 			<title>hugo博客添加评论系统Valine</title>
-			<link>https://www.smslit.cn/2018/07/08/hugo-valine/</link>
+			<link>https://blog.smslit.cn/2018/07/08/hugo-valine/</link>
 			<pubDate>Sun, 08 Jul 2018 17:01:05 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/08/hugo-valine/</guid>
+			<guid>https://blog.smslit.cn/2018/07/08/hugo-valine/</guid>
 			<description>&lt;p&gt;博客已经基本从 &lt;a href=&#34;https://hexo.io&#34;&gt;hexo&lt;/a&gt; 迁移到 &lt;a href=&#34;https://gohugo.io/&#34;&gt;hugo&lt;/a&gt; ，对使用的 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34;&gt;Even&lt;/a&gt; 主题非常满意，虽自带了评论系统 &lt;a href=&#34;https://github.com/imsun/gitment&#34;&gt;gitment&lt;/a&gt; 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 &lt;a href=&#34;https://valine.js.org/&#34;&gt;valine&lt;/a&gt;，本文就讲一下如何在 &lt;a href=&#34;https://github.com/olOwOlo/hugo-theme-even&#34;&gt;Even&lt;/a&gt; 中添加 &lt;a href=&#34;https://valine.js.org/&#34;&gt;Valine&lt;/a&gt; 的支持。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>博客已经基本从 <a href="https://hexo.io">hexo</a> 迁移到 <a href="https://gohugo.io/">hugo</a> ，对使用的 <a href="https://github.com/olOwOlo/hugo-theme-even">Even</a> 主题非常满意，虽自带了评论系统 <a href="https://github.com/imsun/gitment">gitment</a> 的支持，但更喜欢迁移之前在hexo博客中使用的一个非常清新的评论系统，那就是 <a href="https://valine.js.org/">valine</a>，本文就讲一下如何在 <a href="https://github.com/olOwOlo/hugo-theme-even">Even</a> 中添加 <a href="https://valine.js.org/">Valine</a> 的支持。</p>
 <blockquote>
@@ -10797,10 +10797,10 @@ yyyyyLed on!
 		
 		<item>
 			<title>hexo博客迁移到hugo</title>
-			<link>https://www.smslit.cn/2018/07/07/hexo2hugo/</link>
+			<link>https://blog.smslit.cn/2018/07/07/hexo2hugo/</link>
 			<pubDate>Sat, 07 Jul 2018 21:31:38 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/07/hexo2hugo/</guid>
+			<guid>https://blog.smslit.cn/2018/07/07/hexo2hugo/</guid>
 			<description>&lt;p&gt;前段时间了解了一下 &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;，发现了其一个非常突出的优点，那就是快，据说&lt;strong&gt;5000篇文章渲染只需要6s的时间&lt;/strong&gt;。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90+篇文章，hexo渲染一遍竟然需要8s+，叔能忍，哥不能忍！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>前段时间了解了一下 <a href="https://gohugo.io">hugo</a>，发现了其一个非常突出的优点，那就是快，据说<strong>5000篇文章渲染只需要6s的时间</strong>。阅读官方文档进一步了解了一下，使用上与hexo模式类似，加上也有非常多的主题，再考虑到后期文章会不断增多，决定放弃hexo使用hugo，毕竟现在90+篇文章，hexo渲染一遍竟然需要8s+，叔能忍，哥不能忍！</p>
 <p>本文不是教程，只是记录过程！是的，这就是一水文，xx的流水账！</p>
@@ -10972,11 +10972,11 @@ Total in <span class="m">376</span> ms
 		
 		<item>
 			<title>python实现图片的抖音效果</title>
-			<link>https://www.smslit.cn/2018/07/04/python-practice-douyin/</link>
+			<link>https://blog.smslit.cn/2018/07/04/python-practice-douyin/</link>
 			<pubDate>Wed, 04 Jul 2018 21:01:38 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/04/python-practice-douyin/</guid>
-			<description>&lt;p&gt;前两篇文章 &lt;a href=&#34;https://www.smslit.cn/2018/07/03/affinity-photo-douyin/&#34;&gt;Affinity Photo绘制抖音音符&lt;/a&gt;  和 &lt;a href=&#34;https://www.smslit.cn/2018/07/03/sketch-practice-douyin/&#34;&gt;Sketch练习稿之绘制抖音音符&lt;/a&gt; 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。&lt;/p&gt;</description>
+			<guid>https://blog.smslit.cn/2018/07/04/python-practice-douyin/</guid>
+			<description>&lt;p&gt;前两篇文章 &lt;a href=&#34;https://blog.smslit.cn/2018/07/03/affinity-photo-douyin/&#34;&gt;Affinity Photo绘制抖音音符&lt;/a&gt;  和 &lt;a href=&#34;https://blog.smslit.cn/2018/07/03/sketch-practice-douyin/&#34;&gt;Sketch练习稿之绘制抖音音符&lt;/a&gt; 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>前两篇文章 <a href="/2018/07/03/affinity-photo-douyin/">Affinity Photo绘制抖音音符</a>  和 <a href="/2018/07/03/sketch-practice-douyin/">Sketch练习稿之绘制抖音音符</a> 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。</p>
 <h2 id="基本原理">基本原理</h2>
 <p><a href="/2018/07/03/sketch-practice-douyin/">Sketch练习稿之绘制抖音音符</a> 中讲述了抖音效果的原理，领域内可能有人称这种效果为红蓝溢出效果。按照前面文章中的描述，这里以一张图片为例简单再讲一下原理。</p>
@@ -11127,11 +11127,11 @@ pip3 install numpy
 		
 		<item>
 			<title>Affinity Photo 绘制抖音音符</title>
-			<link>https://www.smslit.cn/2018/07/03/affinity-photo-douyin/</link>
+			<link>https://blog.smslit.cn/2018/07/03/affinity-photo-douyin/</link>
 			<pubDate>Tue, 03 Jul 2018 17:59:56 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/03/affinity-photo-douyin/</guid>
-			<description>&lt;p&gt;上一篇文章 &lt;a href=&#34;https://www.smslit.cn/2018/07/03/sketch-practice-douyin/&#34;&gt;sketch练习稿之抖音音符&lt;/a&gt; 中介绍了绘制抖音效果的原理，根据原理其实也可以用其它工具绘制抖音音符，比如PS、Affinity Photo。本文展示如何使用&lt;a href=&#34;https://affinity.serif.com/zh-cn/photo/&#34;&gt;Affinity Photo&lt;/a&gt;绘制上一篇博文中大的抖音音符。&lt;/p&gt;</description>
+			<guid>https://blog.smslit.cn/2018/07/03/affinity-photo-douyin/</guid>
+			<description>&lt;p&gt;上一篇文章 &lt;a href=&#34;https://blog.smslit.cn/2018/07/03/sketch-practice-douyin/&#34;&gt;sketch练习稿之抖音音符&lt;/a&gt; 中介绍了绘制抖音效果的原理，根据原理其实也可以用其它工具绘制抖音音符，比如PS、Affinity Photo。本文展示如何使用&lt;a href=&#34;https://affinity.serif.com/zh-cn/photo/&#34;&gt;Affinity Photo&lt;/a&gt;绘制上一篇博文中大的抖音音符。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>上一篇文章 <a href="/2018/07/03/sketch-practice-douyin/">sketch练习稿之抖音音符</a> 中介绍了绘制抖音效果的原理，根据原理其实也可以用其它工具绘制抖音音符，比如PS、Affinity Photo。本文展示如何使用<a href="https://affinity.serif.com/zh-cn/photo/">Affinity Photo</a>绘制上一篇博文中大的抖音音符。</p>
 <p><a href="https://affinity.serif.com/zh-cn/photo/">Affinity Photo</a>是一款处理图片的软件，已经开始在撼动PS的地位，本人对PS只是菜鸟级的认识，不过可以很明显看出，Affinity Photo比PS更现代一些，更轻量一些，该有的功能也都有，甚至算法和操作更优，比如扣毛发、光照特效等，还有一个很明显的优势就是软件授权，购买一次可以授权5台设备终生支持免费升级，而PS生态环境的问题，国内无法订阅正版，盗版PS还是居多，这看用户自己的认识了，每个人都有自己的选择！另外作为一个颜控，十里也是觉得Affinity Photo更佳。</p>
 <p>扯远了，回来一起绘制抖音音符。</p>
@@ -11144,10 +11144,10 @@ pip3 install numpy
 		
 		<item>
 			<title>sketch练习稿之抖音音符</title>
-			<link>https://www.smslit.cn/2018/07/03/sketch-practice-douyin/</link>
+			<link>https://blog.smslit.cn/2018/07/03/sketch-practice-douyin/</link>
 			<pubDate>Tue, 03 Jul 2018 15:36:43 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/03/sketch-practice-douyin/</guid>
+			<guid>https://blog.smslit.cn/2018/07/03/sketch-practice-douyin/</guid>
 			<description>&lt;p&gt;前些天看了文章&lt;a href=&#34;https://zhuanlan.zhihu.com/p/37923938&#34;&gt;用Python给图片加上抖音效果&lt;/a&gt;明白了抖音效果的原理，所以有了本文的练习，用sketch绘制抖音音符：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180703153058590031266.png&#34; alt=&#34;20180703153058590031266.png&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>前些天看了文章<a href="https://zhuanlan.zhihu.com/p/37923938">用Python给图片加上抖音效果</a>明白了抖音效果的原理，所以有了本文的练习，用sketch绘制抖音音符：</p>
@@ -11247,10 +11247,10 @@ pip3 install numpy
 		
 		<item>
 			<title>python用法之字符串拼接和列表生成</title>
-			<link>https://www.smslit.cn/2018/07/01/python-basic-joinstr-gerneratelist/</link>
+			<link>https://blog.smslit.cn/2018/07/01/python-basic-joinstr-gerneratelist/</link>
 			<pubDate>Sun, 01 Jul 2018 00:25:27 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/07/01/python-basic-joinstr-gerneratelist/</guid>
+			<guid>https://blog.smslit.cn/2018/07/01/python-basic-joinstr-gerneratelist/</guid>
 			<description>&lt;p&gt;今天聊一下python用法的技巧和思考：字符串的拼接方法和列表的生成技巧。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天聊一下python用法的技巧和思考：字符串的拼接方法和列表的生成技巧。</p>
 <h2 id="列表生成">列表生成</h2>
@@ -11393,10 +11393,10 @@ join方法： 0.00045332342000619974
 		
 		<item>
 			<title>macOS应用开发基础之Popover</title>
-			<link>https://www.smslit.cn/2018/06/29/macOS-dev-basic-NSPopover/</link>
+			<link>https://blog.smslit.cn/2018/06/29/macOS-dev-basic-NSPopover/</link>
 			<pubDate>Fri, 29 Jun 2018 15:20:04 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/29/macOS-dev-basic-NSPopover/</guid>
+			<guid>https://blog.smslit.cn/2018/06/29/macOS-dev-basic-NSPopover/</guid>
 			<description>&lt;p&gt;mac中安装了一个叫&lt;a href=&#34;http://paper.meiyuan.in&#34;&gt;pap.er&lt;/a&gt;的app，用来下载和管理桌面壁纸，壁纸资源质量很高幺，app不但很轻量(仅有5MB)而且设计精美，还免费的(我这算在帮他们做推广吗^_^，好的东西就应该推广一下)。这款app采用了状态栏小工具的形式，界面在 &lt;code&gt;Popover&lt;/code&gt; 中实现。看视频感受一下，叫&lt;code&gt;Popover&lt;/code&gt;的弹窗，这是本文要讲的东西。&lt;/p&gt;
 &lt;p&gt;&lt;video src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/pap.er.mp4&#34; controls=&#34;controls&#34; width=&#34;100%&#34; poster=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180629153023532585285.jpg&#34;&gt;pap.er&lt;/video&gt;&lt;/p&gt;
 &lt;p&gt;昨天研究了&lt;code&gt;Popover&lt;/code&gt;的使用，所以今天以一个实例与大家分享一下！&lt;/p&gt;</description>
@@ -11646,10 +11646,10 @@ join方法： 0.00045332342000619974
 		
 		<item>
 			<title>爬虫实践之网页长截图</title>
-			<link>https://www.smslit.cn/2018/06/27/spider-practice-page-screenshot/</link>
+			<link>https://blog.smslit.cn/2018/06/27/spider-practice-page-screenshot/</link>
 			<pubDate>Wed, 27 Jun 2018 23:58:50 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/27/spider-practice-page-screenshot/</guid>
+			<guid>https://blog.smslit.cn/2018/06/27/spider-practice-page-screenshot/</guid>
 			<description>&lt;p&gt;今天在想一个问题，会不会有一天我的静态博客就废了，应该不至于哈，本地也能渲染嘛！但是假设真的没有地方可以访问我们的文章了，我们提前截个图，保存个pdf，备个份啥的也是有必要的嘛！本文就来说一下怎么为python网页内容截图，炒🐔煎🥚！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天在想一个问题，会不会有一天我的静态博客就废了，应该不至于哈，本地也能渲染嘛！但是假设真的没有地方可以访问我们的文章了，我们提前截个图，保存个pdf，备个份啥的也是有必要的嘛！本文就来说一下怎么为python网页内容截图，炒🐔煎🥚！</p>
 <h2 id="环境与依赖">环境与依赖</h2>
@@ -11731,10 +11731,10 @@ warnings.warn(&lsquo;Selenium support for PhantomJS has been deprecated, please 
 		
 		<item>
 			<title>mac下修复文件和目录为正常权限</title>
-			<link>https://www.smslit.cn/2018/06/26/mac-fix-permission/</link>
+			<link>https://blog.smslit.cn/2018/06/26/mac-fix-permission/</link>
 			<pubDate>Tue, 26 Jun 2018 15:03:47 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/26/mac-fix-permission/</guid>
+			<guid>https://blog.smslit.cn/2018/06/26/mac-fix-permission/</guid>
 			<description>&lt;p&gt;昨天误删了macbook上&lt;code&gt;smslit&lt;/code&gt;用户下好多东西，无奈新建了一个用户&lt;code&gt;5km&lt;/code&gt;，在删除原用户目录前，将重要的文档拷贝到了移动硬盘，然后进入新用户中，把文件从移动硬盘拷贝到用户目录下，结果今天&lt;code&gt;ls&lt;/code&gt;查看文件的时候发现权限不对呀，所有的文件和目录权限都变成了&lt;code&gt;777&lt;/code&gt;。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>昨天误删了macbook上<code>smslit</code>用户下好多东西，无奈新建了一个用户<code>5km</code>，在删除原用户目录前，将重要的文档拷贝到了移动硬盘，然后进入新用户中，把文件从移动硬盘拷贝到用户目录下，结果今天<code>ls</code>查看文件的时候发现权限不对呀，所有的文件和目录权限都变成了<code>777</code>。</p>
 <p>就像下图中的样子，糊了一片骚黄，好扎眼，权限肯定不对呀，而且这只是目录，<code>ll</code>查看其中目录下的文件，咋还都有了运行权限，红呼呼一条条的，现在想想，好像之前和朋友<a href="vimux.org">vimux</a>就注意到过这个问题。必须解决一下了。</p>
@@ -11838,10 +11838,10 @@ Done!
 		
 		<item>
 			<title>vim插件管理工具pack</title>
-			<link>https://www.smslit.cn/2018/06/25/vim-pack/</link>
+			<link>https://blog.smslit.cn/2018/06/25/vim-pack/</link>
 			<pubDate>Mon, 25 Jun 2018 17:23:57 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/25/vim-pack/</guid>
+			<guid>https://blog.smslit.cn/2018/06/25/vim-pack/</guid>
 			<description>&lt;p&gt;今天手残输错了一个删除命令，结果把&lt;code&gt;.vimrc&lt;/code&gt;和&lt;code&gt;.vim&lt;/code&gt;删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&amp;rsquo;壮举&amp;rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过&lt;code&gt;vim 8.0&lt;/code&gt;有个新的插件管理工具横空出世，叫&lt;a href=&#34;https://github.com/maralla/pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;，那就玩耍一番喽！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天手残输错了一个删除命令，结果把<code>.vimrc</code>和<code>.vim</code>删光了，其实更惨的是我的用户目录下的所有软件配置文件都没了，可‘歌’可泣，现在听着外面的大雨哗啦啦的，老天都在为我的&rsquo;壮举&rsquo;哭泣呀！幸好我用的vim插件不多，前段时间听朋友说过<code>vim 8.0</code>有个新的插件管理工具横空出世，叫<a href="https://github.com/maralla/pack"><code>pack</code></a>，那就玩耍一番喽！</p>
 <h2 id="现状">现状</h2>
@@ -11969,10 +11969,10 @@ vim-airline/vim-airline-themes <span class="o">=</span>&gt; pack/default/start
 		
 		<item>
 			<title>爬虫实践之hexo博客分析</title>
-			<link>https://www.smslit.cn/2018/06/25/spider-practice-hexo-blogo/</link>
+			<link>https://blog.smslit.cn/2018/06/25/spider-practice-hexo-blogo/</link>
 			<pubDate>Mon, 25 Jun 2018 15:17:27 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/25/spider-practice-hexo-blogo/</guid>
+			<guid>https://blog.smslit.cn/2018/06/25/spider-practice-hexo-blogo/</guid>
 			<description>&lt;p&gt;爬虫最好处理的就是静态页面，而静态博客就是静态页面，像&lt;a href=&#34;https://jekyllrb.com&#34;&gt;jekyll&lt;/a&gt;和&lt;a href=&#34;https://hexo.io&#34;&gt;hexo&lt;/a&gt;生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>爬虫最好处理的就是静态页面，而静态博客就是静态页面，像<a href="https://jekyllrb.com">jekyll</a>和<a href="https://hexo.io">hexo</a>生成的博客就属于这一类型。本文将记录针对hexo博客中博文的爬取和统计以及博文中图片的批量爬取。</p>
 <p>我们知道<code>hexo</code>博客系统生成的博客，大量依赖主题模板，所以对于页面内容的解析一定更有规律可循，虽然不同主题之间存在差异，但是一定存在通用的方法可以针对所有hexo博客。</p>
@@ -12287,10 +12287,10 @@ LITREILY/Python网络爬虫3 - 生产者消费者模型爬取某金融网站数�
 		
 		<item>
 			<title>爬虫基础之pyquery</title>
-			<link>https://www.smslit.cn/2018/06/23/spider-basic-pyquery/</link>
+			<link>https://blog.smslit.cn/2018/06/23/spider-basic-pyquery/</link>
 			<pubDate>Sat, 23 Jun 2018 17:32:16 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/23/spider-basic-pyquery/</guid>
+			<guid>https://blog.smslit.cn/2018/06/23/spider-basic-pyquery/</guid>
 			<description>&lt;p&gt;爬虫程序中少不了解析库的使用，使用库来解析网页内容的话，效率会很高，常用的解析库有:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;lxml&lt;/code&gt;&lt;/li&gt;
@@ -12539,10 +12539,10 @@ ol2
 		
 		<item>
 			<title>爬虫实践之头条狗狗图片</title>
-			<link>https://www.smslit.cn/2018/06/21/spider-practice-pic-dog/</link>
+			<link>https://blog.smslit.cn/2018/06/21/spider-practice-pic-dog/</link>
 			<pubDate>Thu, 21 Jun 2018 14:41:32 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/06/21/spider-practice-pic-dog/</guid>
+			<guid>https://blog.smslit.cn/2018/06/21/spider-practice-pic-dog/</guid>
 			<description>&lt;p&gt;最近在学习爬虫，学了就应该多实践实践，本文将记录使用&lt;code&gt;requests&lt;/code&gt; 库下载头条上搜到的狗狗图片的实现过程，使用&lt;strong&gt;python3&lt;/strong&gt;实现。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近在学习爬虫，学了就应该多实践实践，本文将记录使用<code>requests</code> 库下载头条上搜到的狗狗图片的实现过程，使用<strong>python3</strong>实现。</p>
 <h2 id="前言">前言</h2>
@@ -12960,10 +12960,10 @@ $ ./ttpic
 		
 		<item>
 			<title>sketch练习稿第三波——我们</title>
-			<link>https://www.smslit.cn/2018/03/06/sketch-practice3/</link>
+			<link>https://blog.smslit.cn/2018/03/06/sketch-practice3/</link>
 			<pubDate>Tue, 06 Mar 2018 23:03:58 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/03/06/sketch-practice3/</guid>
+			<guid>https://blog.smslit.cn/2018/03/06/sketch-practice3/</guid>
 			<description>&lt;p&gt;十里非常喜欢iReader Plus电纸书阅读器的其中一款屏保，名曰：阅赏自然。明天就是女神节，索性，十里以这一套五个图作为sketch临摹对象，做一封kindle情书得了，附上十里的憧憬，水木一定非常喜欢。这也就得到了本文所要展示的第三波练习稿，作品：《我们》。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>十里非常喜欢iReader Plus电纸书阅读器的其中一款屏保，名曰：阅赏自然。明天就是女神节，索性，十里以这一套五个图作为sketch临摹对象，做一封kindle情书得了，附上十里的憧憬，水木一定非常喜欢。这也就得到了本文所要展示的第三波练习稿，作品：《我们》。</p>
 <h2 id="临摹五图">临摹五图</h2>
@@ -13006,10 +13006,10 @@ $ ./ttpic
 		
 		<item>
 			<title>Sketch练习稿第二波</title>
-			<link>https://www.smslit.cn/2018/02/25/sketch-practice2/</link>
+			<link>https://blog.smslit.cn/2018/02/25/sketch-practice2/</link>
 			<pubDate>Sun, 25 Feb 2018 20:12:15 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/02/25/sketch-practice2/</guid>
+			<guid>https://blog.smslit.cn/2018/02/25/sketch-practice2/</guid>
 			<description>&lt;p&gt;继上次的练习稿第一波，sketch练习稿第二波该整理一下了，放假在老家果然什么也干不成呀，哈哈，至今也没练习多少。整理这些东西图自己开心而已，反正也没人看，尴尬！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>继上次的练习稿第一波，sketch练习稿第二波该整理一下了，放假在老家果然什么也干不成呀，哈哈，至今也没练习多少。整理这些东西图自己开心而已，反正也没人看，尴尬！</p>
 <h2 id="镜头logo">镜头logo</h2>
@@ -13040,10 +13040,10 @@ $ ./ttpic
 		
 		<item>
 			<title>逼疯我的AFIO，STM32的JTAG调试接口作为GPIO用</title>
-			<link>https://www.smslit.cn/2018/02/10/stm32-AFIO/</link>
+			<link>https://blog.smslit.cn/2018/02/10/stm32-AFIO/</link>
 			<pubDate>Sat, 10 Feb 2018 16:34:01 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/02/10/stm32-AFIO/</guid>
+			<guid>https://blog.smslit.cn/2018/02/10/stm32-AFIO/</guid>
 			<description>&lt;p&gt;不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>不知是心境不佳还是时运不佳，不好的情绪造成了消极待事还是不好的境遇导致了消极情绪？连STM32的GPIO都要耍十里，还好十里最终破解了AFIO的把戏，没有过不去的坎，对不对！</p>
 <h2 id="现象">现象</h2>
@@ -13087,10 +13087,10 @@ $ ./ttpic
 		
 		<item>
 			<title>Sketch练习稿第一波</title>
-			<link>https://www.smslit.cn/2018/02/01/sketch-practice1/</link>
+			<link>https://blog.smslit.cn/2018/02/01/sketch-practice1/</link>
 			<pubDate>Thu, 01 Feb 2018 20:48:10 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/02/01/sketch-practice1/</guid>
+			<guid>https://blog.smslit.cn/2018/02/01/sketch-practice1/</guid>
 			<description>&lt;p&gt;Sketch真的是一枚神器，是一款运行在Mac平台的能力炸天的UI辅助设计App。有了它的加持，十里这样半路出家的程序猿也可以做一些专业设计师才可以做的设计。很久之前就开始用了，不过之前基本都是绘制一些矢量示意图，最近花了点时间稍微学习玩耍了一番，了解了一些高级的功能，很开心！看到萧条死寂的博客，十里就决定写一篇没用的博文记录一下已经做了的四个练习稿。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>Sketch真的是一枚神器，是一款运行在Mac平台的能力炸天的UI辅助设计App。有了它的加持，十里这样半路出家的程序猿也可以做一些专业设计师才可以做的设计。很久之前就开始用了，不过之前基本都是绘制一些矢量示意图，最近花了点时间稍微学习玩耍了一番，了解了一些高级的功能，很开心！看到萧条死寂的博客，十里就决定写一篇没用的博文记录一下已经做了的四个练习稿。</p>
 <p>不是十里自夸，十里还是挺有悟性的，没看软件操作说明，就能把操作摸个差不多，直接上手绘制一些简单的示意图和小logo。尤其是去年上半年用latex写论文，需要一些矢量示意图，就用这个神器和另一个神器Omni Graffle搞定的。但是呢，十里也是个有志小程序猿，何不好好了解一下工具和UI设计呢，毕竟十里对设计一直很感兴趣的嘛！</p>
@@ -13141,10 +13141,10 @@ $ ./ttpic
 		
 		<item>
 			<title>《黑客与画家》阅读</title>
-			<link>https://www.smslit.cn/2018/01/31/note-hackerAndPainter/</link>
+			<link>https://blog.smslit.cn/2018/01/31/note-hackerAndPainter/</link>
 			<pubDate>Wed, 31 Jan 2018 12:13:51 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2018/01/31/note-hackerAndPainter/</guid>
+			<guid>https://blog.smslit.cn/2018/01/31/note-hackerAndPainter/</guid>
 			<description>&lt;p&gt;尝试三次终于读完了《黑客与画家》，前两次刚读完没几篇就没时间读给耽搁了，这次不管怎样，还是抽时间从0读完了整本书，有很多收获，或许好久没写东西的原因，明明有所收获却难以抒发，索性就把阅读中添加的笔记贴出来，之前不咋习惯用电纸书阅读时添标注（主要原因还是我平时读书少，惭愧呀！），好像阅读到中间才习惯添加标注，想来不全，就待再次阅读的时候补充了。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>尝试三次终于读完了《黑客与画家》，前两次刚读完没几篇就没时间读给耽搁了，这次不管怎样，还是抽时间从0读完了整本书，有很多收获，或许好久没写东西的原因，明明有所收获却难以抒发，索性就把阅读中添加的笔记贴出来，之前不咋习惯用电纸书阅读时添标注（主要原因还是我平时读书少，惭愧呀！），好像阅读到中间才习惯添加标注，想来不全，就待再次阅读的时候补充了。</p>
 <h2 id="摘记">摘记</h2>
@@ -13202,10 +13202,10 @@ $ ./ttpic
 		
 		<item>
 			<title>stm32开发新方式-platformio</title>
-			<link>https://www.smslit.cn/2017/11/08/stm32InPIO-start/</link>
+			<link>https://blog.smslit.cn/2017/11/08/stm32InPIO-start/</link>
 			<pubDate>Wed, 08 Nov 2017 09:10:51 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/11/08/stm32InPIO-start/</guid>
+			<guid>https://blog.smslit.cn/2017/11/08/stm32InPIO-start/</guid>
 			<description>&lt;p&gt;&lt;a href=&#34;http://platformio.org/&#34;&gt;platformio&lt;/a&gt;，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p><a href="http://platformio.org/">platformio</a>，这个强大的嵌入式开发平台当然也提供了stm32的支持，本文尝试在platformio开发平台上开发stm32。</p>
 <p>如果您不喜欢使用CLI(命令行)的stm32开发方式，可以阅读文章<a href="/vscode-pio-ide/"><strong>stm32开发新方式——platformio的IDE</strong></a>，也许你会得到惊喜！</p>
@@ -13422,10 +13422,10 @@ Breakpoint <span class="m">1</span> at 0x8002c22: file /Users/5km/.platformio/pa
 		
 		<item>
 			<title>时间都去哪儿了</title>
-			<link>https://www.smslit.cn/2017/10/31/timetogo/</link>
+			<link>https://blog.smslit.cn/2017/10/31/timetogo/</link>
 			<pubDate>Tue, 31 Oct 2017 06:35:29 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/10/31/timetogo/</guid>
+			<guid>https://blog.smslit.cn/2017/10/31/timetogo/</guid>
 			<description>&lt;p&gt;看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。</p>
 <p>文章编写的c程序均在<code>macOS</code>中实现验证，应该同样适用于<code>Linux/Unix</code>。这里将会用到下面三种方法评估程序的运行时间：</p>
@@ -13570,10 +13570,10 @@ Hello,World!
 		
 		<item>
 			<title>数学知识复习</title>
-			<link>https://www.smslit.cn/2017/10/27/mathknowlege/</link>
+			<link>https://blog.smslit.cn/2017/10/27/mathknowlege/</link>
 			<pubDate>Fri, 27 Oct 2017 08:51:23 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/10/27/mathknowlege/</guid>
+			<guid>https://blog.smslit.cn/2017/10/27/mathknowlege/</guid>
 			<description>&lt;p&gt;记得高中的时候数学能力还是很突出的，但到了大学，高数好像离十里越来越远。过去这么长时间，已经有了定论：十里的数学知识已还给老师！这还真是让人崩溃，现在无处不数学，当然为了研究算法也得把高数给拾回来，所以有了本篇数学知识的复习。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>记得高中的时候数学能力还是很突出的，但到了大学，高数好像离十里越来越远。过去这么长时间，已经有了定论：十里的数学知识已还给老师！这还真是让人崩溃，现在无处不数学，当然为了研究算法也得把高数给拾回来，所以有了本篇数学知识的复习。</p>
 <p>此篇应该会一直补充，十里会边学习边丰富文章内容，一方面根据需求复习数学的基础知识，另一方面锻炼整理能力。</p>
@@ -13745,10 +13745,10 @@ $$</p>
 		
 		<item>
 			<title>comtrade文件解析</title>
-			<link>https://www.smslit.cn/2017/10/24/comtrade/</link>
+			<link>https://blog.smslit.cn/2017/10/24/comtrade/</link>
 			<pubDate>Tue, 24 Oct 2017 06:43:36 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/10/24/comtrade/</guid>
+			<guid>https://blog.smslit.cn/2017/10/24/comtrade/</guid>
 			<description>&lt;p&gt;工作中接触了comtrade这个东西，尤其最近研究故障判断算法，直接接触的就是comtrade波形文件，目前十里研究算法使用python的科学计算包&lt;code&gt;Anaconda&lt;/code&gt;，为了方便获取波形数据和快速查看波形，用python实现了comtrade模块和comtrade波形查看命令行工具。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>工作中接触了comtrade这个东西，尤其最近研究故障判断算法，直接接触的就是comtrade波形文件，目前十里研究算法使用python的科学计算包<code>Anaconda</code>，为了方便获取波形数据和快速查看波形，用python实现了comtrade模块和comtrade波形查看命令行工具。</p>
 <h2 id="comtrade介绍">comtrade介绍</h2>
@@ -13772,10 +13772,10 @@ $$</p>
 		
 		<item>
 			<title>欧几里得算法</title>
-			<link>https://www.smslit.cn/2017/10/22/gcd/</link>
+			<link>https://blog.smslit.cn/2017/10/22/gcd/</link>
 			<pubDate>Sun, 22 Oct 2017 20:47:49 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/10/22/gcd/</guid>
+			<guid>https://blog.smslit.cn/2017/10/22/gcd/</guid>
 			<description>&lt;p&gt;天杀的，原来我现在都蠢到连最大公约数的求解算法理解都这么费劲，欧几里得算法又称辗转相除法，用于计算两个数的最大公约数。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>天杀的，原来我现在都蠢到连最大公约数的求解算法理解都这么费劲，欧几里得算法又称辗转相除法，用于计算两个数的最大公约数。</p>
 <h2 id="简介">简介</h2>
@@ -13896,10 +13896,10 @@ $$</p>
 		
 		<item>
 			<title>编程工具的选择引发的思考--至停滞不前的自己</title>
-			<link>https://www.smslit.cn/2017/09/23/coding-editor/</link>
+			<link>https://blog.smslit.cn/2017/09/23/coding-editor/</link>
 			<pubDate>Sat, 23 Sep 2017 15:13:34 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/09/23/coding-editor/</guid>
+			<guid>https://blog.smslit.cn/2017/09/23/coding-editor/</guid>
 			<description>&lt;p&gt;最近有了一些感悟，十里惊恐的看到自己在很多不必要的事情上浪费了太多时间!比如编辑工具和开发平台的选择！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近有了一些感悟，十里惊恐的看到自己在很多不必要的事情上浪费了太多时间!比如编辑工具和开发平台的选择！</p>
 <p>看到别人都在进步，而我却固步自封，别人在自己从事的领域越走越高，而我走走停停，自己喜欢编程，回头一想，自己在编程工具的配置和选择上下的功夫相较于程序开发本身多太多，十里逐渐认为自己是多么的肤浅！</p>
@@ -13924,10 +13924,10 @@ $$</p>
 		
 		<item>
 			<title>解决mac终端ssh登录linux中文乱码问题</title>
-			<link>https://www.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</link>
+			<link>https://blog.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</link>
 			<pubDate>Thu, 07 Sep 2017 16:34:12 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</guid>
+			<guid>https://blog.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</guid>
 			<description>&lt;p&gt;mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。</p>
 <h4 id="在linux下查看编码">在linux下查看编码：</h4>
@@ -13969,10 +13969,10 @@ export LANG=zh_CN.UTF-8</li>
 		
 		<item>
 			<title>WSL(windows subsytem linux)下添加网络浏览器支持</title>
-			<link>https://www.smslit.cn/2017/09/02/wsl-webbrowser/</link>
+			<link>https://blog.smslit.cn/2017/09/02/wsl-webbrowser/</link>
 			<pubDate>Sat, 02 Sep 2017 13:41:03 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/09/02/wsl-webbrowser/</guid>
+			<guid>https://blog.smslit.cn/2017/09/02/wsl-webbrowser/</guid>
 			<description>&lt;p&gt;windows下在subsystem linux中安装了Anaconda，在使用jupyter notebook时，发现命令行并不能自动打开浏览器，原来是子系统linux中没有可用网页浏览器，本文就讲述一下如何在WSL中添加网络浏览器支持。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>windows下在subsystem linux中安装了Anaconda，在使用jupyter notebook时，发现命令行并不能自动打开浏览器，原来是子系统linux中没有可用网页浏览器，本文就讲述一下如何在WSL中添加网络浏览器支持。</p>
 <h2 id="问题现象">问题现象</h2>
@@ -14030,10 +14030,10 @@ update-alternatives: 使用 /mnt/c/Program Files <span class="o">(</span>x86<spa
 		
 		<item>
 			<title>vim也是platformio的IDE</title>
-			<link>https://www.smslit.cn/2017/08/15/platformio-vim/</link>
+			<link>https://blog.smslit.cn/2017/08/15/platformio-vim/</link>
 			<pubDate>Tue, 15 Aug 2017 10:00:29 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/08/15/platformio-vim/</guid>
+			<guid>https://blog.smslit.cn/2017/08/15/platformio-vim/</guid>
 			<description>&lt;p&gt;知道platformio很久了，但是一直没时间玩耍，最近有时间了，又研究了一番，platformio也为vim用户提供了一些可用的姿势，本篇文章就分享一下vim与pio的配合好戏！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>知道platformio很久了，但是一直没时间玩耍，最近有时间了，又研究了一番，platformio也为vim用户提供了一些可用的姿势，本篇文章就分享一下vim与pio的配合好戏！</p>
 <h2 id="初始化工程">初始化工程</h2>
@@ -14153,10 +14153,10 @@ nmap &lt;F4&gt; :YcmDiags&lt;CR&gt;
 		
 		<item>
 			<title>为嵌入式MCU工程建立完整的cscope和ctags索引</title>
-			<link>https://www.smslit.cn/2017/06/18/embeddedVim/</link>
+			<link>https://blog.smslit.cn/2017/06/18/embeddedVim/</link>
 			<pubDate>Sun, 18 Jun 2017 13:54:31 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/06/18/embeddedVim/</guid>
+			<guid>https://blog.smslit.cn/2017/06/18/embeddedVim/</guid>
 			<description>&lt;p&gt;这几天深入了解了一下vim的神级插件&lt;a href=&#34;https://github.com/Valloric/YouCompleteMe&#34;&gt;YouCompleteMe&lt;/a&gt;，果然厉害，但是在MCU工程中函数跳转和语义补全就歇菜了，研究了几天也没找到很好的使用方法，最终还是无法在MCU嵌入式工程中跳转函数定义，这是无法忍受的，在PC或mac上的c/c++/clang工程可以完美使用。所以我还是老实的使用cscope和ctags吧，本篇文章就简单说一下，如何为MCU工程建立完整的索引，完成完美跳转！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>这几天深入了解了一下vim的神级插件<a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a>，果然厉害，但是在MCU工程中函数跳转和语义补全就歇菜了，研究了几天也没找到很好的使用方法，最终还是无法在MCU嵌入式工程中跳转函数定义，这是无法忍受的，在PC或mac上的c/c++/clang工程可以完美使用。所以我还是老实的使用cscope和ctags吧，本篇文章就简单说一下，如何为MCU工程建立完整的索引，完成完美跳转！</p>
 <h2 id="mcu工程">MCU工程</h2>
@@ -14247,10 +14247,10 @@ Example:
 		
 		<item>
 			<title>ubuntu 16.04下编译全功能vim8.0</title>
-			<link>https://www.smslit.cn/2017/06/15/vim-full-version/</link>
+			<link>https://blog.smslit.cn/2017/06/15/vim-full-version/</link>
 			<pubDate>Thu, 15 Jun 2017 08:24:08 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/06/15/vim-full-version/</guid>
+			<guid>https://blog.smslit.cn/2017/06/15/vim-full-version/</guid>
 			<description>&lt;p&gt;十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持&lt;code&gt;clipboard&lt;/code&gt;的vim，毅然决然的决定自己编译一个全功能的vim！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>十里又又又在公司的笔记本上安装了Ubuntu，已经无法忍受windows下蹩脚的vim体验，在ubuntu下尝试使用与系统剪切板的交互命令结果让人失落呀，找了一大圈还是没找到支持<code>clipboard</code>的vim，毅然决然的决定自己编译一个全功能的vim！</p>
 <h2 id="编译vim">编译vim</h2>
@@ -14355,10 +14355,10 @@ sudo checkinstall
 		
 		<item>
 			<title>macOS升级到12.5后jupyter不能自动打开浏览器</title>
-			<link>https://www.smslit.cn/2017/06/05/jupyter-notebook-not-auto-open-webpage/</link>
+			<link>https://blog.smslit.cn/2017/06/05/jupyter-notebook-not-auto-open-webpage/</link>
 			<pubDate>Mon, 05 Jun 2017 14:00:13 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/06/05/jupyter-notebook-not-auto-open-webpage/</guid>
+			<guid>https://blog.smslit.cn/2017/06/05/jupyter-notebook-not-auto-open-webpage/</guid>
 			<description>&lt;p&gt;升级了macOS后一直也没有使用&lt;strong&gt;jupyter notebook&lt;/strong&gt;，昨天使用了发现竟然不能自动打开浏览器了。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>升级了macOS后一直也没有使用<strong>jupyter notebook</strong>，昨天使用了发现竟然不能自动打开浏览器了。</p>
 <p>终端下调用<strong>jupyter notebook</strong>：</p>
@@ -14392,10 +14392,10 @@ zsh: /usr/local/bin/jupyter: bad interpreter: /usr/local/opt/python/bin/python2.
 		
 		<item>
 			<title>python之父的coding禅念</title>
-			<link>https://www.smslit.cn/2017/06/02/python-coding-style/</link>
+			<link>https://blog.smslit.cn/2017/06/02/python-coding-style/</link>
 			<pubDate>Fri, 02 Jun 2017 22:39:10 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/06/02/python-coding-style/</guid>
+			<guid>https://blog.smslit.cn/2017/06/02/python-coding-style/</guid>
 			<description>&lt;p&gt;情怀，是一个摸不到见不着的东西！码代码砖是不是也应该有自己的情怀，python之父表达了python之禅，这应该也是一种情怀吧！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>情怀，是一个摸不到见不着的东西！码代码砖是不是也应该有自己的情怀，python之父表达了python之禅，这应该也是一种情怀吧！</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  smslit python
@@ -14475,10 +14475,10 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 		
 		<item>
 			<title>开启platformio之旅</title>
-			<link>https://www.smslit.cn/2017/05/20/platformio-start/</link>
+			<link>https://blog.smslit.cn/2017/05/20/platformio-start/</link>
 			<pubDate>Sat, 20 May 2017 19:59:43 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/05/20/platformio-start/</guid>
+			<guid>https://blog.smslit.cn/2017/05/20/platformio-start/</guid>
 			<description>&lt;p&gt;十里还是比较喜欢用终端解决问题的，在某个&lt;a href=&#34;https://www.hexcrow.org&#34;&gt;小伙伴&lt;/a&gt;身上学到了些&lt;a href=&#34;http://www.vim.org&#34;&gt;vim&lt;/a&gt;神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用&lt;code&gt;arduino&lt;/code&gt;，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持&lt;code&gt;Arduino&lt;/code&gt;开发的CLI，没想到就找到了文章主角&lt;a href=&#34;http://platformio.org&#34;&gt;platformio&lt;/a&gt;，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(+arm)，简直了！特此分享！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>十里还是比较喜欢用终端解决问题的，在某个<a href="https://www.hexcrow.org">小伙伴</a>身上学到了些<a href="http://www.vim.org">vim</a>神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用<code>arduino</code>，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持<code>Arduino</code>开发的CLI，没想到就找到了文章主角<a href="http://platformio.org">platformio</a>，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(+arm)，简直了！特此分享！</p>
 <p>看图感受一下支持的MCU平台：</p>
@@ -14581,10 +14581,10 @@ PlatformIO, version 3.3.0
 		
 		<item>
 			<title>巧合特别多</title>
-			<link>https://www.smslit.cn/2017/05/12/coincidental/</link>
+			<link>https://blog.smslit.cn/2017/05/12/coincidental/</link>
 			<pubDate>Fri, 12 May 2017 17:30:34 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/05/12/coincidental/</guid>
+			<guid>https://blog.smslit.cn/2017/05/12/coincidental/</guid>
 			<description>&lt;p&gt;2017年注定是一个巧合非常多的一年。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>2017年注定是一个巧合非常多的一年。</p>
 <h3 id="一直夫妇的日常">一直夫妇的日常</h3>
@@ -14613,10 +14613,10 @@ PlatformIO, version 3.3.0
 		
 		<item>
 			<title>从简开始</title>
-			<link>https://www.smslit.cn/2017/03/19/simpleStart/</link>
+			<link>https://blog.smslit.cn/2017/03/19/simpleStart/</link>
 			<pubDate>Sun, 19 Mar 2017 13:07:48 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/03/19/simpleStart/</guid>
+			<guid>https://blog.smslit.cn/2017/03/19/simpleStart/</guid>
 			<description>&lt;p&gt;从今天开始博客更换面貌，使用了hexo的apollo主题，真的像主题作者说的，博客应该以内容为主，所以SMSLIT要从简开始了！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>从今天开始博客更换面貌，使用了hexo的apollo主题，真的像主题作者说的，博客应该以内容为主，所以SMSLIT要从简开始了！</p>
 <p>从现在开始，SMSLIT应该一直会是简约的形态。我过去虽然一直崇尚简约，但貌似SMSLIT呈现的形式过于复杂，所以，我想以此文作为见证，以后博客内容呈现尽量简单直接，<code>5km</code>[^1](<code>十里</code> 是我，我就是 <code>5km</code>)精力可能更多放在博客内容上了，再说了 <code>5km</code> 也还有更多自己想做的事呢！</p>
@@ -14625,10 +14625,10 @@ PlatformIO, version 3.3.0
 		
 		<item>
 			<title>Anaconda闪退</title>
-			<link>https://www.smslit.cn/2017/03/02/anacondaQuit/</link>
+			<link>https://blog.smslit.cn/2017/03/02/anacondaQuit/</link>
 			<pubDate>Thu, 02 Mar 2017 12:13:06 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/03/02/anacondaQuit/</guid>
+			<guid>https://blog.smslit.cn/2017/03/02/anacondaQuit/</guid>
 			<description>&lt;p&gt;春节前终于下定了决心，分期买了2016款的 macbook pro，也就是水木口中的“十里的大情人”，确实很激动，很开心！之前有台 mac mini ，有做备份，当时将备份恢复到“大情人”了，一直没有用 Anaconda ，今天一用发现启动竟然闪退。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>春节前终于下定了决心，分期买了2016款的 macbook pro，也就是水木口中的“十里的大情人”，确实很激动，很开心！之前有台 mac mini ，有做备份，当时将备份恢复到“大情人”了，一直没有用 Anaconda ，今天一用发现启动竟然闪退。</p>
 <p>目前还不怎么了解Anaconda ，想以后用它替代matlab进行科学计算的工作，咋就罢工了呢？点击Anaconda navigator 出现启动界面不一会儿就闪退了：</p>
@@ -14641,10 +14641,10 @@ PlatformIO, version 3.3.0
 		
 		<item>
 			<title>vim中恢复ctrl&#43;z</title>
-			<link>https://www.smslit.cn/2017/01/13/vim-Ctrl-z/</link>
+			<link>https://blog.smslit.cn/2017/01/13/vim-Ctrl-z/</link>
 			<pubDate>Fri, 13 Jan 2017 09:37:56 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/01/13/vim-Ctrl-z/</guid>
+			<guid>https://blog.smslit.cn/2017/01/13/vim-Ctrl-z/</guid>
 			<description>&lt;p&gt;就在刚才vim下编辑一个文本本来想按下&lt;code&gt;shift+zz&lt;/code&gt;来保存文本并退出vim，没想到又按成了&lt;code&gt;ctrl+z&lt;/code&gt;，之前不了解状况的我，以为保存了，但是再次用vim打开这个文本的时候，发现vim保存了一个对应的swp文件，总会出现下面的提示，我这次忍无可忍了，就搜索了解了一下。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>就在刚才vim下编辑一个文本本来想按下<code>shift+zz</code>来保存文本并退出vim，没想到又按成了<code>ctrl+z</code>，之前不了解状况的我，以为保存了，但是再次用vim打开这个文本的时候，发现vim保存了一个对应的swp文件，总会出现下面的提示，我这次忍无可忍了，就搜索了解了一下。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">E325: ATTENTION
@@ -14684,10 +14684,10 @@ Swap file <span class="s2">&#34;.vimrc.swp&#34;</span> already exists!
 		
 		<item>
 			<title>诗-闽行路遇</title>
-			<link>https://www.smslit.cn/2017/01/11/peomForFuzhou/</link>
+			<link>https://blog.smslit.cn/2017/01/11/peomForFuzhou/</link>
 			<pubDate>Wed, 11 Jan 2017 20:19:12 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2017/01/11/peomForFuzhou/</guid>
+			<guid>https://blog.smslit.cn/2017/01/11/peomForFuzhou/</guid>
 			<description>&lt;p&gt;这周有机会去福建出差，真心累呀，比较老实的我，没有逮着机会出去玩，在出差期间，联调的测试需要在福州和厦门之间走动，都是走高速，期间因所见所闻与所吃，诗性大发了，哈哈，在从厦门到福州的路上题诗一首（胡写乱题），觉得还是手写比较好，献丑：&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>这周有机会去福建出差，真心累呀，比较老实的我，没有逮着机会出去玩，在出差期间，联调的测试需要在福州和厦门之间走动，都是走高速，期间因所见所闻与所吃，诗性大发了，哈哈，在从厦门到福州的路上题诗一首（胡写乱题），觉得还是手写比较好，献丑：</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/xzsf7.jpg" alt="fuzhou"></p>]]></content>
@@ -14695,10 +14695,10 @@ Swap file <span class="s2">&#34;.vimrc.swp&#34;</span> already exists!
 		
 		<item>
 			<title>笔尖痕迹-其实不复杂</title>
-			<link>https://www.smslit.cn/2016/12/23/simpleWorld/</link>
+			<link>https://blog.smslit.cn/2016/12/23/simpleWorld/</link>
 			<pubDate>Fri, 23 Dec 2016 22:52:51 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/12/23/simpleWorld/</guid>
+			<guid>https://blog.smslit.cn/2016/12/23/simpleWorld/</guid>
 			<description>&lt;p&gt;有的时候，会很烦恼，烦恼这世界如此复杂，渐渐发现复杂的事情也能简单化，希望自己眼中的世界慢慢变得简单！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>有的时候，会很烦恼，烦恼这世界如此复杂，渐渐发现复杂的事情也能简单化，希望自己眼中的世界慢慢变得简单！</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ow0rb.jpg" alt="simpleWorld"></p>]]></content>
@@ -14706,10 +14706,10 @@ Swap file <span class="s2">&#34;.vimrc.swp&#34;</span> already exists!
 		
 		<item>
 			<title>Qt开发学习问题解决笔记</title>
-			<link>https://www.smslit.cn/2016/12/23/Qt-Program-Notes-Develop/</link>
+			<link>https://blog.smslit.cn/2016/12/23/Qt-Program-Notes-Develop/</link>
 			<pubDate>Fri, 23 Dec 2016 21:23:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/12/23/Qt-Program-Notes-Develop/</guid>
+			<guid>https://blog.smslit.cn/2016/12/23/Qt-Program-Notes-Develop/</guid>
 			<description>&lt;p&gt;本文主要用来整理学习Qt开发过程中遇到的问题及解决办法，会持续更新。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文主要用来整理学习Qt开发过程中遇到的问题及解决办法，会持续更新。</p>
 <p>更新表：</p>
@@ -14838,10 +14838,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>笔尖痕迹-不畏浮云遮望眼</title>
-			<link>https://www.smslit.cn/2016/12/11/noFear/</link>
+			<link>https://blog.smslit.cn/2016/12/11/noFear/</link>
 			<pubDate>Sun, 11 Dec 2016 21:10:47 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/12/11/noFear/</guid>
+			<guid>https://blog.smslit.cn/2016/12/11/noFear/</guid>
 			<description>&lt;blockquote&gt;
 &lt;p&gt;眼下这堆破玩意儿，不足以阻挡我长远的“阴谋”！&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -14853,10 +14853,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>又见google黑科技-Radarcat</title>
-			<link>https://www.smslit.cn/2016/12/01/radarcat/</link>
+			<link>https://blog.smslit.cn/2016/12/01/radarcat/</link>
 			<pubDate>Thu, 01 Dec 2016 12:49:16 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/12/01/radarcat/</guid>
+			<guid>https://blog.smslit.cn/2016/12/01/radarcat/</guid>
 			<description>本次要分享的RadarCat就是基于这个Soli芯片的，它能通过机器学习实现对物体的识别，连瓶子里是什么液体都知道，芬达or可口可乐，看下面</description>
 			<content type="html"><![CDATA[<p>本次要分享的RadarCat就是基于这个Soli芯片的，它能通过机器学习实现对物体的识别，连瓶子里是什么液体都知道，芬达or可口可乐，看下面的视频了解一下吧，又见google黑科技！</p>
 <p>下面是youtube视频：</p>
@@ -14866,10 +14866,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>vim中delete（backspace）键不能向左删除</title>
-			<link>https://www.smslit.cn/2016/11/27/vim-backspace-invalid/</link>
+			<link>https://blog.smslit.cn/2016/11/27/vim-backspace-invalid/</link>
 			<pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/11/27/vim-backspace-invalid/</guid>
+			<guid>https://blog.smslit.cn/2016/11/27/vim-backspace-invalid/</guid>
 			<description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;quot;，竟然无效！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下<strong>delete</strong>键删除它们，万万没想到呀！只听到&quot;duang duang duang&quot;，竟然无效！</p>
 <p>有一点先明确一下，在mac的键盘中没有backspace键，有个键叫delete，其实相当于window下的backspace键，编辑文本时按下都具有向左删除字符的功能。</p>
@@ -14897,10 +14897,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>macOS下运行非App Store下载的app提示损坏的解决方法</title>
-			<link>https://www.smslit.cn/2016/11/27/macOS-app-damaged/</link>
+			<link>https://blog.smslit.cn/2016/11/27/macOS-app-damaged/</link>
 			<pubDate>Sun, 27 Nov 2016 16:08:35 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/11/27/macOS-app-damaged/</guid>
+			<guid>https://blog.smslit.cn/2016/11/27/macOS-app-damaged/</guid>
 			<description>&lt;p&gt;在网上下载了一个macOS平台下的软件，但是一运行就弹出提示框，大概意思是说app已损坏，一开始以为真的是损坏了，然后又重新下载了一遍安装运行还是这样，然后又去另外一个平台下载还是这样。这怎么可能？&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在网上下载了一个macOS平台下的软件，但是一运行就弹出提示框，大概意思是说app已损坏，一开始以为真的是损坏了，然后又重新下载了一遍安装运行还是这样，然后又去另外一个平台下载还是这样。这怎么可能？</p>
 <h3 id="原因">原因</h3>
@@ -14920,10 +14920,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>swift获取系统当前时间</title>
-			<link>https://www.smslit.cn/2016/11/19/getnowtime-swift-dev/</link>
+			<link>https://blog.smslit.cn/2016/11/19/getnowtime-swift-dev/</link>
 			<pubDate>Sat, 19 Nov 2016 21:53:23 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/11/19/getnowtime-swift-dev/</guid>
+			<guid>https://blog.smslit.cn/2016/11/19/getnowtime-swift-dev/</guid>
 			<description>&lt;p&gt;今天尝试做一个macOS下的生成645协议的广播校时报文的小工具，做到一半竟然被“如何获取当前时间？”给难住了，百度搜索结果找来的方法都是过时的，经过尝试和研究找到了方法。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天尝试做一个macOS下的生成645协议的广播校时报文的小工具，做到一半竟然被“如何获取当前时间？”给难住了，百度搜索结果找来的方法都是过时的，经过尝试和研究找到了方法。</p>
 <p>以在macOS的playground为例，首先新建一个macOS平台的playground，编写代码：</p>
@@ -14948,10 +14948,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>解决macOS下vim不能访问系统剪切板的问题</title>
-			<link>https://www.smslit.cn/2016/11/17/vim-clipboard-macos/</link>
+			<link>https://blog.smslit.cn/2016/11/17/vim-clipboard-macos/</link>
 			<pubDate>Thu, 17 Nov 2016 22:25:42 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/11/17/vim-clipboard-macos/</guid>
+			<guid>https://blog.smslit.cn/2016/11/17/vim-clipboard-macos/</guid>
 			<description>&lt;p&gt;又好久没写博文了，最近忙工作的事情，焦头烂额，最近总算有些时间来干点自己的事情了，本文就说一下一直困扰我很久的问题，macOS下系统自带的vim不支持访问系统剪切板的问题，即不支持寄存器 &lt;strong&gt;+&lt;/strong&gt; 和 * 的问题。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>又好久没写博文了，最近忙工作的事情，焦头烂额，最近总算有些时间来干点自己的事情了，本文就说一下一直困扰我很久的问题，macOS下系统自带的vim不支持访问系统剪切板的问题，即不支持寄存器 <strong>+</strong> 和 * 的问题。</p>
 <p>网上了解到用homebrew安装的vim是支持的，所以通过以下命令安装vim即可：</p>
@@ -14963,10 +14963,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>《雷神之锤》丧心病狂的平方根倒数速算法</title>
-			<link>https://www.smslit.cn/2016/09/28/q_sqrt-dev/</link>
+			<link>https://blog.smslit.cn/2016/09/28/q_sqrt-dev/</link>
 			<pubDate>Wed, 28 Sep 2016 23:02:48 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/09/28/q_sqrt-dev/</guid>
+			<guid>https://blog.smslit.cn/2016/09/28/q_sqrt-dev/</guid>
 			<description>&lt;p&gt;今天学习《Python科学计算》，看到了一个绝对丧心病狂、计算速度碾压标准sqrt库函数的平方根倒数速算法，据说平均比标准库的sqrt快4倍。这个算法是约翰-卡马克（John Carmack）创造的，据说他是一个伟大的3D引擎开发者，《雷神之锤3》用的就是他开发的3D引擎。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天学习《Python科学计算》，看到了一个绝对丧心病狂、计算速度碾压标准sqrt库函数的平方根倒数速算法，据说平均比标准库的sqrt快4倍。这个算法是约翰-卡马克（John Carmack）创造的，据说他是一个伟大的3D引擎开发者，《雷神之锤3》用的就是他开发的3D引擎。</p>
 <p>贴出代码 <strong>1/sqrt(number)</strong> ：</p>
@@ -15033,10 +15033,10 @@ cp libfcitxplatforminputcontextplugin.so QT安装目录/5.7/gcc_64/plugins/platf
 		
 		<item>
 			<title>Anaconda包管理工具conda包下载加速</title>
-			<link>https://www.smslit.cn/2016/09/24/anaconda-speed-dev/</link>
+			<link>https://blog.smslit.cn/2016/09/24/anaconda-speed-dev/</link>
 			<pubDate>Sat, 24 Sep 2016 22:30:33 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/09/24/anaconda-speed-dev/</guid>
+			<guid>https://blog.smslit.cn/2016/09/24/anaconda-speed-dev/</guid>
 			<description>&lt;p&gt;好久没有发文章了，最近有些迷茫，加上实习工作的原因，人变得有些疲劳，过去那种乐于研究有趣东西的兴致被冲淡了，但这几天终于鼓起勇气拿起了几个星期前买的书《Python科学计算》，决定学习一下，用作自己硕士课题的一个研究工具，来替代matlab。Matlab收费，用不起，而python是开源的，同时还有很多优秀的IDE，也都是免费的；但我更看重的是python在如今的地位，废话不多说了，进入主题吧。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>好久没有发文章了，最近有些迷茫，加上实习工作的原因，人变得有些疲劳，过去那种乐于研究有趣东西的兴致被冲淡了，但这几天终于鼓起勇气拿起了几个星期前买的书《Python科学计算》，决定学习一下，用作自己硕士课题的一个研究工具，来替代matlab。Matlab收费，用不起，而python是开源的，同时还有很多优秀的IDE，也都是免费的；但我更看重的是python在如今的地位，废话不多说了，进入主题吧。</p>
 <p>我选择了 <strong>Anaconda</strong> 作为安装Python科学计算开发包的方式，因为最简单，只需下载安装包，一直下一步就安装好了，不但集成了几个开发环境，还附有很多科学计算的工具包，以及 <strong>conda</strong> 包管理工具。当使用 <strong>conda</strong> 安装包的时候，你会发现，那下载速度简直令人发指，等很长时间后往往是失败的结果，悲痛呀！</p>
@@ -15090,10 +15090,10 @@ ssl_verify: true
 		
 		<item>
 			<title>iOS开发学习问题解决笔记</title>
-			<link>https://www.smslit.cn/2016/06/22/iOS-Learn-Notes-Develop/</link>
+			<link>https://blog.smslit.cn/2016/06/22/iOS-Learn-Notes-Develop/</link>
 			<pubDate>Wed, 22 Jun 2016 14:44:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/06/22/iOS-Learn-Notes-Develop/</guid>
+			<guid>https://blog.smslit.cn/2016/06/22/iOS-Learn-Notes-Develop/</guid>
 			<description>&lt;p&gt;本文主要用来整理学习iOS开发过程中遇到的问题及解决办法，会持续更新。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文主要用来整理学习iOS开发过程中遇到的问题及解决办法，会持续更新。</p>
 <h3 id="内容"><strong>内容</strong></h3>
@@ -15121,10 +15121,10 @@ ssl_verify: true
 		
 		<item>
 			<title>Apple平台开发-第三方库管理工具CocoaPods的安装和使用</title>
-			<link>https://www.smslit.cn/2016/06/20/cocoapods-install-dev/</link>
+			<link>https://blog.smslit.cn/2016/06/20/cocoapods-install-dev/</link>
 			<pubDate>Mon, 20 Jun 2016 21:17:10 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/06/20/cocoapods-install-dev/</guid>
+			<guid>https://blog.smslit.cn/2016/06/20/cocoapods-install-dev/</guid>
 			<description>&lt;p&gt;今天了解macOS的串口编程，偶然了解到第三方库ORSSerialPort库，继而了解到了第三方库的管理工具CocoaPods，貌似这有助于在以后进行apple平台（iOS、watchOS、tvOS和macOS）开发，索性就安装一下吧。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天了解macOS的串口编程，偶然了解到第三方库ORSSerialPort库，继而了解到了第三方库的管理工具CocoaPods，貌似这有助于在以后进行apple平台（iOS、watchOS、tvOS和macOS）开发，索性就安装一下吧。</p>
 <h3 id="什么是cocoapods">什么是CocoaPods</h3>
@@ -15265,10 +15265,10 @@ drwxr-xr-x  <span class="m">4</span> smslit  staff  <span class="m">136</span> J
 		
 		<item>
 			<title>用KiCAD设计使用CH340G的USB转串口的模块</title>
-			<link>https://www.smslit.cn/2016/06/15/usb2ttl_ch340-elec/</link>
+			<link>https://blog.smslit.cn/2016/06/15/usb2ttl_ch340-elec/</link>
 			<pubDate>Wed, 15 Jun 2016 16:47:31 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/06/15/usb2ttl_ch340-elec/</guid>
+			<guid>https://blog.smslit.cn/2016/06/15/usb2ttl_ch340-elec/</guid>
 			<description>&lt;p&gt;近期学习了KiCAD的使用，就决定设计一款USB转串口模块来练习一下，设计中使用性价比很高的CH340的USB转串口芯片。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>近期学习了KiCAD的使用，就决定设计一款USB转串口模块来练习一下，设计中使用性价比很高的CH340的USB转串口芯片。</p>
 <p>KiCad - 是一个GPL的EDA（Electronic Design Automation - 电子设计自动化）软件包，我看中KiCAD的几个优点：</p>
@@ -15322,10 +15322,10 @@ drwxr-xr-x  <span class="m">4</span> smslit  staff  <span class="m">136</span> J
 		
 		<item>
 			<title>在MacOS终端下使用Ino进行Arduino开发</title>
-			<link>https://www.smslit.cn/2016/06/15/ino-vim-arduino/</link>
+			<link>https://blog.smslit.cn/2016/06/15/ino-vim-arduino/</link>
 			<pubDate>Wed, 15 Jun 2016 09:10:38 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/06/15/ino-vim-arduino/</guid>
+			<guid>https://blog.smslit.cn/2016/06/15/ino-vim-arduino/</guid>
 			<description>&lt;p&gt;虽然我算不上真正的Vimer，但我还是惊叹与vim的强大，也正慢慢学习vim的使用，经朋友介绍可以用命令行工具&lt;strong&gt;Ino&lt;/strong&gt;进行Arduino开发，那么就可以在终端中使用vim进行Arduino的coding了。其实我使用了好长时间了，觉得不错，适合喜欢用终端敲命令的朋友，所以在此写一下安装和使用。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>虽然我算不上真正的Vimer，但我还是惊叹与vim的强大，也正慢慢学习vim的使用，经朋友介绍可以用命令行工具<strong>Ino</strong>进行Arduino开发，那么就可以在终端中使用vim进行Arduino的coding了。其实我使用了好长时间了，觉得不错，适合喜欢用终端敲命令的朋友，所以在此写一下安装和使用。</p>
 <h3 id="ino工具安装">Ino工具安装</h3>
@@ -15668,10 +15668,10 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;
 		
 		<item>
 			<title>BLE开发笔记——协议栈HAL驱动控制LED</title>
-			<link>https://www.smslit.cn/2016/05/05/halled-ble/</link>
+			<link>https://blog.smslit.cn/2016/05/05/halled-ble/</link>
 			<pubDate>Thu, 05 May 2016 08:44:59 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/05/05/halled-ble/</guid>
+			<guid>https://blog.smslit.cn/2016/05/05/halled-ble/</guid>
 			<description>&lt;p&gt;已经了解了OSAL工作原理和完成了启动过程的简单分析，那么我们可以尝试协议栈开发了，首先可以玩一下LED的控制，我有一个CC2541-DK MINI Keyfob，本文就以此为测试平台。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>已经了解了OSAL工作原理和完成了启动过程的简单分析，那么我们可以尝试协议栈开发了，首先可以玩一下LED的控制，我有一个CC2541-DK MINI Keyfob，本文就以此为测试平台。</p>
 <h3 id="准备工作">准备工作</h3>
@@ -15860,10 +15860,10 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;
 		
 		<item>
 			<title>BLE开发笔记——OSAL和协议栈启动流程</title>
-			<link>https://www.smslit.cn/2016/05/04/osal-executeflow-ble/</link>
+			<link>https://blog.smslit.cn/2016/05/04/osal-executeflow-ble/</link>
 			<pubDate>Wed, 04 May 2016 09:32:48 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/05/04/osal-executeflow-ble/</guid>
+			<guid>https://blog.smslit.cn/2016/05/04/osal-executeflow-ble/</guid>
 			<description>&lt;p&gt;在进行协议栈开发之前，必须要了解协议栈中完成任务调度和资源管理的OSAL以及整个协议栈程序大体的启动流程，只有这样才能更好的开发协议栈程序。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在进行协议栈开发之前，必须要了解协议栈中完成任务调度和资源管理的OSAL以及整个协议栈程序大体的启动流程，只有这样才能更好的开发协议栈程序。</p>
 <h3 id="osal-操作系统抽象层">OSAL-操作系统抽象层</h3>
@@ -16104,10 +16104,10 @@ nmap &lt;F5&gt;u :!ino upload&lt;CR&gt;
 		
 		<item>
 			<title>Fedora使用笔记</title>
-			<link>https://www.smslit.cn/2016/04/28/fedora-note/</link>
+			<link>https://blog.smslit.cn/2016/04/28/fedora-note/</link>
 			<pubDate>Thu, 28 Apr 2016 15:17:29 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/28/fedora-note/</guid>
+			<guid>https://blog.smslit.cn/2016/04/28/fedora-note/</guid>
 			<description>&lt;p&gt;俗话说得好，好记性不如烂笔头，曾经解决过的问题，再次遇到还要再花大量时间去解决，不能忍呀，在fedora的使用过程中，难免遇到好多问题，本文记录在使用Fedora过程中部分遇到的问题。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>俗话说得好，好记性不如烂笔头，曾经解决过的问题，再次遇到还要再花大量时间去解决，不能忍呀，在fedora的使用过程中，难免遇到好多问题，本文记录在使用Fedora过程中部分遇到的问题。</p>
 <h3 id="安装eagle-pcb缺少库的问题">安装eagle pcb缺少库的问题</h3>
@@ -16138,10 +16138,10 @@ $ sudo ln -s libcrypto.so.1.0.2g libcrypto.so.1.0.0
 		
 		<item>
 			<title>系统及编辑器的字体设置</title>
-			<link>https://www.smslit.cn/2016/04/28/font-settings/</link>
+			<link>https://blog.smslit.cn/2016/04/28/font-settings/</link>
 			<pubDate>Thu, 28 Apr 2016 09:20:28 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/28/font-settings/</guid>
+			<guid>https://blog.smslit.cn/2016/04/28/font-settings/</guid>
 			<description>&lt;p&gt;最近在用Linux，实在是受不了中文字体的显示了，终端里面设置了Source Code Pro字体，这英文字体很棒，适合做编程字体，但显示的中文可以难看到哭。索性在本文说一下怎么能在使用好看的英文字体的同时，可以显示你喜欢的中文字体，另外也整理一下编辑器中字体的设置方法，如Atom、ST等。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近在用Linux，实在是受不了中文字体的显示了，终端里面设置了Source Code Pro字体，这英文字体很棒，适合做编程字体，但显示的中文可以难看到哭。索性在本文说一下怎么能在使用好看的英文字体的同时，可以显示你喜欢的中文字体，另外也整理一下编辑器中字体的设置方法，如Atom、ST等。</p>
 <h4 id="linux中设置喜欢的中英文字体混合显示">linux中设置喜欢的中英文字体混合显示</h4>
@@ -16191,10 +16191,10 @@ $ sudo ln -s libcrypto.so.1.0.2g libcrypto.so.1.0.0
 		
 		<item>
 			<title>Linux下配置Swift开发环境和初步使用</title>
-			<link>https://www.smslit.cn/2016/04/16/install-use-swift/</link>
+			<link>https://blog.smslit.cn/2016/04/16/install-use-swift/</link>
 			<pubDate>Sat, 16 Apr 2016 16:13:36 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/16/install-use-swift/</guid>
+			<guid>https://blog.smslit.cn/2016/04/16/install-use-swift/</guid>
 			<description>&lt;p&gt;不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者&lt;a href=&#34;https://swift.org/about/#swiftorg-and-open-source&#34;&gt;点我&lt;/a&gt;吧或者&lt;a href=&#34;http://wiki.jikexueyuan.com/project/swift/chapter1/01_swift.html&#34;&gt;戳我&lt;/a&gt;！）。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者<a href="https://swift.org/about/#swiftorg-and-open-source">点我</a>吧或者<a href="http://wiki.jikexueyuan.com/project/swift/chapter1/01_swift.html">戳我</a>！）。</p>
 <h2 id="测试平台">测试平台</h2>
@@ -16361,10 +16361,10 @@ Hello, Monkey!
 		
 		<item>
 			<title>各类硬件接口定义</title>
-			<link>https://www.smslit.cn/2016/04/16/HardwareInterface-Elec/</link>
+			<link>https://blog.smslit.cn/2016/04/16/HardwareInterface-Elec/</link>
 			<pubDate>Sat, 16 Apr 2016 08:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/16/HardwareInterface-Elec/</guid>
+			<guid>https://blog.smslit.cn/2016/04/16/HardwareInterface-Elec/</guid>
 			<description>&lt;p&gt;脑子存储不够用了，故专门开本文整理各类硬件接口，以备不时之需。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>脑子存储不够用了，故专门开本文整理各类硬件接口，以备不时之需。</p>
 <h2 id="icd3">ICD3</h2>
@@ -16563,10 +16563,10 @@ Hello, Monkey!
 		
 		<item>
 			<title>使用rake生成jekyll静态博客新文章</title>
-			<link>https://www.smslit.cn/2016/04/15/rake-new-post/</link>
+			<link>https://blog.smslit.cn/2016/04/15/rake-new-post/</link>
 			<pubDate>Fri, 15 Apr 2016 19:14:39 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/15/rake-new-post/</guid>
+			<guid>https://blog.smslit.cn/2016/04/15/rake-new-post/</guid>
 			<description>&lt;p&gt;使用了Jekyll也有9个月了，虽然写的博文不多，但也是会觉得每次写新文章是痛苦的。复制粘贴再更改也是显得不够条理，一个字一个字的敲也是痛苦的，索性搜索一下有没有好的方法，终于找到了一个好办法，利用ruby插件rake来完成。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>使用了Jekyll也有9个月了，虽然写的博文不多，但也是会觉得每次写新文章是痛苦的。复制粘贴再更改也是显得不够条理，一个字一个字的敲也是痛苦的，索性搜索一下有没有好的方法，终于找到了一个好办法，利用ruby插件rake来完成。</p>
 <p>下面就讲一下怎么实现。</p>
@@ -16624,10 +16624,10 @@ Jekyll
 		
 		<item>
 			<title>linux下使用CC Debugger读写芯片程序</title>
-			<link>https://www.smslit.cn/2016/04/15/ccdebugger-linux-ble/</link>
+			<link>https://blog.smslit.cn/2016/04/15/ccdebugger-linux-ble/</link>
 			<pubDate>Fri, 15 Apr 2016 15:34:19 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/15/ccdebugger-linux-ble/</guid>
+			<guid>https://blog.smslit.cn/2016/04/15/ccdebugger-linux-ble/</guid>
 			<description>&lt;p&gt;有个事情一直困扰着我，我一般使用ubuntu linux系统，但当要用CC Debugger为TI的一些芯片烧写程序的时候，不得不切换到windows系统，太麻烦了，难道linux下不能用CC Debugger吗？我就带着这个问题问了一下谷哥，他果然什么都知道，得知cc-tool的存在，是一个老开源项目了，什么？我咋才知道呀！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>有个事情一直困扰着我，我一般使用ubuntu linux系统，但当要用CC Debugger为TI的一些芯片烧写程序的时候，不得不切换到windows系统，太麻烦了，难道linux下不能用CC Debugger吗？我就带着这个问题问了一下谷哥，他果然什么都知道，得知cc-tool的存在，是一个老开源项目了，什么？我咋才知道呀！</p>
 <p>嫌罗嗦可以直接<a href="#no1">点我</a>跳过下面一段。</p>
@@ -16692,10 +16692,10 @@ cc-tool --lock debug<span class="p">;</span>boot<span class="p">;</span>flash:8
 		
 		<item>
 			<title>Tab键Soft和Hard之分</title>
-			<link>https://www.smslit.cn/2016/04/10/SoftTabOrHardTab-Develop/</link>
+			<link>https://blog.smslit.cn/2016/04/10/SoftTabOrHardTab-Develop/</link>
 			<pubDate>Sun, 10 Apr 2016 10:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/10/SoftTabOrHardTab-Develop/</guid>
+			<guid>https://blog.smslit.cn/2016/04/10/SoftTabOrHardTab-Develop/</guid>
 			<description>&lt;p&gt;这怪之前孤陋寡闻，在使用编辑器Atom时，进入设置看到Tab type（Tab类型），咦，tab还有Soft和Hard之分呀，Settings中关于&lt;strong&gt;Tab Type&lt;/strong&gt;的提示如下：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Determine character inserted when Tab key is pressed. Possible values: &amp;ldquo;auto&amp;rdquo;, &amp;ldquo;soft&amp;rdquo; and &amp;ldquo;hard&amp;rdquo;. When set to &amp;ldquo;soft&amp;rdquo; or &amp;ldquo;hard&amp;rdquo;, soft tabs (spaces) or hard tabs (tab characters) are used. When set to &amp;ldquo;auto&amp;rdquo;, the editor auto-detects the tab type based on the contents of the buffer (it uses the first leading whitespace on a non-comment line), or uses the value of the Soft Tabs config setting if auto-detection fails.&lt;/p&gt;
@@ -16714,10 +16714,10 @@ cc-tool --lock debug<span class="p">;</span>boot<span class="p">;</span>flash:8
 		
 		<item>
 			<title>0x80070570错误解决</title>
-			<link>https://www.smslit.cn/2016/04/05/0x80070570error-Life/</link>
+			<link>https://blog.smslit.cn/2016/04/05/0x80070570error-Life/</link>
 			<pubDate>Tue, 05 Apr 2016 15:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/04/05/0x80070570error-Life/</guid>
+			<guid>https://blog.smslit.cn/2016/04/05/0x80070570error-Life/</guid>
 			<description>&lt;p&gt;今天无聊的“虫子”拿着移动硬盘过来让我删除硬盘上的一个文件夹（在windows下），呀，一删除就弹出一个错误提示说是：&lt;code&gt;error0x80070570&lt;/code&gt;，文件无法删除。木有办法，看来只有我能拯救这个世界了，经过了解，呀，别人已经解决了这个世界性难题，好吧，不管怎样，我也学到了咋解决：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;没有正常插拔移动设备&lt;code&gt;系统没有完成完整的读写操作&lt;/code&gt;致使文件目录信息错乱和不完整&lt;br&gt;
@@ -16794,10 +16794,10 @@ No further action is required.
 		
 		<item>
 			<title>Linux下Sublime Text支持中文输入</title>
-			<link>https://www.smslit.cn/2016/03/26/subl-ChineseInput-Linux/</link>
+			<link>https://blog.smslit.cn/2016/03/26/subl-ChineseInput-Linux/</link>
 			<pubDate>Sat, 26 Mar 2016 09:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/03/26/subl-ChineseInput-Linux/</guid>
+			<guid>https://blog.smslit.cn/2016/03/26/subl-ChineseInput-Linux/</guid>
 			<description>&lt;p&gt;sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。</p>
 <h3 id="平台">平台</h3>
@@ -16886,10 +16886,10 @@ sudo cp applications/sublime_text.desktop /usr/share/applications/
 		
 		<item>
 			<title>Ubuntu下配置JDK</title>
-			<link>https://www.smslit.cn/2016/03/24/JDKConfig-Linux/</link>
+			<link>https://blog.smslit.cn/2016/03/24/JDKConfig-Linux/</link>
 			<pubDate>Thu, 24 Mar 2016 09:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/03/24/JDKConfig-Linux/</guid>
+			<guid>https://blog.smslit.cn/2016/03/24/JDKConfig-Linux/</guid>
 			<description>&lt;p&gt;在使用某些软件或者要进行Android或者Java开发的话，需要配置java的环境变量，本文就来讲一下安装和配置jdk的步骤。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在使用某些软件或者要进行Android或者Java开发的话，需要配置java的环境变量，本文就来讲一下安装和配置jdk的步骤。</p>
 <h3 id="测试环境">测试环境</h3>
@@ -16945,10 +16945,10 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM 
 		
 		<item>
 			<title>Gem添加软件源时SSl错误解决</title>
-			<link>https://www.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</link>
+			<link>https://blog.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</link>
 			<pubDate>Mon, 21 Mar 2016 17:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</guid>
+			<guid>https://blog.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</guid>
 			<description>&lt;p&gt;windows下在用gem添加taobao的软件源时出现了ssl认证错误，是因为ruby没有包含ssl证书，所以需要通过下载和配置证书来解决。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>windows下在用gem添加taobao的软件源时出现了ssl认证错误，是因为ruby没有包含ssl证书，所以需要通过下载和配置证书来解决。</p>
 <h3 id="问题现象">问题现象</h3>
@@ -16979,10 +16979,10 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM 
 		
 		<item>
 			<title>BLE开发笔记——简单新建属于自己的协议栈工程</title>
-			<link>https://www.smslit.cn/2016/03/21/newProject-BLE/</link>
+			<link>https://blog.smslit.cn/2016/03/21/newProject-BLE/</link>
 			<pubDate>Mon, 21 Mar 2016 10:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/03/21/newProject-BLE/</guid>
+			<guid>https://blog.smslit.cn/2016/03/21/newProject-BLE/</guid>
 			<description>&lt;p&gt;本文主要讲一下新建TI的CC2541协议栈的工程。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文主要讲一下新建TI的CC2541协议栈的工程。</p>
 <h3 id="前言">前言</h3>
@@ -17035,10 +17035,10 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM 
 		
 		<item>
 			<title>Mac 使用技巧</title>
-			<link>https://www.smslit.cn/2016/03/01/Mac-Notes-Life/</link>
+			<link>https://blog.smslit.cn/2016/03/01/Mac-Notes-Life/</link>
 			<pubDate>Tue, 01 Mar 2016 10:10:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2016/03/01/Mac-Notes-Life/</guid>
+			<guid>https://blog.smslit.cn/2016/03/01/Mac-Notes-Life/</guid>
 			<description>&lt;p&gt;开本文的目的是整理和记录平常使用mac的技巧。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>开本文的目的是整理和记录平常使用mac的技巧。</p>
 <h3 id="内容">内容</h3>
@@ -17062,10 +17062,10 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM 
 		
 		<item>
 			<title>解决adb对Android设备的识别问题</title>
-			<link>https://www.smslit.cn/2015/12/13/adbT1-Develop/</link>
+			<link>https://blog.smslit.cn/2015/12/13/adbT1-Develop/</link>
 			<pubDate>Sun, 13 Dec 2015 08:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/12/13/adbT1-Develop/</guid>
+			<guid>https://blog.smslit.cn/2015/12/13/adbT1-Develop/</guid>
 			<description>&lt;p&gt;今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。</p>
 <h3 id="平台">平台</h3>
@@ -17166,10 +17166,10 @@ adb start-server
 		
 		<item>
 			<title>Linux下Arduino USB to TTL 权限问题解决</title>
-			<link>https://www.smslit.cn/2015/12/04/usbttlInLinux-Arduino/</link>
+			<link>https://blog.smslit.cn/2015/12/04/usbttlInLinux-Arduino/</link>
 			<pubDate>Fri, 04 Dec 2015 10:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/12/04/usbttlInLinux-Arduino/</guid>
+			<guid>https://blog.smslit.cn/2015/12/04/usbttlInLinux-Arduino/</guid>
 			<description>&lt;p&gt;在Linux中高高兴兴的安装完了Arduino，结果编译下载程序时发现竟然出错，不能下载程序，本文就来说一下这个问题。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在Linux中高高兴兴的安装完了Arduino，结果编译下载程序时发现竟然出错，不能下载程序，本文就来说一下这个问题。</p>
 <p>在linux下使用usbttl均会出现usb使用权限问题，下图是我在Ubuntu15.04中的问题截图：</p>
@@ -17219,10 +17219,10 @@ sudo vim 90-tofu.rules
 		
 		<item>
 			<title>ASCII字符的Arduino板图</title>
-			<link>https://www.smslit.cn/2015/11/23/asciiBoardMap-Arduino/</link>
+			<link>https://blog.smslit.cn/2015/11/23/asciiBoardMap-Arduino/</link>
 			<pubDate>Mon, 23 Nov 2015 22:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/23/asciiBoardMap-Arduino/</guid>
+			<guid>https://blog.smslit.cn/2015/11/23/asciiBoardMap-Arduino/</guid>
 			<description>&lt;p&gt;在为Arduino写代码的时候，有时很头疼怎么更好的示意连线图呢，今天看Arduino官网博客时看到了一篇文章&lt;a href=&#34;https://blog.arduino.cc/2015/11/20/arduino-pinout-ascii-art-ready-to-go/&#34;&gt;ARDUINO PINOUT ASCII ART READY TO GO&lt;/a&gt;，用Ascii字符表示连线的话真的很形象。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在为Arduino写代码的时候，有时很头疼怎么更好的示意连线图呢，今天看Arduino官网博客时看到了一篇文章<a href="https://blog.arduino.cc/2015/11/20/arduino-pinout-ascii-art-ready-to-go/">ARDUINO PINOUT ASCII ART READY TO GO</a>，用Ascii字符表示连线的话真的很形象。</p>
 <p>我根据文中创意做了自己的文档化的板图，不过我做的都是基于ATmega328P芯片的，以后只需复制进注释中，更改添加一些字符就能使连线图文档化了，简单明了还直观。</p>
@@ -17334,10 +17334,10 @@ sudo vim 90-tofu.rules
 		
 		<item>
 			<title>零欧姆电阻在电路中的作用</title>
-			<link>https://www.smslit.cn/2015/11/20/0ohmFunction-elec/</link>
+			<link>https://blog.smslit.cn/2015/11/20/0ohmFunction-elec/</link>
 			<pubDate>Fri, 20 Nov 2015 22:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/20/0ohmFunction-elec/</guid>
+			<guid>https://blog.smslit.cn/2015/11/20/0ohmFunction-elec/</guid>
 			<description>&lt;p&gt;心中一直有个疑问，电路中为啥要弄上个0欧姆的电阻呢，所以就网上搜索请教了一下，看到**&lt;a href=&#34;http://www.eepw.com.cn/article/270119.htm&#34;&gt;零欧姆电阻的十二种作用&lt;/a&gt;**又长知识了，感谢文章的作者。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>心中一直有个疑问，电路中为啥要弄上个0欧姆的电阻呢，所以就网上搜索请教了一下，看到**<a href="http://www.eepw.com.cn/article/270119.htm">零欧姆电阻的十二种作用</a>**又长知识了，感谢文章的作者。</p>
 <p>零欧姆电阻又称为跨接电阻器，是一种特殊用途的电阻，0欧姆电阻的并非真正的阻值为零(那是超导体干的事情)，正因为有阻值，也就和常规贴片电阻一样有误差精度这个指标。</p>
@@ -17408,10 +17408,10 @@ sudo vim 90-tofu.rules
 		
 		<item>
 			<title>iOS开发学习——解决Xcode7 Swift2中odjc的函数重载问题</title>
-			<link>https://www.smslit.cn/2015/11/18/overloadingSwift-Develop/</link>
+			<link>https://blog.smslit.cn/2015/11/18/overloadingSwift-Develop/</link>
 			<pubDate>Wed, 18 Nov 2015 22:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/18/overloadingSwift-Develop/</guid>
+			<guid>https://blog.smslit.cn/2015/11/18/overloadingSwift-Develop/</guid>
 			<description>&lt;p&gt;最近在学习斯坦福大学白胡子老头去年的iOS8的开发教程，跟着他的视频教程走，刚开始不久就发现自己栽进了坑里，同样的代码，为啥我的就会报错呢：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5djgg.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近在学习斯坦福大学白胡子老头去年的iOS8的开发教程，跟着他的视频教程走，刚开始不久就发现自己栽进了坑里，同样的代码，为啥我的就会报错呢：</p>
@@ -17445,10 +17445,10 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 		
 		<item>
 			<title>Mac OSX下Sublime Text配置使用ctags实现代码跳转</title>
-			<link>https://www.smslit.cn/2015/11/14/macSTctags-Develop/</link>
+			<link>https://blog.smslit.cn/2015/11/14/macSTctags-Develop/</link>
 			<pubDate>Sat, 14 Nov 2015 09:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/14/macSTctags-Develop/</guid>
+			<guid>https://blog.smslit.cn/2015/11/14/macSTctags-Develop/</guid>
 			<description>&lt;p&gt;ctags是一款实现代码跳转的插件，可以提高查看代码的效率，开发尽管可能有IDE，IDE中有代码跳转，但有的时候还是不想打开IDE的或者本身就没IDE，所以有必要安装ctags，本文就介绍如何在mac osx下的sublime text3中使用ctags。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>ctags是一款实现代码跳转的插件，可以提高查看代码的效率，开发尽管可能有IDE，IDE中有代码跳转，但有的时候还是不想打开IDE的或者本身就没IDE，所以有必要安装ctags，本文就介绍如何在mac osx下的sublime text3中使用ctags。</p>
 <h3 id="st安装ctags插件">ST安装ctags插件</h3>
@@ -17530,10 +17530,10 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 		
 		<item>
 			<title>Arduino IDE 1.6.6新特性之Serial Plotter</title>
-			<link>https://www.smslit.cn/2015/11/04/serialplotter-arduino/</link>
+			<link>https://blog.smslit.cn/2015/11/04/serialplotter-arduino/</link>
 			<pubDate>Wed, 04 Nov 2015 22:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/04/serialplotter-arduino/</guid>
+			<guid>https://blog.smslit.cn/2015/11/04/serialplotter-arduino/</guid>
 			<description>&lt;p&gt;今天去Arduino官网看了一下，发现发布了Arduino IDE1.6.6，看介绍发现增添了好多新特性，于是乎下载下来玩耍了一番，觉得比较有意思的是Serial Plotter，感觉这一功能的增加对于看数据变化曲线方便了好多，不用开其他软件直接用Serial Plotter就可以实现。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>今天去Arduino官网看了一下，发现发布了Arduino IDE1.6.6，看介绍发现增添了好多新特性，于是乎下载下来玩耍了一番，觉得比较有意思的是Serial Plotter，感觉这一功能的增加对于看数据变化曲线方便了好多，不用开其他软件直接用Serial Plotter就可以实现。</p>
 <h3 id="serial-plotter">Serial Plotter</h3>
@@ -17604,10 +17604,10 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 		
 		<item>
 			<title>USBasp为Arduino板子烧写bootloader</title>
-			<link>https://www.smslit.cn/2015/11/03/usbasp-arduino/</link>
+			<link>https://blog.smslit.cn/2015/11/03/usbasp-arduino/</link>
 			<pubDate>Tue, 03 Nov 2015 17:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/03/usbasp-arduino/</guid>
+			<guid>https://blog.smslit.cn/2015/11/03/usbasp-arduino/</guid>
 			<description>&lt;p&gt;在Arduino使用过程中有时候会造成bootloader的损坏，有时候我们还会做Arduino的最小系统板，那我们都需要为Arduino下载bootloader，本文将介绍用USBasp下载bootloader。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在Arduino使用过程中有时候会造成bootloader的损坏，有时候我们还会做Arduino的最小系统板，那我们都需要为Arduino下载bootloader，本文将介绍用USBasp下载bootloader。</p>
 <h2 id="试验硬件清单">试验硬件清单</h2>
@@ -17652,10 +17652,10 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 		
 		<item>
 			<title>改造hdmi转vga线让Macmini成功点亮VGA接口显示器</title>
-			<link>https://www.smslit.cn/2015/11/02/hdmi-life/</link>
+			<link>https://blog.smslit.cn/2015/11/02/hdmi-life/</link>
 			<pubDate>Mon, 02 Nov 2015 17:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/02/hdmi-life/</guid>
+			<guid>https://blog.smslit.cn/2015/11/02/hdmi-life/</guid>
 			<description>&lt;p&gt;最近几天终于下定决心京东白条分期买了心仪已久的mac电脑，其实macbook pro才是我最想得到的，没办法，一个穷字道尽了多少辛酸与苦楚，虽然买的是mac mini但也是很心疼的，因为在公司申请了显示器，所以还另买了一个21.5寸的显示器放在宿舍，计划是每天背着宿舍与实习公司来回跑，哈哈。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近几天终于下定决心京东白条分期买了心仪已久的mac电脑，其实macbook pro才是我最想得到的，没办法，一个穷字道尽了多少辛酸与苦楚，虽然买的是mac mini但也是很心疼的，因为在公司申请了显示器，所以还另买了一个21.5寸的显示器放在宿舍，计划是每天背着宿舍与实习公司来回跑，哈哈。</p>
 <p>宿舍显示器有hdmi接口，Mac mini有hdmi接口，所以买根hdmi线就OK了，但是在公司就麻烦了，显示器只有VGA接口，没办法就买了一根hdmi转vga的转接线，到了才悲剧了，试了一下屏幕竟然提示没有信号，愤怒的我打开这个东西的购买链接，发现在宝贝详情中有提示，mac mini要买带有电源接口线的转接线才可用，可是我买的是普通的，什么音频、电源接口都没有的，因为普通的最便宜，那怎么办？</p>
@@ -17668,10 +17668,10 @@ ViewController.swift:55:10: Method &lsquo;performOperation&rsquo; with Objective
 		
 		<item>
 			<title>Git之SSH密钥实现免密码</title>
-			<link>https://www.smslit.cn/2015/11/02/sshkey-git/</link>
+			<link>https://blog.smslit.cn/2015/11/02/sshkey-git/</link>
 			<pubDate>Mon, 02 Nov 2015 12:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/11/02/sshkey-git/</guid>
+			<guid>https://blog.smslit.cn/2015/11/02/sshkey-git/</guid>
 			<description>&lt;p&gt;SSH密钥用于免密码git操作时验证信任的客户端。下面将说一下生成SSH密钥和将SSH密钥添加到对应git账户（不特指github，其他平台也可以如coding）的步骤。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>SSH密钥用于免密码git操作时验证信任的客户端。下面将说一下生成SSH密钥和将SSH密钥添加到对应git账户（不特指github，其他平台也可以如coding）的步骤。</p>
 <p>本文以<strong>mac osx</strong>系统为例。</p>
@@ -17762,10 +17762,10 @@ $ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</
 		
 		<item>
 			<title>BLE开发笔记——读取片上温度传感器数据</title>
-			<link>https://www.smslit.cn/2015/10/30/temperature-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/30/temperature-BLE/</link>
 			<pubDate>Fri, 30 Oct 2015 17:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/30/temperature-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/30/temperature-BLE/</guid>
 			<description>&lt;p&gt;已经完成了串口打印就很方便调试了，学习其他外设的使用也更方便。本文就记录了温度传感器ADC采样的使用学习。片上的温度传感器输出的是模拟信号，所以需要配置AD采样对信号进行采集，然后进行换算获得温度。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>已经完成了串口打印就很方便调试了，学习其他外设的使用也更方便。本文就记录了温度传感器ADC采样的使用学习。片上的温度传感器输出的是模拟信号，所以需要配置AD采样对信号进行采集，然后进行换算获得温度。</p>
 <h2 id="结构">结构</h2>
@@ -17835,10 +17835,10 @@ $ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</
 		
 		<item>
 			<title>BLE开发笔记——串口的使用</title>
-			<link>https://www.smslit.cn/2015/10/30/serial-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/30/serial-BLE/</link>
 			<pubDate>Fri, 30 Oct 2015 14:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/30/serial-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/30/serial-BLE/</guid>
 			<description>&lt;p&gt;进行软件开发，串口打印是个有效的调试方式，特别适用于没有显示设备的开发平台，所以为了方便调试必须要学会串口的配置和使用，在后期实现串口数据蓝牙转发的时候，也必须清楚串口的使用。本文就针对我自己的情况说一下串口的使用，CC2541有两个USART，使用都是类似的，根据使用管脚和串口的不同做适当的调整就好。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>进行软件开发，串口打印是个有效的调试方式，特别适用于没有显示设备的开发平台，所以为了方便调试必须要学会串口的配置和使用，在后期实现串口数据蓝牙转发的时候，也必须清楚串口的使用。本文就针对我自己的情况说一下串口的使用，CC2541有两个USART，使用都是类似的，根据使用管脚和串口的不同做适当的调整就好。</p>
 <h2 id="配置">配置</h2>
@@ -18140,10 +18140,10 @@ $$</p>
 		
 		<item>
 			<title>BLE开发笔记——时钟和晶振</title>
-			<link>https://www.smslit.cn/2015/10/30/clockOSC-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/30/clockOSC-BLE/</link>
 			<pubDate>Fri, 30 Oct 2015 11:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/30/clockOSC-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/30/clockOSC-BLE/</guid>
 			<description>&lt;p&gt;一个系统运行要稳定，其时钟必须稳定，学习CC2541开发，应该了解时钟的配置，需要了解时钟的寄存器：CLKCONCMD和CLKCONSTA，CMD，command，是用于配置时钟；STA，state，看状态的，用来检测是否配置成功。为了低功耗的设置，还应该了解SLEEPCMD和SLEEPSTA这两个寄存器，与时钟的电源相关的，本文讲一下时钟的初始化。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>一个系统运行要稳定，其时钟必须稳定，学习CC2541开发，应该了解时钟的配置，需要了解时钟的寄存器：CLKCONCMD和CLKCONSTA，CMD，command，是用于配置时钟；STA，state，看状态的，用来检测是否配置成功。为了低功耗的设置，还应该了解SLEEPCMD和SLEEPSTA这两个寄存器，与时钟的电源相关的，本文讲一下时钟的初始化。</p>
 <p>有关这四个寄存器的详细信息在 <a href="/2015/10/27/BaseRegiser-BLE/">BLE开发——CC2541寄存器整理</a> 里有列出来，这里就不再说明。</p>
@@ -18169,10 +18169,10 @@ $$</p>
 		
 		<item>
 			<title>BLE开发笔记——遇到的问题及解决方法记录</title>
-			<link>https://www.smslit.cn/2015/10/30/problem-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/30/problem-BLE/</link>
 			<pubDate>Fri, 30 Oct 2015 10:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/30/problem-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/30/problem-BLE/</guid>
 			<description>&lt;p&gt;在进行BLE开发的学习中总会遇到一些棘手的问题，开此文就是为了记录在进行CC2541开发中遇到的问题和解决的方法，应该会持续更新。。。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在进行BLE开发的学习中总会遇到一些棘手的问题，开此文就是为了记录在进行CC2541开发中遇到的问题和解决的方法，应该会持续更新。。。</p>
 <h2 id="更新情况">更新情况</h2>
@@ -18209,10 +18209,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>Jekyll博文内链和返回顶部按钮</title>
-			<link>https://www.smslit.cn/2015/10/28/backToTop-Jekyll/</link>
+			<link>https://blog.smslit.cn/2015/10/28/backToTop-Jekyll/</link>
 			<pubDate>Wed, 28 Oct 2015 12:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/28/backToTop-Jekyll/</guid>
+			<guid>https://blog.smslit.cn/2015/10/28/backToTop-Jekyll/</guid>
 			<description>&lt;p&gt;有些时候，写的文章会很长，在开始看的时候，有目录会很方便，能即刻跳到需要阅读的地方，为了更方便回到顶部目录的地方，还得需要添加返回顶部的按钮，本文就说一下Jekyll博文用markdown书写时为文章添加锚点和返回顶部按钮。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>有些时候，写的文章会很长，在开始看的时候，有目录会很方便，能即刻跳到需要阅读的地方，为了更方便回到顶部目录的地方，还得需要添加返回顶部的按钮，本文就说一下Jekyll博文用markdown书写时为文章添加锚点和返回顶部按钮。</p>
 <h3 id="添加目录锚点">添加目录锚点</h3>
@@ -18314,10 +18314,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>BLE开发笔记——CC2541寄存器整理</title>
-			<link>https://www.smslit.cn/2015/10/27/BaseRegiser-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/27/BaseRegiser-BLE/</link>
 			<pubDate>Tue, 27 Oct 2015 14:00:00 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/27/BaseRegiser-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/27/BaseRegiser-BLE/</guid>
 			<description>&lt;p&gt;CC2541本质上是一个8051内核的单片机，对其编程必须了解其寄存器，本文整理了常用的寄存器。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>CC2541本质上是一个8051内核的单片机，对其编程必须了解其寄存器，本文整理了常用的寄存器。</p>
 <h4 id="访问模式">访问模式</h4>
@@ -19261,10 +19261,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>BLE开发笔记——第一个工程,IO的输出</title>
-			<link>https://www.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</link>
 			<pubDate>Mon, 26 Oct 2015 17:34:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/26/FirstProjectIOOUTPUT-BLE/</guid>
 			<description>&lt;p&gt;CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>CC2541本质上是一个8051内核的单片机，只要熟悉51单片机和c语言，也便很容易上手CC2541的程序设计吧。为了更好的熟悉IAR从简单的IO控制开始，逐步为以后进行蓝牙协议栈开发奠定基础。</p>
 <p>开发环境配置好了，CC Debugger程序下载调试也弄好了，那就新建一个IAR工程试一下IO。</p>
@@ -19397,10 +19397,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>BLE开发笔记——CC Debugger的使用</title>
-			<link>https://www.smslit.cn/2015/10/26/CCDebugger-BLE/</link>
+			<link>https://blog.smslit.cn/2015/10/26/CCDebugger-BLE/</link>
 			<pubDate>Mon, 26 Oct 2015 10:34:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/26/CCDebugger-BLE/</guid>
+			<guid>https://blog.smslit.cn/2015/10/26/CCDebugger-BLE/</guid>
 			<description>&lt;p&gt;配置好开发环境，话说那得要试一下下载程序，CC2541的BLE开发要用CC Debugger，这里就说一下它的使用。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>配置好开发环境，话说那得要试一下下载程序，CC2541的BLE开发要用CC Debugger，这里就说一下它的使用。</p>
 <h2 id="接口说明">接口说明</h2>
@@ -19530,10 +19530,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>BLE开发笔记——CC254x的开发环境搭建</title>
-			<link>https://www.smslit.cn/2015/10/20/BLEDevelopEnvironment-elec/</link>
+			<link>https://blog.smslit.cn/2015/10/20/BLEDevelopEnvironment-elec/</link>
 			<pubDate>Tue, 20 Oct 2015 17:34:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/20/BLEDevelopEnvironment-elec/</guid>
+			<guid>https://blog.smslit.cn/2015/10/20/BLEDevelopEnvironment-elec/</guid>
 			<description>&lt;p&gt;最近我开始学习CC2541的BLE开发，索性决定边学习边整理学习记录，这篇文章就讲一下基于IAR的开发环境的搭建。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>最近我开始学习CC2541的BLE开发，索性决定边学习边整理学习记录，这篇文章就讲一下基于IAR的开发环境的搭建。</p>
 <p><strong>声明：</strong></p>
@@ -19678,10 +19678,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>Jekyll博文图片居中</title>
-			<link>https://www.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</link>
+			<link>https://blog.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</link>
 			<pubDate>Thu, 15 Oct 2015 17:34:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</guid>
+			<guid>https://blog.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</guid>
 			<description>&lt;p&gt;在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。&lt;/p&gt;
 &lt;p&gt;当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。</p>
@@ -19789,10 +19789,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>测试Arduino中digital函数的执行时间</title>
-			<link>https://www.smslit.cn/2015/10/15/ArduinoDigitalWriteAndReadTime-Arduino/</link>
+			<link>https://blog.smslit.cn/2015/10/15/ArduinoDigitalWriteAndReadTime-Arduino/</link>
 			<pubDate>Thu, 15 Oct 2015 12:34:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/15/ArduinoDigitalWriteAndReadTime-Arduino/</guid>
+			<guid>https://blog.smslit.cn/2015/10/15/ArduinoDigitalWriteAndReadTime-Arduino/</guid>
 			<description>&lt;p&gt;好久没有玩Arduino了，也没记录过多少关于Arduino的东西，现在有了时间，就写点东西吧，因为Arduino封装了基本功能的函数，方便很多，但好多函数内部可能添加了我们不知道的代码，我很自然地想到一个问题，运行时间是怎么样的呢，影响多大呢？测试一下，看看什么情况。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>好久没有玩Arduino了，也没记录过多少关于Arduino的东西，现在有了时间，就写点东西吧，因为Arduino封装了基本功能的函数，方便很多，但好多函数内部可能添加了我们不知道的代码，我很自然地想到一个问题，运行时间是怎么样的呢，影响多大呢？测试一下，看看什么情况。</p>
 <h3 id="测试digitalwrite和digitalread函数">测试digitalWrite和digitalRead函数</h3>
@@ -19988,10 +19988,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>Jekyll编译出现ivalid GBK问题</title>
-			<link>https://www.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</link>
+			<link>https://blog.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</link>
 			<pubDate>Fri, 09 Oct 2015 12:34:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</guid>
+			<guid>https://blog.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</guid>
 			<description>&lt;p&gt;不知什么原因，在用jekyll serve生成本地网页时出现了ivalid GBK问题，因为jekyll利用的是ruby，应该是ruby的编译错误。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>不知什么原因，在用jekyll serve生成本地网页时出现了ivalid GBK问题，因为jekyll利用的是ruby，应该是ruby的编译错误。</p>
 <h4 id="现象">现象</h4>
@@ -20017,10 +20017,10 @@ Error <span class="k">while</span> running Linker
 		
 		<item>
 			<title>解决windows下git bash中文乱码问题</title>
-			<link>https://www.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</link>
+			<link>https://blog.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</link>
 			<pubDate>Fri, 09 Oct 2015 12:14:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</guid>
+			<guid>https://blog.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</guid>
 			<description>&lt;p&gt;因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。</p>
 <h3 id="解决中文输入问题">解决中文输入问题</h3>
@@ -20046,10 +20046,10 @@ $ <span class="nb">export</span> <span class="nv">LESSCHARSET</span><span class=
 		
 		<item>
 			<title>超酷的高科技魔方Cubli</title>
-			<link>https://www.smslit.cn/2015/09/27/Cubli-share/</link>
+			<link>https://blog.smslit.cn/2015/09/27/Cubli-share/</link>
 			<pubDate>Sun, 27 Sep 2015 20:14:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/09/27/Cubli-share/</guid>
+			<guid>https://blog.smslit.cn/2015/09/27/Cubli-share/</guid>
 			<description>&lt;p&gt;怎么推都不倒！超酷的高科技魔方Cubli&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>怎么推都不倒！超酷的高科技魔方Cubli</p>
 <p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/share/cubi/cubli.mp4" poster="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/share/cubi/cubli.jpg" controls="controls" width="100%">Cubli</video></p>]]></content>
@@ -20057,10 +20057,10 @@ $ <span class="nb">export</span> <span class="nv">LESSCHARSET</span><span class=
 		
 		<item>
 			<title>linux下文件打包及解压缩</title>
-			<link>https://www.smslit.cn/2015/09/12/linux-zipUnzip/</link>
+			<link>https://blog.smslit.cn/2015/09/12/linux-zipUnzip/</link>
 			<pubDate>Sat, 12 Sep 2015 14:00:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/09/12/linux-zipUnzip/</guid>
+			<guid>https://blog.smslit.cn/2015/09/12/linux-zipUnzip/</guid>
 			<description>&lt;p&gt;本文是关于linux下文件打包和解压缩的学习记录。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文是关于linux下文件打包和解压缩的学习记录。</p>
 <p>windows中常用的压缩格式不外乎zip，rar，7z三种格式，而到了linux除了这三种压缩格式还有很多：gz,xz,bz2,tar,tar.gz,tar.xz,tar.bz2，简单介绍如下：</p>
@@ -20283,10 +20283,10 @@ $ tar -xzf test.tar.gz
 		
 		<item>
 			<title>Fedora Linux下将终端改用zsh</title>
-			<link>https://www.smslit.cn/2015/08/26/zshFedoraLinux/</link>
+			<link>https://blog.smslit.cn/2015/08/26/zshFedoraLinux/</link>
 			<pubDate>Wed, 26 Aug 2015 17:55:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/08/26/zshFedoraLinux/</guid>
+			<guid>https://blog.smslit.cn/2015/08/26/zshFedoraLinux/</guid>
 			<description>&lt;p&gt;本文将介绍如何在Fedora Linux下从bash进入zsh阵营。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍如何在Fedora Linux下从bash进入zsh阵营。</p>
 <h4 id="简说">简说</h4>
@@ -20337,10 +20337,10 @@ $ tar -xzf test.tar.gz
 		
 		<item>
 			<title>Fedora Linux下安装Jekyll</title>
-			<link>https://www.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</link>
+			<link>https://blog.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</link>
 			<pubDate>Mon, 24 Aug 2015 17:55:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</guid>
+			<guid>https://blog.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</guid>
 			<description>&lt;p&gt;本文将介绍如何在Fedora Linux下安装Jekyll。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍如何在Fedora Linux下安装Jekyll。</p>
 <h3 id="简说">简说</h3>
@@ -20438,10 +20438,10 @@ $ tar -xzf test.tar.gz
 		
 		<item>
 			<title>Jekyll博客添中添加优酷视频</title>
-			<link>https://www.smslit.cn/2015/08/22/jekyllAddVideoShare/</link>
+			<link>https://blog.smslit.cn/2015/08/22/jekyllAddVideoShare/</link>
 			<pubDate>Sat, 22 Aug 2015 17:55:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/08/22/jekyllAddVideoShare/</guid>
+			<guid>https://blog.smslit.cn/2015/08/22/jekyllAddVideoShare/</guid>
 			<description>&lt;p&gt;本文将介绍如何为用jekyll生成的博客添加优酷视频。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍如何为用jekyll生成的博客添加优酷视频。</p>
 <h3 id="简说">简说</h3>
@@ -20472,10 +20472,10 @@ $ tar -xzf test.tar.gz
 		
 		<item>
 			<title>Project Soli 谷歌超精细手势识别</title>
-			<link>https://www.smslit.cn/2015/08/22/googleProjectSoli-share/</link>
+			<link>https://blog.smslit.cn/2015/08/22/googleProjectSoli-share/</link>
 			<pubDate>Sat, 22 Aug 2015 08:14:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/08/22/googleProjectSoli-share/</guid>
+			<guid>https://blog.smslit.cn/2015/08/22/googleProjectSoli-share/</guid>
 			<description>&lt;p&gt;除了Google X，我们还应该了解Google的ATAP部门，这里将分享这个部门的Project Soli，绝对的黑科技，想象一下，今后打个响指，手指搓一搓，你的可穿戴设备就播放音乐，调节音量了，是不是想想都兴奋了？&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>除了Google X，我们还应该了解Google的ATAP部门，这里将分享这个部门的Project Soli，绝对的黑科技，想象一下，今后打个响指，手指搓一搓，你的可穿戴设备就播放音乐，调节音量了，是不是想想都兴奋了？</p>
 <p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/okls7.png" alt="1"></p>
@@ -20490,10 +20490,10 @@ $ tar -xzf test.tar.gz
 		
 		<item>
 			<title>Sublime Text 3安装及简单配置</title>
-			<link>https://www.smslit.cn/2015/08/19/sublimeText/</link>
+			<link>https://blog.smslit.cn/2015/08/19/sublimeText/</link>
 			<pubDate>Wed, 19 Aug 2015 14:14:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/08/19/sublimeText/</guid>
+			<guid>https://blog.smslit.cn/2015/08/19/sublimeText/</guid>
 			<description>&lt;p&gt;本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。</p>
 <h3 id="前言"><strong>前言</strong></h3>
@@ -20560,10 +20560,10 @@ $ tar -xzf test.tar.gz
 		
 		<item>
 			<title>Mac/Fedora22下STM32的Eclipse开发环境搭建</title>
-			<link>https://www.smslit.cn/2015/07/25/stm32eclipse/</link>
+			<link>https://blog.smslit.cn/2015/07/25/stm32eclipse/</link>
 			<pubDate>Sat, 25 Jul 2015 17:55:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/07/25/stm32eclipse/</guid>
+			<guid>https://blog.smslit.cn/2015/07/25/stm32eclipse/</guid>
 			<description>&lt;p&gt;本文将介绍如何在MacOSX平台下STM32的Eclipse开发环境的搭建。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍如何在MacOSX平台下STM32的Eclipse开发环境的搭建。</p>
 <h2 id="提示">提示</h2>
@@ -20742,10 +20742,10 @@ make
 		
 		<item>
 			<title>Jekyll博客添加分享功能</title>
-			<link>https://www.smslit.cn/2015/07/19/jekyllShare/</link>
+			<link>https://blog.smslit.cn/2015/07/19/jekyllShare/</link>
 			<pubDate>Sun, 19 Jul 2015 23:55:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/07/19/jekyllShare/</guid>
+			<guid>https://blog.smslit.cn/2015/07/19/jekyllShare/</guid>
 			<description>&lt;p&gt;本文将介绍如何为用jekyll生成的博客添加网页及图片分享的功能。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍如何为用jekyll生成的博客添加网页及图片分享的功能。</p>
 <h3 id="简说">简说</h3>
@@ -20790,10 +20790,10 @@ make
 		
 		<item>
 			<title>Jekyll博客添加多说评论</title>
-			<link>https://www.smslit.cn/2015/07/16/jekyllCommit/</link>
+			<link>https://blog.smslit.cn/2015/07/16/jekyllCommit/</link>
 			<pubDate>Thu, 16 Jul 2015 23:07:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/07/16/jekyllCommit/</guid>
+			<guid>https://blog.smslit.cn/2015/07/16/jekyllCommit/</guid>
 			<description>&lt;p&gt;jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。</p>
 <h3 id="多说的介绍">『多说』的介绍</h3>
@@ -20873,10 +20873,10 @@ make
 		
 		<item>
 			<title>vim的使用入门</title>
-			<link>https://www.smslit.cn/2015/07/16/vimtution/</link>
+			<link>https://blog.smslit.cn/2015/07/16/vimtution/</link>
 			<pubDate>Thu, 16 Jul 2015 02:44:46 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2015/07/16/vimtution/</guid>
+			<guid>https://blog.smslit.cn/2015/07/16/vimtution/</guid>
 			<description>&lt;p&gt;Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。</p>
 <p>###声明：
@@ -20974,10 +20974,10 @@ make
 		
 		<item>
 			<title>Arduino UNO R3 软件实现HID键盘功能</title>
-			<link>https://www.smslit.cn/2014/03/27/ArduinoUnoHIDKeyboard/</link>
+			<link>https://blog.smslit.cn/2014/03/27/ArduinoUnoHIDKeyboard/</link>
 			<pubDate>Thu, 27 Mar 2014 17:11:40 +0800</pubDate>
 			
-			<guid>https://www.smslit.cn/2014/03/27/ArduinoUnoHIDKeyboard/</guid>
+			<guid>https://blog.smslit.cn/2014/03/27/ArduinoUnoHIDKeyboard/</guid>
 			<description>&lt;p&gt;本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。&lt;/p&gt;
 &lt;p&gt;本文搬自我之前在Arduino中文社区的帖子-&lt;a href=&#34;http://www.arduino.cn/thread-5107-1-1.html&#34;&gt;UNO R3 软件实现HID键盘功能&lt;/a&gt;，所以本文的时间节点与帖子一致。在Arduino中文社区里我叫bboxer，我真的会bbox幺，B h S h~，哈哈！&lt;/p&gt;</description>
 			<content type="html"><![CDATA[<p>本文将介绍如何用Arduino UNO R3 软件实现HID键盘功能。</p>

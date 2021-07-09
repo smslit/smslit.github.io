@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gem on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/gem/</link>
+    <link>https://blog.smslit.cn/tags/gem/</link>
     <description>Recent content in gem on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 21 Mar 2016 17:10:46 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/gem/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Mar 2016 17:10:46 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/gem/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Gem添加软件源时SSl错误解决</title>
-      <link>https://www.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</link>
+      <link>https://blog.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</link>
       <pubDate>Mon, 21 Mar 2016 17:10:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</guid>
+      <guid>https://blog.smslit.cn/2016/03/21/gem-ssl-error-jekyll/</guid>
       <description>&lt;p&gt;windows下在用gem添加taobao的软件源时出现了ssl认证错误，是因为ruby没有包含ssl证书，所以需要通过下载和配置证书来解决。&lt;/p&gt;</description>
     </item>
     

@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ai on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/ai/</link>
+    <link>https://blog.smslit.cn/tags/ai/</link>
     <description>Recent content in ai on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 03 Dec 2020 13:30:33 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Dec 2020 13:30:33 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Paddle Inference 推理动态链接库 libnvinfer.so 问题</title>
-      <link>https://www.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</link>
+      <link>https://blog.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</link>
       <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</guid>
+      <guid>https://blog.smslit.cn/2020/12/03/Paddle-Inference-libnvinfer.so/</guid>
       <description>执行推理时会提示 TensorRT 的动态链接库缺失的问题： TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory) Suggestions: Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed. Configure TensorRT dynamic library environment variables as</description>
     </item>
     
     <item>
       <title>最简单的人工智能(皮一下)</title>
-      <link>https://www.smslit.cn/2018/12/17/simple_ai_stupid/</link>
+      <link>https://blog.smslit.cn/2018/12/17/simple_ai_stupid/</link>
       <pubDate>Mon, 17 Dec 2018 16:35:58 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2018/12/17/simple_ai_stupid/</guid>
+      <guid>https://blog.smslit.cn/2018/12/17/simple_ai_stupid/</guid>
       <description>&lt;p&gt;有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[&lt;a href=&#34;https://github.com/ruanyf/weekly/issues/158&#34;&gt;图片：估值一个亿的代码&lt;/a&gt;]！&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>

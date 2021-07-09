@@ -2,82 +2,82 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jekyll on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/jekyll/</link>
+    <link>https://blog.smslit.cn/tags/jekyll/</link>
     <description>Recent content in jekyll on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 15 Apr 2016 19:14:39 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Apr 2016 19:14:39 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用rake生成jekyll静态博客新文章</title>
-      <link>https://www.smslit.cn/2016/04/15/rake-new-post/</link>
+      <link>https://blog.smslit.cn/2016/04/15/rake-new-post/</link>
       <pubDate>Fri, 15 Apr 2016 19:14:39 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2016/04/15/rake-new-post/</guid>
+      <guid>https://blog.smslit.cn/2016/04/15/rake-new-post/</guid>
       <description>&lt;p&gt;使用了Jekyll也有9个月了，虽然写的博文不多，但也是会觉得每次写新文章是痛苦的。复制粘贴再更改也是显得不够条理，一个字一个字的敲也是痛苦的，索性搜索一下有没有好的方法，终于找到了一个好办法，利用ruby插件rake来完成。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jekyll博文内链和返回顶部按钮</title>
-      <link>https://www.smslit.cn/2015/10/28/backToTop-Jekyll/</link>
+      <link>https://blog.smslit.cn/2015/10/28/backToTop-Jekyll/</link>
       <pubDate>Wed, 28 Oct 2015 12:00:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/28/backToTop-Jekyll/</guid>
+      <guid>https://blog.smslit.cn/2015/10/28/backToTop-Jekyll/</guid>
       <description>&lt;p&gt;有些时候，写的文章会很长，在开始看的时候，有目录会很方便，能即刻跳到需要阅读的地方，为了更方便回到顶部目录的地方，还得需要添加返回顶部的按钮，本文就说一下Jekyll博文用markdown书写时为文章添加锚点和返回顶部按钮。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jekyll博文图片居中</title>
-      <link>https://www.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</link>
+      <link>https://blog.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</link>
       <pubDate>Thu, 15 Oct 2015 17:34:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</guid>
+      <guid>https://blog.smslit.cn/2015/10/15/PostImgCenter-Jekyll/</guid>
       <description>&lt;p&gt;在写jekyll博文时，发现写出的文章里图片都是居左的，不是很美观，为了使图片居中，试过了text-align，发现不好使，网上搜寻找到了有效的办法。&lt;/p&gt;
 &lt;p&gt;当然此种居中方法适用于大部分css样式配置，不仅局限于jekyll博文。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jekyll编译出现ivalid GBK问题</title>
-      <link>https://www.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</link>
+      <link>https://blog.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</link>
       <pubDate>Fri, 09 Oct 2015 12:34:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</guid>
+      <guid>https://blog.smslit.cn/2015/10/09/JekyllServeInvalidGBK-jekyll/</guid>
       <description>&lt;p&gt;不知什么原因，在用jekyll serve生成本地网页时出现了ivalid GBK问题，因为jekyll利用的是ruby，应该是ruby的编译错误。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Fedora Linux下安装Jekyll</title>
-      <link>https://www.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</link>
+      <link>https://blog.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</link>
       <pubDate>Mon, 24 Aug 2015 17:55:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</guid>
+      <guid>https://blog.smslit.cn/2015/08/24/jekyllInstallFedoraLinux/</guid>
       <description>&lt;p&gt;本文将介绍如何在Fedora Linux下安装Jekyll。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jekyll博客添中添加优酷视频</title>
-      <link>https://www.smslit.cn/2015/08/22/jekyllAddVideoShare/</link>
+      <link>https://blog.smslit.cn/2015/08/22/jekyllAddVideoShare/</link>
       <pubDate>Sat, 22 Aug 2015 17:55:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/08/22/jekyllAddVideoShare/</guid>
+      <guid>https://blog.smslit.cn/2015/08/22/jekyllAddVideoShare/</guid>
       <description>&lt;p&gt;本文将介绍如何为用jekyll生成的博客添加优酷视频。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jekyll博客添加分享功能</title>
-      <link>https://www.smslit.cn/2015/07/19/jekyllShare/</link>
+      <link>https://blog.smslit.cn/2015/07/19/jekyllShare/</link>
       <pubDate>Sun, 19 Jul 2015 23:55:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/07/19/jekyllShare/</guid>
+      <guid>https://blog.smslit.cn/2015/07/19/jekyllShare/</guid>
       <description>&lt;p&gt;本文将介绍如何为用jekyll生成的博客添加网页及图片分享的功能。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jekyll博客添加多说评论</title>
-      <link>https://www.smslit.cn/2015/07/16/jekyllCommit/</link>
+      <link>https://blog.smslit.cn/2015/07/16/jekyllCommit/</link>
       <pubDate>Thu, 16 Jul 2015 23:07:46 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2015/07/16/jekyllCommit/</guid>
+      <guid>https://blog.smslit.cn/2015/07/16/jekyllCommit/</guid>
       <description>&lt;p&gt;jekyll生成的blog，虽然是静态轻量级的和静态的，但我们仍然可以尽量在功能上使其成为一个一个完整的博客。静态博客要实现评论功能必须依赖第三方评论系统，本文将介绍如何为自己的博客添加评论的功能。&lt;/p&gt;</description>
     </item>
     

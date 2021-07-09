@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>anaconda on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/anaconda/</link>
+    <link>https://blog.smslit.cn/tags/anaconda/</link>
     <description>Recent content in anaconda on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 02 Mar 2017 12:13:06 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/anaconda/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Mar 2017 12:13:06 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/anaconda/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Anaconda闪退</title>
-      <link>https://www.smslit.cn/2017/03/02/anacondaQuit/</link>
+      <link>https://blog.smslit.cn/2017/03/02/anacondaQuit/</link>
       <pubDate>Thu, 02 Mar 2017 12:13:06 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2017/03/02/anacondaQuit/</guid>
+      <guid>https://blog.smslit.cn/2017/03/02/anacondaQuit/</guid>
       <description>&lt;p&gt;春节前终于下定了决心，分期买了2016款的 macbook pro，也就是水木口中的“十里的大情人”，确实很激动，很开心！之前有台 mac mini ，有做备份，当时将备份恢复到“大情人”了，一直没有用 Anaconda ，今天一用发现启动竟然闪退。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Anaconda包管理工具conda包下载加速</title>
-      <link>https://www.smslit.cn/2016/09/24/anaconda-speed-dev/</link>
+      <link>https://blog.smslit.cn/2016/09/24/anaconda-speed-dev/</link>
       <pubDate>Sat, 24 Sep 2016 22:30:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2016/09/24/anaconda-speed-dev/</guid>
+      <guid>https://blog.smslit.cn/2016/09/24/anaconda-speed-dev/</guid>
       <description>&lt;p&gt;好久没有发文章了，最近有些迷茫，加上实习工作的原因，人变得有些疲劳，过去那种乐于研究有趣东西的兴致被冲淡了，但这几天终于鼓起勇气拿起了几个星期前买的书《Python科学计算》，决定学习一下，用作自己硕士课题的一个研究工具，来替代matlab。Matlab收费，用不起，而python是开源的，同时还有很多优秀的IDE，也都是免费的；但我更看重的是python在如今的地位，废话不多说了，进入主题吧。&lt;/p&gt;</description>
     </item>
     

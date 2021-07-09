@@ -2,99 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/</link>
+    <link>https://blog.smslit.cn/tags/</link>
     <description>Recent content in Tags on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 30 Apr 2021 21:51:16 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Apr 2021 21:51:16 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>daily</title>
-      <link>https://www.smslit.cn/tags/daily/</link>
+      <link>https://blog.smslit.cn/tags/daily/</link>
       <pubDate>Fri, 30 Apr 2021 21:51:16 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/daily/</guid>
+      <guid>https://blog.smslit.cn/tags/daily/</guid>
       <description></description>
     </item>
     
     <item>
       <title>deeplearning</title>
-      <link>https://www.smslit.cn/tags/deeplearning/</link>
+      <link>https://blog.smslit.cn/tags/deeplearning/</link>
       <pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/deeplearning/</guid>
+      <guid>https://blog.smslit.cn/tags/deeplearning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>detection</title>
-      <link>https://www.smslit.cn/tags/detection/</link>
+      <link>https://blog.smslit.cn/tags/detection/</link>
       <pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/detection/</guid>
+      <guid>https://blog.smslit.cn/tags/detection/</guid>
       <description></description>
     </item>
     
     <item>
       <title>paddlepaddle</title>
-      <link>https://www.smslit.cn/tags/paddlepaddle/</link>
+      <link>https://blog.smslit.cn/tags/paddlepaddle/</link>
       <pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/paddlepaddle/</guid>
+      <guid>https://blog.smslit.cn/tags/paddlepaddle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>train</title>
-      <link>https://www.smslit.cn/tags/train/</link>
+      <link>https://blog.smslit.cn/tags/train/</link>
       <pubDate>Thu, 15 Apr 2021 11:31:38 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/train/</guid>
+      <guid>https://blog.smslit.cn/tags/train/</guid>
       <description></description>
     </item>
     
     <item>
       <title>deep learning</title>
-      <link>https://www.smslit.cn/tags/deep-learning/</link>
+      <link>https://blog.smslit.cn/tags/deep-learning/</link>
       <pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/deep-learning/</guid>
+      <guid>https://blog.smslit.cn/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>faster-rcnn</title>
-      <link>https://www.smslit.cn/tags/faster-rcnn/</link>
+      <link>https://blog.smslit.cn/tags/faster-rcnn/</link>
       <pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/faster-rcnn/</guid>
+      <guid>https://blog.smslit.cn/tags/faster-rcnn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mmdetection</title>
-      <link>https://www.smslit.cn/tags/mmdetection/</link>
+      <link>https://blog.smslit.cn/tags/mmdetection/</link>
       <pubDate>Fri, 11 Dec 2020 14:19:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/mmdetection/</guid>
+      <guid>https://blog.smslit.cn/tags/mmdetection/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ai</title>
-      <link>https://www.smslit.cn/tags/ai/</link>
+      <link>https://blog.smslit.cn/tags/ai/</link>
       <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/ai/</guid>
+      <guid>https://blog.smslit.cn/tags/ai/</guid>
       <description></description>
     </item>
     
     <item>
       <title>paddle</title>
-      <link>https://www.smslit.cn/tags/paddle/</link>
+      <link>https://blog.smslit.cn/tags/paddle/</link>
       <pubDate>Thu, 03 Dec 2020 13:30:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/tags/paddle/</guid>
+      <guid>https://blog.smslit.cn/tags/paddle/</guid>
       <description></description>
     </item>
     

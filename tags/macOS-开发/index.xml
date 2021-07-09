@@ -2,99 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>macOS 开发 on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/macOS-%E5%BC%80%E5%8F%91/</link>
+    <link>https://blog.smslit.cn/tags/macOS-%E5%BC%80%E5%8F%91/</link>
     <description>Recent content in macOS 开发 on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/macOS-%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/macOS-%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
-      <link>https://www.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</link>
+      <link>https://blog.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</link>
       <pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</guid>
+      <guid>https://blog.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</guid>
       <description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
     </item>
     
     <item>
       <title>macOS 开发之菜单栏形式的状态栏小工具</title>
-      <link>https://www.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</link>
+      <link>https://blog.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</link>
       <pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</guid>
+      <guid>https://blog.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</guid>
       <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
     </item>
     
     <item>
       <title>macOS 开发之 Windows 和 WindowController</title>
-      <link>https://www.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
+      <link>https://blog.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</link>
       <pubDate>Mon, 01 Apr 2019 08:20:10 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
+      <guid>https://blog.smslit.cn/2019/04/01/macOS-dev-windows-and-windowcontroller/</guid>
       <description>本文带大家一起简单学习如何开发一个基于文档的 Cocoa 应用(document based Cocoa App)，并学习如何使用模态窗口(Modal Windows) 以及 macOS Sierra 支持的标签窗口</description>
     </item>
     
     <item>
       <title>macOS 开发之 Swift 的 Codable</title>
-      <link>https://www.smslit.cn/2019/03/24/macOS-dev-swift-codable/</link>
+      <link>https://blog.smslit.cn/2019/03/24/macOS-dev-swift-codable/</link>
       <pubDate>Sun, 24 Mar 2019 16:49:16 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/24/macOS-dev-swift-codable/</guid>
+      <guid>https://blog.smslit.cn/2019/03/24/macOS-dev-swift-codable/</guid>
       <description>近日研究了一下如何将自定义类型数据持久化，在研究过程中发现 Swift 的 Codable 真的很方便，觉得有必要写一写这个 Codable，在本文一起探讨一下以下三个方</description>
     </item>
     
     <item>
       <title>macOS 开发之本地消息通知</title>
-      <link>https://www.smslit.cn/2019/03/17/macOS-dev-local-notification/</link>
+      <link>https://blog.smslit.cn/2019/03/17/macOS-dev-local-notification/</link>
       <pubDate>Sun, 17 Mar 2019 11:33:15 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/17/macOS-dev-local-notification/</guid>
+      <guid>https://blog.smslit.cn/2019/03/17/macOS-dev-local-notification/</guid>
       <description>macOS 中的消息推送分为本地消息通知和远程消息通知，本文十里将介绍一下本地消息通知，展示一些常规的使用方法，方便大家了解本地消息推送的实现过程。 开</description>
     </item>
     
     <item>
       <title>macOS 开发之 NSTextField 文本的垂直居中</title>
-      <link>https://www.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
+      <link>https://blog.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</link>
       <pubDate>Sun, 10 Mar 2019 15:26:20 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
+      <guid>https://blog.smslit.cn/2019/03/10/macOS-dev-vertically-centered-textfield/</guid>
       <description>在 macOS 开发中不知道您是否为 NSTextField 的垂直居中的问题困扰过呢！从今天这篇文章开始，这个问题将不再是问题，本文将介绍一种可以实现 NSTextField 垂直居中的方法，大概可</description>
     </item>
     
     <item>
       <title>快快拿走，Xcode 常用快捷键</title>
-      <link>https://www.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</link>
+      <link>https://blog.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</link>
       <pubDate>Thu, 07 Mar 2019 14:42:16 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
+      <guid>https://blog.smslit.cn/2019/03/07/mac-dev-keyboard-shortcuts/</guid>
       <description>无论您进行 macOS 开发还是 iOS 开发，大多数情况下都会用到 Xcode，那么本文就分享一下十里整理的常用快捷键，希望对您有所帮助！ 说明 Xocde 的快捷键不会随着</description>
     </item>
     
     <item>
       <title>macOS 开发之定时器的使用</title>
-      <link>https://www.smslit.cn/2019/03/05/macOS-dev-timer/</link>
+      <link>https://blog.smslit.cn/2019/03/05/macOS-dev-timer/</link>
       <pubDate>Tue, 05 Mar 2019 15:43:00 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/05/macOS-dev-timer/</guid>
+      <guid>https://blog.smslit.cn/2019/03/05/macOS-dev-timer/</guid>
       <description>前段时间开发了一款状态栏小工具 时光(Time Go) ，它用到了定时器，近期十里在想大家会不会也有用定时器的需求呢！所以呢，写本文意在分享 macOS 开发中关</description>
     </item>
     
     <item>
       <title>已开源 app 实现检查更新的简单方式</title>
-      <link>https://www.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</link>
+      <link>https://blog.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</link>
       <pubDate>Sun, 03 Mar 2019 09:38:27 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</guid>
+      <guid>https://blog.smslit.cn/2019/03/03/macOS-dev-simple-check-update/</guid>
       <description>如果您开发的 app 没有上架 app store，那么您肯定会考虑如何保证用户及时收到 app 更新的问题，如果您的项目是开源在某个托管平台的，那么本文就提供一种</description>
     </item>
     
     <item>
       <title>macOS 开发之本地化工具 bartycrouch 4 使用教程</title>
-      <link>https://www.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</link>
+      <link>https://blog.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</link>
       <pubDate>Fri, 01 Mar 2019 08:59:33 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
+      <guid>https://blog.smslit.cn/2019/03/01/macOS-dev-bartycrouch4-tutorial/</guid>
       <description>前些日子写了三篇关于 macOS app 本地化的文章，在文章中用到了一个名为 bartycrouch 的工具，当时十里安装的 bartycrouch 版本是 v3.13.3，昨天升级了 bartycrouch 现在是 v4.0.0 ，发现使用方</description>
     </item>
     

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>project on SMSLIT</title>
-    <link>https://www.smslit.cn/tags/project/</link>
+    <link>https://blog.smslit.cn/tags/project/</link>
     <description>Recent content in project on SMSLIT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 08 Jan 2019 04:35:37 +0800</lastBuildDate><atom:link href="https://www.smslit.cn/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Jan 2019 04:35:37 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/project/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TimeGO 一款轻量简洁的计时提醒 app</title>
-      <link>https://www.smslit.cn/2019/01/08/timeGO/</link>
+      <link>https://blog.smslit.cn/2019/01/08/timeGO/</link>
       <pubDate>Tue, 08 Jan 2019 04:35:37 +0800</pubDate>
       
-      <guid>https://www.smslit.cn/2019/01/08/timeGO/</guid>
+      <guid>https://blog.smslit.cn/2019/01/08/timeGO/</guid>
       <description>&lt;p&gt;之前了解到番茄工作法，一直寻找一款轻量的番茄钟的 macOS app，结果市面上的 app 一般都很重，带一些自己并不需要的功能，好不容易找到一个叫 &lt;a href=&#34;https://toolinbox.net/iTimer/&#34;&gt;iTimer&lt;/a&gt; 的 app，结果它只包含两个时间设置，添加自定义的竟然收费！算了，功能比较简单，那自己开发一款可以用作番茄钟的计时提醒 app 得了，便有了 &lt;strong&gt;timeGO&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     

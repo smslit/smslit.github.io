@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>terminal on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/terminal/</link>
+    <description>Recent content in terminal on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Fri, 01 May 2020 08:10:24 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客现已支持 Asciinema</title>
+      <link>https://blog.smslit.cn/2020/05/01/asciinema/</link>
+      <pubDate>Fri, 01 May 2020 08:10:24 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2020/05/01/asciinema/</guid>
+      <description>前几天好朋友分享给我一个工具，叫 asciinema。经了解，发现这真是个好东西！ 这玩意儿能记录在终端的命令操作过程，最终记录文件并不是视频文</description>
+    </item>
+    
+    <item>
+      <title>python 实现命令行工具 tee</title>
+      <link>https://blog.smslit.cn/2018/10/24/tee-Python/</link>
+      <pubDate>Wed, 24 Oct 2018 17:58:19 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/10/24/tee-Python/</guid>
+      <description>&lt;p&gt;最近，朋友 &lt;a href=&#34;http://www.litreily.top&#34;&gt;Litreily&lt;/a&gt; 发表了文章&lt;a href=&#34;http://www.litreily.top/2018/09/27/tee/&#34;&gt;Linux指令 - tee的实现&lt;/a&gt; ，是用 C 语言实现的 tee 命令，那我凑个热闹用 python 实现一下下！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181025154039778364827.png&#34; alt=&#34;20181025154039778364827.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决mac终端ssh登录linux中文乱码问题</title>
+      <link>https://blog.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</link>
+      <pubDate>Thu, 07 Sep 2017 16:34:12 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</guid>
+      <description>&lt;p&gt;mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux下文件打包及解压缩</title>
+      <link>https://blog.smslit.cn/2015/09/12/linux-zipUnzip/</link>
+      <pubDate>Sat, 12 Sep 2015 14:00:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/09/12/linux-zipUnzip/</guid>
+      <description>&lt;p&gt;本文是关于linux下文件打包和解压缩的学习记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

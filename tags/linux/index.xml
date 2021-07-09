@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/linux/</link>
+    <description>Recent content in linux on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 20 Dec 2018 14:49:08 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mac 下使用 Docker 搭建 ubuntu 环境</title>
+      <link>https://blog.smslit.cn/2018/12/20/docker_ubuntu_learn/</link>
+      <pubDate>Thu, 20 Dec 2018 14:49:08 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/12/20/docker_ubuntu_learn/</guid>
+      <description>&lt;p&gt;学习网络开发过程中不想“污染”macOS，考虑到之后部署网络应用主要是与linux打交道，所以安装了 ubuntu 虚拟机以满足短期的知识学习需求。十里安装了 ubuntu 虚拟机，一般就是在 mac 中 ssh 连接 ubuntu 虚拟机在终端下进行操作学习，可见安装一个包含完整GUI的 ubuntu 有点多余，还占用很多资源！所以想到了使用 docker 来创建 ubuntu 容器用来开发学习，本文就分享一下这个过程！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181220150817.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ubuntu 下 mysql 拒绝访问问题</title>
+      <link>https://blog.smslit.cn/2018/12/19/ubuntu_mysql_permission/</link>
+      <pubDate>Wed, 19 Dec 2018 20:45:52 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/12/19/ubuntu_mysql_permission/</guid>
+      <description>&lt;p&gt;今天在 ubuntu 中安装 mysql 后出现 &lt;code&gt;Access denied for user &#39;root&#39;@&#39;localhost&#39;&lt;/code&gt; 问题，整个安装过程中也没有提示要设置用户和密码呀，咋就拒绝访问了呢，本文就解决一下这个问题！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fedora使用笔记</title>
+      <link>https://blog.smslit.cn/2016/04/28/fedora-note/</link>
+      <pubDate>Thu, 28 Apr 2016 15:17:29 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/04/28/fedora-note/</guid>
+      <description>&lt;p&gt;俗话说得好，好记性不如烂笔头，曾经解决过的问题，再次遇到还要再花大量时间去解决，不能忍呀，在fedora的使用过程中，难免遇到好多问题，本文记录在使用Fedora过程中部分遇到的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>系统及编辑器的字体设置</title>
+      <link>https://blog.smslit.cn/2016/04/28/font-settings/</link>
+      <pubDate>Thu, 28 Apr 2016 09:20:28 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/04/28/font-settings/</guid>
+      <description>&lt;p&gt;最近在用Linux，实在是受不了中文字体的显示了，终端里面设置了Source Code Pro字体，这英文字体很棒，适合做编程字体，但显示的中文可以难看到哭。索性在本文说一下怎么能在使用好看的英文字体的同时，可以显示你喜欢的中文字体，另外也整理一下编辑器中字体的设置方法，如Atom、ST等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux下配置Swift开发环境和初步使用</title>
+      <link>https://blog.smslit.cn/2016/04/16/install-use-swift/</link>
+      <pubDate>Sat, 16 Apr 2016 16:13:36 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/04/16/install-use-swift/</guid>
+      <description>&lt;p&gt;不想干活了，整理一下如何在Linux下配置Swift的开发环境和初步的使用，如果你是圈内人你肯定清楚Swift，否则你会有疑问Swift是什么鬼，你以为我会在这里告诉你Swift的详细内容吗？就一句话Swift是Apple公司在2014年开发者大会上发布的一门新的开发语言（详细内容还是问谷哥或者&lt;a href=&#34;https://swift.org/about/#swiftorg-and-open-source&#34;&gt;点我&lt;/a&gt;吧或者&lt;a href=&#34;http://wiki.jikexueyuan.com/project/swift/chapter1/01_swift.html&#34;&gt;戳我&lt;/a&gt;！）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux下使用CC Debugger读写芯片程序</title>
+      <link>https://blog.smslit.cn/2016/04/15/ccdebugger-linux-ble/</link>
+      <pubDate>Fri, 15 Apr 2016 15:34:19 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/04/15/ccdebugger-linux-ble/</guid>
+      <description>&lt;p&gt;有个事情一直困扰着我，我一般使用ubuntu linux系统，但当要用CC Debugger为TI的一些芯片烧写程序的时候，不得不切换到windows系统，太麻烦了，难道linux下不能用CC Debugger吗？我就带着这个问题问了一下谷哥，他果然什么都知道，得知cc-tool的存在，是一个老开源项目了，什么？我咋才知道呀！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux下Sublime Text支持中文输入</title>
+      <link>https://blog.smslit.cn/2016/03/26/subl-ChineseInput-Linux/</link>
+      <pubDate>Sat, 26 Mar 2016 09:10:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/03/26/subl-ChineseInput-Linux/</guid>
+      <description>&lt;p&gt;sublime Text是一款非常好用的代码文本编辑器，在我的其它文章中有过介绍它的安装，使用后发现在linux下Sublime text下中文输入法失效，不能输入中文，本文就讲解一下如何解决。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu下配置JDK</title>
+      <link>https://blog.smslit.cn/2016/03/24/JDKConfig-Linux/</link>
+      <pubDate>Thu, 24 Mar 2016 09:10:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/03/24/JDKConfig-Linux/</guid>
+      <description>&lt;p&gt;在使用某些软件或者要进行Android或者Java开发的话，需要配置java的环境变量，本文就来讲一下安装和配置jdk的步骤。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux下Arduino USB to TTL 权限问题解决</title>
+      <link>https://blog.smslit.cn/2015/12/04/usbttlInLinux-Arduino/</link>
+      <pubDate>Fri, 04 Dec 2015 10:00:00 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/12/04/usbttlInLinux-Arduino/</guid>
+      <description>&lt;p&gt;在Linux中高高兴兴的安装完了Arduino，结果编译下载程序时发现竟然出错，不能下载程序，本文就来说一下这个问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux下文件打包及解压缩</title>
+      <link>https://blog.smslit.cn/2015/09/12/linux-zipUnzip/</link>
+      <pubDate>Sat, 12 Sep 2015 14:00:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/09/12/linux-zipUnzip/</guid>
+      <description>&lt;p&gt;本文是关于linux下文件打包和解压缩的学习记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/git/</link>
+    <description>Recent content in git on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 02 Nov 2015 12:00:00 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git之SSH密钥实现免密码</title>
+      <link>https://blog.smslit.cn/2015/11/02/sshkey-git/</link>
+      <pubDate>Mon, 02 Nov 2015 12:00:00 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/11/02/sshkey-git/</guid>
+      <description>&lt;p&gt;SSH密钥用于免密码git操作时验证信任的客户端。下面将说一下生成SSH密钥和将SSH密钥添加到对应git账户（不特指github，其他平台也可以如coding）的步骤。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决windows下git bash中文乱码问题</title>
+      <link>https://blog.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</link>
+      <pubDate>Fri, 09 Oct 2015 12:14:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/10/09/GitBashChineseCodeGarbled-Git/</guid>
+      <description>&lt;p&gt;因为windows下默认编码并不是一般项目使用的UTF-8，所以在使用git bash时总会出现乱码现象，本文仅就我在使用git bash时出现的问题提出解决办法，并整理别人出现的问题及解决方法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>develop on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/develop/</link>
+    <description>Recent content in develop on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 24 Oct 2019 07:30:12 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/develop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>macOS 开发之状态栏小工具分别响应鼠标左右键单击</title>
+      <link>https://blog.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</link>
+      <pubDate>Thu, 24 Oct 2019 07:30:12 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/10/24/macOS-dev-menu-mouse/</guid>
+      <description>上一篇文章 macOS 开发之菜单栏形式的状态栏小工具 讲述了如何开发菜单栏形式的状态栏小工具，大家可能已经发现，我们无论使用鼠标左键还是右键单击菜单栏图</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之菜单栏形式的状态栏小工具</title>
+      <link>https://blog.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</link>
+      <pubDate>Tue, 22 Oct 2019 16:46:21 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/10/22/macOS-dev-basic-nsmenu/</guid>
+      <description>不知道大家有没有用过菜单栏形式的状态栏工具，类似于之前写的 NSPopover 的工具在系统顶栏占用一个图标，不同的是点击之后弹出的不是弹窗而是一个菜单，就像下</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
+      <link>https://blog.smslit.cn/2019/08/24/platformio-stm32-cubemx/</link>
+      <pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/24/platformio-stm32-cubemx/</guid>
+      <description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
+      <link>https://blog.smslit.cn/2019/08/21/platformio-irremote-driver/</link>
+      <pubDate>Wed, 21 Aug 2019 10:51:18 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/21/platformio-irremote-driver/</guid>
+      <description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
+      <link>https://blog.smslit.cn/2019/08/19/platformio-libraries/</link>
+      <pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/19/platformio-libraries/</guid>
+      <description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
+      <link>https://blog.smslit.cn/2019/08/18/platformio-newproject/</link>
+      <pubDate>Sun, 18 Aug 2019 17:02:01 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/18/platformio-newproject/</guid>
+      <description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
+    </item>
+    
+    <item>
+      <title>macOS 开发之实现 HTTP 的 GET 和 POST 请求</title>
+      <link>https://blog.smslit.cn/2019/01/26/get_post_cocoa/</link>
+      <pubDate>Sat, 26 Jan 2019 15:10:40 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/01/26/get_post_cocoa/</guid>
+      <description>在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift</description>
+    </item>
+    
+    <item>
+      <title>开发的 macOS app 打包为精美的 dmg</title>
+      <link>https://blog.smslit.cn/2019/01/06/mac_app_to_dmg/</link>
+      <pubDate>Sun, 06 Jan 2019 21:06:56 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/01/06/mac_app_to_dmg/</guid>
+      <description>&lt;p&gt;最近在开发一个名为 timeGO 的 macOS 应用程序，一款倒计时应用。看到网上别人家 app 的 dmg 安装包，美得很，本文就以这个 app 为例说一下如何将自己的应用发布并打包成带图标和安装提示背景的 dmg 安装包。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190106211429.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>macOS下lldb遇到_remove_dead_weakref的Import_Error</title>
+      <link>https://blog.smslit.cn/2018/09/30/lldb_weakref_error/</link>
+      <pubDate>Sun, 30 Sep 2018 12:01:47 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/09/30/lldb_weakref_error/</guid>
+      <description>&lt;p&gt;今天使用lldb遇到了_weakref的Import_Error问题，找了很久才找到合适的解决方法，开此文分享一下。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;$ lldb
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;lldb&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; script
+Traceback &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;most recent call last&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
+  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;lt;input&amp;gt;&amp;#34;&lt;/span&gt;, line 1, in &amp;lt;module&amp;gt;
+  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/copy.py&amp;#34;&lt;/span&gt;, line 52, in &amp;lt;module&amp;gt;
+    import weakref
+  File &lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/Cellar/python/2.7.15/Frameworks/Python.framework/Versions/2.7/lib/python2.7/weakref.py&amp;#34;&lt;/span&gt;, line 14, in &amp;lt;module&amp;gt;
+    from _weakref import &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;
+ImportError: cannot import name _remove_dead_weakref
+Python Interactive Interpreter. To exit, &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;quit()&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;exit()&amp;#39;&lt;/span&gt; or Ctrl-D.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>argparse 库的使用</title>
+      <link>https://blog.smslit.cn/2018/09/13/python-argparse/</link>
+      <pubDate>Thu, 13 Sep 2018 15:16:37 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/09/13/python-argparse/</guid>
+      <description>&lt;p&gt;如果您接触过命令行的话，一定感受过命令工具的使用，会有个参数的概念，比如以列表的形式列出当前目录下的所有可见文件：&lt;code&gt;ls -l&lt;/code&gt;。进行python开发的时候，也许最终会以命令行工具的形式工作，可能需要对命令参数进行处理，那么可以使用 &lt;code&gt;sys.argv&lt;/code&gt; 获取命令输入的参数列表，进行分析判断做相应处理，但随着参数项增多，这种方式会越来越复杂，而本文将要介绍的 &lt;strong&gt;argparse&lt;/strong&gt; 库，会使参数的管理变得优雅，下面一起看一下怎么使用吧！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

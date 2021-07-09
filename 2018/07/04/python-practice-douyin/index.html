@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="python实现图片的抖音效果">
+<meta itemprop="description" content="前两篇文章 Affinity Photo绘制抖音音符  和 Sketch练习稿之绘制抖音音符 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。"><meta itemprop="datePublished" content="2018-07-04T21:01:38+08:00" />
+<meta itemprop="dateModified" content="2018-07-04T21:01:38+08:00" />
+<meta itemprop="wordCount" content="1964">
+<meta itemprop="keywords" content="python," /><meta property="og:title" content="python实现图片的抖音效果" />
+<meta property="og:description" content="前两篇文章 Affinity Photo绘制抖音音符  和 Sketch练习稿之绘制抖音音符 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smslit.cn/2018/07/04/python-practice-douyin/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-07-04T21:01:38+08:00" />
+<meta property="article:modified_time" content="2018-07-04T21:01:38+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="python实现图片的抖音效果"/>
+<meta name="twitter:description" content="前两篇文章 Affinity Photo绘制抖音音符  和 Sketch练习稿之绘制抖音音符 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>python实现图片的抖音效果</title>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/asciinema.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smslit.cn">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smslit.cn/post/">Posts</a>
+				<a href="https://blog.smslit.cn/tags/">Tags</a>
+				<a href="https://blog.smslit.cn/daily/">Daily</a>
+				<a href="https://blog.smslit.cn/about/">Me</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener me" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener me" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://blog.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://blog.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://blog.smslit.cn/about/">Me</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 4, 2018</span></div>
+				<h1>python实现图片的抖音效果</h1>
+			</header>
+			<div class="content">
+				<p>前两篇文章 <a href="/2018/07/03/affinity-photo-douyin/">Affinity Photo绘制抖音音符</a>  和 <a href="/2018/07/03/sketch-practice-douyin/">Sketch练习稿之绘制抖音音符</a> 研究了如何用设计软件绘制抖音音符，本篇文章将说一下如何使用python将普通图片处理成抖音效果，甚至制作gif动图。</p>
+<h2 id="基本原理">基本原理</h2>
+<p><a href="/2018/07/03/sketch-practice-douyin/">Sketch练习稿之绘制抖音音符</a> 中讲述了抖音效果的原理，领域内可能有人称这种效果为红蓝溢出效果。按照前面文章中的描述，这里以一张图片为例简单再讲一下原理。</p>
+<p>一张正常的位图，一般 <code>jpg</code> 图片颜色方案为 <code>RGB</code>，而 <code>png</code>图片除了 <code>RGB</code>色彩通道还有 <code>A</code>通道控制透明，不过色彩配置还是一致的，以手上的图片 <code>glasses.jpg</code> 为例。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070171769240.jpg" alt=""></p>
+<p>去掉 <code>GB</code> 两通道的图片如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070201122889.jpg" alt=""></p>
+<p>去掉 <code>R</code> 通道的图片如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070208255951.jpg" alt=""></p>
+<p>如果之间将两张图以相加的方式进行混合，就会得到原图，即第一张正常的图片。如果去掉 <code>R</code> 通道的图片在去掉 <code>GB</code> 通道的图片上方，并且向上和向左错开10px，就会得到抖音效果的图片：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070293737860.jpg" alt=""></p>
+<h2 id="实现图片抖音效果">实现图片抖音效果</h2>
+<p>使用python3为图片添加抖音效果</p>
+<h3 id="库安装">库安装</h3>
+<p>需要用到两个库，一个是 <strong>pillow</strong> 用来读写图片数据，另一个是 <strong>numpy</strong> 用来处理图片数据转换成的的矩阵数据，使用 <strong>pip3</strong> 安装即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install pillow
+pip3 install numpy
+</code></pre></div><p>安装完成后，执行 <code>pip3 list</code> 会列出安装的包，检查是否完成安装。</p>
+<h3 id="库的操作">库的操作</h3>
+<h4 id="pillow">pillow</h4>
+<p>本文主要用到库中的 <strong>Image</strong> 模块。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</code></pre></div><p>使用 <strong>Image</strong> 模块的 <code>open</code> 方法可以打开图片得到图片原生数据，类型为 <code>PIL.JpegImagePlugin.JpegImageFile</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;picname.jpg&#39;</span><span class="p">)</span>
+</code></pre></div><p>上述对象有两个常用的方法：</p>
+<ul>
+<li>show() : 显示图片，比如<code>image_data.show()</code></li>
+<li>save(path): 按照指定路径保存图片，比如<code>image_data.save(path)</code></li>
+</ul>
+<h4 id="numpy">numpy</h4>
+<p>这里主要使用<strong>numpy</strong> 库的矩阵操作，可以很方便的对矩阵进行切片操作，与 <strong>matlab</strong> 中的操作极其类似，首先导入库：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</code></pre></div><p><code>np.array()</code> 方法可以将上面 <code>PIL.JpegImagePlugin.JpegImageFile</code> 对象转换为原始矩阵数据，生成的矩阵为三维矩阵，前两维度为高宽像素点坐标，第三维度为 <code>RGB</code> 三通道，需要注意的是转换得到的矩阵数据类型为 <code>numpy.uint8</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image_data</span><span class="p">)</span>
+</code></pre></div><p>上面的操作可以逆向进行，也就是将 <strong>img_array</strong> 转换为 <code>PIL.JpegImagePlugin.JpegImageFile</code> 对象，需要依赖于 <strong>Image</strong> 的另一个方法 <code>fromarray(array)</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+</code></pre></div><p>可以很方便地使用切片操作处理图片矩阵数据中三个通道的数据，比如将 <code>R</code> 通道的数据设置为0:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div><p>另外还需要用到矩阵复制的方法 <code>numpy.copy(array)</code>，会得到 <strong>array</strong> 的复制对象：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+</code></pre></div><h3 id="具体实现">具体实现</h3>
+<ul>
+<li>导入两个库
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</code></pre></div></li>
+<li>打开指定图片，这里以 <code>glasses.jpg</code> 为例，转换得到图片矩阵数据：
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;glasses.jpg&#39;</span><span class="p">)</span>
+<span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+</code></pre></div></li>
+<li>复制得到两个新的矩阵：
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+<span class="n">img_bg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+</code></pre></div></li>
+<li>这里需要注意的是，为了保证得到数据保存后的图片还是原图片的尺寸，这里只对有错位相加部分的像素点进行去通道操作，这里计划将 <strong>img_gb</strong> 向上向左错位10px，那么只需处理 <strong>img_gb</strong> 宽和高纬度上第 11px 到最后的像素点的 <code>R</code> 通道数据为0，同时 <strong>img_r</strong> 宽和高纬度上从第0到倒数第11个像素点的 <code>GB</code> 通道数据为0:
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 去GB两通道数据</span>
+<span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># 去除R通道数据</span>
+<span class="n">img_gb</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div></li>
+<li>将两个矩阵数据错位相加保存到 <strong>img_array</strong> 中，即 <strong>img_r</strong> 的 <code>[:-10,:-10,:]</code> 数据与 <strong>img_gb</strong> 的 <code>[10:, 10:, :]</code>数据相加，赋值给 <strong>img_array</strong> 的 <code>[:-10, :10, :]</code>：
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">img_array</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">img_gb</span><span class="p">[</span><span class="mi">10</span><span class="p">:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="p">:]</span>
+</code></pre></div></li>
+<li>从矩阵数据创建 <code>PIL.JpegImagePlugin.JpegImageFile</code> 对象，并保存和显示图片：
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;glasses_douyin.jpg&#39;</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></li>
+</ul>
+<p>最终得到图片如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070669239617.jpg" alt="20180704153070669239617.jpg"></p>
+<h2 id="创建gif动图">创建gif动图</h2>
+<p>上面我们实现了普通图片添加抖音效果，那么想不想看一下错位不同大小的抖音效果的变化呢？可以创建不同错位下的静态抖音效果图，然后用静态图创建gif动图，废话不多说，行动！</p>
+<h3 id="库安装-1">库安装</h3>
+<p>这里创建gif动图，使用到 <strong>imageio</strong> 库，同样可以使用 <strong>pip3</strong> 安装：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 install imageio
+</code></pre></div><p>使用 <strong>imageio</strong> 模块的 <code>mimsave()</code> 方法生成 gif 动图，比较简单，利用方法封装得到 <code>create_gif</code> 函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">create_gif</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="n">gif_name</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;创建gif图片
+</span><span class="s1">    :param image_list: 图片名称列表
+</span><span class="s1">    :type image_list: list
+</span><span class="s1">    :param gif_name: gif图片路径
+</span><span class="s1">    :type gif_name: unicode字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Creating 「</span><span class="si">{</span><span class="n">gif_name</span><span class="si">}</span><span class="s1">」from </span><span class="si">{</span><span class="n">image_list</span><span class="si">}</span><span class="s1"> ...&#39;</span><span class="p">)</span>
+    <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">image_name</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
+        <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_name</span><span class="p">))</span>
+    <span class="n">imageio</span><span class="o">.</span><span class="n">mimsave</span><span class="p">(</span><span class="n">gif_name</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="s1">&#39;GIF&#39;</span><span class="p">,</span> <span class="n">duration</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Saved </span><span class="si">{</span><span class="n">gif_name</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+</code></pre></div><h3 id="封装抖音效果添加函数">封装抖音效果添加函数</h3>
+<p>为了更方便得到不同错位尺寸下的静态抖音效果图，这里封装上面的实现，得到以下函数接口：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">convert_douyin_image</span><span class="p">(</span><span class="n">pic_path</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;为普通图片添加红蓝溢出位移效果，抖音app效果
+</span><span class="s1">    :param pic_path: 图片路径
+</span><span class="s1">    :type pic_path: unicode字符串
+</span><span class="s1">    :param offset: 红蓝位移大小，单位像素，默认值是10
+</span><span class="s1">    :return r_pic_path: 返回转换图片的路径
+</span><span class="s1">    :rtype: unicode字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pic_path</span><span class="p">):</span>
+        <span class="n">pic_name</span><span class="p">,</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
+        <span class="n">pic_path_new</span> <span class="o">=</span> <span class="n">pic_name</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span> <span class="o">+</span> <span class="n">extension</span>
+        <span class="n">img_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
+        <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">offset</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">img_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+            <span class="n">img_gb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+            <span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">img_gb</span><span class="p">[</span><span class="n">offset</span><span class="p">:,</span> <span class="n">offset</span><span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">img_array</span><span class="p">[:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img_r</span><span class="p">[:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">img_gb</span><span class="p">[</span><span class="n">offset</span><span class="p">:,</span> <span class="n">offset</span><span class="p">:,</span> <span class="p">:]</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">pic_path_new</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Saved </span><span class="si">{</span><span class="n">pic_path_new</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pic_path_new</span>
+</code></pre></div><p>接口中，对 offset 为 0 时做了处理，直接保存原图，最终函数返回保存的图片路径，方便生成图片路径列表用于生成gif。</p>
+<h3 id="整体实现">整体实现</h3>
+<p>导入必要库：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">imageio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</code></pre></div><p>这里定义一个图片路径，方便指定待处理图片：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">PIC_PATH</span> <span class="o">=</span> <span class="s1">&#39;glasses.jpg&#39;</span>
+</code></pre></div><p>最后，先得到错位[0, 2, 4, 6, 8, 10]px 的静态抖音效果图和图片路径列表，为了是动图连贯，处理列表中元素按照错位尺寸为 [0, 2, 4, 6, 8, 10, 8, 6, 4, 2, 0]px，然后根据 <strong>PIC_PATH</strong> 得到 gif图片保存路径，调用 <strong>create_gif</strong> 函数生成gif：</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pic_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">pic_path</span> <span class="o">=</span> <span class="n">convert_douyin_image</span><span class="p">(</span><span class="n">PIC_PATH</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pic_path</span><span class="p">:</span>
+            <span class="n">pic_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pic_path</span><span class="p">)</span>
+    <span class="n">temp_l</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">pic_list</span><span class="p">)</span>
+    <span class="n">temp_l</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">pic_list</span> <span class="o">=</span> <span class="n">pic_list</span> <span class="o">+</span> <span class="n">temp_l</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">p_name</span><span class="p">,</span> <span class="n">p_ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">PIC_PATH</span><span class="p">)</span>
+    <span class="n">gif_name</span> <span class="o">=</span> <span class="n">PIC_PATH</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">p_ext</span><span class="p">,</span> <span class="s1">&#39;.gif&#39;</span><span class="p">)</span>
+    <span class="n">create_gif</span><span class="p">(</span><span class="n">pic_list</span><span class="p">,</span> <span class="n">gif_name</span><span class="p">)</span>
+</code></pre></div><p>最终得到的gif图片效果如下：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180704153070846317421.gif" alt="20180704153070846317421.gif"></p>
+<p>完整源码参考:</p>
+<p><a href="https://github.com/smslit/tools-with-script/blob/master/douyin/douyin.py">https://github.com/smslit/tools-with-script/blob/master/douyin/douyin.py </a></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://blog.csdn.net/guduruyu/article/details/77540445">gif动态图的解析与合成</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/37923938">用Python给图片加上抖音效果</a></li>
+</ul>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smslit.cn/tags/python">python</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					1964 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2018-07-04 21:01 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本原理">基本原理</a></li>
+    <li><a href="#实现图片抖音效果">实现图片抖音效果</a>
+      <ul>
+        <li><a href="#库安装">库安装</a></li>
+        <li><a href="#库的操作">库的操作</a></li>
+        <li><a href="#具体实现">具体实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建gif动图">创建gif动图</a>
+      <ul>
+        <li><a href="#库安装-1">库安装</a></li>
+        <li><a href="#封装抖音效果添加函数">封装抖音效果添加函数</a></li>
+        <li><a href="#整体实现">整体实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smslit.cn/2018/07/07/hexo2hugo/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>hexo博客迁移到hugo</span>
+			</a>
+			<a class="prev-post" href="https://blog.smslit.cn/2018/07/03/affinity-photo-douyin/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Affinity Photo 绘制抖音音符</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2018/07/04/python-practice-douyin/" class="leancloud_visitors" data-flag-title="python实现图片的抖音效果">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="/js/valine-data.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true ,
+      emojiCDN: '',
+      emojiMaps: null
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c"><meta itemprop="name" content="stm32开发新方式-platformio的IDE">
+<meta itemprop="description" content="platformio是一款跨平台的物联网开发的生态环境，VS Code 这款强大的文本编辑器辅以 PlatformIO IDE 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。
+">
+<meta itemprop="datePublished" content="2018-10-10T16:25:37&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-12T12:50:37&#43;08:00" />
+<meta itemprop="wordCount" content="3970">
+
+
+
+<meta itemprop="keywords" content="stm32,platformio,pio," /><meta property="og:title" content="stm32开发新方式-platformio的IDE" />
+<meta property="og:description" content="platformio是一款跨平台的物联网开发的生态环境，VS Code 这款强大的文本编辑器辅以 PlatformIO IDE 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.smslit.top/2018/10/10/vscode-pio-ide/" />
+<meta property="article:published_time" content="2018-10-10T16:25:37+08:00" />
+<meta property="article:modified_time" content="2018-10-12T12:50:37+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="stm32开发新方式-platformio的IDE"/>
+<meta name="twitter:description" content="platformio是一款跨平台的物联网开发的生态环境，VS Code 这款强大的文本编辑器辅以 PlatformIO IDE 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。
+"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>stm32开发新方式-platformio的IDE</title>
+	<link rel="stylesheet" href="https://www.smslit.top/css/style.min.b43f86a9fe00dca489cb2beeefb24f0a9268621da439e98847877ddaf555264e.css" integrity="sha256-tD+Gqf4A3KSJyyvu77JPCpJoYh2kOemIR4d92vVVJk4=">
+	
+	<link rel="stylesheet" href="https://www.smslit.top/css/valine.css">
+	<link rel="stylesheet" href="https://www.smslit.top/css/reward.css">
+	
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.smslit.top">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="https://www.smslit.top/post/">Posts</a>
+					<a href="https://www.smslit.top/tags/">Tags</a>
+					<a href="https://www.smslit.top/about/">Me</a>
+					<a href="https://hdkpnx.coding-pages.com">Wiki</a>
+					<a href="https://56rrk9.coding-pages.com">LeetCode</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.smslit.top/post/">Posts</a></li>
+			<li><a href="https://www.smslit.top/tags/">Tags</a></li>
+			<li><a href="https://www.smslit.top/about/">Me</a></li>
+			<li><a href="https://hdkpnx.coding-pages.com">Wiki</a></li>
+			<li><a href="https://56rrk9.coding-pages.com">LeetCode</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 10, 2018</span></div>
+				<h1>stm32开发新方式-platformio的IDE</h1>
+			</header>
+			<div class="content">
+				<p><a href="http://platformio.org/">platformio</a>是一款跨平台的物联网开发的生态环境，<a href="https://code.visualstudio.com">VS Code</a> 这款强大的文本编辑器辅以 <strong>PlatformIO IDE</strong> 插件就可以化身为一款强大的MCU开发环境，支持绝大多数流行的单片机平台，比如今天要讨论的 stm32 系列单片机。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018101015391609436627.png" alt="2018101015391609436627.png"></p>
+<h2 id="测试环境及工具">测试环境及工具</h2>
+<ol>
+<li>本文讲解使用的系统平台是 macOS 10.14，其它平台比如 linux、windows 步骤和操作基本类似；</li>
+<li>stm32 开发板是以stm32f103c8t6为核心的最小系统板；</li>
+<li>stm32 芯片调试器使用的是 stlink v2；</li>
+</ol>
+<h2 id="platformio-ide-搭建">platformio IDE 搭建</h2>
+<ol>
+<li>下载对应平台的<a href="https://code.visualstudio.com">VS Code</a>，这里下载 mac 版的，下载完成后安装即可；
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153916303585687.jpg" alt="20181010153916303585687.jpg"></li>
+<li>打开 vs code ，点击左侧第五个按钮，显示插件管理界面，搜索插件 <strong>PlatformIO IDE</strong>，并安装此插件；
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153916446822188.png" alt="20181010153916446822188.png">
+安装过程耐心等待，成功后会有提示！</li>
+</ol>
+<h2 id="platformio-ide-简介">platformio IDE 简介</h2>
+<p>重新打开安装好插件的 VS Code ，会看到左下角多了一个小房子logo样式的按钮，点击这个按钮就会打开 Platformio 主页：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153916512699587.png" alt="20181010153916512699587.png"></p>
+<p>可以看到主页中最顶端包含了一个导航栏，有用的就是前进后退的按钮和账户相关的交互元素，整个主页其实是Platformio在本地开启了一个web应用（类似于一个简单的小网站），包含了Home、Account、Libraries、Boards、Platforms和Devices六个标签页，下面分别简单说明一下。</p>
+<h3 id="home-标签页">Home 标签页</h3>
+<p>进入Platformio 的主页显示的就是 Home 标签页，标签页内从上到下可以依次看到以下内容：</p>
+<ol>
+<li><code>Show at startup </code> 的复选框，勾上后，每次启动 vs code 就会启动这个主页；</li>
+<li><code>Quick Access</code> 下有四个操作按钮，分别是：
+<ul>
+<li><strong>New Project</strong>：用于新建工程；</li>
+<li><strong>Import Arduino Project</strong>：用于导入电脑中已经存在的 Arduino 工程；</li>
+<li><strong>Open Project</strong>：用于打开已经存在的 Platformio 工程；</li>
+<li><strong>Project Examples</strong>：用于打开本机已经安装的单片机平台的例程工程；</li>
+</ul>
+</li>
+<li><code>Recent News</code>：显示最新 Platformio 信息；</li>
+</ol>
+<h3 id="account-标签页">Account 标签页</h3>
+<p>这个标签页用于管理账户信息，首次打开的时候，是用户登录页面，当登录已有的 Platformio 账户后，就会显示用户信息和密码的相关操作，这里就不细讲了！</p>
+<h3 id="libraries-标签页">Libraries 标签页</h3>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153917108391128.png" alt="20181010153917108391128.png"></p>
+<p>Libraries 标签页是管理库的接口，这里只简单说明一下，后面如果有时间就写一篇文章详细讲解一下库管理。主要包含四个标签页：</p>
+<ol>
+<li>
+<p>Registry 标签页</p>
+<p>这个页面是有一个搜索框，搜索框内没有内容的时候，会在搜索框下面显示所有可用的库，搜索框中输入关键词就会过滤显示相关的库。</p>
+<p>点击想要安装的库，就会进入这个库的详细页面，这个页面里有安装按钮、例程、使用方法等操作接口。</p>
+</li>
+<li>
+<p>Installed 标签页</p>
+<p>这里主要展示本机已经安装的第三方库。</p>
+</li>
+<li>
+<p>Built-in 标签页</p>
+<p>这里显示已安装平台内置的库。</p>
+</li>
+<li>
+<p>Updates 标签页</p>
+<p>展示需要更新的库。</p>
+</li>
+</ol>
+<h3 id="boards-标签页">Boards 标签页</h3>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153917351153178.png" alt="20181010153917351153178.png"></p>
+<p>这个标签页用来展示 Platformio 支持的开发板列表，最上方的搜索框内可以输入关键词过滤显示相关的开发板，比如输入 <strong>Arduino</strong> 就会显示Arduino的开发板。</p>
+<p>列表中每个条目显示一个开发板，包含信息：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>开发板名称</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>对应的单片机平台</td>
+</tr>
+<tr>
+<td>Frameworks</td>
+<td>支持的开发框架</td>
+</tr>
+<tr>
+<td>MCU</td>
+<td>对应的单片机型号</td>
+</tr>
+<tr>
+<td>FRQ</td>
+<td>单片机工作主频(Mhz)</td>
+</tr>
+<tr>
+<td>ROM</td>
+<td>单片机的存储</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>单片机内存</td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>其它信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="platforms-标签页">Platforms 标签页</h3>
+<p>这个标签页用来管理平台支持，比如我的这里安装了两个单片机平台的支持：</p>
+<ul>
+<li>Atmel AVR</li>
+<li>ST STM32</li>
+</ul>
+<p>这两个条目可以点进去查看平台详细信息和对平台进行一定操作。标签页内还包含所有的嵌入式、桌面平台的相关管理项，同时也有框架展示的标签页，可以通过这里的每个条目了解对应框架的信息和使用方法。</p>
+<h3 id="devices-标签页">Devices 标签页</h3>
+<p>这里显示连接电脑的硬件设备，比如串口、数字逻辑设备和网络设备。</p>
+<h2 id="使用-platformio-ide">使用 Platformio IDE</h2>
+<p>这里以创建 ST STM32 平台的 stm32f103c8t6 芯片工程为例，讲解一下工程的基本使用方法。</p>
+<h3 id="新建工程">新建工程</h3>
+<ol>
+<li>
+<p>打开 Platformio 的主页，点击 <code>New Projects</code>；</p>
+</li>
+<li>
+<p>在工程新建窗口中，配置如下创建名为 <strong>blink</strong> 的工程：
+<img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153917456152478.png" alt="20181010153917456152478.png">
+最后点击 <strong>Finish</strong> ，等待片刻工程就会创建完成。</p>
+<p>这里暂时选择使用框架为 <code>Arduino</code>，stm32还可以选择其它框架，这里先挖个坑，等有时间专门写一下针对stm32其它框架的使用。</p>
+</li>
+</ol>
+<h3 id="工程界面介绍">工程界面介绍</h3>
+<p>新建工程后，就会打开相应的工程，如下图所示：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153917478980641.png" alt="20181010153917478980641.png"></p>
+<h4 id="文件结构">文件结构</h4>
+<p>窗口左侧默认显示的是资源管理器，这里可以看到文件结构。</p>
+<ol>
+<li><code>.pioenvs</code> 文件夹：存放编译产生的中间文件和最后生成的执行文件;</li>
+<li><code>lib</code> 文件夹：存放库文件；</li>
+<li><code>src</code> 文件夹：存放源文件，其内部默认生成名为 <code>main.cpp</code> 的源文件；</li>
+<li><code>platformio.ini</code>：工程的配置文件</li>
+</ol>
+<h4 id="工具栏">工具栏</h4>
+<p>在工程窗口的左下方会看到多出来的一些按钮，这就是工程的工具栏：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018101015391752644261.png" alt="2018101015391752644261.png"></p>
+<p>依次说明这几个快捷按钮的作用：</p>
+<ol>
+<li>主页按钮：前面已经提到过是打开 Platformio 主页的按钮</li>
+<li>编译按钮：小对号，点击后会编译当前激活的工程</li>
+<li>烧写按钮：向右的小箭头，触发程序烧写的过程</li>
+<li>远程烧写按钮：小云朵，触发远程烧写程序的过程</li>
+<li>清理按钮：小垃圾桶，用于清理编译过程生成的文件</li>
+<li>测试按钮：小烧瓶，测试工程，免费版的Platformio受限不能用；</li>
+<li>运行任务按钮：小本子，会跳出操作菜单，包含编译、烧写、调试等操作；</li>
+<li>串口监视器按钮：小插头，点击后会启动命令行的串口监视助手；</li>
+<li>终端按钮：小命令行，点击后新建一个终端窗口；</li>
+</ol>
+<h4 id="快捷操作栏">快捷操作栏</h4>
+<p>点击窗口左侧的做后一个logo也就是小蚂蚁头，就会出现针对工程的快捷操作：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153917672863905.png" alt="20181010153917672863905.png"></p>
+<p>根据字面意思就知道相应快捷操作是什么用途了，这里就不做介绍了。</p>
+<h3 id="编写代码">编写代码</h3>
+<p>src文件夹下为源文件，更改源文件 <code>main.cpp</code> 的内容如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define LED_PIN PB0 </span><span class="c1">// 十里使用的最小系统板板上LED连接的是PB0
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>编写代码过程中就会感受到强大的代码提示功能，写代码从此一马平川，各种666！同时也支持代码跳转，比如跳转到函数定义，可以按住 <code>command</code> 键（linux和window下是 <code>ctrl</code> 键）然后鼠标左键单击就可以跳转，感受空间穿梭的快感！</p>
+<h3 id="编译程序">编译程序</h3>
+<p>这个操作很简单，点击工具栏中的编译按钮即可触发编译，编译信息会在新的终端窗口中显示，初次编译的时候，会很慢，那是因为 Platformio 根据工程配置下载对应的平台支持文件，包含了配置的框架、编译工具、调试工具等等，因为这是国外的服务，所以可能会很慢，耐心等待即可，编译完成后，会出现如下类似信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">&gt; Executing task: platformio run &lt;
+
+Processing genericSTM32F103C8 <span class="o">(</span>platform: ststm32<span class="p">;</span> board: genericSTM32F103C8<span class="p">;</span> framework: arduino<span class="o">)</span>
+...
+Compiling .pioenvs/genericSTM32F103C8/src/main.cpp.o
+...
+Compiling .pioenvs/genericSTM32F103C8/FrameworkArduino/wirish_time.cpp.o
+Archiving .pioenvs/genericSTM32F103C8/libFrameworkArduino.a
+Indexing .pioenvs/genericSTM32F103C8/libFrameworkArduino.a
+Linking .pioenvs/genericSTM32F103C8/firmware.elf
+Checking size .pioenvs/genericSTM32F103C8/firmware.elf
+Building .pioenvs/genericSTM32F103C8/firmware.bin
+Memory Usage -&gt; http://bit.ly/pio-memory-usage
+DATA:    <span class="o">[==</span>        <span class="o">]</span>  15.3% <span class="o">(</span>used <span class="m">3136</span> bytes from <span class="m">20480</span> bytes<span class="o">)</span>
+PROGRAM: <span class="o">[==</span>        <span class="o">]</span>  21.6% <span class="o">(</span>used <span class="m">14188</span> bytes from <span class="m">65536</span> bytes<span class="o">)</span>
+<span class="o">============================</span> <span class="o">[</span>SUCCESS<span class="o">]</span> Took 3.33 <span class="nv">seconds</span> <span class="o">============================</span>
+
+终端将被任务重用，按任意键关闭。
+</code></pre></div><p>触发编译还可以使用快捷操作栏中的 <code>build</code>操作。</p>
+<h3 id="上传程序">上传程序</h3>
+<p>十里使用的是 stm32f103c8t6 的最小系统板，经调试器 stlink v2 连接电脑，点击工具栏的烧写按钮（或者快捷操作栏的 <code>Upload</code> 操作），即可看到跳出的终端中显示上传过程中打印的信息，这里就不列出来了。</p>
+<p>烧写过程中，stlink v2 调试器的指示灯会有所反应，完成后，最小系统板的程序就会运行，就会看到板上的LED闪动了起来，说明烧写成功！</p>
+<h3 id="调试程序">调试程序</h3>
+<p>很可惜！免费版（社区版）PlatformIO 的调试功能受限，所以不能正常进行程序调试，若想正常使用，需要订阅Plus版。作为一个勤俭节约的人怎么可能要花这份钱呢！那怎么办呢！不要紧，VS code中有款插件叫做 <strong>Cortex Debug</strong>，稍作配置就能进行正常的工程调试啦！</p>
+<h4 id="openocd-添加至系统环境变量">openocd 添加至系统环境变量</h4>
+<p>在这里我们使用openocd开启调试服务，若要使用此方式进行调试， <strong>Cortex Debug</strong> 能自动调用环境变量中能找到的openocd，为了使用方便，需要将openocd添加至系统的环境变量，上面我们知道，Platformio 已经自动安装了编译调试工具。</p>
+<p>在用户目录下应该会找到文件夹 <code>.platformio</code> ，会从下面的文件夹中找到 openocd 运行文件（windows下是openocd.exe，目录可能有所不同）：</p>
+<p><code>/Users/5km/.platformio/packages/tool-openocd/bin</code></p>
+<ul>
+<li>
+<p>对于linux或者macOS使用者</p>
+<ul>
+<li>
+<p>若使用的命令行shell是zsh，可以使用以下命令添加环境变量：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;/Users/5km/.platformio/packages/tool-openocd/bin:$PATH&#34;&#39;</span> &gt; ~/.zshrc
+</code></pre></div></li>
+<li>
+<p>若使用的命令行shell是bash，可以使用以下命令添加环境变量：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;/Users/5km/.platformio/packages/tool-openocd/bin:$PATH&#34;&#39;</span> &gt; ~/.bashrc
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>windows用户，找到相应目录以后，按照网上的方法，将目录添加到环境变量中就可以了</p>
+</li>
+</ul>
+<p>添加完成后，启动一个命令行，执行以下命令，如果打印了版本信息说明添加成功：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ openocd -v
+GNU MCU Eclipse 64-bits Open On-Chip Debugger 0.10.0+dev-00392-gbe9ef0b0 <span class="o">(</span>2018-01-12-16:51<span class="o">)</span>
+Licensed under GNU GPL v2
+For bug reports, <span class="nb">read</span>
+	http://openocd.org/doc/doxygen/bugs.html
+</code></pre></div><h4 id="安装-cortex-debug-插件">安装 <strong>Cortex Debug</strong> 插件</h4>
+<p>VS code 插件管理器中搜索 <strong>Cortex Debug</strong> ，安装即可。</p>
+<h4 id="优化编译选项">优化编译选项</h4>
+<p>程序调试，需要编译的时候生成符号库，所以需要为工程配置中添加生成符号库的支持，工程配置 <code>platformio.ini</code> 中添加以下内容即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="na">build_flags</span> <span class="o">=</span> <span class="s">
+</span><span class="s">    -g</span>
+</code></pre></div><p>最终配置内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[env:genericSTM32F103C8]</span>
+<span class="na">platform</span> <span class="o">=</span> <span class="s">ststm32</span>
+<span class="na">board</span> <span class="o">=</span> <span class="s">genericSTM32F103C8</span>
+<span class="na">framework</span> <span class="o">=</span> <span class="s">arduino</span>
+<span class="na">build_flags</span> <span class="o">=</span> <span class="s">
+</span><span class="s">    -g</span>
+</code></pre></div><p>重新编译一遍！</p>
+<h4 id="添加调试配置">添加调试配置</h4>
+<ol>
+<li>
+<p>VS Code 菜单栏——调试——添加配置；</p>
+</li>
+<li>
+<p>选择 <code>{} Cortex Debug: OpenOCD</code> 即可添加配置；</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153918052073191.png" alt="20181010153918052073191.png"></p>
+</li>
+<li>
+<p>更改配置，参考 <a href="https://marcelball.ca/projects/cortex-debug/cortex-debug-launch-configurations/#OpenOCD%20GDB%20Server%20(%22servertype%22:%20%22openocd%22)">Cortex-Debug Launch Configurations</a> 添加和调整 <code>.vscode/launch.json</code> 文件的部分配置如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cortex-debug&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;launch&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;servertype&#34;</span><span class="p">:</span> <span class="s2">&#34;openocd&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;executable&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}/.pioenvs/genericSTM32F103C8/firmware.elf&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Debug (OpenOCD)&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;device&#34;</span><span class="p">:</span> <span class="s2">&#34;STM32F103C8&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;configFiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;interface/stlink.cfg&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;target/stm32f1x.cfg&#34;</span>
+            <span class="p">],</span>
+            <span class="nt">&#34;runToMain&#34;</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><p>其中，</p>
+<ul>
+<li><code>executeable</code> 配置为工程中生成的 <strong>elf</strong> 文件的路径，这个需要自行更改为自己工程的</li>
+<li><code>device</code> 指定芯片型号，调试器会自行选择 <strong>svd</strong> 文件，以便正确显示外设寄存器的正确信息</li>
+<li><code>configFiles</code> 配置两个文件，一个是接口配置，一个是调试目标（芯片）的配置文件</li>
+<li><code>runToMain</code> 设置为true，启动调试后会运行到 <strong>main</strong> 入口停止</li>
+</ul>
+</li>
+</ol>
+<h4 id="进行调试">进行调试</h4>
+<p>点击 VS Code 窗口左侧的调试按钮，切换至调试界面：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153918105576989.png" alt="20181010153918105576989.png"></p>
+<p>橙色圈内的下拉菜单可以选择调试配置，根据名称(对应上面配置信息中的 <code>name</code> )选择刚刚添加的配置，单击其左边的绿色三角按钮（保证电脑经stlink连接到了最小系统板上），即可启动调试过程：</p>
+<p>启动调试后默认停在程序最开始的地方，能够看到窗口最上方出现了一个调试工具栏， 包含了基本的执行操作：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153918158198422.png" alt="20181010153918158198422.png"></p>
+<p>依次是继续执行、单步、单步进入、单步跳出、重新运行和停止操作按钮。</p>
+<p>可以打开 <code>main.cpp</code> 文件，在代码行号左侧点击可以添加或删除断点。在 <code>pinMode(LED_PIN, OUTPUT);</code> 添加断点，点击继续执行按钮，运行至断点处，然后点击单步进入按钮，此时可以看到窗口：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181010153918191850308.png" alt="20181010153918191850308.png"></p>
+<p>可以看到窗口左侧部分能够查看变量，包含局部、全局变量；还可以添加变量监视；再下面就是调用堆栈，这里可以看到函数的调用层次。</p>
+<p>还可以看到一个 <strong>CORTEX PERIPHERALS</strong> 的标签，点开后会看到如下图橙色框内的外设寄存器的信息，方便调试程序！</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181012153931904181209.png" alt="20181012153931904181209.png"></p>
+<p>以上看来满足了基本的调试功能了，大功告成！</p>
+<h4 id="one-more-thing">one more thing</h4>
+<p>其实调试这块儿有一个问题，Platformio比较霸道，当你关闭工程重新打开后，它会自动把 <code>launch.json</code> 中的配置更改为 Platformio 的调试配置，所以每次打开工程后需要自行添加 <strong>Cortex Debug</strong> 的配置（见<a href="#添加调试配置">添加调试配置</a>），目前还没想到很好的解决方法，想到后会更新在此。</p>
+<h2 id="总结">总结</h2>
+<p>本文讲了 PlatformIO IDE 的安装以及基本的使用，满足了stm32系列单片机的基本开发需求。</p>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.smslit.top/tags/stm32">stm32</a></span><span class="tag"><a href="https://www.smslit.top/tags/platformio">platformio</a></span><span class="tag"><a href="https://www.smslit.top/tags/pio">pio</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					3970 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2018-10-10 16:25 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#测试环境及工具">测试环境及工具</a></li>
+    <li><a href="#platformio-ide-搭建">platformio IDE 搭建</a></li>
+    <li><a href="#platformio-ide-简介">platformio IDE 简介</a>
+      <ul>
+        <li><a href="#home-标签页">Home 标签页</a></li>
+        <li><a href="#account-标签页">Account 标签页</a></li>
+        <li><a href="#libraries-标签页">Libraries 标签页</a></li>
+        <li><a href="#boards-标签页">Boards 标签页</a></li>
+        <li><a href="#platforms-标签页">Platforms 标签页</a></li>
+        <li><a href="#devices-标签页">Devices 标签页</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-platformio-ide">使用 Platformio IDE</a>
+      <ul>
+        <li><a href="#新建工程">新建工程</a></li>
+        <li><a href="#工程界面介绍">工程界面介绍</a></li>
+        <li><a href="#编写代码">编写代码</a></li>
+        <li><a href="#编译程序">编译程序</a></li>
+        <li><a href="#上传程序">上传程序</a></li>
+        <li><a href="#调试程序">调试程序</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.smslit.top/2018/10/12/verification_code_chars/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python3 简单实现验证码识别器</span>
+			</a>
+			<a class="prev-post" href="https://www.smslit.top/2018/10/02/pubg_roe_bye/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>PUBG &amp; ROE, See you later</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2018/10/10/vscode-pio-ide/" class="leancloud_visitors" data-flag-title="stm32开发新方式-platformio的IDE">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true 
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.smslit.top">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.smslit.top/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="https://www.smslit.top/js/main.min.8f39f24808e9d0a9b02da58c2d2838da859dc0b7bdfadbdb1883aae8b6adacfe.js" integrity="sha256-jznySAjp0KmwLaWMLSg42oWdwLe9+tvbGIOq6LatrP4="></script>
+
+	
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {equationNumbers: {autoNumber: "AMS"}},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

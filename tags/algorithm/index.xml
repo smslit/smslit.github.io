@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/algorithm/</link>
+    <description>Recent content in algorithm on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 07 Nov 2018 15:37:05 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>排序算法知多少</title>
+      <link>https://blog.smslit.cn/2018/11/07/algorithm-sort/</link>
+      <pubDate>Wed, 07 Nov 2018 15:37:05 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/11/07/algorithm-sort/</guid>
+      <description>&lt;p&gt;大学里学的第一门编程语言是 c++，c++ 的课程中接触的第一种排序算法是&lt;strong&gt;冒泡排序&lt;/strong&gt;，这已经过去八年，很惭愧的是到目前只了解&lt;strong&gt;冒泡排序&lt;/strong&gt;和&lt;strong&gt;插入排序&lt;/strong&gt;两种，作为一名合格的程序猿也应该了解了解其它的排序算法吧！所以开本文记录整理网上所谓的&lt;strong&gt;十大排序算法&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018111115418975029904.gif&#34; alt=&#34;2018111115418975029904.gif&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>时间都去哪儿了</title>
+      <link>https://blog.smslit.cn/2017/10/31/timetogo/</link>
+      <pubDate>Tue, 31 Oct 2017 06:35:29 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/10/31/timetogo/</guid>
+      <description>&lt;p&gt;看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数学知识复习</title>
+      <link>https://blog.smslit.cn/2017/10/27/mathknowlege/</link>
+      <pubDate>Fri, 27 Oct 2017 08:51:23 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/10/27/mathknowlege/</guid>
+      <description>&lt;p&gt;记得高中的时候数学能力还是很突出的，但到了大学，高数好像离十里越来越远。过去这么长时间，已经有了定论：十里的数学知识已还给老师！这还真是让人崩溃，现在无处不数学，当然为了研究算法也得把高数给拾回来，所以有了本篇数学知识的复习。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>欧几里得算法</title>
+      <link>https://blog.smslit.cn/2017/10/22/gcd/</link>
+      <pubDate>Sun, 22 Oct 2017 20:47:49 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/10/22/gcd/</guid>
+      <description>&lt;p&gt;天杀的，原来我现在都蠢到连最大公约数的求解算法理解都这么费劲，欧几里得算法又称辗转相除法，用于计算两个数的最大公约数。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>《雷神之锤》丧心病狂的平方根倒数速算法</title>
+      <link>https://blog.smslit.cn/2016/09/28/q_sqrt-dev/</link>
+      <pubDate>Wed, 28 Sep 2016 23:02:48 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/09/28/q_sqrt-dev/</guid>
+      <description>&lt;p&gt;今天学习《Python科学计算》，看到了一个绝对丧心病狂、计算速度碾压标准sqrt库函数的平方根倒数速算法，据说平均比标准库的sqrt快4倍。这个算法是约翰-卡马克（John Carmack）创造的，据说他是一个伟大的3D引擎开发者，《雷神之锤3》用的就是他开发的3D引擎。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

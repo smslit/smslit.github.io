@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mcu on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/mcu/</link>
+    <description>Recent content in mcu on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 24 Aug 2019 19:21:06 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/mcu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PlatformIO IDE(VSCode) - stm32cube 框架的工程</title>
+      <link>https://blog.smslit.cn/2019/08/24/platformio-stm32-cubemx/</link>
+      <pubDate>Sat, 24 Aug 2019 19:21:06 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/24/platformio-stm32-cubemx/</guid>
+      <description>前些天知乎网友有问到 PIO 中 stm32 的 cubemx 框架工程中闪灯程序不能正常工作的问题，猜测可能是没有进行系统时钟配置导致的。本文就以 LED 闪烁为例讲一下如何新建一</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) - 实现 VS1838B 红外接收驱动</title>
+      <link>https://blog.smslit.cn/2019/08/21/platformio-irremote-driver/</link>
+      <pubDate>Wed, 21 Aug 2019 10:51:18 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/21/platformio-irremote-driver/</guid>
+      <description>最近做一个项目需要用到红外接收，项目工程针对的是 STM32F103C8T6 平台，使用的是 Arduino 框架，想着不重复造轮子，结果第三方红外库都没有同时满足 ST STM32 平台 和 Arduino 框架两个</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 使用第三方库</title>
+      <link>https://blog.smslit.cn/2019/08/19/platformio-libraries/</link>
+      <pubDate>Mon, 19 Aug 2019 10:49:25 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/19/platformio-libraries/</guid>
+      <description>在实际做一个项目的时候，为了提高效率我们会首选不重复造轮子，所以可能会用到第三方库，而 PlatformIO 为我们整理和提供了一些即装即用的第三方库，本文笔者就</description>
+    </item>
+    
+    <item>
+      <title>PlatformIO IDE(VSCode) 基本使用 - 新建项目</title>
+      <link>https://blog.smslit.cn/2019/08/18/platformio-newproject/</link>
+      <pubDate>Sun, 18 Aug 2019 17:02:01 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/08/18/platformio-newproject/</guid>
+      <description>PlatformIO IDE (VSCode) 可以帮助我们更好地使用 PlatforIO，一个 MCU 项目的开始那就是新建，本文就讲解一下如果使用 PlatformIO IDE 新建一个 MCU 的项目。 基本概念 在使用 PlatformIO 的过</description>
+    </item>
+    
+    <item>
+      <title>vim也是platformio的IDE</title>
+      <link>https://blog.smslit.cn/2017/08/15/platformio-vim/</link>
+      <pubDate>Tue, 15 Aug 2017 10:00:29 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/08/15/platformio-vim/</guid>
+      <description>&lt;p&gt;知道platformio很久了，但是一直没时间玩耍，最近有时间了，又研究了一番，platformio也为vim用户提供了一些可用的姿势，本篇文章就分享一下vim与pio的配合好戏！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开启platformio之旅</title>
+      <link>https://blog.smslit.cn/2017/05/20/platformio-start/</link>
+      <pubDate>Sat, 20 May 2017 19:59:43 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/05/20/platformio-start/</guid>
+      <description>&lt;p&gt;十里还是比较喜欢用终端解决问题的，在某个&lt;a href=&#34;https://www.hexcrow.org&#34;&gt;小伙伴&lt;/a&gt;身上学到了些&lt;a href=&#34;http://www.vim.org&#34;&gt;vim&lt;/a&gt;神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用&lt;code&gt;arduino&lt;/code&gt;，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持&lt;code&gt;Arduino&lt;/code&gt;开发的CLI，没想到就找到了文章主角&lt;a href=&#34;http://platformio.org&#34;&gt;platformio&lt;/a&gt;，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(+arm)，简直了！特此分享！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

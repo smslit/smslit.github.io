@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>正则表达式 on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+    <description>Recent content in 正则表达式 on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 11 Sep 2018 16:53:07 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python常用正则表达式总结</title>
+      <link>https://blog.smslit.cn/2018/09/11/regex-python/</link>
+      <pubDate>Tue, 11 Sep 2018 16:53:07 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/09/11/regex-python/</guid>
+      <description>&lt;p&gt;python开发，经常需要从字符串中提取关键信息，这个提取过程多半使用正则表达式实现，开本文来记录常用的正则表达式，方便日后续用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180911153665750929978.png&#34; alt=&#34;20180911153665750929978.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

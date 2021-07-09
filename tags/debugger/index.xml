@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>debugger on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/debugger/</link>
+    <description>Recent content in debugger on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 16 Apr 2016 08:10:46 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/debugger/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>各类硬件接口定义</title>
+      <link>https://blog.smslit.cn/2016/04/16/HardwareInterface-Elec/</link>
+      <pubDate>Sat, 16 Apr 2016 08:10:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/04/16/HardwareInterface-Elec/</guid>
+      <description>&lt;p&gt;脑子存储不够用了，故专门开本文整理各类硬件接口，以备不时之需。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux下使用CC Debugger读写芯片程序</title>
+      <link>https://blog.smslit.cn/2016/04/15/ccdebugger-linux-ble/</link>
+      <pubDate>Fri, 15 Apr 2016 15:34:19 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/04/15/ccdebugger-linux-ble/</guid>
+      <description>&lt;p&gt;有个事情一直困扰着我，我一般使用ubuntu linux系统，但当要用CC Debugger为TI的一些芯片烧写程序的时候，不得不切换到windows系统，太麻烦了，难道linux下不能用CC Debugger吗？我就带着这个问题问了一下谷哥，他果然什么都知道，得知cc-tool的存在，是一个老开源项目了，什么？我咋才知道呀！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

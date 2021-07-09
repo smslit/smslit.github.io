@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="vim的使用入门">
+<meta itemprop="description" content="Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。"><meta itemprop="datePublished" content="2015-07-16T02:44:46+08:00" />
+<meta itemprop="dateModified" content="2015-07-16T02:44:46+08:00" />
+<meta itemprop="wordCount" content="2100">
+<meta itemprop="keywords" content="vim," /><meta property="og:title" content="vim的使用入门" />
+<meta property="og:description" content="Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smslit.cn/2015/07/16/vimtution/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-07-16T02:44:46+08:00" />
+<meta property="article:modified_time" content="2015-07-16T02:44:46+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vim的使用入门"/>
+<meta name="twitter:description" content="Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>vim的使用入门</title>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/asciinema.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smslit.cn">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smslit.cn/post/">Posts</a>
+				<a href="https://blog.smslit.cn/tags/">Tags</a>
+				<a href="https://blog.smslit.cn/daily/">Daily</a>
+				<a href="https://blog.smslit.cn/about/">Me</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener me" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener me" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://blog.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://blog.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://blog.smslit.cn/about/">Me</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 16, 2015</span></div>
+				<h1>vim的使用入门</h1>
+			</header>
+			<div class="content">
+				<p>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。在Mac OSX下vim是自带的，是在命令行下文本编辑器。</p>
+<p>###声明：
+使用平台为Mac OSX。强调的是实践操作，所以在每一个命令使用时都应实际操练。文中描述的命令，不包含『』符号，只需输入内部的命令。</p>
+<h3 id="入门">入门：</h3>
+<h4 id="第一部分-光标移动及进入vim">第一部分 光标移动及进入vim</h4>
+<ol>
+<li>在Terminal中输入『vim 文件名 』&lt;敲回车&gt;，就能进入对于文件的vim界面，默认进入的是命令状态，等候命令输入。</li>
+<li><ESC> 从编辑状态进入正常命令状态，然后输入『:q!』&lt;敲回车&gt;(不保存退出)或『:wq』&lt;敲回车&gt;(保存后退出)</li>
+<li>在命令状态下输入『i』，即刻进入编辑插入状态，&lt;敲ESC&gt;可退出到正常命令状态。</li>
+<li>在正常模式下，输入『x』，删除光标处的单个字符。</li>
+<li>正常模式下，光标移动命令：
+<ul>
+<li>h:左移</li>
+<li>j:下移</li>
+<li>k:上移</li>
+<li>l:右移</li>
+</ul>
+</li>
+</ol>
+<p><em>演示: 用vim打开文件test.md</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/xk5fi.gif" alt="1"></p>
+<h4 id="第二部分-删除命令">第二部分 删除命令</h4>
+<ol>
+<li>从光标处删除到单字/词末尾，输入命令『dw』</li>
+<li>从光标处删除到行末，输入命令『d$』</li>
+<li>删除整行，输入命令『dd』</li>
+<li>撤销操作，输入命令『u』；撤销在一行中的操作，输入命令『U』；恢复操作，输入命令『CTRL+R』</li>
+<li>正常命令模式下，命令有一定格式：[command][number][object]或[number][command][object]
+<ul>
+<li>[command]-代表要做的事情，比如删除命令『d』</li>
+<li>[number ]-代表命令要执行的次数</li>
+<li>[object ]-代表要操作的对象，『w』代表单字/词，『$』代表到行末等等。</li>
+</ul>
+</li>
+</ol>
+<p><em>演示</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/93fgs.gif" alt="2"></p>
+<h4 id="第三部分-更改字符单词">第三部分 更改字符/单词</h4>
+<ol>
+<li>粘贴已经删除的文本，输入命令『p』。该操作会把以及给你删除的内容粘贴到光标后面，如果删除的是整行文本，将会在光标的下面重新插入一行，内容为删除的文本。</li>
+<li>要替换光标位置的字符，输入命令『r字符』，如『ra』，就是把光标处字符替换成字符a。</li>
+<li>改变指定的对象，从光标位置知道对象末尾，比如『cw』，就是更改光标到单词末尾的的内容；『c$』，就是更改光标到行末的内容。</li>
+</ol>
+<p><em>演示</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/93cxi.gif" alt="3"></p>
+<h4 id="第四部分-查找替换及跳转">第四部分 查找/替换及跳转</h4>
+<ol>
+<li>『ctrl-g』用来现实当前光标所在位置和文件状态信息。</li>
+<li>『shift-g』用于将光标跳转到文件最后一行，如果先敲入一个数字，此数字就是代表文本行号，按下『shift-g』后光标就会跳转到此行。</li>
+<li>查找字符串，输入命令『/要查找的字符串』，就会从当前光标位置向后查找，比如『/boy』&lt;敲回车&gt;，就会向后查找字符串boy；命令『?要查找的字符串』则是向前查找；完成一次查找命令后，输入『n』，会按前次查找方向继续查找。</li>
+<li>查找光标位置配对的(、)、[、]、{、}，输入命令『%』。</li>
+<li>替换字符
+<ul>
+<li>替换一行内首个字符串old为新字符串new，输入命令『:s/old/new』&lt;敲回车&gt;;</li>
+<li>替换一行内所有字符串old为新字符串new，输入命令『:s/old/new/g』&lt;敲回车&gt;;</li>
+<li>替换两行内所有字符串old为新字符串new，输入命令『:#,#s/old/new/g』&lt;敲回车&gt;;</li>
+<li>替换文件内所有字符串old为新字符串new，输入命令『:%s/old/new/g』&lt;敲回车&gt;;</li>
+<li>全文替换字符串old为新字符串new时询问用户确认，输入命令『:%s/old/new/gc』&lt;敲回车&gt;。</li>
+</ul>
+</li>
+</ol>
+<p><em>演示</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/yhiht.gif" alt="4"></p>
+<h4 id="第五部分-执行sh命令提取文件内容">第五部分 执行sh命令/提取文件内容</h4>
+<ol>
+<li>执行一个外部命令cmd，输入命令『:!cmd』，如：『:!pwd』，用来显示当前目录。</li>
+<li>将正在编辑的文件保存为FILENAME的文件，输入命令『:w FILENAME』&lt;敲回车&gt;,如『:w test.cpp』，就是将编辑的文件保存为test.cpp文件。</li>
+<li>将当前编辑文件中第#行到第#行的内容保存到FILENAME文件中，输入命令『:#,#w FILENAME』，比如：『:12,67w test.c』，就是把编辑文件的第12行到67行的内容保存到test.c文件中。</li>
+<li>提取文件FILENAME中的内容到光标处，输入命令『:r FILENAME』。</li>
+</ol>
+<p><em>演示</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/6a7hn.gif" alt="5"></p>
+<h4 id="第六部分-插入新行文本替换模式">第六部分 插入新行/文本，替换模式</h4>
+<ol>
+<li>在光标所在行下方插入新的一行并将光标置于行首，输入命令『o』；在光标所在行上方插入新的一行并将光标置于行首，输入命令『O』。</li>
+<li>在光标所在位置之后插入文本，输入命令『a』；在光标所在行的行末之后插入文本，输入命令『A』。</li>
+<li>进入文本替换模式，输入命令『R』。</li>
+<li>vim选项配置命令，格式为：『set xxx』</li>
+</ol>
+<p><em>演示</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/bysdd.gif" alt="6"></p>
+<h4 id="第七部分-复制vim模板配置">第七部分 复制vim模板配置</h4>
+<p>创建一个vim启动脚本，将例程配置导入脚本文件『~/.vimrc』，添加vim下代码高亮功能按照下面几部完成：</p>
+<ol>
+<li>进入~（用户目录），创建『.vimrc』文件，输入命令：『vim .vimrc』.</li>
+<li>将例程配置导入到『.vimrc』文件，输入命令：『:read $VIMRUNTIME/vimrc_example.vim』&lt;敲回车&gt;</li>
+<li>保存并退出，输入命令『:wq』&lt;敲回车&gt;</li>
+</ol>
+<p><em>演示</em></p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/ppx0b.gif" alt="7"></p>
+<h3 id="鸣谢">鸣谢</h3>
+<p>主要参考vimtutor，感谢作者 <strong>梁昌泰</strong> <a href="mailto:beos@turbolinux.com.cn">beos@turbolinux.com.cn</a></p>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smslit.cn/tags/vim">vim</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					2100 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2015-07-16 02:44 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#入门">入门：</a></li>
+        <li><a href="#鸣谢">鸣谢</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smslit.cn/2015/07/16/jekyllCommit/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>Jekyll博客添加多说评论</span>
+			</a>
+			<a class="prev-post" href="https://blog.smslit.cn/2014/03/27/ArduinoUnoHIDKeyboard/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Arduino UNO R3 软件实现HID键盘功能</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2015/07/16/vimtution/" class="leancloud_visitors" data-flag-title="vim的使用入门">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="/js/valine-data.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true ,
+      emojiCDN: '',
+      emojiMaps: null
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

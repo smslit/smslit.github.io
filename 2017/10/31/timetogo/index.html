@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="时间都去哪儿了">
+<meta itemprop="description" content="看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。"><meta itemprop="datePublished" content="2017-10-31T06:35:29+08:00" />
+<meta itemprop="dateModified" content="2017-10-31T06:35:29+08:00" />
+<meta itemprop="wordCount" content="1675">
+<meta itemprop="keywords" content="c,algorithm,develop," /><meta property="og:title" content="时间都去哪儿了" />
+<meta property="og:description" content="看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smslit.cn/2017/10/31/timetogo/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2017-10-31T06:35:29+08:00" />
+<meta property="article:modified_time" content="2017-10-31T06:35:29+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="时间都去哪儿了"/>
+<meta name="twitter:description" content="看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>时间都去哪儿了</title>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/asciinema.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smslit.cn">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smslit.cn/post/">Posts</a>
+				<a href="https://blog.smslit.cn/tags/">Tags</a>
+				<a href="https://blog.smslit.cn/daily/">Daily</a>
+				<a href="https://blog.smslit.cn/about/">Me</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener me" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener me" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://blog.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://blog.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://blog.smslit.cn/about/">Me</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 31, 2017</span></div>
+				<h1>时间都去哪儿了</h1>
+			</header>
+			<div class="content">
+				<p>看标题有点唬人，其实我写的还是技术文章。算法中会评估时间复杂度，而实际编写c程序时，也会用到一些方法去评估时间，看一看程序运行“时间都去哪儿了”。</p>
+<p>文章编写的c程序均在<code>macOS</code>中实现验证，应该同样适用于<code>Linux/Unix</code>。这里将会用到下面三种方法评估程序的运行时间：</p>
+<ul>
+<li>clock()函数</li>
+<li>time()函数</li>
+<li>gettimeofday()函数</li>
+</ul>
+<h2 id="clock函数"><code>clock()</code>函数</h2>
+<p><code>clock()</code>函数是 ANSI C 的标准库函数，其声明在<code>time.h</code>文件中，其返回从开启这个程序进程到调用clock()函数之间的CPU 时钟计时单元（clock tick）数，在 MSDN 中称之为挂钟时间（wal-clock），这有点像嵌入式系统中的系统滴答。</p>
+<p>函数返回一个<code>clock_t</code> 的类型数据，其实就是一个无符号的长整型，那么要获得时间的话，还得除以 <code>CLOCKS_PER_SEC</code> 的宏定义。顾名思义，<code>CLOCKS_PER_SEC</code> 就是每秒所经过的滴答数。</p>
+<h3 id="测试程序">测试程序</h3>
+<p>那么编写一下程序 <code>example1.c</code> 尝尝鲜：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">long</span> <span class="n">loopCount</span> <span class="o">=</span> <span class="mi">10000000L</span><span class="p">;</span>
+	<span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">duration</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;Time to do %ld empty loops: &#34;</span><span class="p">,</span> <span class="n">loopCount</span><span class="p">)</span> <span class="p">;</span>
+	<span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+	<span class="k">while</span><span class="p">(</span> <span class="n">loopCount</span><span class="o">--</span> <span class="p">);</span>
+	<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+	<span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
+    <span class="c1">// 精确到ms
+</span><span class="c1"></span>	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%.3f ms</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">duration</span> <span class="o">*</span> <span class="mf">1000.0</span> <span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>程序验证了10000000个空循环的耗时，执行结果如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  duration ./example1
+Time to <span class="k">do</span> <span class="m">10000000</span> empty loops: 18.601 ms
+</code></pre></div><h3 id="注意">注意</h3>
+<blockquote>
+<ul>
+<li>函数得到的是程序所占进程在CPU上的消耗的滴答数，所以sleep这类函数的时间不会计入；</li>
+<li>在 POSIX 兼容系统中，CLOCKS_PER_SEC的值为 1,000,000 的，也就是 1MHz，所以理论上精度应该是us；</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>网上好多资料说是精度是ms级别的，仔细想一下其实他们说的不对，就像上面我说的<code>CLOCKS_PER_SEC</code>是1000000，那么这个<code>clock()</code>函数其实返回的是该进程占用CPU的us时间，那么他们说打印函数的时间占用为0ms，问题出在哪儿了呢？很简单，打印一下开始和结束的滴答数就知道了，占用滴答数不可能为0的。<code>CLOCKS_PER_SEC</code>是个整型，计算的时候前后获取的clock()的值也都是整型，所以计算的时候当然会是0，只需要按浮点类型计算就可以了，比如下面<code>example.c</code>的实现。这里要注意的是，有些系统中<code>CLOCKS_PER_SEC</code>可能不是1000000，所以程序中计算还应让<code>CLOCKS_PER_SEC</code>参与。</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;begin clock: %0.f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">begin</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;end clock: %0.f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span> <span class="o">*</span> <span class="mf">1000.0</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;print time: %.3f ms&#34;</span><span class="p">,</span> <span class="n">duration</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="err">➜</span>  <span class="n">duration</span> <span class="p">.</span><span class="o">/</span><span class="n">example</span>
+<span class="n">Hello</span><span class="p">,</span> <span class="n">world</span><span class="o">!</span>
+<span class="n">begin</span> <span class="nl">clock</span><span class="p">:</span> <span class="mi">2056</span>
+<span class="n">end</span> <span class="nl">clock</span><span class="p">:</span> <span class="mi">2084</span>
+<span class="n">print</span> <span class="nl">time</span><span class="p">:</span> <span class="mf">0.028</span> <span class="n">ms</span>
+</code></pre></div><h2 id="time函数"><code>time()</code>函数</h2>
+<p><code>time()</code>函数来获得当前日历时间，是从一个标准时间点（一般是1970年1月1日0时0分0秒）到现在的时间，单位为秒。函数声明:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">time_t</span> <span class="nf">time</span><span class="p">(</span><span class="n">time_t</span> <span class="o">*</span> <span class="n">timer</span><span class="p">);</span> 
+</code></pre></div><p><code>time_t</code>也是一个长整型类型，函数中如果<code>timer</code>为<code>NULL</code>或遇到错误返回结果-1，如果不为<code>NULL</code>，则会把值保存在<code>timer</code>中。</p>
+<h3 id="试一下">试一下</h3>
+<p>编写程序<code>example2.c</code>使用延时函数<code>sleep()</code>进行测试：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// time()方法精度只有1s
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">time_t</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">;</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t1</span><span class="p">);</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;t1: %ld, t2: %ld, sleep: %ld s&#34;</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>输出结果如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  duration ./example2
+t1: 1509401991, t2: 1509401994, sleep: <span class="m">3</span> s
+</code></pre></div><p>这里要注意的是编译的时候<code>gcc</code>默认使用标准<code>c99</code>，而这个标准下<code>sleep()</code>无效，这里采用<code>c89</code>标准进行编译即可：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">gcc -std<span class="o">=</span>c89 -o example2 example2.c
+</code></pre></div><h3 id="注意-1">注意</h3>
+<blockquote>
+<p>此种方法的精度只有1s！</p>
+</blockquote>
+<h2 id="gettimeofday函数"><code>gettimeofday()</code>函数</h2>
+<p><code>gettimeofday()</code>函数在<code>sys/time.h</code>中，声明如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">gettimeofday</span><span class="p">(</span><span class="k">struct</span> <span class="n">timeval</span><span class="o">*</span><span class="n">tv</span><span class="p">,</span> <span class="k">struct</span> <span class="n">timezone</span> <span class="o">*</span><span class="n">tz</span> <span class="p">);</span>
+</code></pre></div><p>其中形参对应结构体如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span>  <span class="n">timeval</span> <span class="p">{</span>
+    <span class="kt">long</span>  <span class="n">tv_sec</span><span class="p">;</span>
+    <span class="kt">long</span>  <span class="n">tv_usec</span><span class="p">;</span>
+<span class="p">}</span><span class="err">；</span>
+
+<span class="k">struct</span>  <span class="n">timezone</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tz_minuteswest</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">tz_dsttime</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div><p>我们这里只关心时间差，所以只需要传入定义好的<code>timeval</code>结构体就好，<code>timezone</code>可以为<code>NULL</code>，每次调用函数，会把时间戳记录在传入的<code>timeval</code>结构体变量指针中，其中:</p>
+<ul>
+<li><code>tv_sec</code>存储的是s；</li>
+<li><code>tv_usec</code>存储是us；</li>
+</ul>
+<h3 id="实例测试">实例测试</h3>
+<p>那么可以编写程序<code>example3.c</code>进行测试了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">duration</span><span class="p">;</span>
+    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello,World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="mi">1000000</span> <span class="o">*</span> <span class="p">(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="p">)</span><span class="o">+</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_usec</span><span class="o">-</span><span class="n">start</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%ld us:&#34;</span><span class="p">,</span> <span class="n">duration</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>最终结果为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  duration ./example3
+Hello,World!
+<span class="m">35</span> us:%
+</code></pre></div><h3 id="注意-2">注意</h3>
+<blockquote>
+<p>精度为us；</p>
+</blockquote>
+<h2 id="总结">总结</h2>
+<p>综上所述，<code>clock()</code> 和 <code>gettimeofday()</code> 方法均可以达到us的精度，但是 <code>clock()</code> 方法依赖于宏定义 <code>CLOCKS_PER_SEC</code>，不过最终一般是us级别；而 <code>time()</code> 方法精度只有秒级，所以适合较大的计算过程。</p>
+<h2 id="参考">参考</h2>
+<p>感谢<a href="http://baige5117.github.io/"><strong>向日葵花</strong></a>: <a href="http://baige5117.github.io/blog/calculate_the_running_time_of_algorithm.html">Linux/Unix 环境下实现精确计算程序运行的时间</a></p>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smslit.cn/tags/c">c</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/algorithm">algorithm</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/develop">develop</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					1675 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2017-10-31 06:35 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#clock函数"><code>clock()</code>函数</a>
+      <ul>
+        <li><a href="#测试程序">测试程序</a></li>
+        <li><a href="#注意">注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#time函数"><code>time()</code>函数</a>
+      <ul>
+        <li><a href="#试一下">试一下</a></li>
+        <li><a href="#注意-1">注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#gettimeofday函数"><code>gettimeofday()</code>函数</a>
+      <ul>
+        <li><a href="#实例测试">实例测试</a></li>
+        <li><a href="#注意-2">注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smslit.cn/2017/11/08/stm32InPIO-start/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>stm32开发新方式-platformio</span>
+			</a>
+			<a class="prev-post" href="https://blog.smslit.cn/2017/10/27/mathknowlege/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>数学知识复习</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2017/10/31/timetogo/" class="leancloud_visitors" data-flag-title="时间都去哪儿了">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="/js/valine-data.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true ,
+      emojiCDN: '',
+      emojiMaps: null
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

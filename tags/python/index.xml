@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/python/</link>
+    <description>Recent content in python on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 24 Oct 2020 10:59:00 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>同域名下不同端口的 web 服务 session 冲突导致用户登录互顶的问题</title>
+      <link>https://blog.smslit.cn/2020/10/24/same-domain-different-port-session-conflict/</link>
+      <pubDate>Sat, 24 Oct 2020 10:59:00 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2020/10/24/same-domain-different-port-session-conflict/</guid>
+      <description>好久没更新文章了，就先从整了个开发中遇到的小问题再开始吧！ 日常开发中经常会在同域名或 IP 下在不同端口部署不同的 web 应用服务，但如果恰好每个服务都</description>
+    </item>
+    
+    <item>
+      <title>python3.6 的 Ubuntu16.04 Docker 镜像制作</title>
+      <link>https://blog.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</link>
+      <pubDate>Tue, 12 May 2020 13:32:23 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2020/05/12/docker-ubuntu16.04-python3.6/</guid>
+      <description>出于某些原因，公司使用 ubuntu16.04(xenial) 和 python3.6，为了方便部署写的 web 应用或 AI 分析服务，尤其是某些情况下的离线部署，有必要搞个 Docker 镜像。因为公司使用</description>
+    </item>
+    
+    <item>
+      <title>使用 pyenv 和 pipenv 管理 python版本及虚拟环境</title>
+      <link>https://blog.smslit.cn/2020/02/21/pyenv_pipenv/</link>
+      <pubDate>Fri, 21 Feb 2020 15:57:16 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2020/02/21/pyenv_pipenv/</guid>
+      <description>如果你已经无法容忍机器上杂乱的 python 版本，pyenv 是一味良药，可以尝一下，辅以 pipenv 管理虚拟环境疗效极佳，让“洁癖”的你身心健康！ 本文适用于 macOS 下的</description>
+    </item>
+    
+    <item>
+      <title>鸭子类型是什么鬼</title>
+      <link>https://blog.smslit.cn/daily/duck-type/</link>
+      <pubDate>Fri, 15 Mar 2019 23:44:26 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/daily/duck-type/</guid>
+      <description>刚刚看到 《Python Vs Go，鸭子类型，你有我也有》 了解到 鸭子类型，刚看到标题的时候，怪怪的，这是个什么鬼类型！而且总感觉 PegasusWang 稍微开了开车，哈</description>
+    </item>
+    
+    <item>
+      <title>python 利用百度 AI 实现 OCR</title>
+      <link>https://blog.smslit.cn/2019/01/10/textgo_python/</link>
+      <pubDate>Thu, 10 Jan 2019 15:10:32 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/01/10/textgo_python/</guid>
+      <description>&lt;p&gt;前两天了解了一下百度 AI，他们提供了免费的图片中文字识别接口，每天可以提供 50000 次免费的通用文字识别，想起了之前帮水木做一个网站时，资料中的问题大部分以图片的形式提供，所以当时就有这个图片 OCR 的需求，本文就说一下如何用 python 借用百度 AI 实现图片的 OCR。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190110210442.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>最简单的人工智能(皮一下)</title>
+      <link>https://blog.smslit.cn/2018/12/17/simple_ai_stupid/</link>
+      <pubDate>Mon, 17 Dec 2018 16:35:58 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/12/17/simple_ai_stupid/</guid>
+      <description>&lt;p&gt;有没有想过实现一个人工智能项目，现在十里就教你用 python3 实现一个最简单的人工智障项目，哦，不对，是人工智能项目，智能(智障)谈话机器人，据说这个项目估值一个亿^[&lt;a href=&#34;https://github.com/ruanyf/weekly/issues/158&#34;&gt;图片：估值一个亿的代码&lt;/a&gt;]！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20181217171933.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>简陋的不能再简陋的 HTTP1.1 Server</title>
+      <link>https://blog.smslit.cn/2018/11/27/simple_server/</link>
+      <pubDate>Tue, 27 Nov 2018 10:48:29 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/11/27/simple_server/</guid>
+      <description>&lt;p&gt;今天实现了一个超级简陋的 HTTP/1.1 服务，使用 python3 实现，主要为了练习 TCP 通信和理解浏览器与服务器之间的交互过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 matplotlib 的 animation 让数据动起来</title>
+      <link>https://blog.smslit.cn/2018/11/12/matplotlib-animation/</link>
+      <pubDate>Mon, 12 Nov 2018 01:22:15 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/11/12/matplotlib-animation/</guid>
+      <description>&lt;p&gt;最近在研究排序算法，为了更好的展示排序过程，决定使用动画演示，专门研究了 python 图表库 matplotlib 的 animation。本文简单讲一下如何使用 matplotlib 让你手中的数据动起来。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20181112154195822047625.gif&#34; alt=&#34;20181112154195822047625.gif&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>排序算法知多少</title>
+      <link>https://blog.smslit.cn/2018/11/07/algorithm-sort/</link>
+      <pubDate>Wed, 07 Nov 2018 15:37:05 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/11/07/algorithm-sort/</guid>
+      <description>&lt;p&gt;大学里学的第一门编程语言是 c++，c++ 的课程中接触的第一种排序算法是&lt;strong&gt;冒泡排序&lt;/strong&gt;，这已经过去八年，很惭愧的是到目前只了解&lt;strong&gt;冒泡排序&lt;/strong&gt;和&lt;strong&gt;插入排序&lt;/strong&gt;两种，作为一名合格的程序猿也应该了解了解其它的排序算法吧！所以开本文记录整理网上所谓的&lt;strong&gt;十大排序算法&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/2018111115418975029904.gif&#34; alt=&#34;2018111115418975029904.gif&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>windows 下 python 开发利器 vscode 的锻造</title>
+      <link>https://blog.smslit.cn/2018/11/02/python-dev-in-windows/</link>
+      <pubDate>Fri, 02 Nov 2018 13:02:49 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/11/02/python-dev-in-windows/</guid>
+      <description>&lt;p&gt;之前一直是在 macOS 下进行 python 学习和应用开发，没想到会有一天会用到 windows 进行 python 开发，macOS下使用 vscode 加 python 插件的形式作为开发利器，同样在 windows 下也可以使用 vscode 进行 python 开发，本文就讲一下如何使用 vscode 打造 python 开发利器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/blog/img/2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

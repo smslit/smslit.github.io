@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="macOS 开发之实现 HTTP 的 GET 和 POST 请求">
+<meta itemprop="description" content="在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift"><meta itemprop="datePublished" content="2019-01-26T15:10:40+08:00" />
+<meta itemprop="dateModified" content="2019-01-26T15:10:40+08:00" />
+<meta itemprop="wordCount" content="2644">
+<meta itemprop="keywords" content="macOS 开发,develop," /><meta property="og:title" content="macOS 开发之实现 HTTP 的 GET 和 POST 请求" />
+<meta property="og:description" content="在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smslit.cn/2019/01/26/get_post_cocoa/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-01-26T15:10:40+08:00" />
+<meta property="article:modified_time" content="2019-01-26T15:10:40+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="macOS 开发之实现 HTTP 的 GET 和 POST 请求"/>
+<meta name="twitter:description" content="在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。 平台 因为 swift"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>macOS 开发之实现 HTTP 的 GET 和 POST 请求</title>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190223133434.png');}</style>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/asciinema.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smslit.cn">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smslit.cn/post/">Posts</a>
+				<a href="https://blog.smslit.cn/tags/">Tags</a>
+				<a href="https://blog.smslit.cn/daily/">Daily</a>
+				<a href="https://blog.smslit.cn/about/">Me</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="特色图片"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener me" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener me" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://blog.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://blog.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://blog.smslit.cn/about/">Me</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 26, 2019</span></div>
+				<h1>macOS 开发之实现 HTTP 的 GET 和 POST 请求</h1>
+			</header>
+			<div class="content">
+				<p>在 macOS 开发过程中会经常用到外部服务，通常是通过 HTTP 的 GET 和 POST 请求调用它们的 API 获得目标数据，本篇文章就说一下如何在 macOS 开发中实现 GET 和 POST 请求。</p>
+<h1 id="平台">平台</h1>
+<p>因为 swift 语言在发展期，新版本可能会有写变化，但是使用方法应该不会大变，为了加以注意，这里列出写本文时作者测试代码的平台情况。</p>
+<ul>
+<li>macOS 10.14.3</li>
+<li>xcode 10.1</li>
+<li>swift 4.2.1</li>
+</ul>
+<h1 id="网络请求">网络请求</h1>
+<p>本文要讲的是使用 swift 的 <strong>urlSession</strong> 发送 GET 和 POST 请求。先讲一下一般的使用方法，为了更清楚一点，这里先直接粘上代码。</p>
+<h2 id="get-请求">GET 请求</h2>
+<p>先上代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="s">&#34;http://127.0.0.1/api/&#34;</span>
+<span class="kd">var</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">URLRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="p">!,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;无法连接到服务器&#34;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+</code></pre></div><ol>
+<li>创建一个网络会话</li>
+<li>创建网络请求体，默认就是 GET 请求，所以直接使用 url 创建请求即可</li>
+<li>利用会话创建一个数据任务，在任务创建中实现相应处理，代码中是将收到的响应数据转换为字典的处理：
+<ul>
+<li><strong>data</strong> 是请求成功后收到的响应数据</li>
+<li><strong>response</strong> 是响应体内容</li>
+<li><strong>error</strong> 是网络请求中的错误信息</li>
+</ul>
+</li>
+<li>最后执行创建的数据任务</li>
+</ol>
+<p>其中 <code>JSONSerialization.jsonObject</code> 是解析 json 字符串为字典数据的方法。</p>
+<p>URLSession 具有单例 <code>shared</code> ，所以这里可以使用单例简化操作：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="s">&#34;http://127.0.0.1/api/&#34;</span><span class="p">)</span>
+<span class="n">URLSession</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="kd">let</span> <span class="nv">data</span> <span class="p">=</span> <span class="n">data</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">error</span><span class="p">?.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">&#34;Unkown Error!&#34;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="bp">print</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">))</span>
+<span class="p">}.</span><span class="n">resume</span><span class="p">()</span>
+</code></pre></div><p>下面的所有请求均可以使用 <code>URLSession</code> 的单例 <code>shared</code> 实现，下面就不一一赘述！</p>
+<h2 id="post-请求">POST 请求</h2>
+<p>基本步骤类似于 GET 请求，只是在请求体上的配置有所不同，基本使用代码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="s">&#34;http://127.0.0.1/api/&#34;</span>
+<span class="kd">var</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">URLRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="s">&#34;application/x-www-form-urlencoded&#34;</span><span class="p">,</span> <span class="n">forHTTPHeaderField</span><span class="p">:</span> <span class="s">&#34;Content-Type&#34;</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="n">httpMethod</span> <span class="p">=</span> <span class="s">&#34;POST&#34;</span>
+<span class="kd">let</span> <span class="nv">postData</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;username&#34;</span><span class="p">:</span><span class="s">&#34;xxx&#34;</span><span class="p">,</span><span class="s">&#34;password&#34;</span><span class="p">:</span><span class="s">&#34;123456&#34;</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">postString</span> <span class="p">=</span> <span class="n">postData</span><span class="p">.</span><span class="n">compactMap</span><span class="p">({</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="s">&#34;</span><span class="si">\(</span><span class="n">key</span><span class="si">)</span><span class="s">=</span><span class="si">\(</span><span class="n">value</span><span class="si">)</span><span class="s">&#34;</span>
+<span class="p">}).</span><span class="n">joined</span><span class="p">(</span><span class="n">separator</span><span class="p">:</span> <span class="s">&#34;&amp;&#34;</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="n">httpBody</span> <span class="p">=</span> <span class="n">postString</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">using</span><span class="p">:</span> <span class="p">.</span><span class="n">utf8</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="p">!,</span> <span class="n">options</span><span class="p">:</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">ReadingOptions</span><span class="p">.</span><span class="n">mutableContainers</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;无法连接到服务器&#34;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+</code></pre></div><p>注意：</p>
+<ol>
+<li>网络请求中使用 setValue 进行配置请求头信息</li>
+<li>手动配置请求方法为 <strong>POST</strong></li>
+<li>上面的 POST 请求数据使用的类型是 <code>application/x-www-form-urlencoded</code>，所以要对请求数据进行特殊字符加 % 进行编码。</li>
+</ol>
+<h1 id="问题">问题</h1>
+<p>在使用上面的操作过程中，因为每个人不同的需求可能会遇到不同的问题，这里列出可能会遇到的问题。</p>
+<h2 id="无法连接到网络沙盒阻止">无法连接到网络(沙盒阻止)</h2>
+<p>在使用上述方法发送请求时，遇到了错误：</p>
+<blockquote>
+<p>dns A server with the specified hostname could not be found</p>
+</blockquote>
+<p>造成此问题的原因是受沙盒限制导致，两种解决方法：</p>
+<ol>
+<li>点击项目左侧导航栏中的项目名称，右侧顶部标签选择 <strong>Capabilities</strong> 找到第一项 <strong>NetWork</strong> 勾选 <strong>Incoming Connections (Server)</strong> 和 <strong>Outgoing Connections (Client)</strong>，主要是 <strong>Outgoing Connections (Client)</strong></li>
+<li>关闭 App SandBox</li>
+</ol>
+<p>建议使用第一种方法。</p>
+<h2 id="http-屏蔽问题">HTTP 屏蔽问题</h2>
+<blockquote>
+<p>App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.</p>
+</blockquote>
+<p>这个问题是安全机制导致的，如果请求的 API 链接是 HTTP 的而不是 HTTPS 的可能会出现这个问题，解决方法是，在 <code>Info.plist</code> 中添加 <code>App Transport Security Settings</code>，在其下再添加一个 <code>Allow Arbitrary Loads</code> 值设置为 <code>Yes</code> 即可，如下图：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190223122624.png" alt=""></p>
+<h2 id="url-编码问题">url 编码问题</h2>
+<p>进行请求操作中严格按照了上面的步骤操作，可是收到的是错误响应，最后查明原来是 url 编码问题，十里之前在开发一款图片 OCR 的 app 的时候，需要在 POST 数据中包含图片 BASE64 数据。但其中包含了特殊字符，这些字符需要进行
+% 转码，要符合 <strong>RFC 3986</strong> 标准，这里给出十里的解决方法，是对 <strong>String</strong> 进行扩展两个属性，字符串这两个属性分别可以完成 url 编码和解码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="nc">String</span> <span class="p">{</span>
+    <span class="c1">//将原始的url编码为合法的url</span>
+    <span class="kd">var</span> <span class="nv">urlEncoded</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">generalDelimitersToEncode</span> <span class="p">=</span> <span class="s">&#34;:#[]@&#34;</span> <span class="c1">// does not include &#34;?&#34; or &#34;/&#34; due to RFC 3986 - Section 3.4</span>
+        <span class="kd">let</span> <span class="nv">subDelimitersToEncode</span> <span class="p">=</span> <span class="s">&#34;!$&amp;&#39;()*+,;=&#34;</span>
+        <span class="kd">var</span> <span class="nv">allowedCharacterSet</span> <span class="p">=</span> <span class="n">CharacterSet</span><span class="p">.</span><span class="n">urlQueryAllowed</span>
+        <span class="n">allowedCharacterSet</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">charactersIn</span><span class="p">:</span> <span class="s">&#34;</span><span class="si">\(</span><span class="n">generalDelimitersToEncode</span><span class="si">)\(</span><span class="n">subDelimitersToEncode</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">addingPercentEncoding</span><span class="p">(</span><span class="n">withAllowedCharacters</span><span class="p">:</span> <span class="n">allowedCharacterSet</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="c1">//将编码后的url转换回原始的url</span>
+    <span class="kd">var</span> <span class="nv">urlDecoded</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">removingPercentEncoding</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>上面的扩展中使用了现有的 <code>addingPercentEncoding</code> 方法，但是现有的字符集不能完全去除特殊字符，所以作者这里使用了自己创建的字符集 <code>allowedCharacterSet</code>。</p>
+<h2 id="界面刷新问题">界面刷新问题</h2>
+<p>通过请求获取了数据以后，通常需要更新一下界面中的显示结果，此时就会出现问题！上面的接口采用异步的方式，就是为了防止请求时间过长导致界面卡死，请求是在新的线程进行，但是界面是在主线程处理，所以一旦在请求完直接处理界面的话，就会导致 App 崩溃，所以这里建议使用委托以及在委托线程中修改UI，方法如下（这里以简单的 GET 请求为例，POST 请求类似操作）：</p>
+<ul>
+<li>封装一个请求的方法，其中一个参数是请求完成后处理事务的回调函数：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">sendGetRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">((</span><span class="n">Data</span><span class="p">?,</span><span class="n">URLResponse</span><span class="p">?,</span><span class="n">Error</span><span class="p">?)-&gt;</span><span class="nb">Void</span><span class="p">))</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+    <span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>定义刚才所说的回调函数，包含参数 data, response 和 error，这个回调可以根据不同 API 功能定义多个，以相应功能命名，比如是获取天气：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">getWeatherSuccess</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">?,</span> <span class="n">response</span><span class="p">:</span> <span class="n">URLResponse</span><span class="p">?,</span> <span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
+    <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+        <span class="c1">// 这里完成 UI 相关操作，调用 UI 对象时要加上 self</span>
+        <span class="c1">// 比如： self.weatherLabel = &#34;...&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+</code></pre></div><ul>
+<li>最后在要请求数据的地方调用第一步定义的通用方法即可，只需指定不同的处理回调就可以完成多 API 的不同请求：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">sendGetRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="s">&#34;http://127.0.0.1/api&#34;</span><span class="p">,</span> <span class="n">getWeatherSuccess</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="n">response</span><span class="p">:</span><span class="n">error</span><span class="p">:))</span>
+</code></pre></div><h1 id="天气实例">天气实例</h1>
+<p>下面以一个获取天气的实例，讲解一下 HTTP 的 GET 请求方式，POST 方式按照上面讲的方式基本差不多少，无非是加了请求数据，这里就先不讲 POST 请求实例了。</p>
+<p>我们要做的实例很简单，窗口中有一个 push button 和 一个 label，当点击 button 的时候就会触发请求获取天气数据，并将温度显示在标签上，不作复杂的处理讲明白方法即可。</p>
+<h2 id="天气-api">天气 API</h2>
+<p>这里使用<a href="https://www.sojson.com/blog/305.html">免费天气API，天气JSON API，不限次数获取十五天的天气预报</a>提供的天气API，免费使用，可免费使用，不过免费版本数据固定 8 个小时更新一次，这倒无所谓了，我们只是用来学习实现 GET 请求而已。</p>
+<h3 id="get-请求格式">GET 请求格式</h3>
+<p>示例请求链接：http://t.weather.sojson.com/api/weather/city/101030100 。</p>
+<p>不用再带任何参数，请求是restfull风格，可以看到链接最后有一串数字，这串数字是城市编码 city_code ，一个 9 位数字，上面的编码代表的是 <strong>天津市</strong> 。地址是 <a href="http://t.weather.sojson.com/api/weather/city/">http://t.weather.sojson.com/api/weather/city/</a> 和 city_code 的拼接。</p>
+<h3 id="城市编码">城市编码</h3>
+<p>城市编码可以在 <a href="http://cdn.sojson.com/_city.json"><strong>_city.json</strong></a> 中查询，打开文件查找即可，这里我们查询 济南，可以查找到：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Json" data-lang="Json"><span class="p">{</span>
+  <span class="nt">&#34;_id&#34;</span><span class="p">:</span> <span class="mi">281</span><span class="p">,</span>
+  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">282</span><span class="p">,</span>
+  <span class="nt">&#34;pid&#34;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+  <span class="nt">&#34;city_code&#34;</span><span class="p">:</span> <span class="s2">&#34;101120101&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;city_name&#34;</span><span class="p">:</span> <span class="s2">&#34;济南&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>所以最终 GET 请求链接是：http://t.weather.sojson.com/api/weather/city/101120101</p>
+<h2 id="新建-cocoa-app-工程">新建 Cocoa APP 工程</h2>
+<p>为了直接明了这里直接把工程新建和控件添加的过程以视频展示：</p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/getDemo_newProject.mp4" width="960" controls="controls">新建空工程</video></p>
+<h2 id="添加-get-请求方法">添加 GET 请求方法</h2>
+<p>打开文件 <code>ViewController.swift</code> ，在 <code>ViewController</code> 中添加如下方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">func</span> <span class="n">getRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">((</span><span class="n">Data</span><span class="p">?,</span> <span class="n">URLResponse</span><span class="p">?,</span> <span class="n">Error</span><span class="p">?)-&gt;</span><span class="nb">Void</span><span class="p">))</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">session</span> <span class="p">=</span> <span class="n">URLSession</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="p">.</span><span class="k">default</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nv">task</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">dataTask</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">URL</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span><span class="o">!</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="n">completionHandler</span><span class="p">)</span>
+    <span class="n">task</span><span class="p">.</span><span class="n">resume</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="请求成功后处理回调">请求成功后处理回调</h2>
+<p>定义一个请求成功后的回调函数，同样放到 <code>ViewController</code> 中：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">parseTemperatureForToday</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">?,</span> <span class="n">response</span><span class="p">:</span> <span class="n">URLResponse</span><span class="p">?,</span> <span class="n">error</span><span class="p">:</span> <span class="n">Error</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
+    <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">r</span> <span class="p">=</span> <span class="k">try</span> <span class="n">JSONSerialization</span><span class="p">.</span><span class="n">jsonObject</span><span class="p">(</span><span class="n">with</span><span class="p">:</span> <span class="n">data</span><span class="p">!,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[</span><span class="n">JSONSerialization</span><span class="p">.</span><span class="n">ReadingOptions</span><span class="p">.</span><span class="n">mutableContainers</span><span class="p">])</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
+            <span class="kd">let</span> <span class="nv">todayData</span> <span class="p">=</span> <span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;data&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="n">NSDictionary</span>
+            <span class="kd">let</span> <span class="nv">tempValue</span> <span class="p">=</span> <span class="n">todayData</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&#34;wendu&#34;</span><span class="p">)</span> <span class="k">as</span><span class="p">!</span> <span class="nb">String</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">temperatureLabel</span><span class="p">.</span><span class="n">stringValue</span> <span class="p">=</span> <span class="n">tempValue</span> <span class="o">+</span> <span class="s">&#34; °C&#34;</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;无法连接到服务器&#34;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="按钮点击处理">按钮点击处理</h2>
+<p>按钮点击就发送请求，在 <code>getTemperature</code> 方法中添加请求方法的调用即可完成实例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">getTemperature</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 获取济南天气的 GET 请求链接</span>
+    <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="s">&#34;http://t.weather.sojson.com/api/weather/city/101120101&#34;</span>
+    <span class="n">ViewController</span><span class="p">.</span><span class="n">getRequest</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">parseTemperatureForToday</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="n">response</span><span class="p">:</span><span class="n">error</span><span class="p">:))</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="运行示例">运行示例</h2>
+<p>编译运行，可能会遇到本文前面提到的<strong>HTTP 请求屏蔽</strong> 和 <strong>无法连接网络(沙盒阻止)</strong> 的问题，按照上面的解决方法排出问题即可，最终运行效果如下图：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190223124656.gif" alt=""></p>
+<p><strong>Demo 下载</strong>: <a href="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/GetRequestDemo.zip">GetRequestDemo</a></p>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="https://www.logcg.com/archives/3120.html">swift4 urlSession get和post网络请求</a></li>
+<li><a href="https://blog.auv.cool/2018/08/06/Swift/URLSession/">Swift URLSession 网络请求</a></li>
+<li><a href="https://blog.csdn.net/agonie201218/article/details/78788685">swift URL 编码</a></li>
+<li><a href="https://www.jianshu.com/p/753831ce6adb">Swift4.0 异步Post请求中使用委托以及在委托线程中修改UI</a></li>
+<li><a href="https://stackoverflow.com/questions/31254725/transport-security-has-blocked-a-cleartext-http">Transport security has blocked a cleartext HTTP</a></li>
+</ul>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smslit.cn/tags/macOS-%E5%BC%80%E5%8F%91">macOS 开发</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/develop">develop</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					2644 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2019-01-26 15:10 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#get-请求">GET 请求</a></li>
+    <li><a href="#post-请求">POST 请求</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#无法连接到网络沙盒阻止">无法连接到网络(沙盒阻止)</a></li>
+    <li><a href="#http-屏蔽问题">HTTP 屏蔽问题</a></li>
+    <li><a href="#url-编码问题">url 编码问题</a></li>
+    <li><a href="#界面刷新问题">界面刷新问题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#天气-api">天气 API</a>
+      <ul>
+        <li><a href="#get-请求格式">GET 请求格式</a></li>
+        <li><a href="#城市编码">城市编码</a></li>
+      </ul>
+    </li>
+    <li><a href="#新建-cocoa-app-工程">新建 Cocoa APP 工程</a></li>
+    <li><a href="#添加-get-请求方法">添加 GET 请求方法</a></li>
+    <li><a href="#请求成功后处理回调">请求成功后处理回调</a></li>
+    <li><a href="#按钮点击处理">按钮点击处理</a></li>
+    <li><a href="#运行示例">运行示例</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smslit.cn/2019/02/15/mac_app_restart/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>macOS 开发中实现 APP 的自重启</span>
+			</a>
+			<a class="prev-post" href="https://blog.smslit.cn/2019/01/10/textgo_python/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>python 利用百度 AI 实现 OCR</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2019/01/26/get_post_cocoa/" class="leancloud_visitors" data-flag-title="macOS 开发之实现 HTTP 的 GET 和 POST 请求">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="/js/valine-data.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true ,
+      emojiCDN: '',
+      emojiMaps: null
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

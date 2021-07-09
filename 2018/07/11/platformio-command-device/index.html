@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="platformio串口监视器功能">
+<meta itemprop="description" content="今天收到了前些天买的Arduino Leonardo，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 platformio 监视 Arduino的串口数据。
+"><meta itemprop="datePublished" content="2018-07-11T23:28:08+08:00" />
+<meta itemprop="dateModified" content="2018-07-11T23:28:08+08:00" />
+<meta itemprop="wordCount" content="1997">
+<meta itemprop="keywords" content="arduino,platformio,pio," /><meta property="og:title" content="platformio串口监视器功能" />
+<meta property="og:description" content="今天收到了前些天买的Arduino Leonardo，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 platformio 监视 Arduino的串口数据。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smslit.cn/2018/07/11/platformio-command-device/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-07-11T23:28:08+08:00" />
+<meta property="article:modified_time" content="2018-07-11T23:28:08+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="platformio串口监视器功能"/>
+<meta name="twitter:description" content="今天收到了前些天买的Arduino Leonardo，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 platformio 监视 Arduino的串口数据。
+"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>platformio串口监视器功能</title>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/asciinema.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smslit.cn">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smslit.cn/post/">Posts</a>
+				<a href="https://blog.smslit.cn/tags/">Tags</a>
+				<a href="https://blog.smslit.cn/daily/">Daily</a>
+				<a href="https://blog.smslit.cn/about/">Me</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener me" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener me" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://blog.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://blog.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://blog.smslit.cn/about/">Me</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jul 11, 2018</span></div>
+				<h1>platformio串口监视器功能</h1>
+			</header>
+			<div class="content">
+				<p>今天收到了前些天买的<a href="https://store.arduino.cc/arduino-leonardo-with-headers">Arduino Leonardo</a>，写了一个简单的程序测试了一下基本的LED blinky和串口通信，本文简单介绍一下如何使用 <strong>platformio</strong> 监视 Arduino的串口数据。</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/20180711153132350560223.jpg" alt="20180711153132350560223.jpg"></p>
+<p>预警：如果您对操作命令行不感冒，那么本篇文章不适合您的口味，不过看看了解一下也不错！</p>
+<p>本文测试条件：</p>
+<ul>
+<li>电脑操作系统 -&gt; <strong>macOS</strong></li>
+<li>使用工具 -&gt; <strong>platformio</strong></li>
+<li>开发板 -&gt; <strong>Arduino Leonardo</strong></li>
+</ul>
+<h2 id="测试程序">测试程序</h2>
+<p>本人喜欢使用vim，所以使用文章 <a href="/2017/08/15/platformio-vim/">vim也是platformio的IDE</a> 中的方法新建工程：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir leonardo_play <span class="o">&amp;&amp;</span> <span class="nb">cd</span> leonardo_play
+pio init --ide vim --board leonardo
+</code></pre></div><p>完成工程的新建后，为了方便构建程序和上传程序到开发板 <strong>Arduino Leonardo</strong>，这里还新建文件 <code>Makefile</code>，内容为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-makefile" data-lang="makefile"><span class="nf">all</span><span class="o">:</span>
+	platformio -f -c vim run
+
+<span class="nf">upload</span><span class="o">:</span>
+	platformio -f -c vim run --target upload
+
+<span class="nf">clean</span><span class="o">:</span>
+	platformio -f -c vim run --target clean
+
+<span class="nf">program</span><span class="o">:</span>
+	platformio -f -c vim run --target program
+
+<span class="nf">uploadfs</span><span class="o">:</span>
+	platformio -f -c vim run --target uploadfs
+
+<span class="nf">update</span><span class="o">:</span>
+	platformio -f -c vim update
+</code></pre></div><p>添加测试源码 <code>src/main.cpp</code>，代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+    <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&#34;Led on!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&#34;Led off!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>上述代码主要实现LED管脚和串口的初始化，在主循环中，每一秒LED闪动一次，期间串口会发送LED状态。以此代码来测试新收到的开发板，还有介绍本文的主题，串口数据监视器功能。</p>
+<p>连接 <strong>Arduino Leonardo</strong> 和 电脑，编译工程并上传程序：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make all <span class="o">&amp;&amp;</span> make upload
+</code></pre></div><p>程序上传成功后看到，板载led开始闪动，说明程序基本运行了：</p>
+<p><video src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/platform/command/device/blinky.mp4" width="100%" controls="controls" loop="loop"></video></p>
+<p>下面我们只需要看一下，串口是否打印了LED状态。</p>
+<h2 id="device命令"><code>device</code>命令</h2>
+<p>这个命令用来控制设备，常用的功能就是监视设配通过串口发送的数据，或向设备发送串口数据。串口用的很多，所以这里只拿串口来分享经验。</p>
+<p>执行命令，查看一下帮助信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  leonardo pio device -h
+Usage: pio device <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  list     List devices
+  monitor  Monitor device <span class="o">(</span>Serial<span class="o">)</span>
+</code></pre></div><p>可以看到有两个子命令：</p>
+<ul>
+<li><strong>list</strong> : 列出所有可用设备；</li>
+<li><strong>monitor</strong> : 监视串口设备；</li>
+</ul>
+<h3 id="列出可用设备">列出可用设备</h3>
+<p>执行命令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pio device list
+</code></pre></div><p>此时就会列出所有可用大的串口接口，我的是这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">➜  leonardo pio device list
+/dev/cu.SOC
+-----------
+Hardware ID: n/a
+Description: n/a
+
+/dev/cu.MALS
+------------
+Hardware ID: n/a
+Description: n/a
+
+/dev/cu.Bluetooth-Incoming-Port
+-------------------------------
+Hardware ID: n/a
+Description: n/a
+
+/dev/cu.yeAirPods-WirelessiAP-1
+-------------------------------
+Hardware ID: n/a
+Description: n/a
+
+/dev/cu.usbmodem1441
+--------------------
+Hardware ID: USB VID:PID<span class="o">=</span>2341:8036 <span class="nv">LOCATION</span><span class="o">=</span>20-6
+Description: Arduino Leonardo
+</code></pre></div><p>能够看到， <strong>Arduino Leonardo</strong> 对应的串口应该是 <code>/dev/cu.usbmodem1441</code>。</p>
+<h3 id="开启监视器">开启监视器</h3>
+<p><code>pio device monitor [ARGS]</code> 就能开启监视器<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，<code>ARGS</code> 如果没有，就会使用默认值，串口监视相关的<code>ARGS</code>相关常用项使用信息如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">参数标识</th>
+<th style="text-align:left">可选值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">波特率</td>
+<td style="text-align:center">9600</td>
+<td style="text-align:center">-b, &ndash;baud</td>
+<td style="text-align:left">2400、4800、9600、19200、115200等等</td>
+</tr>
+<tr>
+<td style="text-align:center">端口</td>
+<td style="text-align:center">自动识别</td>
+<td style="text-align:center">-p, &ndash;port</td>
+<td style="text-align:left"><code>pio devcie list</code>列出的设备地址</td>
+</tr>
+<tr>
+<td style="text-align:center">校验位</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">&ndash;parity</td>
+<td style="text-align:left"><code>N</code>, <code>E</code>, <code>O</code>, <code>S</code>, <code>M</code></td>
+</tr>
+<tr>
+<td style="text-align:center">编码</td>
+<td style="text-align:center">UTF-8</td>
+<td style="text-align:center">&ndash;encoding</td>
+<td style="text-align:left"><code>hexlify</code>, <code>UTF-8</code></td>
+</tr>
+<tr>
+<td style="text-align:center">回显</td>
+<td style="text-align:center">off</td>
+<td style="text-align:center">&ndash;echo</td>
+<td style="text-align:left">无设置值</td>
+</tr>
+</tbody>
+</table>
+<p>还有很多其它参数项可以设置，这里列出的只是常用的。不加 <code>ARGS</code> 只执行 <code>pio device monitor</code> 可以自动识别和匹配参数，其实在这里执行了无参数的命令就可以正常看到 <strong>Arduino Leonardo</strong> 的打印信息了。</p>
+<h4 id="指定端口">指定端口</h4>
+<p>有时，命令不能自己识别端口，需要我们自己指定一个特定端口，这项参数其实也可以配置到 <code>platformio.ini</code> 文件中作为参数的默认值<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。在这里我们使用前面提到的端口 <code>/dev/cu.usbmodem1441</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio device monitor -p /dev/cu.usbmodem1441
+</code></pre></div><h4 id="通信速率">通信速率</h4>
+<p>决定通信速率的参数是 <strong>波特率</strong> ，程序中我们设置了波特率为 <code>115200</code>，同样这个参数也支持配置到文件 <code>platformio.ini</code> 中以作默认值<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。如果在命令中的话，可以这样指定：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio device monitor -p /dev/consoleu.usbmodem1441 -b <span class="m">115200</span>
+</code></pre></div><h4 id="校验位">校验位</h4>
+<p>在串口通信中，为了提高串口数据剧的准确性，会使用校验位，常用的是奇偶校验，奇校验是 <strong>odd</strong>，所以对应值为 <code>O</code>，偶校验是 <strong>even</strong>，对应 <code>E</code>，默认无校验 <strong>None</strong>，对应 <code>N</code>，如果要指定偶校验位，这样做：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pio device monitor --patity E
+</code></pre></div><h4 id="编码">编码</h4>
+<p>这个编码的功能类似于windows下好多串口助手中的文本/二进制选择的功能，默认串口助手开启以后会按照Ascii字符显示打印数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  leonardo pio device monitor --echo
+--- Miniterm on /dev/cu.usbmodem1441  9600,8,N,1 ---
+--- Quit: Ctrl+C <span class="p">|</span> Menu: Ctrl+T <span class="p">|</span> Help: Ctrl+T followed by Ctrl+H ---
+Led on!
+Led off!
+Led on!
+Led off!
+</code></pre></div><p>调试程序的时候，有可能会需要串口通信收发二进制数据，尤其是使用一定通信协议的情况下，此时想看二进制形式的数据，使用命令的时候需要指定 <code>--encoding</code> 为 <code>hexlify</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  leonardo pio device monitor --encoding hexlify
+--- Miniterm on /dev/cu.usbmodem1441  9600,8,N,1 ---
+--- Quit: Ctrl+C <span class="p">|</span> Menu: Ctrl+T <span class="p">|</span> Help: Ctrl+T followed by Ctrl+H ---
+4C <span class="m">65</span> <span class="m">64</span> <span class="m">20</span> 6F 6E <span class="m">21</span> 0A 4C <span class="m">65</span> <span class="m">64</span> <span class="m">20</span> 6F <span class="m">66</span> <span class="m">66</span> <span class="m">21</span> 0A
+</code></pre></div><p>可以看到打印结果就是原来字符串对应的Ascii码了！</p>
+<h4 id="数据回显">数据回显</h4>
+<p>主要用于发送数据的时候，默认情况是不会显示发送的字符或数据的，当开启回显时就能显示发送的数据：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  leonardo pio device monitor --echo
+--- Miniterm on /dev/cu.usbmodem1441  9600,8,N,1 ---
+--- Quit: Ctrl+C <span class="p">|</span> Menu: Ctrl+T <span class="p">|</span> Help: Ctrl+T followed by Ctrl+H ---
+Led off!
+Led on!
+Led off!
+Led on!
+yLed off!
+yyyyyLed on!
+</code></pre></div><p>可以看到我发了好多 <strong>y</strong>，在开启串口监视后，在键盘上按按键就会发送按键对应的字符，在二进制模式(hexlify)下时，只识别十六进制码然后发送。</p>
+<h4 id="临时配置">临时配置</h4>
+<p><code>device</code>命令使用的是 <a href="https://gist.github.com/bewest/4632563">miniterm</a>，所以在使用中可以临时配置一些参数，开启监视器后可以按快捷键 <code>CTRL</code>+<code>T</code> <code>CTRL</code> + <code>H</code>就会打印帮助信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">--- pySerial <span class="o">(</span>3.4<span class="o">)</span> - miniterm - <span class="nb">help</span>
+---
+--- Ctrl+C   Exit program
+--- Ctrl+T   Menu escape key, followed by:
+--- Menu keys:
+---    Ctrl+T  Send the menu character itself to remote
+---    Ctrl+C  Send the <span class="nb">exit</span> character itself to remote
+---    Ctrl+I  Show info
+---    Ctrl+U  Upload file <span class="o">(</span>prompt will be shown<span class="o">)</span>
+---    Ctrl+A  encoding
+---    Ctrl+F  edit filters
+--- Toggles:
+---    Ctrl+R  RTS   Ctrl+D  DTR   Ctrl+B  BREAK
+---    Ctrl+E  <span class="nb">echo</span>  Ctrl+L  EOL
+---
+--- Port settings <span class="o">(</span>Ctrl+T followed by the following<span class="o">)</span>:
+---    p          change port
+---    <span class="m">7</span> <span class="m">8</span>        <span class="nb">set</span> data bits
+---    N E O S M  change parity <span class="o">(</span>None, Even, Odd, Space, Mark<span class="o">)</span>
+---    <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>      <span class="nb">set</span> stop bits <span class="o">(</span>1, 2, 1.5<span class="o">)</span>
+---    b          change baud rate
+---    x X        disable/enable software flow control
+---    r R        disable/enable hardware flow control
+</code></pre></div><p>根据帮助信息进行操作即可修改通信参数。</p>
+<h2 id="总结">总结</h2>
+<p>本文主要分享了 <code>platformio</code> 的串口监视功能，程序设计中少不了串口的使用，所以这个功能一定是非常需要的，尤其是对于喜欢使用 CLI 的童鞋，希望本文对您有所帮助！</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="http://docs.platformio.org/en/latest/userguide/cmd_device.html">platformio device</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="http://docs.platformio.org/en/latest/projectconf/section_env_monitor.html"> Project Configuration File platformio.ini - Monitor options</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smslit.cn/tags/arduino">arduino</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/platformio">platformio</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/pio">pio</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					1997 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2018-07-11 23:28 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#测试程序">测试程序</a></li>
+    <li><a href="#device命令"><code>device</code>命令</a>
+      <ul>
+        <li><a href="#列出可用设备">列出可用设备</a></li>
+        <li><a href="#开启监视器">开启监视器</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smslit.cn/2018/07/15/tangdou-video/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>糖豆广场舞视频下载</span>
+			</a>
+			<a class="prev-post" href="https://blog.smslit.cn/2018/07/08/hugo-valine/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>hugo博客添加评论系统Valine</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2018/07/11/platformio-command-device/" class="leancloud_visitors" data-flag-title="platformio串口监视器功能">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="/js/valine-data.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true ,
+      emojiCDN: '',
+      emojiMaps: null
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

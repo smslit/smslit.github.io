@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>google on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/google/</link>
+    <description>Recent content in google on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 01 Dec 2016 12:49:16 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>又见google黑科技-Radarcat</title>
+      <link>https://blog.smslit.cn/2016/12/01/radarcat/</link>
+      <pubDate>Thu, 01 Dec 2016 12:49:16 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/12/01/radarcat/</guid>
+      <description>本次要分享的RadarCat就是基于这个Soli芯片的，它能通过机器学习实现对物体的识别，连瓶子里是什么液体都知道，芬达or可口可乐，看下面</description>
+    </item>
+    
+    <item>
+      <title>Project Soli 谷歌超精细手势识别</title>
+      <link>https://blog.smslit.cn/2015/08/22/googleProjectSoli-share/</link>
+      <pubDate>Sat, 22 Aug 2015 08:14:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/08/22/googleProjectSoli-share/</guid>
+      <description>&lt;p&gt;除了Google X，我们还应该了解Google的ATAP部门，这里将分享这个部门的Project Soli，绝对的黑科技，想象一下，今后打个响指，手指搓一搓，你的可穿戴设备就播放音乐，调节音量了，是不是想想都兴奋了？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

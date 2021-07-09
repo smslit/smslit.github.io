@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macOS on SMSLIT</title>
+    <link>https://blog.smslit.cn/tags/macOS/</link>
+    <description>Recent content in macOS on SMSLIT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 02 Jan 2019 17:20:38 +0800</lastBuildDate><atom:link href="https://blog.smslit.cn/tags/macOS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为 mac 连接的 2k 显示器开启 HiDPI</title>
+      <link>https://blog.smslit.cn/2019/01/02/mac_hidpi/</link>
+      <pubDate>Wed, 02 Jan 2019 17:20:38 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2019/01/02/mac_hidpi/</guid>
+      <description>&lt;p&gt;最近入手了 thinkvision 的 24寸显示器 &lt;a href=&#34;https://zhuanlan.zhihu.com/p/27516738&#34;&gt;t24h-10&lt;/a&gt;，之所以选择这款显示器，除了很好的工业设计和做工外，最主要的是支持 type-c 连接，用来显示的同时，扩展出了 4 个常规的 USB3.0 接口和 1 个 3.5mm 耳麦接口，并且使用 type-c 的话，显示器可以为我的 macbook pro 反向供电。虽然是 2k(2560*1440) 的分辨率，但因为近距离使用还难免有颗粒感，同时显示内容也会偏小，直观感受就是不细腻，心里还是有个疙瘩！还好最近了解到 macOS 上拥有 HiDPI^[&lt;a href=&#34;https://zhuanlan.zhihu.com/p/36913571&#34;&gt;Macbook外接2K显示器时，如何开启HiDPI?&lt;/a&gt;] 渲染技术，本文就讲解一下如何为自己的 2K 显示器开启 HiDPI 实现 Retina 的效果^[&lt;a href=&#34;https://zhuanlan.zhihu.com/p/20684620?refer=ibuick&#34;&gt;有关retina和HiDPI那点事&lt;/a&gt;]。&lt;/p&gt;
+&lt;p&gt;高PPI(硬件) + HiDPI渲染(软件) = 更细腻的显示效果(retina)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/20190102211703.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>mac下修复文件和目录为正常权限</title>
+      <link>https://blog.smslit.cn/2018/06/26/mac-fix-permission/</link>
+      <pubDate>Tue, 26 Jun 2018 15:03:47 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2018/06/26/mac-fix-permission/</guid>
+      <description>&lt;p&gt;昨天误删了macbook上&lt;code&gt;smslit&lt;/code&gt;用户下好多东西，无奈新建了一个用户&lt;code&gt;5km&lt;/code&gt;，在删除原用户目录前，将重要的文档拷贝到了移动硬盘，然后进入新用户中，把文件从移动硬盘拷贝到用户目录下，结果今天&lt;code&gt;ls&lt;/code&gt;查看文件的时候发现权限不对呀，所有的文件和目录权限都变成了&lt;code&gt;777&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决mac终端ssh登录linux中文乱码问题</title>
+      <link>https://blog.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</link>
+      <pubDate>Thu, 07 Sep 2017 16:34:12 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2017/09/07/mac-ssh-linux-encoding/</guid>
+      <description>&lt;p&gt;mac下ssh远程登录VPS的centos发现中文竟然乱码，想必是系统编码的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim中delete（backspace）键不能向左删除</title>
+      <link>https://blog.smslit.cn/2016/11/27/vim-backspace-invalid/</link>
+      <pubDate>Sun, 27 Nov 2016 16:43:01 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/11/27/vim-backspace-invalid/</guid>
+      <description>&lt;p&gt;MacOS下打开vim编辑文本，进入插入模式，要删除编辑之前的保存过的几个字符，按下&lt;strong&gt;delete&lt;/strong&gt;键删除它们，万万没想到呀！只听到&amp;quot;duang duang duang&amp;quot;，竟然无效！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>macOS下运行非App Store下载的app提示损坏的解决方法</title>
+      <link>https://blog.smslit.cn/2016/11/27/macOS-app-damaged/</link>
+      <pubDate>Sun, 27 Nov 2016 16:08:35 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/11/27/macOS-app-damaged/</guid>
+      <description>&lt;p&gt;在网上下载了一个macOS平台下的软件，但是一运行就弹出提示框，大概意思是说app已损坏，一开始以为真的是损坏了，然后又重新下载了一遍安装运行还是这样，然后又去另外一个平台下载还是这样。这怎么可能？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Apple平台开发-第三方库管理工具CocoaPods的安装和使用</title>
+      <link>https://blog.smslit.cn/2016/06/20/cocoapods-install-dev/</link>
+      <pubDate>Mon, 20 Jun 2016 21:17:10 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/06/20/cocoapods-install-dev/</guid>
+      <description>&lt;p&gt;今天了解macOS的串口编程，偶然了解到第三方库ORSSerialPort库，继而了解到了第三方库的管理工具CocoaPods，貌似这有助于在以后进行apple平台（iOS、watchOS、tvOS和macOS）开发，索性就安装一下吧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mac 使用技巧</title>
+      <link>https://blog.smslit.cn/2016/03/01/Mac-Notes-Life/</link>
+      <pubDate>Tue, 01 Mar 2016 10:10:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2016/03/01/Mac-Notes-Life/</guid>
+      <description>&lt;p&gt;开本文的目的是整理和记录平常使用mac的技巧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决adb对Android设备的识别问题</title>
+      <link>https://blog.smslit.cn/2015/12/13/adbT1-Develop/</link>
+      <pubDate>Sun, 13 Dec 2015 08:00:00 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/12/13/adbT1-Develop/</guid>
+      <description>&lt;p&gt;今天开始学习APICloud开发Android平台下的app，使用的是Sublime Text3进行开发，按照官网上的教程把插件安装成功，并按照教程新建了一个有底部导航栏的demo app，当右击选择真机调试时，却弹出对话框没有链接着的设备，可是明明我用usb连接着我的T1呀，本文就讲解一下我解决这个问题的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mac OSX下Sublime Text配置使用ctags实现代码跳转</title>
+      <link>https://blog.smslit.cn/2015/11/14/macSTctags-Develop/</link>
+      <pubDate>Sat, 14 Nov 2015 09:00:00 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/11/14/macSTctags-Develop/</guid>
+      <description>&lt;p&gt;ctags是一款实现代码跳转的插件，可以提高查看代码的效率，开发尽管可能有IDE，IDE中有代码跳转，但有的时候还是不想打开IDE的或者本身就没IDE，所以有必要安装ctags，本文就介绍如何在mac osx下的sublime text3中使用ctags。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text 3安装及简单配置</title>
+      <link>https://blog.smslit.cn/2015/08/19/sublimeText/</link>
+      <pubDate>Wed, 19 Aug 2015 14:14:46 +0800</pubDate>
+      
+      <guid>https://blog.smslit.cn/2015/08/19/sublimeText/</guid>
+      <description>&lt;p&gt;本文将介绍安装Sublime Text3，以及安装成功后我会做的一些事情。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

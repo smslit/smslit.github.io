@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="开启platformio之旅">
+<meta itemprop="description" content="十里还是比较喜欢用终端解决问题的，在某个小伙伴身上学到了些vim神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用arduino，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持Arduino开发的CLI，没想到就找到了文章主角platformio，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(&#43;arm)，简直了！特此分享！"><meta itemprop="datePublished" content="2017-05-20T19:59:43+08:00" />
+<meta itemprop="dateModified" content="2017-05-20T19:59:43+08:00" />
+<meta itemprop="wordCount" content="1661">
+<meta itemprop="keywords" content="platformio,develop,mcu,pio," /><meta property="og:title" content="开启platformio之旅" />
+<meta property="og:description" content="十里还是比较喜欢用终端解决问题的，在某个小伙伴身上学到了些vim神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用arduino，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持Arduino开发的CLI，没想到就找到了文章主角platformio，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(&#43;arm)，简直了！特此分享！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smslit.cn/2017/05/20/platformio-start/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2017-05-20T19:59:43+08:00" />
+<meta property="article:modified_time" content="2017-05-20T19:59:43+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="开启platformio之旅"/>
+<meta name="twitter:description" content="十里还是比较喜欢用终端解决问题的，在某个小伙伴身上学到了些vim神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用arduino，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持Arduino开发的CLI，没想到就找到了文章主角platformio，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(&#43;arm)，简直了！特此分享！"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>开启platformio之旅</title>
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/style.min.68044ec6a2aba0253c3f30cc9dab53487bf3294a657f262a8550f99cf378ed37.css" integrity="sha256-aAROxqKroCU8PzDMnatTSHvzKUplfyYqhVD5nPN47Tc=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/valine.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/reward.css">
+	<link rel="stylesheet" href="https://blog.smslit.cn/css/asciinema.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smslit.cn">SMSLIT</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smslit.cn/post/">Posts</a>
+				<a href="https://blog.smslit.cn/tags/">Tags</a>
+				<a href="https://blog.smslit.cn/daily/">Daily</a>
+				<a href="https://blog.smslit.cn/about/">Me</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="toc-btn" class="hdr-btn desktop-only-ib" title="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="http://weibo.com/u/2684217817" target="_blank" rel="noopener me" title="Weibo"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"  fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <g transform="translate(0.000000, 2.000000)" fill="#000000" fill-rule="nonzero" id="形状">
+        <path d="M23.7,8.59152679 C23.6,8.94964029 23.25,9.20543566 22.9,9.25659472 C22.55,9.30775379 22.2,9.10311751 22,8.745004 C21.9,8.54036772 21.85,8.28457235 21.95,8.02877698 C22.45,6.44284573 22.1,4.70343724 21,3.4756195 C19.9,2.24780175 18.3,1.68505194 16.7,2.04316547 C16.45,2.09432453 16.2,2.04316547 16,1.88968825 C15.8,1.73621103 15.65,1.53157475 15.6,1.27577938 C15.5,0.764188657 15.8,0.252597914 16.3,0.150279784 C18.45,-0.310151871 20.75,0.354916067 22.35,2.14548362 C23.95,3.98721024 24.35,6.44284573 23.7,8.59152679 Z M17.35,5.06155077 C17.15,5.11270983 16.95,5.06155077 16.75,4.95923261 C16.55,4.85691446 16.45,4.65227818 16.4,4.44764189 C16.3,3.98721024 16.6,3.57793765 17,3.4756195 C18.1,3.21982412 19.2,3.62909671 19.95,4.44764189 C20.7,5.31734614 20.9,6.4940048 20.6,7.56834532 C20.55,7.77298161 20.4,7.92645882 20.2,8.02877698 C20,8.13109513 19.8,8.13109513 19.6,8.07993604 C19.2,7.92645882 18.95,7.46602717 19.1,7.0567546 C19.25,6.54516388 19.15,5.93125501 18.8,5.52198242 C18.4,5.11270983 17.85,4.95923261 17.35,5.06155077 Z M18.05,9.66586731 C19.45,10.126299 20.95,11.1494804 20.95,13.0423661 C20.95,16.1119105 16.6,20 10.1,20 C5.1,20 1.13686838e-13,17.5443645 1.13686838e-13,13.4516387 C1.13686838e-13,11.3029576 1.30000001,8.84732213 3.6,6.54516386 C6.6,3.42446043 10.15,2.04316547 11.45,3.37330137 C12.05,3.98721024 12.1,5.0103917 11.7,6.23820942 C11.5,6.8521183 12.25,6.4940048 12.25,6.4940048 C14.7,5.41966427 16.85,5.3685052 17.6,6.54516386 C18,7.15907273 17.95,8.02877698 17.6,9.00079935 C17.45,9.46123101 17.7,9.56354916 18.05,9.66586731 Z M10.1,18.5163869 C14.05,18.1071143 17.1,15.6003197 16.85,12.940048 C16.6,10.2797762 13.15,8.43804957 9.19999999,8.84732213 C5.25,9.25659472 2.19999998,11.7633893 2.44999999,14.4236611 C2.7,17.0839329 6.09999998,18.9256595 10.1,18.5163869 Z M10.5,10.8936851 C12.45,11.4052758 13.45,13.2981615 12.65,15.1398881 C11.85,17.0327738 9.49999999,18.0047962 7.54999999,17.3908873 C5.64999998,16.7769784 4.84999999,14.8329336 5.65000001,13.0935252 C6.45,11.3541167 8.60000002,10.3820943 10.5,10.8936851 Z M9.04999999,15.3445244 C9.45,14.7306155 9.24999998,13.9632294 8.59999999,13.7074341 C7.99999999,13.4516387 7.2,13.7074341 6.79999999,14.3213429 C6.39999998,14.9352518 6.6,15.6514788 7.2,15.9584333 C7.84999999,16.2653877 8.65000001,16.0095923 9.04999999,15.3445244 Z" fill="currentColor"></path>
+    </g>
+</svg></a><a href="https://www.zhihu.com/people/smslit/activities" target="_blank" rel="noopener me" title="Zhihu"><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="none" fill-rule="evenodd" class="feather feather-mail">
+    <path d="M12.1197571,11.3394973 C11.2394396,11.2471275 8.50587146,11.3394973 8.50587146,11.3394973 L8.50587146,5.8004836 L12.5830381,5.8004836 C12.5830381,5.8004836 12.5367176,3.95412048 11.7490411,3.95412048 L5.12356308,3.95412048 L6.23550841,1 C6.23550841,1 4.56753979,1.09236985 3.96524661,2.15395489 C3.36295344,3.21553992 1.46333165,8.52386857 1.46333165,8.52386857 C1.46333165,8.52386857 2.11199596,8.80082682 3.17759547,8.0161496 C4.2432456,7.2314976 4.6138603,5.84665591 4.6138603,5.84665591 L6.5598026,5.75428606 L6.60612311,11.3856444 C6.60612311,11.3856444 3.22394129,11.3394973 2.52895647,11.3856444 C1.83397166,11.4317915 1.46330634,13.2781799 1.46330634,13.2781799 L6.60619904,13.2781799 C6.60619904,13.2781799 6.14281677,16.4169392 4.8455894,18.6787523 C3.50191497,20.9405149 1,22.7406553 1,22.7406553 C1,22.7406553 2.80693015,23.4791854 4.56761573,22.4636971 C6.32822537,21.4020364 7.62555398,16.8323387 7.62555398,16.8323387 L11.7491424,21.9559781 C11.7491424,21.9559781 12.1197824,19.5096018 11.7028219,18.8172188 C11.2394396,18.1248358 8.83019096,15.3553541 8.83019096,15.3553541 L7.76454082,16.2784726 L8.50584615,13.2319823 L12.9999986,13.2319823 C13.0000745,13.2320328 13.0000745,11.4318672 12.1197571,11.3394973 Z M14.0447646,4 L14,20.8940959 L15.6119399,20.8940959 L16.1940015,23 L19.014927,20.8940959 L23,20.8940959 L23,4 L14.0448624,4 L14.0447646,4 Z M21,18.2118088 L19.2203194,18.2118088 L16.9745545,20 L16.4660842,18.2118088 L16,18.2118088 L16,6 L21,6 L21,18.2118088 Z" id="形状" fill="currentColor" fill-rule="nonzero"></path>    
+</svg></a><a href="mailto:5km@smslit.cn" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://github.com/smslit" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smslit.cn/post/">Posts</a></li>
+			<li><a href="https://blog.smslit.cn/tags/">Tags</a></li>
+			<li><a href="https://blog.smslit.cn/daily/">Daily</a></li>
+			<li><a href="https://blog.smslit.cn/about/">Me</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 20, 2017</span></div>
+				<h1>开启platformio之旅</h1>
+			</header>
+			<div class="content">
+				<p>十里还是比较喜欢用终端解决问题的，在某个<a href="https://www.hexcrow.org">小伙伴</a>身上学到了些<a href="http://www.vim.org">vim</a>神技，虽然十里的技术现在很菜，但十里还是有追求的！比如十里希望能在终端下进行嵌入式开发工作，哈哈！平常会使用<code>arduino</code>，最近这些天又在找vim插件，但基本上年久不更，跟不上Arduino版本的更新！转换思路，用bing搜索了支持<code>Arduino</code>开发的CLI，没想到就找到了文章主角<a href="http://platformio.org">platformio</a>，它不要太强大，竟然支持很多平台和板子的嵌入式开发，wonderful，更重要的是跨平台特性，windows\macOS\linux(+arm)，简直了！特此分享！</p>
+<p>看图感受一下支持的MCU平台：</p>
+<p><img src="https://pichome-1254392422.cos.ap-chengdu.myqcloud.com/img/5xjjq.png" alt="支持的MCU厂商"></p>
+<blockquote>
+<p>PlatformIO is an open source ecosystem for IoT development. Cross-platform build system. Continuous and IDE integration. Arduino and ARM mbed compatible</p>
+</blockquote>
+<p><code>platformio</code>提供的是一个嵌入式平台开发的构建系统和开发环境，它会管理你使用到的编译连工具、调试器和下载工具等，不需要费心自己去找然后艰难搭建各种MCU的开发环境了，真的非常方便！</p>
+<h3 id="安装">安装</h3>
+<p><code>platformio</code>提供可视化的IDE，也提供CLI，CLI就是十里需要的<code>Platformio Core</code>，首先需要<a href="http://docs.platformio.org/en/latest/installation.html">安装</a>，macOS下非常简单，使用homebrew就可以安装。</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">brew install platformio
+</code></pre></div><p>安装完，终端重启一下就可以调出<code>platformio</code>命令，还有一个alias命令是<code>pio</code>，执行一下help感受一下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">➜  play pio --help
+Usage: pio [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --version          Show the version and exit.
+  -f, --force        Force to accept any confirmation prompts.
+  -c, --caller TEXT  Caller ID (service).
+  -h, --help         Show this message and exit.
+
+Commands:
+  account   Manage PIO Account
+  boards    Embedded Board Explorer
+  ci        Continuous Integration
+  device    Monitor device or list existing
+  init      Initialize PlatformIO project or update existing
+  lib       Library Manager
+  platform  Platform Manager
+  remote    PIO Remote
+  run       Process project environments
+  settings  Manage PlatformIO settings
+  test      Local Unit Testing
+  update    Update installed platforms, packages and libraries
+  upgrade   Upgrade PlatformIO to the latest version
+➜  play pio --version
+PlatformIO, version 3.3.0
+</code></pre></div><h3 id="从一个arduino点灯开启使用旅程">从一个Arduino点灯开启使用旅程</h3>
+<p>其实此时此刻可以把Arduino IDE卸载掉了，哈哈！下面可以跟我简单走一个 <code>Arduino UNO</code> 例程的开发过程。</p>
+<h4 id="查看platformio支持的开发板">查看<code>platformio</code>支持的开发板</h4>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">pio boards
+</code></pre></div><p>这样就会列出当前所支持的开发板，目前应该是200多款，它们按照硬件平台或MCU进行分类，可以看到其中Arduino官方开发板。其中<code>ID</code>一列在使用命令的时候，用<code>ID</code>用来表示不同开发板。其中我们要实验的 <code>Arduino UNO</code> 对应的是 <code>uno</code>。</p>
+<h4 id="初始化blinky工程">初始化blinky工程</h4>
+<p>在自己想要的目录下创建blinky目录，并进入此目录</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir blinky &amp;&amp; cd blinky
+</code></pre></div><p>初始化<code>uno</code>工程</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">pio init --board uno
+</code></pre></div><p>正常的话就生成了工程目录和文件如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">.
+├── lib
+│   └── readme.txt
+├── platformio.ini
+└── src
+	└── main.cpp
+</code></pre></div><p>其中<code>platformio.ini</code>就是配置文件，可以点<a href="http://docs.platformio.org/en/latest/projectconf.html">我</a>了解更改配置相关的内容，这里我们不需要更改，保持默认就好。<code>lib</code>以后用来保存使用的库文件，默认没有文件，而<code>src</code>下包含了工程源码，自动生成了<code>main.cpp</code>，内容如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cm">/**
+</span><span class="cm"> * Blink
+</span><span class="cm"> *
+</span><span class="cm"> * Turns on an LED on for one second,
+</span><span class="cm"> * then off for one second, repeatedly.
+</span><span class="cm"> */</span>
+<span class="cp">#include</span> <span class="cpf">&#34;Arduino.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#ifndef LED_BUILTIN
+</span><span class="cp">#define LED_BUILTIN 13
+</span><span class="cp">#endif
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="c1">// initialize LED digital pin as an output.
+</span><span class="c1"></span>	<span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="c1">// turn the LED on (HIGH is the voltage level)
+</span><span class="c1"></span>	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+
+	<span class="c1">// wait for a second
+</span><span class="c1"></span>	<span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+	<span class="c1">// turn the LED off by making the voltage LOW
+</span><span class="c1"></span>	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+
+	<span class="c1">// wait for a second
+</span><span class="c1"></span>	<span class="n">delay</span><span class="p">(</span><span class="mi">900</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="编译工程">编译工程</h4>
+<p>可以使用<code>run</code>命令进行编译和上传程序，执行</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">pio run
+</code></pre></div><p><code>platformio</code>会自动下载对应开发板的交叉编译链工具、工程框架等，<code>Arduino UNO</code>对应的就是avr的相关CLI开发工具，下载完成后就会自动编译了。</p>
+<h4 id="上传程序">上传程序</h4>
+<p>程序编译完成后，需要将程序上传到开发板，执行</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">pio run -t upload
+</code></pre></div><p>点<a href="http://docs.platformio.org/en/latest/userguide/cmd_run.html">我</a>了解更多关于<code>run</code>命令的使用，<code>-t</code> 用来指定功能，比如这里的<code>upload</code>，因为缺少工具，所以<code>platformio</code>会自动下载<code>Arduino UNO</code>程序下载工具<code>avrdude</code>，下载完成后就会将程序上传到连接电脑的开发板，这期间会自动选择合适的串口进行上传。</p>
+<h3 id="总结">总结</h3>
+<p>走过以上步骤，会发现<code>platformio</code>是一个智能的工具，首先它会根据你指定的开发板在<code>platformio.ini</code>生成默认的开发板工程配置，执行编译命令后就会自动选择相应的交叉编译工具和依赖工具，如果资源不好还会自动更换资源地址，尽量保证工具能够下载安装，然后完成代码编译。将程序上传到开发板时，它同样智能的下载对应平台的上传工具，并完成智能选择串口上传。其实一个工程还可以指定多种开发板，详情可以点<a href="http://docs.platformio.org/en/latest/userguide/cmd_init.html">我</a>了解。总之，十里十分喜欢这个工具，建议看到本文的小伙伴安装体验一下，无论IDE还是CLI都一样令人心动！</p>
+<p>后面如果有时间，十里还会分享使用感受！</p>
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smslit.cn/tags/platformio">platformio</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/develop">develop</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/mcu">mcu</a></span><span class="tag"><a href="https://blog.smslit.cn/tags/pio">pio</a></span>
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+					1661 字
+				</p>
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+					2017-05-20 19:59 &#43;0800</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">目录</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#从一个arduino点灯开启使用旅程">从一个Arduino点灯开启使用旅程</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smslit.cn/2017/06/02/python-coding-style/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;下一篇</span><br><span>python之父的coding禅念</span>
+			</a>
+			<a class="prev-post" href="https://blog.smslit.cn/2017/05/12/coincidental/">
+				<span class="post-nav-label">上一篇&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>巧合特别多</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+		<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">打赏作者</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/wechatpay.png">
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/assets/pay/alipay.png">
+      </label>
+  </div>
+</div>
+
+
+<span id="/2017/05/20/platformio-start/" class="leancloud_visitors" data-flag-title="开启platformio之旅">
+  <span class="post-meta-item-text">访问量 </span>
+  <span class="leancloud-visitors-count"></span>
+  <p></p>
+</span>
+<div id="vcomments"></div>
+<script src="/js/valine-data.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+      el: '#vcomments' ,
+      appId: 'IlJ4XQsE83q10RN3Maoglx2x-gzGzoHsz',
+      appKey: 'OxVuAMUYBTbDMO9vO2IqTsMR',
+      notify:  false , 
+      verify:  false , 
+      avatar:'', 
+      placeholder: '说点什么吧...(提醒：填写邮箱，若有人回复您，您将及时收到提醒邮件！)',
+      visitor:  true ,
+      emojiCDN: '',
+      emojiMaps: null
+  });
+</script>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smslit.cn">5km</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smslit.cn/post/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smslit.cn/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
